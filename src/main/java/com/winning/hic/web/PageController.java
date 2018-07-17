@@ -2,6 +2,7 @@ package com.winning.hic.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping(value = "/")
+    @RequestMapping(value = "/")
     public String login(){
         return "login/login";
     }

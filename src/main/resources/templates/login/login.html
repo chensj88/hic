@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <title>控制台 - 实施工具</title>
-    <meta name="keywords" content="卫宁健康实施工具" />
-    <meta name="description" content="卫宁健康实施工具" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <title>控制台 - 数据互联互通</title>
+    <meta name="keywords" content="卫宁健康实施工具"/>
+    <meta name="description" content="卫宁健康实施工具"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
-    <link rel="shortcut icon" href="img/logo.ico"/>
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
+
     <!--[if IE 7]>
-    <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome-ie7.min.css}"/>
     <![endif]-->
     <!-- page specific plugin styles -->
     <!-- fonts -->
     <!-- ace styles -->
 
-    <link rel="stylesheet" href="assets/css/ace.min.css" />
-    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>
 
     <!--[if lte IE 8]>
-    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" th:href="@{/assets/css/ace-ie.min.css}"/>
     <![endif]-->
 
     <!-- inline styles related to this page -->
@@ -29,9 +30,9 @@
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
     <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.min.js"></script>
-    <script src="/bootstrap/js/bootstrapValidator.min.js"></script>
+    <script th:src="@{/assets/js/html5shiv.js}"></script>
+    <script th:src="@{/assets/js/respond.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrapValidator.min.js}"></script>
     <![endif]-->
 </head>
 
@@ -63,18 +64,20 @@
 
                                     <div class="space-6"></div>
 
-                                    <form id="loginSub" method="post" action="<%=basePath%>home/home.do" >
+                                    <form id="loginSub" method="post" action="<%=basePath%>home/home.do">
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input id="username" name="username" type="text" class="form-control" placeholder="用户名" />
+															<input id="username" name="username" type="text"
+                                                                   class="form-control" placeholder="用户名"/>
 															<i class="icon-user"></i>
 														</span>
                                             </label>
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input id="password" name="password" type="password" class="form-control" placeholder="密码" />
+															<input id="password" name="password" type="password"
+                                                                   class="form-control" placeholder="密码"/>
 															<i class="icon-lock"></i>
 														</span>
                                             </label>
@@ -83,7 +86,7 @@
 
                                             <div class="clearfix">
                                                 <label class="inline">
-                                                    <input type="checkbox" class="ace" />
+                                                    <input type="checkbox" class="ace"/>
                                                     <span class="lbl"> 记住密码</span>
                                                 </label>
 
@@ -115,11 +118,12 @@
 
 <!-- basic scripts -->
 
-<script src="assets/js/base64.min.js"></script>
-<script src="bootstrap/js/jquery-1.12.4.min.js"></script>
-<script src="js/common.js"></script>
+<script th:src="@{/assets/js/base64.min.js}"></script>
+
+<script th:src="@{/bootstrap/js/jquery-1.12.4.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
 <script type="text/javascript">
-    if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if ("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
 
 <!-- inline scripts related to this page -->
@@ -127,7 +131,7 @@
 <script type="text/javascript">
     function show_box(id) {
         jQuery('.widget-box.visible').removeClass('visible');
-        jQuery('#'+id).addClass('visible');
+        jQuery('#' + id).addClass('visible');
     }
 
 
@@ -138,30 +142,30 @@
     });
 
     //登陆判断
-    $("#sub_btn").click(function() {
+    $("#sub_btn").click(function () {
         var username = $("#username").val();
-        if(username == null || username == ''){
+        if (username == null || username == '') {
             alert("用户名不能为空!");
             return false;
         }
         var password = $("#password").val();
-        if(password == null || password ==''){
+        if (password == null || password == '') {
             alert("密码不能为空!");
             return false;
         }
         var decryptPassword = Base64.encode(password);
         $.ajax({
             type: "POST",
-            url:Common.getRootPath()+"/login/check.do",
-            data:{"username":username,"password":decryptPassword},
-            dataType:"json",
-            cache : false,
-            error: function(request) {
+            url: Common.getRootPath() + "/login/check.do",
+            data: {"username": username, "password": decryptPassword},
+            dataType: "json",
+            cache: false,
+            error: function (request) {
                 alert("服务端错误，或网络不稳定，本次操作被终止。");
                 console.log(request);
             },
-            success: function(data) {
-                if(data.status) {
+            success: function (data) {
+                if (data.status) {
                     $("#loginSub").submit();
                 } else {
                     alert(data.message);
