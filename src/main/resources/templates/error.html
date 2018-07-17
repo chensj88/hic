@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>统一异常处理</title>
+</head>
+<body>
+<h1>Error Handler</h1>
+<!--/*@thymesVar id="url" type="java.lang.String"*/-->
+<div th:text="${url}"></div>
+<!--/*@thymesVar id="exception" type="java.lang.Exception"*/-->
+<!--/*@thymesVar id="message" type="java.lang.String"*/-->
+<div th:text="${exception.message}"></div>
+</body>
+</html>
