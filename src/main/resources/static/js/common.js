@@ -64,7 +64,7 @@
         var pos = curWwwPath.indexOf(pathName);
         // 获取主机地址
         var localhostPaht = curWwwPath.substring(0, pos);
-        if (pathName.substr(1).indexOf("ssgj") == -1) { // 无工程名，则直接访问
+        if (pathName.substr(1).indexOf("hic") == -1) { // 无工程名，则直接访问
             return localhostPaht;
         } else {
             // 获取带"/"的项目名
