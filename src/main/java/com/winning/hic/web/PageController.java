@@ -43,4 +43,11 @@ public class PageController {
         System.out.println(password);
         return "success";
     }
+
+
+    @ApiOperation(value = "测试模板页面",notes = "")
+    @RequestMapping(value = "/template",method = RequestMethod.GET)
+    public String testTemplate(){
+        return "test/template";
+    }
 }

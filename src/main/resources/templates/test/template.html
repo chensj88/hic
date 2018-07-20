@@ -1,0 +1,93 @@
+<!--
+   Created with IntelliJ IDEA.
+   Description: 
+   User: LENOVO
+   Date: 2018-07-20
+   Time: 15:53
+ -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <!--[if IE 7]>
+        <link rel="stylesheet" th:href="@{/assets/css/font-awesome-ie7.min.css}"/>
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" th:href="@{/assets/css/ace-ie.min.css}"/>
+    <![endif]-->
+    <script th:src="@{/assets/js/ace-extra.min.js}"></script>
+    <!--[if lt IE 9]>
+        <script th:src="@{/assets/js/html5shiv.js}"></script>
+        <script th:src="@{/assets/js/respond.min.js}"></script>
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-treeview.min.css}">
+</head>
+<body>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="main-container-inner">
+        <div class="main-content">
+            <div class="page-content">
+                文件显示区域
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--[if !IE]> -->
+<script type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript" th:src="@{/bootstrap/js/jquery-1.12.4.min.js}"></script>
+<![endif]-->
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script th:src='@{/bootstrap/js/jquery-2.2.4.min.js}'>" + "<" + "script>");
+</script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script th:src='@{/bootstrap/js/jquery-1.12.4.min.js}'>" + "<" + "script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+    if ("ontouchend" in document) document.write("<script th:src='@{/assets/js/jquery.mobile.custom.min.js}'>" + "<" + "script>");
+</script>
+<script th:src="@{/assets/js/typeahead-bs2.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-treeview.min.js}"></script>
+<!-- page specific plugin scripts -->
+<!--[if lte IE 8]>
+<script th:src="@{/assets/js/excanvas.min.js}"></script>
+<![endif]-->
+<script th:src="@{/assets/js/jquery-ui-1.10.3.custom.min.js}"></script>
+<script th:src="@{/assets/js/jquery.ui.touch-punch.min.js}"></script>
+<script th:src="@{/assets/js/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/assets/js/jquery.easy-pie-chart.min.js}"></script>
+<script th:src="@{/assets/js/jquery.sparkline.min.js}"></script>
+<script th:src="@{/assets/js/flot/jquery.flot.min.js}"></script>
+<script th:src="@{/assets/js/flot/jquery.flot.pie.min.js}"></script>
+<script th:src="@{/assets/js/flot/jquery.flot.resize.min.js}"></script>
+<!-- ace scripts -->
+<script th:src="@{/assets/js/ace-elements.min.js}"></script>
+<script th:src="@{/assets/js/ace.min.js}"></script>
+<script>
+    $(function () {
+        let containter = document.getElementById('main-container');
+        containter.style.height = document.body.offsetHeight + 'px';
+        console.log(document.body.offsetHeight + 'px');
+        console.log(document.body.offsetHeight + 'px');
+    });
+</script>
+</html>
