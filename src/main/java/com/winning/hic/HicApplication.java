@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.winning.hic.model")
+@MapperScan({"com.winning.hic.model","com.winning.hic.dao"})
 public class HicApplication {
 
 	public static void main(String[] args) {

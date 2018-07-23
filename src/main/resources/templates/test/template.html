@@ -26,10 +26,10 @@
         <script th:src="@{/assets/js/html5shiv.js}"></script>
         <script th:src="@{/assets/js/respond.min.js}"></script>
     <![endif]-->
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-treeview.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/ztree/css/zTreeStyle/zTreeStyle.css}">
 </head>
 <body>
-<div class="main-container" id="main-container">
+<div class="main-container container-fluid" id="main-container">
     <script type="text/javascript">
         try {
             ace.settings.check('main-container', 'fixed')
@@ -37,11 +37,16 @@
         }
     </script>
     <div class="main-container-inner">
-        <div class="main-content">
+        <!--<div class="main-content">-->
             <div class="page-content">
                 文件显示区域
+                <div class="col-lg-6">
+                    <div id="tree">
+
+                    </div>
+                </div>
             </div>
-        </div>
+        <!--</div>-->
     </div>
 </div>
 </body>
@@ -66,7 +71,7 @@
 </script>
 <script th:src="@{/assets/js/typeahead-bs2.min.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-treeview.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-treeview.min.js}"></script>-->
 <!-- page specific plugin scripts -->
 <!--[if lte IE 8]>
 <script th:src="@{/assets/js/excanvas.min.js}"></script>
@@ -82,12 +87,61 @@
 <!-- ace scripts -->
 <script th:src="@{/assets/js/ace-elements.min.js}"></script>
 <script th:src="@{/assets/js/ace.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.all.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
 <script>
+    var setting = {
+        async: {
+            enable: true,
+            url:Common.getRootPath() + "/mbk/tree",
+            autoParam:["id"],
+            dataFilter: filter,
+            type: "get"
+        },
+        view: {
+            dblClickExpand: false,
+            showLine: true,
+            selectedMulti: false
+        },
+        data: {
+            key:{
+                name:'nodeName'
+            },
+            simpleData: {
+                enable: true,
+                idKey: "nodeId",
+                pIdKey: "nodePid",
+                rootPId: ""
+            }
+        },
+        callback: {
+            onclick:function (event, treeId, treeNode, clickFlag) {
+                console.log(treeId);
+                console.log(treeNode);
+            }
+        }
+    };
     $(function () {
         let containter = document.getElementById('main-container');
         containter.style.height = document.body.offsetHeight + 'px';
         console.log(document.body.offsetHeight + 'px');
         console.log(document.body.offsetHeight + 'px');
+        var bodyH = $(document).find("body").get(0).scrollHeight,
+            htmlH = $(document).find("html").get(0).scrollHeight,
+            maxH = Math.max(bodyH, htmlH), minH = Math.min(bodyH, htmlH),
+            h = containter.style.height >= maxH ? minH : maxH;
+        if (h < 600) h = 600;
+        containter.style.height = h;
+        $.fn.zTree.init($('#tree'), setting);
     });
+
+    function filter(treeId, parentNode, childNodes) {
+        if (!childNodes) return null;
+        for (var i=0, l=childNodes.length; i<l; i++) {
+            childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
+        }
+        return childNodes;
+    }
+
 </script>
 </html>

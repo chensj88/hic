@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.EmrMxmcmlkDao">
+
+    <resultMap id="emrMxmcmlkResultForList" type="emrMxmcmlk">
+         <result column="MLDM" property="mldm" jdbcType="VARCHAR" />
+         <result column="MLMC" property="mlmc" jdbcType="VARCHAR" />
+         <result column="PY" property="py" jdbcType="VARCHAR" />
+         <result column="WB" property="wb" jdbcType="VARCHAR" />
+         <result column="SJDM" property="sjdm" jdbcType="VARCHAR" />
+         <result column="MLCC" property="mlcc" jdbcType="INTEGER" />
+         <result column="YXJL" property="yxjl" jdbcType="SMALLINT" />
+         <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="emrMxmcmlkResult" type="emrMxmcmlk" extends="emrMxmcmlkResultForList">
+
+    </resultMap>
+
+    <sql id="sql-emrMxmcmlk">
+        <if test="(mldm != null and mldm != '')"> and t.MLDM = #{mldm} </if>
+        <if test="(mlmc != null and mlmc != '')"> and t.MLMC = #{mlmc} </if>
+        <if test="(py != null and py != '')"> and t.PY = #{py} </if>
+        <if test="(wb != null and wb != '')"> and t.WB = #{wb} </if>
+        <if test="(sjdm != null and sjdm != '')"> and t.SJDM = #{sjdm} </if>
+        <if test="(mlcc != null and mlcc != '')"> and t.MLCC = #{mlcc} </if>
+        <if test="(yxjl != null and yxjl != '')"> and t.YXJL = #{yxjl} </if>
+        <if test="(memo != null and memo != '')"> and t.MEMO = #{memo} </if>
+    </sql>
+
+    <insert id="insertEmrMxmcmlk" parameterType="emrMxmcmlk">
+        INSERT INTO EMR_MXMCMLK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(mldm != null and mldm != '')"> MLDM , </if>
+            <if test="(mlmc != null and mlmc != '')"> MLMC , </if>
+            <if test="(py != null and py != '')"> PY , </if>
+            <if test="(wb != null and wb != '')"> WB , </if>
+            <if test="(sjdm != null and sjdm != '')"> SJDM , </if>
+            <if test="(mlcc != null and mlcc != '')"> MLCC , </if>
+            <if test="(yxjl != null and yxjl != '')"> YXJL , </if>
+            <if test="(memo != null and memo != '')"> MEMO , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(mldm != null and mldm != '')"> #{mldm , jdbcType= VARCHAR },  </if>
+            <if test="(mlmc != null and mlmc != '')"> #{mlmc , jdbcType= VARCHAR },  </if>
+            <if test="(py != null and py != '')"> #{py , jdbcType= VARCHAR },  </if>
+            <if test="(wb != null and wb != '')"> #{wb , jdbcType= VARCHAR },  </if>
+            <if test="(sjdm != null and sjdm != '')"> #{sjdm , jdbcType= VARCHAR },  </if>
+            <if test="(mlcc != null and mlcc != '')"> #{mlcc , jdbcType= INTEGER },  </if>
+            <if test="(yxjl != null and yxjl != '')"> #{yxjl , jdbcType= SMALLINT },  </if>
+            <if test="(memo != null and memo != '')"> #{memo , jdbcType= VARCHAR },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateEmrMxmcmlk" parameterType="emrMxmcmlk">
+        UPDATE EMR_MXMCMLK
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(mldm != null and mldm != '')"> MLDM , </if>
+                <if test="(mlmc != null and mlmc != '')"> MLMC , </if>
+                <if test="(py != null and py != '')"> PY , </if>
+                <if test="(wb != null and wb != '')"> WB , </if>
+                <if test="(sjdm != null and sjdm != '')"> SJDM , </if>
+                <if test="(mlcc != null and mlcc != '')"> MLCC , </if>
+                <if test="(yxjl != null and yxjl != '')"> YXJL , </if>
+                <if test="(memo != null and memo != '')"> MEMO , </if>
+            </trim>
+        </set>
+        <where>
+            <if test="(mldm != null and mldm != '')"> and MLDM = #{ mldm }   </if>
+            <if test="(mldm !=null or mldm!='') and (map.pks != null and map.pks != '')">
+                and (MLDM) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteEmrMxmcmlk" parameterType="emrMxmcmlk">
+        delete from  EMR_MXMCMLK
+        <where>
+            <if test="(mldm != null and mldm != '')"> and MLDM = #{ mldm }   </if>
+            <if test="(mldm !=null or mldm!='') and (map.pks != null and map.pks != '')">
+                and (MLDM) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectEmrMxmcmlk" resultMap="emrMxmcmlkResult" parameterType="emrMxmcmlk">
+        SELECT * FROM EMR_MXMCMLK t
+        <where>
+            <include refid="sql-emrMxmcmlk" />
+        </where>
+    </select>
+
+    <select id="selectEmrMxmcmlkList" resultMap="emrMxmcmlkResultForList" parameterType="emrMxmcmlk">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM EMR_MXMCMLK t
+        <where>
+            <include refid="sql-emrMxmcmlk" />
+        </where>
+        ORDER BY t.MLDM DESC
+    </select>
+
+    <select id="selectEmrMxmcmlkCount" resultType="int" parameterType="emrMxmcmlk">
+        select count(1) from  EMR_MXMCMLK t
+        <where>
+            <include refid="sql-emrMxmcmlk" />
+        </where>
+    </select>
+
+    <select id="selectEmrMxmcmlkPageList" resultMap="emrMxmcmlkResult" parameterType="emrMxmcmlk">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY t.MLDM DESC ) AS _RN
+        FROM EMR_MXMCMLK t
+        <where>
+            <include refid="sql-emrMxmcmlk" />
+        </where>
+        <!-- order by t.MLDM asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+    <select id="selectEmrMxmcmlkParentList" resultMap="emrMxmcmlkResultForList" >
+        SELECT * FROM EMR_MXMCMLK t
+        where  (t.MLDM ='B+' or t.MLDM='B-')
+        ORDER BY t.MLDM DESC
+    </select>
+
+    <select id="selectEmrMxmcmlkFirstChildList" resultMap="emrMxmcmlkResultForList" parameterType="emrMxmcmlk">
+        SELECT
+         a.MLDM,a.MLMC,LEFT(a.MLDM,len(a.MLDM)-2) SJDM
+        FROM dbo.EMR_MXMCMLK a WHERE LEFT(a.MLDM,len(a.MLDM)-2) = #{mldm}
+        UNION
+        SELECT a.MBDM MLDM,a.MBMC,a.MXFLDM SJDM FROM dbo.EMR_MBK a
+        WHERE  a.MXFLDM=#{mldm}
+    </select>
+</mapper>
