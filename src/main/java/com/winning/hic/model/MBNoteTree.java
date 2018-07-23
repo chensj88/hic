@@ -20,7 +20,9 @@ public class MBNoteTree {
 
     private String nodeDesc;
 
-    private List<MBNoteTree> mbNoteTrees = new ArrayList<>();
+    private boolean IsParent;
+
+    private List<MBNoteTree> children = new ArrayList<>();
 
     public String getNodeId() {
         return nodeId;
@@ -54,15 +56,23 @@ public class MBNoteTree {
         this.nodeDesc = nodeDesc;
     }
 
-    public List<MBNoteTree> getMbNoteTrees() {
-        return mbNoteTrees;
+    public List<MBNoteTree> getChildren() {
+        return children;
     }
 
-    public void setMbNoteTrees(List<MBNoteTree> mbNoteTrees) {
-        this.mbNoteTrees = mbNoteTrees;
+    public void setChildren(List<MBNoteTree> children) {
+        this.children = children;
     }
 
     public void addMbNoteTrees(MBNoteTree mbNoteTree) {
-        this.mbNoteTrees.add(mbNoteTree);
+        this.children.add(mbNoteTree);
+    }
+
+    public boolean isParent() {
+        return IsParent;
+    }
+
+    public void setParent(boolean parent) {
+        IsParent = parent;
     }
 }

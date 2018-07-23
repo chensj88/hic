@@ -40,9 +40,8 @@
         <!--<div class="main-content">-->
             <div class="page-content">
                 文件显示区域
-                <div class="col-lg-6">
-                    <div id="tree">
-
+                <div class="col-lg-2">
+                    <div id="tree" class="ztree">
                     </div>
                 </div>
             </div>
@@ -87,23 +86,33 @@
 <!-- ace scripts -->
 <script th:src="@{/assets/js/ace-elements.min.js}"></script>
 <script th:src="@{/assets/js/ace.min.js}"></script>
-<script th:src="@{/assets/ztree/js/jquery.ztree.all.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.core.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.exedit.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.excheck.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.exhide.min.js}"></script>
 <script th:src="@{/js/common.js}"></script>
 <script>
     var setting = {
         async: {
             enable: true,
             url:Common.getRootPath() + "/mbk/tree",
-            autoParam:["id"],
-            dataFilter: filter,
-            type: "get"
+            autoParam:["nodeId"],
+            dataType:'json',
+            dataFilter: filter
         },
+        checkable: true,
+        showIcon: true,
+        showLine: true,
         view: {
             dblClickExpand: false,
             showLine: true,
             selectedMulti: false
         },
+        expandSpeed: "",
         data: {
+            keep:{
+                parent:true
+            },
             key:{
                 name:'nodeName'
             },
@@ -115,12 +124,11 @@
             }
         },
         callback: {
-            onclick:function (event, treeId, treeNode, clickFlag) {
-                console.log(treeId);
-                console.log(treeNode);
-            }
+            onClick: zTreeOnOnClick,
+            onExpand:zTreeOnOnClick
         }
     };
+
     $(function () {
         let containter = document.getElementById('main-container');
         containter.style.height = document.body.offsetHeight + 'px';
@@ -132,16 +140,43 @@
             h = containter.style.height >= maxH ? minH : maxH;
         if (h < 600) h = 600;
         containter.style.height = h;
-        $.fn.zTree.init($('#tree'), setting);
+        $.fn.zTree.init($("#tree"), setting);
     });
 
     function filter(treeId, parentNode, childNodes) {
         if (!childNodes) return null;
-        for (var i=0, l=childNodes.length; i<l; i++) {
-            childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
+        var result = childNodes.data;
+        for (var i=0, l=result.length; i<l; i++) {
+            result[i].nodeName = result[i].nodeName.replace(/\.n/g, '.');
         }
-        return childNodes;
+        return result;
     }
 
+    function zTreeOnOnClick(event, treeId, treeNode) {
+        var treeObj = $.fn.zTree.getZTreeObj(treeId);
+        var node = treeObj.getNodeByTId(treeNode.tId);
+        //没有子节点才去查询
+        if (node.children.length < 1 ||node.children == null || node.children == "undefined") {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url:Common.getRootPath() + "/mbk/childTree",
+                data: {
+                    mldm: treeNode.nodeId
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.data != null && data.data != "") {
+                        //添加新节点
+                        newNode = treeObj.addNodes(node, data.data);
+                    }
+                },
+                error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+                    result = true;
+                    alert("请求失败!");
+                }
+            });
+        }
+    }
 </script>
 </html>

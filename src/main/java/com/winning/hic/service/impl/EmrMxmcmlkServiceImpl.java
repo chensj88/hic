@@ -60,7 +60,9 @@ public class EmrMxmcmlkServiceImpl implements  EmrMxmcmlkService {
         List<EmrMxmcmlk> parentList = emrMxmcmlkDao.selectEmrMxmcmlkParentList();
         List<MBNoteTree> mbNoteTrees = new ArrayList<>();
         for (EmrMxmcmlk mxmcmlk1 : parentList) {
-            mbNoteTrees.add(mxmcmlk1.getMBNoteTree());
+            MBNoteTree tree = mxmcmlk1.getMBNoteTree();
+            tree.setParent(true);
+            mbNoteTrees.add(tree);
         }
         return mbNoteTrees;
     }
