@@ -13,4 +13,19 @@ public interface Facade {
 
     EmrMbkService getEmrMbkService();
 
+    HlhtAutomateSetService getHlhtAutomateSetService();
+
+    HlhtDatabasesListService getHlhtDatabasesListService();
+
+    HlhtDataCheckService getHlhtDataCheckService();
+
+    HlhtDataListSetService getHlhtDataListSetService();
+
+    HlhtDataSetService getHlhtDataSetService();
+
+    HlhtDictInfoService getHlhtDictInfoService();
+
+    HlhtLogService getHlhtLogService();
+
+    HlhtModelCheckService getHlhtModelCheckService();
 }

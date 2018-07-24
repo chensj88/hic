@@ -19,6 +19,29 @@ public class FacadeImpl implements Facade{
     @Autowired
     EmrMbkService emrMbkService;
 
+    @Autowired
+    HlhtAutomateSetService hlhtAutomateSetService;
+
+    @Autowired
+    HlhtDatabasesListService hlhtDatabasesListService;
+
+    @Autowired
+    HlhtDataCheckService hlhtDataCheckService;
+
+    @Autowired
+    HlhtDataListSetService hlhtDataListSetService;
+
+    @Autowired
+    HlhtDataSetService hlhtDataSetService;
+
+    @Autowired
+    HlhtDictInfoService hlhtDictInfoService;
+
+    @Autowired
+    HlhtLogService hlhtLogService;
+
+    @Autowired
+    HlhtModelCheckService hlhtModelCheckService;
 
     public EmrMxmcmlkService getEmrMxmcmlkService(){
         return emrMxmcmlkService;
@@ -26,6 +49,39 @@ public class FacadeImpl implements Facade{
 
     public EmrMbkService getEmrMbkService(){
         return emrMbkService;
+    }
+
+
+    public HlhtAutomateSetService getHlhtAutomateSetService(){
+        return hlhtAutomateSetService;
+    }
+
+    public HlhtDatabasesListService getHlhtDatabasesListService(){
+        return hlhtDatabasesListService;
+    }
+
+    public HlhtDataCheckService getHlhtDataCheckService(){
+        return hlhtDataCheckService;
+    }
+
+    public HlhtDataListSetService getHlhtDataListSetService(){
+        return hlhtDataListSetService;
+    }
+
+    public HlhtDataSetService getHlhtDataSetService(){
+        return hlhtDataSetService;
+    }
+
+    public HlhtDictInfoService getHlhtDictInfoService(){
+        return hlhtDictInfoService;
+    }
+
+    public HlhtLogService getHlhtLogService(){
+        return hlhtLogService;
+    }
+
+    public HlhtModelCheckService getHlhtModelCheckService(){
+        return hlhtModelCheckService;
     }
 
 }
