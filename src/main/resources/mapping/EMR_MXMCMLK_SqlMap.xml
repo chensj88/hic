@@ -15,7 +15,7 @@
     </resultMap>
 
     <resultMap id="emrMxmcmlkResult" type="emrMxmcmlk" extends="emrMxmcmlkResultForList">
-
+        <result column="NUM" property="map.num" javaType="INTEGER" />
     </resultMap>
 
     <sql id="sql-emrMxmcmlk">
@@ -125,18 +125,19 @@
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
-    <select id="selectEmrMxmcmlkParentList" resultMap="emrMxmcmlkResultForList" >
-        SELECT * FROM EMR_MXMCMLK t
+    <select id="selectEmrMxmcmlkParentList" resultMap="emrMxmcmlkResult" >
+        SELECT t.*, 1 NUM FROM EMR_MXMCMLK t
         where  (t.MLDM ='B+' or t.MLDM='B-')
         ORDER BY t.MLDM DESC
     </select>
 
-    <select id="selectEmrMxmcmlkFirstChildList" resultMap="emrMxmcmlkResultForList" parameterType="emrMxmcmlk">
+    <select id="selectEmrMxmcmlkFirstChildList" resultMap="emrMxmcmlkResult" parameterType="emrMxmcmlk">
         SELECT
-         a.MLDM,a.MLMC,LEFT(a.MLDM,len(a.MLDM)-2) SJDM
+         a.MLDM,a.MLMC,LEFT(a.MLDM,len(a.MLDM)-2) SJDM,
+          (select count(1) from EMR_MBK where MXFLDM =a.MLDM ) NUM
         FROM dbo.EMR_MXMCMLK a WHERE LEFT(a.MLDM,len(a.MLDM)-2) = #{mldm}
         UNION
-        SELECT a.MBDM MLDM,a.MBMC,a.MXFLDM SJDM FROM dbo.EMR_MBK a
+        SELECT a.MBDM MLDM,a.MBMC+'{'+a.MBMS+'}',a.MXFLDM SJDM, 0 NUM FROM dbo.EMR_MBK a
         WHERE  a.MXFLDM=#{mldm}
     </select>
 </mapper>

@@ -226,6 +226,14 @@ public class EmrMxmcmlk extends BaseDomain implements Serializable {
        tree.setNodePid(mldm.substring(0,mldm.length()-2));
        tree.setNodeName(mlmc);
        tree.setNodeDesc(mlmc);
+       tree.setParent(Integer.parseInt(getMap().get("num").toString()) == 0 ? false : true);
+       if(Integer.parseInt(getMap().get("num").toString()) == 0 ){
+           tree.setIcon("glyphicon glyphicon-leaf");
+       }else{
+           tree.setIconClose("glyphicon glyphicon-chevron-right");
+           tree.setIconOpen("glyphicon glyphicon-chevron-down");
+       }
+
        return tree;
    }
 

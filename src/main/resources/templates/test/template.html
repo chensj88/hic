@@ -106,7 +106,8 @@
         view: {
             dblClickExpand: false,
             showLine: true,
-            selectedMulti: false
+            selectedMulti: false,
+            showIcon:true
         },
         expandSpeed: "",
         data: {
@@ -114,7 +115,8 @@
                 parent:true
             },
             key:{
-                name:'nodeName'
+                name:'nodeName',
+                isParent: "parent"
             },
             simpleData: {
                 enable: true,
@@ -122,6 +124,10 @@
                 pIdKey: "nodePid",
                 rootPId: ""
             }
+        },
+        check: {
+            enable: true,
+            chkboxType: { "Y" : "ps", "N" : "ps" }
         },
         callback: {
             onClick: zTreeOnOnClick,

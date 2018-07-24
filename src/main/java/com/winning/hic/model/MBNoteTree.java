@@ -20,7 +20,10 @@ public class MBNoteTree {
 
     private String nodeDesc;
 
-    private boolean IsParent;
+    private boolean isParent;
+    private String icon;
+    private String iconClose;
+    private String iconOpen;
 
     private List<MBNoteTree> children = new ArrayList<>();
 
@@ -69,10 +72,34 @@ public class MBNoteTree {
     }
 
     public boolean isParent() {
-        return IsParent;
+        return isParent;
     }
 
     public void setParent(boolean parent) {
-        IsParent = parent;
+        isParent = parent;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getIconClose() {
+        return iconClose;
+    }
+
+    public void setIconClose(String iconClose) {
+        this.iconClose = iconClose;
+    }
+
+    public String getIconOpen() {
+        return iconOpen;
+    }
+
+    public void setIconOpen(String iconOpen) {
+        this.iconOpen = iconOpen;
     }
 }
