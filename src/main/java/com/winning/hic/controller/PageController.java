@@ -1,5 +1,6 @@
 package com.winning.hic.controller;
 
+import com.winning.hic.HicApplication;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +22,12 @@ public class PageController {
     @ApiOperation(value = "首页信息",notes = "")
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String login(){
-        return "index";
+        if(HicApplication.config){
+            return "index";
+        }else{
+            return "config";
+        }
+
     }
 
     @ApiOperation(value = "验证用户是否存在" ,notes="验证输入的用户ID是否存在")

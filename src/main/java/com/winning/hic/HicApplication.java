@@ -13,15 +13,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-//@SpringBootApplication(exclude = {
-//		DataSourceAutoConfiguration.class
-//})
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+		DataSourceAutoConfiguration.class
+})
+//@SpringBootApplication
 @MapperScan({"com.winning.hic.model","com.winning.hic.dao"})
 public class HicApplication {
 
 	private static final String CONFIG_FILE = "-configfile";
 	private static final Logger LOGGER = LoggerFactory.getLogger(HicApplication.class);
+
+	public static final Boolean config = false;
 
 	public static void main(String[] args) throws IOException {
 		//args = new String[]{"-configfile","D:\\winning_code\\hic\\src\\main\\resources\\config.properties"};
