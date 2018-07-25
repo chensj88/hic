@@ -12,6 +12,8 @@ import com.winning.hic.model.HlhtModelCheck;
 
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 /**
 * @author HLHT
 * @title DAO接口
