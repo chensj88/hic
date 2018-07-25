@@ -25,15 +25,17 @@ public class ConfigUtils {
     }
 
     private static void initEnvConfig(Properties properties) {
-        environment.setDb1Url(properties.getProperty("cisdb.url"));
-        environment.setDb1Password(properties.getProperty("cisdb.password"));
-        environment.setDb1Username(properties.getProperty("cisdb.username"));
-        environment.setDb2Url(properties.getProperty("cisdb.data.url"));
-        environment.setDb2Password(properties.getProperty("cisdb.data.password"));
-        environment.setDb2Username(properties.getProperty("cisdb.data.username"));
+        environment.setCisdbUrl(properties.getProperty("cisdb.url"));
+        environment.setCisdbName(properties.getProperty("cisdb.dbName"));
+        environment.setCisdbUsername(properties.getProperty("cisdb.username"));
+        environment.setCisdbPassword(properties.getProperty("cisdb.password"));
+        environment.setCisdbDataUrl(properties.getProperty("cisdb.data.url"));
+        environment.setCisdbDataName(properties.getProperty("cisdb.data.dbName"));
+        environment.setCisdbDataPassword(properties.getProperty("cisdb.data.password"));
+        environment.setCisdbDataUsername(properties.getProperty("cisdb.data.username"));
     }
 
-    public Environment getEnvironment(){
+    public static Environment getEnvironment(){
         return  environment;
     }
 }

@@ -10,7 +10,7 @@ import com.winning.hic.model.HlhtLog;
 * @title HLHT_LOG
 * @email Winning Health
 * @package com.winning.hic.service
-* @date 2018-55-24 13:55:08
+* @date 2018-23-25 12:23:54
 */
 public interface HlhtLogService {
 

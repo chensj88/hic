@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.winning.hic.dao.EmrMbkDao">
+<mapper namespace="com.winning.hic.dao.cisdb.EmrMbkDao">
 
-    <resultMap id="emrMbkResultForList" type="emrMbk">
+    <resultMap id="emrMbkResultForList" type="com.winning.hic.model.EmrMbk">
          <result column="MBDM" property="mbdm" jdbcType="VARCHAR" />
          <result column="MBMC" property="mbmc" jdbcType="VARCHAR" />
          <result column="MBMS" property="mbms" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
          <result column="XBBZ" property="xbbz" jdbcType="SMALLINT" />
     </resultMap>
 
-    <resultMap id="emrMbkResult" type="emrMbk" extends="emrMbkResultForList">
+    <resultMap id="emrMbkResult" type="com.winning.hic.model.EmrMbk" extends="emrMbkResultForList">
 
     </resultMap>
 
@@ -39,7 +39,7 @@
         <if test="(xbbz != null and xbbz != '')"> and t.XBBZ = #{xbbz} </if>
     </sql>
 
-    <insert id="insertEmrMbk" parameterType="emrMbk">
+    <insert id="insertEmrMbk" parameterType="com.winning.hic.model.EmrMbk">
         INSERT INTO EMR_MBK
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(mbdm != null and mbdm != '')"> MBDM , </if>
@@ -74,7 +74,7 @@
         </trim>
     </insert>
 
-    <update id="updateEmrMbk" parameterType="emrMbk">
+    <update id="updateEmrMbk" parameterType="com.winning.hic.model.EmrMbk">
         UPDATE EMR_MBK
         <set>
             <trim suffixOverrides=",">
@@ -102,7 +102,7 @@
         </where>
     </update>
 
-    <delete id="deleteEmrMbk" parameterType="emrMbk">
+    <delete id="deleteEmrMbk" parameterType="com.winning.hic.model.EmrMbk">
         delete from  EMR_MBK
         <where>
             <if test="(mbdm != null and mbdm != '')"> and MBDM = #{ mbdm }   </if>
@@ -114,14 +114,14 @@
     </delete>
 
 
-    <select id="selectEmrMbk" resultMap="emrMbkResult" parameterType="emrMbk">
+    <select id="selectEmrMbk" resultMap="emrMbkResult" parameterType="com.winning.hic.model.EmrMbk">
         SELECT * FROM EMR_MBK t
         <where>
             <include refid="sql-emrMbk" />
         </where>
     </select>
 
-    <select id="selectEmrMbkList" resultMap="emrMbkResultForList" parameterType="emrMbk">
+    <select id="selectEmrMbkList" resultMap="emrMbkResultForList" parameterType="com.winning.hic.model.EmrMbk">
         SELECT
         <if test="row.count != null and row.count != ''"> top ${row.count} </if>
         * FROM EMR_MBK t
@@ -131,14 +131,14 @@
         ORDER BY t.MBDM DESC
     </select>
 
-    <select id="selectEmrMbkCount" resultType="int" parameterType="emrMbk">
+    <select id="selectEmrMbkCount" resultType="int" parameterType="com.winning.hic.model.EmrMbk">
         select count(1) from  EMR_MBK t
         <where>
             <include refid="sql-emrMbk" />
         </where>
     </select>
 
-    <select id="selectEmrMbkPageList" resultMap="emrMbkResult" parameterType="emrMbk">
+    <select id="selectEmrMbkPageList" resultMap="emrMbkResult" parameterType="com.winning.hic.model.EmrMbk">
         SELECT * FROM (
         SELECT t.* ,
         ROW_NUMBER() OVER ( ORDER BY t.MBDM DESC ) AS _RN

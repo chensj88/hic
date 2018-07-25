@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.data.HlhtAutomateSetDao">
+
+    <resultMap id="hlhtAutomateSetResultForList" type="com.winning.hic.model.HlhtAutomateSet">
+         <result column="EXCEUTE" property="exceute" jdbcType="VARCHAR" />
+         <result column="EXCEUTE_DAY" property="exceuteDay" jdbcType="INTEGER" />
+         <result column="DAY_START_TIME" property="dayStartTime" jdbcType="VARCHAR" />
+         <result column="EXCEUTE_TIME" property="exceuteTime" jdbcType="INTEGER" />
+         <result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+         <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+         <result column="PROJECT_START_TIME" property="projectStartTime" jdbcType="VARCHAR" />
+         <result column="PROJECT_END_TIME" property="projectEndTime" jdbcType="VARCHAR" />
+         <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+         <result column="PROJECT_STATUS" property="projectStatus" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="hlhtAutomateSetResult" type="com.winning.hic.model.HlhtAutomateSet" extends="hlhtAutomateSetResultForList">
+
+    </resultMap>
+
+    <sql id="sql-hlhtAutomateSet">
+        <if test="(exceute != null and exceute != '')"> and t.EXCEUTE = #{exceute} </if>
+        <if test="(exceuteDay != null and exceuteDay != '')"> and t.EXCEUTE_DAY = #{exceuteDay} </if>
+        <if test="(dayStartTime != null and dayStartTime != '')"> and t.DAY_START_TIME = #{dayStartTime} </if>
+        <if test="(exceuteTime != null and exceuteTime != '')"> and t.EXCEUTE_TIME = #{exceuteTime} </if>
+        <if test="(startTime != null and startTime != '')"> and t.START_TIME = #{startTime} </if>
+        <if test="(endTime != null and endTime != '')"> and t.END_TIME = #{endTime} </if>
+        <if test="(projectStartTime != null and projectStartTime != '')"> and t.PROJECT_START_TIME = #{projectStartTime} </if>
+        <if test="(projectEndTime != null and projectEndTime != '')"> and t.PROJECT_END_TIME = #{projectEndTime} </if>
+        <if test="(remark != null and remark != '')"> and t.REMARK = #{remark} </if>
+        <if test="(projectStatus != null and projectStatus != '')"> and t.PROJECT_STATUS = #{projectStatus} </if>
+    </sql>
+
+    <insert id="insertHlhtAutomateSet" parameterType="com.winning.hic.model.HlhtAutomateSet">
+        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+        INSERT INTO HLHT_AUTOMATE_SET
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(exceute != null and exceute != '')"> EXCEUTE , </if>
+            <if test="(exceuteDay != null and exceuteDay != '')"> EXCEUTE_DAY , </if>
+            <if test="(dayStartTime != null and dayStartTime != '')"> DAY_START_TIME , </if>
+            <if test="(exceuteTime != null and exceuteTime != '')"> EXCEUTE_TIME , </if>
+            <if test="(startTime != null and startTime != '')"> START_TIME , </if>
+            <if test="(endTime != null and endTime != '')"> END_TIME , </if>
+            <if test="(projectStartTime != null and projectStartTime != '')"> PROJECT_START_TIME , </if>
+            <if test="(projectEndTime != null and projectEndTime != '')"> PROJECT_END_TIME , </if>
+            <if test="(remark != null and remark != '')"> REMARK , </if>
+            <if test="(projectStatus != null and projectStatus != '')"> PROJECT_STATUS , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(exceute != null and exceute != '')"> #{exceute , jdbcType= VARCHAR },  </if>
+            <if test="(exceuteDay != null and exceuteDay != '')"> #{exceuteDay , jdbcType= INTEGER },  </if>
+            <if test="(dayStartTime != null and dayStartTime != '')"> #{dayStartTime , jdbcType= VARCHAR },  </if>
+            <if test="(exceuteTime != null and exceuteTime != '')"> #{exceuteTime , jdbcType= INTEGER },  </if>
+            <if test="(startTime != null and startTime != '')"> #{startTime , jdbcType= VARCHAR },  </if>
+            <if test="(endTime != null and endTime != '')"> #{endTime , jdbcType= VARCHAR },  </if>
+            <if test="(projectStartTime != null and projectStartTime != '')"> #{projectStartTime , jdbcType= VARCHAR },  </if>
+            <if test="(projectEndTime != null and projectEndTime != '')"> #{projectEndTime , jdbcType= VARCHAR },  </if>
+            <if test="(remark != null and remark != '')"> #{remark , jdbcType= VARCHAR },  </if>
+            <if test="(projectStatus != null and projectStatus != '')"> #{projectStatus , jdbcType= INTEGER },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateHlhtAutomateSet" parameterType="com.winning.hic.model.HlhtAutomateSet">
+        UPDATE HLHT_AUTOMATE_SET
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(exceute != null and exceute != '')"> EXCEUTE , </if>
+                <if test="(exceuteDay != null and exceuteDay != '')"> EXCEUTE_DAY , </if>
+                <if test="(dayStartTime != null and dayStartTime != '')"> DAY_START_TIME , </if>
+                <if test="(exceuteTime != null and exceuteTime != '')"> EXCEUTE_TIME , </if>
+                <if test="(startTime != null and startTime != '')"> START_TIME , </if>
+                <if test="(endTime != null and endTime != '')"> END_TIME , </if>
+                <if test="(projectStartTime != null and projectStartTime != '')"> PROJECT_START_TIME , </if>
+                <if test="(projectEndTime != null and projectEndTime != '')"> PROJECT_END_TIME , </if>
+                <if test="(remark != null and remark != '')"> REMARK , </if>
+                <if test="(projectStatus != null and projectStatus != '')"> PROJECT_STATUS , </if>
+            </trim>
+        </set>
+        <where>
+            <if test=" and (map.pks != null and map.pks != '')">
+                and () in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteHlhtAutomateSet" parameterType="com.winning.hic.model.HlhtAutomateSet">
+        delete from  HLHT_AUTOMATE_SET
+        <where>
+            <if test=" and (map.pks != null and map.pks != '')">
+                and () in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectHlhtAutomateSet" resultMap="hlhtAutomateSetResult" parameterType="com.winning.hic.model.HlhtAutomateSet">
+        SELECT * FROM HLHT_AUTOMATE_SET t
+        <where>
+            <include refid="sql-hlhtAutomateSet" />
+        </where>
+    </select>
+
+    <select id="selectHlhtAutomateSetList" resultMap="hlhtAutomateSetResultForList" parameterType="com.winning.hic.model.HlhtAutomateSet">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM HLHT_AUTOMATE_SET t
+        <where>
+            <include refid="sql-hlhtAutomateSet" />
+        </where>
+        ORDER BY  DESC
+    </select>
+
+    <select id="selectHlhtAutomateSetCount" resultType="int" parameterType="com.winning.hic.model.HlhtAutomateSet">
+        select count(1) from  HLHT_AUTOMATE_SET t
+        <where>
+            <include refid="sql-hlhtAutomateSet" />
+        </where>
+    </select>
+
+    <select id="selectHlhtAutomateSetPageList" resultMap="hlhtAutomateSetResult" parameterType="com.winning.hic.model.HlhtAutomateSet">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY  DESC ) AS _RN
+        FROM HLHT_AUTOMATE_SET t
+        <where>
+            <include refid="sql-hlhtAutomateSet" />
+        </where>
+        <!-- order by  asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>

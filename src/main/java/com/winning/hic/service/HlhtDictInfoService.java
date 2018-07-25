@@ -10,7 +10,7 @@ import com.winning.hic.model.HlhtDictInfo;
 * @title 【字典表】服务接口
 * @email Winning Health
 * @package com.winning.hic.service
-* @date 2018-55-24 13:55:07
+* @date 2018-23-25 12:23:53
 */
 public interface HlhtDictInfoService {
 

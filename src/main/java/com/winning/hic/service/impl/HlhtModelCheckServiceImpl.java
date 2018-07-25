@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.winning.hic.model.HlhtModelCheck;  
 
-import com.winning.hic.dao.HlhtModelCheckDao;  
+import com.winning.hic.dao.data.HlhtModelCheckDao;  
 
 import com.winning.hic.service.HlhtModelCheckService;  
 
@@ -17,7 +17,7 @@ import com.winning.hic.service.HlhtModelCheckService;
 * @title HLHT_MODEL_CHECK
 * @email Winning Health
 * @package com.winning.hic.service.impl
-* @date 2018-55-24 13:55:10
+* @date 2018-23-25 12:23:55
 */
 @Service
 public class HlhtModelCheckServiceImpl implements  HlhtModelCheckService {

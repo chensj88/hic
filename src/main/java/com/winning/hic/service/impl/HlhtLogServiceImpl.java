@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.winning.hic.model.HlhtLog;  
 
-import com.winning.hic.dao.HlhtLogDao;  
+import com.winning.hic.dao.data.HlhtLogDao;  
 
 import com.winning.hic.service.HlhtLogService;  
 
@@ -17,7 +17,7 @@ import com.winning.hic.service.HlhtLogService;
 * @title HLHT_LOG
 * @email Winning Health
 * @package com.winning.hic.service.impl
-* @date 2018-55-24 13:55:08
+* @date 2018-23-25 12:23:54
 */
 @Service
 public class HlhtLogServiceImpl implements  HlhtLogService {

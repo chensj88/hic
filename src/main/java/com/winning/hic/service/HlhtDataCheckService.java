@@ -10,7 +10,7 @@ import com.winning.hic.model.HlhtDataCheck;
 * @title HLHT_DATA_CHECK
 * @email Winning Health
 * @package com.winning.hic.service
-* @date 2018-55-24 13:55:05
+* @date 2018-23-25 12:23:50
 */
 public interface HlhtDataCheckService {
 

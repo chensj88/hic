@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.winning.hic.model.HlhtAutomateSet;  
 
-import com.winning.hic.dao.HlhtAutomateSetDao;  
+import com.winning.hic.dao.data.HlhtAutomateSetDao;  
 
 import com.winning.hic.service.HlhtAutomateSetService;  
 
@@ -17,7 +17,7 @@ import com.winning.hic.service.HlhtAutomateSetService;
 * @title HLHT_AUTOMATE_SET
 * @email Winning Health
 * @package com.winning.hic.service.impl
-* @date 2018-55-24 13:55:03
+* @date 2018-23-25 12:23:48
 */
 @Service
 public class HlhtAutomateSetServiceImpl implements  HlhtAutomateSetService {

@@ -16,7 +16,6 @@ import java.util.Map;
 @SpringBootApplication(exclude = {
 		DataSourceAutoConfiguration.class
 })
-//@SpringBootApplication
 @MapperScan({"com.winning.hic.model","com.winning.hic.dao"})
 public class HicApplication {
 
@@ -26,8 +25,7 @@ public class HicApplication {
 	public static final Boolean config = false;
 
 	public static void main(String[] args) throws IOException {
-		//args = new String[]{"-configfile","D:\\winning_code\\hic\\src\\main\\resources\\config.properties"};
-		//parseCommandLine(args);
+		parseCommandLine(args);
 		SpringApplication.run(HicApplication.class, args);
 	}
 
@@ -48,10 +46,6 @@ public class HicApplication {
 			return;
 		}
 		ConfigUtils.readProperties(configurationFile);
-	}
-
-	private static void  writeLine(String message){
-		System.out.println(message);
 	}
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.winning.hic.model.HlhtDataSet;  
 
-import com.winning.hic.dao.HlhtDataSetDao;  
+import com.winning.hic.dao.data.HlhtDataSetDao;  
 
 import com.winning.hic.service.HlhtDataSetService;  
 
@@ -17,7 +17,7 @@ import com.winning.hic.service.HlhtDataSetService;
 * @title 基础数据配置表服务接口
 * @email Winning Health
 * @package com.winning.hic.service.impl
-* @date 2018-55-24 13:55:07
+* @date 2018-23-25 12:23:52
 */
 @Service
 public class HlhtDataSetServiceImpl implements  HlhtDataSetService {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.winning.hic.dao.EmrMxmcmlkDao">
+<mapper namespace="com.winning.hic.dao.cisdb.EmrMxmcmlkDao">
 
-    <resultMap id="emrMxmcmlkResultForList" type="emrMxmcmlk">
+    <resultMap id="emrMxmcmlkResultForList" type="com.winning.hic.model.EmrMxmcmlk">
          <result column="MLDM" property="mldm" jdbcType="VARCHAR" />
          <result column="MLMC" property="mlmc" jdbcType="VARCHAR" />
          <result column="PY" property="py" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
          <result column="MEMO" property="memo" jdbcType="VARCHAR" />
     </resultMap>
 
-    <resultMap id="emrMxmcmlkResult" type="emrMxmcmlk" extends="emrMxmcmlkResultForList">
+    <resultMap id="emrMxmcmlkResult" type="com.winning.hic.model.EmrMxmcmlk" extends="emrMxmcmlkResultForList">
         <result column="NUM" property="map.num" javaType="INTEGER" />
     </resultMap>
 
@@ -29,7 +29,7 @@
         <if test="(memo != null and memo != '')"> and t.MEMO = #{memo} </if>
     </sql>
 
-    <insert id="insertEmrMxmcmlk" parameterType="emrMxmcmlk">
+    <insert id="insertEmrMxmcmlk" parameterType="com.winning.hic.model.EmrMxmcmlk">
         INSERT INTO EMR_MXMCMLK
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(mldm != null and mldm != '')"> MLDM , </if>
@@ -54,7 +54,7 @@
         </trim>
     </insert>
 
-    <update id="updateEmrMxmcmlk" parameterType="emrMxmcmlk">
+    <update id="updateEmrMxmcmlk" parameterType="com.winning.hic.model.EmrMxmcmlk">
         UPDATE EMR_MXMCMLK
         <set>
             <trim suffixOverrides=",">
@@ -77,7 +77,7 @@
         </where>
     </update>
 
-    <delete id="deleteEmrMxmcmlk" parameterType="emrMxmcmlk">
+    <delete id="deleteEmrMxmcmlk" parameterType="com.winning.hic.model.EmrMxmcmlk">
         delete from  EMR_MXMCMLK
         <where>
             <if test="(mldm != null and mldm != '')"> and MLDM = #{ mldm }   </if>
@@ -89,14 +89,14 @@
     </delete>
 
 
-    <select id="selectEmrMxmcmlk" resultMap="emrMxmcmlkResult" parameterType="emrMxmcmlk">
+    <select id="selectEmrMxmcmlk" resultMap="emrMxmcmlkResult" parameterType="com.winning.hic.model.EmrMxmcmlk">
         SELECT * FROM EMR_MXMCMLK t
         <where>
             <include refid="sql-emrMxmcmlk" />
         </where>
     </select>
 
-    <select id="selectEmrMxmcmlkList" resultMap="emrMxmcmlkResultForList" parameterType="emrMxmcmlk">
+    <select id="selectEmrMxmcmlkList" resultMap="emrMxmcmlkResultForList" parameterType="com.winning.hic.model.EmrMxmcmlk">
         SELECT
         <if test="row.count != null and row.count != ''"> top ${row.count} </if>
         * FROM EMR_MXMCMLK t
@@ -106,14 +106,14 @@
         ORDER BY t.MLDM DESC
     </select>
 
-    <select id="selectEmrMxmcmlkCount" resultType="int" parameterType="emrMxmcmlk">
+    <select id="selectEmrMxmcmlkCount" resultType="int" parameterType="com.winning.hic.model.EmrMxmcmlk">
         select count(1) from  EMR_MXMCMLK t
         <where>
             <include refid="sql-emrMxmcmlk" />
         </where>
     </select>
 
-    <select id="selectEmrMxmcmlkPageList" resultMap="emrMxmcmlkResult" parameterType="emrMxmcmlk">
+    <select id="selectEmrMxmcmlkPageList" resultMap="emrMxmcmlkResult" parameterType="com.winning.hic.model.EmrMxmcmlk">
         SELECT * FROM (
         SELECT t.* ,
         ROW_NUMBER() OVER ( ORDER BY t.MLDM DESC ) AS _RN
@@ -131,7 +131,7 @@
         ORDER BY t.MLDM DESC
     </select>
 
-    <select id="selectEmrMxmcmlkFirstChildList" resultMap="emrMxmcmlkResult" parameterType="emrMxmcmlk">
+    <select id="selectEmrMxmcmlkFirstChildList" resultMap="emrMxmcmlkResult" parameterType="com.winning.hic.model.EmrMxmcmlk">
         SELECT
          a.MLDM,a.MLMC,LEFT(a.MLDM,len(a.MLDM)-2) SJDM,
           (select count(1) from EMR_MBK where MXFLDM =a.MLDM ) NUM

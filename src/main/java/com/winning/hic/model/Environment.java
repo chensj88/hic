@@ -10,58 +10,86 @@ package com.winning.hic.model;
 public class Environment {
 
     public static final String DRIVE_CLASS_NAME ="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private String db1Url;
-    private String db1Username;
-    private String db1Password;
-    private String db2Url;
-    private String db2Username;
-    private String db2Password;
+    public static final String URL_PREFIX ="jdbc:sqlserver://";
+    public static final String DATABASE_PREFIX ="database";
+    private String cisdbUrl;
+    private String cisdbName;
+    private String cisdbUsername;
+    private String cisdbPassword;
+    private String cisdbDataUrl;
+    private String cisdbDataName;
+    private String cisdbDataUsername;
+    private String cisdbDataPassword;
 
-    public String getDb1Url() {
-        return db1Url;
+    public String getCisdbUrl() {
+        return cisdbUrl;
     }
 
-    public void setDb1Url(String db1Url) {
-        this.db1Url = db1Url;
+    public void setCisdbUrl(String cisdbUrl) {
+        this.cisdbUrl = cisdbUrl;
     }
 
-    public String getDb1Username() {
-        return db1Username;
+    public String getCisdbName() {
+        return cisdbName;
     }
 
-    public void setDb1Username(String db1Username) {
-        this.db1Username = db1Username;
+    public void setCisdbName(String cisdbName) {
+        this.cisdbName = cisdbName;
     }
 
-    public String getDb1Password() {
-        return db1Password;
+    public String getCisdbUsername() {
+        return cisdbUsername;
     }
 
-    public void setDb1Password(String db1Password) {
-        this.db1Password = db1Password;
+    public void setCisdbUsername(String cisdbUsername) {
+        this.cisdbUsername = cisdbUsername;
     }
 
-    public String getDb2Url() {
-        return db2Url;
+    public String getCisdbPassword() {
+        return cisdbPassword;
     }
 
-    public void setDb2Url(String db2Url) {
-        this.db2Url = db2Url;
+    public void setCisdbPassword(String cisdbPassword) {
+        this.cisdbPassword = cisdbPassword;
     }
 
-    public String getDb2Username() {
-        return db2Username;
+    public String getCisdbDataUrl() {
+        return cisdbDataUrl;
     }
 
-    public void setDb2Username(String db2Username) {
-        this.db2Username = db2Username;
+    public void setCisdbDataUrl(String cisdbDataUrl) {
+        this.cisdbDataUrl = cisdbDataUrl;
     }
 
-    public String getDb2Password() {
-        return db2Password;
+    public String getCisdbDataName() {
+        return cisdbDataName;
     }
 
-    public void setDb2Password(String db2Password) {
-        this.db2Password = db2Password;
+    public void setCisdbDataName(String cisdbDataName) {
+        this.cisdbDataName = cisdbDataName;
+    }
+
+    public String getCisdbDataUsername() {
+        return cisdbDataUsername;
+    }
+
+    public void setCisdbDataUsername(String cisdbDataUsername) {
+        this.cisdbDataUsername = cisdbDataUsername;
+    }
+
+    public String getCisdbDataPassword() {
+        return cisdbDataPassword;
+    }
+
+    public void setCisdbDataPassword(String cisdbDataPassword) {
+        this.cisdbDataPassword = cisdbDataPassword;
+    }
+
+    public String getCISDBURL(){
+        return URL_PREFIX+cisdbUrl+";"+DATABASE_PREFIX+"="+cisdbName;
+    }
+
+    public String getCISDBDataURL(){
+        return URL_PREFIX+cisdbDataUrl+";"+DATABASE_PREFIX+"="+cisdbDataName;
     }
 }
