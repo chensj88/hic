@@ -57,14 +57,13 @@ public class CisdbMyBatisConfig {
         prop.setProperty("druid.stat.slowSqlMillis","5000");
         datasource.setConnectProperties(prop);
         datasource.setUseGlobalDataSourceStat(true);
-        datasource.setName("CISDB");
+        datasource.setName(env.getCisdbName());
         try {
             datasource.setFilters("stat,wall,log4j");
         } catch (SQLException e) {
-            logger.error("druid configuration initialization filter", e);
+            logger.error("[{}] druid configuration initialization filter", env.getCisdbName(),e);
         }
-        logger.info("cisdb init");
-        logger.info(String.valueOf(datasource.getConnection()));
+        logger.info("[{}] inited.",env.getCisdbName());
         return datasource;
     }
 
