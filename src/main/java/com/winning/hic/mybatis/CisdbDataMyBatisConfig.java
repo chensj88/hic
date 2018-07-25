@@ -1,17 +1,15 @@
 package com.winning.hic.mybatis;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.winning.hic.base.ConfigUtils;
+import com.winning.hic.base.Constant;
+import com.winning.hic.base.utils.ConfigUtils;
 import com.winning.hic.model.Environment;
-import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,17 +23,16 @@ import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:
+ * Description: CISDB_DATA 数据库配置
  * User: LENOVO
  * Date: 2018-07-25
  * Time: 8:55
  */
 @Configuration
-@MapperScan(basePackages = CisdbDataMyBatisConfig.PACKAGE, sqlSessionFactoryRef = "cisdbDataSqlSessionFactory")
+@MapperScan(basePackages = Constant.CISDB_DATA_PACKAGE, sqlSessionFactoryRef = "cisdbDataSqlSessionFactory")
 public class CisdbDataMyBatisConfig {
     // 精确到 data 目录，以便跟其他数据源隔离
-    static final String PACKAGE = "com.winning.hic.dao.data";
-    static final String MAPPER_LOCATION = "classpath:mapper/data/*.xml";
+
     private static final Logger logger = LoggerFactory.getLogger(CisdbDataMyBatisConfig.class);
     @Bean(name = "cisdbData")
     @Primary
@@ -45,7 +42,7 @@ public class CisdbDataMyBatisConfig {
         datasource.setUrl(env.getCISDBDataURL());
         datasource.setUsername(env.getCisdbDataUsername());
         datasource.setPassword(env.getCisdbDataPassword());
-        datasource.setDriverClassName(Environment.DRIVE_CLASS_NAME);
+        datasource.setDriverClassName(Constant.DRIVE_CLASS_NAME);
         datasource.setInitialSize(5);
         datasource.setMinIdle(5);
         datasource.setMaxActive(20);
@@ -87,7 +84,7 @@ public class CisdbDataMyBatisConfig {
         bean.setDataSource(dataSource);
         //bean.setTypeAliasesPackage(PACKAGE);
         //xml路径
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_LOCATION));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(Constant.CISDB_DATA_MAPPER_LOCATION));
         bean.setVfs(SpringBootVFS.class);
         return bean.getObject();
     }

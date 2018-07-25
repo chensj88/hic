@@ -1,4 +1,4 @@
-package com.winning.hic.base;
+package com.winning.hic.base.utils;
 
 import com.winning.hic.model.Environment;
 
@@ -7,7 +7,7 @@ import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:
+ * Description:加载config.properties文件内容，填充内容到Environment中
  * User: LENOVO
  * Date: 2018-07-24
  * Time: 15:30

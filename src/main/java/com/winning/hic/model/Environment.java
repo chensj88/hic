@@ -1,17 +1,17 @@
 package com.winning.hic.model;
 
+import com.winning.hic.base.Constant;
+
 /**
  * Created with IntelliJ IDEA.
- * Description:
+ * Description: 数据库参数信息
  * User: LENOVO
  * Date: 2018-07-24
  * Time: 14:53
  */
 public class Environment {
 
-    public static final String DRIVE_CLASS_NAME ="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static final String URL_PREFIX ="jdbc:sqlserver://";
-    public static final String DATABASE_PREFIX ="database";
+
     private String cisdbUrl;
     private String cisdbName;
     private String cisdbUsername;
@@ -86,10 +86,10 @@ public class Environment {
     }
 
     public String getCISDBURL(){
-        return URL_PREFIX+cisdbUrl+";"+DATABASE_PREFIX+"="+cisdbName;
+        return Constant.URL_PREFIX +cisdbUrl+";"+Constant.DATABASE_PREFIX+"="+cisdbName;
     }
 
     public String getCISDBDataURL(){
-        return URL_PREFIX+cisdbDataUrl+";"+DATABASE_PREFIX+"="+cisdbDataName;
+        return Constant.URL_PREFIX+cisdbDataUrl+";"+Constant.DATABASE_PREFIX+"="+cisdbDataName;
     }
 }

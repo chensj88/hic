@@ -1,6 +1,6 @@
 package com.winning.hic;
 
-import com.winning.hic.base.ConfigUtils;
+import com.winning.hic.base.utils.ConfigUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
