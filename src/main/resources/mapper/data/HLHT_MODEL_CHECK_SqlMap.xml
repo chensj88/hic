@@ -36,7 +36,6 @@
     </sql>
 
     <insert id="insertHlhtModelCheck" parameterType="com.winning.hic.model.HlhtModelCheck">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
         INSERT INTO HLHT_MODEL_CHECK
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(id != null and id != '')"> ID , </if>
@@ -117,7 +116,7 @@
         <where>
             <include refid="sql-hlhtModelCheck" />
         </where>
-        ORDER BY  DESC
+        ORDER BY ID  DESC
     </select>
 
     <select id="selectHlhtModelCheckCount" resultType="int" parameterType="com.winning.hic.model.HlhtModelCheck">
@@ -130,7 +129,7 @@
     <select id="selectHlhtModelCheckPageList" resultMap="hlhtModelCheckResult" parameterType="com.winning.hic.model.HlhtModelCheck">
         SELECT * FROM (
         SELECT t.* ,
-        ROW_NUMBER() OVER ( ORDER BY  DESC ) AS _RN
+        ROW_NUMBER() OVER ( ORDER BY ID  DESC ) AS _RN
         FROM HLHT_MODEL_CHECK t
         <where>
             <include refid="sql-hlhtModelCheck" />
