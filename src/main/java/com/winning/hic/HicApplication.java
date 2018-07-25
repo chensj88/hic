@@ -22,8 +22,6 @@ public class HicApplication {
 	private static final String CONFIG_FILE = "-configfile";
 	private static final Logger LOGGER = LoggerFactory.getLogger(HicApplication.class);
 
-	public static final Boolean config = false;
-
 	public static void main(String[] args) throws IOException {
 		parseCommandLine(args);
 		SpringApplication.run(HicApplication.class, args);

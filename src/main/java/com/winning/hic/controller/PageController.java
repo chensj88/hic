@@ -22,12 +22,7 @@ public class PageController {
     @ApiOperation(value = "首页信息",notes = "")
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String login(){
-        if(HicApplication.config){
-            return "index";
-        }else{
-            return "config";
-        }
-
+        return "index";
     }
 
     @ApiOperation(value = "验证用户是否存在" ,notes="验证输入的用户ID是否存在")
