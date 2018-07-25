@@ -119,11 +119,12 @@
             </script>
         </div>
             <div class="main-content">
-                <div class="page-content">
-                    <iframe id="coniframe"
-                            height="100%" width="100%" scrolling="no"
-                            frameborder="0">
-                    </iframe>
+                <div class="page-content" style="padding-left: 0px;padding-top:0px;border-top: 0px;">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe id="coniframe" class="embed-responsive-item"
+                                frameborder="0">
+                        </iframe>
+                    </div>
                 </div>
         </div>
 
@@ -203,7 +204,7 @@
         var windowHeight = $(window).height();
         var widowWidth = $(window).width();
         $('#coniframe').attr('height',(windowHeight - 100)+'px');
-        $('#coniframe').attr('width',(widowWidth - 240)+'px');
+        $('#coniframe').attr('width',(widowWidth - 192)+'px');
 
         $('#coniframe').attr('src',ctx+'init/initData');
         $('#navList li a').on('click',function(e){

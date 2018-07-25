@@ -32,10 +32,16 @@
     <script th:src="@{/assets/js/respond.min.js}"></script>
     <![endif]-->
     <link rel="stylesheet" th:href="@{/assets/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <style>
+        .tree-container{
+            height: 700px;
+            overflow: scroll;
+        }
+    </style>
 </head>
-<body  >
+<body>
 <div class="main-container">
-    <div class="row">
+    <div class="row" style="margin:0px;">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
@@ -57,13 +63,13 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <div id="dataTree" class="ztree">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
+                                    <div id="dataTree" class="ztree ">
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <div id="templateTree" class="ztree">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
+                                    <div id="templateTree" class="ztree ">
                                     </div>
                                 </div>
                                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
@@ -99,7 +105,7 @@
     var ctx = /*[[@{/}]]*/'';
 </script>
 <script>
-    var setting = {
+    var templateSetting = {
         async: {
             enable: true,
             url:ctx + "/mbk/tree",
@@ -141,19 +147,66 @@
             onExpand:zTreeOnOnClick
         }
     };
-
-    $('#tabContent').height($(window).height() - 20 +'px');
+    var dictSetting = {
+        async: {
+            enable: true,
+            url:ctx + "/dict/tree",
+            autoParam:["dictCode","dictValue"],
+            dataType:'json',
+            dataFilter: dictFilter
+        },
+        checkable: true,
+        showIcon: true,
+        showLine: true,
+        view: {
+            dblClickExpand: false,
+            showLine: true,
+            selectedMulti: false,
+            showIcon:false
+        },
+        expandSpeed: "",
+        data: {
+            keep:{
+                parent:false
+            },
+            key:{
+                name:'dictLabel',
+                isParent: "parent"
+            },
+            simpleData: {
+                enable: true,
+                idKey: "dictValue",
+                pIdKey: "",
+                rootPId: ""
+            }
+        },
+        check: {
+            enable: true,
+            chkboxType: { "Y" : "ps", "N" : "ps" }
+        },
+        callback: {
+            onClick: zTreeOnOnClick,
+            onExpand:zTreeOnOnClick
+        }
+    };
+    $(window).width((window.parent.document.getElementById("coniframe").width -12)+'px');
+    $(window).height((window.parent.document.getElementById("coniframe").height -12)+'px');
+    $('#tabContent').height($(window).height() - 68+'px')
     $(function () {
-        $.fn.zTree.init($("#dataTree"), setting);
-        $.fn.zTree.init($("#templateTree"), setting);
-
-        console.log($(window).width());
-        console.log($(window).height());
-        console.log(window.parent.document.getElementById("coniframe").height);
-        console.log(window.parent.document.getElementById("coniframe").width);
-
+        $.fn.zTree.init($("#dataTree"), dictSetting);
+        $.fn.zTree.init($("#templateTree"), templateSetting);
+        $('#tabContent').attr('border-buttom','0');
+        $('#tabContent').attr('border-left','0');
+        $('#tabContent').attr('border-right','0');
     });
-
+    function dictFilter(treeId, parentNode, childNodes) {
+        if (!childNodes) return null;
+        var result = childNodes.data;
+        for (var i=0, l=result.length; i<l; i++) {
+            result[i].dictLabel = result[i].dictLabel.replace(/\.n/g, '.');
+        }
+        return result;
+    }
     function filter(treeId, parentNode, childNodes) {
         if (!childNodes) return null;
         var result = childNodes.data;
