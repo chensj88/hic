@@ -3,6 +3,8 @@ package com.winning.hic.controller;
 import com.winning.hic.service.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Map;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -14,6 +16,8 @@ public class BaseController {
 
     @Autowired
     private Facade facade;
+
+    protected Map resultMap;
 
     public Facade getFacade() {
         return facade;

@@ -3,8 +3,8 @@
 <mapper namespace="com.winning.hic.dao.HlhtModelCheckDao">
 
 	<resultMap id="hlhtModelCheckResultForList" type="hlhtModelCheck">
-		<result column="ID" property="id" jdbcType="VARCHAR" />
-		<result column="P_ID" property="pId" jdbcType="VARCHAR" />
+		<result column="ID" property="id" jdbcType="BIGINT" />
+		<result column="P_ID" property="pId" jdbcType="BIGINT" />
 		<result column="LEVEL" property="level" jdbcType="INTEGER" />
 		<result column="QRMBDM" property="qrmbdm" jdbcType="VARCHAR" />
 		<result column="COLUMM_NAME" property="colummName" jdbcType="VARCHAR" />

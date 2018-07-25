@@ -15,9 +15,9 @@ public class HlhtModelCheck extends BaseDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 
-	private String id;
+	private Long id;
 	
-	private String pId;
+	private Long pId;
 	
 	private Integer level;
 	
@@ -41,19 +41,19 @@ public class HlhtModelCheck extends BaseDomain implements Serializable {
 
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
-	public String getPId() {
+	public Long getPId() {
 		return pId;
 	}
 	
-	public void setPId(String pId) {
+	public void setPId(Long pId) {
 		this.pId = pId;
 	}
 	
