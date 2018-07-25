@@ -1,10 +1,11 @@
-package com.winning.hic.dao;
+package com.winning.hic.dao.cisdb;
 
 
 
-import java.util.List;  
+import java.util.List;
 
-import org.springframework.dao.DataAccessException;  
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 
 import com.winning.hic.model.EmrMxmcmlk;  
 

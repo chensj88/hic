@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Winning Health CIS 互联互通工具</title>
+    <meta name="keywords" content="Winning Health CIS 互联互通工具"/>
+    <meta name="description" content="Winning Health CIS 互联互通工具"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <!--[if IE 7]>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome-ie7.min.css}"/>
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>
+    <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-ie.min.css}"/>
+    <![endif]-->
+    <script th:src="@{/assets/js/ace-extra.min.js}"></script>
+    <!--[if lt IE 9]>
+    <script th:src="@{/assets/js/html5shiv.js}"></script>
+    <script th:src="@{/assets/js/respond.min.js}"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('navbar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="#" class="navbar-brand">
+                <small>
+                    <img th:src="@{/img/logo.ico}">
+                    Winning Health CIS 互联互通工具
+                </small>
+            </a>
+        </div>
+
+        <div class="navbar-header pull-right" role="navigation">
+        </div>
+    </div>
+</div>
+
+<div class="main-container" id="main-container">
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            <div class="widget-box">
+                <div class="widget-header">
+                    <h4>数据库配置</h4>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <p style="text-align: center;font-weight: bold;font-size: 14px;">CISDB</p>
+                                <form id="cisdbForm">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="cisdbUrlSpan">数据库地址</span>
+                                            <input type="text" name="cisdbUrl" id="cisdbUrl" class="form-control" placeholder="例如:192.16.0.1:1433 或 192.168.0.1\cis" aria-describedby="cisdbUrlSpan">
+                                        </div>
+                                        <div class="hr hr-12"  style="border:none;"></div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="cisdbUsernameSpan">用户名</span>
+                                            <input type="text" name="cisdbUsername" id="cisdbUsername" class="form-control" placeholder="sa" aria-describedby="cisdbUsernameSpan">
+                                        </div>
+                                        <div class="hr hr-12"  style="border:none;"></div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="cisdbPasswordSpan">密码</span>
+                                            <input type="text" name="cisdbPassword" id="cisdbPassword" class="form-control" placeholder="123456" aria-describedby="cisdbPasswordSpan">
+                                        </div>
+                                        <div class="hr hr-12" style="border:none;"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <p style="text-align: center;font-weight: bold;font-size: 14px;">CISDB_DATA</p>
+                                <form id="cisdbDataForm">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="cisdbDataUrlSpan">数据库地址</span>
+                                        <input type="text" name="cisdbDataUrl" id="cisdbDataUrl" class="form-control" placeholder="例如:192.16.0.1:1433 或 192.168.0.1\cis" aria-describedby="cisdbDataUrlSpan">
+                                    </div>
+                                    <div class="hr hr-12"  style="border:none;"></div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="cisdbDataUsernameSpan">用户名</span>
+                                        <input type="text" name="cisdbDataUsername" id="cisdbDataUsername" class="form-control" placeholder="sa" aria-describedby="cisdbDataUsernameSpan">
+                                    </div>
+                                    <div class="hr hr-12"  style="border:none;"></div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="cisdbDataPasswordSpan">密码</span>
+                                        <input type="text" name="cisdbDataPassword" id="cisdbDataPassword" class="form-control" placeholder="123456" aria-describedby="cisdbDataPasswordSpan">
+                                    </div>
+                                    <div class="hr hr-12" style="border:none;"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+</div>
+<!--[if !IE]> -->
+<script type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript" th:src="@{/bootstrap/js/jquery-1.12.4.min.js}"></script>
+<![endif]-->
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script th:src='@{/bootstrap/js/jquery-2.2.4.min.js}'>" + "<" + "script>");
+</script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script th:src='@{/bootstrap/js/jquery-1.12.4.min.js}'>" + "<" + "script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+    if ("ontouchend" in document) document.write("<script th:src='@{/assets/js/jquery.mobile.custom.min.js}'>" + "<" + "script>");
+</script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/typeahead-bs2.min.js}"></script>
+<!--[if lte IE 8]>
+<script th:src="@{/assets/js/excanvas.min.js}"></script>
+<![endif]-->
+<script th:src="@{/assets/js/jquery-ui-1.10.3.custom.min.js}"></script>
+<script th:src="@{/assets/js/jquery.ui.touch-punch.min.js}"></script>
+<script th:src="@{/assets/js/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/assets/js/jquery.easy-pie-chart.min.js}"></script>
+<script th:src="@{/assets/js/jquery.sparkline.min.js}"></script>
+<script th:src="@{/assets/js/flot/jquery.flot.min.js}"></script>
+<script th:src="@{/assets/js/flot/jquery.flot.pie.min.js}"></script>
+<script th:src="@{/assets/js/flot/jquery.flot.resize.min.js}"></script>
+<!-- ace scripts -->
+<script th:src="@{/assets/js/ace-elements.min.js}"></script>
+<script th:src="@{/assets/js/ace.min.js}"></script>
+<!-- inline scripts related to this page -->
+
+<script type="text/javascript">
+    jQuery(function ($) {
+
+        //页面切换焦点改变
+        $('#navList>li').on('click',function () {
+            $(this).addClass('active')
+                .siblings('li')
+                .removeClass('active');
+        });
+        //计算iframe的宽度和高度，并将高度与宽度作为主容器的高度与宽度
+        var windowHeight = $(window).height();
+        var widowWidth = $(window).width();
+        $('#coniframe').attr('height',(windowHeight - 100)+'px');
+        $('#coniframe').attr('width',(widowWidth - 200)+'px');
+    })
+</script>
+</body>
+</html>
+

@@ -1,5 +1,6 @@
-package com.winning.hic.web;
+package com.winning.hic.controller;
 
+import com.winning.hic.HicApplication;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;

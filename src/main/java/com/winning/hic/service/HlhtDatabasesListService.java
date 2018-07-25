@@ -10,7 +10,7 @@ import com.winning.hic.model.HlhtDatabasesList;
 * @title 医院远程数据库连接地址配置信息服务接口
 * @email Winning Health
 * @package com.winning.hic.service
-* @date 2018-55-24 13:55:04
+* @date 2018-23-25 12:23:49
 */
 public interface HlhtDatabasesListService {
 

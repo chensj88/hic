@@ -13,7 +13,7 @@ import com.winning.hic.model.BaseDomain;
  * @title 基础数据配置表
  * @email Winning Health
  * @package com.winning.hic.model
- * @date 2018-55-24 13:55:07
+ * @date 2018-23-25 12:23:52
  */
 @Alias("hlhtDataSet")
 public class HlhtDataSet extends BaseDomain implements Serializable {
@@ -86,6 +86,12 @@ public class HlhtDataSet extends BaseDomain implements Serializable {
      * 默认值：无
      */
     private Integer bt;
+    /**
+     * 字段名：SOURCE_NAME
+     * 备注: 
+     * 默认值：无
+     */
+    private String sourceName;
 
     public HlhtDataSet (){
 
@@ -288,6 +294,24 @@ public class HlhtDataSet extends BaseDomain implements Serializable {
    */
    public void setBt(Integer bt){
         this.bt = bt;
+   }
+   /**
+   * 字段名：SOURCE_NAME
+   * get方法
+   * 备注: 
+   */
+   public String getSourceName(){
+
+        return sourceName;
+   }
+
+   /**
+   * 字段名：SOURCE_NAME
+   * set方法
+   * 备注: 
+   */
+   public void setSourceName(String sourceName){
+        this.sourceName = sourceName;
    }
 
 }

@@ -1,12 +1,12 @@
-package com.winning.hic.dao;
+package com.winning.hic.dao.data;
 
 
 
-import java.util.List;  
+import java.util.List;
 
-import org.springframework.dao.DataAccessException;  
+import org.springframework.dao.DataAccessException;
 
-import com.winning.hic.model.HlhtDatabasesList;  
+import com.winning.hic.model.HlhtDatabasesList;
 
 
 

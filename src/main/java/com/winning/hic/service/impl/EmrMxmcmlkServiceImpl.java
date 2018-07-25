@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.winning.hic.model.EmrMxmcmlk;  
 
-import com.winning.hic.dao.EmrMxmcmlkDao;  
+import com.winning.hic.dao.cisdb.EmrMxmcmlkDao;
 
 import com.winning.hic.service.EmrMxmcmlkService;  
 

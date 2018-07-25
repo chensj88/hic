@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.data.HlhtDataSetDao">
+
+    <resultMap id="hlhtDataSetResultForList" type="com.winning.hic.model.HlhtDataSet">
+         <result column="ID" property="id" jdbcType="VARCHAR" />
+         <result column="P_ID" property="pId" jdbcType="INTEGER" />
+         <result column="SOURCE_TYPE" property="sourceType" jdbcType="VARCHAR" />
+         <result column="LEVEL" property="level" jdbcType="INTEGER" />
+         <result column="COLUMM_NAME" property="colummName" jdbcType="VARCHAR" />
+         <result column="TYPE" property="type" jdbcType="INTEGER" />
+         <result column="DTJDDM" property="dtjddm" jdbcType="VARCHAR" />
+         <result column="QRMBDM" property="qrmbdm" jdbcType="VARCHAR" />
+         <result column="QRDXDM" property="qrdxdm" jdbcType="VARCHAR" />
+         <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
+         <result column="BT" property="bt" jdbcType="INTEGER" />
+         <result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="hlhtDataSetResult" type="com.winning.hic.model.HlhtDataSet" extends="hlhtDataSetResultForList">
+
+    </resultMap>
+
+    <sql id="sql-hlhtDataSet">
+        <if test="(id != null and id != '')"> and t.ID = #{id} </if>
+        <if test="(pId != null and pId != '')"> and t.P_ID = #{pId} </if>
+        <if test="(sourceType != null and sourceType != '')"> and t.SOURCE_TYPE = #{sourceType} </if>
+        <if test="(level != null and level != '')"> and t.LEVEL = #{level} </if>
+        <if test="(colummName != null and colummName != '')"> and t.COLUMM_NAME = #{colummName} </if>
+        <if test="(type != null and type != '')"> and t.TYPE = #{type} </if>
+        <if test="(dtjddm != null and dtjddm != '')"> and t.DTJDDM = #{dtjddm} </if>
+        <if test="(qrmbdm != null and qrmbdm != '')"> and t.QRMBDM = #{qrmbdm} </if>
+        <if test="(qrdxdm != null and qrdxdm != '')"> and t.QRDXDM = #{qrdxdm} </if>
+        <if test="(yzjddm != null and yzjddm != '')"> and t.YZJDDM = #{yzjddm} </if>
+        <if test="(bt != null and bt != '')"> and t.BT = #{bt} </if>
+        <if test="(sourceName != null and sourceName != '')"> and t.SOURCE_NAME = #{sourceName} </if>
+    </sql>
+
+    <insert id="insertHlhtDataSet" parameterType="com.winning.hic.model.HlhtDataSet">
+        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+        INSERT INTO HLHT_DATA_SET
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> ID , </if>
+            <if test="(pId != null and pId != '')"> P_ID , </if>
+            <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE , </if>
+            <if test="(level != null and level != '')"> LEVEL , </if>
+            <if test="(colummName != null and colummName != '')"> COLUMM_NAME , </if>
+            <if test="(type != null and type != '')"> TYPE , </if>
+            <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+            <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+            <if test="(bt != null and bt != '')"> BT , </if>
+            <if test="(sourceName != null and sourceName != '')"> SOURCE_NAME , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> #{id , jdbcType= VARCHAR },  </if>
+            <if test="(pId != null and pId != '')"> #{pId , jdbcType= INTEGER },  </if>
+            <if test="(sourceType != null and sourceType != '')"> #{sourceType , jdbcType= VARCHAR },  </if>
+            <if test="(level != null and level != '')"> #{level , jdbcType= INTEGER },  </if>
+            <if test="(colummName != null and colummName != '')"> #{colummName , jdbcType= VARCHAR },  </if>
+            <if test="(type != null and type != '')"> #{type , jdbcType= INTEGER },  </if>
+            <if test="(dtjddm != null and dtjddm != '')"> #{dtjddm , jdbcType= VARCHAR },  </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> #{qrmbdm , jdbcType= VARCHAR },  </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> #{qrdxdm , jdbcType= VARCHAR },  </if>
+            <if test="(yzjddm != null and yzjddm != '')"> #{yzjddm , jdbcType= VARCHAR },  </if>
+            <if test="(bt != null and bt != '')"> #{bt , jdbcType= INTEGER },  </if>
+            <if test="(sourceName != null and sourceName != '')"> #{sourceName , jdbcType= VARCHAR },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateHlhtDataSet" parameterType="com.winning.hic.model.HlhtDataSet">
+        UPDATE HLHT_DATA_SET
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(id != null and id != '')"> ID , </if>
+                <if test="(pId != null and pId != '')"> P_ID , </if>
+                <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE , </if>
+                <if test="(level != null and level != '')"> LEVEL , </if>
+                <if test="(colummName != null and colummName != '')"> COLUMM_NAME , </if>
+                <if test="(type != null and type != '')"> TYPE , </if>
+                <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+                <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+                <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+                <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+                <if test="(bt != null and bt != '')"> BT , </if>
+                <if test="(sourceName != null and sourceName != '')"> SOURCE_NAME , </if>
+            </trim>
+        </set>
+        <where>
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteHlhtDataSet" parameterType="com.winning.hic.model.HlhtDataSet">
+        delete from  HLHT_DATA_SET
+        <where>
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectHlhtDataSet" resultMap="hlhtDataSetResult" parameterType="com.winning.hic.model.HlhtDataSet">
+        SELECT * FROM HLHT_DATA_SET t
+        <where>
+            <include refid="sql-hlhtDataSet" />
+        </where>
+    </select>
+
+    <select id="selectHlhtDataSetList" resultMap="hlhtDataSetResultForList" parameterType="com.winning.hic.model.HlhtDataSet">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM HLHT_DATA_SET t
+        <where>
+            <include refid="sql-hlhtDataSet" />
+        </where>
+        ORDER BY t.ID DESC
+    </select>
+
+    <select id="selectHlhtDataSetCount" resultType="int" parameterType="com.winning.hic.model.HlhtDataSet">
+        select count(1) from  HLHT_DATA_SET t
+        <where>
+            <include refid="sql-hlhtDataSet" />
+        </where>
+    </select>
+
+    <select id="selectHlhtDataSetPageList" resultMap="hlhtDataSetResult" parameterType="com.winning.hic.model.HlhtDataSet">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
+        FROM HLHT_DATA_SET t
+        <where>
+            <include refid="sql-hlhtDataSet" />
+        </where>
+        <!-- order by t.ID asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>
