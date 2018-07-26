@@ -6,36 +6,35 @@
    Time: 13:17
  -->
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width,initial-scale=1.0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
     <title>数据初始化</title>
     <meta name="keywords" content="Winning Health CIS 互联互通工具"/>
     <meta name="description" content="Winning Health CIS 互联互通工具"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
-    <!--[if IE 7]>
-    <link rel="stylesheet" th:href="@{/assets/css/font-awesome-ie7.min.css}"/>
-    <![endif]-->
-    <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
-    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
-    <link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>
-    <link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>
-    <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
-    <!--[if lte IE 8]>
-    <link rel="stylesheet" th:href="@{/assets/css/ace-ie.min.css}"/>
-    <![endif]-->
-    <script th:src="@{/assets/js/ace-extra.min.js}"></script>
-    <!--[if lt IE 9]>
-    <script th:src="@{/assets/js/html5shiv.js}"></script>
-    <script th:src="@{/assets/js/respond.min.js}"></script>
-    <![endif]-->
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-table.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/jquery.treegrid.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap3-editable/css/bootstrap-editable.css}">
     <link rel="stylesheet" th:href="@{/assets/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
+    <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
+    <script th:src="@{/assets/js/ace-extra.min.js}"></script>
     <style>
         .tree-container{
-            height: 700px;
+            height: 500px;
             overflow: scroll;
+        }
+        .table-align{
+            table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+            font-size:12px;
         }
     </style>
 </head>
@@ -46,20 +45,49 @@
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
                     <li class="active">
-                        <a data-toggle="tab" href="#home">
+                        <a data-toggle="tab" href="#config">
                             基础模板匹配
                         </a>
                     </li>
 
                     <li>
-                        <a data-toggle="tab" href="#profile">
+                        <a data-toggle="tab" href="#template">
                            数据集配置
                         </a>
                     </li>
                 </ul>
-
                 <div class="tab-content" id="tabContent">
-                    <div id="home" class="tab-pane in active">
+                    <div id="config" class="tab-pane in active">
+                            <div class="row" id="toolbar">
+                                <div class="col-sm-2">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">数据集</span>
+                                        <select class="form-control" name="dataSet" id="dataSet">
+                                            <option value="">-----全部-----</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <div class="input-group">
+                                        <label>
+                                            <input name="form-field-checkbox" type="checkbox" class="ace" id="chosen"/>
+                                            <span class="lbl">必选</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <div class="input-group">
+                                        <label>
+                                            <input name="form-field-checkbox" type="checkbox" class="ace" id="configPath"/>
+                                            <span class="lbl">路径已配置</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        <table id="table" class="table-align"></table>
+                    </div>
+
+                    <div id="template" class="tab-pane">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
@@ -76,10 +104,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div id="profile" class="tab-pane">
-                        <p>数据集配置</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -91,20 +115,61 @@
 <!--[if IE]>
 <script type="text/javascript" th:src="@{/bootstrap/js/jquery-1.12.4.min.js}"></script>
 <![endif]-->
+<!--bootstrap-->
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<!--[if lte IE 8]>
-<script th:src="@{/assets/js/excanvas.min.js}"></script>
-<![endif]-->
-<script th:src="@{/assets/js/ace-elements.min.js}"></script>
-<script th:src="@{/assets/js/ace.min.js}"></script>
-<script th:src="@{/assets/ztree/js/jquery.ztree.core.min.js}"></script>
-<script th:src="@{/assets/ztree/js/jquery.ztree.exedit.min.js}"></script>
-<script th:src="@{/assets/ztree/js/jquery.ztree.excheck.min.js}"></script>
-<script th:src="@{/assets/ztree/js/jquery.ztree.exhide.min.js}"></script>
-<script th:inline="javascript"  type="text/javascript">
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-table-zh-CN.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-table-treegrid.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/bootstrap3-editable/js/bootstrap-editable.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/bootstrap3-editable/js/bootstrap-table-editable.js}"></script>
+<!--ace-->
+<script type="text/javascript" th:src="@{/assets/js/ace-elements.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/ace.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/ace-extra.min.js}"></script>
+<!--ztree-->
+<script type="text/javascript" th:src="@{/assets/ztree/js/jquery.ztree.core.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/ztree/js/jquery.ztree.exedit.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/ztree/js/jquery.ztree.excheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/ztree/js/jquery.ztree.exhide.min.js}"></script>
+
+<script type="text/javascript" th:inline="javascript">
     var ctx = /*[[@{/}]]*/'';
 </script>
 <script>
+    //页面初始化
+    function initWindow(){
+        //页面大小响应布局
+        $(window).width((window.parent.document.getElementById("coniframe").width -12)+'px');
+        $(window).height((window.parent.document.getElementById("coniframe").height -12)+'px');
+        $('#tabContent').height($(window).height() - 100+'px')
+        //行内操作初始化
+        $.fn.editable.defaults.mode = 'inline';
+    }
+    initWindow();
+    //字典值加载
+    function initDictInfo(){
+        var $parent = $('#dataSet');
+        $.ajax({
+            url: ctx + 'common/dict',
+            async: true,
+            type: "post",
+            cache:false,
+            data: {'dictCode':'platformTableName'},
+            success: function (data, status) {
+                console.log(data);
+                $parent.empty();
+                var $data = data.data;
+                for (var key in $data) {
+                    $('<option value="' + $data[key].dictValue+ '">' + $data[key].dictLabel+ '</option>').appendTo($parent);
+                }
+                $('<option value="">-----------全部-----------</option>').prependTo($parent);
+                $parent.val("");
+            }
+        });
+    }
+    initDictInfo();
+    //树初始化
     var templateSetting = {
         async: {
             enable: true,
@@ -189,16 +254,7 @@
             onExpand:zTreeOnOnClick
         }
     };
-    $(window).width((window.parent.document.getElementById("coniframe").width -12)+'px');
-    $(window).height((window.parent.document.getElementById("coniframe").height -12)+'px');
-    $('#tabContent').height($(window).height() - 100+'px')
-    $(function () {
-        $.fn.zTree.init($("#dataTree"), dictSetting);
-        $.fn.zTree.init($("#templateTree"), templateSetting);
-        $('#tabContent').attr('border-buttom','0');
-        $('#tabContent').attr('border-left','0');
-        $('#tabContent').attr('border-right','0');
-    });
+    //树数据转换
     function dictFilter(treeId, parentNode, childNodes) {
         if (!childNodes) return null;
         var result = childNodes.data;
@@ -207,6 +263,7 @@
         }
         return result;
     }
+    //树数据转换
     function filter(treeId, parentNode, childNodes) {
         if (!childNodes) return null;
         var result = childNodes.data;
@@ -215,7 +272,7 @@
         }
         return result;
     }
-
+    //树数据点击
     function zTreeOnOnClick(event, treeId, treeNode) {
         var treeObj = $.fn.zTree.getZTreeObj(treeId);
         var node = treeObj.getNodeByTId(treeNode.tId);
@@ -242,8 +299,145 @@
             });
         }
     }
+    var $table = $('#table');
 
+    function openAddWindow(id,recordName,index) {
+        var data = {row :{pid:id,recordName:recordName},index:index+10000};
+        console.log(data);
+        $table.bootstrapTable('insertRow',data);
+    }
 
+    $(function(){
+        $table.bootstrapTable({
+            url:ctx + 'basic/list',
+            striped: true,
+            method: 'GET', // 请求方法
+            cache: false,  // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            sortable: false,
+            sortOrder: "asc",
+            sidePagination: "server",
+            toolbar: '#toolbar',
+            toolbarAlign: 'left',
+            idField: 'id',
+            columns: [
+                {
+                    field: 'recordName',
+                    title: '字段名称',
+                    align: 'left',
+                    width: '210px',
+                    formatter:function(value,row,index){
+                        if(row.pid !== 0){
+                            return '<span>'+value+'</span> <span class="pull-right" onclick="openAddWindow(\''+row.id+'\',\''+row.recordName+'\',\''+index+'\')"><i class="glyphicon glyphicon-plus"></i> </span>';
+                        }else{
+                            return '<span>'+value+'</span>';
+                        }
+                    }
+                },
+                {
+                    field: 'dataType',
+                    title: '类型',
+                    align: 'center',
+                    width: '80px',
+                    editable: {
+                        emptytext:'-',
+                        type: 'select',
+                        source:[
+                            {value:"1",text:"文件结构"},
+                            {value:"2",text:"基础模板"},
+                            {value:"3",text:"元数据"},
+                            {value:"4",text:"原子节点"}]
+                    }
+                },
+                {
+                    field: 'dtjddm',
+                    align: 'center',
+                    title: '文件结构ID',
+                    editable: {
+                        emptytext:'-',
+                        type: 'text',
+                        title: '文件结构ID'
+                    }
+                },
+                {
+                    field: 'qrmbdm',
+                    align: 'center',
+                    title: '基础模板ID',
+                    editable: {
+                        emptytext:'-',
+                        type: 'text',
+                        title: '基础模板ID'
+                    }
+                },
+                {
+                    field: 'qrdxdm',
+                    align: 'center',
+                    title: '元数据ID',
+                    editable: {
+                        emptytext:'-',
+                        type: 'text',
+                        title: '元数据ID'
+                    }
+                },
+                {
+                    field: 'yzjddm',
+                    align: 'center',
+                    title: '原子节点ID',
+                    editable: {
+                        emptytext:'-',
+                        type: 'text',
+                        title: '原子节点ID'
+                    }
+                },
+                {
+                    field: 'bt',
+                    align: 'center',
+                    title: '必填',
+                    editable: {
+                        emptytext:'-',
+                        type: "checklist",
+                        separator: ",",
+                        source: [{value: 'bx', text: '必填'}]
+                    }
+                }
+            ],
+            treeShowField: 'recordName',
+            parentIdField: 'pid',
+            onLoadSuccess: function (data) {
+                $table.treegrid({
+                    initialState: 'collapsed',
+                    treeColumn: 0,
+                    onChange: function () {
+                        $table.bootstrapTable('resetWidth');
+                    }
+                });
+            },
+            onEditableSave: function (field, row, oldValue, $el) {
+                $table.bootstrapTable('resetView');
+                $.ajax({
+                    type: "post",
+                    url:  ctx + "/Editable/Edit",
+                    data: row,
+                    dataType: 'JSON',
+                    success: function (data, status) {
+                        if (status == "success") {
+                            alert('提交数据成功');
+                        }
+                    },
+                    error: function () {
+                        alert('编辑失败');
+                    },
+                    complete: function () {
+
+                    }
+
+                });
+            }
+        });
+
+        $.fn.zTree.init($("#dataTree"), dictSetting);
+        $.fn.zTree.init($("#templateTree"), templateSetting);
+
+    });
 </script>
 </body>
 </html>
