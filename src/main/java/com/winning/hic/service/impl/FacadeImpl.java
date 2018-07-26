@@ -43,6 +43,10 @@ public class FacadeImpl implements Facade{
     @Autowired
     HlhtModelCheckService hlhtModelCheckService;
 
+    @Autowired
+    HlhtDataTemplateConfigService hlhtDataTemplateConfigService;
+
+
     public EmrMxmcmlkService getEmrMxmcmlkService(){
         return emrMxmcmlkService;
     }
@@ -68,10 +72,6 @@ public class FacadeImpl implements Facade{
         return hlhtDataListSetService;
     }
 
-    public HlhtDataSetService getHlhtDataSetService(){
-        return hlhtDataSetService;
-    }
-
     public HlhtDictInfoService getHlhtDictInfoService(){
         return hlhtDictInfoService;
     }
@@ -82,6 +82,14 @@ public class FacadeImpl implements Facade{
 
     public HlhtModelCheckService getHlhtModelCheckService(){
         return hlhtModelCheckService;
+    }
+
+    public HlhtDataTemplateConfigService getHlhtDataTemplateConfigService(){
+        return hlhtDataTemplateConfigService;
+    }
+
+    public HlhtDataSetService getHlhtDataSetService(){
+        return hlhtDataSetService;
     }
 
 }

@@ -28,4 +28,7 @@ public interface Facade {
     HlhtLogService getHlhtLogService();
 
     HlhtModelCheckService getHlhtModelCheckService();
+
+    HlhtDataTemplateConfigService getHlhtDataTemplateConfigService();
+
 }
