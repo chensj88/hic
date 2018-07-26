@@ -9,11 +9,11 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
-    <title>系统管理</title>
+    <title>模板校验</title>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-table.min.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/css/jquery.treegrid.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>
@@ -22,7 +22,9 @@
 </head>
 
 <body>
+<i class="fa fa-check"></i>
 <div class="main-container" style="margin: 10px 0px;">
+
     <div class="row" style="margin:0px;">
         <div class="col-sm-12">
             <div class="tabbable">
@@ -42,13 +44,13 @@
 
                 <div class="tab-content">
                     <div id="home" class="tab-pane in active">
-                        <div id="toolbar">
+                        <div id="treegrid_toolbar">
                             <form class="form-inline">
                                 <div class="form-group">
-                                    <label class="sr-only" for="productLine">模板类别</label>
+                                    <label class="sr-only" for="model">模板类别</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">模板类别</span>
-                                        <select class="form-control" name="product_line" id="productLine">
+                                        <select class="form-control" name="product_line" id="model">
                                             <option value="">-----全部-----</option>
                                         </select>
                                     </div>
@@ -62,16 +64,32 @@
                                         </span>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary">批量验证</button>
-                                <button type="button" class="btn btn-primary">生成报告</button>
+                                <button type="button" class="btn btn-primary btn-sm">批量验证</button>
+                                <button type="button" class="btn btn-primary btn-sm">生成报告</button>
                             </form>
 
                         </div>
-                        <table id="table"></table>
+                        <table id="treegrid_table"></table>
                     </div>
 
                     <div id="profile" class="tab-pane">
-                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                        <div id="simple_toolbar">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="productLine">病例模板选择</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">病例模板选择</span>
+                                        <select class="form-control" name="product_line" id="productLine">
+                                            <option value="">-----全部-----</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm">开始校验</button>
+                                <button type="button" class="btn btn-primary btn-sm">生成报告</button>
+                            </form>
+
+                        </div>
+                        <table id="simple_table"></table>
                     </div>
                 </div>
             </div>
@@ -94,13 +112,14 @@
 <script th:inline="javascript" type="text/javascript">
     var ctx = /*[[@{/}]]*/'';
     // alert(ctx+'modelCheck/modelCheck');
-    var $table = $('#table');
+    var $table = $('#treegrid_table');
+    var $simple_table = $('#simple_table');
     $(function () {
         $table.bootstrapTable({
             url: ctx + 'modelCheck/list',
             height: $(window).height(),
             striped: true,
-            toolbar: '#toolbar',
+            toolbar: '#treegrid_toolbar',
             sidePagination: 'client',
             idField: 'id',
             columns: [
@@ -112,18 +131,10 @@
                     field: 'colummName',
                     width: '40%',
                     title: '模板名称'
-                },
-                // {
-                //     field: 'status',
-                //     title: '状态',
-                //     sortable: true,
-                //     align: 'center',
-                //     formatter: 'statusFormatter'
-                // },
-                {
+                }, {
                     field: 'errorDesc',
                     width: '60%',
-                    title: '错误描述'
+                    title: '结果分析'
                 }
             ],
             treeShowField: 'colummName',
@@ -141,6 +152,37 @@
                     }
                 });
             }
+        });
+
+        $simple_table.bootstrapTable({
+            url: ctx + 'modelCheck/list',
+            height: $(window).height(),
+            striped: true,
+            toolbar: '#simple_toolbar',
+            sidePagination: 'client',
+            idField: 'id',
+            columns: [
+                // {
+                //     field: 'ck',
+                //     checkbox: true
+                // },
+                {
+                    field: 'colummName',
+                    width: '30%',
+                    title: '模板名称'
+                },
+                {
+                    field: 'status',
+                    title: '验证结果',
+                    align: 'center',
+                    formatter: 'statusFormatter'
+                },
+                {
+                    field: 'errorDesc',
+                    width: '40%',
+                    title: '错误描述'
+                }
+            ],
         });
     });
 
@@ -161,10 +203,13 @@
 
     // 格式化状态
     function statusFormatter(value, row, index) {
-        if (value === 1) {
-            return '<span class="label label-success">正常</span>';
-        } else {
-            return '<span class="label label-default">锁定</span>';
+        if (value === 0) {
+            //0：正确 1：错误
+            return '<i class="fa fa-check" style="color: #00B83F"></i>';
+        } else if(value === 1) {
+            return '<i class="fa fa-times" style="color: red"></i>';
+        }else{
+            return '';
         }
     }
 </script>
