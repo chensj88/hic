@@ -13,7 +13,7 @@ import com.winning.hic.model.BaseDomain;
  * @title 基础数据配置表
  * @email Winning Health
  * @package com.winning.hic.model
- * @date 2018-24-26 09:24:07
+ * @date 2018-27-26 15:27:55
  */
 @Alias("hlhtDataSet")
 public class HlhtDataSet extends BaseDomain implements Serializable {
@@ -56,6 +56,42 @@ public class HlhtDataSet extends BaseDomain implements Serializable {
      * 默认值：无
      */
     private String dictCode;
+    /**
+     * 字段名：DATA_TYPE
+     * 备注: 1 文件结构 2 基础模板 3元数据
+     * 默认值：无
+     */
+    private Integer dataType;
+    /**
+     * 字段名：DTJDDM
+     * 备注: 文件机构ID
+     * 默认值：无
+     */
+    private String dtjddm;
+    /**
+     * 字段名：QRMBDM
+     * 备注: 基础模板ID
+     * 默认值：无
+     */
+    private String qrmbdm;
+    /**
+     * 字段名：QRDXDM
+     * 备注: 元数据ID
+     * 默认值：无
+     */
+    private String qrdxdm;
+    /**
+     * 字段名：YZJDDM
+     * 备注: 原子节点ID
+     * 默认值：无
+     */
+    private String yzjddm;
+    /**
+     * 字段名：BT
+     * 备注: 1:选中必填
+     * 默认值：无
+     */
+    private Integer bt;
 
     public HlhtDataSet (){
 
@@ -168,6 +204,114 @@ public class HlhtDataSet extends BaseDomain implements Serializable {
    */
    public void setDictCode(String dictCode){
         this.dictCode = dictCode;
+   }
+   /**
+   * 字段名：DATA_TYPE
+   * get方法
+   * 备注: 1 文件结构 2 基础模板 3元数据
+   */
+   public Integer getDataType(){
+
+        return dataType;
+   }
+
+   /**
+   * 字段名：DATA_TYPE
+   * set方法
+   * 备注: 1 文件结构 2 基础模板 3元数据
+   */
+   public void setDataType(Integer dataType){
+        this.dataType = dataType;
+   }
+   /**
+   * 字段名：DTJDDM
+   * get方法
+   * 备注: 文件机构ID
+   */
+   public String getDtjddm(){
+
+        return dtjddm;
+   }
+
+   /**
+   * 字段名：DTJDDM
+   * set方法
+   * 备注: 文件机构ID
+   */
+   public void setDtjddm(String dtjddm){
+        this.dtjddm = dtjddm;
+   }
+   /**
+   * 字段名：QRMBDM
+   * get方法
+   * 备注: 基础模板ID
+   */
+   public String getQrmbdm(){
+
+        return qrmbdm;
+   }
+
+   /**
+   * 字段名：QRMBDM
+   * set方法
+   * 备注: 基础模板ID
+   */
+   public void setQrmbdm(String qrmbdm){
+        this.qrmbdm = qrmbdm;
+   }
+   /**
+   * 字段名：QRDXDM
+   * get方法
+   * 备注: 元数据ID
+   */
+   public String getQrdxdm(){
+
+        return qrdxdm;
+   }
+
+   /**
+   * 字段名：QRDXDM
+   * set方法
+   * 备注: 元数据ID
+   */
+   public void setQrdxdm(String qrdxdm){
+        this.qrdxdm = qrdxdm;
+   }
+   /**
+   * 字段名：YZJDDM
+   * get方法
+   * 备注: 原子节点ID
+   */
+   public String getYzjddm(){
+
+        return yzjddm;
+   }
+
+   /**
+   * 字段名：YZJDDM
+   * set方法
+   * 备注: 原子节点ID
+   */
+   public void setYzjddm(String yzjddm){
+        this.yzjddm = yzjddm;
+   }
+   /**
+   * 字段名：BT
+   * get方法
+   * 备注: 1:选中必填
+   */
+   public Integer getBt(){
+
+        return bt;
+   }
+
+   /**
+   * 字段名：BT
+   * set方法
+   * 备注: 1:选中必填
+   */
+   public void setBt(Integer bt){
+        this.bt = bt;
    }
 
 }

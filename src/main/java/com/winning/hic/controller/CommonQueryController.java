@@ -1,8 +1,7 @@
 package com.winning.hic.controller;
 
 import com.winning.hic.base.Constant;
-import com.winning.hic.model.HlhtDataSet;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.winning.hic.model.HlhtDictInfo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,19 +10,19 @@ import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:
+ * Description: 通用控制类
  * User: LENOVO
  * Date: 2018-07-26
- * Time: 9:20
+ * Time: 13:55
  */
 @RestController
-public class BasicTemplateController extends BaseController {
+public class CommonQueryController extends BaseController {
 
-    @GetMapping("/basic/list")
-    public Map<String, Object> loadBasicTemplateInfo(HlhtDataSet dataSet){
+    @PostMapping(value = "/common/dict")
+    public Map<String, Object> getDictListByDictCode(HlhtDictInfo dictInfo){
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constant.SUCCESS);
-        result.put("rows", getFacade().getHlhtDataSetService().getHlhtDataSetList(dataSet));
+        result.put("data", getFacade().getHlhtDictInfoService().getHlhtDictInfoList(dictInfo));
         return result;
     }
 }

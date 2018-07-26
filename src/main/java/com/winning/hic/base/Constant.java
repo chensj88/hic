@@ -51,4 +51,7 @@ public class Constant {
      * 平台 mapper.xml文件的位置
      */
     public static final String PLATFORM_LOCATION = "classpath:mapper/platform/*.xml";
+
+
+    public static final String SUCCESS = "SUCCESS";
 }

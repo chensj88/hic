@@ -10,6 +10,12 @@
          <result column="RECORD_NAME" property="recordName" jdbcType="VARCHAR" />
          <result column="PY_CODE" property="pyCode" jdbcType="VARCHAR" />
          <result column="DICT_CODE" property="dictCode" jdbcType="VARCHAR" />
+         <result column="DATA_TYPE" property="dataType" jdbcType="INTEGER" />
+         <result column="DTJDDM" property="dtjddm" jdbcType="VARCHAR" />
+         <result column="QRMBDM" property="qrmbdm" jdbcType="VARCHAR" />
+         <result column="QRDXDM" property="qrdxdm" jdbcType="VARCHAR" />
+         <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
+         <result column="BT" property="bt" jdbcType="INTEGER" />
     </resultMap>
 
     <resultMap id="hlhtDataSetResult" type="com.winning.hic.model.HlhtDataSet" extends="hlhtDataSetResultForList">
@@ -23,6 +29,12 @@
         <if test="(recordName != null and recordName != '')"> and t.RECORD_NAME = #{recordName} </if>
         <if test="(pyCode != null and pyCode != '')"> and t.PY_CODE = #{pyCode} </if>
         <if test="(dictCode != null and dictCode != '')"> and t.DICT_CODE = #{dictCode} </if>
+        <if test="(dataType != null and dataType != '')"> and t.DATA_TYPE = #{dataType} </if>
+        <if test="(dtjddm != null and dtjddm != '')"> and t.DTJDDM = #{dtjddm} </if>
+        <if test="(qrmbdm != null and qrmbdm != '')"> and t.QRMBDM = #{qrmbdm} </if>
+        <if test="(qrdxdm != null and qrdxdm != '')"> and t.QRDXDM = #{qrdxdm} </if>
+        <if test="(yzjddm != null and yzjddm != '')"> and t.YZJDDM = #{yzjddm} </if>
+        <if test="(bt != null and bt != '')"> and t.BT = #{bt} </if>
     </sql>
 
     <insert id="insertHlhtDataSet" parameterType="com.winning.hic.model.HlhtDataSet">
@@ -35,6 +47,12 @@
             <if test="(recordName != null and recordName != '')"> RECORD_NAME , </if>
             <if test="(pyCode != null and pyCode != '')"> PY_CODE , </if>
             <if test="(dictCode != null and dictCode != '')"> DICT_CODE , </if>
+            <if test="(dataType != null and dataType != '')"> DATA_TYPE , </if>
+            <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+            <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+            <if test="(bt != null and bt != '')"> BT , </if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -44,6 +62,12 @@
             <if test="(recordName != null and recordName != '')"> #{recordName , jdbcType= VARCHAR },  </if>
             <if test="(pyCode != null and pyCode != '')"> #{pyCode , jdbcType= VARCHAR },  </if>
             <if test="(dictCode != null and dictCode != '')"> #{dictCode , jdbcType= VARCHAR },  </if>
+            <if test="(dataType != null and dataType != '')"> #{dataType , jdbcType= INTEGER },  </if>
+            <if test="(dtjddm != null and dtjddm != '')"> #{dtjddm , jdbcType= VARCHAR },  </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> #{qrmbdm , jdbcType= VARCHAR },  </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> #{qrdxdm , jdbcType= VARCHAR },  </if>
+            <if test="(yzjddm != null and yzjddm != '')"> #{yzjddm , jdbcType= VARCHAR },  </if>
+            <if test="(bt != null and bt != '')"> #{bt , jdbcType= INTEGER },  </if>
         </trim>
     </insert>
 
@@ -57,6 +81,12 @@
                 <if test="(recordName != null and recordName != '')"> RECORD_NAME , </if>
                 <if test="(pyCode != null and pyCode != '')"> PY_CODE , </if>
                 <if test="(dictCode != null and dictCode != '')"> DICT_CODE , </if>
+                <if test="(dataType != null and dataType != '')"> DATA_TYPE , </if>
+                <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+                <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+                <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+                <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+                <if test="(bt != null and bt != '')"> BT , </if>
             </trim>
         </set>
         <where>
@@ -94,7 +124,7 @@
         <where>
             <include refid="sql-hlhtDataSet" />
         </where>
-        ORDER BY t.ID DESC
+        ORDER BY t.ID ASC
     </select>
 
     <select id="selectHlhtDataSetCount" resultType="int" parameterType="com.winning.hic.model.HlhtDataSet">
