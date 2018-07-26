@@ -1,6 +1,5 @@
 package com.winning.hic.controller;
 
-import com.winning.hic.HicApplication;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -46,9 +45,15 @@ public class PageController {
     }
 
 
-    @ApiOperation(value = "测试模板页面",notes = "")
+    @ApiOperation(value = "测试模板页面",notes = "测试模板页面")
     @RequestMapping(value = "/template",method = RequestMethod.GET)
     public String testTemplate(){
         return "test/template";
+    }
+
+    @ApiOperation(value = "跳转数据初始化页面",notes = "跳转初始化页面")
+    @GetMapping(value = "/init/initData")
+    public String initDataPage(){
+        return "init/index";
     }
 }

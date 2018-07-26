@@ -33,4 +33,22 @@ public class Constant {
      * CISDB mapper.xml文件的位置
      */
     public static final String CISDB_MAPPER_LOCATION = "classpath:mapper/cisdb/*.xml";
+
+    /**
+     * this4 接口包名
+     */
+    public static final String THIS_PACKAGE = "com.winning.hic.dao.his";
+    /**
+     * this4 mapper.xml文件的位置
+     */
+    public static final String THIS_MAPPER_LOCATION = "classpath:mapper/his/*.xml";
+
+    /**
+     * 平台 接口包名
+     */
+    public static final String PLATFORM_PACKAGE = "com.winning.hic.dao.platform";
+    /**
+     * 平台 mapper.xml文件的位置
+     */
+    public static final String PLATFORM_LOCATION = "classpath:mapper/platform/*.xml";
 }

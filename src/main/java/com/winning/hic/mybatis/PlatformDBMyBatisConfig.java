@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -23,26 +22,24 @@ import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
- * Description: CISDB_DATA 数据库配置
- * 该数据库为主数据库
+ * Description: 平台数据库配置
  * User: LENOVO
  * Date: 2018-07-25
  * Time: 8:55
  */
 @Configuration
-@MapperScan(basePackages = Constant.CISDB_DATA_PACKAGE, sqlSessionFactoryRef = "cisdbDataSqlSessionFactory")
-public class CisdbDataMyBatisConfig {
+@MapperScan(basePackages = Constant.PLATFORM_PACKAGE, sqlSessionFactoryRef = "platformdbSqlSessionFactory")
+public class PlatformDBMyBatisConfig {
     // 精确到 data 目录，以便跟其他数据源隔离
 
-    private static final Logger logger = LoggerFactory.getLogger(CisdbDataMyBatisConfig.class);
-    @Bean(name = "cisdbData")
-    @Primary
+    private static final Logger logger = LoggerFactory.getLogger(PlatformDBMyBatisConfig.class);
+    @Bean(name = "platformdb")
     public DataSource dataSource() throws SQLException {
         Environment env = ConfigUtils.getEnvironment();
         DruidDataSource datasource = new DruidDataSource();
-        datasource.setUrl(env.getCISDBDataURL());
-        datasource.setUsername(env.getCisdbDataUsername());
-        datasource.setPassword(env.getCisdbDataPassword());
+        datasource.setUrl(env.getPlatformURL());
+        datasource.setUsername(env.getPlatformDBUsername());
+        datasource.setPassword(env.getPlatformDBPassword());
         datasource.setDriverClassName(Constant.DRIVE_CLASS_NAME);
         datasource.setInitialSize(5);
         datasource.setMinIdle(5);
@@ -60,31 +57,28 @@ public class CisdbDataMyBatisConfig {
         prop.setProperty("druid.stat.slowSqlMillis","5000");
         datasource.setConnectProperties(prop);
         datasource.setUseGlobalDataSourceStat(true);
-        datasource.setName(env.getCisdbDataName());
+        datasource.setName(env.getPlatformDBName());
         try {
             datasource.setFilters("stat,wall,log4j");
         } catch (SQLException e) {
-            logger.error("[{}] druid configuration initialization filter", env.getCisdbDataName(),e);
+            logger.error("[{}] druid configuration initialization filter", env.getPlatformDBName(),e);
         }
-        logger.info("[{}] inited.",env.getCisdbDataName());
+        logger.info("[{}] inited.",env.getPlatformDBName());
         return datasource;
     }
 
-    @Bean(name = "cisdbDataTransactionManager")
-    @Primary
-    public DataSourceTransactionManager cisdbDataTransactionManager(@Qualifier("cisdbData") DataSource dataSource) {
+    @Bean(name = "platformdbTransactionManager")
+    public DataSourceTransactionManager cisdbDataTransactionManager(@Qualifier("platformdb") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
-    @Bean(name = "cisdbDataSqlSessionFactory")
-    @Primary
-    public SqlSessionFactory cisdbDataSqlSessionFactory(@Qualifier("cisdbData") DataSource dataSource) throws Exception {
-
+    @Bean(name = "platformdbSqlSessionFactory")
+    public SqlSessionFactory cisdbDataSqlSessionFactory(@Qualifier("platformdb") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         //bean.setTypeAliasesPackage(PACKAGE);
         //xml路径
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(Constant.CISDB_DATA_MAPPER_LOCATION));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(Constant.PLATFORM_LOCATION));
         bean.setVfs(SpringBootVFS.class);
         return bean.getObject();
     }

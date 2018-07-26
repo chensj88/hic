@@ -21,6 +21,15 @@ public class Environment {
     private String cisdbDataUsername;
     private String cisdbDataPassword;
 
+    private String hisDBUrl;
+    private String hisDBName;
+    private String hisDBUsername;
+    private String hisDBPassword;
+    private String platformDBUrl;
+    private String platformDBName;
+    private String platformDBUsername;
+    private String platformDBPassword;
+
     public String getCisdbUrl() {
         return cisdbUrl;
     }
@@ -85,11 +94,83 @@ public class Environment {
         this.cisdbDataPassword = cisdbDataPassword;
     }
 
+    public String getHisDBUrl() {
+        return hisDBUrl;
+    }
+
+    public void setHisDBUrl(String hisDBUrl) {
+        this.hisDBUrl = hisDBUrl;
+    }
+
+    public String getHisDBName() {
+        return hisDBName;
+    }
+
+    public void setHisDBName(String hisDBName) {
+        this.hisDBName = hisDBName;
+    }
+
+    public String getHisDBUsername() {
+        return hisDBUsername;
+    }
+
+    public void setHisDBUsername(String hisDBUsername) {
+        this.hisDBUsername = hisDBUsername;
+    }
+
+    public String getHisDBPassword() {
+        return hisDBPassword;
+    }
+
+    public void setHisDBPassword(String hisPassword) {
+        this.hisDBPassword = hisPassword;
+    }
+
+    public String getPlatformDBUrl() {
+        return platformDBUrl;
+    }
+
+    public void setPlatformDBUrl(String platformDBUrl) {
+        this.platformDBUrl = platformDBUrl;
+    }
+
+    public String getPlatformDBName() {
+        return platformDBName;
+    }
+
+    public void setPlatformDBName(String platformDBName) {
+        this.platformDBName = platformDBName;
+    }
+
+    public String getPlatformDBUsername() {
+        return platformDBUsername;
+    }
+
+    public void setPlatformDBUsername(String platformDBUsername) {
+        this.platformDBUsername = platformDBUsername;
+    }
+
+    public String getPlatformDBPassword() {
+        return platformDBPassword;
+    }
+
+    public void setPlatformDBPassword(String platformDBPassword) {
+        this.platformDBPassword = platformDBPassword;
+    }
+
     public String getCISDBURL(){
         return Constant.URL_PREFIX +cisdbUrl+";"+Constant.DATABASE_PREFIX+"="+cisdbName;
     }
 
     public String getCISDBDataURL(){
         return Constant.URL_PREFIX+cisdbDataUrl+";"+Constant.DATABASE_PREFIX+"="+cisdbDataName;
+    }
+
+    public String getTHIS4URL(){
+        return Constant.URL_PREFIX+hisDBUrl+";"+Constant.DATABASE_PREFIX+"="+hisDBName;
+    }
+
+    public String getPlatformURL(){
+        return Constant.URL_PREFIX+platformDBUrl+";"+Constant.DATABASE_PREFIX+"="+platformDBName;
     }
 }

@@ -1,0 +1,249 @@
+<!--
+   Created with IntelliJ IDEA.
+   Description: 数据初始化
+   User: LENOVO
+   Date: 2018-07-25
+   Time: 13:17
+ -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>数据初始化</title>
+    <meta name="keywords" content="Winning Health CIS 互联互通工具"/>
+    <meta name="description" content="Winning Health CIS 互联互通工具"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <!--[if IE 7]>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome-ie7.min.css}"/>
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>
+    <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-ie.min.css}"/>
+    <![endif]-->
+    <script th:src="@{/assets/js/ace-extra.min.js}"></script>
+    <!--[if lt IE 9]>
+    <script th:src="@{/assets/js/html5shiv.js}"></script>
+    <script th:src="@{/assets/js/respond.min.js}"></script>
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/assets/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <style>
+        .tree-container{
+            height: 700px;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container" style="margin: 10px 0px;">
+    <div class="row" style="margin:0px;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="tabbable">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active">
+                        <a data-toggle="tab" href="#home">
+                            基础模板匹配
+                        </a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="tab" href="#profile">
+                           数据集配置
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="tabContent">
+                    <div id="home" class="tab-pane in active">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
+                                    <div id="dataTree" class="ztree ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
+                                    <div id="templateTree" class="ztree ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="profile" class="tab-pane">
+                        <p>数据集配置</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--[if !IE]> -->
+<script type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript" th:src="@{/bootstrap/js/jquery-1.12.4.min.js}"></script>
+<![endif]-->
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<!--[if lte IE 8]>
+<script th:src="@{/assets/js/excanvas.min.js}"></script>
+<![endif]-->
+<script th:src="@{/assets/js/ace-elements.min.js}"></script>
+<script th:src="@{/assets/js/ace.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.core.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.exedit.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.excheck.min.js}"></script>
+<script th:src="@{/assets/ztree/js/jquery.ztree.exhide.min.js}"></script>
+<script th:inline="javascript"  type="text/javascript">
+    var ctx = /*[[@{/}]]*/'';
+</script>
+<script>
+    var templateSetting = {
+        async: {
+            enable: true,
+            url:ctx + "/mbk/tree",
+            autoParam:["nodeId"],
+            dataType:'json',
+            dataFilter: filter
+        },
+        checkable: true,
+        showIcon: true,
+        showLine: true,
+        view: {
+            dblClickExpand: false,
+            showLine: true,
+            selectedMulti: false,
+            showIcon:true
+        },
+        expandSpeed: "",
+        data: {
+            keep:{
+                parent:true
+            },
+            key:{
+                name:'nodeName',
+                isParent: "parent"
+            },
+            simpleData: {
+                enable: true,
+                idKey: "nodeId",
+                pIdKey: "nodePid",
+                rootPId: ""
+            }
+        },
+        check: {
+            enable: true,
+            chkboxType: { "Y" : "ps", "N" : "ps" }
+        },
+        callback: {
+            onClick: zTreeOnOnClick,
+            onExpand:zTreeOnOnClick
+        }
+    };
+    var dictSetting = {
+        async: {
+            enable: true,
+            url:ctx + "/dict/tree",
+            autoParam:["dictCode","dictValue"],
+            dataType:'json',
+            dataFilter: dictFilter
+        },
+        checkable: true,
+        showIcon: true,
+        showLine: true,
+        view: {
+            dblClickExpand: false,
+            showLine: true,
+            selectedMulti: false,
+            showIcon:false
+        },
+        expandSpeed: "",
+        data: {
+            keep:{
+                parent:false
+            },
+            key:{
+                name:'dictLabel',
+                isParent: "parent"
+            },
+            simpleData: {
+                enable: true,
+                idKey: "dictValue",
+                pIdKey: "",
+                rootPId: ""
+            }
+        },
+        check: {
+            enable: true,
+            chkboxType: { "Y" : "ps", "N" : "ps" }
+        },
+        callback: {
+            onClick: zTreeOnOnClick,
+            onExpand:zTreeOnOnClick
+        }
+    };
+    $(window).width((window.parent.document.getElementById("coniframe").width -12)+'px');
+    $(window).height((window.parent.document.getElementById("coniframe").height -12)+'px');
+    $('#tabContent').height($(window).height() - 100+'px')
+    $(function () {
+        $.fn.zTree.init($("#dataTree"), dictSetting);
+        $.fn.zTree.init($("#templateTree"), templateSetting);
+        $('#tabContent').attr('border-buttom','0');
+        $('#tabContent').attr('border-left','0');
+        $('#tabContent').attr('border-right','0');
+    });
+    function dictFilter(treeId, parentNode, childNodes) {
+        if (!childNodes) return null;
+        var result = childNodes.data;
+        for (var i=0, l=result.length; i<l; i++) {
+            result[i].dictLabel = result[i].dictLabel.replace(/\.n/g, '.');
+        }
+        return result;
+    }
+    function filter(treeId, parentNode, childNodes) {
+        if (!childNodes) return null;
+        var result = childNodes.data;
+        for (var i=0, l=result.length; i<l; i++) {
+            result[i].nodeName = result[i].nodeName.replace(/\.n/g, '.');
+        }
+        return result;
+    }
+
+    function zTreeOnOnClick(event, treeId, treeNode) {
+        var treeObj = $.fn.zTree.getZTreeObj(treeId);
+        var node = treeObj.getNodeByTId(treeNode.tId);
+        //没有子节点才去查询
+        if (node.children.length < 1 ||node.children == null || node.children == "undefined") {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url:ctx + "mbk/childTree",
+                data: {
+                    mldm: treeNode.nodeId
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.data != null && data.data != "") {
+                        //添加新节点
+                        newNode = treeObj.addNodes(node, data.data);
+                    }
+                },
+                error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+                    result = true;
+                    alert("请求失败!");
+                }
+            });
+        }
+    }
+
+
+</script>
+</body>
+</html>

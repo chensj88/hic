@@ -24,6 +24,14 @@
     <script th:src="@{/assets/js/html5shiv.js}"></script>
     <script th:src="@{/assets/js/respond.min.js}"></script>
     <![endif]-->
+    <style type="text/css">
+        .footer{
+            position: absolute;
+            bottom: 0px;
+            margin-left: 190px;
+            /*box-shadow:0px 0px 3px rgba(179,179,179,.75);*/
+        }
+    </style>
 </head>
 <body>
 <div class="navbar navbar-default" id="navbar">
@@ -118,19 +126,22 @@
                 }
             </script>
         </div>
-            <div class="main-content">
-                <div class="page-content">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <iframe id="coniframe"
-                                    height="100%" width="100%"
-                                    frameborder="0" scrolling="yes">
-                            </iframe>
-                        </div>
-                    </div>
+        <div class="main-content">
+            <div class="page-content" style="padding-left: 0px;padding-top:0px;border-top: 0px;">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe id="coniframe" class="embed-responsive-item"
+                            frameborder="0">
+                    </iframe>
                 </div>
+            </div>
         </div>
-
+        <div class="footer">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            Winning Health 版权所有
+        </div>
         <div class="ace-settings-container" id="ace-settings-container">
             <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
                 <i class="icon-cog bigger-150"></i>
@@ -212,7 +223,6 @@
         $('#navList li a').on('click',function(e){
             e.preventDefault();
             var src = $(this).attr('href');
-            console.log(src);
             $('#coniframe').attr('src',ctx+src);
         });
 

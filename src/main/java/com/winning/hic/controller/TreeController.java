@@ -1,6 +1,7 @@
 package com.winning.hic.controller;
 
 import com.winning.hic.model.EmrMxmcmlk;
+import com.winning.hic.model.HlhtDictInfo;
 import com.winning.hic.model.MBNoteTree;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -47,6 +48,18 @@ public class TreeController extends BaseController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", true);
         result.put("data",getFacade().getHlhtAutomateSetService().getHlhtAutomateSet(null));
+        return result;
+    }
+
+
+    @RequestMapping("/dict/tree")
+    @ApiOperation(value = "获取平台接口表字典数据",notes = "获取平台接口表字典数据")
+    public Map<String, Object> queryDICTTree(){
+        HlhtDictInfo dictInfo = new HlhtDictInfo();
+        dictInfo.setDictCode("platformTableName");
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", true);
+        result.put("data",getFacade().getHlhtDictInfoService().getHlhtDictInfoList(dictInfo));
         return result;
     }
 }
