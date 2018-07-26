@@ -17,8 +17,37 @@
 
 <body>
 <div class="container">
-    <h1>Table Treegrid</h1>
-    <table id="table"></table>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tabbable">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active">
+                        <a data-toggle="tab" href="#home">
+                            <i class="green icon-home bigger-110"></i>
+                            批量校验
+                        </a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="tab" href="#profile">
+                            单份校验
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane in active">
+                        <div id="toolbar"></div>
+                        <table id="table"></table>
+                    </div>
+
+                    <div id="profile" class="tab-pane">
+                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /span -->
+    </div>
 </div>
 </body>
 <script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
@@ -26,15 +55,16 @@
 <script th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table-treegrid.min.js}"></script>
 <script th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
-<script th:inline="javascript"  type="text/javascript">
+<script th:inline="javascript" type="text/javascript">
     var ctx = /*[[@{/}]]*/'';
     // alert(ctx+'modelCheck/modelCheck');
     var $table = $('#table');
     $(function () {
         $table.bootstrapTable({
-            url: ctx+'modelCheck/list',
+            url: ctx + 'modelCheck/list',
             height: $(window).height(),
             striped: true,
+            toolbar: '#toolbar',
             sidePagination: 'client',
             idField: 'id',
             columns: [
@@ -44,7 +74,7 @@
                 // },
                 {
                     field: 'colummName',
-                    width:'40%',
+                    width: '40%',
                     title: '模板名称'
                 },
                 // {
@@ -56,7 +86,7 @@
                 // },
                 {
                     field: 'errorDesc',
-                    width:'60%',
+                    width: '60%',
                     title: '错误描述'
                 }
             ],

@@ -85,7 +85,7 @@
                 </li>
 
                 <li>
-                    <a th:href="@{checkModel/index}" >
+                    <a th:href="@{modelCheck/index}" >
                         <i class="icon-text-width"></i>
                         <span class="menu-text"> 模 板 校 验 </span>
                     </a>
@@ -219,7 +219,6 @@
         var widowWidth = $(window).width();
         $('#coniframe').attr('height',(windowHeight - 100)+'px');
         $('#coniframe').attr('width',(widowWidth - 192)+'px');
-
         $('#coniframe').attr('src',ctx+'init/initData');
         $('#navList li a').on('click',function(e){
             e.preventDefault();
