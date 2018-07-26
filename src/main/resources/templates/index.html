@@ -218,7 +218,7 @@
         var windowHeight = $(window).height();
         var widowWidth = $(window).width();
         $('#coniframe').attr('height',(windowHeight - 100)+'px');
-        $('#coniframe').attr('width','100%');
+        $('#coniframe').attr('width',(widowWidth - 192)+'px');
         $('#coniframe').attr('src',ctx+'init/initData');
         $('#navList li a').on('click',function(e){
             e.preventDefault();
