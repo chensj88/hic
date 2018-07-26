@@ -2,12 +2,11 @@ package com.winning.hic.dao.data;
 
 
 
-import java.util.List;
+import java.util.List;  
 
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataAccessException;  
 
-import com.winning.hic.model.HlhtDataSet;
+import com.winning.hic.model.HlhtDataSet;  
 
 
 
@@ -16,8 +15,8 @@ import org.springframework.stereotype.Repository;
 * @author HLHT
 * @title 基础数据配置表DAO接口
 * @email Winning Health
-* @package com.winning.hic.dao
-* @date 2018-55-24 13:55:07
+* @package com.winning.hic.dao.data
+* @date 2018-24-26 09:24:07
 */
 @Repository
 public interface HlhtDataSetDao {
