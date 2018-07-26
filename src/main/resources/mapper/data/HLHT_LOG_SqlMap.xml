@@ -23,15 +23,15 @@
         <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
         INSERT INTO HLHT_LOG
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="(id != null and id != '')"> ID , </if>
+            <if test="id != null"> ID , </if>
             <if test="(content != null and content != '')"> CONTENT , </if>
-            <if test="(operatorTime != null and operatorTime != '')"> OPERATOR_TIME , </if>
+            <if test="operatorTime != null"> OPERATOR_TIME , </if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(id != null and id != '')"> #{id , jdbcType= VARCHAR },  </if>
             <if test="(content != null and content != '')"> #{content , jdbcType= VARCHAR },  </if>
-            <if test="(operatorTime != null and operatorTime != '')"> #{operatorTime , jdbcType= TIMESTAMP },  </if>
+            <if test="operatorTime != null"> #{operatorTime , jdbcType= TIMESTAMP },  </if>
         </trim>
     </insert>
 
