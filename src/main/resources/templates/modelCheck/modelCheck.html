@@ -13,17 +13,22 @@
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-table.min.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/css/jquery.treegrid.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>
+    <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
 </head>
 
 <body>
-<div class="container">
-    <div class="row">
+<div class="main-container" style="margin: 10px 0px;">
+    <div class="row" style="margin:0px;">
         <div class="col-sm-12">
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
                     <li class="active">
                         <a data-toggle="tab" href="#home">
-                            <i class="green icon-home bigger-110"></i>
                             批量校验
                         </a>
                     </li>
@@ -37,7 +42,31 @@
 
                 <div class="tab-content">
                     <div id="home" class="tab-pane in active">
-                        <div id="toolbar"></div>
+                        <div id="toolbar">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="productLine">模板类别</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">模板类别</span>
+                                        <select class="form-control" name="product_line" id="productLine">
+                                            <option value="">-----全部-----</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="msgType">全院模板总数</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">全院模板总数</span>
+                                        <span class="form-control" name="msg_type" id="msgType">
+                                            4396
+                                        </span>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary">批量验证</button>
+                                <button type="button" class="btn btn-primary">生成报告</button>
+                            </form>
+
+                        </div>
                         <table id="table"></table>
                     </div>
 
@@ -50,11 +79,18 @@
     </div>
 </div>
 </body>
+<!--[if !IE]> -->
 <script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
+<!-- <![endif]-->
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table-treegrid.min.js}"></script>
 <script th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
+<!--ace-->
+<script th:src="@{/assets/js/ace-elements.min.js}"></script>
+<script th:src="@{/assets/js/ace.min.js}"></script>
+<script th:src="@{/assets/js/ace-extra.min.js}"></script>
+
 <script th:inline="javascript" type="text/javascript">
     var ctx = /*[[@{/}]]*/'';
     // alert(ctx+'modelCheck/modelCheck');
