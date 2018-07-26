@@ -1,7 +1,8 @@
 package com.winning.hic.model;
 
-import java.util.Date; 
-import java.io.Serializable; 
+import java.sql.Date;
+import java.io.Serializable;
+import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias; 
 
@@ -38,7 +39,7 @@ public class HlhtLog extends BaseDomain implements Serializable {
      * 备注: 操作时间
      * 默认值：无
      */
-    private Date operatorTime;
+    private Timestamp operatorTime;
 
     public HlhtLog (){
 
@@ -85,7 +86,7 @@ public class HlhtLog extends BaseDomain implements Serializable {
    * get方法
    * 备注: 操作时间
    */
-   public Date getOperatorTime(){
+   public Timestamp getOperatorTime(){
 
         return operatorTime;
    }
@@ -95,7 +96,7 @@ public class HlhtLog extends BaseDomain implements Serializable {
    * set方法
    * 备注: 操作时间
    */
-   public void setOperatorTime(Date operatorTime){
+   public void setOperatorTime(Timestamp operatorTime){
         this.operatorTime = operatorTime;
    }
 
