@@ -337,7 +337,7 @@
                     field: 'dataType',
                     title: '类型',
                     align: 'center',
-                    width: '80px',
+                    width: '100px',
                     editable: {
                         emptytext:'-',
                         type: 'select',
@@ -413,24 +413,26 @@
             },
             onEditableSave: function (field, row, oldValue, $el) {
                 $table.bootstrapTable('resetView');
-                $.ajax({
-                    type: "post",
-                    url:  ctx + "/Editable/Edit",
-                    data: row,
-                    dataType: 'JSON',
-                    success: function (data, status) {
-                        if (status == "success") {
-                            alert('提交数据成功');
-                        }
-                    },
-                    error: function () {
-                        alert('编辑失败');
-                    },
-                    complete: function () {
+                console.log(row);
 
-                    }
-
-                });
+//                $.ajax({
+//                    type: "post",
+//                    url:  ctx + "/Editable/Edit",
+//                    data: row,
+//                    dataType: 'JSON',
+//                    success: function (data, status) {
+//                        if (status == "success") {
+//                            alert('提交数据成功');
+//                        }
+//                    },
+//                    error: function () {
+//                        alert('编辑失败');
+//                    },
+//                    complete: function () {
+//
+//                    }
+//
+//                });
             }
         });
 
