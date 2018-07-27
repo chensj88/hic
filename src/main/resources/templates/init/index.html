@@ -22,7 +22,7 @@
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-table.min.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/css/jquery.treegrid.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/bootstrap3-editable/css/bootstrap-editable.css}">
-    <link rel="stylesheet" th:href="@{/assets/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap-treeview/bootstrap-treeview.min.css}">
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
@@ -123,16 +123,11 @@
 <script type="text/javascript" th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/bootstrap3-editable/js/bootstrap-editable.min.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/bootstrap3-editable/js/bootstrap-table-editable.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/bootstrap-treeview/bootstrap-treeview.min.js}"></script>
 <!--ace-->
 <script type="text/javascript" th:src="@{/assets/js/ace-elements.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/ace.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/ace-extra.min.js}"></script>
-<!--ztree-->
-<script type="text/javascript" th:src="@{/assets/ztree/js/jquery.ztree.core.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/ztree/js/jquery.ztree.exedit.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/ztree/js/jquery.ztree.excheck.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/ztree/js/jquery.ztree.exhide.min.js}"></script>
-
 <script type="text/javascript" th:inline="javascript">
     var ctx = /*[[@{/}]]*/'';
 </script>
@@ -414,30 +409,27 @@
             onEditableSave: function (field, row, oldValue, $el) {
                 $table.bootstrapTable('resetView');
                 console.log(row);
+                $.ajax({
+                    type: "post",
+                    url:  ctx + "basic/edit",
+                    cache:false,
+                    data: row,
+                    dataType: 'JSON',
+                    success: function (data, status) {
+                        if (status == "success") {
+                            alert('提交数据成功');
+                        }
+                    },
+                    error: function () {
+                        alert('编辑失败');
+                    },
+                    complete: function () {
 
-//                $.ajax({
-//                    type: "post",
-//                    url:  ctx + "/Editable/Edit",
-//                    data: row,
-//                    dataType: 'JSON',
-//                    success: function (data, status) {
-//                        if (status == "success") {
-//                            alert('提交数据成功');
-//                        }
-//                    },
-//                    error: function () {
-//                        alert('编辑失败');
-//                    },
-//                    complete: function () {
-//
-//                    }
-//
-//                });
+                    }
+
+                });
             }
         });
-
-        $.fn.zTree.init($("#dataTree"), dictSetting);
-        $.fn.zTree.init($("#templateTree"), templateSetting);
 
     });
 </script>
