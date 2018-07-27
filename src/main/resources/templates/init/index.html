@@ -119,10 +119,10 @@
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-table-zh-CN.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/bootstrap3-editable/js/bootstrap-editable.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-table-editable.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-table-treegrid.min.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
-<script type="text/javascript" th:src="@{/bootstrap/bootstrap3-editable/js/bootstrap-editable.min.js}"></script>
-<script type="text/javascript" th:src="@{/bootstrap/bootstrap3-editable/js/bootstrap-table-editable.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/bootstrap-treeview/bootstrap-treeview.min.js}"></script>
 <!--ace-->
 <script type="text/javascript" th:src="@{/assets/js/ace-elements.min.js}"></script>
@@ -139,7 +139,7 @@
         $(window).height((window.parent.document.getElementById("coniframe").height -12)+'px');
         $('#tabContent').height($(window).height() - 100+'px')
         //行内操作初始化
-        $.fn.editable.defaults.mode = 'inline';
+//        $.fn.editable.defaults.mode = 'inline';
     }
     initWindow();
     //字典值加载
@@ -164,136 +164,6 @@
         });
     }
     initDictInfo();
-    //树初始化
-    var templateSetting = {
-        async: {
-            enable: true,
-            url:ctx + "/mbk/tree",
-            autoParam:["nodeId"],
-            dataType:'json',
-            dataFilter: filter
-        },
-        checkable: true,
-        showIcon: true,
-        showLine: true,
-        view: {
-            dblClickExpand: false,
-            showLine: true,
-            selectedMulti: false,
-            showIcon:true
-        },
-        expandSpeed: "",
-        data: {
-            keep:{
-                parent:true
-            },
-            key:{
-                name:'nodeName',
-                isParent: "parent"
-            },
-            simpleData: {
-                enable: true,
-                idKey: "nodeId",
-                pIdKey: "nodePid",
-                rootPId: ""
-            }
-        },
-        check: {
-            enable: true,
-            chkboxType: { "Y" : "ps", "N" : "ps" }
-        },
-        callback: {
-            onClick: zTreeOnOnClick,
-            onExpand:zTreeOnOnClick
-        }
-    };
-    var dictSetting = {
-        async: {
-            enable: true,
-            url:ctx + "/dict/tree",
-            autoParam:["dictCode","dictValue"],
-            dataType:'json',
-            dataFilter: dictFilter
-        },
-        checkable: true,
-        showIcon: true,
-        showLine: true,
-        view: {
-            dblClickExpand: false,
-            showLine: true,
-            selectedMulti: false,
-            showIcon:false
-        },
-        expandSpeed: "",
-        data: {
-            keep:{
-                parent:false
-            },
-            key:{
-                name:'dictLabel',
-                isParent: "parent"
-            },
-            simpleData: {
-                enable: true,
-                idKey: "dictValue",
-                pIdKey: "",
-                rootPId: ""
-            }
-        },
-        check: {
-            enable: true,
-            chkboxType: { "Y" : "ps", "N" : "ps" }
-        },
-        callback: {
-            onClick: zTreeOnOnClick,
-            onExpand:zTreeOnOnClick
-        }
-    };
-    //树数据转换
-    function dictFilter(treeId, parentNode, childNodes) {
-        if (!childNodes) return null;
-        var result = childNodes.data;
-        for (var i=0, l=result.length; i<l; i++) {
-            result[i].dictLabel = result[i].dictLabel.replace(/\.n/g, '.');
-        }
-        return result;
-    }
-    //树数据转换
-    function filter(treeId, parentNode, childNodes) {
-        if (!childNodes) return null;
-        var result = childNodes.data;
-        for (var i=0, l=result.length; i<l; i++) {
-            result[i].nodeName = result[i].nodeName.replace(/\.n/g, '.');
-        }
-        return result;
-    }
-    //树数据点击
-    function zTreeOnOnClick(event, treeId, treeNode) {
-        var treeObj = $.fn.zTree.getZTreeObj(treeId);
-        var node = treeObj.getNodeByTId(treeNode.tId);
-        //没有子节点才去查询
-        if (node.children.length < 1 ||node.children == null || node.children == "undefined") {
-            $.ajax({
-                type: "POST",
-                async: false,
-                url:ctx + "mbk/childTree",
-                data: {
-                    mldm: treeNode.nodeId
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.data != null && data.data != "") {
-                        //添加新节点
-                        newNode = treeObj.addNodes(node, data.data);
-                    }
-                },
-                error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
-                    result = true;
-                    alert("请求失败!");
-                }
-            });
-        }
-    }
     var $table = $('#table');
 
     function openAddWindow(id,recordName,index) {
@@ -347,6 +217,7 @@
                     field: 'dtjddm',
                     align: 'center',
                     title: '文件结构ID',
+                    width: '250px',
                     editable: {
                         emptytext:'-',
                         type: 'text',
@@ -357,6 +228,7 @@
                     field: 'qrmbdm',
                     align: 'center',
                     title: '基础模板ID',
+                    width: '250px',
                     editable: {
                         emptytext:'-',
                         type: 'text',
@@ -367,6 +239,7 @@
                     field: 'qrdxdm',
                     align: 'center',
                     title: '元数据ID',
+                    width: '250px',
                     editable: {
                         emptytext:'-',
                         type: 'text',
@@ -377,6 +250,7 @@
                     field: 'yzjddm',
                     align: 'center',
                     title: '原子节点ID',
+                    width: '250px',
                     editable: {
                         emptytext:'-',
                         type: 'text',
@@ -387,6 +261,7 @@
                     field: 'bt',
                     align: 'center',
                     title: '必填',
+                    width: '100px',
                     editable: {
                         emptytext:'-',
                         type: "checklist",
@@ -405,32 +280,18 @@
                         $table.bootstrapTable('resetWidth');
                     }
                 });
-            },
-            onEditableSave: function (field, row, oldValue, $el) {
-                $table.bootstrapTable('resetView');
-                console.log(row);
-                $.ajax({
-                    type: "post",
-                    url:  ctx + "basic/edit",
-                    cache:false,
-                    data: row,
-                    dataType: 'JSON',
-                    success: function (data, status) {
-                        if (status == "success") {
-                            alert('提交数据成功');
-                        }
-                    },
-                    error: function () {
-                        alert('编辑失败');
-                    },
-                    complete: function () {
-
-                    }
-
-                });
             }
         });
+        $table.on('editable-save.bs.table',function (field, row, oldValue, $el) {
+            console.info(field);
+            var newValue = row[column.field];
+            console.info(newValue);
+            var f = field.toString();
+            console.info(row);
+            console.info(oldValue);
+            console.info(eval(field+"")+':'+oldValue+'-->'+ eval(row+"."+field) );
 
+        });
     });
 </script>
 </body>
