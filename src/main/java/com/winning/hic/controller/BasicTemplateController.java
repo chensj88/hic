@@ -21,7 +21,7 @@ import java.util.Map;
 public class BasicTemplateController extends BaseController {
 
     @GetMapping("/basic/list")
-    public Map<String, Object> loadBasicTemplateInfo(HlhtDataSet dataSet){
+    public Map<String, Object> loadBasicTemplateInfo(HlhtDataSet dataSet,Integer config){
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constant.SUCCESS);
         result.put("rows", getFacade().getHlhtDataSetService().getHlhtDataSetList(dataSet));

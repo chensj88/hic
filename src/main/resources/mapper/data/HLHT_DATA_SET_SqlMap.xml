@@ -75,22 +75,21 @@
         UPDATE HLHT_DATA_SET
         <set>
             <trim suffixOverrides=",">
-                <if test="(id != null and id != '')"> ID , </if>
-                <if test="(pId != null and pId != '')"> P_ID , </if>
-                <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE , </if>
-                <if test="(recordName != null and recordName != '')"> RECORD_NAME , </if>
-                <if test="(pyCode != null and pyCode != '')"> PY_CODE , </if>
-                <if test="(dictCode != null and dictCode != '')"> DICT_CODE , </if>
-                <if test="(dataType != null and dataType != '')"> DATA_TYPE , </if>
-                <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
-                <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
-                <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
-                <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
-                <if test="(bt != null and bt != '')"> BT , </if>
+                <if test="(pId != null and pId != '')"> P_ID = #{pId , jdbcType= BIGINT }, </if>
+                <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE = #{sourceType , jdbcType= VARCHAR }, </if>
+                <if test="(recordName != null and recordName != '')"> RECORD_NAME = #{recordName , jdbcType= VARCHAR }, </if>
+                <if test="(pyCode != null and pyCode != '')"> PY_CODE = #{pyCode , jdbcType= VARCHAR }, </if>
+                <if test="(dictCode != null and dictCode != '')"> DICT_CODE = #{dictCode , jdbcType= VARCHAR }, </if>
+                <if test="(dataType != null and dataType != '')"> DATA_TYPE = #{dataType , jdbcType= INTEGER }, </if>
+                <if test="(dtjddm != null and dtjddm != '')"> DTJDDM = #{dtjddm , jdbcType= VARCHAR }, </if>
+                <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM = #{qrmbdm , jdbcType= VARCHAR }, </if>
+                <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM = #{qrdxdm , jdbcType= VARCHAR }, </if>
+                <if test="(yzjddm != null and yzjddm != '')"> YZJDDM = #{yzjddm , jdbcType= VARCHAR }, </if>
+                <if test="(bt != null and bt != '')"> BT = #{bt , jdbcType= INTEGER }, </if>
             </trim>
         </set>
         <where>
-            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id != null and id != '')"> and ID = #{ id, jdbcType= BIGINT }   </if>
             <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
                 and (ID) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
