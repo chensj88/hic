@@ -1,7 +1,7 @@
 package com.winning.hic.controller;
 
 import com.winning.hic.base.Constant;
-import com.winning.hic.model.HlhtDictInfo;
+import com.winning.hic.model.MbzDictInfo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,10 +19,10 @@ import java.util.Map;
 public class CommonQueryController extends BaseController {
 
     @PostMapping(value = "/common/dict")
-    public Map<String, Object> getDictListByDictCode(HlhtDictInfo dictInfo){
+    public Map<String, Object> getDictListByDictCode(MbzDictInfo dictInfo){
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constant.SUCCESS);
-        result.put("data", getFacade().getHlhtDictInfoService().getHlhtDictInfoList(dictInfo));
+        result.put("data", getFacade().getMbzDictInfoService().getMbzDictInfoList(dictInfo));
         return result;
     }
 }

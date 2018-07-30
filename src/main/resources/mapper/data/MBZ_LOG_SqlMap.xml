@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.data.MbzLogDao">
+
+    <resultMap id="mbzLogResultForList" type="com.winning.hic.model.MbzLog">
+         <result column="ID" property="id" jdbcType="VARCHAR" />
+         <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+         <result column="OPERATOR_TIME" property="operatorTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="mbzLogResult" type="com.winning.hic.model.MbzLog" extends="mbzLogResultForList">
+
+    </resultMap>
+
+    <sql id="sql-mbzLog">
+        <if test="(id != null and id != '')"> and t.ID = #{id} </if>
+        <if test="(content != null and content != '')"> and t.CONTENT = #{content} </if>
+        <if test="(operatorTime != null and operatorTime != '')"> and t.OPERATOR_TIME = #{operatorTime} </if>
+    </sql>
+
+    <insert id="insertMbzLog" parameterType="com.winning.hic.model.MbzLog">
+        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+        INSERT INTO MBZ_LOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null"> ID , </if>
+            <if test="(content != null and content != '')"> CONTENT , </if>
+            <if test="operatorTime != null"> OPERATOR_TIME , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> #{id , jdbcType= VARCHAR },  </if>
+            <if test="(content != null and content != '')"> #{content , jdbcType= VARCHAR },  </if>
+            <if test="operatorTime != null"> #{operatorTime , jdbcType= TIMESTAMP },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateMbzLog" parameterType="com.winning.hic.model.MbzLog">
+        UPDATE MBZ_LOG
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(id != null and id != '')"> ID , </if>
+                <if test="(content != null and content != '')"> CONTENT , </if>
+                <if test="(operatorTime != null and operatorTime != '')"> OPERATOR_TIME , </if>
+            </trim>
+        </set>
+        <where>
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteMbzLog" parameterType="com.winning.hic.model.MbzLog">
+        delete from  MBZ_LOG
+        <where>
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectMbzLog" resultMap="mbzLogResult" parameterType="com.winning.hic.model.MbzLog">
+        SELECT * FROM MBZ_LOG t
+        <where>
+            <include refid="sql-mbzLog" />
+        </where>
+    </select>
+
+    <select id="selectMbzLogList" resultMap="mbzLogResultForList" parameterType="com.winning.hic.model.MbzLog">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM MBZ_LOG t
+        <where>
+            <include refid="sql-mbzLog" />
+        </where>
+        ORDER BY t.ID DESC
+    </select>
+
+    <select id="selectMbzLogCount" resultType="int" parameterType="com.winning.hic.model.MbzLog">
+        select count(1) from  MBZ_LOG t
+        <where>
+            <include refid="sql-mbzLog" />
+        </where>
+    </select>
+
+    <select id="selectMbzLogPageList" resultMap="mbzLogResult" parameterType="com.winning.hic.model.MbzLog">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
+        FROM MBZ_LOG t
+        <where>
+            <include refid="sql-mbzLog" />
+        </where>
+        <!-- order by t.ID asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>

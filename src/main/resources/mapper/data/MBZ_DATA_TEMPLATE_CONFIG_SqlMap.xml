@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.data.MbzDataTemplateConfigDao">
+
+    <resultMap id="mbzDataTemplateConfigResultForList" type="com.winning.hic.model.MbzDataTemplateConfig">
+         <result column="ID" property="id" jdbcType="BIGINT" />
+         <result column="SOURCE_ID" property="sourceId" jdbcType="BIGINT" />
+         <result column="DATA_TYPE" property="dataType" jdbcType="INTEGER" />
+         <result column="DTJDDM" property="dtjddm" jdbcType="VARCHAR" />
+         <result column="QRMBDM" property="qrmbdm" jdbcType="VARCHAR" />
+         <result column="QRDXDM" property="qrdxdm" jdbcType="VARCHAR" />
+         <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
+         <result column="BT" property="bt" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="mbzDataTemplateConfigResult" type="com.winning.hic.model.MbzDataTemplateConfig" extends="mbzDataTemplateConfigResultForList">
+
+    </resultMap>
+
+    <sql id="sql-mbzDataTemplateConfig">
+        <if test="(id != null and id != '')"> and t.ID = #{id} </if>
+        <if test="(sourceId != null and sourceId != '')"> and t.SOURCE_ID = #{sourceId} </if>
+        <if test="(dataType != null and dataType != '')"> and t.DATA_TYPE = #{dataType} </if>
+        <if test="(dtjddm != null and dtjddm != '')"> and t.DTJDDM = #{dtjddm} </if>
+        <if test="(qrmbdm != null and qrmbdm != '')"> and t.QRMBDM = #{qrmbdm} </if>
+        <if test="(qrdxdm != null and qrdxdm != '')"> and t.QRDXDM = #{qrdxdm} </if>
+        <if test="(yzjddm != null and yzjddm != '')"> and t.YZJDDM = #{yzjddm} </if>
+        <if test="(bt != null and bt != '')"> and t.BT = #{bt} </if>
+    </sql>
+
+    <insert id="insertMbzDataTemplateConfig" parameterType="com.winning.hic.model.MbzDataTemplateConfig">
+        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+        INSERT INTO MBZ_DATA_TEMPLATE_CONFIG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> ID , </if>
+            <if test="(sourceId != null and sourceId != '')"> SOURCE_ID , </if>
+            <if test="(dataType != null and dataType != '')"> DATA_TYPE , </if>
+            <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+            <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+            <if test="(bt != null and bt != '')"> BT , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> #{id , jdbcType= BIGINT },  </if>
+            <if test="(sourceId != null and sourceId != '')"> #{sourceId , jdbcType= BIGINT },  </if>
+            <if test="(dataType != null and dataType != '')"> #{dataType , jdbcType= INTEGER },  </if>
+            <if test="(dtjddm != null and dtjddm != '')"> #{dtjddm , jdbcType= VARCHAR },  </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> #{qrmbdm , jdbcType= VARCHAR },  </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> #{qrdxdm , jdbcType= VARCHAR },  </if>
+            <if test="(yzjddm != null and yzjddm != '')"> #{yzjddm , jdbcType= VARCHAR },  </if>
+            <if test="(bt != null and bt != '')"> #{bt , jdbcType= INTEGER },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateMbzDataTemplateConfig" parameterType="com.winning.hic.model.MbzDataTemplateConfig">
+        UPDATE MBZ_DATA_TEMPLATE_CONFIG
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(id != null and id != '')"> ID , </if>
+                <if test="(sourceId != null and sourceId != '')"> SOURCE_ID , </if>
+                <if test="(dataType != null and dataType != '')"> DATA_TYPE , </if>
+                <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+                <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+                <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+                <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+                <if test="(bt != null and bt != '')"> BT , </if>
+            </trim>
+        </set>
+        <where>
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteMbzDataTemplateConfig" parameterType="com.winning.hic.model.MbzDataTemplateConfig">
+        delete from  MBZ_DATA_TEMPLATE_CONFIG
+        <where>
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectMbzDataTemplateConfig" resultMap="mbzDataTemplateConfigResult" parameterType="com.winning.hic.model.MbzDataTemplateConfig">
+        SELECT * FROM MBZ_DATA_TEMPLATE_CONFIG t
+        <where>
+            <include refid="sql-mbzDataTemplateConfig" />
+        </where>
+    </select>
+
+    <select id="selectMbzDataTemplateConfigList" resultMap="mbzDataTemplateConfigResultForList" parameterType="com.winning.hic.model.MbzDataTemplateConfig">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM MBZ_DATA_TEMPLATE_CONFIG t
+        <where>
+            <include refid="sql-mbzDataTemplateConfig" />
+        </where>
+        ORDER BY t.ID DESC
+    </select>
+
+    <select id="selectMbzDataTemplateConfigCount" resultType="int" parameterType="com.winning.hic.model.MbzDataTemplateConfig">
+        select count(1) from  MBZ_DATA_TEMPLATE_CONFIG t
+        <where>
+            <include refid="sql-mbzDataTemplateConfig" />
+        </where>
+    </select>
+
+    <select id="selectMbzDataTemplateConfigPageList" resultMap="mbzDataTemplateConfigResult" parameterType="com.winning.hic.model.MbzDataTemplateConfig">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
+        FROM MBZ_DATA_TEMPLATE_CONFIG t
+        <where>
+            <include refid="sql-mbzDataTemplateConfig" />
+        </where>
+        <!-- order by t.ID asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>

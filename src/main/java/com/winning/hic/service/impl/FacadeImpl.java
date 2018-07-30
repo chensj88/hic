@@ -20,31 +20,31 @@ public class FacadeImpl implements Facade{
     EmrMbkService emrMbkService;
 
     @Autowired
-    HlhtAutomateSetService hlhtAutomateSetService;
+    MbzAutomateSetService mbzAutomateSetService;
 
     @Autowired
-    HlhtDatabasesListService hlhtDatabasesListService;
+    MbzDatabasesListService mbzDatabasesListService;
 
     @Autowired
-    HlhtDataCheckService hlhtDataCheckService;
+    MbzDataCheckService mbzDataCheckService;
 
     @Autowired
-    HlhtDataListSetService hlhtDataListSetService;
+    MbzDataListSetService mbzDataListSetService;
 
     @Autowired
     MbzDataSetService mbzDataSetService;
 
     @Autowired
-    HlhtDictInfoService hlhtDictInfoService;
+    MbzDictInfoService mbzDictInfoService;
 
     @Autowired
-    HlhtLogService hlhtLogService;
+    MbzLogService mbzLogService;
 
     @Autowired
-    HlhtModelCheckService hlhtModelCheckService;
+    MbzModelCheckService mbzModelCheckService;
 
     @Autowired
-    HlhtDataTemplateConfigService hlhtDataTemplateConfigService;
+    MbzDataTemplateConfigService mbzDataTemplateConfigService;
 
 
     public EmrMxmcmlkService getEmrMxmcmlkService(){
@@ -56,36 +56,36 @@ public class FacadeImpl implements Facade{
     }
 
 
-    public HlhtAutomateSetService getHlhtAutomateSetService(){
-        return hlhtAutomateSetService;
+    public MbzAutomateSetService getMbzAutomateSetService(){
+        return mbzAutomateSetService;
     }
 
-    public HlhtDatabasesListService getHlhtDatabasesListService(){
-        return hlhtDatabasesListService;
+    public MbzDatabasesListService getMbzDatabasesListService(){
+        return mbzDatabasesListService;
     }
 
-    public HlhtDataCheckService getHlhtDataCheckService(){
-        return hlhtDataCheckService;
+    public MbzDataCheckService getMbzDataCheckService(){
+        return mbzDataCheckService;
     }
 
-    public HlhtDataListSetService getHlhtDataListSetService(){
-        return hlhtDataListSetService;
+    public MbzDataListSetService getMbzDataListSetService(){
+        return mbzDataListSetService;
     }
 
-    public HlhtDictInfoService getHlhtDictInfoService(){
-        return hlhtDictInfoService;
+    public MbzDictInfoService getMbzDictInfoService(){
+        return mbzDictInfoService;
     }
 
-    public HlhtLogService getHlhtLogService(){
-        return hlhtLogService;
+    public MbzLogService getMbzLogService(){
+        return mbzLogService;
     }
 
-    public HlhtModelCheckService getHlhtModelCheckService(){
-        return hlhtModelCheckService;
+    public MbzModelCheckService getMbzModelCheckService(){
+        return mbzModelCheckService;
     }
 
-    public HlhtDataTemplateConfigService getHlhtDataTemplateConfigService(){
-        return hlhtDataTemplateConfigService;
+    public MbzDataTemplateConfigService getMbzDataTemplateConfigService(){
+        return mbzDataTemplateConfigService;
     }
 
     public MbzDataSetService getMbzDataSetService(){

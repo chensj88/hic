@@ -1,7 +1,7 @@
 package com.winning.hic.controller;
 
-import com.winning.hic.model.HlhtModelCheck;
-import com.winning.hic.service.HlhtModelCheckService;
+import com.winning.hic.model.MbzModelCheck;
+import com.winning.hic.service.MbzModelCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import java.util.Map;
 @Controller
 public class ModelCheckController extends BaseController {
     @Autowired
-    private HlhtModelCheckService hlhtModelCheckService;
+    private MbzModelCheckService mbzModelCheckService;
 
     @RequestMapping("/modelCheck/index")
     public String index() {
@@ -28,9 +28,9 @@ public class ModelCheckController extends BaseController {
 
     @RequestMapping("/modelCheck/list")
     @ResponseBody
-    public List<HlhtModelCheck> list(HlhtModelCheck hlhtModelCheck) {
-        List<HlhtModelCheck> hlhtModelCheckList = hlhtModelCheckService.getHlhtModelCheckList(hlhtModelCheck);
-        return hlhtModelCheckList;
+    public List<MbzModelCheck> list(MbzModelCheck mbzModelCheck) {
+        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.getMbzModelCheckList(mbzModelCheck);
+        return mbzModelCheckList;
     }
 
 

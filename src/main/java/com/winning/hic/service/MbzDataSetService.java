@@ -6,7 +6,7 @@ import com.winning.hic.model.MbzDataSet;
 
 
 /**
-* @author HLHT
+* @author MBZ
 * @title 基础数据配置表服务接口
 * @email Winning Health
 * @package com.winning.hic.service
@@ -14,17 +14,17 @@ import com.winning.hic.model.MbzDataSet;
 */
 public interface MbzDataSetService {
 
-    public int createMbzDataSet(MbzDataSet hlhtDataSet);
+    public int createMbzDataSet(MbzDataSet mbzDataSet);
 
-    public int modifyMbzDataSet(MbzDataSet hlhtDataSet);
+    public int modifyMbzDataSet(MbzDataSet mbzDataSet);
 
-    public int removeMbzDataSet(MbzDataSet hlhtDataSet);
+    public int removeMbzDataSet(MbzDataSet mbzDataSet);
 
-    public MbzDataSet getMbzDataSet(MbzDataSet hlhtDataSet);
+    public MbzDataSet getMbzDataSet(MbzDataSet mbzDataSet);
 
-    public int getMbzDataSetCount(MbzDataSet hlhtDataSet);
+    public int getMbzDataSetCount(MbzDataSet mbzDataSet);
 
-    public List<MbzDataSet> getMbzDataSetList(MbzDataSet hlhtDataSet);
+    public List<MbzDataSet> getMbzDataSetList(MbzDataSet mbzDataSet);
 
-    public List<MbzDataSet> getMbzDataSetPageList(MbzDataSet hlhtDataSet);
+    public List<MbzDataSet> getMbzDataSetPageList(MbzDataSet mbzDataSet);
 }

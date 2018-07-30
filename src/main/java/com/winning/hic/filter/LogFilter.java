@@ -2,8 +2,8 @@ package com.winning.hic.filter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winning.hic.base.utils.LogUtil;
-import com.winning.hic.model.HlhtLog;
-import com.winning.hic.service.HlhtLogService;
+import com.winning.hic.model.MbzLog;
+import com.winning.hic.service.MbzLogService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import java.util.Date;
 public class LogFilter implements Filter {
     private Log log = LogFactory.getLog(this.getClass());
     @Autowired
-    private HlhtLogService hlhtLogService;
+    private MbzLogService mbzLogService;
     private String filterName;
 
     @Override
@@ -40,10 +40,10 @@ public class LogFilter implements Filter {
         //获取操作内容
         String url = request.getRequestURI().toString();
         if (!url.contains(".")) {
-            HlhtLog hlhtLog = new HlhtLog();
+            MbzLog mbzLog = new MbzLog();
             Date date=new Date();
             Timestamp timestamp=new Timestamp(date.getTime());
-            hlhtLog.setOperatorTime(timestamp);
+            mbzLog.setOperatorTime(timestamp);
             JSONObject jsonObject = new JSONObject();
             String ip = LogUtil.getRequestIp(request);
             String param = LogUtil.getParam(request);
@@ -57,8 +57,8 @@ public class LogFilter implements Filter {
             jsonObject.put("param", JSONObject.parseObject(param));
             jsonObject.put("method", method);
             jsonObject.put("status", status);
-            hlhtLog.setContent(jsonObject.toJSONString());
-            hlhtLogService.createHlhtLog(hlhtLog);
+            mbzLog.setContent(jsonObject.toJSONString());
+            mbzLogService.createMbzLog(mbzLog);
         }
         filterChain.doFilter(request, response);
     }

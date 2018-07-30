@@ -13,22 +13,22 @@ public interface Facade {
 
     EmrMbkService getEmrMbkService();
 
-    HlhtAutomateSetService getHlhtAutomateSetService();
+    MbzAutomateSetService getMbzAutomateSetService();
 
-    HlhtDatabasesListService getHlhtDatabasesListService();
+    MbzDatabasesListService getMbzDatabasesListService();
 
-    HlhtDataCheckService getHlhtDataCheckService();
+    MbzDataCheckService getMbzDataCheckService();
 
-    HlhtDataListSetService getHlhtDataListSetService();
+    MbzDataListSetService getMbzDataListSetService();
 
     MbzDataSetService getMbzDataSetService();
 
-    HlhtDictInfoService getHlhtDictInfoService();
+    MbzDictInfoService getMbzDictInfoService();
 
-    HlhtLogService getHlhtLogService();
+    MbzLogService getMbzLogService();
 
-    HlhtModelCheckService getHlhtModelCheckService();
+    MbzModelCheckService getMbzModelCheckService();
 
-    HlhtDataTemplateConfigService getHlhtDataTemplateConfigService();
+    MbzDataTemplateConfigService getMbzDataTemplateConfigService();
 
 }

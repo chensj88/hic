@@ -13,7 +13,7 @@ import com.winning.hic.service.MbzDataSetService;
 
 
 /**
-* @author HLHT
+* @author MBZ
 * @title 基础数据配置表服务接口
 * @email Winning Health
 * @package com.winning.hic.service.impl

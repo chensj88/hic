@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.data.MbzModelCheckDao">
+
+    <resultMap id="mbzModelCheckResultForList" type="com.winning.hic.model.MbzModelCheck">
+         <result column="ID" property="id" jdbcType="BIGINT" />
+         <result column="P_ID" property="pId" jdbcType="BIGINT" />
+         <result column="LEVEL" property="level" jdbcType="INTEGER" />
+         <result column="QRMBDM" property="qrmbdm" jdbcType="VARCHAR" />
+         <result column="COLUMM_NAME" property="colummName" jdbcType="VARCHAR" />
+         <result column="TYPE" property="type" jdbcType="INTEGER" />
+         <result column="DTJDDM" property="dtjddm" jdbcType="VARCHAR" />
+         <result column="QRDXDM" property="qrdxdm" jdbcType="VARCHAR" />
+         <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
+         <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR" />
+         <result column="STATUS" property="status" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="mbzModelCheckResult" type="com.winning.hic.model.MbzModelCheck" extends="mbzModelCheckResultForList">
+
+    </resultMap>
+
+    <sql id="sql-mbzModelCheck">
+        <if test="(id != null and id != '')"> and t.ID = #{id} </if>
+        <if test="(pId != null and pId != '')"> and t.P_ID = #{pId} </if>
+        <if test="(level != null and level != '')"> and t.LEVEL = #{level} </if>
+        <if test="(qrmbdm != null and qrmbdm != '')"> and t.QRMBDM = #{qrmbdm} </if>
+        <if test="(colummName != null and colummName != '')"> and t.COLUMM_NAME = #{colummName} </if>
+        <if test="(type != null and type != '')"> and t.TYPE = #{type} </if>
+        <if test="(dtjddm != null and dtjddm != '')"> and t.DTJDDM = #{dtjddm} </if>
+        <if test="(qrdxdm != null and qrdxdm != '')"> and t.QRDXDM = #{qrdxdm} </if>
+        <if test="(yzjddm != null and yzjddm != '')"> and t.YZJDDM = #{yzjddm} </if>
+        <if test="(errorDesc != null and errorDesc != '')"> and t.ERROR_DESC = #{errorDesc} </if>
+        <if test="(status != null and status != '')"> and t.STATUS = #{status} </if>
+    </sql>
+
+    <insert id="insertMbzModelCheck" parameterType="com.winning.hic.model.MbzModelCheck">
+        INSERT INTO MBZ_MODEL_CHECK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> ID , </if>
+            <if test="(pId != null and pId != '')"> P_ID , </if>
+            <if test="(level != null and level != '')"> LEVEL , </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+            <if test="(colummName != null and colummName != '')"> COLUMM_NAME , </if>
+            <if test="(type != null and type != '')"> TYPE , </if>
+            <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+            <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+            <if test="(errorDesc != null and errorDesc != '')"> ERROR_DESC , </if>
+            <if test="(status != null and status != '')"> STATUS , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> #{id , jdbcType= VARCHAR },  </if>
+            <if test="(pId != null and pId != '')"> #{pId , jdbcType= VARCHAR },  </if>
+            <if test="(level != null and level != '')"> #{level , jdbcType= INTEGER },  </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> #{qrmbdm , jdbcType= VARCHAR },  </if>
+            <if test="(colummName != null and colummName != '')"> #{colummName , jdbcType= VARCHAR },  </if>
+            <if test="(type != null and type != '')"> #{type , jdbcType= INTEGER },  </if>
+            <if test="(dtjddm != null and dtjddm != '')"> #{dtjddm , jdbcType= VARCHAR },  </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> #{qrdxdm , jdbcType= VARCHAR },  </if>
+            <if test="(yzjddm != null and yzjddm != '')"> #{yzjddm , jdbcType= VARCHAR },  </if>
+            <if test="(errorDesc != null and errorDesc != '')"> #{errorDesc , jdbcType= VARCHAR },  </if>
+            <if test="(status != null and status != '')"> #{status , jdbcType= INTEGER },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateMbzModelCheck" parameterType="com.winning.hic.model.MbzModelCheck">
+        UPDATE MBZ_MODEL_CHECK
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(id != null and id != '')"> ID , </if>
+                <if test="(pId != null and pId != '')"> P_ID , </if>
+                <if test="(level != null and level != '')"> LEVEL , </if>
+                <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+                <if test="(colummName != null and colummName != '')"> COLUMM_NAME , </if>
+                <if test="(type != null and type != '')"> TYPE , </if>
+                <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+                <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+                <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+                <if test="(errorDesc != null and errorDesc != '')"> ERROR_DESC , </if>
+                <if test="(status != null and status != '')"> STATUS , </if>
+            </trim>
+        </set>
+        <where>
+            <if test=" and (map.pks != null and map.pks != '')">
+                and () in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteMbzModelCheck" parameterType="com.winning.hic.model.MbzModelCheck">
+        delete from  MBZ_MODEL_CHECK
+        <where>
+            <if test=" and (map.pks != null and map.pks != '')">
+                and () in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectMbzModelCheck" resultMap="mbzModelCheckResult" parameterType="com.winning.hic.model.MbzModelCheck">
+        SELECT * FROM MBZ_MODEL_CHECK t
+        <where>
+            <include refid="sql-mbzModelCheck" />
+        </where>
+    </select>
+
+    <select id="selectMbzModelCheckList" resultMap="mbzModelCheckResultForList" parameterType="com.winning.hic.model.MbzModelCheck">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM MBZ_MODEL_CHECK t
+        <where>
+            <include refid="sql-mbzModelCheck" />
+        </where>
+        ORDER BY ID  DESC
+    </select>
+
+    <select id="selectMbzModelCheckCount" resultType="int" parameterType="com.winning.hic.model.MbzModelCheck">
+        select count(1) from  MBZ_MODEL_CHECK t
+        <where>
+            <include refid="sql-mbzModelCheck" />
+        </where>
+    </select>
+
+    <select id="selectMbzModelCheckPageList" resultMap="mbzModelCheckResult" parameterType="com.winning.hic.model.MbzModelCheck">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY ID  DESC ) AS _RN
+        FROM MBZ_MODEL_CHECK t
+        <where>
+            <include refid="sql-mbzModelCheck" />
+        </where>
+        <!-- order by  asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>

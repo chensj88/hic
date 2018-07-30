@@ -12,7 +12,7 @@ import com.winning.hic.model.MbzDataSet;
 
 import org.springframework.stereotype.Repository;
 /**
-* @author HLHT
+* @author MBZ
 * @title 基础数据配置表DAO接口
 * @email Winning Health
 * @package com.winning.hic.dao.data
@@ -21,17 +21,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MbzDataSetDao {
 
-    public int insertMbzDataSet(MbzDataSet hlhtDataSet) throws DataAccessException;
+    public int insertMbzDataSet(MbzDataSet mbzDataSet) throws DataAccessException;
 
-    public int updateMbzDataSet(MbzDataSet hlhtDataSet) throws DataAccessException;
+    public int updateMbzDataSet(MbzDataSet mbzDataSet) throws DataAccessException;
 
-    public int deleteMbzDataSet(MbzDataSet hlhtDataSet) throws DataAccessException;
+    public int deleteMbzDataSet(MbzDataSet mbzDataSet) throws DataAccessException;
 
-    public MbzDataSet selectMbzDataSet(MbzDataSet hlhtDataSet) throws DataAccessException;
+    public MbzDataSet selectMbzDataSet(MbzDataSet mbzDataSet) throws DataAccessException;
 
-    public Object selectMbzDataSetCount(MbzDataSet hlhtDataSet) throws DataAccessException;
+    public Object selectMbzDataSetCount(MbzDataSet mbzDataSet) throws DataAccessException;
 
-    public List<MbzDataSet> selectMbzDataSetList(MbzDataSet hlhtDataSet) throws DataAccessException;
+    public List<MbzDataSet> selectMbzDataSetList(MbzDataSet mbzDataSet) throws DataAccessException;
 
-    public List<MbzDataSet> selectMbzDataSetPageList(MbzDataSet hlhtDataSet) throws DataAccessException;
+    public List<MbzDataSet> selectMbzDataSetPageList(MbzDataSet mbzDataSet) throws DataAccessException;
 }

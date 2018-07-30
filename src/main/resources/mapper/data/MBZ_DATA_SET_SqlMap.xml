@@ -22,7 +22,7 @@
 
     </resultMap>
 
-    <sql id="sql-hlhtDataSet">
+    <sql id="sql-mbzDataSet">
         <if test="(id != null and id != '')"> and t.ID = #{id} </if>
         <if test="(pId != null and pId != '')"> and t.P_ID = #{pId} </if>
         <if test="(sourceType != null and sourceType != '')"> and t.SOURCE_TYPE = #{sourceType} </if>
@@ -112,7 +112,7 @@
     <select id="selectMbzDataSet" resultMap="mbzDataSetResult" parameterType="com.winning.hic.model.MbzDataSet">
         SELECT * FROM MBZ_DATA_SET t
         <where>
-            <include refid="sql-hlhtDataSet" />
+            <include refid="sql-mbzDataSet" />
         </where>
     </select>
 
@@ -121,7 +121,7 @@
         <if test="row.count != null and row.count != ''"> top ${row.count} </if>
         * FROM MBZ_DATA_SET t
         <where>
-            <include refid="sql-hlhtDataSet" />
+            <include refid="sql-mbzDataSet" />
         </where>
         ORDER BY t.ID ASC
     </select>
@@ -129,7 +129,7 @@
     <select id="selectMbzDataSetCount" resultType="int" parameterType="com.winning.hic.model.MbzDataSet">
         select count(1) from  MBZ_DATA_SET t
         <where>
-            <include refid="sql-hlhtDataSet" />
+            <include refid="sql-mbzDataSet" />
         </where>
     </select>
 
@@ -139,7 +139,7 @@
         ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
         FROM MBZ_DATA_SET t
         <where>
-            <include refid="sql-hlhtDataSet" />
+            <include refid="sql-mbzDataSet" />
         </where>
         <!-- order by t.ID asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}

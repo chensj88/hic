@@ -29,7 +29,7 @@ public class BasicTemplateController extends BaseController {
     }
 
     @RequestMapping(value = "/basic/edit")
-    public Map<String, Object> editHlhtDataSetInfo(MbzDataSet dataSet){
+    public Map<String, Object> editMbzDataSetInfo(MbzDataSet dataSet){
         getFacade().getMbzDataSetService().modifyMbzDataSet(dataSet);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constant.SUCCESS);
