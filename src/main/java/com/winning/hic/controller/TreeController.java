@@ -6,6 +6,7 @@ import com.winning.hic.model.MBNoteTree;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -22,7 +23,7 @@ import java.util.Map;
 @RestController
 public class TreeController extends BaseController {
 
-    @RequestMapping("/mbk/tree")
+    @RequestMapping(value = "/mbk/tree" , method = RequestMethod.POST)
     @ApiOperation(value = "病历模板顶级树",notes = "加载病历模板顶级树")
     public Map<String, Object> queryMBKTree(){
         Map<String, Object> result = new HashMap<String, Object>();
@@ -31,7 +32,7 @@ public class TreeController extends BaseController {
         return result;
     }
 
-    @RequestMapping("/mbk/childTree")
+    @RequestMapping(value = "/mbk/childTree",method = RequestMethod.POST)
     @ApiOperation(value = "根据传入mldm获取子级病历模板",notes = "根据传入参数获取子级节点")
     @ApiImplicitParam(name = "mxmcmlk",value = "明细名称目录库",required = true,dataType = "EmrMxmcmlk")
     public Map<String, Object> queryMBKChildTree(EmrMxmcmlk mxmcmlk){
@@ -52,7 +53,7 @@ public class TreeController extends BaseController {
     }
 
 
-    @RequestMapping("/dict/tree")
+    @RequestMapping(value = "/dict/tree",method = RequestMethod.POST)
     @ApiOperation(value = "获取平台接口表字典数据",notes = "获取平台接口表字典数据")
     public Map<String, Object> queryDICTTree(){
         MbzDictInfo dictInfo = new MbzDictInfo();

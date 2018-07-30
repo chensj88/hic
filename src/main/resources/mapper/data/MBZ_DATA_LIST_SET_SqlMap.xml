@@ -22,7 +22,6 @@
     </sql>
 
     <insert id="insertMbzDataListSet" parameterType="com.winning.hic.model.MbzDataListSet">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
         INSERT INTO MBZ_DATA_LIST_SET
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE , </if>

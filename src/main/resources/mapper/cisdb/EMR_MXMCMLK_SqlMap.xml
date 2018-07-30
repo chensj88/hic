@@ -127,7 +127,9 @@
 
     <select id="selectEmrMxmcmlkParentList" resultMap="emrMxmcmlkResult" >
         SELECT t.*, 1 NUM FROM EMR_MXMCMLK t
-        where  (t.MLDM ='B+' or t.MLDM='B-')
+        where  t.MLDM IN (
+        'B-1080','B-1090','B-A507','B-H101','B-1020','B-42','B-43','B-82','B-65','B-51','B-7601','B-9110','B-9121','B-H155','B-H150','B-98201010','B-98202010','B-A518','B-A5','B-93','B-B2','B-8801','B-48','B-A512','B-A519','B-6210','B-84','B-H105','B-A532','B-5396','B+10','B-1040','B-C2','B-9385','B-9385'
+        )
         ORDER BY t.MLDM DESC
     </select>
 
@@ -136,14 +138,8 @@
          a.MLDM,a.MLMC,LEFT(a.MLDM,len(a.MLDM)-2) SJDM,
           (select count(1) from EMR_MBK where MXFLDM =a.MLDM ) NUM
         FROM dbo.EMR_MXMCMLK a WHERE LEFT(a.MLDM,len(a.MLDM)-2) = #{mldm}
-        AND a.MLDM IN (
-        'B-1080','B-1090','B-A507','B-H101','B-1020','B-42','B-43','B-82','B-65','B-51','B-7601','B-9110','B-9121','B-H155','B-H150','B-98201010','B-98202010','B-A518','B-A5','B-93','B-B2','B-8801','B-48','B-A512','B-A519','B-6210','B-84','B-H105','B-A532','B-5396','B+10','B-1040','B-C2','B-9385','B-9385'
-        )
         UNION
         SELECT a.MBDM MLDM,a.MBMC+'{'+a.MBMS+'}',a.MXFLDM SJDM, 0 NUM FROM dbo.EMR_MBK a
         WHERE  a.MXFLDM=#{mldm}
-        AND a.MXFLDM IN (
-        'B-1080','B-1090','B-A507','B-H101','B-1020','B-42','B-43','B-82','B-65','B-51','B-7601','B-9110','B-9121','B-H155','B-H150','B-98201010','B-98202010','B-A518','B-A5','B-93','B-B2','B-8801','B-48','B-A512','B-A519','B-6210','B-84','B-H105','B-A532','B-5396','B+10','B-1040','B-C2','B-9385','B-9385'
-        )
     </select>
 </mapper>

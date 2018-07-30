@@ -27,4 +27,8 @@ public interface MbzDataListSetService {
     public List<MbzDataListSet> getMbzDataListSetList(MbzDataListSet mbzDataListSet);
 
     public List<MbzDataListSet> getMbzDataListSetPageList(MbzDataListSet mbzDataListSet);
+
+    public void createMbzDataListSetForList(List<MbzDataListSet> mbzDataListSetList);
+
+    List<String> getMbzDataListSetModelCodeList(MbzDataListSet mbzDataListSet);
 }

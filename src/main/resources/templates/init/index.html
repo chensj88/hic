@@ -93,13 +93,18 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
+                                    <p>互利互通数据集</p>
                                     <div id="dataTree" class="ztree ">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                    <button id="addOrModify" type="button" class="btn btn-primary">保存</button>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
+                                    <div style="line-height: 400px;margin: 0px 120px;">
+                                        <button id="addOrModify" type="button" class="btn btn-primary" style="width: 100px;">保存</button>
+                                    </div>
+
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
+                                    <p>病历导航树</p>
                                     <div id="templateTree" class="ztree ">
                                     </div>
                                 </div>
@@ -139,6 +144,7 @@
 <script type="text/javascript" th:inline="javascript">
     var ctx = /*[[@{/}]]*/'';
     var resultData = [];
+    var templateTree,dictTree;
     //页面初始化
     function initWindow(){
         //页面大小响应布局
@@ -193,11 +199,13 @@
         expandSpeed: "",
         data: {
             keep:{
-                parent:true
+                parent:true,
+
             },
             key:{
                 name:'nodeName',
-                isParent: "parent"
+                isParent: "parent",
+                isHidden: "hidden"
             },
             simpleData: {
                 enable: true,
@@ -252,12 +260,16 @@
         check: {
             enable: true,
             chkStyle:'radio',
+        },
+        callback: {
+            onClick: dictTreeOnOnClick,
+            onCheck:dictTreeOnOnClick
         }
     };
 
-    $.fn.zTree.init($("#dataTree"), dictSetting);
+    dictTree = $.fn.zTree.init($("#dataTree"), dictSetting);
 
-    $.fn.zTree.init($("#templateTree"), templateSetting);
+    templateTree = $.fn.zTree.init($("#templateTree"), templateSetting);
 
     /**
      * 字典表数据转换
@@ -477,24 +489,73 @@
         $('#chosen').on('change',searchListInfo);
         $('#configPath').on('change',searchListInfo);
 
-        $()
+
+    });
+
+
+    $('#addOrModify').on('click',function () {
+        let dictArr = dictTree.getCheckedNodes(true);
+        if(dictArr == undefined || dictArr.length < 0){
+            toastr.error('请选择互利互通数据集数据');
+            return ;
+        }
+        let templateArr = templateTree.getCheckedNodes(true)
+        if(templateArr == undefined || templateArr.length < 0){
+            toastr.error('请选择病历导航树数据');
+            return ;
+        }
+
+        let mbzDataListSet =[];
+        let index = 0;
+        for(let i =0 ;i < dictArr.length ;i++){
+            for(let j =0 ;j < templateArr.length ;j++){
+                if(templateArr[j].nodeId.startsWith('B')){
+                    continue ;
+                }else{
+                    mbzDataListSet[index]={
+                        'sourceType':dictArr[i].dictValue,
+                        'modelCode':templateArr[j].nodeId,
+                        'sourceName':dictArr[i].dictLabel,
+                        'modelName':templateArr[j].nodeName,
+                    };
+                    index++;
+                }
+            }
+        }
+        $.ajax({
+            url: ctx + 'dataList/addOrModify',
+            async: false,
+            type: "post",
+            cache:false,
+            dataType: 'json',
+            contentType : 'application/json',
+            data:  JSON.stringify(mbzDataListSet),
+            success: function (data, status) {
+                toastr.info('保存成功');
+            },error:function (response) {
+                console.log(response.responseText);
+                toastr.error(response.responseText);
+            }
+        });
+
     });
 
     /**
-     * 延迟加载
+     * templateTree延迟加载
      * @param event
      * @param treeId
      * @param treeNode
      */
     function zTreeOnOnClick(event, treeId, treeNode) {
-        var treeObj = $.fn.zTree.getZTreeObj(treeId);
-        var node = treeObj.getNodeByTId(treeNode.tId);
+        let treeObj = $.fn.zTree.getZTreeObj(treeId);
+        let node = treeObj.getNodeByTId(treeNode.tId);
         //没有子节点才去查询
         if (node.children.length < 1 || node.children == null || node.children == "undefined") {
             $.ajax({
                 type: "POST",
                 async: false,
                 url: ctx + "mbk/childTree",
+                contentType : 'application/json',
                 data: {
                     mldm: treeNode.nodeId
                 },
@@ -505,12 +566,37 @@
                         newNode = treeObj.addNodes(node, data.data);
                     }
                 },
-                error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+                error: function ( response) {
                     result = true;
-                    alert("请求失败!");
+                    toastr.error(response.responseText);
                 }
             });
         }
+    }
+
+    function dictTreeOnOnClick(event, treeId, treeNode) {
+        let treeObj = $.fn.zTree.getZTreeObj(treeId);
+        let node = treeObj.getNodeByTId(treeNode.tId);
+        let queryJson = {
+            'sourceType':node.dictValue
+        };
+        $.ajax({
+            type: "POST",
+            async: false,
+            url: ctx + "mbk/childTree",
+            data: {
+                'sourceType':node.dictValue
+            },
+            contentType : 'application/json',
+            dataType: "json",
+            success: function (data) {
+
+            },
+            error: function (response) {
+                result = true;
+                toastr.error(response.responseText);
+            }
+        });
     }
 </script>
 </body>
