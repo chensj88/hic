@@ -21,7 +21,7 @@ public interface Facade {
 
     HlhtDataListSetService getHlhtDataListSetService();
 
-    HlhtDataSetService getHlhtDataSetService();
+    MbzDataSetService getMbzDataSetService();
 
     HlhtDictInfoService getHlhtDictInfoService();
 

@@ -15,8 +15,8 @@ import com.winning.hic.model.BaseDomain;
  * @package com.winning.hic.model
  * @date 2018-27-26 15:27:55
  */
-@Alias("hlhtDataSet")
-public class HlhtDataSet extends BaseDomain implements Serializable {
+@Alias("mbzDataSet")
+public class MbzDataSet extends BaseDomain implements Serializable {
 
     private static final long serialVersionUID = -1L;
 
@@ -93,7 +93,7 @@ public class HlhtDataSet extends BaseDomain implements Serializable {
      */
     private Integer bt;
 
-    public HlhtDataSet (){
+    public MbzDataSet(){
 
     }
 
