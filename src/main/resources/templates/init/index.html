@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                    <button type="button" class="btn btn-primary">保存</button>
+                                    <button id="addOrModify" type="button" class="btn btn-primary">保存</button>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
                                     <div id="templateTree" class="ztree ">
@@ -251,11 +251,7 @@
         },
         check: {
             enable: true,
-            chkboxType: { "Y" : "ps", "N" : "ps" }
-        },
-        callback: {
-            onClick: zTreeOnOnClick,
-            onExpand:zTreeOnOnClick
+            chkStyle:'radio',
         }
     };
 
@@ -308,7 +304,7 @@
         toastr.options.extendedTimeOut = 60;
 
         $table.bootstrapTable({
-            url:ctx + 'basic/list',
+//            url:ctx + 'basic/list',
             striped: true,
             method: 'GET', // 请求方法
             cache: false,  // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -474,23 +470,14 @@
             }
            return queryJson;
         }
-
         function searchListInfo(){
             $table.bootstrapTable('refresh', { pageNumber: 1 });
         }
-
         $('#dataSet').on('change',searchListInfo);
         $('#chosen').on('change',searchListInfo);
         $('#configPath').on('change',searchListInfo);
 
-        $('#dataTree').treeview({
-            data:resultData,
-            levels: 1,
-            showTags:false,
-            loadingIcon:"fa fa-hourglass"
-        });
-
-
+        $()
     });
 
     /**
