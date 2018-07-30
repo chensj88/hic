@@ -11,6 +11,8 @@ public interface Facade {
 
     EmrMxmcmlkService getEmrMxmcmlkService();
 
+    EmrQtbljlkService getEmrQtbljlkService();
+
     EmrMbkService getEmrMbkService();
 
     MbzAutomateSetService getMbzAutomateSetService();

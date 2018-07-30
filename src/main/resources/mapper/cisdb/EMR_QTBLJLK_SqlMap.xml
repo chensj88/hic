@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winning.hic.dao.cisdb.EmrQtbljlkDao">
+
+	<resultMap id="emrQtbljlkResultForList" type="com.winning.hic.model.EmrQtbljlk">
+		<result column="QTBLJLXH" property="qtbljlxh" jdbcType="DECIMAL" />
+		<result column="SYXH" property="syxh" jdbcType="INTEGER" />
+		<result column="BLDM" property="bldm" jdbcType="VARCHAR" />
+		<result column="BLMC" property="blmc" jdbcType="VARCHAR" />
+		<result column="BLXSMC" property="blxsmc" jdbcType="VARCHAR" />
+		<result column="BLMS" property="blms" jdbcType="VARCHAR" />
+		<result column="BLNR" property="blnr" jdbcType="NVARCHAR" />
+		<result column="MXFLDM" property="mxfldm" jdbcType="VARCHAR" />
+		<result column="CJYS" property="cjys" jdbcType="VARCHAR" />
+		<result column="TJYS" property="tjys" jdbcType="VARCHAR" />
+		<result column="SHYS" property="shys" jdbcType="VARCHAR" />
+		<result column="CJSJ" property="cjsj" jdbcType="CHAR" />
+		<result column="TJSJ" property="tjsj" jdbcType="CHAR" />
+		<result column="SHSJ" property="shsj" jdbcType="CHAR" />
+		<result column="YXJL" property="yxjl" jdbcType="SMALLINT" />
+		<result column="TJZT" property="tjzt" jdbcType="SMALLINT" />
+		<result column="DYZT" property="dyzt" jdbcType="SMALLINT" />
+		<result column="DZQMBZ" property="dzqmbz" jdbcType="SMALLINT" />
+		<result column="CONTAINERID" property="containerid" jdbcType="VARCHAR" />
+		<result column="FSSJ" property="fssj" jdbcType="CHAR" />
+		<result column="INSTANCEVERSION" property="instanceversion" jdbcType="INTEGER" />
+		<result column="DCZT" property="dczt" jdbcType="SMALLINT" />
+		<result column="DCCZSJ" property="dcczsj" jdbcType="CHAR" />
+		<result column="GXRQ" property="gxrq" jdbcType="CHAR" />
+		<result column="YSHYSDM" property="yshysdm" jdbcType="CHAR" />
+		<result column="YSHYSXM" property="yshysxm" jdbcType="VARCHAR" />
+		<result column="CJKSDM" property="cjksdm" jdbcType="VARCHAR" />
+		<result column="CJKSMC" property="cjksmc" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="emrQtbljlkResult" type="com.winning.hic.model.EmrQtbljlk" extends="emrQtbljlkResultForList">
+	</resultMap>
+
+	<sql id="sf-emrQtbljlk">
+	   <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> and t.QTBLJLXH = #{qtbljlxh} </if>
+	   <if test="(syxh != null and syxh != '') or syxh == 0"> and t.SYXH = #{syxh} </if>
+	   <if test="bldm != null and bldm != ''"> and t.BLDM = #{bldm} </if>
+	   <if test="blmc != null and blmc != ''"> and t.BLMC = #{blmc} </if>
+	   <if test="blxsmc != null and blxsmc != ''"> and t.BLXSMC = #{blxsmc} </if>
+	   <if test="blms != null and blms != ''"> and t.BLMS = #{blms} </if>
+	   <if test="blnr != null and blnr != ''"> and t.BLNR = #{blnr} </if>
+	   <if test="mxfldm != null and mxfldm != ''"> and t.MXFLDM = #{mxfldm} </if>
+	   <if test="cjys != null and cjys != ''"> and t.CJYS = #{cjys} </if>
+	   <if test="tjys != null and tjys != ''"> and t.TJYS = #{tjys} </if>
+	   <if test="shys != null and shys != ''"> and t.SHYS = #{shys} </if>
+	   <if test="cjsj != null and cjsj != ''"> and t.CJSJ = #{cjsj} </if>
+	   <if test="tjsj != null and tjsj != ''"> and t.TJSJ = #{tjsj} </if>
+	   <if test="shsj != null and shsj != ''"> and t.SHSJ = #{shsj} </if>
+	   <if test="yxjl != null and yxjl != ''"> and t.YXJL = #{yxjl} </if>
+	   <if test="tjzt != null and tjzt != ''"> and t.TJZT = #{tjzt} </if>
+	   <if test="dyzt != null and dyzt != ''"> and t.DYZT = #{dyzt} </if>
+	   <if test="dzqmbz != null and dzqmbz != ''"> and t.DZQMBZ = #{dzqmbz} </if>
+	   <if test="containerid != null and containerid != ''"> and t.CONTAINERID = #{containerid} </if>
+	   <if test="fssj != null and fssj != ''"> and t.FSSJ = #{fssj} </if>
+	   <if test="(instanceversion != null and instanceversion != '') or instanceversion == 0"> and t.INSTANCEVERSION = #{instanceversion} </if>
+	   <if test="dczt != null and dczt != ''"> and t.DCZT = #{dczt} </if>
+	   <if test="dcczsj != null and dcczsj != ''"> and t.DCCZSJ = #{dcczsj} </if>
+	   <if test="gxrq != null and gxrq != ''"> and t.GXRQ = #{gxrq} </if>
+	   <if test="yshysdm != null and yshysdm != ''"> and t.YSHYSDM = #{yshysdm} </if>
+	   <if test="yshysxm != null and yshysxm != ''"> and t.YSHYSXM = #{yshysxm} </if>
+	   <if test="cjksdm != null and cjksdm != ''"> and t.CJKSDM = #{cjksdm} </if>
+	   <if test="cjksmc != null and cjksmc != ''"> and t.CJKSMC = #{cjksmc} </if>
+	</sql>
+
+	<select id="selectEmrQtbljlk" resultMap="emrQtbljlkResult" parameterType="com.winning.hic.model.EmrQtbljlk">
+		select * from EMR_QTBLJLK t where 1 = 1
+		<include refid="sf-emrQtbljlk" />
+	</select>
+
+	<select id="selectEmrQtbljlkList" resultMap="emrQtbljlkResultForList" parameterType="com.winning.hic.model.EmrQtbljlk">
+		select
+		 <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+		 * from EMR_QTBLJLK t where 1 = 1
+		<include refid="sf-emrQtbljlk" />
+		<!-- order by ID asc -->
+	</select>
+
+	<select id="selectEmrQtbljlkCount" resultType="int" parameterType="com.winning.hic.model.EmrQtbljlk">
+		select count(*) from EMR_QTBLJLK t where 1 = 1
+		<include refid="sf-emrQtbljlk" />
+	</select>
+
+	<select id="selectEmrQtbljlkPaginatedList" resultMap="emrQtbljlkResult" parameterType="com.winning.hic.model.EmrQtbljlk">
+		select * from (
+			select *, ROW_NUMBER() OVER ( order by id desc ) as _rn 
+				from EMR_QTBLJLK t where 1 = 1
+			<include refid="sf-emrQtbljlk" />
+			<!-- order by ID asc -->
+		) temp_table where _rn between #{row.first} + 1 and #{row.first} + #{row.count}
+	</select>
+
+	<insert id="insertEmrQtbljlk" parameterType="com.winning.hic.model.EmrQtbljlk">
+	<selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+		insert into EMR_QTBLJLK 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	       <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> QTBLJLXH, </if>
+	       <if test="(syxh != null and syxh != '') or syxh == 0"> SYXH, </if>
+		   <if test="bldm != null and bldm != ''"> BLDM, </if>
+		   <if test="blmc != null and blmc != ''"> BLMC, </if>
+		   <if test="blxsmc != null and blxsmc != ''"> BLXSMC, </if>
+		   <if test="blms != null and blms != ''"> BLMS, </if>
+		   <if test="blnr != null and blnr != ''"> BLNR, </if>
+		   <if test="mxfldm != null and mxfldm != ''"> MXFLDM, </if>
+		   <if test="cjys != null and cjys != ''"> CJYS, </if>
+		   <if test="tjys != null and tjys != ''"> TJYS, </if>
+		   <if test="shys != null and shys != ''"> SHYS, </if>
+		   <if test="cjsj != null and cjsj != ''"> CJSJ, </if>
+		   <if test="tjsj != null and tjsj != ''"> TJSJ, </if>
+		   <if test="shsj != null and shsj != ''"> SHSJ, </if>
+		   <if test="yxjl != null and yxjl != ''"> YXJL, </if>
+		   <if test="tjzt != null and tjzt != ''"> TJZT, </if>
+		   <if test="dyzt != null and dyzt != ''"> DYZT, </if>
+		   <if test="dzqmbz != null and dzqmbz != ''"> DZQMBZ, </if>
+		   <if test="containerid != null and containerid != ''"> CONTAINERID, </if>
+		   <if test="fssj != null and fssj != ''"> FSSJ, </if>
+	       <if test="(instanceversion != null and instanceversion != '') or instanceversion == 0"> INSTANCEVERSION, </if>
+		   <if test="dczt != null and dczt != ''"> DCZT, </if>
+		   <if test="dcczsj != null and dcczsj != ''"> DCCZSJ, </if>
+		   <if test="gxrq != null and gxrq != ''"> GXRQ, </if>
+		   <if test="yshysdm != null and yshysdm != ''"> YSHYSDM, </if>
+		   <if test="yshysxm != null and yshysxm != ''"> YSHYSXM, </if>
+		   <if test="cjksdm != null and cjksdm != ''"> CJKSDM, </if>
+		   <if test="cjksmc != null and cjksmc != ''"> CJKSMC, </if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	       <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> #{qtbljlxh, jdbcType=DECIMAL}, </if>
+	       <if test="(syxh != null and syxh != '') or syxh == 0"> #{syxh, jdbcType=INTEGER}, </if>
+		   <if test="bldm != null and bldm != ''"> #{bldm, jdbcType=VARCHAR}, </if>
+		   <if test="blmc != null and blmc != ''"> #{blmc, jdbcType=VARCHAR}, </if>
+		   <if test="blxsmc != null and blxsmc != ''"> #{blxsmc, jdbcType=VARCHAR}, </if>
+		   <if test="blms != null and blms != ''"> #{blms, jdbcType=VARCHAR}, </if>
+		   <if test="blnr != null and blnr != ''"> #{blnr, jdbcType=NVARCHAR}, </if>
+		   <if test="mxfldm != null and mxfldm != ''"> #{mxfldm, jdbcType=VARCHAR}, </if>
+		   <if test="cjys != null and cjys != ''"> #{cjys, jdbcType=VARCHAR}, </if>
+		   <if test="tjys != null and tjys != ''"> #{tjys, jdbcType=VARCHAR}, </if>
+		   <if test="shys != null and shys != ''"> #{shys, jdbcType=VARCHAR}, </if>
+		   <if test="cjsj != null and cjsj != ''"> #{cjsj, jdbcType=CHAR}, </if>
+		   <if test="tjsj != null and tjsj != ''"> #{tjsj, jdbcType=CHAR}, </if>
+		   <if test="shsj != null and shsj != ''"> #{shsj, jdbcType=CHAR}, </if>
+		   <if test="yxjl != null and yxjl != ''"> #{yxjl, jdbcType=SMALLINT}, </if>
+		   <if test="tjzt != null and tjzt != ''"> #{tjzt, jdbcType=SMALLINT}, </if>
+		   <if test="dyzt != null and dyzt != ''"> #{dyzt, jdbcType=SMALLINT}, </if>
+		   <if test="dzqmbz != null and dzqmbz != ''"> #{dzqmbz, jdbcType=SMALLINT}, </if>
+		   <if test="containerid != null and containerid != ''"> #{containerid, jdbcType=VARCHAR}, </if>
+		   <if test="fssj != null and fssj != ''"> #{fssj, jdbcType=CHAR}, </if>
+	       <if test="(instanceversion != null and instanceversion != '') or instanceversion == 0"> #{instanceversion, jdbcType=INTEGER}, </if>
+		   <if test="dczt != null and dczt != ''"> #{dczt, jdbcType=SMALLINT}, </if>
+		   <if test="dcczsj != null and dcczsj != ''"> #{dcczsj, jdbcType=CHAR}, </if>
+		   <if test="gxrq != null and gxrq != ''"> #{gxrq, jdbcType=CHAR}, </if>
+		   <if test="yshysdm != null and yshysdm != ''"> #{yshysdm, jdbcType=CHAR}, </if>
+		   <if test="yshysxm != null and yshysxm != ''"> #{yshysxm, jdbcType=VARCHAR}, </if>
+		   <if test="cjksdm != null and cjksdm != ''"> #{cjksdm, jdbcType=VARCHAR}, </if>
+		   <if test="cjksmc != null and cjksmc != ''"> #{cjksmc, jdbcType=VARCHAR}, </if>
+		</trim>
+	</insert>
+
+	<update id="updateEmrQtbljlk" parameterType="com.winning.hic.model.EmrQtbljlk">
+		update EMR_QTBLJLK
+		<set>
+			<trim suffixOverrides=",">
+			   <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> QTBLJLXH = #{qtbljlxh, jdbcType=DECIMAL}, </if>
+			   <if test="(syxh != null and syxh != '') or syxh == 0"> SYXH = #{syxh, jdbcType=INTEGER}, </if>
+			   <if test="bldm != null and bldm != ''"> BLDM = #{bldm, jdbcType=VARCHAR}, </if>
+			   <if test="blmc != null and blmc != ''"> BLMC = #{blmc, jdbcType=VARCHAR}, </if>
+			   <if test="blxsmc != null and blxsmc != ''"> BLXSMC = #{blxsmc, jdbcType=VARCHAR}, </if>
+			   <if test="blms != null and blms != ''"> BLMS = #{blms, jdbcType=VARCHAR}, </if>
+			   <if test="blnr != null and blnr != ''"> BLNR = #{blnr, jdbcType=NVARCHAR}, </if>
+			   <if test="mxfldm != null and mxfldm != ''"> MXFLDM = #{mxfldm, jdbcType=VARCHAR}, </if>
+			   <if test="cjys != null and cjys != ''"> CJYS = #{cjys, jdbcType=VARCHAR}, </if>
+			   <if test="tjys != null and tjys != ''"> TJYS = #{tjys, jdbcType=VARCHAR}, </if>
+			   <if test="shys != null and shys != ''"> SHYS = #{shys, jdbcType=VARCHAR}, </if>
+			   <if test="cjsj != null and cjsj != ''"> CJSJ = #{cjsj, jdbcType=CHAR}, </if>
+			   <if test="tjsj != null and tjsj != ''"> TJSJ = #{tjsj, jdbcType=CHAR}, </if>
+			   <if test="shsj != null and shsj != ''"> SHSJ = #{shsj, jdbcType=CHAR}, </if>
+			   <if test="yxjl != null and yxjl != ''"> YXJL = #{yxjl, jdbcType=SMALLINT}, </if>
+			   <if test="tjzt != null and tjzt != ''"> TJZT = #{tjzt, jdbcType=SMALLINT}, </if>
+			   <if test="dyzt != null and dyzt != ''"> DYZT = #{dyzt, jdbcType=SMALLINT}, </if>
+			   <if test="dzqmbz != null and dzqmbz != ''"> DZQMBZ = #{dzqmbz, jdbcType=SMALLINT}, </if>
+			   <if test="containerid != null and containerid != ''"> CONTAINERID = #{containerid, jdbcType=VARCHAR}, </if>
+			   <if test="fssj != null and fssj != ''"> FSSJ = #{fssj, jdbcType=CHAR}, </if>
+			   <if test="(instanceversion != null and instanceversion != '') or instanceversion == 0"> INSTANCEVERSION = #{instanceversion, jdbcType=INTEGER}, </if>
+			   <if test="dczt != null and dczt != ''"> DCZT = #{dczt, jdbcType=SMALLINT}, </if>
+			   <if test="dcczsj != null and dcczsj != ''"> DCCZSJ = #{dcczsj, jdbcType=CHAR}, </if>
+			   <if test="gxrq != null and gxrq != ''"> GXRQ = #{gxrq, jdbcType=CHAR}, </if>
+			   <if test="yshysdm != null and yshysdm != ''"> YSHYSDM = #{yshysdm, jdbcType=CHAR}, </if>
+			   <if test="yshysxm != null and yshysxm != ''"> YSHYSXM = #{yshysxm, jdbcType=VARCHAR}, </if>
+			   <if test="cjksdm != null and cjksdm != ''"> CJKSDM = #{cjksdm, jdbcType=VARCHAR}, </if>
+			   <if test="cjksmc != null and cjksmc != ''"> CJKSMC = #{cjksmc, jdbcType=VARCHAR}, </if>
+			</trim>
+		</set>
+		where
+		<if test="id != null and id != ''"> id = #{id} </if>
+		<if test="(id == null or id == '') and (map.pks != null and map.pks != '')">
+			ID in
+			<foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
+		</if>
+	</update>
+
+	<delete id="deleteEmrQtbljlk" parameterType="com.winning.hic.model.EmrQtbljlk">
+		delete from EMR_QTBLJLK where
+		<if test="id != null and id != ''"> id = #{id} </if>
+		<if test="(id == null or id == '') and (map.pks != null and map.pks != '')">
+			ID in
+			<foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
+		</if>
+	</delete>
+
+</mapper>

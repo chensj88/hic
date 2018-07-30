@@ -46,6 +46,13 @@ public class FacadeImpl implements Facade{
     @Autowired
     MbzDataTemplateConfigService mbzDataTemplateConfigService;
 
+    @Autowired
+    EmrQtbljlkService emrQtbljlkService;
+
+    public EmrQtbljlkService getEmrQtbljlkService() {
+        return emrQtbljlkService;
+    }
+
 
     public EmrMxmcmlkService getEmrMxmcmlkService(){
         return emrMxmcmlkService;
