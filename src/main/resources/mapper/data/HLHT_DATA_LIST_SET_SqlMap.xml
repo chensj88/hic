@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.winning.hic.dao.data.HlhtDataListSetDao">
+<mapper namespace="com.winning.hic.dao.data.MbzDataListSetDao">
 
-    <resultMap id="hlhtDataListSetResultForList" type="com.winning.hic.model.HlhtDataListSet">
+    <resultMap id="mbzDataListSetResultForList" type="com.winning.hic.model.MbzDataListSet">
          <result column="SOURCE_TYPE" property="sourceType" jdbcType="VARCHAR" />
          <result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR" />
          <result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR" />
          <result column="MODEL_NAME" property="modelName" jdbcType="VARCHAR" />
     </resultMap>
 
-    <resultMap id="hlhtDataListSetResult" type="com.winning.hic.model.HlhtDataListSet" extends="hlhtDataListSetResultForList">
+    <resultMap id="mbzDataListSetResult" type="com.winning.hic.model.MbzDataListSet" extends="mbzDataListSetResultForList">
 
     </resultMap>
 
-    <sql id="sql-hlhtDataListSet">
+    <sql id="sql-mbzDataListSet">
         <if test="(sourceType != null and sourceType != '')"> and t.SOURCE_TYPE = #{sourceType} </if>
         <if test="(modelCode != null and modelCode != '')"> and t.MODEL_CODE = #{modelCode} </if>
         <if test="(sourceName != null and sourceName != '')"> and t.SOURCE_NAME = #{sourceName} </if>
         <if test="(modelName != null and modelName != '')"> and t.MODEL_NAME = #{modelName} </if>
     </sql>
 
-    <insert id="insertHlhtDataListSet" parameterType="com.winning.hic.model.HlhtDataListSet">
+    <insert id="insertMbzDataListSet" parameterType="com.winning.hic.model.MbzDataListSet">
         <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
         INSERT INTO HLHT_DATA_LIST_SET
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -39,7 +39,7 @@
         </trim>
     </insert>
 
-    <update id="updateHlhtDataListSet" parameterType="com.winning.hic.model.HlhtDataListSet">
+    <update id="updateMbzDataListSet" parameterType="com.winning.hic.model.MbzDataListSet">
         UPDATE HLHT_DATA_LIST_SET
         <set>
             <trim suffixOverrides=",">
@@ -59,7 +59,7 @@
         </where>
     </update>
 
-    <delete id="deleteHlhtDataListSet" parameterType="com.winning.hic.model.HlhtDataListSet">
+    <delete id="deleteMbzDataListSet" parameterType="com.winning.hic.model.MbzDataListSet">
         delete from  HLHT_DATA_LIST_SET
         <where>
             <if test="(sourceType != null and sourceType != '')"> and SOURCE_TYPE = #{ sourceType }   </if>
@@ -72,37 +72,37 @@
     </delete>
 
 
-    <select id="selectHlhtDataListSet" resultMap="hlhtDataListSetResult" parameterType="com.winning.hic.model.HlhtDataListSet">
+    <select id="selectMbzDataListSet" resultMap="mbzDataListSetResult" parameterType="com.winning.hic.model.MbzDataListSet">
         SELECT * FROM HLHT_DATA_LIST_SET t
         <where>
-            <include refid="sql-hlhtDataListSet" />
+            <include refid="sql-mbzDataListSet" />
         </where>
     </select>
 
-    <select id="selectHlhtDataListSetList" resultMap="hlhtDataListSetResultForList" parameterType="com.winning.hic.model.HlhtDataListSet">
+    <select id="selectMbzDataListSetList" resultMap="mbzDataListSetResultForList" parameterType="com.winning.hic.model.MbzDataListSet">
         SELECT
         <if test="row.count != null and row.count != ''"> top ${row.count} </if>
         * FROM HLHT_DATA_LIST_SET t
         <where>
-            <include refid="sql-hlhtDataListSet" />
+            <include refid="sql-mbzDataListSet" />
         </where>
         ORDER BY t.SOURCE_TYPE,t.MODEL_CODE DESC
     </select>
 
-    <select id="selectHlhtDataListSetCount" resultType="int" parameterType="com.winning.hic.model.HlhtDataListSet">
+    <select id="selectMbzDataListSetCount" resultType="int" parameterType="com.winning.hic.model.MbzDataListSet">
         select count(1) from  HLHT_DATA_LIST_SET t
         <where>
-            <include refid="sql-hlhtDataListSet" />
+            <include refid="sql-mbzDataListSet" />
         </where>
     </select>
 
-    <select id="selectHlhtDataListSetPageList" resultMap="hlhtDataListSetResult" parameterType="com.winning.hic.model.HlhtDataListSet">
+    <select id="selectMbzDataListSetPageList" resultMap="mbzDataListSetResult" parameterType="com.winning.hic.model.MbzDataListSet">
         SELECT * FROM (
         SELECT t.* ,
         ROW_NUMBER() OVER ( ORDER BY t.SOURCE_TYPE,t.MODEL_CODE DESC ) AS _RN
         FROM HLHT_DATA_LIST_SET t
         <where>
-            <include refid="sql-hlhtDataListSet" />
+            <include refid="sql-mbzDataListSet" />
         </where>
         <!-- order by t.SOURCE_TYPE,t.MODEL_CODE asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}

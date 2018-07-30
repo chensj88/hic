@@ -29,7 +29,7 @@ public class FacadeImpl implements Facade{
     HlhtDataCheckService hlhtDataCheckService;
 
     @Autowired
-    HlhtDataListSetService hlhtDataListSetService;
+    MbzDataListSetService mbzDataListSetService;
 
     @Autowired
     MbzDataSetService mbzDataSetService;
@@ -68,8 +68,8 @@ public class FacadeImpl implements Facade{
         return hlhtDataCheckService;
     }
 
-    public HlhtDataListSetService getHlhtDataListSetService(){
-        return hlhtDataListSetService;
+    public MbzDataListSetService getMbzDataListSetService(){
+        return mbzDataListSetService;
     }
 
     public HlhtDictInfoService getHlhtDictInfoService(){

@@ -19,7 +19,7 @@ public interface Facade {
 
     HlhtDataCheckService getHlhtDataCheckService();
 
-    HlhtDataListSetService getHlhtDataListSetService();
+    MbzDataListSetService getMbzDataListSetService();
 
     MbzDataSetService getMbzDataSetService();
 
