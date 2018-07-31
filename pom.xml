@@ -140,13 +140,13 @@
         <dependency>
             <groupId>net.minidev</groupId>
             <artifactId>json-smart</artifactId>
-            <version>RELEASE</version>
+            <version>2.3</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
         <dependency>
-            <groupId>org.dom4j</groupId>
+            <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
-            <version>2.0.0</version>
+            <version>1.6.1</version>
         </dependency>
         <dependency>
             <groupId>net.java.dev.jna</groupId>
