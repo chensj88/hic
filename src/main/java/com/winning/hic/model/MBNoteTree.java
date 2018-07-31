@@ -21,6 +21,7 @@ public class MBNoteTree {
     private String nodeDesc;
 
     private boolean isParent;
+    private boolean isHidden;
     private String icon;
     private String iconClose;
     private String iconOpen;
@@ -101,5 +102,13 @@ public class MBNoteTree {
 
     public void setIconOpen(String iconOpen) {
         this.iconOpen = iconOpen;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }

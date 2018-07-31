@@ -52,4 +52,23 @@ public class MbzDataListSetServiceImpl implements  MbzDataListSetService {
     public List<MbzDataListSet> getMbzDataListSetPageList(MbzDataListSet mbzDataListSet){
         return this.mbzDataListSetDao.selectMbzDataListSetPageList(mbzDataListSet);
     }
+
+    /**
+     * 创建数据，
+     * @param mbzDataListSetList
+     */
+    @Override
+    public void createMbzDataListSetForList(List<MbzDataListSet> mbzDataListSetList) {
+        MbzDataListSet dataSet = new MbzDataListSet();
+        dataSet.setSourceType(mbzDataListSetList.get(0).getSourceType());
+        this.mbzDataListSetDao.deleteMbzDataListSet(dataSet);
+        for (MbzDataListSet dataListSet : mbzDataListSetList) {
+            this.mbzDataListSetDao.insertMbzDataListSet(dataListSet);
+        }
+    }
+
+    @Override
+    public List<String> getMbzDataListSetModelCodeList(MbzDataListSet mbzDataListSet) {
+        return null;
+    }
 }

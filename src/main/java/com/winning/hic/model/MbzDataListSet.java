@@ -49,7 +49,14 @@ public class MbzDataListSet extends BaseDomain implements Serializable {
 
     }
 
-   /**
+    public MbzDataListSet(String sourceType, String modelCode, String sourceName, String modelName) {
+        this.sourceType = sourceType;
+        this.modelCode = modelCode;
+        this.sourceName = sourceName;
+        this.modelName = modelName;
+    }
+
+    /**
    * 字段名：SOURCE_TYPE
    * get方法
    * 备注: 

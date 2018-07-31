@@ -18,7 +18,7 @@ import java.util.Map;
  * Time: 9:20
  */
 @RestController
-public class BasicTemplateController extends BaseController {
+public class MbzDataSetController extends BaseController {
 
     @ApiOperation(value = "/basic/list",notes = "加载接口表字段信息")
     @ApiImplicitParams(
