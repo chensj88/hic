@@ -550,17 +550,22 @@
         let treeObj = $.fn.zTree.getZTreeObj(treeId);
         let node = treeObj.getNodeByTId(treeNode.tId);
         //没有子节点才去查询
+        console.log(treeNode);
+        console.log(treeNode.nodeId);
+        console.log(typeof treeNode.nodeId);
         if (node.children.length < 1 || node.children == null || node.children == "undefined") {
+            let queryJson = {
+                'mldm':treeNode.nodeId
+            };
             $.ajax({
                 type: "POST",
                 async: false,
                 url: ctx + "mbk/childTree",
-                contentType : 'application/json',
-                data: {
-                    mldm: treeNode.nodeId
-                },
+                data:queryJson,
+                cache:false,
                 dataType: "json",
                 success: function (data) {
+                    console.log(data);
                     if (data.data != null && data.data != "") {
                         //添加新节点
                         newNode = treeObj.addNodes(node, data.data);
@@ -584,10 +589,7 @@
             type: "POST",
             async: false,
             url: ctx + "mbk/childTree",
-            data: {
-                'sourceType':node.dictValue
-            },
-            contentType : 'application/json',
+            data: queryJson,
             dataType: "json",
             success: function (data) {
 

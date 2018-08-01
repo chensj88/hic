@@ -85,7 +85,7 @@
             <version>1.1.8</version>
         </dependency>
         <!--json-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
         </dependency>
@@ -101,20 +101,19 @@
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-parameter-names</artifactId>
         </dependency>
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/net.sf.json-lib/json-lib &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>net.sf.json-lib</groupId>-->
-            <!--<artifactId>json-lib</artifactId>-->
-            <!--<version>2.4</version>-->
-        <!--</dependency>-->
+         https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <!-- fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.47</version>
         </dependency>
-
 
         <!-- log4j日志 -->
         <dependency>
@@ -132,22 +131,13 @@
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
         </dependency>
-        <dependency>
-            <groupId>net.minidev</groupId>
-            <artifactId>json-smart</artifactId>
-            <version>RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>net.minidev</groupId>
-            <artifactId>json-smart</artifactId>
-            <version>2.3</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+        <!-- dom4j -->
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
         </dependency>
+        <!--jna -->
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
