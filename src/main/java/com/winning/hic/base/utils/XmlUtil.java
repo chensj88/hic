@@ -105,10 +105,10 @@ public class XmlUtil {
                 if (id != null && elementID.equals(id)) {
                     return element;
                 }
-                element = getElementById(element, elementID);
-                if (element != null) {
-                    return element;
-                }
+//                element = getElementById(element, elementID);
+//                if (element != null) {
+//                    return element;
+//                }
             }
         }
         return null;
@@ -154,10 +154,14 @@ public class XmlUtil {
 
         Document document = XmlUtil.getDocumentByPath("E:\\jackMa\\hic\\src\\main\\java\\com\\winning\\hic\\base\\utils\\mima.xml");
         MbzDataSet mbzDataSet = new MbzDataSet();
-        mbzDataSet.setDtjddm("665");
-        mbzDataSet.setQrmbdm("d09dd403-ecbd-4be3-a832-139736c5643d");
-        mbzDataSet.setQrdxdm("a20f7a00-2da1-4b6f-a7f5-78275c4433d1");
-        mbzDataSet.setYzjddm("6fa963d2-ab46-493e-9cf6-ff87addccf52");
+//        mbzDataSet.setDtjddm("665");
+//        mbzDataSet.setQrmbdm("d09dd403-ecbd-4be3-a832-139736c5643d");
+//        mbzDataSet.setQrdxdm("a20f7a00-2da1-4b6f-a7f5-78275c4433d1");
+//        mbzDataSet.setYzjddm("6fa963d2-ab46-493e-9cf6-ff87addccf52");
+        mbzDataSet.setDtjddm("628");
+        mbzDataSet.setQrmbdm("34e00ca9-f630-4a0a-bb9a-2400a3d7392f");
+        mbzDataSet.setQrdxdm("fe028248-7533-49c0-8c47-11132c39fbfe");
+        mbzDataSet.setYzjddm("c8499f95-5517-4342-bcc4-6822448c911e");
         String attrValue = XmlUtil.getAttrValueByDataSet(document, mbzDataSet);
 
 
