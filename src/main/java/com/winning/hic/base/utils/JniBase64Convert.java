@@ -1,13 +1,45 @@
 package com.winning.hic.base.utils;
 
+import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.Dispatch;
+import com.jacob.com.Variant;
+
 public class JniBase64Convert {
 
-    static {
-        System.loadLibrary("Winning.Hic.Test.TestWrapper");
+    public static String unzipEmrXml(String blnr){
+        ActiveXComponent dotnetCom1 = null;
+        String decodeEmrXml = null;
+        try {
+            dotnetCom1 = new ActiveXComponent("Winning.Emr.Hlht.Utils.Base64Utils");
+            Variant var = Dispatch.call(dotnetCom1, "UnzipEmrXml",blnr);
+            decodeEmrXml = var.toString(); //返回值
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if(dotnetCom1 != null) {
+                dotnetCom1.safeRelease();
+            }
+        }
+        return decodeEmrXml;
     }
 
-    public native String zipEmrXml(String emrContent);
-    public native String unzipEmrXml(String emrContent);
+    public static String zipEmrXml(String blnr){
+        ActiveXComponent dotnetCom1 = null;
+        String encodeEmrXml = null;
+        try {
+            dotnetCom1 = new ActiveXComponent("Winning.Emr.Hlht.Utils.Base64Utils");
+            Variant var = Dispatch.call(dotnetCom1, "ZipEmrXml",blnr);
+            encodeEmrXml = var.toString(); //返回值
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if(dotnetCom1 != null) {
+                dotnetCom1.safeRelease();
+            }
+        }
+        return encodeEmrXml;
+    }
+
 
      public static void main(String[] args){
          JniBase64Convert convert = new JniBase64Convert();
