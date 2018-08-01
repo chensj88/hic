@@ -1,7 +1,7 @@
 package com.winning.hic.base.utils;
 
 
-import net.minidev.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
