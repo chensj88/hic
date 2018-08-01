@@ -22,13 +22,15 @@ public class Dom4jUtils {
         SAXReader reader = new SAXReader();
         try {
             // 通过reader对象的read方法加载books.xml文件,获取docuemnt对象。
-            Document document = reader.read(new File("src/res/books.xml"));
+            Document document = reader.read(new File("src/main/resources/test.xml"));
             // 通过document对象获取根节点bookstore
             Element bookStore = document.getRootElement();
             // 通过element对象的elementIterator方法获取迭代器
             Iterator it = bookStore.elementIterator();
             // 遍历迭代器，获取根节点中的信息（书籍）
+            int sum=0;
             while (it.hasNext()) {
+                sum++;
                 System.out.println("=====开始遍历某一本书=====");
                 Element book = (Element) it.next();
                 // 获取book的属性名以及 属性值
@@ -43,6 +45,7 @@ public class Dom4jUtils {
                     System.out.println("节点名：" + bookChild.getName() + "--节点值：" + bookChild.getStringValue());
                 }
                 System.out.println("=====结束遍历某一本书=====");
+                System.out.println("sum=="+sum);
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
