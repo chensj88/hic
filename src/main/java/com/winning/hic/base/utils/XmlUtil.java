@@ -1,5 +1,6 @@
 package com.winning.hic.base.utils;
 
+import com.winning.hic.model.MbzDataSet;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
@@ -94,17 +95,74 @@ public class XmlUtil {
     }
 
 
+    public static Element getElementById(Element param, String elementID) {
+        int i = 0;
+        for (int size = param.nodeCount(); i < size; ++i) {
+            Node node = param.node(i);
+            if (node instanceof Element) {
+                Element element = (Element) node;
+                String id = element.attribute("id") == null ? null : element.attribute("id").getValue();
+                if (id != null && elementID.equals(id)) {
+                    return element;
+                }
+                element = getElementById(element, elementID);
+                if (element != null) {
+                    return element;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * 根据数据配置抽取数
+     *
+     * @param document
+     * @param mbzDataSet
+     * @return
+     */
+    public static String getAttrValueByDataSet(Document document, MbzDataSet mbzDataSet) {
+        //文件结构id
+        String dtjddm = mbzDataSet.getDtjddm();
+        //基础模板id
+        String qrmbdm = mbzDataSet.getQrmbdm();
+        //元数据id
+        String qrdxdm = mbzDataSet.getQrdxdm();
+        //原子节点id
+        String yzjddm = mbzDataSet.getYzjddm();
+        Element rootElement = document.getRootElement();
+        Element dtjddmElement = XmlUtil.getElementById(rootElement, dtjddm);
+        if (!StringUtil.isEmptyOrNull(yzjddm)) {
+            Element qrmbdmElement = XmlUtil.getElementById(dtjddmElement, qrmbdm);
+            Element qrdxdmElement = XmlUtil.getElementById(qrmbdmElement, qrdxdm);
+            Element yzjddmElement = XmlUtil.getElementById(qrdxdmElement, yzjddm);
+            return yzjddmElement.attribute("value").getValue();
+        } else if (!StringUtil.isEmptyOrNull(qrdxdm)) {
+            Element qrmbdmElement = XmlUtil.getElementById(dtjddmElement, qrmbdm);
+            Element qrdxdmElement = XmlUtil.getElementById(qrmbdmElement, qrdxdm);
+            return qrdxdmElement.attribute("value").getValue();
+        } else if (!StringUtil.isEmptyOrNull(qrmbdm)) {
+            Element qrmbdmElement = XmlUtil.getElementById(dtjddmElement, qrmbdm);
+            return qrmbdmElement.attribute("value").getValue();
+        }
+        return dtjddmElement.attribute("value").getValue();
+    }
+
+
     public static void main(String[] args) {
 
         Document document = XmlUtil.getDocumentByPath("E:\\jackMa\\hic\\src\\main\\java\\com\\winning\\hic\\base\\utils\\mima.xml");
-
-        List<Element> elements = XmlUtil.getNodes(document.getRootElement());
-
-        String attrValue = XmlUtil.getAttrValue(elements, "id", "6fa963d2-ab46-493e-9cf6-ff87addccf52", "defaultvalue");
+        MbzDataSet mbzDataSet = new MbzDataSet();
+        mbzDataSet.setDtjddm("665");
+        mbzDataSet.setQrmbdm("d09dd403-ecbd-4be3-a832-139736c5643d");
+        mbzDataSet.setQrdxdm("a20f7a00-2da1-4b6f-a7f5-78275c4433d1");
+        mbzDataSet.setYzjddm("6fa963d2-ab46-493e-9cf6-ff87addccf52");
+        String attrValue = XmlUtil.getAttrValueByDataSet(document, mbzDataSet);
 
 
 //        String id = rootElement.attribute("id").getValue();
-        System.out.println(elements.size());
+//        System.out.println(elements.size());
         System.out.println(attrValue);
 
 
