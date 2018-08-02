@@ -137,6 +137,9 @@ public class XmlUtil {
         String yzjddm = mbzDataSet.getYzjddm();
         Element rootElement = document.getRootElement();
         Element dtjddmElement = XmlUtil.getElementById(rootElement, dtjddm);
+        if(dtjddmElement==null){
+            return null;
+        }
         if (!StringUtil.isEmptyOrNull(yzjddm)) {
             Element qrmbdmElement = XmlUtil.getElementById(dtjddmElement, qrmbdm);
             Element qrdxdmElement = XmlUtil.getElementById(qrmbdmElement, qrdxdm);
