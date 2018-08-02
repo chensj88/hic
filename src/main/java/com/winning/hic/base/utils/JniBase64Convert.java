@@ -1,6 +1,7 @@
 package com.winning.hic.base.utils;
 
 import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.ComThread;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
 
@@ -19,6 +20,7 @@ public class JniBase64Convert {
             if(dotnetCom1 != null) {
                 dotnetCom1.safeRelease();
             }
+            ComThread.Release();
         }
         return decodeEmrXml;
     }
@@ -36,6 +38,7 @@ public class JniBase64Convert {
             if(dotnetCom1 != null) {
                 dotnetCom1.safeRelease();
             }
+            ComThread.Release();
         }
         return encodeEmrXml;
     }
