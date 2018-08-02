@@ -10,7 +10,7 @@ public class JniBase64Convert {
         ActiveXComponent dotnetCom1 = null;
         String decodeEmrXml = null;
         try {
-            dotnetCom1 = new ActiveXComponent("Winning.Emr.Hlht.Utils.Base64Utils");
+            dotnetCom1 = new ActiveXComponent("Wining.Emr.Hlht.Hic.Base64Utils.ConvertUtils");
             Variant var = Dispatch.call(dotnetCom1, "UnzipEmrXml",blnr);
             decodeEmrXml = var.toString(); //返回值
         } catch (Exception ex) {
@@ -27,7 +27,7 @@ public class JniBase64Convert {
         ActiveXComponent dotnetCom1 = null;
         String encodeEmrXml = null;
         try {
-            dotnetCom1 = new ActiveXComponent("Winning.Emr.Hlht.Utils.Base64Utils");
+            dotnetCom1 = new ActiveXComponent("Wining.Emr.Hlht.Hic.Base64Utils.ConvertUtils");
             Variant var = Dispatch.call(dotnetCom1, "ZipEmrXml",blnr);
             encodeEmrXml = var.toString(); //返回值
         } catch (Exception ex) {
