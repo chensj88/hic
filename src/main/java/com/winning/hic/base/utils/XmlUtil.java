@@ -123,6 +123,10 @@ public class XmlUtil {
      * @return
      */
     public static String getAttrValueByDataSet(Document document, MbzDataSet mbzDataSet) {
+        if (document == null || mbzDataSet == null) {
+            logger.warn("The parameter is null!");
+            return null;
+        }
         //文件结构id
         String dtjddm = mbzDataSet.getDtjddm();
         //基础模板id
