@@ -136,8 +136,11 @@ public class XmlUtil {
         //原子节点id
         String yzjddm = mbzDataSet.getYzjddm();
         Element rootElement = document.getRootElement();
+        if (StringUtil.isEmptyOrNull(dtjddm)) {
+            return null;
+        }
         Element dtjddmElement = XmlUtil.getElementById(rootElement, dtjddm);
-        if(dtjddmElement==null){
+        if (dtjddmElement == null) {
             return null;
         }
         if (!StringUtil.isEmptyOrNull(yzjddm)) {
