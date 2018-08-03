@@ -143,23 +143,6 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-        <!--jna -->
-        <!--<dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna-platform</artifactId>
-        </dependency>-->
-        <!--使用本地统一版本，避免出现报错-->
-        <dependency>
-            <groupId>net.sf.jacob-project</groupId>
-            <artifactId>jacob</artifactId>
-            <version>1.14.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jacob-1.14.3.jar</systemPath>
-        </dependency>
     </dependencies>
 
     <build>
