@@ -49,4 +49,13 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
     public List<HlhtRyjlRcyjl> getHlhtRyjlRcyjlPageList(HlhtRyjlRcyjl hlhtRyjlRcyjl){
         return this.hlhtRyjlRcyjlDao.selectHlhtRyjlRcyjlPageList(hlhtRyjlRcyjl);
     }
+
+    /**
+     *  生成24小时入出院记录
+     * @param rcyjl
+     */
+    @Override
+    public HlhtRyjlRcyjl getInitHlhtRyjlRcyjlData(HlhtRyjlRcyjl rcyjl) {
+        return  this.hlhtRyjlRcyjlDao.selectInitHlhtRyjlRcyjlData(rcyjl);
+    }
 }
