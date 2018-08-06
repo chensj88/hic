@@ -258,10 +258,10 @@
                 rootPId: ""
             }
         },
-      /*  check: {
+        check: {
             enable: true,
             chkStyle:'radio',
-        },*/
+        },
         callback: {
             onClick: dictTreeOnOnClick,
             onCheck: dictTreeOnOnClick
@@ -508,6 +508,8 @@
 
         let mbzDataListSet =[];
         let index = 0;
+        console.log(dictArr);
+        console.log(templateArr);
         for(let i =0 ;i < dictArr.length ;i++){
             for(let j =0 ;j < templateArr.length ;j++){
                 if(templateArr[j].nodeId.startsWith('B')){
@@ -585,7 +587,9 @@
         let queryJson = {
             'sourceType':node.dictValue
         };
-        templateTree.checkAllNodes(false);;
+        dictTree.checkAllNodes(false);
+        dictTree.checkNode(node, true, true);
+        templateTree.checkAllNodes(false);
         $.ajax({
             type: "POST",
             async: false,

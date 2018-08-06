@@ -96,7 +96,7 @@
         <where>
             <include refid="sql-mbzDictInfo" />
         </where>
-        ORDER BY t.DICT_CODE,t.DICT_VALUE DESC
+        ORDER BY convert(int,t.DICT_VALUE) ASC
     </select>
 
     <select id="selectMbzDictInfoCount" resultType="int" parameterType="com.winning.hic.model.MbzDictInfo">
