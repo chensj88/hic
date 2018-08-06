@@ -116,6 +116,35 @@ public class RyjlRcyjController extends BaseController{
 
                             logger.info("Model:{}",rcyjl);
                         }
+                        rcyjl.setCszhzgxdm("000");
+                        rcyjl.setCszhzgxmc("000");
+                        rcyjl.setCsnrbz("0");
+                        rcyjl.setZs("0");
+                        rcyjl.setXbs("0");
+                        rcyjl.setRyqk("0");
+                        rcyjl.setZzmc("0");
+                        rcyjl.setZzms("0");
+                        rcyjl.setRzxyzdmc("0");
+                        rcyjl.setRzxzzdbm("0");
+                        rcyjl.setZlgcms("0");
+                        rcyjl.setCyqk("0");
+                        rcyjl.setCzxyzdmc("0");
+                        rcyjl.setCzxyzdbm("0");
+                        rcyjl.setCzzybmdm("0");
+                        rcyjl.setCzzybmmc("0");
+                        rcyjl.setCzzyzhdm("0");
+                        rcyjl.setCzzyzhmc("0");
+                        rcyjl.setJzysbm("0");
+                        rcyjl.setJzysqm("0");
+                        rcyjl.setZyysbm("0");
+                        rcyjl.setZyysqm("0");
+                        rcyjl.setZyysqm("0");
+                        rcyjl.setZzysbm("0");
+                        rcyjl.setZzysqm("0");
+                        rcyjl.setZrysbm("0");
+                        rcyjl.setZrysqm("0");
+                        rcyjl.setSyxh("0");
+                        rcyjl.setTjzt("0");
                         super.getFacade().getHlhtRyjlRcyjlService().createHlhtRyjlRcyjl(rcyjl);
                     }else{
 
