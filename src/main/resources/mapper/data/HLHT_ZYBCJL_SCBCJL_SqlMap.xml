@@ -208,13 +208,11 @@
     </insert>
 
     <!-- Chen,Kuai 2018-8-3 批量初始化CIS,HIS数据-->
-    <insert id="insertInitialHlhtZybcjlScbcjl" parameterType="com.winning.hic.model.HlhtZybcjlScbcjl">
-        INSERT  INTO HLHT_ZYBCJL_SCBCJL
+    <select id="selectInitialHlhtZybcjlScbcjl" resultMap="hlhtZybcjlScbcjlResult" parameterType="com.winning.hic.model.HlhtZybcjlScbcjl">
         SELECT t.QTBLJLXH as yjlxh,b.HISSYXH as jzlsh,c.PATID as patid,b.HZXM as hzxm,b.ZYHM as zyh,b.SFZH as sfzhm,c.KSDM as ksdm,c.KSMC as ksmc ,
                      c.BQDM as bqdm,c.BQMC as bqmc ,a.fjh as bfh ,NULL as bfmc ,c.CWDM as bch ,convert(datetime,getdate()) as jlrq,
                      b.BRXB as xbdm,c.SEX as xbmc,ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
-                SUBSTRING(replace(b.CSRQ,'-',''),0,8) as nly,
-               1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,convert(datetime,getdate()),1,1,1
+                SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly
 
         FROM CISDB.dbo.EMR_QTBLJLK t
         LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
@@ -223,7 +221,7 @@
         WHERE  1=1
         <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>
 
-    </insert>
+    </select>
 
 
     <update id="updateHlhtZybcjlScbcjl" parameterType="com.winning.hic.model.HlhtZybcjlScbcjl">
