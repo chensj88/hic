@@ -69,7 +69,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-1">
+                                <!--<div class="col-sm-1">
                                     <div class="input-group">
                                         <label>
                                             <input name="chosen" type="checkbox" class="ace" id="chosen"/>
@@ -84,7 +84,7 @@
                                             <span class="lbl">路径已配置</span>
                                         </label>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         <table id="table" class="table-align"></table>
                     </div>
@@ -176,6 +176,7 @@
             }
         });
     }
+
     initDictInfo();
     var $table = $('#table');
 
@@ -257,13 +258,13 @@
                 rootPId: ""
             }
         },
-        check: {
+      /*  check: {
             enable: true,
             chkStyle:'radio',
-        },
+        },*/
         callback: {
             onClick: dictTreeOnOnClick,
-            onCheck:dictTreeOnOnClick
+            onCheck: dictTreeOnOnClick
         }
     };
 
@@ -334,11 +335,11 @@
                     align: 'left',
                     width: '210px',
                     formatter:function(value,row,index){
-                        if(row.pid !== 0){
-                            return '<span>'+value+'</span> <span class="pull-right" onclick="openAddWindow(\''+row.id+'\',\''+row.recordName+'\',\''+index+'\')"><i class="glyphicon glyphicon-plus"></i> </span>';
-                        }else{
+//                        if(row.pid !== 0){
+//                            return '<span>'+value+'</span> <span class="pull-right" onclick="openAddWindow(\''+row.id+'\',\''+row.recordName+'\',\''+index+'\')"><i class="glyphicon glyphicon-plus"></i> </span>';
+//                        }else{
                             return '<span>'+value+'</span>';
-                        }
+//                        }
                     }
                 },
                 {
@@ -550,9 +551,6 @@
         let treeObj = $.fn.zTree.getZTreeObj(treeId);
         let node = treeObj.getNodeByTId(treeNode.tId);
         //没有子节点才去查询
-        console.log(treeNode);
-        console.log(treeNode.nodeId);
-        console.log(typeof treeNode.nodeId);
         if (node.children.length < 1 || node.children == null || node.children == "undefined") {
             let queryJson = {
                 'mldm':treeNode.nodeId
@@ -582,17 +580,32 @@
     function dictTreeOnOnClick(event, treeId, treeNode) {
         let treeObj = $.fn.zTree.getZTreeObj(treeId);
         let node = treeObj.getNodeByTId(treeNode.tId);
+        let tnode1 = templateTree.getNodeByParam("nodeId",node.pyCode,null);
+        $("#"+tnode1.tId+"_a").click();
         let queryJson = {
             'sourceType':node.dictValue
         };
+        templateTree.checkAllNodes(false);;
         $.ajax({
             type: "POST",
             async: false,
-            url: ctx + "mbk/childTree",
+            url: ctx + "dataList/queryConfig",
             data: queryJson,
             dataType: "json",
             success: function (data) {
-
+                if(data.status == 'SUCCESS'){
+                    let result = data.data;
+                    console.log(result);
+                    if(result.length > 0){
+                        $.each(result,function(index,value){
+                            console.log(value.modelCode +':'+value.modelName);
+                            var node1 = templateTree.getNodeByParam("nodeId",value.modelCode,null);
+                            console.log(node1);
+                            templateTree.checkNode(node1, true, true);
+                            templateTree.selectNode(node1);
+                        });
+                    }
+                }
             },
             error: function (response) {
                 result = true;
