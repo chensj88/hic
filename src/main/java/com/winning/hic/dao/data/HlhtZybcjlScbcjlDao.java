@@ -35,5 +35,5 @@ public interface HlhtZybcjlScbcjlDao {
 
     public List<HlhtZybcjlScbcjl> selectHlhtZybcjlScbcjlPageList(HlhtZybcjlScbcjl hlhtZybcjlScbcjl) throws DataAccessException;
 
-    void insertInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl t);
+    HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl t);
 }
