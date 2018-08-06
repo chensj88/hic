@@ -27,4 +27,6 @@ public interface HlhtZybcjlScbcjlService {
     public List<HlhtZybcjlScbcjl> getHlhtZybcjlScbcjlList(HlhtZybcjlScbcjl hlhtZybcjlScbcjl);
 
     public List<HlhtZybcjlScbcjl> getHlhtZybcjlScbcjlPageList(HlhtZybcjlScbcjl hlhtZybcjlScbcjl);
+
+    void createInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl entity);
 }
