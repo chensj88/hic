@@ -6,9 +6,7 @@ import com.winning.hic.model.MbzDataListSet;
 import com.winning.hic.model.MbzDataSet;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +39,16 @@ public class MbzDataListSetController extends BaseController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constant.SUCCESS);
         result.put("data",  getFacade().getMbzDataListSetService().getMbzDataListSetModelCodeList(MbzDataListSet));
+        return result;
+    }
+
+    @ApiOperation(value = "/dataList/queryConfig",notes = "查询已配置")
+    @ApiImplicitParam(name = "dataSet",value = "查询已配置",required = true,dataType = "MbzDataSet")
+    @RequestMapping(value = "/dataList/queryConfig",method = RequestMethod.POST)
+    public Map<String, Object> queryConfig(MbzDataListSet MbzDataListSet){
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constant.SUCCESS);
+        result.put("data", getFacade().getMbzDataListSetService().getMbzDataListSetList(MbzDataListSet));
         return result;
     }
 }
