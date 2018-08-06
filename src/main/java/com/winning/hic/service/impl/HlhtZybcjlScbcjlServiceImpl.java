@@ -49,4 +49,8 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
     public List<HlhtZybcjlScbcjl> getHlhtZybcjlScbcjlPageList(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
         return this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjlPageList(hlhtZybcjlScbcjl);
     }
+
+    public void createInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl t) {
+        this.hlhtZybcjlScbcjlDao.insertInitialHlhtZybcjlScbcjl(t);
+    }
 }
