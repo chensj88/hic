@@ -23,7 +23,7 @@ public class HlhtRyjlJbxxServiceImpl implements  HlhtRyjlJbxxService {
     private HlhtRyjlJbxxDao hlhtRyjlJbxxDao;
 
     public int createHlhtRyjlJbxx(HlhtRyjlJbxx hlhtRyjlJbxx){
-        return this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
+         return this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
     }
 
     public int modifyHlhtRyjlJbxx(HlhtRyjlJbxx hlhtRyjlJbxx){
@@ -48,5 +48,10 @@ public class HlhtRyjlJbxxServiceImpl implements  HlhtRyjlJbxxService {
 
     public List<HlhtRyjlJbxx> getHlhtRyjlJbxxPageList(HlhtRyjlJbxx hlhtRyjlJbxx){
         return this.hlhtRyjlJbxxDao.selectHlhtRyjlJbxxPageList(hlhtRyjlJbxx);
+    }
+
+    @Override
+    public List<HlhtRyjlJbxx> getHlhtRyjlJbxxListFromBaseData() {
+        return this.hlhtRyjlJbxxDao.getHlhtRyjlJbxxListFromBaseData();
     }
 }
