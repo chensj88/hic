@@ -227,6 +227,22 @@
             $('#coniframe').attr('src',ctx+src);
         });
 
+        $('#sidebar-collapse').on('click',function (a,b,c,d) {
+            console.log(a);
+            console.log(a.target.className);
+            console.log(a.toElement.className);
+            console.log(d);
+            var targetName = a.target.className;
+            var iframeWidth = $('#coniframe').attr('width');
+            var iframeWidthNum = iframeWidth.substring(0,iframeWidth.lastIndexOf("px"));
+            iframeWidth = parseInt(iframeWidthNum);
+            console.log($('#coniframe').attr('width'));
+            if(targetName === 'icon-double-angle-right'){
+                $('#coniframe').attr('width',(iframeWidth+140)+'px');
+            }else{
+                $('#coniframe').attr('width',(iframeWidth-140)+'px');
+            }
+        })
     })
 </script>
 </body>
