@@ -1,122 +1,64 @@
-package com.winning.hic.service.impl;
+package com.winning.hic.controller;
 
 import com.winning.hic.base.Constant;
 import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.ReflectUtil;
 import com.winning.hic.base.utils.StringUtil;
 import com.winning.hic.base.utils.XmlUtil;
-import com.winning.hic.controller.RyjlJbxxExtractController;
-import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
-import com.winning.hic.dao.data.HlhtZybcjlScbcjlDao;
-import com.winning.hic.dao.data.MbzDataListSetDao;
-import com.winning.hic.dao.data.MbzDataSetDao;
-import com.winning.hic.model.*;
-import com.winning.hic.service.HlhtZybcjlScbcjlService;
+import com.winning.hic.model.EmrQtbljlk;
+import com.winning.hic.model.HlhtZybcjlScbcjl;
+import com.winning.hic.model.MbzDataListSet;
+import com.winning.hic.model.MbzDataSet;
 import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+@Controller
+public class ZybcjlJjbjlController extends BaseController{
 
-/**
-* @author HLHT
-* @title HLHT_ZYBCJL_SCBCJL
-* @email Winning Health
-* @package com.winning.hic.service.impl
-* @date 2018-34-31 16:34:02
-*/
-@Service
-public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
+    private final Logger logger = LoggerFactory.getLogger(RyjlJbxxExtractController.class);
 
-    @Autowired
-    private HlhtZybcjlScbcjlDao hlhtZybcjlScbcjlDao;
-
-    @Autowired
-    private MbzDataListSetDao mbzDataListSetDao;
-    @Autowired
-    private MbzDataSetDao mbzDataSetDao;
-
-    @Autowired
-    private EmrQtbljlkDao emrQtbljlkDao;
-
-
-
-    public int createHlhtZybcjlScbcjl(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
-        return this.hlhtZybcjlScbcjlDao.insertHlhtZybcjlScbcjl(hlhtZybcjlScbcjl);
-    }
-
-    public int modifyHlhtZybcjlScbcjl(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
-        return this.hlhtZybcjlScbcjlDao.updateHlhtZybcjlScbcjl(hlhtZybcjlScbcjl);
-    }
-
-    public int removeHlhtZybcjlScbcjl(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
-        return this.hlhtZybcjlScbcjlDao.deleteHlhtZybcjlScbcjl(hlhtZybcjlScbcjl);
-    }
-
-    public HlhtZybcjlScbcjl getHlhtZybcjlScbcjl(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
-        return this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjl(hlhtZybcjlScbcjl);
-    }
-
-    public int getHlhtZybcjlScbcjlCount(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
-        return (Integer)this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjlCount(hlhtZybcjlScbcjl);
-    }
-
-    public List<HlhtZybcjlScbcjl> getHlhtZybcjlScbcjlList(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
-        return this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjlList(hlhtZybcjlScbcjl);
-    }
-
-    public List<HlhtZybcjlScbcjl> getHlhtZybcjlScbcjlPageList(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
-        return this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjlPageList(hlhtZybcjlScbcjl);
-    }
-
-    public HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl t) {
-        return this.hlhtZybcjlScbcjlDao.selectInitialHlhtZybcjlScbcjl(t);
-    }
-
-    @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlScbcjl(){
-
-        //执行过程信息记录
-        List<MbzDataCheck> mbzDataChecks = null;
-
-        MbzDataSet mbzDataSet = new MbzDataSet();
-        mbzDataSet.setSourceType(Constant.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
-        mbzDataSet.setPId(Long.parseLong(Constant.WN_ZYBCJL_SCBCJL_SOURCE_TYPE));
-        //1.获取对应的首次病程的模板ID集合
-        MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constant.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
-        List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
+    @RequestMapping("/zybcjlJjbjl/index")
+    public String index() {
+        //数据抽取
         try{
+
+            MbzDataSet mbzDataSet = new MbzDataSet();
+            mbzDataSet.setSourceType(Constant.WN_ZYBCJL_JJBJL_SOURCE_TYPE);
+            mbzDataSet.setPId(Long.parseLong(Constant.WN_ZYBCJL_JJBJL_SOURCE_TYPE));
+            //1.获取对应的首次病程的模板ID集合
+            MbzDataListSet mbzDataListSet = new MbzDataListSet();
+            mbzDataListSet.setSourceType(Constant.WN_ZYBCJL_JJBJL_SOURCE_TYPE);
+            List<MbzDataListSet> dataListSets = getFacade().getMbzDataListSetService().getMbzDataListSetList(mbzDataListSet);
             for(MbzDataListSet dataListSet :dataListSets){
                 //2.根据首次病程去找到对应的病人病历
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
-                List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
+                List<EmrQtbljlk> qtbljlkList = super.getFacade().getEmrQtbljlkService().getEmrQtbljlkList(qtbljlk);
                 if(qtbljlkList != null){
                     for(EmrQtbljlk emrQtbljlk:qtbljlkList){
                         HlhtZybcjlScbcjl scbcjl = new HlhtZybcjlScbcjl();
                         scbcjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                        scbcjl = this.getHlhtZybcjlScbcjl(scbcjl);
+                        scbcjl = super.getFacade().getHlhtZybcjlScbcjlService().getHlhtZybcjlScbcjl(scbcjl);
                         if(scbcjl ==null){ //重复判断是否已经插入
                             //2.获取病历的其他信息，获取HIS，CIS的信息
                             HlhtZybcjlScbcjl entity = new HlhtZybcjlScbcjl();
                             entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                            entity = this.selectInitialHlhtZybcjlScbcjl(entity);
+                            entity = super.getFacade().getHlhtZybcjlScbcjlService().selectInitialHlhtZybcjlScbcjl(entity);
                             StringBuffer xml= new StringBuffer();
                             xml.append(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             //3.xml文件解析 获取病历信息
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                            List<MbzDataSet> mbzDataSetList = mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
+                            List<MbzDataSet> mbzDataSetList = getFacade().getMbzDataSetService().getMbzDataSetList(mbzDataSet);
                             //获取首次病程的对象集合
                             Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlScbcjl.class);
                             for (MbzDataSet dataSet : mbzDataSetList) {
@@ -124,6 +66,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                 String pyCode = dataSet.getPyCode();
                                 String methodName = "set" + StringUtil.titleCase(pyCode);
                                 String strValue = XmlUtil.getAttrValueByDataSet(document, dataSet);
+                                logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, strValue);
                                 Object value = null;
                                 String paramType = paramTypeMap.get(pyCode);
                                 if (paramType.contains("String")) {
@@ -161,7 +104,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                     e.printStackTrace();
                                 }
                             }
-                            this.createHlhtZybcjlScbcjl(entity);
+                            super.getFacade().getHlhtZybcjlScbcjlService().createHlhtZybcjlScbcjl(entity);
                             System.out.println("scbcjl ==== "+entity.getZs()+entity.getZdyjdm());
                         }
 
@@ -170,12 +113,16 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
             }
 
-
         }catch (Exception e){
             e.printStackTrace();
         }
 
-
-        return mbzDataChecks;
+        return "/dataLoad/index";
     }
+
+
+
+
+
+
 }

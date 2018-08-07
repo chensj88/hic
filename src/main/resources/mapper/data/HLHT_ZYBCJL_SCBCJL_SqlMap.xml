@@ -70,7 +70,7 @@
         <if test="(bfh != null and bfh != '')"> and t.bfh = #{bfh} </if>
         <if test="(bfmc != null and bfmc != '')"> and t.bfmc = #{bfmc} </if>
         <if test="(bch != null and bch != '')"> and t.bch = #{bch} </if>
-        <if test="(jlrq != null and jlrq != '')"> and t.jlrq = #{jlrq} </if>
+        <if test="(jlrq != null)"> and t.jlrq = #{jlrq} </if>
         <if test="(xbdm != null and xbdm != '')"> and t.xbdm = #{xbdm} </if>
         <if test="(xbmc != null and xbmc != '')"> and t.xbmc = #{xbmc} </if>
         <if test="(nls != null and nls != '')"> and t.nls = #{nls} </if>
@@ -99,14 +99,13 @@
         <if test="(zyysqm != null and zyysqm != '')"> and t.zyysqm = #{zyysqm} </if>
         <if test="(sjysbm != null and sjysbm != '')"> and t.sjysbm = #{sjysbm} </if>
         <if test="(sjysqm != null and sjysqm != '')"> and t.sjysqm = #{sjysqm} </if>
-        <if test="(gxsj != null and gxsj != '')"> and t.gxsj = #{gxsj} </if>
+        <if test="(gxsj != null )"> and t.gxsj = #{gxsj} </if>
         <if test="(syxh != null and syxh != '')"> and t.syxh = #{syxh} </if>
         <if test="(tjzt != null and tjzt != '')"> and t.tjzt = #{tjzt} </if>
         <if test="(yxjl != null and yxjl != '')"> and t.yxjl = #{yxjl} </if>
     </sql>
 
     <insert id="insertHlhtZybcjlScbcjl" parameterType="com.winning.hic.model.HlhtZybcjlScbcjl">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
         INSERT INTO HLHT_ZYBCJL_SCBCJL
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(yjlxh != null and yjlxh != '')"> yjlxh , </if>
@@ -122,7 +121,7 @@
             <if test="(bfh != null and bfh != '')"> bfh , </if>
             <if test="(bfmc != null and bfmc != '')"> bfmc , </if>
             <if test="(bch != null and bch != '')"> bch , </if>
-            <if test="(jlrq != null and jlrq != '')"> jlrq , </if>
+            <if test="(jlrq != null )"> jlrq , </if>
             <if test="(xbdm != null and xbdm != '')"> xbdm , </if>
             <if test="(xbmc != null and xbmc != '')"> xbmc , </if>
             <if test="(nls != null and nls != '')"> nls , </if>
@@ -151,7 +150,7 @@
             <if test="(zyysqm != null and zyysqm != '')"> zyysqm , </if>
             <if test="(sjysbm != null and sjysbm != '')"> sjysbm , </if>
             <if test="(sjysqm != null and sjysqm != '')"> sjysqm , </if>
-            <if test="(gxsj != null and gxsj != '')"> gxsj , </if>
+            <if test="(gxsj != null )"> gxsj , </if>
             <if test="(syxh != null and syxh != '')"> syxh , </if>
             <if test="(tjzt != null and tjzt != '')"> tjzt , </if>
             <if test="(yxjl != null and yxjl != '')"> yxjl , </if>
@@ -171,7 +170,7 @@
             <if test="(bfh != null and bfh != '')"> #{bfh , jdbcType= VARCHAR },  </if>
             <if test="(bfmc != null and bfmc != '')"> #{bfmc , jdbcType= VARCHAR },  </if>
             <if test="(bch != null and bch != '')"> #{bch , jdbcType= VARCHAR },  </if>
-            <if test="(jlrq != null and jlrq != '')"> #{jlrq , jdbcType= TIMESTAMP },  </if>
+            <if test="(jlrq != null)"> #{jlrq , jdbcType= TIMESTAMP },  </if>
             <if test="(xbdm != null and xbdm != '')"> #{xbdm , jdbcType= VARCHAR },  </if>
             <if test="(xbmc != null and xbmc != '')"> #{xbmc , jdbcType= VARCHAR },  </if>
             <if test="(nls != null and nls != '')"> #{nls , jdbcType= NUMERIC },  </if>
@@ -200,7 +199,7 @@
             <if test="(zyysqm != null and zyysqm != '')"> #{zyysqm , jdbcType= VARCHAR },  </if>
             <if test="(sjysbm != null and sjysbm != '')"> #{sjysbm , jdbcType= VARCHAR },  </if>
             <if test="(sjysqm != null and sjysqm != '')"> #{sjysqm , jdbcType= VARCHAR },  </if>
-            <if test="(gxsj != null and gxsj != '')"> #{gxsj , jdbcType= TIMESTAMP },  </if>
+            <if test="(gxsj != null)"> #{gxsj , jdbcType= TIMESTAMP },  </if>
             <if test="(syxh != null and syxh != '')"> #{syxh , jdbcType= VARCHAR },  </if>
             <if test="(tjzt != null and tjzt != '')"> #{tjzt , jdbcType= VARCHAR },  </if>
             <if test="(yxjl != null and yxjl != '')"> #{yxjl , jdbcType= INTEGER },  </if>
@@ -212,7 +211,7 @@
         SELECT t.QTBLJLXH as yjlxh,b.HISSYXH as jzlsh,c.PATID as patid,b.HZXM as hzxm,b.ZYHM as zyh,b.SFZH as sfzhm,c.KSDM as ksdm,c.KSMC as ksmc ,
                      c.BQDM as bqdm,c.BQMC as bqmc ,a.fjh as bfh ,NULL as bfmc ,c.CWDM as bch ,convert(datetime,getdate()) as jlrq,
                      b.BRXB as xbdm,c.SEX as xbmc,ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
-                SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly
+                SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly,t.YXJL as yxjl
 
         FROM CISDB.dbo.EMR_QTBLJLK t
         LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
