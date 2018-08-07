@@ -359,8 +359,9 @@
             </trim>
         </set>
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
+            <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }   </if>
+            <if test="(yjlxh != null and yjlxh != '') and (map.pks != null and map.pks != '')">
+                and (yjlxh) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
         </where>
@@ -369,8 +370,9 @@
     <delete id="deleteHlhtRyjlRcyjl" parameterType="com.winning.hic.model.HlhtRyjlRcyjl">
         delete from  HLHT_RYJL_RCYJL
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
+            <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }   </if>
+            <if test="(yjlxh != null and yjlxh != '') and (map.pks != null and map.pks != '')">
+                and (yjlxh) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
         </where>
@@ -440,6 +442,8 @@
                     i.NAME as zylbmc,
                     b.RYRQ as ryrq,
                     CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE  b.CYRQ END as cyrq,
+                    t.QTBLJLXH as syxh,
+                    t.TJZT as tjzt,
                     t.CJSJ as gxsj,t.YXJL as yxjl
             FROM CISDB.dbo.EMR_QTBLJLK t
             LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH

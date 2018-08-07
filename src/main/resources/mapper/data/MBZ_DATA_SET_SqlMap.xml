@@ -24,7 +24,7 @@
 
     <sql id="sql-mbzDataSet">
         <if test="(id != null and id != '')"> and t.ID = #{id} </if>
-        <if test="(pId != null and pId != '')"> and t.P_ID = #{pId} </if>
+        <if test="(pId != null  )"> and t.P_ID = #{pId} </if>
         <if test="(sourceType != null and sourceType != '')"> and t.SOURCE_TYPE = #{sourceType} </if>
         <if test="(recordName != null and recordName != '')"> and t.RECORD_NAME = #{recordName} </if>
         <if test="(pyCode != null and pyCode != '')"> and t.PY_CODE = #{pyCode} </if>
@@ -38,7 +38,6 @@
     </sql>
 
     <insert id="insertMbzDataSet" parameterType="com.winning.hic.model.MbzDataSet">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
         INSERT INTO MBZ_DATA_SET
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(id != null and id != '')"> ID , </if>
@@ -136,7 +135,7 @@
     <select id="selectMbzDataSetPageList" resultMap="mbzDataSetResult" parameterType="com.winning.hic.model.MbzDataSet">
         SELECT * FROM (
         SELECT t.* ,
-        ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
+        ROW_NUMBER() OVER ( ORDER BY t.ID,t.RECORD_NAME ASC ) AS _RN
         FROM MBZ_DATA_SET t
         <where>
             <include refid="sql-mbzDataSet" />
