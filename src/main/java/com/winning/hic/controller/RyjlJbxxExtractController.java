@@ -90,7 +90,13 @@ public class RyjlJbxxExtractController extends BaseController {
                 }
             }
             logger.info("Model:{}", hlhtRyjlJbxx);
-            getFacade().getHlhtRyjlJbxxService().createHlhtRyjlJbxx(hlhtRyjlJbxx);
+            //数据重复判断
+            HlhtRyjlJbxx temp = new HlhtRyjlJbxx();
+            temp.setYjlxh(hlhtRyjlJbxx.getYjlxh());
+            temp = getFacade().getHlhtRyjlJbxxService().getHlhtRyjlJbxx(temp);
+            if (temp == null) {
+                getFacade().getHlhtRyjlJbxxService().createHlhtRyjlJbxx(hlhtRyjlJbxx);
+            }
         }
         return resultMap;
     }
