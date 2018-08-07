@@ -25,14 +25,16 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class DataLoadController extends BaseController{
+public class DataLoadController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(RyjlJbxxExtractController.class);
 
     @RequestMapping("/dataLoad/index")
     public String index() {
         //数据抽取
-        try{
+        try {
             //5.入院记录* --陈枫
+
+            List<MbzDataCheck> mbzDataChecks5 = super.getFacade().getHlhtRyjlJbxxService().interfaceHlhtRyjlJbxx();
 
             //6.首次病程记录表* --陈蒯
             List<MbzDataCheck> mbzDataCheck6 = super.getFacade().getHlhtZybcjlScbcjlService().interfaceHlhtZybcjlScbcjl();
@@ -54,8 +56,7 @@ public class DataLoadController extends BaseController{
             //10.抢救记录数据集表*  --陈蒯
 
 
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -1,6 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.dao.data.HlhtZqgzxxBwztzsDao;
+import com.winning.hic.model.EmrQtbljlk;
 import com.winning.hic.model.HlhtZqgzxxBwztzs;
 import com.winning.hic.service.HlhtZqgzxxBwztzsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,9 @@ public class HlhtZqgzxxBwztzsServiceImpl implements  HlhtZqgzxxBwztzsService {
 
     public List<HlhtZqgzxxBwztzs> getHlhtZqgzxxBwztzsPageList(HlhtZqgzxxBwztzs hlhtZqgzxxBwztzs){
         return this.hlhtZqgzxxBwztzsDao.selectHlhtZqgzxxBwztzsPageList(hlhtZqgzxxBwztzs);
+    }
+
+    public List<HlhtZqgzxxBwztzs> getHlhtZqgzxxBwztzsListFromBaseData(EmrQtbljlk emrQtbljlk) {
+        return this.hlhtZqgzxxBwztzsDao.getHlhtZqgzxxBwztzsListFromBaseData(emrQtbljlk);
     }
 }

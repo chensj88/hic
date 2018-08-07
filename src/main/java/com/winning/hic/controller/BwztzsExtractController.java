@@ -5,10 +5,7 @@ import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.ReflectUtil;
 import com.winning.hic.base.utils.StringUtil;
 import com.winning.hic.base.utils.XmlUtil;
-import com.winning.hic.model.EmrQtbljlk;
-import com.winning.hic.model.HlhtRyjlJbxx;
-import com.winning.hic.model.MbzDataListSet;
-import com.winning.hic.model.MbzDataSet;
+import com.winning.hic.model.*;
 import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,37 +22,37 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class RyjlJbxxExtractController extends BaseController {
-    private final Logger logger = LoggerFactory.getLogger(RyjlJbxxExtractController.class);
+public class BwztzsExtractController extends BaseController {
+    private final Logger logger = LoggerFactory.getLogger(BwztzsExtractController.class);
 
-    @RequestMapping("/ryjl/extract")
+    @RequestMapping("/bwztzs/extract")
     @ResponseBody
     public Map extract(String mbdm) throws IOException {
         MbzDataSet mbzDataSet = new MbzDataSet();
-        mbzDataSet.setSourceType(Constant.WN_RYJL_JBXX_SOURCE_TYPE);
-        mbzDataSet.setPId(Long.parseLong(Constant.WN_RYJL_JBXX_SOURCE_TYPE));
+        mbzDataSet.setSourceType(Constant.WN_ZQGZXX_BWZTZS_SOURCE_TYPE);
+        mbzDataSet.setPId(Long.parseLong(Constant.WN_ZQGZXX_BWZTZS_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = getFacade().getMbzDataSetService().getMbzDataSetList(mbzDataSet);
         //1.获取对应的模板ID集合
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constant.WN_RYJL_JBXX_SOURCE_TYPE);
+        mbzDataListSet.setSourceType(Constant.WN_ZQGZXX_BWZTZS_SOURCE_TYPE);
         List<MbzDataListSet> dataListSets = getFacade().getMbzDataListSetService().getMbzDataListSetList(mbzDataListSet);
         for (MbzDataListSet dataListSet : dataListSets) {
             EmrQtbljlk qtbljlk = new EmrQtbljlk();
             qtbljlk.setBldm(dataListSet.getModelCode());
             //2.根据模板代码去找到对应的病人病历
-            List<HlhtRyjlJbxx> hlhtRyjlJbxxListFromBaseData = getFacade().getHlhtRyjlJbxxService().getHlhtRyjlJbxxListFromBaseData(qtbljlk);
-            if (hlhtRyjlJbxxListFromBaseData != null) {
-                for (HlhtRyjlJbxx hlhtRyjlJbxx : hlhtRyjlJbxxListFromBaseData) {
+            List<HlhtZqgzxxBwztzs> hlhtZqgzxxBwztzsListFromBaseData = getFacade().getHlhtZqgzxxBwztzsService().getHlhtZqgzxxBwztzsListFromBaseData(qtbljlk);
+            if (hlhtZqgzxxBwztzsListFromBaseData != null) {
+                for (HlhtZqgzxxBwztzs hlhtZqgzxxBwztzs : hlhtZqgzxxBwztzsListFromBaseData) {
                     EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
-                    emrQtbljlk.setQtbljlxh(Long.parseLong(hlhtRyjlJbxx.getYjlxh()));
+                    emrQtbljlk.setQtbljlxh(Long.parseLong(hlhtZqgzxxBwztzs.getYjlxh()));
                     emrQtbljlk = getFacade().getEmrQtbljlkService().getEmrQtbljlk(emrQtbljlk);
                     //数据重复判断
-                    HlhtRyjlJbxx temp = new HlhtRyjlJbxx();
-                    temp.setYjlxh(hlhtRyjlJbxx.getYjlxh());
-                    temp = getFacade().getHlhtRyjlJbxxService().getHlhtRyjlJbxx(temp);
+                    HlhtZqgzxxBwztzs temp = new HlhtZqgzxxBwztzs();
+                    temp.setYjlxh(hlhtZqgzxxBwztzs.getYjlxh());
+                    temp = getFacade().getHlhtZqgzxxBwztzsService().getHlhtZqgzxxBwztzs(temp);
                     //3.xml文件解析 获取病历信息
                     Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                    Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtRyjlJbxx.class);
+                    Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZqgzxxBwztzs.class);
                     if (temp == null) {
                         for (MbzDataSet dataSet : mbzDataSetList) {
                             //获取属性名
@@ -93,14 +90,14 @@ public class RyjlJbxxExtractController extends BaseController {
                             //类型
                             try {
                                 if (value != null) {
-                                    ReflectUtil.setParam(hlhtRyjlJbxx, methodName, value);
+                                    ReflectUtil.setParam(hlhtZqgzxxBwztzs, methodName, value);
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
-                        logger.info("Model:{}", hlhtRyjlJbxx);
-                        getFacade().getHlhtRyjlJbxxService().createHlhtRyjlJbxx(hlhtRyjlJbxx);
+                        logger.info("Model:{}", hlhtZqgzxxBwztzs);
+                        getFacade().getHlhtZqgzxxBwztzsService().createHlhtZqgzxxBwztzs(hlhtZqgzxxBwztzs);
                     }
                 }
             }

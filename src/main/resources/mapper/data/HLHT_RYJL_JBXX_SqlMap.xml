@@ -613,7 +613,7 @@
     </select>
 
     <select id="selectHlhtRyjlJbxxPageList" resultMap="hlhtRyjlJbxxResult"
-            parameterType="com.winning.hic.model.HlhtRyjlJbxx">
+            parameterType="com.winning.hic.model.EmrQtbljlk">
         SELECT * FROM
         SELECT t.* ,
         ROW_NUMBER OVER ORDER BY DESC AS _RN
@@ -626,7 +626,8 @@
     </select>
 
     <!--Evol 2018年8月6日15:29:27 在数据库中抽取所有入院记录病例数据-->
-    <select id="getHlhtRyjlJbxxListFromBaseData" resultMap="hlhtRyjlJbxxResult">
+    <select id="getHlhtRyjlJbxxListFromBaseData" resultMap="hlhtRyjlJbxxResult"
+            parameterType="com.winning.hic.model.HlhtRyjlJbxx">
            SELECT
                     q.QTBLJLXH AS yjlxh,
                     c.SYXH AS jzlsh,
@@ -637,7 +638,7 @@
                     c.KSDM AS ksdm,
                     c.KSMC AS ksmc,
                     m.fjh AS bfh,
-                    ISNULL(b.RYCW, '') AS bch,
+                    ISNULL(b.RYCW, 'N') AS bch,
                     b.HZXM AS hzxm,
                     b.SFZH AS sfzhm,
                     b.BRXB AS xbdm,
@@ -659,7 +660,8 @@
                                 YEAR (GETDATE()) - YEAR (CONVERT(datetime, b.CSRQ))
                             )
                         ),
-                        ''''
+
+                        'N'
                     ) AS nls,
                     SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
                     b.MZDM AS mz,
@@ -689,7 +691,7 @@
                             WHERE
                                 b.SSDM = e.DQDM
                         ),
-                        ''
+                        'N'
                     ) AS dzsf,
                     ISNULL(
                         (
@@ -700,7 +702,7 @@
                             WHERE
                                 b.QXDM = e.DQDM
                         ),
-                        ''
+                        'N'
                     ) AS dzsq,
                     ISNULL(
                         (
@@ -711,7 +713,7 @@
                             WHERE
                                 b.QXDM = e.DQDM
                         ),
-                        ''
+                        'N'
                     ) AS dzx,
                     ISNULL(
                         (
@@ -722,15 +724,15 @@
                             WHERE
                                 b.QXDM = e.DQDM
                         ),
-                        ''
+                        'N'
                     ) AS dzxz,
-                    '' AS dzc,
-                    '' AS dzmphm,
+                    'N' AS dzc,
+                    'N' AS dzmphm,
                     b.ZYDM AS zylbdm,
                     p.NAME AS zylbmc,
                     b.RYRQ AS ryrq,
-                    '' AS syxh,
-                    '' AS tjzt,
+                    'N' AS syxh,
+                    'N' AS tjzt,
                     q.YXJL as yxjl
 
                 FROM
@@ -743,6 +745,7 @@
                     m.id = b.RYCW
                     AND m.bqdm = b.RYBQ
                 )
+                WHERE q.BLDM=#{bldm}
             
     </select>
 
