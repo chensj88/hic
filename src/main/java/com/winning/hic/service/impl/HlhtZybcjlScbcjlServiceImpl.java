@@ -31,9 +31,9 @@ import java.util.Map;
 /**
 * @author HLHT
 * @title HLHT_ZYBCJL_SCBCJL
-* @email Winning Health
+* @email Chen Kuai
 * @package com.winning.hic.service.impl
-* @date 2018-34-31 16:34:02
+* @date 2018-8-1 16:34:02
 */
 @Service
 public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {

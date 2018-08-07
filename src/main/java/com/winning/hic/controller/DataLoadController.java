@@ -50,10 +50,13 @@ public class DataLoadController extends BaseController {
             //7.日常病程记录数据集表*  --陈枫
 
             //8.交接班记录数据集表(医院一般不在病历里面写交接班记录，CIS有一个交接班的功能)*    --陈蒯
+            List<MbzDataCheck> mbzDataChecks8 = super.getFacade().getHlhtZybcjlJjbjlService().interfaceHlhtZybcjlJjbjl();
 
             //9.--阶段小结数据集表*   --陈蒯
+            List<MbzDataCheck> mbzDataChecks9 = super.getFacade().getHlhtZybcjlJdxjService().interfaceHlhtZybcjlJdxj();
 
             //10.抢救记录数据集表*  --陈蒯
+            List<MbzDataCheck> mbzDataChecks10 = super.getFacade().getHlhtZybcjlQjjlService().interfaceHlhtZybcjlQjjl();
 
 
         } catch (Exception e) {
