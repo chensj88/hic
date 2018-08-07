@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
-
+import java.sql.Timestamp;
 
 
 /**
@@ -649,7 +649,7 @@ public class HlhtRyjlJbxx extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date gxsj;
+    private Timestamp gxsj;
     /**
      * 字段名：syxh
      * 备注: 
@@ -2550,7 +2550,7 @@ public class HlhtRyjlJbxx extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getGxsj(){
+   public Timestamp getGxsj(){
 
         return gxsj;
    }
@@ -2560,7 +2560,7 @@ public class HlhtRyjlJbxx extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setGxsj(Date gxsj){
+   public void setGxsj(Timestamp gxsj){
         this.gxsj = gxsj;
    }
    /**

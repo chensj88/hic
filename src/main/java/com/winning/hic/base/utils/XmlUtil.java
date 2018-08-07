@@ -105,10 +105,10 @@ public class XmlUtil {
                 if (id != null && elementID.equals(id)) {
                     return element;
                 }
-//                element = getElementById(element, elementID);
-//                if (element != null) {
-//                    return element;
-//                }
+                element = getElementById(element, elementID);
+                if (element != null) {
+                    return element;
+                }
             }
         }
         return null;

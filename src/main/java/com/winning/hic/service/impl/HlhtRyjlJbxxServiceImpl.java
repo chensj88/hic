@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -127,6 +128,7 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                             logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, strValue);
                             Object value = null;
                             String paramType = paramTypeMap.get(pyCode);
+                            System.out.println(">>>>>>>>>>>>>>"+paramType);
                             if (paramType.contains("String")) {
                                 value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue.split("`")[2];
                             } else if (paramType.contains("Short")) {
@@ -142,6 +144,17 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                                     Date date = StringUtil.isEmptyOrNull(dateStr) ? new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01") : sdf.parse(dateStr);
                                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                                     value = sqlDate;
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (paramType.contains("Timestamp")) {
+                                String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
+                                String pattern = "yyyy-MM-dd,HH:mm";
+                                SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+                                try {
+                                    Date date = StringUtil.isEmptyOrNull(dateStr) ? new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01") : sdf.parse(dateStr);
+                                    Timestamp dateTime = new Timestamp(date.getTime());
+                                    value = dateTime;
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
