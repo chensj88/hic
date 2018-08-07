@@ -50,7 +50,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
         return this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjlPageList(hlhtZybcjlScbcjl);
     }
 
-    public void createInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl t) {
-        this.hlhtZybcjlScbcjlDao.insertInitialHlhtZybcjlScbcjl(t);
+    public HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl t) {
+        return this.hlhtZybcjlScbcjlDao.selectInitialHlhtZybcjlScbcjl(t);
     }
 }

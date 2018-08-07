@@ -27,4 +27,10 @@ public interface HlhtRyjlRcyjlService {
     public List<HlhtRyjlRcyjl> getHlhtRyjlRcyjlList(HlhtRyjlRcyjl hlhtRyjlRcyjl);
 
     public List<HlhtRyjlRcyjl> getHlhtRyjlRcyjlPageList(HlhtRyjlRcyjl hlhtRyjlRcyjl);
+
+    /**
+     * 生成24小时入出院记录
+     * @param rcyjl
+     */
+    public HlhtRyjlRcyjl getInitHlhtRyjlRcyjlData(HlhtRyjlRcyjl rcyjl);
 }

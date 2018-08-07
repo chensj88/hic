@@ -38,7 +38,7 @@ public class DataLoadController extends BaseController{
             mbzDataSet.setPId(Long.parseLong(Constant.WN_ZYBCJL_SCBCJL_SOURCE_TYPE));
             //1.获取对应的首次病程的模板ID集合
             MbzDataListSet mbzDataListSet = new MbzDataListSet();
-            mbzDataListSet.setSourceType("6");
+            mbzDataListSet.setSourceType(Constant.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
             List<MbzDataListSet> dataListSets = getFacade().getMbzDataListSetService().getMbzDataListSetList(mbzDataListSet);
             for(MbzDataListSet dataListSet :dataListSets){
                 //2.根据首次病程去找到对应的病人病历
@@ -54,7 +54,7 @@ public class DataLoadController extends BaseController{
                             //2.获取病历的其他信息，获取HIS，CIS的信息
                             HlhtZybcjlScbcjl entity = new HlhtZybcjlScbcjl();
                             entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                            super.getFacade().getHlhtZybcjlScbcjlService().createInitialHlhtZybcjlScbcjl(entity);
+                            entity = super.getFacade().getHlhtZybcjlScbcjlService().selectInitialHlhtZybcjlScbcjl(entity);
                             StringBuffer xml= new StringBuffer();
                             xml.append(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             //3.xml文件解析 获取病历信息
@@ -99,13 +99,13 @@ public class DataLoadController extends BaseController{
                                 //类型
                                 try {
                                     if(value!=null){
-                                        ReflectUtil.setParam(scbcjl, methodName, value);
+                                        ReflectUtil.setParam(entity, methodName, value);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
-                            System.out.println("scbcjl ==== "+scbcjl);
+                            System.out.println("scbcjl ==== "+entity.getZs()+entity.getZdyjdm());
                         }
 
                     }
