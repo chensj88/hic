@@ -53,8 +53,10 @@ public class DataLoadController extends BaseController {
             List<MbzDataCheck> mbzDataChecks8 = super.getFacade().getHlhtZybcjlJjbjlService().interfaceHlhtZybcjlJjbjl();
 
             //9.--阶段小结数据集表*   --陈蒯
+            List<MbzDataCheck> mbzDataChecks9 = super.getFacade().getHlhtZybcjlJdxjService().interfaceHlhtZybcjlJdxj();
 
             //10.抢救记录数据集表*  --陈蒯
+            List<MbzDataCheck> mbzDataChecks10 = super.getFacade().getHlhtZybcjlQjjlService().interfaceHlhtZybcjlQjjl();
 
 
         } catch (Exception e) {
