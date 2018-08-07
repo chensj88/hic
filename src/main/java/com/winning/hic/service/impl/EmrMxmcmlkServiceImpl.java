@@ -1,6 +1,8 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.dao.data.MbzDictInfoDao;
 import com.winning.hic.model.MBNoteTree;
+import com.winning.hic.service.MbzDictInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,6 +28,8 @@ public class EmrMxmcmlkServiceImpl implements  EmrMxmcmlkService {
 
     @Autowired
     private EmrMxmcmlkDao emrMxmcmlkDao;
+    @Autowired
+    private MbzDictInfoDao mbzDictInfoDao;
 
     public int createEmrMxmcmlk(EmrMxmcmlk emrMxmcmlk){
         return this.emrMxmcmlkDao.insertEmrMxmcmlk(emrMxmcmlk);
@@ -57,7 +61,10 @@ public class EmrMxmcmlkServiceImpl implements  EmrMxmcmlkService {
 
     @Override
     public List<MBNoteTree> createEmrMxmcmlkTree() {
-        List<EmrMxmcmlk> parentList = emrMxmcmlkDao.selectEmrMxmcmlkParentList();
+        List<String> mbCodeList = mbzDictInfoDao.selectMbzDictInfoListForMB();
+        EmrMxmcmlk emrMxmcmlk = new EmrMxmcmlk();
+        emrMxmcmlk.getMap().put("mbCodeList",mbCodeList);
+        List<EmrMxmcmlk> parentList = emrMxmcmlkDao.selectEmrMxmcmlkParentList(emrMxmcmlk);
         List<MBNoteTree> mbNoteTrees = new ArrayList<>();
         for (EmrMxmcmlk mxmcmlk1 : parentList) {
             MBNoteTree tree = mxmcmlk1.getMBNoteTree();

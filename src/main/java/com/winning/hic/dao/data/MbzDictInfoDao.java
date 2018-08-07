@@ -35,4 +35,6 @@ public interface MbzDictInfoDao {
     public List<MbzDictInfo> selectMbzDictInfoList(MbzDictInfo mbzDictInfo) throws DataAccessException;
 
     public List<MbzDictInfo> selectMbzDictInfoPageList(MbzDictInfo mbzDictInfo) throws DataAccessException;
+
+    public List<String> selectMbzDictInfoListForMB();
 }
