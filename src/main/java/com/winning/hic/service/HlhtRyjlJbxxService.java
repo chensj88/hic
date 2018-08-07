@@ -1,6 +1,8 @@
 package com.winning.hic.service;
 
+import com.winning.hic.model.EmrQtbljlk;
 import com.winning.hic.model.HlhtRyjlJbxx;
+import com.winning.hic.model.MbzDataCheck;
 
 import java.util.List;
 
@@ -28,6 +30,9 @@ public interface HlhtRyjlJbxxService {
 
     public List<HlhtRyjlJbxx> getHlhtRyjlJbxxPageList(HlhtRyjlJbxx hlhtRyjlJbxx);
 
-    public List<HlhtRyjlJbxx> getHlhtRyjlJbxxListFromBaseData();
+    public List<HlhtRyjlJbxx> getHlhtRyjlJbxxListFromBaseData(EmrQtbljlk emrQtbljlk);
+
+    List<MbzDataCheck> interfaceHlhtRyjlJbxx();
+
 
 }

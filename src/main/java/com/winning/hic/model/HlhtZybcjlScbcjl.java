@@ -1,7 +1,7 @@
 package com.winning.hic.model;
 
-import java.util.Date; 
-import java.util.Date; 
+import java.sql.Date;
+import java.sql.Date;
 import java.io.Serializable; 
 
 import org.apache.ibatis.type.Alias; 

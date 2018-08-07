@@ -3,6 +3,7 @@ package com.winning.hic.dao.data;
 
 import java.util.List;
 
+import com.winning.hic.model.EmrQtbljlk;
 import org.springframework.dao.DataAccessException;
 
 import com.winning.hic.model.HlhtRyjlJbxx;
@@ -34,6 +35,6 @@ public interface HlhtRyjlJbxxDao {
 
     public List<HlhtRyjlJbxx> selectHlhtRyjlJbxxPageList(HlhtRyjlJbxx hlhtRyjlJbxx) throws DataAccessException;
 
-    public List<HlhtRyjlJbxx> getHlhtRyjlJbxxListFromBaseData() throws DataAccessException;
+    public List<HlhtRyjlJbxx> getHlhtRyjlJbxxListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
 
 }
