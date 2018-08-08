@@ -117,6 +117,10 @@
         <!-- order by t.DICT_CODE,t.DICT_VALUE asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
+    <!--获取模板代码信息-->
+    <select id="selectMbzDictInfoListForMB" resultType="java.lang.String" >
+          SELECT DISTINCT PY_CODE FROM  MBZ_DICT_INFO WHERE DICT_CODE='platformTableName'
+    </select>
 
 
 </mapper>

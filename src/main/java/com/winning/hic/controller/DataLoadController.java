@@ -33,7 +33,6 @@ public class DataLoadController extends BaseController {
         //数据抽取
         try {
             //5.入院记录* --陈枫
-
             List<MbzDataCheck> mbzDataChecks5 = super.getFacade().getHlhtRyjlJbxxService().interfaceHlhtRyjlJbxx();
 
             //6.首次病程记录表* --陈蒯

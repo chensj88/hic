@@ -51,67 +51,22 @@
                             基础模板匹配
                         </a>
                     </li>
-
-                    <li>
-                        <a data-toggle="tab" href="#template">
-                           数据集配置
-                        </a>
-                    </li>
                 </ul>
                 <div class="tab-content" id="tabContent">
                     <div id="config" class="tab-pane in active">
-                            <div class="row" id="toolbar">
-                                <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">数据集</span>
-                                        <select class="form-control" name="dataSet" id="dataSet">
-                                            <option value="">-----全部-----</option>
-                                        </select>
-                                    </div>
+                        <div class="row" id="toolbar">
+                            <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">数据集</span>
+                                    <select class="form-control" name="dataSet" id="dataSet">
+                                        <option value="">-----全部-----</option>
+                                    </select>
                                 </div>
-                                <!--<div class="col-sm-1">
-                                    <div class="input-group">
-                                        <label>
-                                            <input name="chosen" type="checkbox" class="ace" id="chosen"/>
-                                            <span class="lbl">必选</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                    <div class="input-group">
-                                        <label>
-                                            <input name="configPath" type="checkbox" class="ace" id="configPath"/>
-                                            <span class="lbl">路径已配置</span>
-                                        </label>
-                                    </div>
-                                </div>-->
-                            </div>
-                        <table id="table" class="table-align"></table>
-                    </div>
-                    <div id="template" class="tab-pane">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
-                                    <p>互利互通数据集</p>
-                                    <div id="dataTree" class="ztree ">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
-                                    <div style="line-height: 400px;margin: 0px 120px;">
-                                        <button id="addOrModify" type="button" class="btn btn-primary" style="width: 100px;">保存</button>
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 tree-container">
-                                    <p>病历导航树</p>
-                                    <div id="templateTree" class="ztree ">
-                                    </div>
-                                </div>
-                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
                             </div>
                         </div>
+                        <table id="table" class="table-align"></table>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -181,139 +136,18 @@
     var $table = $('#table');
     var $subTable ;
 
-    var templateSetting = {
-        async: {
-            enable: true,
-            url:ctx + "/mbk/tree",
-            autoParam:["nodeId"],
-            dataType:'json',
-            dataFilter: filter
-        },
-        checkable: true,
-        showIcon: true,
-        showLine: true,
-        view: {
-            dblClickExpand: false,
-            showLine: true,
-            selectedMulti: false,
-            showIcon:true
-        },
-        expandSpeed: "",
-        data: {
-            keep:{
-                parent:true,
 
-            },
-            key:{
-                name:'nodeName',
-                isParent: "parent",
-                isHidden: "hidden"
-            },
-            simpleData: {
-                enable: true,
-                idKey: "nodeId",
-                pIdKey: "nodePid",
-                rootPId: ""
-            }
-        },
-        check: {
-            enable: true,
-            chkboxType: { "Y" : "ps", "N" : "ps" }
-        },
-        callback: {
-            onClick: zTreeOnOnClick,
-            onExpand:zTreeOnOnClick
-        }
-    };
 
-    var dictSetting = {
-        async: {
-            enable: true,
-            url:ctx + "/dict/tree",
-            autoParam:["dictCode","dictValue"],
-            dataType:'json',
-            dataFilter: dictFilter
-        },
-        checkable: true,
-        showIcon: true,
-        showLine: true,
-        view: {
-            dblClickExpand: false,
-            showLine: true,
-            selectedMulti: false,
-            showIcon:false
-        },
-        expandSpeed: "",
-        data: {
-            keep:{
-                parent:false
-            },
-            key:{
-                name:'dictLabel',
-                isParent: "parent"
-            },
-            simpleData: {
-                enable: true,
-                idKey: "dictValue",
-                pIdKey: "",
-                rootPId: ""
-            }
-        },
-        check: {
-            enable: true,
-            chkStyle:'radio',
-        },
-        callback: {
-            onClick: dictTreeOnOnClick,
-            onCheck: dictTreeOnOnClick
-        }
-    };
-
-    dictTree = $.fn.zTree.init($("#dataTree"), dictSetting);
-
-    templateTree = $.fn.zTree.init($("#templateTree"), templateSetting);
-
-    /**
-     * 字典表数据转换
-     * @param treeId
-     * @param parentNode
-     * @param childNodes
-     * @returns {null}
-     */
-    function dictFilter(treeId, parentNode, childNodes) {
-        if (!childNodes) return null;
-        var result = childNodes.data;
-        for (var i=0, l=result.length; i<l; i++) {
-            result[i].dictLabel = result[i].dictLabel.replace(/\.n/g, '.');
-        }
-        return result;
-    }
-
-    /**
-     * 模板数据转换
-     * @param treeId
-     * @param parentNode
-     * @param childNodes
-     * @returns {null}
-     */
-    function filter(treeId, parentNode, childNodes) {
-        if (!childNodes) return null;
-        var result = childNodes.data;
-        for (var i=0, l=result.length; i<l; i++) {
-            result[i].nodeName = result[i].nodeName.replace(/\.n/g, '.');
-        }
-        return result;
-    }
 
     function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm) {
         var data = {row :{
-            pid:parseInt(pId),
-            sourceType:sourceType,
-            dataType:dataType,
-            dtjddm:dtjddm,
-            recordName:recordName,
-            status:1
-        },
+             pid:parseInt(pId),
+             sourceType:sourceType,
+             dataType:dataType,
+             dtjddm:dtjddm,
+             recordName:recordName,
+             status:1
+         },
             index:index+10000};
         console.log(data);
         $subTable.bootstrapTable('insertRow',data);
@@ -500,7 +334,7 @@
                         align: 'left',
                         width: '210px',
                         formatter:function(value,row,index){
-                            return `<span>${value}</span> <span class="pull-right" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}')"><i class="glyphicon glyphicon-plus"></i> </span>`;
+                          return `<span>${value}</span> <span class="pull-right" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}')"><i class="glyphicon glyphicon-plus"></i> </span>`;
                         }
                     },
                     {
@@ -641,6 +475,7 @@
         function searchListInfo(){
             $table.bootstrapTable('refresh', { pageNumber: 1 });
         }
+
         $('#dataSet').on('change',searchListInfo);
         $('#chosen').on('change',searchListInfo);
         $('#configPath').on('change',searchListInfo);

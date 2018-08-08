@@ -125,11 +125,14 @@
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
-    <select id="selectEmrMxmcmlkParentList" resultMap="emrMxmcmlkResult" >
+    <select id="selectEmrMxmcmlkParentList" resultMap="emrMxmcmlkResult" parameterType="com.winning.hic.model.EmrMxmcmlk" >
         SELECT t.*, 1 NUM FROM EMR_MXMCMLK t
-        where  t.MLDM IN (
-        'B-1080','B-1090','B-A507','B-H101','B-1020','B-42','B-43','B-82','B-65','B-51','B-7601','B-9110','B-9121','B-H155','B-H150','B-98201010','B-98202010','B-A518','B-A5','B-93','B-B2','B-8801','B-48','B-A512','B-A519','B-6210','B-84','B-H105','B-A532','B-5396','B+10','B-1040','B-C2','B-9385','B-9385'
-        )
+        <where>
+            <if test="(mldm !=null or mldm!='') and (map.mbCodeList != null and map.mbCodeList.size > 0 )">
+                and (MLDM) in
+                <foreach item="item" collection="map.mbCodeList" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
         ORDER BY t.MLDM ASC
     </select>
 

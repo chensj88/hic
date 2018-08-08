@@ -36,7 +36,7 @@ public interface EmrMxmcmlkDao {
 
     public List<EmrMxmcmlk> selectEmrMxmcmlkPageList(EmrMxmcmlk emrMxmcmlk) throws DataAccessException;
 
-    List<EmrMxmcmlk> selectEmrMxmcmlkParentList();
+    List<EmrMxmcmlk> selectEmrMxmcmlkParentList(EmrMxmcmlk emrMxmcmlk);
 
     List<EmrMxmcmlk> selectEmrMxmcmlkFirstChildList(EmrMxmcmlk mxmcmlk);
 }
