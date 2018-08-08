@@ -1,6 +1,6 @@
 package com.winning.hic.controller;
 
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.model.MbzDictInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +28,7 @@ public class CommonQueryController extends BaseController {
     @PostMapping(value = "/common/dict")
     public Map<String, Object> getDictListByDictCode(MbzDictInfo dictInfo){
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", Constant.SUCCESS);
+        result.put("status", Constants.SUCCESS);
         result.put("data", getFacade().getMbzDictInfoService().getMbzDictInfoList(dictInfo));
         return result;
     }

@@ -1,6 +1,6 @@
 package com.winning.hic.controller;
 
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.ReflectUtil;
 import com.winning.hic.base.utils.StringUtil;

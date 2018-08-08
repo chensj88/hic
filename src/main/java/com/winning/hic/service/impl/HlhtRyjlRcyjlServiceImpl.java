@@ -1,6 +1,6 @@
 package com.winning.hic.service.impl;
 
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.ReflectUtil;
 import com.winning.hic.base.utils.StringUtil;
@@ -92,11 +92,11 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
     public List<HlhtRyjlRcyjl> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException {
         //配置接口表字段配置信息
         MbzDataSet mbzDataSet = new MbzDataSet();
-        mbzDataSet.setSourceType(Constant.WN_RYJL_RCYJL_SOURCE_TYPE);
-        mbzDataSet.setPId(Long.parseLong(Constant.WN_RYJL_RCYJL_SOURCE_TYPE));
+        mbzDataSet.setSourceType(Constants.WN_RYJL_RCYJL_SOURCE_TYPE);
+        mbzDataSet.setPId(Long.parseLong(Constants.WN_RYJL_RCYJL_SOURCE_TYPE));
         //配置并加载对应的出入院模板集合
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constant.WN_RYJL_RCYJL_SOURCE_TYPE);
+        mbzDataListSet.setSourceType(Constants.WN_RYJL_RCYJL_SOURCE_TYPE);
         List<MbzDataListSet> dataListSets = mbzDataListSetService.getMbzDataListSetList(mbzDataListSet);
         //获取模板集合，遍历
         for(MbzDataListSet dataListSet :dataListSets){

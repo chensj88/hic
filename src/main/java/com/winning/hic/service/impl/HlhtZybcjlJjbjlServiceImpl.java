@@ -1,6 +1,6 @@
 package com.winning.hic.service.impl;
 
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.ReflectUtil;
 import com.winning.hic.base.utils.StringUtil;
@@ -81,11 +81,11 @@ public class HlhtZybcjlJjbjlServiceImpl implements  HlhtZybcjlJjbjlService {
         try{
 
             MbzDataSet mbzDataSet = new MbzDataSet();
-            mbzDataSet.setSourceType(Constant.WN_ZYBCJL_JJBJL_SOURCE_TYPE);
-            mbzDataSet.setPId(Long.parseLong(Constant.WN_ZYBCJL_JJBJL_SOURCE_TYPE));
+            mbzDataSet.setSourceType(Constants.WN_ZYBCJL_JJBJL_SOURCE_TYPE);
+            mbzDataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_JJBJL_SOURCE_TYPE));
             //1.获取对应的首次病程的模板ID集合
             MbzDataListSet mbzDataListSet = new MbzDataListSet();
-            mbzDataListSet.setSourceType(Constant.WN_ZYBCJL_JJBJL_SOURCE_TYPE);
+            mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_JJBJL_SOURCE_TYPE);
             List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
             for(MbzDataListSet dataListSet :dataListSets){
                 //2.根据首次病程去找到对应的病人病历

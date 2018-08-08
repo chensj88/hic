@@ -1,7 +1,7 @@
 package com.winning.hic.mybatis;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.ConfigUtils;
 import com.winning.hic.model.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,7 +28,7 @@ import java.util.Properties;
  * Time: 8:55
  */
 @Configuration
-@MapperScan(basePackages = Constant.CISDB_PACKAGE, sqlSessionFactoryRef = "cisdbSqlSessionFactory")
+@MapperScan(basePackages = Constants.CISDB_PACKAGE, sqlSessionFactoryRef = "cisdbSqlSessionFactory")
 public class CisdbMyBatisConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(CisdbMyBatisConfig.class);
@@ -40,7 +40,7 @@ public class CisdbMyBatisConfig {
         datasource.setUrl(env.getCISDBURL());
         datasource.setUsername(env.getCisdbUsername());
         datasource.setPassword(env.getCisdbPassword());
-        datasource.setDriverClassName(Constant.DRIVE_CLASS_NAME);
+        datasource.setDriverClassName(Constants.DRIVE_CLASS_NAME);
         datasource.setInitialSize(5);
         datasource.setMinIdle(5);
         datasource.setMaxActive(20);
@@ -78,7 +78,7 @@ public class CisdbMyBatisConfig {
         bean.setDataSource(dataSource);
         //bean.setTypeAliasesPackage(PACKAGE);
         //xml路径
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(Constant.CISDB_MAPPER_LOCATION));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(Constants.CISDB_MAPPER_LOCATION));
         bean.setVfs(SpringBootVFS.class);
         return bean.getObject();
     }

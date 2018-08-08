@@ -4,7 +4,7 @@ package com.winning.hic.base;
  * 常量类
  * 放置项目需要的常量信息
  */
-public class Constant {
+public class Constants {
     /**
      * 数据库驱动
      */

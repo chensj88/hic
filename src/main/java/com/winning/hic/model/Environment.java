@@ -1,6 +1,6 @@
 package com.winning.hic.model;
 
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 
 /**
  * Created with IntelliJ IDEA.
@@ -159,18 +159,18 @@ public class Environment {
     }
 
     public String getCISDBURL(){
-        return Constant.URL_PREFIX +cisdbUrl+";"+Constant.DATABASE_PREFIX+"="+cisdbName;
+        return Constants.URL_PREFIX +cisdbUrl+";"+Constants.DATABASE_PREFIX+"="+cisdbName;
     }
 
     public String getCISDBDataURL(){
-        return Constant.URL_PREFIX+cisdbDataUrl+";"+Constant.DATABASE_PREFIX+"="+cisdbDataName;
+        return Constants.URL_PREFIX+cisdbDataUrl+";"+Constants.DATABASE_PREFIX+"="+cisdbDataName;
     }
 
     public String getTHIS4URL(){
-        return Constant.URL_PREFIX+hisDBUrl+";"+Constant.DATABASE_PREFIX+"="+hisDBName;
+        return Constants.URL_PREFIX+hisDBUrl+";"+Constants.DATABASE_PREFIX+"="+hisDBName;
     }
 
     public String getPlatformURL(){
-        return Constant.URL_PREFIX+platformDBUrl+";"+Constant.DATABASE_PREFIX+"="+platformDBName;
+        return Constants.URL_PREFIX+platformDBUrl+";"+Constants.DATABASE_PREFIX+"="+platformDBName;
     }
 }

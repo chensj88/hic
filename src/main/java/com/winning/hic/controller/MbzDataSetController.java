@@ -1,6 +1,6 @@
 package com.winning.hic.controller;
 
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.model.MbzDataSet;
 import com.winning.hic.model.support.Row;
 import io.swagger.annotations.ApiImplicitParam;
@@ -31,7 +31,7 @@ public class MbzDataSetController extends BaseController {
     @GetMapping("/basic/list")
     public Map<String, Object> loadBasicTemplateInfo(MbzDataSet dataSet, Integer config){
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", Constant.SUCCESS);
+        result.put("status", Constants.SUCCESS);
         result.put("rows", getFacade().getMbzDataSetService().getMbzDataSetList(dataSet));
         return result;
     }
@@ -46,7 +46,7 @@ public class MbzDataSetController extends BaseController {
             getFacade().getMbzDataSetService().createMbzDataSet(dataSet);
         }
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", Constant.SUCCESS);
+        result.put("status", Constants.SUCCESS);
         return result;
     }
 
@@ -63,7 +63,7 @@ public class MbzDataSetController extends BaseController {
         dataSet.setPId(0L);
         dataSet.setRow(row);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", Constant.SUCCESS);
+        result.put("status", Constants.SUCCESS);
         result.put("total", getFacade().getMbzDataSetService().getMbzDataSetCount(dataSet));
         result.put("rows", getFacade().getMbzDataSetService().getMbzDataSetPageList(dataSet));
         return result;
@@ -80,7 +80,7 @@ public class MbzDataSetController extends BaseController {
     public Map<String, Object> loadBasicTemplateInfoListChild(Row row, MbzDataSet dataSet, Integer config){
         dataSet.setRow(row);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", Constant.SUCCESS);
+        result.put("status", Constants.SUCCESS);
         result.put("total", getFacade().getMbzDataSetService().getMbzDataSetCount(dataSet));
         result.put("rows", getFacade().getMbzDataSetService().getMbzDataSetPageList(dataSet));
         return result;

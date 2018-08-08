@@ -1,6 +1,6 @@
 package com.winning.hic.controller;
 
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.ReflectUtil;
 import com.winning.hic.base.utils.StringUtil;
@@ -29,12 +29,12 @@ public class BwztzsExtractController extends BaseController {
     @ResponseBody
     public Map extract(String mbdm) throws IOException {
         MbzDataSet mbzDataSet = new MbzDataSet();
-        mbzDataSet.setSourceType(Constant.WN_ZQGZXX_BWZTZS_SOURCE_TYPE);
-        mbzDataSet.setPId(Long.parseLong(Constant.WN_ZQGZXX_BWZTZS_SOURCE_TYPE));
+        mbzDataSet.setSourceType(Constants.WN_ZQGZXX_BWZTZS_SOURCE_TYPE);
+        mbzDataSet.setPId(Long.parseLong(Constants.WN_ZQGZXX_BWZTZS_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = getFacade().getMbzDataSetService().getMbzDataSetList(mbzDataSet);
         //1.获取对应的模板ID集合
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constant.WN_ZQGZXX_BWZTZS_SOURCE_TYPE);
+        mbzDataListSet.setSourceType(Constants.WN_ZQGZXX_BWZTZS_SOURCE_TYPE);
         List<MbzDataListSet> dataListSets = getFacade().getMbzDataListSetService().getMbzDataListSetList(mbzDataListSet);
         for (MbzDataListSet dataListSet : dataListSets) {
             EmrQtbljlk qtbljlk = new EmrQtbljlk();

@@ -1,7 +1,7 @@
 package com.winning.hic.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.model.MbzDataListSet;
 import com.winning.hic.model.MbzDataSet;
 import io.swagger.annotations.ApiImplicitParam;
@@ -28,7 +28,7 @@ public class MbzDataListSetController extends BaseController {
     public Map<String, Object> addOrModifyDataListSet(@RequestBody List<MbzDataListSet> mbzDataListSetList){
         getFacade().getMbzDataListSetService().createMbzDataListSetForList(mbzDataListSetList);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", Constant.SUCCESS);
+        result.put("status", Constants.SUCCESS);
         return result;
     }
 
@@ -37,7 +37,7 @@ public class MbzDataListSetController extends BaseController {
     @ApiImplicitParam(value = "查询已配置互利互通数据集与CIS模板关系",name = "查询已配置互利互通数据集与CIS模板关系",required = true,dataType = "MbzDataListSet")
     public Map<String, Object> queryConfigTemplate(MbzDataListSet MbzDataListSet){
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", Constant.SUCCESS);
+        result.put("status", Constants.SUCCESS);
         result.put("data",  getFacade().getMbzDataListSetService().getMbzDataListSetModelCodeList(MbzDataListSet));
         return result;
     }
@@ -47,7 +47,7 @@ public class MbzDataListSetController extends BaseController {
     @RequestMapping(value = "/dataList/queryConfig",method = RequestMethod.POST)
     public Map<String, Object> queryConfig(MbzDataListSet MbzDataListSet){
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", Constant.SUCCESS);
+        result.put("status", Constants.SUCCESS);
         result.put("data", getFacade().getMbzDataListSetService().getMbzDataListSetList(MbzDataListSet));
         return result;
     }

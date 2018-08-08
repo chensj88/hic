@@ -1,7 +1,7 @@
 package com.winning.hic.mybatis;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.winning.hic.base.Constant;
+import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.ConfigUtils;
 import com.winning.hic.model.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -29,7 +29,7 @@ import java.util.Properties;
  * Time: 8:55
  */
 @Configuration
-@MapperScan(basePackages = Constant.THIS_PACKAGE, sqlSessionFactoryRef = "hisdbSqlSessionFactory")
+@MapperScan(basePackages = Constants.THIS_PACKAGE, sqlSessionFactoryRef = "hisdbSqlSessionFactory")
 public class HisDBMyBatisConfig {
     // 精确到 data 目录，以便跟其他数据源隔离
 
@@ -41,7 +41,7 @@ public class HisDBMyBatisConfig {
         datasource.setUrl(env.getTHIS4URL());
         datasource.setUsername(env.getHisDBUsername());
         datasource.setPassword(env.getHisDBPassword());
-        datasource.setDriverClassName(Constant.DRIVE_CLASS_NAME);
+        datasource.setDriverClassName(Constants.DRIVE_CLASS_NAME);
         datasource.setInitialSize(5);
         datasource.setMinIdle(5);
         datasource.setMaxActive(20);
@@ -79,7 +79,7 @@ public class HisDBMyBatisConfig {
         bean.setDataSource(dataSource);
         //bean.setTypeAliasesPackage(PACKAGE);
         //xml路径
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(Constant.THIS_MAPPER_LOCATION));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(Constants.THIS_MAPPER_LOCATION));
         bean.setVfs(SpringBootVFS.class);
         return bean.getObject();
     }
