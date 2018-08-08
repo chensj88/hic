@@ -222,6 +222,10 @@
         </where>
     </delete>
 
+    <delete id="deleteHlhtZqgzxxBwztzsByYjlxh" parameterType="com.winning.hic.model.HlhtZqgzxxBwztzs">
+        delete from HLHT_ZQGZXX_BWZTZS WHERE yjlxh = #{yjlxh}
+    </delete>
+
 
     <select id="selectHlhtZqgzxxBwztzs" resultMap="hlhtZqgzxxBwztzsResult"
             parameterType="com.winning.hic.model.HlhtZqgzxxBwztzs">
@@ -312,7 +316,10 @@
                 'N' AS syxh,
                 'N' AS tjzt,
                 q.YXJL AS yxjl,
-                q.SHSJ AS gxsj
+                ISNULL(
+                    q.SHSJ,
+                    '1990-01-01 00:00:00'
+                ) AS gxsj
             FROM
                 CISDB.dbo.EMR_QTBLJLK q
             LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH

@@ -34,5 +34,7 @@ public interface HlhtRyjlJbxxService {
 
     List<MbzDataCheck> interfaceHlhtRyjlJbxx();
 
+    public void deleteHlhtRyjlJbxxByYjlxh(HlhtRyjlJbxx hlhtRyjlJbxx);
+
 
 }

@@ -107,10 +107,10 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                     EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
                     emrQtbljlk.setQtbljlxh(Long.parseLong(hlhtRyjlJbxx.getYjlxh()));
                     emrQtbljlk = this.emrQtbljlkDao.selectEmrQtbljlk(emrQtbljlk);
-                    //数据重复判断
+                    //清库
                     HlhtRyjlJbxx temp = new HlhtRyjlJbxx();
                     temp.setYjlxh(hlhtRyjlJbxx.getYjlxh());
-                    temp = this.hlhtRyjlJbxxDao.selectHlhtRyjlJbxx(temp);
+                    this.hlhtRyjlJbxxDao.deleteHlhtRyjlJbxxByYjlxh(temp);
                     //3.xml文件解析 获取病历信息
                     Document document = null;
                     try {
@@ -119,68 +119,70 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                         e.printStackTrace();
                     }
                     Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtRyjlJbxx.class);
-                    if (temp == null) {
-                        for (MbzDataSet dataSet : mbzDataSetList) {
-                            //获取属性名
-                            String pyCode = dataSet.getPyCode();
-                            String methodName = "set" + StringUtil.titleCase(pyCode);
-                            String strValue = XmlUtil.getAttrValueByDataSet(document, dataSet);
-                            logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, strValue);
-                            Object value = null;
-                            String paramType = paramTypeMap.get(pyCode);
-                            System.out.println(">>>>>>>>>>>>>>"+paramType);
-                            if (paramType.contains("String")) {
-                                value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue.split("`")[2];
-                            } else if (paramType.contains("Short")) {
-                                //格式：50`50`50
-                                String shortStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[2];
-                                value = StringUtil.isEmptyOrNull(shortStr) ? null : Short.parseShort(shortStr);
-                            } else if (paramType.contains("Date")) {
+                    for (MbzDataSet dataSet : mbzDataSetList) {
+                        //获取属性名
+                        String pyCode = dataSet.getPyCode();
+                        String methodName = "set" + StringUtil.titleCase(pyCode);
+                        String strValue = XmlUtil.getAttrValueByDataSet(document, dataSet);
+                        logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, strValue);
+                        Object value = null;
+                        String paramType = paramTypeMap.get(pyCode);
+                        System.out.println(">>>>>>>>>>>>>>" + paramType);
+                        if (paramType.contains("String")) {
+                            value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue.split("`")[2];
+                        } else if (paramType.contains("Short")) {
+                            //格式：50`50`50
+                            String shortStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[2];
+                            value = StringUtil.isEmptyOrNull(shortStr) ? null : Short.parseShort(shortStr);
+                        } else if (paramType.contains("Date")) {
 //                格式：636467930400000000`2017-11-20,16:44
-                                String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-                                String pattern = "yyyy-MM-dd,HH:mm";
-                                SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-                                try {
-                                    Date date = StringUtil.isEmptyOrNull(dateStr) ? new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01") : sdf.parse(dateStr);
-                                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                                    value = sqlDate;
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                            } else if (paramType.contains("Timestamp")) {
-                                String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-                                String pattern = "yyyy-MM-dd,HH:mm";
-                                SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-                                try {
-                                    Date date = StringUtil.isEmptyOrNull(dateStr) ? new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01") : sdf.parse(dateStr);
-                                    Timestamp dateTime = new Timestamp(date.getTime());
-                                    value = dateTime;
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                            } else if (paramType.contains("BigDecimal")) {
-                                String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[1];
-                                value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
-                            } else if (paramType.contains("Integer")) {
-                                String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[1];
-                                value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
-                            }
-                            //类型
+                            String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
+                            String pattern = "yyyy-MM-dd,HH:mm";
+                            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                             try {
-                                if (value != null) {
-                                    ReflectUtil.setParam(hlhtRyjlJbxx, methodName, value);
-                                }
-                            } catch (Exception e) {
+                                Date date = StringUtil.isEmptyOrNull(dateStr) ? new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01") : sdf.parse(dateStr);
+                                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                                value = sqlDate;
+                            } catch (ParseException e) {
                                 e.printStackTrace();
                             }
+                        } else if (paramType.contains("Timestamp")) {
+                            String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
+                            String pattern = "yyyy-MM-dd,HH:mm";
+                            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+                            try {
+                                Date date = StringUtil.isEmptyOrNull(dateStr) ? new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01") : sdf.parse(dateStr);
+                                Timestamp dateTime = new Timestamp(date.getTime());
+                                value = dateTime;
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        } else if (paramType.contains("BigDecimal")) {
+                            String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[1];
+                            value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
+                        } else if (paramType.contains("Integer")) {
+                            String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[1];
+                            value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
                         }
-                        logger.info("Model:{}", hlhtRyjlJbxx);
-                        this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
+                        //类型
+                        try {
+                            if (value != null) {
+                                ReflectUtil.setParam(hlhtRyjlJbxx, methodName, value);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
+                    logger.info("Model:{}", hlhtRyjlJbxx);
+                    this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
                 }
             }
         }
-
         return mbzDataChecks;
+    }
+
+    @Override
+    public void deleteHlhtRyjlJbxxByYjlxh(HlhtRyjlJbxx hlhtRyjlJbxx) {
+        this.hlhtRyjlJbxxDao.deleteHlhtRyjlJbxxByYjlxh(hlhtRyjlJbxx);
     }
 }
