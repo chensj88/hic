@@ -7,18 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:
+ * Description: 测试接口Test
  * User: LENOVO
  * Date: 2018-08-02
  * Time: 9:22
  */
 @RestController
-public class TestController {
+public class TestController extends BaseController {
 
     @GetMapping(value = "/test/jni")
     @ApiOperation(value = "/test/jni",notes = "测试java调用c# dll，通过jacob来实现")
@@ -31,11 +32,21 @@ public class TestController {
     }
 
     @GetMapping(value = "/test/ryjl")
-    @ApiOperation(value="/test/ryjl",notes = "入院接口表数据抽取测试")
-    public Map<String, Object> testRYJL(){
+    @ApiOperation(value="/test/ryjl",notes = "24H出入院接口表数据抽取测试")
+    public Map<String, Object> testRYJL() throws IOException, ParseException {
+
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", "");
+        result.put("data", super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(null));
+        return result;
+    }
+
+    @GetMapping(value = "/test/ryswjl")
+    @ApiOperation(value="/test/ryswjl",notes = "入院死亡记录表数据抽取测试")
+    public Map<String, Object> testRYSWJL() throws IOException, ParseException {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtRyjlRyswjlService().interfaceHlhtRyjlRyswjl(null));
         return result;
     }
 }
