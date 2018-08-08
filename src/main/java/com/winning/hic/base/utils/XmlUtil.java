@@ -145,15 +145,33 @@ public class XmlUtil {
         }
         if (!StringUtil.isEmptyOrNull(yzjddm)) {
             Element qrmbdmElement = XmlUtil.getElementById(dtjddmElement, qrmbdm);
+            if (qrmbdmElement == null) {
+                return null;
+            }
             Element qrdxdmElement = XmlUtil.getElementById(qrmbdmElement, qrdxdm);
+            if (qrdxdmElement == null) {
+                return null;
+            }
             Element yzjddmElement = XmlUtil.getElementById(qrdxdmElement, yzjddm);
+            if (yzjddmElement == null) {
+                return null;
+            }
             return yzjddmElement.attribute("value").getValue();
         } else if (!StringUtil.isEmptyOrNull(qrdxdm)) {
             Element qrmbdmElement = XmlUtil.getElementById(dtjddmElement, qrmbdm);
+            if (qrmbdmElement == null) {
+                return null;
+            }
             Element qrdxdmElement = XmlUtil.getElementById(qrmbdmElement, qrdxdm);
+            if (qrdxdmElement == null) {
+                return null;
+            }
             return qrdxdmElement.attribute("value").getValue();
         } else if (!StringUtil.isEmptyOrNull(qrmbdm)) {
             Element qrmbdmElement = XmlUtil.getElementById(dtjddmElement, qrmbdm);
+            if (qrmbdmElement == null) {
+                return null;
+            }
             return qrmbdmElement.attribute("value").getValue();
         }
         return dtjddmElement.attribute("value").getValue();

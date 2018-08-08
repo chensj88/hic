@@ -108,9 +108,9 @@ public class HlhtZqgzxxBwztzsServiceImpl implements HlhtZqgzxxBwztzsService {
                     emrQtbljlk.setQtbljlxh(Long.parseLong(hlhtZqgzxxBwztzs.getYjlxh()));
                     emrQtbljlk = this.emrQtbljlkDao.selectEmrQtbljlk(emrQtbljlk);
                     //数据重复判断
-                    HlhtRyjlJbxx temp = new HlhtRyjlJbxx();
+                    HlhtZqgzxxBwztzs temp = new HlhtZqgzxxBwztzs();
                     temp.setYjlxh(hlhtZqgzxxBwztzs.getYjlxh());
-                    temp = this.hlhtRyjlJbxxDao.selectHlhtRyjlJbxx(temp);
+                    temp = this.hlhtZqgzxxBwztzsDao.selectHlhtZqgzxxBwztzs(temp);
                     //3.xml文件解析 获取病历信息
                     Document document = null;
                     try {
@@ -118,7 +118,7 @@ public class HlhtZqgzxxBwztzsServiceImpl implements HlhtZqgzxxBwztzsService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtRyjlJbxx.class);
+                    Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZqgzxxBwztzs.class);
                     if (temp == null) {
                         for (MbzDataSet dataSet : mbzDataSetList) {
                             //获取属性名

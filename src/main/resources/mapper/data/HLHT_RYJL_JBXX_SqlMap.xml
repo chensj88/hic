@@ -629,19 +629,19 @@
     <select id="getHlhtRyjlJbxxListFromBaseData" resultMap="hlhtRyjlJbxxResult"
             parameterType="com.winning.hic.model.HlhtRyjlJbxx">
            SELECT
-                    q.QTBLJLXH AS yjlxh,
+                    ISNULL(q.QTBLJLXH,'N') AS yjlxh,
                     c.SYXH AS jzlsh,
                     c.PATID AS patid,
-                    b.ZYHM AS zyh,
-                    c.BQDM AS bqdm,
-                    c.BQMC AS bqmc,
-                    c.KSDM AS ksdm,
-                    c.KSMC AS ksmc,
-                    m.fjh AS bfh,
+                    ISNULL(b.ZYHM, 'N') AS zyh,
+                    ISNULL(c.BQDM, 'N') AS bqdm,
+                    ISNULL(c.BQMC, 'N') AS bqmc,
+                    ISNULL(c.KSDM, 'N') AS ksdm,
+                    ISNULL(c.KSMC, 'N') AS ksmc,
+                    ISNULL(m.fjh,'N') AS bfh,
                     ISNULL(b.RYCW, 'N') AS bch,
-                    b.HZXM AS hzxm,
-                    b.SFZH AS sfzhm,
-                    b.BRXB AS xbdm,
+                    ISNULL(b.HZXM, 'N') AS hzxm,
+                    ISNULL(b.SFZH, 'N') AS sfzhm,
+                    ISNULL(b.BRXB, 'N') AS xbdm,
                     (
                         SELECT
                             CASE b.BRXB
@@ -664,9 +664,9 @@
                         'N'
                     ) AS nls,
                     SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
-                    b.MZDM AS mz,
-                    p.NAME AS mzmc,
-                    b.HYZK AS hyzkdm,
+                    ISNULL(b.MZDM,'N') AS mz,
+                    ISNULL(p.NAME,'N') AS mzmc,
+                    ISNULL(b.HYZK,'N') AS hyzkdm,
                     (
                         SELECT
                             CASE b.HYZK
@@ -728,13 +728,13 @@
                     ) AS dzxz,
                     'N' AS dzc,
                     'N' AS dzmphm,
-                    b.ZYDM AS zylbdm,
-                    p.NAME AS zylbmc,
+                    ISNULL(b.ZYDM,'N') AS zylbdm,
+                    ISNULL(p.NAME,'N') AS zylbmc,
                     b.RYRQ AS ryrq,
                     'N' AS syxh,
                     'N' AS tjzt,
-                    q.YXJL as yxjl
-
+                    q.YXJL AS yxjl,
+                    q.SHSJ AS gxsj
                 FROM
                     CISDB.dbo.EMR_QTBLJLK q
                 LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH

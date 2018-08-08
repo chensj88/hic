@@ -85,8 +85,6 @@
     </sql>
 
     <insert id="insertHlhtZqgzxxBwztzs" parameterType="com.winning.hic.model.HlhtZqgzxxBwztzs">
-        <selectKey resultType="String" order="BEFORE" keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID
-        </selectKey>
         INSERT INTO HLHT_ZQGZXX_BWZTZS
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(yjlxh != null )">yjlxh ,</if>
@@ -313,7 +311,8 @@
                 SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
                 'N' AS syxh,
                 'N' AS tjzt,
-                q.YXJL AS yxjl
+                q.YXJL AS yxjl,
+                q.SHSJ AS gxsj
             FROM
                 CISDB.dbo.EMR_QTBLJLK q
             LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
