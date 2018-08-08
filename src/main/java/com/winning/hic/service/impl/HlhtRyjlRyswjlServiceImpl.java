@@ -1,12 +1,30 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtRyjlRyswjlDao;
+import com.winning.hic.dao.data.MbzDataListSetDao;
+import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.model.EmrQtbljlk;
 import com.winning.hic.model.HlhtRyjlRyswjl;
+import com.winning.hic.model.MbzDataListSet;
+import com.winning.hic.model.MbzDataSet;
 import com.winning.hic.service.HlhtRyjlRyswjlService;
+import org.dom4j.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -19,8 +37,16 @@ import java.util.List;
 @Service
 public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
 
+    private static final Logger logger = LoggerFactory.getLogger(HlhtRyjlRyswjlServiceImpl.class);
+
     @Autowired
     private HlhtRyjlRyswjlDao hlhtRyjlRyswjlDao;
+    @Autowired
+    private MbzDataListSetDao mbzDataListSetDao;
+    @Autowired
+    private MbzDataSetDao mbzDataSetDao;
+    @Autowired
+    private EmrQtbljlkDao emrQtbljlkDao;
 
     public int createHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl){
         return this.hlhtRyjlRyswjlDao.insertHlhtRyjlRyswjl(hlhtRyjlRyswjl);
@@ -49,4 +75,54 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
     public List<HlhtRyjlRyswjl> getHlhtRyjlRyswjlPageList(HlhtRyjlRyswjl hlhtRyjlRyswjl){
         return this.hlhtRyjlRyswjlDao.selectHlhtRyjlRyswjlPageList(hlhtRyjlRyswjl);
     }
+
+    public HlhtRyjlRyswjl getInitHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl){
+        return this.hlhtRyjlRyswjlDao.selectInitHlhtRyjlRyswjl(hlhtRyjlRyswjl);
+    }
+    public List<HlhtRyjlRyswjl> interfaceHlhtRyjlRyswjl(HlhtRyjlRyswjl ryjlRyswjl) throws IOException, ParseException {
+        //加载模板库 根据模板类型获取对应的病历模板代码
+        MbzDataListSet mbzDataListSet = new MbzDataListSet();
+        mbzDataListSet.setSourceType(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE);
+        List<MbzDataListSet> dataListSets = mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
+
+        //加载模板字段库
+        MbzDataSet  mbzDataSet = new MbzDataSet();
+        mbzDataSet.setPId(Long.parseLong(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE));
+        mbzDataSet.setSourceType(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE);
+        List<MbzDataSet> mbzDataSets = mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
+
+        //获取model对象自定义参数信息
+        Map<String,String> paramType = ReflectUtil.getParamTypeMap(HlhtRyjlRyswjl.class);
+
+        //循环配置模板信息
+        for (MbzDataListSet dataListSet : dataListSets) {
+            //查询病历信息
+            EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
+            emrQtbljlk.setBldm(dataListSet.getModelCode());
+            List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(emrQtbljlk);
+            if(qtbljlkList != null){
+                for (EmrQtbljlk qtbljlk : qtbljlkList) {
+                    HlhtRyjlRyswjl ryswjl = new HlhtRyjlRyswjl();
+                    ryswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
+                    ryswjl = this.getHlhtRyjlRyswjl(ryswjl);
+                    //解析病历报文xml
+                    Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(qtbljlk.getBlnr()));
+                    if(ryswjl != null ){ //判断记录是否已经创建,存在则删除，重新新增
+                        HlhtRyjlRyswjl oldRyswjl = new HlhtRyjlRyswjl();
+                        oldRyswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
+                        this.removeHlhtRyjlRyswjl(oldRyswjl);
+                    }
+                    ryswjl = new HlhtRyjlRyswjl();
+                    ryswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
+                    ryswjl = this.getInitHlhtRyjlRyswjl(ryswjl);
+                    ryswjl = (HlhtRyjlRyswjl) HicHelper.initModelValue(mbzDataSets,document,ryswjl,paramType);
+                    this.createHlhtRyjlRyswjl(ryswjl);
+                }
+            }
+        }
+
+         return  null;
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package com.winning.hic.service;
 
-import java.util.List;  
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
 
 import com.winning.hic.model.HlhtRyjlRyswjl;  
 
@@ -27,4 +29,20 @@ public interface HlhtRyjlRyswjlService {
     public List<HlhtRyjlRyswjl> getHlhtRyjlRyswjlList(HlhtRyjlRyswjl hlhtRyjlRyswjl);
 
     public List<HlhtRyjlRyswjl> getHlhtRyjlRyswjlPageList(HlhtRyjlRyswjl hlhtRyjlRyswjl);
+
+    /**
+     * 获取初始化入院死亡记录数据
+     * @param hlhtRyjlRyswjl
+     * @return
+     */
+    public HlhtRyjlRyswjl getInitHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl);
+
+    /**
+     * 入院死亡记录数据处理
+     * @param hlhtRyjlRyswjl
+     * @return
+     * @throws IOException
+     * @throws ParseException
+     */
+    public List<HlhtRyjlRyswjl> interfaceHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl) throws IOException, ParseException;
 }
