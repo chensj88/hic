@@ -32,7 +32,8 @@ public class RyjlJbxxExtractController extends BaseController {
     @ResponseBody
     public Map extract(String mbdm) throws IOException {
 //        getFacade().getHlhtRyjlJbxxService().interfaceHlhtRyjlJbxx();
-        getFacade().getHlhtZqgzxxBwztzsService().interfaceHlhtZqgzxxBwztzs();
+//        getFacade().getHlhtZqgzxxBwztzsService().interfaceHlhtZqgzxxBwztzs();
+        getFacade().getHlhtZybcjlCyjlService().interfaceHlhtZybcjlCyjl();
         return resultMap;
     }
 

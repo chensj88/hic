@@ -586,6 +586,10 @@
         </where>
     </delete>
 
+    <delete id="deleteHlhtRyjlJbxxByYjlxh" parameterType="com.winning.hic.model.HlhtRyjlJbxx">
+        delete from HLHT_RYJL_JBXX WHERE yjlxh = #{yjlxh}
+    </delete>
+
 
     <select id="selectHlhtRyjlJbxx" resultMap="hlhtRyjlJbxxResult" parameterType="com.winning.hic.model.HlhtRyjlJbxx">
         SELECT * FROM HLHT_RYJL_JBXX t
@@ -627,7 +631,7 @@
 
     <!--Evol 2018年8月6日15:29:27 在数据库中抽取所有入院记录病例数据-->
     <select id="getHlhtRyjlJbxxListFromBaseData" resultMap="hlhtRyjlJbxxResult"
-            parameterType="com.winning.hic.model.HlhtRyjlJbxx">
+            parameterType="com.winning.hic.model.EmrQtbljlk">
            SELECT
                     ISNULL(q.QTBLJLXH,'N') AS yjlxh,
                     c.SYXH AS jzlsh,
@@ -734,7 +738,10 @@
                     'N' AS syxh,
                     'N' AS tjzt,
                     q.YXJL AS yxjl,
-                    q.SHSJ AS gxsj
+                    ISNULL(
+                        q.SHSJ,
+                       '1990-01-01 00:00:00'
+                    ) AS gxsj
                 FROM
                     CISDB.dbo.EMR_QTBLJLK q
                 LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
