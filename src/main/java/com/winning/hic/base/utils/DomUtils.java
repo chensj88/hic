@@ -94,7 +94,7 @@ public class DomUtils {
             Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
             if(info.getQrmbdm() == null){
                 if(nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())){ //文本节点
-                    builder.append(element.attribute(textAttrName).getValue());
+                    builder.append(resolveString(element.attribute(textAttrName).getValue()));
                 }else if(nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())){ //引入节点
                     builder.append(resolveRefNode(rootElement,element.attribute(refidAttrName).getValue(),info));
                 }
@@ -140,7 +140,7 @@ public class DomUtils {
             if(info.getQrmbdm() == null){
                 if(nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())){
                     builder.append(
-                            element.attribute(textAttrName)== null ? "" :element.attribute(textAttrName).getValue());
+                            element.attribute(textAttrName)== null ? "" :resolveString(element.attribute(textAttrName).getValue()));
                 }else if(nodeTypeAttr != null && objectNodeType.equals(nodeTypeAttr.getValue())){
                     builder.append(resolveObjectNode(element,info));
                 }
@@ -172,7 +172,7 @@ public class DomUtils {
             Attribute idAttr = element.attribute(idAttrName);
             if(info.getYzjddm() == null){
                 if(nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())){
-                    builder.append(element.attribute(textAttrName) == null ? "" :element.attribute(textAttrName).getValue());
+                    builder.append(element.attribute(textAttrName) == null ? "" :resolveString(element.attribute(textAttrName).getValue()));
                 }else if(nodeTypeAttr != null && atomNodeType.equals(nodeTypeAttr.getValue())){
                     builder.append(resolveAtomNode(element,info));
                 }
@@ -196,11 +196,19 @@ public class DomUtils {
         String nodeValue = node.attribute(valueAttrName).getValue();
         String value = null;
         if(info.getDictCode() != null ){
-            value = nodeValue.split("`")[0];
+            value = resolveString(nodeValue.split("`")[0]);
         }else{
-            value = nodeValue.split("`")[1];
+            value = resolveString(nodeValue.split("`")[1].trim());
         }
         return value;
+    }
+
+
+    public static String resolveString(String str){
+        str = str.trim();
+        str = str.replaceAll(" ","");
+        str = str.replaceAll("&#xA;","");
+        return  str;
     }
 
 }

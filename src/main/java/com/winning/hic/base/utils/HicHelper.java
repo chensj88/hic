@@ -42,7 +42,7 @@ public class HicHelper {
             String strValue = null ;
             //判断是否可以取值到，不能则提供默认值
             try {
-                strValue =  XmlUtil.getAttrValueByDataSet(document, dataSet);
+                strValue =  DomUtils.getAttrValueByDataSet(document, dataSet);
                 logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, strValue);
             }catch (NullPointerException e){
                 logger.info("pyCode:{};methodName:{};strValue:{};using default value", pyCode, methodName, strValue);
@@ -74,13 +74,27 @@ public class HicHelper {
             }else{
                 String paramType = paramTypeMap.get(pyCode);
                 if (paramType.contains("String")) {
-                    value = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[2];
+                    value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue;
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
-                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[2];
+                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue;
                     value = StringUtil.isEmptyOrNull(strValue) ? null : Short.parseShort(shortStr);
-                } else if (paramType.contains("Date")) {//                格式：636467930400000000`2017-11-20,16:44
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
+                } else if (paramType.contains("Timestamp")) {
+                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
+                    String pattern = "yyyy-MM-dd HH:mm:ss";
+                    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+                    try {
+                        Date date = StringUtil.isEmptyOrNull(dateStr) ? null : sdf.parse(dateStr);
+                        if (date != null) {
+                            java.sql.Timestamp sqlDate = new java.sql.Timestamp(date.getTime());
+                            value = sqlDate;
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }else if (paramType.contains("Date")) {
+                    //格式：636467930400000000`2017-11-20,16:44
+                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {
@@ -93,10 +107,10 @@ public class HicHelper {
                         e.printStackTrace();
                     }
                 } else if (paramType.contains("BigDecimal")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
+                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue;
                     value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
                 } else if (paramType.contains("Integer")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
+                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue;
                     value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
                 }
             }
