@@ -631,7 +631,7 @@
 
     <!--Evol 2018年8月6日15:29:27 在数据库中抽取所有入院记录病例数据-->
     <select id="getHlhtRyjlJbxxListFromBaseData" resultMap="hlhtRyjlJbxxResult"
-            parameterType="com.winning.hic.model.HlhtRyjlJbxx">
+            parameterType="com.winning.hic.model.EmrQtbljlk">
            SELECT
                     ISNULL(q.QTBLJLXH,'N') AS yjlxh,
                     c.SYXH AS jzlsh,
