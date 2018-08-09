@@ -195,7 +195,7 @@ public class DomUtils {
     public static String resolveAtomNode(Element node,MbzDataSet info){
         String nodeValue = node.attribute(valueAttrName).getValue();
         String value = null;
-        if(info.getDictCode() != null ){
+        if(!StringUtil.isEmptyOrNull(info.getDictCode()) ){
             value = resolveString(nodeValue.split("`")[0]);
         }else{
             value = resolveString(nodeValue.split("`")[1].trim());
