@@ -61,6 +61,13 @@ public class DomUtils {
         return document;
     }
 
+    /**
+     * 根据MbzDataSet获取值信息
+     *  备注：MbzDataSet中dictInfo字段作为取值界限参数，存在则取code，反之则取value
+     * @param document
+     * @param info
+     * @return
+     */
     public static String getAttrValueByDataSet(Document document, MbzDataSet info){
         Element rootElement = document.getRootElement();
         return resolveNodeInfo(rootElement,info);
@@ -167,13 +174,13 @@ public class DomUtils {
                 if(nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())){
                     builder.append(element.attribute(textAttrName) == null ? "" :element.attribute(textAttrName).getValue());
                 }else if(nodeTypeAttr != null && atomNodeType.equals(nodeTypeAttr.getValue())){
-                    builder.append(resolveAtomNode(element));
+                    builder.append(resolveAtomNode(element,info));
                 }
             }else{
                 if(nodeTypeAttr != null && atomNodeType.equals(nodeTypeAttr.getValue())
                         && idAttr !=null
                         && info.getYzjddm().equals(idAttr.getValue())){
-                    builder.append(resolveAtomNode(element));
+                    builder.append(resolveAtomNode(element,info));
                 }
             }
 
@@ -185,8 +192,15 @@ public class DomUtils {
      * @param node
      * @return
      */
-    public static String resolveAtomNode(Element node){
-        return node.attribute(valueAttrName).getValue();
+    public static String resolveAtomNode(Element node,MbzDataSet info){
+        String nodeValue = node.attribute(valueAttrName).getValue();
+        String value = null;
+        if(info.getDictCode() != null ){
+            value = nodeValue.split("`")[0];
+        }else{
+            value = nodeValue.split("`")[1];
+        }
+        return value;
     }
 
 }
