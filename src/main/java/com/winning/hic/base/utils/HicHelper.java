@@ -40,10 +40,11 @@ public class HicHelper {
             String pyCode = dataSet.getPyCode();
             String methodName = "set" + StringUtil.titleCase(pyCode);
             String strValue = null ;
+
             //判断是否可以取值到，不能则提供默认值
             try {
                 strValue =  DomUtils.getAttrValueByDataSet(document, dataSet);
-                logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, strValue);
+                logger.info("pyCode:{};methodName:{};strValue:{};", pyCode, methodName, strValue);
             }catch (NullPointerException e){
                 logger.info("pyCode:{};methodName:{};strValue:{};using default value", pyCode, methodName, strValue);
             }
@@ -117,6 +118,14 @@ public class HicHelper {
             //类型
             try {
                 if(value!=null){
+                  /*  Long datalength = (long)value.toString().length();
+                    String info = null;
+                    if(dataSet.getDataLength() != 0 && datalength*2 > dataSet.getDataLength()){
+                        info = "发生截断，需要调整数据长度";
+                    }else{
+                        info = "长度正常，可以入库";
+                    }
+                    logger.info("pyCode:{};methodName:{};strValue:{};info:{}", pyCode, methodName, value,info);*/
                     ReflectUtil.setParam(obj, methodName, value);
                 }
             } catch (Exception e) {
