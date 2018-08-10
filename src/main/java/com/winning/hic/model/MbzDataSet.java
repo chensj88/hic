@@ -92,6 +92,11 @@ public class MbzDataSet extends BaseDomain implements Serializable {
      * 默认值：无
      */
     private Integer bt;
+    /**
+     * 数据字段长度
+     * 0不限制长度 时间、text字段
+     */
+    private Long dataLength;
 
     public MbzDataSet(){
 
@@ -314,4 +319,11 @@ public class MbzDataSet extends BaseDomain implements Serializable {
         this.bt = bt;
    }
 
+    public Long getDataLength() {
+        return dataLength;
+    }
+
+    public void setDataLength(Long dataLength) {
+        this.dataLength = dataLength;
+    }
 }
