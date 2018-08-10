@@ -209,7 +209,7 @@
     <!-- Chen,Kuai 2018-8-3 批量初始化CIS,HIS数据-->
     <select id="selectInitialHlhtZybcjlScbcjl" resultMap="hlhtZybcjlScbcjlResult" parameterType="com.winning.hic.model.HlhtZybcjlScbcjl">
         SELECT t.QTBLJLXH as yjlxh,b.HISSYXH as jzlsh,c.PATID as patid,b.HZXM as hzxm,b.ZYHM as zyh,b.SFZH as sfzhm,c.KSDM as ksdm,c.KSMC as ksmc ,
-                     c.BQDM as bqdm,c.BQMC as bqmc ,a.fjh as bfh ,NULL as bfmc ,c.CWDM as bch ,convert(datetime,getdate()) as jlrq,
+                     c.BQDM as bqdm,c.BQMC as bqmc ,ISNULL(a.fjh, 'N') as bfh ,NULL as bfmc ,c.CWDM as bch ,convert(datetime,getdate()) as jlrq,
                      b.BRXB as xbdm,c.SEX as xbmc,ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
                 SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly,t.YXJL as yxjl
 

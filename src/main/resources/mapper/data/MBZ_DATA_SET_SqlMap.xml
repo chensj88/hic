@@ -16,6 +16,7 @@
          <result column="QRDXDM" property="qrdxdm" jdbcType="VARCHAR" />
          <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
          <result column="BT" property="bt" jdbcType="INTEGER" />
+         <result column="DATA_LENGTH" property="dataLength" jdbcType="BIGINT" />
     </resultMap>
 
     <resultMap id="mbzDataSetResult" type="com.winning.hic.model.MbzDataSet" extends="mbzDataSetResultForList">
@@ -35,6 +36,7 @@
         <if test="(qrdxdm != null and qrdxdm != '')"> and t.QRDXDM = #{qrdxdm} </if>
         <if test="(yzjddm != null and yzjddm != '')"> and t.YZJDDM = #{yzjddm} </if>
         <if test="(bt != null and bt != '')"> and t.BT = #{bt} </if>
+        <if test="(dataLength != null and dataLength != '')"> and t.DATA_LENGTH = #{dataLength} </if>
     </sql>
 
     <insert id="insertMbzDataSet" parameterType="com.winning.hic.model.MbzDataSet">
@@ -52,6 +54,7 @@
             <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
             <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
             <if test="(bt != null and bt != '')"> BT , </if>
+            <if test="(dataLength != null and dataLength != '')"> DATA_LENGTH , </if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -67,6 +70,7 @@
             <if test="(qrdxdm != null and qrdxdm != '')"> #{qrdxdm , jdbcType= VARCHAR },  </if>
             <if test="(yzjddm != null and yzjddm != '')"> #{yzjddm , jdbcType= VARCHAR },  </if>
             <if test="(bt != null and bt != '')"> #{bt , jdbcType= INTEGER },  </if>
+            <if test="(dataLength != null and dataLength != '')"> #{dataLength , jdbcType= BIGINT },  </if>
         </trim>
     </insert>
 
@@ -85,6 +89,7 @@
                 <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM = #{qrdxdm , jdbcType= VARCHAR }, </if>
                 <if test="(yzjddm != null and yzjddm != '')"> YZJDDM = #{yzjddm , jdbcType= VARCHAR }, </if>
                 <if test="(bt != null and bt != '')"> BT = #{bt , jdbcType= INTEGER }, </if>
+                <if test="(dataLength != null and dataLength != '')"> DATA_LENGTH = #{dataLength , jdbcType= BIGINT }, </if>
             </trim>
         </set>
         <where>

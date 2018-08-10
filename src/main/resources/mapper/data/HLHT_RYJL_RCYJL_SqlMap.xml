@@ -32,29 +32,29 @@
          <result column="cszhzgxdm" property="cszhzgxdm" jdbcType="VARCHAR" />
          <result column="cszhzgxmc" property="cszhzgxmc" jdbcType="VARCHAR" />
          <result column="csnrbz" property="csnrbz" jdbcType="CHAR" />
-         <result column="zs" property="zs" jdbcType="NVARCHAR" />
-         <result column="xbs" property="xbs" jdbcType="NVARCHAR" />
-         <result column="ryqk" property="ryqk" jdbcType="NVARCHAR" />
+         <result column="zs" property="zs" jdbcType="VARCHAR" />
+         <result column="xbs" property="xbs" jdbcType="VARCHAR" />
+         <result column="ryqk" property="ryqk" jdbcType="VARCHAR" />
          <result column="zzmc" property="zzmc" jdbcType="VARCHAR" />
-         <result column="zzms" property="zzms" jdbcType="NVARCHAR" />
-         <result column="zyszgcjg" property="zyszgcjg" jdbcType="NVARCHAR" />
+         <result column="zzms" property="zzms" jdbcType="VARCHAR" />
+         <result column="zyszgcjg" property="zyszgcjg" jdbcType="VARCHAR" />
          <result column="zfbm" property="zfbm" jdbcType="VARCHAR" />
-         <result column="zzzf" property="zzzf" jdbcType="NVARCHAR" />
+         <result column="zzzf" property="zzzf" jdbcType="VARCHAR" />
          <result column="rzxyzdmc" property="rzxyzdmc" jdbcType="VARCHAR" />
          <result column="rzxzzdbm" property="rzxzzdbm" jdbcType="VARCHAR" />
          <result column="rzzybmmc" property="rzzybmmc" jdbcType="VARCHAR" />
          <result column="rzzybmdm" property="rzzybmdm" jdbcType="VARCHAR" />
          <result column="rzzyzhmc" property="rzzyzhmc" jdbcType="VARCHAR" />
          <result column="rzzyzhdm" property="rzzyzhdm" jdbcType="VARCHAR" />
-         <result column="zlgcms" property="zlgcms" jdbcType="NVARCHAR" />
-         <result column="cyqk" property="cyqk" jdbcType="NVARCHAR" />
+         <result column="zlgcms" property="zlgcms" jdbcType="VARCHAR" />
+         <result column="cyqk" property="cyqk" jdbcType="VARCHAR" />
          <result column="czxyzdmc" property="czxyzdmc" jdbcType="VARCHAR" />
          <result column="czxyzdbm" property="czxyzdbm" jdbcType="VARCHAR" />
          <result column="czzybmmc" property="czzybmmc" jdbcType="VARCHAR" />
          <result column="czzybmdm" property="czzybmdm" jdbcType="VARCHAR" />
          <result column="czzyzhmc" property="czzyzhmc" jdbcType="VARCHAR" />
          <result column="czzyzhdm" property="czzyzhdm" jdbcType="VARCHAR" />
-         <result column="cyyz" property="cyyz" jdbcType="NVARCHAR" />
+         <result column="cyyz" property="cyyz" jdbcType="VARCHAR" />
          <result column="yzklysbm" property="yzklysbm" jdbcType="VARCHAR" />
          <result column="cyyzklrqm" property="cyyzklrqm" jdbcType="VARCHAR" />
          <result column="cyyzklrq" property="cyyzklrq" jdbcType="TIMESTAMP" />
@@ -245,29 +245,29 @@
             <if test="(cszhzgxdm != null and cszhzgxdm != '')"> #{cszhzgxdm , jdbcType= VARCHAR },  </if>
             <if test="(cszhzgxmc != null and cszhzgxmc != '')"> #{cszhzgxmc , jdbcType= VARCHAR },  </if>
             <if test="(csnrbz != null and csnrbz != '')"> #{csnrbz , jdbcType= CHAR },  </if>
-            <if test="(zs != null and zs != '')"> #{zs , jdbcType= NVARCHAR },  </if>
-            <if test="(xbs != null and xbs != '')"> #{xbs , jdbcType= NVARCHAR },  </if>
-            <if test="(ryqk != null and ryqk != '')"> #{ryqk , jdbcType= NVARCHAR },  </if>
+            <if test="(zs != null and zs != '')"> #{zs , jdbcType= VARCHAR },  </if>
+            <if test="(xbs != null and xbs != '')"> #{xbs , jdbcType= VARCHAR },  </if>
+            <if test="(ryqk != null and ryqk != '')"> #{ryqk , jdbcType= VARCHAR },  </if>
             <if test="(zzmc != null and zzmc != '')"> #{zzmc , jdbcType= VARCHAR },  </if>
-            <if test="(zzms != null and zzms != '')"> #{zzms , jdbcType= NVARCHAR },  </if>
-            <if test="(zyszgcjg != null and zyszgcjg != '')"> #{zyszgcjg , jdbcType= NVARCHAR },  </if>
+            <if test="(zzms != null and zzms != '')"> #{zzms , jdbcType= VARCHAR },  </if>
+            <if test="(zyszgcjg != null and zyszgcjg != '')"> #{zyszgcjg , jdbcType= VARCHAR },  </if>
             <if test="(zfbm != null and zfbm != '')"> #{zfbm , jdbcType= VARCHAR },  </if>
-            <if test="(zzzf != null and zzzf != '')"> #{zzzf , jdbcType= NVARCHAR },  </if>
+            <if test="(zzzf != null and zzzf != '')"> #{zzzf , jdbcType= VARCHAR },  </if>
             <if test="(rzxyzdmc != null and rzxyzdmc != '')"> #{rzxyzdmc , jdbcType= VARCHAR },  </if>
             <if test="(rzxzzdbm != null and rzxzzdbm != '')"> #{rzxzzdbm , jdbcType= VARCHAR },  </if>
             <if test="(rzzybmmc != null and rzzybmmc != '')"> #{rzzybmmc , jdbcType= VARCHAR },  </if>
             <if test="(rzzybmdm != null and rzzybmdm != '')"> #{rzzybmdm , jdbcType= VARCHAR },  </if>
             <if test="(rzzyzhmc != null and rzzyzhmc != '')"> #{rzzyzhmc , jdbcType= VARCHAR },  </if>
             <if test="(rzzyzhdm != null and rzzyzhdm != '')"> #{rzzyzhdm , jdbcType= VARCHAR },  </if>
-            <if test="(zlgcms != null and zlgcms != '')"> #{zlgcms , jdbcType= NVARCHAR },  </if>
-            <if test="(cyqk != null and cyqk != '')"> #{cyqk , jdbcType= NVARCHAR },  </if>
+            <if test="(zlgcms != null and zlgcms != '')"> #{zlgcms , jdbcType= VARCHAR },  </if>
+            <if test="(cyqk != null and cyqk != '')"> #{cyqk , jdbcType= VARCHAR },  </if>
             <if test="(czxyzdmc != null and czxyzdmc != '')"> #{czxyzdmc , jdbcType= VARCHAR },  </if>
             <if test="(czxyzdbm != null and czxyzdbm != '')"> #{czxyzdbm , jdbcType= VARCHAR },  </if>
             <if test="(czzybmmc != null and czzybmmc != '')"> #{czzybmmc , jdbcType= VARCHAR },  </if>
             <if test="(czzybmdm != null and czzybmdm != '')"> #{czzybmdm , jdbcType= VARCHAR },  </if>
             <if test="(czzyzhmc != null and czzyzhmc != '')"> #{czzyzhmc , jdbcType= VARCHAR },  </if>
             <if test="(czzyzhdm != null and czzyzhdm != '')"> #{czzyzhdm , jdbcType= VARCHAR },  </if>
-            <if test="(cyyz != null and cyyz != '')"> #{cyyz , jdbcType= NVARCHAR },  </if>
+            <if test="(cyyz != null and cyyz != '')"> #{cyyz , jdbcType= VARCHAR },  </if>
             <if test="(yzklysbm != null and yzklysbm != '')"> #{yzklysbm , jdbcType= VARCHAR },  </if>
             <if test="(cyyzklrqm != null and cyyzklrqm != '')"> #{cyyzklrqm , jdbcType= VARCHAR },  </if>
             <if test="(cyyzklrq != null )"> #{cyyzklrq , jdbcType= TIMESTAMP },  </if>
@@ -318,29 +318,29 @@
                 <if test="(cszhzgxdm != null and cszhzgxdm != '')"> cszhzgxdm = #{cszhzgxdm , jdbcType= VARCHAR }, </if>
                 <if test="(cszhzgxmc != null and cszhzgxmc != '')"> cszhzgxmc = #{cszhzgxmc , jdbcType= VARCHAR }, </if>
                 <if test="(csnrbz != null and csnrbz != '')"> csnrbz = #{csnrbz , jdbcType= CHAR }, </if>
-                <if test="(zs != null and zs != '')"> zs = #{zs , jdbcType= NVARCHAR }, </if>
-                <if test="(xbs != null and xbs != '')"> xbs = #{xbs , jdbcType= NVARCHAR }, </if>
-                <if test="(ryqk != null and ryqk != '')"> ryqk = #{ryqk , jdbcType= NVARCHAR }, </if>
+                <if test="(zs != null and zs != '')"> zs = #{zs , jdbcType= VARCHAR }, </if>
+                <if test="(xbs != null and xbs != '')"> xbs = #{xbs , jdbcType= VARCHAR }, </if>
+                <if test="(ryqk != null and ryqk != '')"> ryqk = #{ryqk , jdbcType= VARCHAR }, </if>
                 <if test="(zzmc != null and zzmc != '')"> zzmc = #{zzmc , jdbcType= VARCHAR }, </if>
-                <if test="(zzms != null and zzms != '')"> zzms = #{zzms , jdbcType= NVARCHAR }, </if>
-                <if test="(zyszgcjg != null and zyszgcjg != '')"> zyszgcjg = #{zyszgcjg , jdbcType= NVARCHAR }, </if>
+                <if test="(zzms != null and zzms != '')"> zzms = #{zzms , jdbcType= VARCHAR }, </if>
+                <if test="(zyszgcjg != null and zyszgcjg != '')"> zyszgcjg = #{zyszgcjg , jdbcType= VARCHAR }, </if>
                 <if test="(zfbm != null and zfbm != '')"> zfbm = #{zfbm , jdbcType= VARCHAR }, </if>
-                <if test="(zzzf != null and zzzf != '')"> zzzf = #{zzzf , jdbcType= NVARCHAR }, </if>
+                <if test="(zzzf != null and zzzf != '')"> zzzf = #{zzzf , jdbcType= VARCHAR }, </if>
                 <if test="(rzxyzdmc != null and rzxyzdmc != '')"> rzxyzdmc = #{rzxyzdmc , jdbcType= VARCHAR }, </if>
                 <if test="(rzxzzdbm != null and rzxzzdbm != '')"> rzxzzdbm = #{rzxzzdbm , jdbcType= VARCHAR }, </if>
                 <if test="(rzzybmmc != null and rzzybmmc != '')"> rzzybmmc = #{rzzybmmc , jdbcType= VARCHAR }, </if>
                 <if test="(rzzybmdm != null and rzzybmdm != '')"> rzzybmdm = #{rzzybmdm , jdbcType= VARCHAR }, </if>
                 <if test="(rzzyzhmc != null and rzzyzhmc != '')"> rzzyzhmc = #{rzzyzhmc , jdbcType= VARCHAR }, </if>
                 <if test="(rzzyzhdm != null and rzzyzhdm != '')"> rzzyzhdm = #{rzzyzhdm , jdbcType= VARCHAR }, </if>
-                <if test="(zlgcms != null and zlgcms != '')"> zlgcms = #{zlgcms , jdbcType= NVARCHAR }, </if>
-                <if test="(cyqk != null and cyqk != '')"> cyqk = #{cyqk , jdbcType= NVARCHAR }, </if>
+                <if test="(zlgcms != null and zlgcms != '')"> zlgcms = #{zlgcms , jdbcType= VARCHAR }, </if>
+                <if test="(cyqk != null and cyqk != '')"> cyqk = #{cyqk , jdbcType= VARCHAR }, </if>
                 <if test="(czxyzdmc != null and czxyzdmc != '')"> czxyzdmc = #{czxyzdmc , jdbcType= VARCHAR }, </if>
                 <if test="(czxyzdbm != null and czxyzdbm != '')"> czxyzdbm = #{czxyzdbm , jdbcType= VARCHAR }, </if>
                 <if test="(czzybmmc != null and czzybmmc != '')"> czzybmmc = #{czzybmmc , jdbcType= VARCHAR }, </if>
                 <if test="(czzybmdm != null and czzybmdm != '')"> czzybmdm = #{czzybmdm , jdbcType= VARCHAR }, </if>
                 <if test="(czzyzhmc != null and czzyzhmc != '')"> czzyzhmc = #{czzyzhmc , jdbcType= VARCHAR }, </if>
                 <if test="(czzyzhdm != null and czzyzhdm != '')"> czzyzhdm = #{czzyzhdm , jdbcType= VARCHAR }, </if>
-                <if test="(cyyz != null and cyyz != '')"> cyyz = #{cyyz , jdbcType= NVARCHAR }, </if>
+                <if test="(cyyz != null and cyyz != '')"> cyyz = #{cyyz , jdbcType= VARCHAR }, </if>
                 <if test="(yzklysbm != null and yzklysbm != '')"> yzklysbm = #{yzklysbm , jdbcType= VARCHAR }, </if>
                 <if test="(cyyzklrqm != null and cyyzklrqm != '')"> cyyzklrqm = #{cyyzklrqm , jdbcType= VARCHAR }, </if>
                 <if test="(cyyzklrq != null )"> cyyzklrq = #{cyyzklrq , jdbcType= TIMESTAMP }, </if>

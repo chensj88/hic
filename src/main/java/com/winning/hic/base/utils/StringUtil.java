@@ -301,6 +301,15 @@ public class StringUtil {
         return new String(ch);
     }
 
+    public static boolean hasChinese(String str){
+        Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
+        Matcher m = p.matcher(str);
+        if (m.find()) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         String idList = "156,1;156,2";
         List<String> idsList = new ArrayList<String>();
