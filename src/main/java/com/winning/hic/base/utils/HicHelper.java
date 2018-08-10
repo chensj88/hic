@@ -77,8 +77,8 @@ public class HicHelper {
                     value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue;
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
-                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue;
-                    value = StringUtil.isEmptyOrNull(strValue) ? null : Short.parseShort(shortStr);
+                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue;
+                    value = StringUtil.isEmptyOrNull(shortStr) ? -9 : Short.parseShort(shortStr);
                 } else if (paramType.contains("Timestamp")) {
                     String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
