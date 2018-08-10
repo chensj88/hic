@@ -194,12 +194,20 @@ public class DomUtils {
      */
     public static String resolveAtomNode(Element node,MbzDataSet info){
         String nodeValue = node.attribute(valueAttrName).getValue();
+        String[] split = nodeValue.split("`");
         String value = null;
-        if(!StringUtil.isEmptyOrNull(info.getDictCode()) ){
-            value = resolveString(nodeValue.split("`")[0]);
-        }else{
-            value = resolveString(nodeValue.split("`")[1].trim());
+        if(split.length >= 2){
+            if(!StringUtil.isEmptyOrNull(info.getDictCode()) ){
+                value = resolveString(split[0]);
+            }else{
+                value = resolveString(split[1].trim());
+            }
+        }else if(split.length == 0){
+            value = "";
+        }else if(split.length == 1){
+            value = split[0];
         }
+
         return value;
     }
 
