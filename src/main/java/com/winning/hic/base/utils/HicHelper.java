@@ -49,7 +49,7 @@ public class HicHelper {
             }
             Object value = null;
             if(strValue == null){
-                String paramType = paramTypeMap.get(pyCode);
+                String paramType = paramTypeMap.get(pyCode.trim());
                 if (paramType.contains("String")) {
                     value = "N";
                 }else if (paramType.contains("Short")) {

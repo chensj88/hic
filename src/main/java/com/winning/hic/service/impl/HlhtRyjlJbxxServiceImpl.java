@@ -121,60 +121,6 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-//                    for (MbzDataSet dataSet : mbzDataSetList) {
-//                        //获取属性名
-//                        String pyCode = dataSet.getPyCode();
-//                        String methodName = "set" + StringUtil.titleCase(pyCode);
-//                        String strValue = XmlUtil.getAttrValueByDataSet(document, dataSet);
-//                        logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, strValue);
-//                        Object value = null;
-//                        String paramType = paramTypeMap.get(pyCode);
-//                        System.out.println(">>>>>>>>>>>>>>" + paramType);
-//                        if (paramType.contains("String")) {
-//                            value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue.split("`")[2];
-//                        } else if (paramType.contains("Short")) {
-//                            //格式：50`50`50
-//                            String shortStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[2];
-//                            value = StringUtil.isEmptyOrNull(shortStr) ? null : Short.parseShort(shortStr);
-//                        } else if (paramType.contains("Date")) {
-////                格式：636467930400000000`2017-11-20,16:44
-//                            String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-//                            String pattern = "yyyy-MM-dd,HH:mm";
-//                            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-//                            try {
-//                                Date date = StringUtil.isEmptyOrNull(dateStr) ? new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01") : sdf.parse(dateStr);
-//                                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//                                value = sqlDate;
-//                            } catch (ParseException e) {
-//                                e.printStackTrace();
-//                            }
-//                        } else if (paramType.contains("Timestamp")) {
-//                            String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-//                            String pattern = "yyyy-MM-dd,HH:mm";
-//                            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-//                            try {
-//                                Date date = StringUtil.isEmptyOrNull(dateStr) ? new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01") : sdf.parse(dateStr);
-//                                Timestamp dateTime = new Timestamp(date.getTime());
-//                                value = dateTime;
-//                            } catch (ParseException e) {
-//                                e.printStackTrace();
-//                            }
-//                        } else if (paramType.contains("BigDecimal")) {
-//                            String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[1];
-//                            value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
-//                        } else if (paramType.contains("Integer")) {
-//                            String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue.split("`")[1];
-//                            value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
-//                        }
-//                        //类型
-//                        try {
-//                            if (value != null) {
-//                                ReflectUtil.setParam(hlhtRyjlJbxx, methodName, value);
-//                            }
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
                     logger.info("Model:{}", hlhtRyjlJbxx);
                     this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
                 }
