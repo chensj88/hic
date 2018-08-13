@@ -95,7 +95,6 @@
 	</select>
 
 	<insert id="insertEmrQtbljlk" parameterType="com.winning.hic.model.EmrQtbljlk">
-	<selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
 		insert into EMR_QTBLJLK 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 	       <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> QTBLJLXH, </if>

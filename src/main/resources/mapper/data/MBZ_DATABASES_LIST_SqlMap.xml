@@ -28,7 +28,7 @@
     </sql>
 
     <insert id="insertMbzDatabasesList" parameterType="com.winning.hic.model.MbzDatabasesList">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+
         INSERT INTO MBZ_DATABASES_LIST
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(id != null and id != '')"> ID , </if>

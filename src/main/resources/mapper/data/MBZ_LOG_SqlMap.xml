@@ -20,7 +20,7 @@
     </sql>
 
     <insert id="insertMbzLog" parameterType="com.winning.hic.model.MbzLog">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+
         INSERT INTO MBZ_LOG
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null"> ID , </if>

@@ -96,7 +96,7 @@
     </sql>
 
     <insert id="insertHlhtZybcjlSwbltljl" parameterType="com.winning.hic.model.HlhtZybcjlSwbltljl">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+
         INSERT INTO HLHT_ZYBCJL_SWBLTLJL
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(yjlxh != null and yjlxh != '')"> yjlxh , </if>
