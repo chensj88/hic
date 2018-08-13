@@ -241,10 +241,10 @@
                         '未知 '
                     END
             ) AS hyzkmc,
-            ISNULL((SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'N') as dzsf,
-            ISNULL((SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzsq,
-            ISNULL((SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzx,
-            ISNULL((SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzxz,
+            ISNULL((SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'N') as dzsf,
+            ISNULL((SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzsq,
+            ISNULL((SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzx,
+            ISNULL((SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzxz,
             'N' as dzc,
             'N' as dzmphm,
             b.ZYDM as zylbdm,
@@ -255,11 +255,11 @@
             t.QTBLJLXH as syxh,
             t.TJZT as tjzt,
             t.YXJL as yxjl
-        FROM CISDB.dbo.EMR_QTBLJLK t
-            LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
-            LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH
-            LEFT JOIN CISDB.dbo.PUB_MZDMK d on  b.MZDM = d.ID
-            LEFT JOIN CISDB.dbo.PUB_ZYDMK i on b.ZYDM=i.ID
+        FROM EMR_QTBLJLK t
+            LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
+            LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
+            LEFT JOIN PUB_MZDMK d on  b.MZDM = d.ID
+            LEFT JOIN PUB_ZYDMK i on b.ZYDM=i.ID
         WHERE  1=1
                AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
     </select>
@@ -304,10 +304,10 @@
                         '未知 '
                     END
             ) AS hyzkmc,
-            ISNULL((SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'N') as dzsf,
-            ISNULL((SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzsq,
-            ISNULL((SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzx,
-            ISNULL((SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzxz,
+            ISNULL((SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'N') as dzsf,
+            ISNULL((SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzsq,
+            ISNULL((SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzx,
+            ISNULL((SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') as dzxz,
             'N' as dzc,
             'N' as dzmphm,
             b.ZYDM as zylbdm,
@@ -318,11 +318,11 @@
             t.TJZT as tjzt,
             t.SHSJ as gxsj,
             t.YXJL as yxjl
-        FROM CISDB.dbo.EMR_QTBLJLK t
-            LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
-            LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH
-            LEFT JOIN CISDB.dbo.PUB_MZDMK d on  b.MZDM = d.ID
-            LEFT JOIN CISDB.dbo.PUB_ZYDMK i on b.ZYDM=i.ID
+        FROM EMR_QTBLJLK t
+            LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
+            LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
+            LEFT JOIN PUB_MZDMK d on  b.MZDM = d.ID
+            LEFT JOIN PUB_ZYDMK i on b.ZYDM=i.ID
         WHERE  1=1
                AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
     </select>
