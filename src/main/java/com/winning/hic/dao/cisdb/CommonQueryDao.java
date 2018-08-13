@@ -3,6 +3,7 @@ package com.winning.hic.dao.cisdb;
 import com.winning.hic.model.HlhtRyjlRcyjl;
 import com.winning.hic.model.HlhtRyjlRyswjl;
 import com.winning.hic.model.HlhtZybcjlShscbcjl;
+import com.winning.hic.model.HlhtZybcjlSqxj;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -38,4 +39,11 @@ public interface CommonQueryDao {
      * @return
      */
     HlhtZybcjlShscbcjl selectInitHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl);
+
+    /**
+     * 获取住院病程/术前小结公共病人数据
+     * @param hlhtZybcjlSqxj
+     * @return
+     */
+    HlhtZybcjlSqxj selectInitHlhtZybcjlSqxj(HlhtZybcjlSqxj hlhtZybcjlSqxj);
 }

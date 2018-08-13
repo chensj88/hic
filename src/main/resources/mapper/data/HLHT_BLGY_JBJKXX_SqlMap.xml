@@ -68,7 +68,6 @@
     </sql>
 
     <insert id="insertHlhtBlgyJbjkxx" parameterType="com.winning.hic.model.HlhtBlgyJbjkxx">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
         INSERT INTO HLHT_BLGY_JBJKXX
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(yjlxh != null and yjlxh != '')"> yjlxh , </if>
@@ -165,20 +164,14 @@
             </trim>
         </set>
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
-            </if>
+          <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }, </if>             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">                 and (yjlxh) in                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>             </if>
         </where>
     </update>
 
     <delete id="deleteHlhtBlgyJbjkxx" parameterType="com.winning.hic.model.HlhtBlgyJbjkxx">
         delete from  HLHT_BLGY_JBJKXX
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
-            </if>
+          <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }, </if>             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">                 and (yjlxh) in                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>             </if>
         </where>
     </delete>
 

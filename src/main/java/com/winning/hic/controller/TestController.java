@@ -49,4 +49,14 @@ public class TestController extends BaseController {
         result.put("data", super.getFacade().getHlhtRyjlRyswjlService().interfaceHlhtRyjlRyswjl(null));
         return result;
     }
+
+
+    @GetMapping(value = "/test/shscbcjl")
+    @ApiOperation(value="/test/shscbcjl",notes = "取住院病程/手术术后首次病程初始化数据")
+    public Map<String, Object> testSHSCBCJL() throws IOException, ParseException {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtZybcjlShscbcjlService().interfaceHlhtZybcjlShscbcjl(null));
+        return result;
+    }
 }

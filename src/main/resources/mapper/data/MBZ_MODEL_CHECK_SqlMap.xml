@@ -84,8 +84,9 @@
             </trim>
         </set>
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
         </where>
@@ -94,8 +95,9 @@
     <delete id="deleteMbzModelCheck" parameterType="com.winning.hic.model.MbzModelCheck">
         delete from  MBZ_MODEL_CHECK
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
         </where>

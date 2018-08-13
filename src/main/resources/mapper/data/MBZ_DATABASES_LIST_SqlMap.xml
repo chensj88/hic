@@ -28,7 +28,7 @@
     </sql>
 
     <insert id="insertMbzDatabasesList" parameterType="com.winning.hic.model.MbzDatabasesList">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+
         INSERT INTO MBZ_DATABASES_LIST
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(id != null and id != '')"> ID , </if>
@@ -75,8 +75,9 @@
     <delete id="deleteMbzDatabasesList" parameterType="com.winning.hic.model.MbzDatabasesList">
         delete from  MBZ_DATABASES_LIST
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
+                and (ID) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
         </where>
