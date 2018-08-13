@@ -49,4 +49,9 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
     public List<HlhtZybcjlShscbcjl> getHlhtZybcjlShscbcjlPageList(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl){
         return this.hlhtZybcjlShscbcjlDao.selectHlhtZybcjlShscbcjlPageList(hlhtZybcjlShscbcjl);
     }
+
+    @Override
+    public List<HlhtZybcjlShscbcjl> interfaceHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl) {
+        return null;
+    }
 }

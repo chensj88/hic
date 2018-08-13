@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtRyjlRcyjlDao;
 import com.winning.hic.model.EmrQtbljlk;
 import com.winning.hic.model.HlhtRyjlRcyjl;
@@ -41,6 +42,8 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
 
     @Autowired
     private HlhtRyjlRcyjlDao hlhtRyjlRcyjlDao;
+    @Autowired
+    private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzDataListSetService mbzDataListSetService;
     @Autowired
@@ -82,7 +85,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
      */
     @Override
     public HlhtRyjlRcyjl getInitHlhtRyjlRcyjlData(HlhtRyjlRcyjl rcyjl) {
-        return  this.hlhtRyjlRcyjlDao.selectInitHlhtRyjlRcyjlData(rcyjl);
+        return  this.commonQueryDao.selectInitHlhtRyjlRcyjlData(rcyjl);
     }
 
     @Override

@@ -27,4 +27,12 @@ public interface HlhtZybcjlShscbcjlService {
     public List<HlhtZybcjlShscbcjl> getHlhtZybcjlShscbcjlList(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl);
 
     public List<HlhtZybcjlShscbcjl> getHlhtZybcjlShscbcjlPageList(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl);
+
+    /**
+     * 病历数据抽取
+     * @param hlhtZybcjlShscbcjl
+     * @return
+     */
+    public List<HlhtZybcjlShscbcjl> interfaceHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl);
+
 }
