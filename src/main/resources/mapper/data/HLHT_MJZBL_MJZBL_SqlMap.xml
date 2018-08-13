@@ -340,20 +340,14 @@
             </trim>
         </set>
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
-            </if>
+          <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }, </if>             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">                 and (yjlxh) in                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>             </if>
         </where>
     </update>
 
     <delete id="deleteHlhtMjzblMjzbl" parameterType="com.winning.hic.model.HlhtMjzblMjzbl">
         delete from  HLHT_MJZBL_MJZBL
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
-            </if>
+          <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }, </if>             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">                 and (yjlxh) in                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>             </if>
         </where>
     </delete>
 
