@@ -211,7 +211,7 @@
         SELECT t.QTBLJLXH as yjlxh,b.HISSYXH as jzlsh,c.PATID as patid,b.HZXM as hzxm,b.ZYHM as zyh,b.SFZH as sfzhm,c.KSDM as ksdm,c.KSMC as ksmc ,
                      c.BQDM as bqdm,c.BQMC as bqmc ,ISNULL(a.fjh, 'N') as bfh ,NULL as bfmc ,c.CWDM as bch ,convert(datetime,getdate()) as jlrq,
                      b.BRXB as xbdm,c.SEX as xbmc,ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
-                SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly,t.YXJL as yxjl
+                SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly,t.YXJL as yxjl,ISNULL(t.SHSJ, t.CJSJ) AS gxsj
 
         FROM CISDB.dbo.EMR_QTBLJLK t
         LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
