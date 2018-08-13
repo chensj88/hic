@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtRyjlRyswjlDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
@@ -42,6 +43,8 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
     @Autowired
     private HlhtRyjlRyswjlDao hlhtRyjlRyswjlDao;
     @Autowired
+    private CommonQueryDao commonQueryDao;
+    @Autowired
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
     private MbzDataSetDao mbzDataSetDao;
@@ -77,7 +80,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
     }
 
     public HlhtRyjlRyswjl getInitHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl){
-        return this.hlhtRyjlRyswjlDao.selectInitHlhtRyjlRyswjl(hlhtRyjlRyswjl);
+        return this.commonQueryDao.selectInitHlhtRyjlRyswjl(hlhtRyjlRyswjl);
     }
     public List<HlhtRyjlRyswjl> interfaceHlhtRyjlRyswjl(HlhtRyjlRyswjl ryjlRyswjl) throws IOException, ParseException {
         //加载模板库 根据模板类型获取对应的病历模板代码
