@@ -3,6 +3,7 @@ package com.winning.hic.service;
 import java.util.List;  
 
 import com.winning.hic.model.MbzDataSet;
+import com.winning.hic.model.NodeTree;
 
 
 /**
@@ -27,4 +28,6 @@ public interface MbzDataSetService {
     public List<MbzDataSet> getMbzDataSetList(MbzDataSet mbzDataSet);
 
     public List<MbzDataSet> getMbzDataSetPageList(MbzDataSet mbzDataSet);
+
+    public List<NodeTree> getNodeTreeFromMbzDataSet(MbzDataSet dataSet);
 }

@@ -2,9 +2,10 @@ package com.winning.hic.dao.data;
 
 
 
-import java.util.List;  
+import java.util.List;
 
-import org.springframework.dao.DataAccessException;  
+import com.winning.hic.model.NodeTree;
+import org.springframework.dao.DataAccessException;
 
 import com.winning.hic.model.MbzDataSet;
 
@@ -34,4 +35,6 @@ public interface MbzDataSetDao {
     public List<MbzDataSet> selectMbzDataSetList(MbzDataSet mbzDataSet) throws DataAccessException;
 
     public List<MbzDataSet> selectMbzDataSetPageList(MbzDataSet mbzDataSet) throws DataAccessException;
+
+    public List<NodeTree> selectNodeTreeFromMbzDataSet(MbzDataSet mbzDataSet) throws DataAccessException;
 }

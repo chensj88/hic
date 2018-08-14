@@ -85,4 +85,20 @@ public class MbzDataSetController extends BaseController {
         result.put("rows", getFacade().getMbzDataSetService().getMbzDataSetPageList(dataSet));
         return result;
     }
+
+    @ApiOperation(value = "/basic/plist",notes = "加载接口表子级字段信息")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "row",value = "分页参数",required = true,dataType = "Row"),
+                    @ApiImplicitParam(name = "dataSet",value = "接口表",required = true,dataType = "MbzDataSet"),
+                    @ApiImplicitParam(name = "config",value = "是否已经配置路径",required = false,dataType = "Integer"),
+            }
+    )
+    @PostMapping("/basic/tree")
+    public Map<String, Object> loadColumnsForInterfaceTable(MbzDataSet dataSet){
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", getFacade().getMbzDataSetService().getNodeTreeFromMbzDataSet(dataSet));
+        return result;
+    }
 }
