@@ -26,8 +26,8 @@
         <result column="ryrq" property="ryrq" jdbcType="TIMESTAMP"/>
         <result column="ryzdbm" property="ryzdbm" jdbcType="VARCHAR"/>
         <result column="ryzdmc" property="ryzdmc" jdbcType="VARCHAR"/>
-        <result column="ryqk" property="ryqk" jdbcType="NVARCHAR"/>
-        <result column="zlgcms" property="zlgcms" jdbcType="NVARCHAR"/>
+        <result column="ryqk" property="ryqk" jdbcType="VARCHAR"/>
+        <result column="zlgcms" property="zlgcms" jdbcType="VARCHAR"/>
         <result column="swrq" property="swrq" jdbcType="TIMESTAMP"/>
         <result column="zjswyymc" property="zjswyymc" jdbcType="VARCHAR"/>
         <result column="zjswyybm" property="zjswyybm" jdbcType="VARCHAR"/>
@@ -165,8 +165,8 @@
             <if test="(ryrq != null )">#{ryrq , jdbcType= TIMESTAMP },</if>
             <if test="(ryzdbm != null )">#{ryzdbm , jdbcType= VARCHAR },</if>
             <if test="(ryzdmc != null )">#{ryzdmc , jdbcType= VARCHAR },</if>
-            <if test="(ryqk != null )">#{ryqk , jdbcType= NVARCHAR },</if>
-            <if test="(zlgcms != null )">#{zlgcms , jdbcType= NVARCHAR },</if>
+            <if test="(ryqk != null )">#{ryqk , jdbcType= VARCHAR },</if>
+            <if test="(zlgcms != null )">#{zlgcms , jdbcType= VARCHAR },</if>
             <if test="(swrq != null)">#{swrq , jdbcType= TIMESTAMP },</if>
             <if test="(zjswyymc != null )">#{zjswyymc , jdbcType= VARCHAR },</if>
             <if test="(zjswyybm != null )">#{zjswyybm , jdbcType= VARCHAR },</if>
@@ -213,8 +213,8 @@
                 <if test="(ryrq != null )">ryrq = #{ryrq , jdbcType= TIMESTAMP },</if>
                 <if test="(ryzdbm != null )">ryzdbm = #{ryzdbm , jdbcType= VARCHAR },</if>
                 <if test="(ryzdmc != null )">ryzdmc = #{ryzdmc , jdbcType= VARCHAR },</if>
-                <if test="(ryqk != null )">ryqk = #{ryqk , jdbcType= NVARCHAR },</if>
-                <if test="(zlgcms != null )">zlgcms = #{zlgcms , jdbcType= NVARCHAR },</if>
+                <if test="(ryqk != null )">ryqk = #{ryqk , jdbcType= VARCHAR },</if>
+                <if test="(zlgcms != null )">zlgcms = #{zlgcms , jdbcType= VARCHAR },</if>
                 <if test="(swrq != null)">swrq = #{swrq , jdbcType= TIMESTAMP },</if>
                 <if test="(zjswyymc != null )">zjswyymc = #{zjswyymc , jdbcType= VARCHAR },</if>
                 <if test="(zjswyybm != null )">zjswyybm = #{zjswyybm , jdbcType= VARCHAR },</if>

@@ -39,13 +39,13 @@
          <result column="ssczrq" property="ssczrq" jdbcType="TIMESTAMP" />
          <result column="mzffdm" property="mzffdm" jdbcType="VARCHAR" />
          <result column="mzffmc" property="mzffmc" jdbcType="VARCHAR" />
-         <result column="ssyd" property="ssyd" jdbcType="NVARCHAR" />
-         <result column="sqzb" property="sqzb" jdbcType="NVARCHAR" />
-         <result column="sszz" property="sszz" jdbcType="NVARCHAR" />
-         <result column="ssfa" property="ssfa" jdbcType="NVARCHAR" />
-         <result column="zysx" property="zysx" jdbcType="NVARCHAR" />
-         <result column="tlyj" property="tlyj" jdbcType="NVARCHAR" />
-         <result column="tljl" property="tljl" jdbcType="NVARCHAR" />
+         <result column="ssyd" property="ssyd" jdbcType="VARCHAR" />
+         <result column="sqzb" property="sqzb" jdbcType="VARCHAR" />
+         <result column="sszz" property="sszz" jdbcType="VARCHAR" />
+         <result column="ssfa" property="ssfa" jdbcType="VARCHAR" />
+         <result column="zysx" property="zysx" jdbcType="VARCHAR" />
+         <result column="tlyj" property="tlyj" jdbcType="VARCHAR" />
+         <result column="tljl" property="tljl" jdbcType="VARCHAR" />
          <result column="sszbm" property="sszbm" jdbcType="VARCHAR" />
          <result column="sszqm" property="sszqm" jdbcType="VARCHAR" />
          <result column="mzysbm" property="mzysbm" jdbcType="VARCHAR" />

@@ -50,7 +50,7 @@
          <result column="fyyjsbm" property="fyyjsbm" jdbcType="VARCHAR" />
          <result column="fyyjsqm" property="fyyjsqm" jdbcType="VARCHAR" />
          <result column="cffysj" property="cffysj" jdbcType="TIMESTAMP" />
-         <result column="cfbzxx" property="cfbzxx" jdbcType="NVARCHAR" />
+         <result column="cfbzxx" property="cfbzxx" jdbcType="VARCHAR" />
          <result column="cfypje" property="cfypje" jdbcType="NUMERIC" />
          <result column="gxsj" property="gxsj" jdbcType="TIMESTAMP" />
     </resultMap>
@@ -213,7 +213,7 @@
             <if test="(fyyjsbm != null and fyyjsbm != '')"> #{fyyjsbm , jdbcType= VARCHAR },  </if>
             <if test="(fyyjsqm != null and fyyjsqm != '')"> #{fyyjsqm , jdbcType= VARCHAR },  </if>
             <if test="(cffysj != null and cffysj != '')"> #{cffysj , jdbcType= TIMESTAMP },  </if>
-            <if test="(cfbzxx != null and cfbzxx != '')"> #{cfbzxx , jdbcType= NVARCHAR },  </if>
+            <if test="(cfbzxx != null and cfbzxx != '')"> #{cfbzxx , jdbcType= VARCHAR },  </if>
             <if test="(cfypje != null and cfypje != '')"> #{cfypje , jdbcType= NUMERIC },  </if>
             <if test="(gxsj != null and gxsj != '')"> #{gxsj , jdbcType= TIMESTAMP },  </if>
         </trim>
@@ -269,7 +269,7 @@
                 <if test="(fyyjsbm != null and fyyjsbm != '')"> fyyjsbm = #{fyyjsbm , jdbcType= VARCHAR }, </if>
                 <if test="(fyyjsqm != null and fyyjsqm != '')"> fyyjsqm = #{fyyjsqm , jdbcType= VARCHAR }, </if>
                 <if test="(cffysj != null and cffysj != '')"> cffysj = #{cffysj , jdbcType= TIMESTAMP }, </if>
-                <if test="(cfbzxx != null and cfbzxx != '')"> cfbzxx = #{cfbzxx , jdbcType= NVARCHAR }, </if>
+                <if test="(cfbzxx != null and cfbzxx != '')"> cfbzxx = #{cfbzxx , jdbcType= VARCHAR }, </if>
                 <if test="(cfypje != null and cfypje != '')"> cfypje = #{cfypje , jdbcType= NUMERIC }, </if>
                 <if test="(gxsj != null and gxsj != '')"> gxsj = #{gxsj , jdbcType= TIMESTAMP }, </if>
             </trim>
