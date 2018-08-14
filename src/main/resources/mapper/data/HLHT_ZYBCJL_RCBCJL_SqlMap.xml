@@ -23,12 +23,12 @@
         <result column="csrq" property="csrq" jdbcType="DATE"/>
         <result column="nls" property="nls" jdbcType="NUMERIC"/>
         <result column="nly" property="nly" jdbcType="VARCHAR"/>
-        <result column="zybc" property="zybc" jdbcType="NVARCHAR"/>
-        <result column="yznr" property="yznr" jdbcType="NVARCHAR"/>
-        <result column="zyszgcjg" property="zyszgcjg" jdbcType="NVARCHAR"/>
-        <result column="bzlzms" property="bzlzms" jdbcType="NVARCHAR"/>
-        <result column="zyjzff" property="zyjzff" jdbcType="NVARCHAR"/>
-        <result column="zyyyff" property="zyyyff" jdbcType="NVARCHAR"/>
+        <result column="zybc" property="zybc" jdbcType="VARCHAR"/>
+        <result column="yznr" property="yznr" jdbcType="VARCHAR"/>
+        <result column="zyszgcjg" property="zyszgcjg" jdbcType="VARCHAR"/>
+        <result column="bzlzms" property="bzlzms" jdbcType="VARCHAR"/>
+        <result column="zyjzff" property="zyjzff" jdbcType="VARCHAR"/>
+        <result column="zyyyff" property="zyyyff" jdbcType="VARCHAR"/>
         <result column="zyzwlbdm" property="zyzwlbdm" jdbcType="VARCHAR"/>
         <result column="zyzwlbmc" property="zyzwlbmc" jdbcType="VARCHAR"/>
         <result column="ysbm" property="ysbm" jdbcType="VARCHAR"/>
@@ -141,12 +141,12 @@
             <if test="(csrq != null )">#{csrq , jdbcType= DATE },</if>
             <if test="(nls != null )">#{nls , jdbcType= NUMERIC },</if>
             <if test="(nly != null )">#{nly , jdbcType= VARCHAR },</if>
-            <if test="(zybc != null )">#{zybc , jdbcType= NVARCHAR },</if>
-            <if test="(yznr != null )">#{yznr , jdbcType= NVARCHAR },</if>
-            <if test="(zyszgcjg != null )">#{zyszgcjg , jdbcType= NVARCHAR },</if>
-            <if test="(bzlzms != null )">#{bzlzms , jdbcType= NVARCHAR },</if>
-            <if test="(zyjzff != null )">#{zyjzff , jdbcType= NVARCHAR },</if>
-            <if test="(zyyyff != null )">#{zyyyff , jdbcType= NVARCHAR },</if>
+            <if test="(zybc != null )">#{zybc , jdbcType= VARCHAR },</if>
+            <if test="(yznr != null )">#{yznr , jdbcType= VARCHAR },</if>
+            <if test="(zyszgcjg != null )">#{zyszgcjg , jdbcType= VARCHAR },</if>
+            <if test="(bzlzms != null )">#{bzlzms , jdbcType= VARCHAR },</if>
+            <if test="(zyjzff != null )">#{zyjzff , jdbcType= VARCHAR },</if>
+            <if test="(zyyyff != null )">#{zyyyff , jdbcType= VARCHAR },</if>
             <if test="(zyzwlbdm != null)">#{zyzwlbdm , jdbcType= VARCHAR },</if>
             <if test="(zyzwlbmc != null )">#{zyzwlbmc , jdbcType= VARCHAR },</if>
             <if test="(ysbm != null )">#{ysbm , jdbcType= VARCHAR },</if>
@@ -182,12 +182,12 @@
                 <if test="(csrq != null )">csrq = #{csrq , jdbcType= DATE },</if>
                 <if test="(nls != null )">nls = #{nls , jdbcType= NUMERIC },</if>
                 <if test="(nly != null )">nly = #{nly , jdbcType= VARCHAR },</if>
-                <if test="(zybc != null )">zybc = #{zybc , jdbcType= NVARCHAR },</if>
-                <if test="(yznr != null )">yznr = #{yznr , jdbcType= NVARCHAR },</if>
-                <if test="(zyszgcjg != null )">zyszgcjg = #{zyszgcjg , jdbcType= NVARCHAR },</if>
-                <if test="(bzlzms != null )">bzlzms = #{bzlzms , jdbcType= NVARCHAR },</if>
-                <if test="(zyjzff != null )">zyjzff = #{zyjzff , jdbcType= NVARCHAR },</if>
-                <if test="(zyyyff != null )">zyyyff = #{zyyyff , jdbcType= NVARCHAR },</if>
+                <if test="(zybc != null )">zybc = #{zybc , jdbcType= VARCHAR },</if>
+                <if test="(yznr != null )">yznr = #{yznr , jdbcType= VARCHAR },</if>
+                <if test="(zyszgcjg != null )">zyszgcjg = #{zyszgcjg , jdbcType= VARCHAR },</if>
+                <if test="(bzlzms != null )">bzlzms = #{bzlzms , jdbcType= VARCHAR },</if>
+                <if test="(zyjzff != null )">zyjzff = #{zyjzff , jdbcType= VARCHAR },</if>
+                <if test="(zyyyff != null )">zyyyff = #{zyyyff , jdbcType= VARCHAR },</if>
                 <if test="(zyzwlbdm != null)">zyzwlbdm = #{zyzwlbdm , jdbcType= VARCHAR },</if>
                 <if test="(zyzwlbmc != null )">zyzwlbmc = #{zyzwlbmc , jdbcType= VARCHAR },</if>
                 <if test="(ysbm != null )">ysbm = #{ysbm , jdbcType= VARCHAR },</if>
@@ -200,10 +200,10 @@
             </trim>
         </set>
         <where>
-            <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }, </if>
+            <if test="(yjlxh != null and yjlxh != '')">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">
                 and (yjlxh) in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
             </if>
         </where>
     </update>
@@ -211,16 +211,17 @@
     <delete id="deleteHlhtZybcjlRcbcjl" parameterType="com.winning.hic.model.HlhtZybcjlRcbcjl">
         delete from HLHT_ZYBCJL_RCBCJL
         <where>
-            <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }, </if>
+            <if test="(yjlxh != null and yjlxh != '')">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">
                 and (yjlxh) in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
             </if>
         </where>
     </delete>
 
     <delete id="deleteHlhtZybcjlRcbcjlByYjlxh" parameterType="com.winning.hic.model.HlhtZybcjlRcbcjl">
-        delete from HLHT_ZYBCJL_RCBCJL WHERE yjlxh = #{yjlxh}
+        delete from HLHT_ZYBCJL_RCBCJL
+        WHERE yjlxh = #{yjlxh}
     </delete>
 
 
@@ -267,61 +268,62 @@
     <select id="getHlhtZybcjlRcbcjlListFromBaseData" resultMap="hlhtZybcjlRcbcjlResult"
             parameterType="com.winning.hic.model.EmrQtbljlk">
         SELECT
-                ISNULL(q.QTBLJLXH, 'N') AS yjlxh,
-                c.SYXH AS jzlsh,
-                c.PATID AS patid,
-                ISNULL(b.ZYHM, 'N') AS zyh,
-                ISNULL(c.BQDM, 'N') AS bqdm,
-                ISNULL(c.BQMC, 'N') AS bqmc,
-                ISNULL(c.KSDM, 'N') AS ksdm,
-                ISNULL(c.KSMC, 'N') AS ksmc,
-                ISNULL(m.fjh, 'N') AS bfh,
-                ISNULL(m.fjh, 'N') AS bfmc,
-                ISNULL(b.RYCW, 'N') AS bch,
-                CONVERT (datetime, getdate()) AS jlrq,
-                ISNULL(b.HZXM, 'N') AS hzxm,
-                ISNULL(b.SFZH, 'N') AS sfzhm,
-                ISNULL(b.BRXB, 'N') AS xbdm,
-                (
-                    SELECT
-                        CASE b.BRXB
-                    WHEN '2' THEN
-                        '女'
-                    WHEN '1' THEN
-                        '男'
-                    ELSE
-                        '其它'
-                    END
-                ) AS xbmc,
-                CONVERT (DATE,ISNULL(c.BIRTH, '19900101'),108) AS csrq,
-                ISNULL(
-                    CONVERT (
-                        VARCHAR,
-                        (
-                            YEAR (GETDATE()) - YEAR (CONVERT(datetime, b.CSRQ))
-                        )
+            ISNULL(q.QTBLJLXH, 'N')                         AS yjlxh,
+            c.SYXH                                          AS jzlsh,
+            c.PATID                                         AS patid,
+            ISNULL(b.ZYHM, 'N')                             AS zyh,
+            ISNULL(c.BQDM, 'N')                             AS bqdm,
+            ISNULL(c.BQMC, 'N')                             AS bqmc,
+            ISNULL(c.KSDM, 'N')                             AS ksdm,
+            ISNULL(c.KSMC, 'N')                             AS ksmc,
+            ISNULL(m.fjh, 'N')                              AS bfh,
+            ISNULL(m.fjh, 'N')                              AS bfmc,
+            ISNULL(b.RYCW, 'N')                             AS bch,
+            CONVERT(datetime, getdate())                    AS jlrq,
+            ISNULL(b.HZXM, 'N')                             AS hzxm,
+            ISNULL(b.SFZH, 'N')                             AS sfzhm,
+            ISNULL(b.BRXB, 'N')                             AS xbdm,
+            (
+                SELECT CASE b.BRXB
+                       WHEN '2'
+                           THEN
+                               '女'
+                       WHEN '1'
+                           THEN
+                               '男'
+                       ELSE
+                           '其它'
+                       END
+            )                                               AS xbmc,
+            CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,
+            ISNULL(
+                    CONVERT(
+                                VARCHAR,
+                                (
+                                    YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
+                                )
                     ),
                     'N'
-                ) AS nls,
-                SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
-                q.QTBLJLXH AS syxh,
-                q.TJZT AS tjzt,
-                q.YXJL AS yxjl,
-                ISNULL(
+            )                                               AS nls,
+            SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9)       AS nly,
+            q.QTBLJLXH                                      AS syxh,
+            q.TJZT                                          AS tjzt,
+            q.YXJL                                          AS yxjl,
+            ISNULL(
                     q.GXRQ,
                     q.CJSJ
-                ) AS gxsj
-            FROM
-                CISDB.dbo.EMR_QTBLJLK q
+            )                                               AS gxsj
+        FROM
+            CISDB.dbo.EMR_QTBLJLK q
             LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
             LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON b.SYXH = c.EMRXH
             LEFT JOIN CISDB.dbo.EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
             LEFT JOIN CISDB.dbo.PUB_ZYDMK p ON b.ZYDM = p.ID
             LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
-                m.id = b.RYCW
-                AND m.bqdm = b.RYBQ
+            m.id = b.RYCW
+            AND m.bqdm = b.RYBQ
             )
-        WHERE q.BLDM=#{bldm}
+        WHERE q.BLDM = #{bldm}
 
     </select>
 

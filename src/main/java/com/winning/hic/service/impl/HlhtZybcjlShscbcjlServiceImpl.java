@@ -72,7 +72,7 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
     }
 
     @Override
-    public List<HlhtZybcjlShscbcjl> interfaceHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl) throws IOException, ParseException {
         List<MbzDataCheck> dataCheckList = null;
          //加载模板
         MbzDataSet mbzDataSet = new MbzDataSet();
@@ -116,6 +116,6 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
                 }
             }
         }
-        return null;
+        return dataCheckList;
     }
 }
