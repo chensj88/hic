@@ -569,9 +569,10 @@
             </trim>
         </set>
         <where>
-            <if test=" and map.pks != null and map.pks != ''">
-                and in
-                <foreach item="item" collection="map.pks" open="" separator="," close="">#{item}</foreach>
+            <if test="(yjlxh != null and yjlxh != '')">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
+            <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">
+                and (yjlxh) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
             </if>
         </where>
     </update>
@@ -579,15 +580,17 @@
     <delete id="deleteHlhtRyjlJbxx" parameterType="com.winning.hic.model.HlhtRyjlJbxx">
         delete from HLHT_RYJL_JBXX
         <where>
-            <if test=" and map.pks != null and map.pks != ''">
-                and in
-                <foreach item="item" collection="map.pks" open="" separator="," close="">#{item}</foreach>
+            <if test="(yjlxh != null and yjlxh != '')">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
+            <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">
+                and (yjlxh) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
             </if>
         </where>
     </delete>
 
     <delete id="deleteHlhtRyjlJbxxByYjlxh" parameterType="com.winning.hic.model.HlhtRyjlJbxx">
-        delete from HLHT_RYJL_JBXX WHERE yjlxh = #{yjlxh}
+        delete from HLHT_RYJL_JBXX
+        WHERE yjlxh = #{yjlxh}
     </delete>
 
 
@@ -632,128 +635,128 @@
     <!--Evol 2018年8月6日15:29:27 在数据库中抽取所有入院记录病例数据-->
     <select id="getHlhtRyjlJbxxListFromBaseData" resultMap="hlhtRyjlJbxxResult"
             parameterType="com.winning.hic.model.EmrQtbljlk">
-           SELECT
-                    ISNULL(q.QTBLJLXH,'N') AS yjlxh,
-                    c.SYXH AS jzlsh,
-                    c.PATID AS patid,
-                    ISNULL(b.ZYHM, 'N') AS zyh,
-                    ISNULL(c.BQDM, 'N') AS bqdm,
-                    ISNULL(c.BQMC, 'N') AS bqmc,
-                    ISNULL(c.KSDM, 'N') AS ksdm,
-                    ISNULL(c.KSMC, 'N') AS ksmc,
-                    ISNULL(m.fjh,'N') AS bfh,
-                    ISNULL(b.RYCW, 'N') AS bch,
-                    ISNULL(b.HZXM, 'N') AS hzxm,
-                    ISNULL(b.SFZH, 'N') AS sfzhm,
-                    ISNULL(b.BRXB, 'N') AS xbdm,
-                    (
-                        SELECT
-                            CASE b.BRXB
-                        WHEN '2' THEN
-                            '女'
-                        WHEN '1' THEN
-                            '男'
-                        ELSE
-                            '其它'
-                        END
-                    ) AS xbmc,
-                    ISNULL(
-                        CONVERT (
-                            VARCHAR,
-                            (
-                                YEAR (GETDATE()) - YEAR (CONVERT(datetime, b.CSRQ))
-                            )
-                        ),
+        SELECT
+            ISNULL(q.QTBLJLXH, 'N')                   AS yjlxh,
+            c.SYXH                                    AS jzlsh,
+            c.PATID                                   AS patid,
+            ISNULL(b.ZYHM, 'N')                       AS zyh,
+            ISNULL(c.BQDM, 'N')                       AS bqdm,
+            ISNULL(c.BQMC, 'N')                       AS bqmc,
+            ISNULL(c.KSDM, 'N')                       AS ksdm,
+            ISNULL(c.KSMC, 'N')                       AS ksmc,
+            ISNULL(m.fjh, 'N')                        AS bfh,
+            ISNULL(b.RYCW, 'N')                       AS bch,
+            ISNULL(b.HZXM, 'N')                       AS hzxm,
+            ISNULL(b.SFZH, 'N')                       AS sfzhm,
+            ISNULL(b.BRXB, 'N')                       AS xbdm,
+            (
+                SELECT CASE b.BRXB
+                       WHEN '2'
+                           THEN
+                               '女'
+                       WHEN '1'
+                           THEN
+                               '男'
+                       ELSE
+                           '其它'
+                       END
+            )                                         AS xbmc,
+            ISNULL(
+                    CONVERT(
+                                VARCHAR,
+                                (
+                                    YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
+                                )
+                    ),
 
-                        'N'
-                    ) AS nls,
-                    SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
-                    ISNULL(b.MZDM,'N') AS mz,
-                    ISNULL(p.NAME,'N') AS mzmc,
-                    ISNULL(b.HYZK,'N') AS hyzkdm,
+                    'N'
+            )                                         AS nls,
+            SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
+            ISNULL(b.MZDM, 'N')                       AS mz,
+            ISNULL(p.NAME, 'N')                       AS mzmc,
+            ISNULL(b.HYZK, 'N')                       AS hyzkdm,
+            (
+                SELECT CASE b.HYZK
+                       WHEN '0'
+                           THEN
+                               '未婚'
+                       WHEN '1'
+                           THEN
+                               '已婚'
+                       WHEN '2'
+                           THEN
+                               '离独'
+                       WHEN '3'
+                           THEN
+                               '丧偶'
+                       ELSE
+                           '未知 '
+                       END
+            )                                         AS hyzkmc,
+            ISNULL(
                     (
-                        SELECT
-                            CASE b.HYZK
-                        WHEN '0' THEN
-                            '未婚'
-                        WHEN '1' THEN
-                            '已婚'
-                        WHEN '2' THEN
-                            '离独'
-                        WHEN '3' THEN
-                            '丧偶'
-                        ELSE
-                            '未知 '
-                        END
-                    ) AS hyzkmc,
-                    ISNULL(
-                        (
-                            SELECT
-                                e.NAME
-                            FROM
-                                CISDB.dbo.EMR_SYS_DQDMK e
-                            WHERE
-                                b.SSDM = e.DQDM
-                        ),
-                        'N'
-                    ) AS dzsf,
-                    ISNULL(
-                        (
-                            SELECT
-                                e.NAME
-                            FROM
-                                CISDB.dbo.EMR_SYS_DQDMK e
-                            WHERE
-                                b.QXDM = e.DQDM
-                        ),
-                        'N'
-                    ) AS dzsq,
-                    ISNULL(
-                        (
-                            SELECT
-                                e.NAME
-                            FROM
-                                CISDB.dbo.EMR_SYS_DQDMK e
-                            WHERE
-                                b.QXDM = e.DQDM
-                        ),
-                        'N'
-                    ) AS dzx,
-                    ISNULL(
-                        (
-                            SELECT
-                                e.NAME
-                            FROM
-                                CISDB.dbo.EMR_SYS_DQDMK e
-                            WHERE
-                                b.QXDM = e.DQDM
-                        ),
-                        'N'
-                    ) AS dzxz,
-                    'N' AS dzc,
-                    'N' AS dzmphm,
-                    ISNULL(b.ZYDM,'N') AS zylbdm,
-                    ISNULL(p.NAME,'N') AS zylbmc,
-                    b.RYRQ AS ryrq,
-                    q.QTBLJLXH AS syxh,
-                    q.TJZT AS tjzt,
-                    q.YXJL AS yxjl,
-                    ISNULL(
-                        q.GXRQ,
-                        q.CJSJ
-                    ) AS gxsj
-                FROM
-                    CISDB.dbo.EMR_QTBLJLK q
-                LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
-                LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON b.SYXH = c.EMRXH
-                LEFT JOIN CISDB.dbo.EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
-                LEFT JOIN CISDB.dbo.PUB_ZYDMK p ON b.ZYDM = p.ID
-                LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
-                    m.id = b.RYCW
-                    AND m.bqdm = b.RYBQ
-                )
-                WHERE q.BLDM=#{bldm}
-            
+                        SELECT e.NAME
+                        FROM
+                            CISDB.dbo.EMR_SYS_DQDMK e
+                        WHERE
+                            b.SSDM = e.DQDM
+                    ),
+                    'N'
+            )                                         AS dzsf,
+            ISNULL(
+                    (
+                        SELECT e.NAME
+                        FROM
+                            CISDB.dbo.EMR_SYS_DQDMK e
+                        WHERE
+                            b.QXDM = e.DQDM
+                    ),
+                    'N'
+            )                                         AS dzsq,
+            ISNULL(
+                    (
+                        SELECT e.NAME
+                        FROM
+                            CISDB.dbo.EMR_SYS_DQDMK e
+                        WHERE
+                            b.QXDM = e.DQDM
+                    ),
+                    'N'
+            )                                         AS dzx,
+            ISNULL(
+                    (
+                        SELECT e.NAME
+                        FROM
+                            CISDB.dbo.EMR_SYS_DQDMK e
+                        WHERE
+                            b.QXDM = e.DQDM
+                    ),
+                    'N'
+            )                                         AS dzxz,
+            'N'                                       AS dzc,
+            'N'                                       AS dzmphm,
+            ISNULL(b.ZYDM, 'N')                       AS zylbdm,
+            ISNULL(p.NAME, 'N')                       AS zylbmc,
+            b.RYRQ                                    AS ryrq,
+            q.QTBLJLXH                                AS syxh,
+            q.TJZT                                    AS tjzt,
+            q.YXJL                                    AS yxjl,
+            ISNULL(
+                    q.GXRQ,
+                    q.CJSJ
+            )                                         AS gxsj
+        FROM
+            CISDB.dbo.EMR_QTBLJLK q
+            LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
+            LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON b.SYXH = c.EMRXH
+            LEFT JOIN CISDB.dbo.EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
+            LEFT JOIN CISDB.dbo.PUB_ZYDMK p ON b.ZYDM = p.ID
+            LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+            m.id = b.RYCW
+            AND m.bqdm = b.RYBQ
+            )
+        WHERE q.BLDM = #{bldm}
+
     </select>
 
 
