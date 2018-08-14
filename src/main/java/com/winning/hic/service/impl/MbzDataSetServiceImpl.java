@@ -1,5 +1,6 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.model.NodeTree;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -51,5 +52,10 @@ public class MbzDataSetServiceImpl implements  MbzDataSetService {
 
     public List<MbzDataSet> getMbzDataSetPageList(MbzDataSet mbzDataSet){
         return this.mbzDataSetDao.selectMbzDataSetPageList(mbzDataSet);
+    }
+
+    @Override
+    public List<NodeTree> getNodeTreeFromMbzDataSet(MbzDataSet dataSet) {
+        return this.mbzDataSetDao.selectNodeTreeFromMbzDataSet(dataSet);
     }
 }

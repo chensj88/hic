@@ -26,6 +26,7 @@
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/toastr/css/toastr.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/iconfont/iconfont.css}"/>
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
     <script th:src="@{/assets/js/ace-extra.min.js}"></script>
     <link rel="stylesheet" th:href="@{/assets/ztree/css/zTreeStyle/zTreeStyle.css}">
@@ -37,6 +38,9 @@
         .table-align{
             table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
             font-size:12px;
+        }
+        .span_icon{
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -117,6 +121,35 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="treeModal" tabindex="-1" role="dialog" aria-labelledby="treeFormModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:450px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="treeModalLabel">接口表字段信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="col-sm-10">
+                                <div id="tree" style="height: 300px;overflow:auto; width: 380px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 text-center">
+                            <button class="btn btn-primary" id="saveMapping" type="button">保存</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!--[if !IE]> -->
 <script type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
 <!-- <![endif]-->
@@ -145,6 +178,8 @@
     var ctx = /*[[@{/}]]*/'';
     var resultData = [];
     var templateTree,dictTree;
+    /*初始化变量，为数据复制做准备*/
+    var dataTypeC,dtjddmC,qrmbdmC,qrdxdmC,yzjddmC;
     //页面初始化
     function initWindow(){
         //页面大小响应布局
@@ -305,12 +340,15 @@
         return result;
     }
 
-    function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm) {
+    function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm) {
         var data = {row :{
             pid:parseInt(pId),
             sourceType:sourceType,
             dataType:dataType,
             dtjddm:dtjddm,
+            qrmbdm:qrmbdm,
+            qrdxdm:qrdxdm,
+            yzjddm:yzjddm,
             recordName:recordName,
             status:1
         },
@@ -318,6 +356,41 @@
         console.log(data);
         $subTable.bootstrapTable('insertRow',data);
         console.log($subTable);
+    }
+
+    function openCopyWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm) {
+        $.ajax({
+            type: "post",
+            url: ctx + "basic/tree",
+            dataType: "json",
+            data:{'pId':pId,sourceType:sourceType},
+            cache : false,
+            async: false,
+            success: function (result) {
+                $('#tree').treeview({
+                    data: result.data,         // 数据源
+                    showCheckbox: true,   //是否显示复选框
+                    highlightSelected: true,    //是否高亮选中
+                    icon:'',                                  //列表树节点上的图标，通常是节点左边的图标。
+                    uncheckedIcon:"",                         //设置图标为未选择状态的checkbox图标。
+                    nodeIcon:'glyphicon glyphicon-unchecked', //设置所有列表树节点上的默认图标。
+                    selectedIcon:"glyphicon glyphicon-check", //设置所有被选择的节点上的默认图标。
+                    color:"#000000",
+                    backColor:"#FFFFFF",
+                    emptyIcon: '',    //设置列表树中没有子节点的节点的图标。
+                    multiSelect: false  //多选
+                });
+            },
+            error: function (response) {
+                toastr.error(response.responseText);
+            },
+        });
+        dataTypeC = dataType;
+        dtjddmC = dtjddm;
+        qrmbdmC = qrmbdm;
+        qrdxdmC = qrdxdm;
+        yzjddmC = yzjddm;
+        $('#treeModal').modal('show');
     }
 
     $(function(){
@@ -328,7 +401,7 @@
 
         $table.bootstrapTable({
             url:ctx + 'basic/plist',
-            height: 600, //表格占高
+            height: 800, //表格占高
             striped: true,
             method: 'GET', // 请求方法
             cache: false,  // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -371,14 +444,10 @@
                     title: '类型',
                     align: 'center',
                     width: '100px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'select',
-                        source:[
-                            {value:"1",text:"文件结构"},
-                            {value:"2",text:"基础模板"},
-                            {value:"3",text:"元数据"},
-                            {value:"4",text:"原子节点"}]
+                    formatter:function(value,row,index){
+                        if(row.pid === 0){
+                            return '';
+                        }
                     }
                 },
                 {
@@ -386,10 +455,10 @@
                     align: 'center',
                     title: '文件结构ID',
                     width: '250px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'text',
-                        title: '文件结构ID'
+                    formatter:function(value,row,index){
+                        if(row.pid === 0){
+                            return '';
+                        }
                     }
                 },
                 {
@@ -397,10 +466,10 @@
                     align: 'center',
                     title: '基础模板ID',
                     width: '250px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'text',
-                        title: '基础模板ID'
+                    formatter:function(value,row,index){
+                        if(row.pid === 0){
+                            return '';
+                        }
                     }
                 },
                 {
@@ -408,10 +477,10 @@
                     align: 'center',
                     title: '元数据ID',
                     width: '250px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'text',
-                        title: '元数据ID'
+                    formatter:function(value,row,index){
+                        if(row.pid === 0){
+                            return '';
+                        }
                     }
                 },
                 {
@@ -419,10 +488,10 @@
                     align: 'center',
                     title: '原子节点ID',
                     width: '250px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'text',
-                        title: '原子节点ID'
+                    formatter:function(value,row,index){
+                        if(row.pid === 0){
+                            return '';
+                        }
                     }
                 },
                 {
@@ -434,20 +503,21 @@
                         if(row.pid === 0){
                             return '';
                         }
-                    },
-                    editable: {
-                        emptytext:'-',
-                        type: 'select',
-                        source:[
-                            {value:"0",text:"非必选"},
-                            {value:"1",text:"必选"}]
+                    }
+                },
+                {
+                    field: 'dictCode',
+                    align: 'center',
+                    title: '字典字段',
+                    width: '100px',
+                    formatter:function(value,row,index){
+                        if(row.pid === 0){
+                            return '';
+                        }
                     }
                 }
             ],
             onExpandRow:function(index,row,$detail){
-                console.log(index);
-                console.log(row);
-                console.log($detail);
                 InitSubTable(index, row, $detail);
             }
         });
@@ -501,13 +571,11 @@
                         width: '210px',
                         formatter:function(value,row,index){
                             return `<span>${value}</span>
-                                        <span class="pull-right" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}')">
+                                        <span class="pull-right span_icon" title="插入新的一行" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}','${row.qrmbdm}','${row.qrdxdm}','${row.yzjddm}')">
                                             <i class="glyphicon glyphicon-plus"></i>
                                         </span>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <span  class="pull-right">
-                                            <i class="glyphicon glyphicon-copy"></i>
-                                        </span>`;
+                                        <span class="pull-right span_icon"  title="复制" onclick="openCopyWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}','${row.qrmbdm}','${row.qrdxdm}','${row.yzjddm}')">
+                                        <i class="iconfont icon-copy"></i></span>`;
                         }
                     },
                     {
@@ -575,8 +643,10 @@
                         title: '必选',
                         width: '100px',
                         formatter:function(value,row,index){
-                            if(row.pid === 0){
-                                return '';
+                            if(value === '0' || value === null ){
+                                return '0';
+                            }else{
+                                return '1';
                             }
                         },
                         editable: {
@@ -585,6 +655,26 @@
                             source:[
                                 {value:"0",text:"非必选"},
                                 {value:"1",text:"必选"}]
+                        }
+                    },
+                    {
+                        field: 'dictCode',
+                        align: 'center',
+                        title: '字典字段',
+                        width: '100px',
+                        formatter:function(value,row,index){
+                            if(value !== '' && value !== null){
+                                return '1';
+                            }else{
+                                return '';
+                            }
+                        },
+                        editable: {
+                            emptytext:'-',
+                            type: 'select',
+                            source:[
+                                {value:"",text:"否"},
+                                {value:"1",text:"是"}]
                         }
                     }
                 ],
@@ -652,6 +742,45 @@
         $('#chosen').on('change',searchListInfo);
         $('#configPath').on('change',searchListInfo);
 
+        $('#saveMapping').on('click',function (e) {
+            e.preventDefault();
+            var selectNode = $('#tree').treeview('getSelected');
+            console.log(selectNode);
+            var nodeLength = selectNode.length;
+            if(nodeLength > 0){
+                var data = {
+                    id:selectNode[0].id,
+                    dataType:dataTypeC,
+                    dtjddm:dtjddmC,
+                    qrmbdm:qrmbdmC,
+                    qrdxdm:qrdxdmC,
+                    yzjddm:yzjddmC,
+                };
+                $.ajax({
+                    url: ctx + 'basic/edit',
+                    data: data,
+                    type: "post",
+                    dataType: 'json',
+                    async: false,
+                    cache: false,
+                    success: function (result) {
+                        if (result.status == "SUCCESS") {
+                            toastr.info("复制成功");
+                            $('#treeModal').modal('hide');
+                            $table.bootstrapTable('refresh');
+                        }
+                    },
+                    error :function (request) {
+                        toastr.error(request.responseText);
+                    }
+                });
+            }else{
+                toastr.error('请选择复制到接口表字段。');
+                return;
+            }
+
+
+        })
 
     });
 

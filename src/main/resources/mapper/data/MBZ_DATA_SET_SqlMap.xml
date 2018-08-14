@@ -82,7 +82,7 @@
                 <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE = #{sourceType , jdbcType= VARCHAR }, </if>
                 <if test="(recordName != null and recordName != '')"> RECORD_NAME = #{recordName , jdbcType= VARCHAR }, </if>
                 <if test="(pyCode != null and pyCode != '')"> PY_CODE = #{pyCode , jdbcType= VARCHAR }, </if>
-                <if test="(dictCode != null and dictCode != '')"> DICT_CODE = #{dictCode , jdbcType= VARCHAR }, </if>
+                <if test="(dictCode != null )"> DICT_CODE = #{dictCode , jdbcType= VARCHAR }, </if>
                 <if test="(dataType != null and dataType != '')"> DATA_TYPE = #{dataType , jdbcType= INTEGER }, </if>
                 <if test="(dtjddm != null and dtjddm != '')"> DTJDDM = #{dtjddm , jdbcType= VARCHAR }, </if>
                 <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM = #{qrmbdm , jdbcType= VARCHAR }, </if>
@@ -149,5 +149,26 @@
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
+    <resultMap id="nodeTreeResultForList" type="com.winning.hic.model.NodeTree">
+        <result column="ID" property="id" jdbcType="BIGINT" />
+        <result column="NODE_ID" property="nodeId" jdbcType="BIGINT" />
+        <result column="NODE_PID" property="nodePid" jdbcType="BIGINT" />
+        <result column="NODE_TEXT" property="text" jdbcType="VARCHAR" />
+    </resultMap>
 
+    <resultMap id="nodeTreeResult" type="com.winning.hic.model.NodeTree" extends="nodeTreeResultForList">
+    </resultMap>
+
+    <select id="selectNodeTreeFromMbzDataSet" resultMap="nodeTreeResult" parameterType="com.winning.hic.model.MbzDataSet">
+        SELECT
+        t.ID as ID,
+        t.ID as NODE_ID,
+        t.P_ID as NODE_PID,
+        t.RECORD_NAME as NODE_TEXT
+        FROM MBZ_DATA_SET t
+        <where>
+            <include refid="sql-mbzDataSet" />
+        </where>
+        order by t.RECORD_NAME
+    </select>
 </mapper>
