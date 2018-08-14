@@ -86,12 +86,10 @@ public class MbzDataSetController extends BaseController {
         return result;
     }
 
-    @ApiOperation(value = "/basic/plist",notes = "加载接口表子级字段信息")
+    @ApiOperation(value = "/basic/tree",notes = "加载当前接口表字段信息，并生成树")
     @ApiImplicitParams(
             {
-                    @ApiImplicitParam(name = "row",value = "分页参数",required = true,dataType = "Row"),
-                    @ApiImplicitParam(name = "dataSet",value = "接口表",required = true,dataType = "MbzDataSet"),
-                    @ApiImplicitParam(name = "config",value = "是否已经配置路径",required = false,dataType = "Integer"),
+                    @ApiImplicitParam(name = "dataSet",value = "接口表",required = true,dataType = "MbzDataSet")
             }
     )
     @PostMapping("/basic/tree")
