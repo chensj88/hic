@@ -82,24 +82,24 @@ public class DataLoadController extends BaseController {
             List<MbzDataCheck> mbzDataChecks21 = super.getFacade().getHlhtZybcjlHzjlService().interfaceHlhtZybcjlHzjl();
             //22.出院小结数据集表*  --陈蒯
             List<MbzDataCheck> mbzDataChecks22 = super.getFacade().getHlhtCyxjCyxjService().interfaceHlhtCyxjCyxj();
-            //23.
-            //24.
-            //25.
-            //26.
-            //27.
-            //28.
-            //29.
-            //30.
-            //31.
-            //32.
-            //33.
-            //34.
-            //35.
+            //23.上级医师查房记录数据集表*  --陈世杰
+            //24.手术知情同意书表*--陈世杰
+            //25.输血治疗同意书表* -- 陈枫
+            //26.疑难病例讨论数据集表* --陈枫
+            //27.转科记录数据集表*  --陈蒯
+            //28.转诊(院)记录数据集表* --陈蒯
+            //29.特殊检查及特殊治疗同意书* --陈世杰
+            //30.输血记录表* --陈枫
+            //31.门急诊病历记录表* --陈蒯
+            //32.急诊留观病历记录表*   --陈世杰
+            //33.阴道分娩记录表*  --陈枫
+            //34.剖宫产记录表* --陈蒯
             //非病历抽取
-            //36.
-            //37.
-            //38.
-            //39.
+            //35.基本健康信息表* --陈世杰
+            //36.治疗记录表* --陈枫
+            //37.卫生事件摘要表* --陈蒯
+            //38.西药处方记录表* --陈世杰
+            //39.中药处方记录表* --陈枫
 
 
 
