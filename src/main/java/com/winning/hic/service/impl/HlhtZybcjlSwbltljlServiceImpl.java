@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.dao.data.HlhtZybcjlSwbltljlDao;
 import com.winning.hic.model.HlhtZybcjlSwbltljl;
+import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.service.HlhtZybcjlSwbltljlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,11 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
 
     public List<HlhtZybcjlSwbltljl> getHlhtZybcjlSwbltljlPageList(HlhtZybcjlSwbltljl hlhtZybcjlSwbltljl){
         return this.hlhtZybcjlSwbltljlDao.selectHlhtZybcjlSwbltljlPageList(hlhtZybcjlSwbltljl);
+    }
+
+    @Override
+    public List<MbzDataCheck> interfaceHlhtZybcjlSwbltljl(HlhtZybcjlSwbltljl hlhtZybcjlSwbltljl) {
+        List<MbzDataCheck> dataCheckList = null;
+        return dataCheckList;
     }
 }
