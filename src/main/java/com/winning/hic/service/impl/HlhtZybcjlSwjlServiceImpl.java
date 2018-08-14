@@ -114,7 +114,7 @@ public class HlhtZybcjlSwjlServiceImpl implements HlhtZybcjlSwjlService {
             EmrQtbljlk qtbljlk = new EmrQtbljlk();
             qtbljlk.setBldm(dataListSet.getModelCode());
             //2.根据模板代码去找到对应的病人病历
-            List<HlhtZybcjlSwjl> hlhtZybcjlSwjlListFromBaseData = this.hlhtZybcjlSwjlDao.getHlhtZybcjlSwjlListFromBaseData(qtbljlk);
+            List<HlhtZybcjlSwjl> hlhtZybcjlSwjlListFromBaseData = this.getHlhtZybcjlSwjlListFromBaseData(qtbljlk);
             if (hlhtZybcjlSwjlListFromBaseData != null) {
                 for (HlhtZybcjlSwjl hlhtZybcjlSwjl : hlhtZybcjlSwjlListFromBaseData) {
                     EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
@@ -131,7 +131,7 @@ public class HlhtZybcjlSwjlServiceImpl implements HlhtZybcjlSwjlService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtRyjlJbxx.class);
+                    Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlSwjl.class);
                     try {
                         hlhtZybcjlSwjl = (HlhtZybcjlSwjl) HicHelper.initModelValue(mbzDataSetList, document, hlhtZybcjlSwjl, paramTypeMap);
                     } catch (ParseException e) {
