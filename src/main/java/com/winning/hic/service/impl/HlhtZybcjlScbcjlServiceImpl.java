@@ -129,68 +129,6 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                         }
                         this.createHlhtZybcjlScbcjl(entity);
 
-
-//                        if(scbcjl ==null){ //重复判断是否已经插入
-//                            //2.获取病历的其他信息，获取HIS，CIS的信息
-//                            HlhtZybcjlScbcjl entity = new HlhtZybcjlScbcjl();
-//                            entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-//                            entity = this.selectInitialHlhtZybcjlScbcjl(entity);
-//                            StringBuffer xml= new StringBuffer();
-//                            xml.append(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-//                            //3.xml文件解析 获取病历信息
-//                            Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-//                            List<MbzDataSet> mbzDataSetList = mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
-//                            //获取首次病程的对象集合
-//                            Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlScbcjl.class);
-//
-//
-//
-////                            for (MbzDataSet dataSet : mbzDataSetList) {
-////                                //获取属性名
-////                                String pyCode = dataSet.getPyCode();
-////                                String methodName = "set" + StringUtil.titleCase(pyCode);
-////                                String strValue = XmlUtil.getAttrValueByDataSet(document, dataSet);
-////                                Object value = null;
-////                                String paramType = paramTypeMap.get(pyCode);
-////                                if (paramType.contains("String")) {
-////                                    value = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[2];
-////                                } else if (paramType.contains("Short")) {
-////                                    //格式：50`50`50
-////                                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[2];
-////                                    value = StringUtil.isEmptyOrNull(strValue) ? null : Short.parseShort(shortStr);
-////                                } else if (paramType.contains("Date")) {//                格式：636467930400000000`2017-11-20,16:44
-////                                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-////                                    String pattern = "yyyy-MM-dd,HH:mm";
-////                                    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-////                                    try {
-////                                        Date date = StringUtil.isEmptyOrNull(dateStr) ? null : sdf.parse(dateStr);
-////                                        if (date != null) {
-////                                            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-////                                            value = sqlDate;
-////                                        }
-////                                    } catch (ParseException e) {
-////                                        e.printStackTrace();
-////                                    }
-////                                } else if (paramType.contains("BigDecimal")) {
-////                                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-////                                    value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
-////                                } else if (paramType.contains("Integer")) {
-////                                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-////                                    value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
-////                                }
-////                                //类型
-////                                try {
-////                                    if(value!=null){
-////                                        ReflectUtil.setParam(entity, methodName, value);
-////                                    }
-////                                } catch (Exception e) {
-////                                    e.printStackTrace();
-////                                }
-////                            }
-////                            this.createHlhtZybcjlScbcjl(entity);
-////                            System.out.println("scbcjl ==== "+entity.getZs()+entity.getZdyjdm());
-////                        }
-//
                     }
                 }
 
