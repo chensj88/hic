@@ -91,34 +91,45 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
         mbzDataSet.setSourceType(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE);
         List<MbzDataSet> mbzDataSets = mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
 
+        mbzDataSet = new MbzDataSet();
+        mbzDataSet.setPId(0L);
+        mbzDataSet.setSourceType(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE);
+        mbzDataSet = mbzDataSetDao.selectMbzDataSet(mbzDataSet);
+
         //获取model对象自定义参数信息
         Map<String,String> paramType = ReflectUtil.getParamTypeMap(HlhtRyjlRyswjl.class);
 
-        //循环配置模板信息
-        for (MbzDataListSet dataListSet : dataListSets) {
-            //查询病历信息
-            EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
-            emrQtbljlk.setBldm(dataListSet.getModelCode());
-            List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(emrQtbljlk);
-            if(qtbljlkList != null){
-                for (EmrQtbljlk qtbljlk : qtbljlkList) {
-                    HlhtRyjlRyswjl ryswjl = new HlhtRyjlRyswjl();
-                    ryswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
-                    ryswjl = this.getHlhtRyjlRyswjl(ryswjl);
-                    //解析病历报文xml
-                    Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(qtbljlk.getBlnr()));
-                    if(ryswjl != null ){ //判断记录是否已经创建,存在则删除，重新新增
-                        HlhtRyjlRyswjl oldRyswjl = new HlhtRyjlRyswjl();
-                        oldRyswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
-                        this.removeHlhtRyjlRyswjl(oldRyswjl);
+        if(dataListSets != null && dataListSets.size() > 0){
+            //循环配置模板信息
+            for (MbzDataListSet dataListSet : dataListSets) {
+                //查询病历信息
+                EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
+                emrQtbljlk.setBldm(dataListSet.getModelCode());
+                List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(emrQtbljlk);
+                if(qtbljlkList != null && qtbljlkList.size() > 0){
+                    for (EmrQtbljlk qtbljlk : qtbljlkList) {
+                        HlhtRyjlRyswjl ryswjl = new HlhtRyjlRyswjl();
+                        ryswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
+                        ryswjl = this.getHlhtRyjlRyswjl(ryswjl);
+                        //解析病历报文xml
+                        Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(qtbljlk.getBlnr()));
+                        if(ryswjl != null ){ //判断记录是否已经创建,存在则删除，重新新增
+                            HlhtRyjlRyswjl oldRyswjl = new HlhtRyjlRyswjl();
+                            oldRyswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
+                            this.removeHlhtRyjlRyswjl(oldRyswjl);
+                        }
+                        ryswjl = new HlhtRyjlRyswjl();
+                        ryswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
+                        ryswjl = this.commonQueryDao.selectInitHlhtRyjlRyswjl(ryswjl);
+                        ryswjl = (HlhtRyjlRyswjl) HicHelper.initModelValue(mbzDataSets,document,ryswjl,paramType);
+                        this.createHlhtRyjlRyswjl(ryswjl);
                     }
-                    ryswjl = new HlhtRyjlRyswjl();
-                    ryswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
-                    ryswjl = this.getInitHlhtRyjlRyswjl(ryswjl);
-                    ryswjl = (HlhtRyjlRyswjl) HicHelper.initModelValue(mbzDataSets,document,ryswjl,paramType);
-                    this.createHlhtRyjlRyswjl(ryswjl);
+                }else {
+                    logger.info("接口数据集:{}无相关的病历信息，请先书写病历信息",mbzDataSet.getRecordName());
                 }
             }
+        }else {
+            logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板",mbzDataSet.getRecordName());
         }
 
          return  null;

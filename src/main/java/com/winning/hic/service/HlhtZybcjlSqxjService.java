@@ -2,7 +2,8 @@ package com.winning.hic.service;
 
 import java.util.List;  
 
-import com.winning.hic.model.HlhtZybcjlSqxj;  
+import com.winning.hic.model.HlhtZybcjlSqxj;
+import com.winning.hic.model.MbzDataCheck;
 
 
 /**
@@ -27,4 +28,11 @@ public interface HlhtZybcjlSqxjService {
     public List<HlhtZybcjlSqxj> getHlhtZybcjlSqxjList(HlhtZybcjlSqxj hlhtZybcjlSqxj);
 
     public List<HlhtZybcjlSqxj> getHlhtZybcjlSqxjPageList(HlhtZybcjlSqxj hlhtZybcjlSqxj);
+
+    /**
+     * 提取住院病程记录中术前小结数据
+     * @param hlhtZybcjlSqxj
+     * @return
+     */
+    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(HlhtZybcjlSqxj hlhtZybcjlSqxj);
 }

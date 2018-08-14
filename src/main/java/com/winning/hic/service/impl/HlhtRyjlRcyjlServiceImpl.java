@@ -93,6 +93,11 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
         mbzDataSet.setPId(Long.parseLong(Constants.WN_RYJL_RCYJL_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = mbzDataSetService.getMbzDataSetList(mbzDataSet);
 
+        mbzDataSet = new MbzDataSet();
+        mbzDataSet.setPId(0L);
+        mbzDataSet.setSourceType(Constants.WN_RYJL_RCYJL_SOURCE_TYPE);
+        mbzDataSet = mbzDataSetService.getMbzDataSet(mbzDataSet);
+
         //配置并加载对应的出入院模板集合
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
         mbzDataListSet.setSourceType(Constants.WN_RYJL_RCYJL_SOURCE_TYPE);
@@ -101,37 +106,44 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
         //获取接口对象字段集合信息
         Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtRyjlRcyjl.class);
 
-        //获取模板集合，遍历
-        for(MbzDataListSet dataListSet :dataListSets){
-            //查询病历数据 数据来源
-            EmrQtbljlk qtbljlk = new EmrQtbljlk();
-            qtbljlk.setBldm(dataListSet.getModelCode());
-            List<EmrQtbljlk> qtbljlkList = emrQtbljlkService.getEmrQtbljlkList(qtbljlk);
-            if(qtbljlkList != null){
-                //循环病历
-                for(EmrQtbljlk emrQtbljlk:qtbljlkList){
-                    //获取接口数据
-                    HlhtRyjlRcyjl rcyjl = new HlhtRyjlRcyjl();
-                    rcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                    rcyjl = getHlhtRyjlRcyjl(rcyjl);
-                    //解析病历xml
-                    Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+        if(dataListSets != null && dataListSets.size() > 0){
+            //获取模板集合，遍历
+            for(MbzDataListSet dataListSet :dataListSets){
+                //查询病历数据 数据来源
+                EmrQtbljlk qtbljlk = new EmrQtbljlk();
+                qtbljlk.setBldm(dataListSet.getModelCode());
+                List<EmrQtbljlk> qtbljlkList = emrQtbljlkService.getEmrQtbljlkList(qtbljlk);
+                if(qtbljlkList != null && qtbljlkList.size() > 0){
+                    //循环病历
+                    for(EmrQtbljlk emrQtbljlk:qtbljlkList){
+                        //获取接口数据
+                        HlhtRyjlRcyjl rcyjl = new HlhtRyjlRcyjl();
+                        rcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                        rcyjl = getHlhtRyjlRcyjl(rcyjl);
+                        //解析病历xml
+                        Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
 
-                    //判断是否存在重复,存在则删除，重新新增
-                    if(rcyjl != null ){
-                        //初始化数据
-                        HlhtRyjlRcyjl oldRcyjl  = new HlhtRyjlRcyjl();
-                        oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                        this.removeHlhtRyjlRcyjl(rcyjl);
+                        //判断是否存在重复,存在则删除，重新新增
+                        if(rcyjl != null ){
+                            //初始化数据
+                            HlhtRyjlRcyjl oldRcyjl  = new HlhtRyjlRcyjl();
+                            oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            this.removeHlhtRyjlRcyjl(oldRcyjl);
+                        }
+                        rcyjl  = new HlhtRyjlRcyjl();
+                        rcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                        rcyjl = this.commonQueryDao.selectInitHlhtRyjlRcyjlData(rcyjl);
+                        rcyjl = (HlhtRyjlRcyjl) HicHelper.initModelValue(mbzDataSetList,document,rcyjl,paramTypeMap);
+                        this.createHlhtRyjlRcyjl(rcyjl);
                     }
-                    rcyjl  = new HlhtRyjlRcyjl();
-                    rcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                    rcyjl = this.getInitHlhtRyjlRcyjlData(rcyjl);
-                    rcyjl = (HlhtRyjlRcyjl) HicHelper.initModelValue(mbzDataSetList,document,rcyjl,paramTypeMap);
-                    this.createHlhtRyjlRcyjl(rcyjl);
+                }else{
+                    logger.info("接口数据集:{}无相关的病历信息，请先书写病历信息",mbzDataSet.getRecordName());
                 }
             }
+        }else{
+            logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板",mbzDataSet.getRecordName());
         }
+
         return null;
     }
 

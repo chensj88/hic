@@ -252,6 +252,110 @@
     </resultMap>
     <resultMap id="hlhtZybcjlSqxjResult" type="com.winning.hic.model.HlhtZybcjlSqxj" extends="hlhtZybcjlSqxjResultForList">
     </resultMap>
+    <!--术前讨论-->
+    <resultMap id="hlhtZybcjlSqtlResultForList" type="com.winning.hic.model.HlhtZybcjlSqtl">
+        <result column="yjlxh" property="yjlxh" jdbcType="VARCHAR" />
+        <result column="jzlsh" property="jzlsh" jdbcType="VARCHAR" />
+        <result column="patid" property="patid" jdbcType="VARCHAR" />
+        <result column="zyh" property="zyh" jdbcType="VARCHAR" />
+        <result column="ksdm" property="ksdm" jdbcType="VARCHAR" />
+        <result column="ksmc" property="ksmc" jdbcType="VARCHAR" />
+        <result column="bqdm" property="bqdm" jdbcType="VARCHAR" />
+        <result column="bqmc" property="bqmc" jdbcType="VARCHAR" />
+        <result column="bfh" property="bfh" jdbcType="VARCHAR" />
+        <result column="bfmc" property="bfmc" jdbcType="VARCHAR" />
+        <result column="bch" property="bch" jdbcType="VARCHAR" />
+        <result column="hzxm" property="hzxm" jdbcType="VARCHAR" />
+        <result column="sfzhm" property="sfzhm" jdbcType="VARCHAR" />
+        <result column="xbdm" property="xbdm" jdbcType="VARCHAR" />
+        <result column="xbmc" property="xbmc" jdbcType="VARCHAR" />
+        <result column="nls" property="nls" jdbcType="NUMERIC" />
+        <result column="nly" property="nly" jdbcType="VARCHAR" />
+        <result column="tlrq" property="tlrq" jdbcType="TIMESTAMP" />
+        <result column="tldd" property="tldd" jdbcType="VARCHAR" />
+        <result column="zcrbm" property="zcrbm" jdbcType="VARCHAR" />
+        <result column="zcrxm" property="zcrxm" jdbcType="VARCHAR" />
+        <result column="tlrybm" property="tlrybm" jdbcType="VARCHAR" />
+        <result column="cjtlmd" property="cjtlmd" jdbcType="VARCHAR" />
+        <result column="zyzwlbdm" property="zyzwlbdm" jdbcType="VARCHAR" />
+        <result column="zyzwlbmc" property="zyzwlbmc" jdbcType="VARCHAR" />
+        <result column="ryrq" property="ryrq" jdbcType="TIMESTAMP" />
+        <result column="sqzdbm" property="sqzdbm" jdbcType="VARCHAR" />
+        <result column="sqzdmc" property="sqzdmc" jdbcType="VARCHAR" />
+        <result column="ssczmc" property="ssczmc" jdbcType="VARCHAR" />
+        <result column="ssczbm" property="ssczbm" jdbcType="VARCHAR" />
+        <result column="ssmbbwdm" property="ssmbbwdm" jdbcType="VARCHAR" />
+        <result column="ssbwmc" property="ssbwmc" jdbcType="VARCHAR" />
+        <result column="ssczrq" property="ssczrq" jdbcType="TIMESTAMP" />
+        <result column="mzffdm" property="mzffdm" jdbcType="VARCHAR" />
+        <result column="mzffmc" property="mzffmc" jdbcType="VARCHAR" />
+        <result column="ssyd" property="ssyd" jdbcType="NVARCHAR" />
+        <result column="sqzb" property="sqzb" jdbcType="NVARCHAR" />
+        <result column="sszz" property="sszz" jdbcType="NVARCHAR" />
+        <result column="ssfa" property="ssfa" jdbcType="NVARCHAR" />
+        <result column="zysx" property="zysx" jdbcType="NVARCHAR" />
+        <result column="tlyj" property="tlyj" jdbcType="NVARCHAR" />
+        <result column="tljl" property="tljl" jdbcType="NVARCHAR" />
+        <result column="sszbm" property="sszbm" jdbcType="VARCHAR" />
+        <result column="sszqm" property="sszqm" jdbcType="VARCHAR" />
+        <result column="mzysbm" property="mzysbm" jdbcType="VARCHAR" />
+        <result column="mzsqm" property="mzsqm" jdbcType="VARCHAR" />
+        <result column="ysbm" property="ysbm" jdbcType="VARCHAR" />
+        <result column="ysqm" property="ysqm" jdbcType="VARCHAR" />
+        <result column="qmrq" property="qmrq" jdbcType="TIMESTAMP" />
+        <result column="gxsj" property="gxsj" jdbcType="TIMESTAMP" />
+        <result column="syxh" property="syxh" jdbcType="VARCHAR" />
+        <result column="tjzt" property="tjzt" jdbcType="VARCHAR" />
+        <result column="yxjl" property="yxjl" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="hlhtZybcjlSqtlResult" type="com.winning.hic.model.HlhtZybcjlSqtl" extends="hlhtZybcjlSqtlResultForList">
+    </resultMap>
+    <!--死亡病历讨论记录-->
+    <resultMap id="hlhtZybcjlSwbltljlResultForList" type="com.winning.hic.model.HlhtZybcjlSwbltljl">
+        <result column="yjlxh" property="yjlxh" jdbcType="VARCHAR" />
+        <result column="jzlsh" property="jzlsh" jdbcType="VARCHAR" />
+        <result column="patid" property="patid" jdbcType="VARCHAR" />
+        <result column="zyh" property="zyh" jdbcType="VARCHAR" />
+        <result column="ksdm" property="ksdm" jdbcType="VARCHAR" />
+        <result column="ksmc" property="ksmc" jdbcType="VARCHAR" />
+        <result column="bqdm" property="bqdm" jdbcType="VARCHAR" />
+        <result column="bqmc" property="bqmc" jdbcType="VARCHAR" />
+        <result column="bfh" property="bfh" jdbcType="VARCHAR" />
+        <result column="bfmc" property="bfmc" jdbcType="VARCHAR" />
+        <result column="bch" property="bch" jdbcType="VARCHAR" />
+        <result column="hzxm" property="hzxm" jdbcType="VARCHAR" />
+        <result column="sfzhm" property="sfzhm" jdbcType="VARCHAR" />
+        <result column="xbdm" property="xbdm" jdbcType="VARCHAR" />
+        <result column="xbmc" property="xbmc" jdbcType="VARCHAR" />
+        <result column="nls" property="nls" jdbcType="NUMERIC" />
+        <result column="nly" property="nly" jdbcType="VARCHAR" />
+        <result column="tlrq" property="tlrq" jdbcType="TIMESTAMP" />
+        <result column="tldddm" property="tldddm" jdbcType="VARCHAR" />
+        <result column="tldd" property="tldd" jdbcType="VARCHAR" />
+        <result column="zcrbm" property="zcrbm" jdbcType="VARCHAR" />
+        <result column="zcrxm" property="zcrxm" jdbcType="VARCHAR" />
+        <result column="tlrybm" property="tlrybm" jdbcType="VARCHAR" />
+        <result column="cjtlmd" property="cjtlmd" jdbcType="VARCHAR" />
+        <result column="zyzwlbdm" property="zyzwlbdm" jdbcType="VARCHAR" />
+        <result column="zyzwlbmc" property="zyzwlbmc" jdbcType="VARCHAR" />
+        <result column="zjswyymc" property="zjswyymc" jdbcType="VARCHAR" />
+        <result column="zjswyybm" property="zjswyybm" jdbcType="VARCHAR" />
+        <result column="swzdmc" property="swzdmc" jdbcType="VARCHAR" />
+        <result column="swzdbm" property="swzdbm" jdbcType="VARCHAR" />
+        <result column="swtljl" property="swtljl" jdbcType="NVARCHAR" />
+        <result column="zcrzjyj" property="zcrzjyj" jdbcType="NVARCHAR" />
+        <result column="zzysbm" property="zzysbm" jdbcType="VARCHAR" />
+        <result column="zzysqm" property="zzysqm" jdbcType="VARCHAR" />
+        <result column="zrysbm" property="zrysbm" jdbcType="VARCHAR" />
+        <result column="zrysqm" property="zrysqm" jdbcType="VARCHAR" />
+        <result column="qmrq" property="qmrq" jdbcType="TIMESTAMP" />
+        <result column="gxsj" property="gxsj" jdbcType="TIMESTAMP" />
+        <result column="syxh" property="syxh" jdbcType="VARCHAR" />
+        <result column="tjzt" property="tjzt" jdbcType="VARCHAR" />
+        <result column="yxjl" property="yxjl" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="hlhtZybcjlSwbltljlResult" type="com.winning.hic.model.HlhtZybcjlSwbltljl" extends="hlhtZybcjlSwbltljlResultForList">
+    </resultMap>
     <!--#####################resultMap end #############################-->
 
     <!--chensj  获取入院记录/24小时入出院记录病人基础公共信息 2018-8-6 -->
@@ -477,22 +581,83 @@
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
         b.BRXB as xbdm,
-        (
-        SELECT
-        CASE b.BRXB
-        WHEN '2' THEN
-        '女'
-        WHEN '1' THEN
-        '男'
-        ELSE
-        '其它'
-        END
-        ) AS xbmc,
+        (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
         SUBSTRING(replace(b.CSRQ,'-',''),0,9) nly,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt,
-        t.CJSJ as jlrq,
+        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        t.YXJL as yxjl
+        FROM  EMR_QTBLJLK t
+        LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
+        LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
+        LEFT JOIN PUB_MZDMK d on  b.MZDM = d.ID
+        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        <where>
+            <if test="yjlxh != null and yjlxh != '' ">
+                AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
+            </if>
+        </where>
+    </select>
+    <!--chensj 住院病程/术前讨论 病人基础公共信息 2018-8-14-->
+    <select id="selectInitHlhtZybcjlSqtl" parameterType="com.winning.hic.model.HlhtZybcjlSqtl" resultMap="hlhtZybcjlSqtlResult">
+        SELECT
+        t.QTBLJLXH as yjlxh,
+        b.HISSYXH as jzlsh,
+        c.PATID as patid,
+        b.ZYHM as zyh,
+        c.KSDM as ksdm,
+        c.KSMC as ksmc,
+        c.BQDM as bqdm,
+        c.BQMC as bqmc,
+        ISNULL(a.fjh,'N') as bfh,
+        ISNULL(a.fjh,'N') as bfmc,
+        ISNULL(b.RYCW,'') as bch,
+        b.HZXM as hzxm,
+        b.SFZH as sfzhm,
+        b.BRXB as xbdm,
+        (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
+        SUBSTRING(replace(b.CSRQ,'-',''),0,9) nly,
+        b.RYRQ as ryrq,
+        t.QTBLJLXH as syxh,
+        t.TJZT as tjzt,
+        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        t.YXJL as yxjl
+        FROM  EMR_QTBLJLK t
+        LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
+        LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
+        LEFT JOIN PUB_MZDMK d on  b.MZDM = d.ID
+        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        <where>
+            <if test="yjlxh != null and yjlxh != '' ">
+                AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
+            </if>
+        </where>
+    </select>
+    <!--chensj 住院病程/死亡病例讨论记录 2018-8-14 -->
+    <select id="selectInitHlhtZybcjlSwbltljl" parameterType="com.winning.hic.model.HlhtZybcjlSwbltljl" resultMap="hlhtZybcjlSwbltljlResult">
+        SELECT
+        t.QTBLJLXH as yjlxh,
+        b.HISSYXH as jzlsh,
+        c.PATID as patid,
+        b.ZYHM as zyh,
+        c.KSDM as ksdm,
+        c.KSMC as ksmc,
+        c.BQDM as bqdm,
+        c.BQMC as bqmc,
+        ISNULL(a.fjh,'N') as bfh,
+        ISNULL(a.fjh,'N') as bfmc,
+        ISNULL(b.RYCW,'') as bch,
+        b.HZXM as hzxm,
+        b.SFZH as sfzhm,
+        b.BRXB as xbdm,
+        (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
+        SUBSTRING(replace(b.CSRQ,'-',''),0,9) nly,
+        b.RYRQ as ryrq,
+        t.QTBLJLXH as syxh,
+        t.TJZT as tjzt,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
         t.YXJL as yxjl
         FROM  EMR_QTBLJLK t
