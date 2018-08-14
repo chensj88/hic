@@ -313,13 +313,13 @@
                     'N'
                 ) AS nls,
                 SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
-                'N' AS syxh,
-                'N' AS tjzt,
-                q.YXJL AS yxjl,
-                ISNULL(
-                    q.SHSJ,
-                    '1990-01-01 00:00:00'
-                ) AS gxsj
+                    q.QTBLJLXH AS syxh,
+                    q.TJZT AS tjzt,
+                    q.YXJL AS yxjl,
+                    ISNULL(
+                        q.GXRQ,
+                        q.CJSJ
+                    ) AS gxsj
             FROM
                 CISDB.dbo.EMR_QTBLJLK q
             LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH

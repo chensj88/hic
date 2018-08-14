@@ -1,8 +1,18 @@
 package com.winning.hic.service;
 
-import java.util.List;  
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 
-import com.winning.hic.model.HlhtZybcjlSwjl;  
+import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.Base64Utils;
+import com.winning.hic.base.utils.HicHelper;
+import com.winning.hic.base.utils.ReflectUtil;
+import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.model.*;
+import org.dom4j.Document;
+import org.springframework.dao.DataAccessException;
 
 
 /**
@@ -27,4 +37,10 @@ public interface HlhtZybcjlSwjlService {
     public List<HlhtZybcjlSwjl> getHlhtZybcjlSwjlList(HlhtZybcjlSwjl hlhtZybcjlSwjl);
 
     public List<HlhtZybcjlSwjl> getHlhtZybcjlSwjlPageList(HlhtZybcjlSwjl hlhtZybcjlSwjl);
+
+    public List<HlhtZybcjlSwjl> getHlhtZybcjlSwjlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    public void deleteHlhtZybcjlSwjlByYjlxh(HlhtZybcjlSwjl hlhtZybcjlSwjl);
+
+    public List<MbzDataCheck> interfaceHlhtZybcjlSwjl() ;
 }

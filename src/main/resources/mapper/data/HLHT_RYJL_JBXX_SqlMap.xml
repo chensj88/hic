@@ -735,12 +735,12 @@
                     ISNULL(b.ZYDM,'N') AS zylbdm,
                     ISNULL(p.NAME,'N') AS zylbmc,
                     b.RYRQ AS ryrq,
-                    'N' AS syxh,
-                    'N' AS tjzt,
+                    q.QTBLJLXH AS syxh,
+                    q.TJZT AS tjzt,
                     q.YXJL AS yxjl,
                     ISNULL(
-                        q.SHSJ,
-                       '1990-01-01 00:00:00'
+                        q.GXRQ,
+                        q.CJSJ
                     ) AS gxsj
                 FROM
                     CISDB.dbo.EMR_QTBLJLK q

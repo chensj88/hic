@@ -1,16 +1,12 @@
 package com.winning.hic.dao.data;
 
 
-
-import java.util.List;  
-
-import org.springframework.dao.DataAccessException;  
-
-import com.winning.hic.model.HlhtZybcjlSwjl;  
-
-
-
+import com.winning.hic.model.EmrQtbljlk;
+import com.winning.hic.model.HlhtZybcjlSwjl;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 /**
 * @author HLHT
 * @title DAO接口
@@ -34,4 +30,8 @@ public interface HlhtZybcjlSwjlDao {
     public List<HlhtZybcjlSwjl> selectHlhtZybcjlSwjlList(HlhtZybcjlSwjl hlhtZybcjlSwjl) throws DataAccessException;
 
     public List<HlhtZybcjlSwjl> selectHlhtZybcjlSwjlPageList(HlhtZybcjlSwjl hlhtZybcjlSwjl) throws DataAccessException;
+
+    public List<HlhtZybcjlSwjl> getHlhtZybcjlSwjlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    public void deleteHlhtZybcjlSwjlByYjlxh(HlhtZybcjlSwjl hlhtZybcjlSwjl);
 }
