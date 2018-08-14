@@ -39,10 +39,9 @@ public class DataLoadController extends BaseController {
             List<MbzDataCheck> mbzDataCheck6 = super.getFacade().getHlhtZybcjlScbcjlService().interfaceHlhtZybcjlScbcjl();
 //
 //            //1. 24h内入出院记录  --陈世杰
-            List<HlhtRyjlRcyjl> hlhtRyjlRcyjls = super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(null);
-//
+            List<MbzDataCheck> mbzDataCheck1 = super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(null);
 //            //2. 24h内入院死亡记录*  -- 陈世杰
-            List<HlhtRyjlRyswjl> hlhtRyjlRyswjlList = super.getFacade().getHlhtRyjlRyswjlService().interfaceHlhtRyjlRyswjl(null);
+            List<MbzDataCheck> mbzDataCheck2 = super.getFacade().getHlhtRyjlRyswjlService().interfaceHlhtRyjlRyswjl(null);
 //            //3. 病危（重）通知书*  --陈枫
             List<MbzDataCheck> mbzDataChecks3 = super.getFacade().getHlhtZqgzxxBwztzsService().interfaceHlhtZqgzxxBwztzs();
 //            //4.出院记录数据集表* --陈枫

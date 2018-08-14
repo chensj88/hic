@@ -7,10 +7,7 @@ import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtRyjlRyswjlDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
-import com.winning.hic.model.EmrQtbljlk;
-import com.winning.hic.model.HlhtRyjlRyswjl;
-import com.winning.hic.model.MbzDataListSet;
-import com.winning.hic.model.MbzDataSet;
+import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtRyjlRyswjlService;
 import org.dom4j.Document;
 import org.slf4j.Logger;
@@ -82,7 +79,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
     public HlhtRyjlRyswjl getInitHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl){
         return this.commonQueryDao.selectInitHlhtRyjlRyswjl(hlhtRyjlRyswjl);
     }
-    public List<HlhtRyjlRyswjl> interfaceHlhtRyjlRyswjl(HlhtRyjlRyswjl ryjlRyswjl) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(HlhtRyjlRyswjl ryjlRyswjl) throws IOException, ParseException {
         //加载模板库 根据模板类型获取对应的病历模板代码
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
         mbzDataListSet.setSourceType(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE);

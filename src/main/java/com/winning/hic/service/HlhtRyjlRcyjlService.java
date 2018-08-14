@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
-import com.winning.hic.model.HlhtRyjlRcyjl;  
+import com.winning.hic.model.HlhtRyjlRcyjl;
+import com.winning.hic.model.MbzDataCheck;
 
 
 /**
@@ -36,5 +37,5 @@ public interface HlhtRyjlRcyjlService {
      */
     public HlhtRyjlRcyjl getInitHlhtRyjlRcyjlData(HlhtRyjlRcyjl rcyjl);
 
-    public List<HlhtRyjlRcyjl> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException;
+    public List<MbzDataCheck> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException;
 }
