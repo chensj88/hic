@@ -76,13 +76,12 @@ public class DataLoadController extends BaseController {
 
             //19.其他知情告知同意书*  --陈蒯
             List<MbzDataCheck> mbzDataChecks19 = super.getFacade().getHlhtZqgzxxQtzqtysService().interfaceHlhtZqgzxxQtzqtys();
-
             //20.一般手术记录表(待定）*    --陈蒯
-
+            List<MbzDataCheck> mbzDataChecks20 = super.getFacade().getHlhtZlczjlYbssjlService().interfaceHlhtZlczjlYbssjl();
             //21.会诊记录数据集表* --陈蒯
-
+            List<MbzDataCheck> mbzDataChecks21 = super.getFacade().getHlhtZybcjlHzjlService().interfaceHlhtZybcjlHzjl();
             //22.出院小结数据集表*  --陈蒯
-
+            List<MbzDataCheck> mbzDataChecks22 = super.getFacade().getHlhtCyxjCyxjService().interfaceHlhtCyxjCyxj();
             //23.
             //24.
             //25.
