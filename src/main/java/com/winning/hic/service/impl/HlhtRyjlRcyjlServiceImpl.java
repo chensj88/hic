@@ -4,10 +4,7 @@ import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtRyjlRcyjlDao;
-import com.winning.hic.model.EmrQtbljlk;
-import com.winning.hic.model.HlhtRyjlRcyjl;
-import com.winning.hic.model.MbzDataListSet;
-import com.winning.hic.model.MbzDataSet;
+import com.winning.hic.model.*;
 import com.winning.hic.service.EmrQtbljlkService;
 import com.winning.hic.service.HlhtRyjlRcyjlService;
 import com.winning.hic.service.MbzDataListSetService;
@@ -89,7 +86,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
     }
 
     @Override
-    public List<HlhtRyjlRcyjl> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException {
         //配置接口表字段配置信息
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_RYJL_RCYJL_SOURCE_TYPE);
