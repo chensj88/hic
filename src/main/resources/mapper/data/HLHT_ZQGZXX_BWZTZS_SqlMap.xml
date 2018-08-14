@@ -25,8 +25,8 @@
         <result column="nly" property="nly" jdbcType="VARCHAR"/>
         <result column="jbzdbm" property="jbzdbm" jdbcType="VARCHAR"/>
         <result column="jbzd" property="jbzd" jdbcType="VARCHAR"/>
-        <result column="bqgkjqjcs" property="bqgkjqjcs" jdbcType="NVARCHAR"/>
-        <result column="tznr" property="tznr" jdbcType="NVARCHAR"/>
+        <result column="bqgkjqjcs" property="bqgkjqjcs" jdbcType="VARCHAR"/>
+        <result column="tznr" property="tznr" jdbcType="VARCHAR"/>
         <result column="tzrq" property="tzrq" jdbcType="TIMESTAMP"/>
         <result column="dlrqm" property="dlrqm" jdbcType="VARCHAR"/>
         <result column="dlrhzgxdm" property="dlrhzgxdm" jdbcType="VARCHAR"/>
@@ -146,8 +146,8 @@
             <if test="(nly != null )">#{nly , jdbcType= VARCHAR },</if>
             <if test="(jbzdbm != null )">#{jbzdbm , jdbcType= VARCHAR },</if>
             <if test="(jbzd != null )">#{jbzd , jdbcType= VARCHAR },</if>
-            <if test="(bqgkjqjcs != null )">#{bqgkjqjcs , jdbcType= NVARCHAR },</if>
-            <if test="(tznr != null )">#{tznr , jdbcType= NVARCHAR },</if>
+            <if test="(bqgkjqjcs != null )">#{bqgkjqjcs , jdbcType= VARCHAR },</if>
+            <if test="(tznr != null )">#{tznr , jdbcType= VARCHAR },</if>
             <if test="(tzrq != null )">#{tzrq , jdbcType= TIMESTAMP },</if>
             <if test="(dlrqm != null )">#{dlrqm , jdbcType= VARCHAR },</if>
             <if test="(dlrhzgxdm != null )">#{dlrhzgxdm , jdbcType= VARCHAR },</if>
@@ -188,8 +188,8 @@
                 <if test="(nly != null )">nly = #{nly , jdbcType= VARCHAR },</if>
                 <if test="(jbzdbm != null )">jbzdbm = #{jbzdbm , jdbcType= VARCHAR },</if>
                 <if test="(jbzd != null )">jbzd = #{jbzd , jdbcType= VARCHAR },</if>
-                <if test="(bqgkjqjcs != null )">bqgkjqjcs = #{bqgkjqjcs , jdbcType= NVARCHAR },</if>
-                <if test="(tznr != null )">tznr = #{tznr , jdbcType= NVARCHAR },</if>
+                <if test="(bqgkjqjcs != null )">bqgkjqjcs = #{bqgkjqjcs , jdbcType= VARCHAR },</if>
+                <if test="(tznr != null )">tznr = #{tznr , jdbcType= VARCHAR },</if>
                 <if test="(tzrq != null )">tzrq = #{tzrq , jdbcType= TIMESTAMP },</if>
                 <if test="(dlrqm != null )">dlrqm = #{dlrqm , jdbcType= VARCHAR },</if>
                 <if test="(dlrhzgxdm != null )">dlrhzgxdm = #{dlrhzgxdm , jdbcType= VARCHAR },</if>

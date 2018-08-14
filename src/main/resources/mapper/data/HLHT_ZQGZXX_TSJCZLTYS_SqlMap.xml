@@ -26,9 +26,9 @@
          <result column="jbzdbm" property="jbzdbm" jdbcType="VARCHAR" />
          <result column="jbzd" property="jbzd" jdbcType="VARCHAR" />
          <result column="jczlxmmc" property="jczlxmmc" jdbcType="VARCHAR" />
-         <result column="jczlmd" property="jczlmd" jdbcType="NVARCHAR" />
-         <result column="jczlbfz" property="jczlbfz" jdbcType="NVARCHAR" />
-         <result column="tdfa" property="tdfa" jdbcType="NVARCHAR" />
+         <result column="jczlmd" property="jczlmd" jdbcType="VARCHAR" />
+         <result column="jczlbfz" property="jczlbfz" jdbcType="VARCHAR" />
+         <result column="tdfa" property="tdfa" jdbcType="VARCHAR" />
          <result column="hzdlrqm" property="hzdlrqm" jdbcType="VARCHAR" />
          <result column="hzdlrgxdm" property="hzdlrgxdm" jdbcType="VARCHAR" />
          <result column="hzdlrgxmc" property="hzdlrgxmc" jdbcType="VARCHAR" />
@@ -141,9 +141,9 @@
             <if test="(jbzdbm != null and jbzdbm != '')"> #{jbzdbm , jdbcType= VARCHAR },  </if>
             <if test="(jbzd != null and jbzd != '')"> #{jbzd , jdbcType= VARCHAR },  </if>
             <if test="(jczlxmmc != null and jczlxmmc != '')"> #{jczlxmmc , jdbcType= VARCHAR },  </if>
-            <if test="(jczlmd != null and jczlmd != '')"> #{jczlmd , jdbcType= NVARCHAR },  </if>
-            <if test="(jczlbfz != null and jczlbfz != '')"> #{jczlbfz , jdbcType= NVARCHAR },  </if>
-            <if test="(tdfa != null and tdfa != '')"> #{tdfa , jdbcType= NVARCHAR },  </if>
+            <if test="(jczlmd != null and jczlmd != '')"> #{jczlmd , jdbcType= VARCHAR },  </if>
+            <if test="(jczlbfz != null and jczlbfz != '')"> #{jczlbfz , jdbcType= VARCHAR },  </if>
+            <if test="(tdfa != null and tdfa != '')"> #{tdfa , jdbcType= VARCHAR },  </if>
             <if test="(hzdlrqm != null and hzdlrqm != '')"> #{hzdlrqm , jdbcType= VARCHAR },  </if>
             <if test="(hzdlrgxdm != null and hzdlrgxdm != '')"> #{hzdlrgxdm , jdbcType= VARCHAR },  </if>
             <if test="(hzdlrgxmc != null and hzdlrgxmc != '')"> #{hzdlrgxmc , jdbcType= VARCHAR },  </if>
@@ -181,9 +181,9 @@
                 <if test="(jbzdbm != null and jbzdbm != '')"> jbzdbm = #{jbzdbm , jdbcType= VARCHAR }, </if>
                 <if test="(jbzd != null and jbzd != '')"> jbzd = #{jbzd , jdbcType= VARCHAR }, </if>
                 <if test="(jczlxmmc != null and jczlxmmc != '')"> jczlxmmc = #{jczlxmmc , jdbcType= VARCHAR }, </if>
-                <if test="(jczlmd != null and jczlmd != '')"> jczlmd = #{jczlmd , jdbcType= NVARCHAR }, </if>
-                <if test="(jczlbfz != null and jczlbfz != '')"> jczlbfz = #{jczlbfz , jdbcType= NVARCHAR }, </if>
-                <if test="(tdfa != null and tdfa != '')"> tdfa = #{tdfa , jdbcType= NVARCHAR }, </if>
+                <if test="(jczlmd != null and jczlmd != '')"> jczlmd = #{jczlmd , jdbcType= VARCHAR }, </if>
+                <if test="(jczlbfz != null and jczlbfz != '')"> jczlbfz = #{jczlbfz , jdbcType= VARCHAR }, </if>
+                <if test="(tdfa != null and tdfa != '')"> tdfa = #{tdfa , jdbcType= VARCHAR }, </if>
                 <if test="(hzdlrqm != null and hzdlrqm != '')"> hzdlrqm = #{hzdlrqm , jdbcType= VARCHAR }, </if>
                 <if test="(hzdlrgxdm != null and hzdlrgxdm != '')"> hzdlrgxdm = #{hzdlrgxdm , jdbcType= VARCHAR }, </if>
                 <if test="(hzdlrgxmc != null and hzdlrgxmc != '')"> hzdlrgxmc = #{hzdlrgxmc , jdbcType= VARCHAR }, </if>
