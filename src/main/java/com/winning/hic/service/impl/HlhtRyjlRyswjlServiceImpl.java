@@ -120,7 +120,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                         }
                         ryswjl = new HlhtRyjlRyswjl();
                         ryswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
-                        ryswjl = this.getInitHlhtRyjlRyswjl(ryswjl);
+                        ryswjl = this.commonQueryDao.selectInitHlhtRyjlRyswjl(ryswjl);
                         ryswjl = (HlhtRyjlRyswjl) HicHelper.initModelValue(mbzDataSets,document,ryswjl,paramType);
                         this.createHlhtRyjlRyswjl(ryswjl);
                     }

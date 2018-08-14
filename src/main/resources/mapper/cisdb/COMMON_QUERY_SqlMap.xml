@@ -477,22 +477,11 @@
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
         b.BRXB as xbdm,
-        (
-        SELECT
-        CASE b.BRXB
-        WHEN '2' THEN
-        '女'
-        WHEN '1' THEN
-        '男'
-        ELSE
-        '其它'
-        END
-        ) AS xbmc,
+        (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
         SUBSTRING(replace(b.CSRQ,'-',''),0,9) nly,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt,
-        t.CJSJ as jlrq,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
         t.YXJL as yxjl
         FROM  EMR_QTBLJLK t

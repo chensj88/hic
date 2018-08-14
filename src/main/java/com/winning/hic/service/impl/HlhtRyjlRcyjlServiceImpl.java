@@ -128,11 +128,11 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
                             //初始化数据
                             HlhtRyjlRcyjl oldRcyjl  = new HlhtRyjlRcyjl();
                             oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                            this.removeHlhtRyjlRcyjl(rcyjl);
+                            this.removeHlhtRyjlRcyjl(oldRcyjl);
                         }
                         rcyjl  = new HlhtRyjlRcyjl();
                         rcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                        rcyjl = this.getInitHlhtRyjlRcyjlData(rcyjl);
+                        rcyjl = this.commonQueryDao.selectInitHlhtRyjlRcyjlData(rcyjl);
                         rcyjl = (HlhtRyjlRcyjl) HicHelper.initModelValue(mbzDataSetList,document,rcyjl,paramTypeMap);
                         this.createHlhtRyjlRcyjl(rcyjl);
                     }
