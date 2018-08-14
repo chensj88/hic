@@ -34,7 +34,7 @@
     </sql>
 
     <insert id="insertMbzAutomateSet" parameterType="com.winning.hic.model.MbzAutomateSet">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+
         INSERT INTO MBZ_AUTOMATE_SET
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(exceute != null and exceute != '')"> EXCEUTE , </if>
@@ -80,20 +80,14 @@
             </trim>
         </set>
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
-            </if>
+          <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }, </if>             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">                 and (yjlxh) in                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>             </if>
         </where>
     </update>
 
     <delete id="deleteMbzAutomateSet" parameterType="com.winning.hic.model.MbzAutomateSet">
         delete from  MBZ_AUTOMATE_SET
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
-            </if>
+          <if test="(yjlxh != null and yjlxh != '')"> and yjlxh = #{yjlxh , jdbcType= VARCHAR }, </if>             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">                 and (yjlxh) in                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>             </if>
         </where>
     </delete>
 

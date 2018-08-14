@@ -277,7 +277,7 @@ public class HlhtZybcjlScbcjl extends BaseDomain implements Serializable {
      * 默认值：无
      */
     private Timestamp gxsj;
-    /**Timestamp
+    /**
      * 字段名：syxh
      * 备注: 
      * 默认值：无
@@ -1056,25 +1056,17 @@ public class HlhtZybcjlScbcjl extends BaseDomain implements Serializable {
    public void setSjysqm(String sjysqm){
         this.sjysqm = sjysqm;
    }
-   /**
-   * 字段名：gxsj
-   * get方法
-   * 备注: 
-   */
-   public Timestamp getGxsj(){
 
+
+    public Timestamp getGxsj() {
         return gxsj;
-   }
+    }
 
-   /**
-   * 字段名：gxsj
-   * set方法
-   * 备注: 
-   */
-   public void setGxsj(Timestamp gxsj){
+    public void setGxsj(Timestamp gxsj) {
         this.gxsj = gxsj;
-   }
-   /**
+    }
+
+    /**
    * 字段名：syxh
    * get方法
    * 备注: 

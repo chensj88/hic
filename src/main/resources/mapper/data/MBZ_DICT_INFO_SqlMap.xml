@@ -26,7 +26,7 @@
     </sql>
 
     <insert id="insertMbzDictInfo" parameterType="com.winning.hic.model.MbzDictInfo">
-        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+
         INSERT INTO MBZ_DICT_INFO
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(dictCode != null and dictCode != '')"> DICT_CODE , </if>

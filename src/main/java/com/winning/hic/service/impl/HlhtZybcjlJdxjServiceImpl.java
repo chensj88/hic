@@ -1,16 +1,14 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.Base64Utils;
-import com.winning.hic.base.utils.ReflectUtil;
-import com.winning.hic.base.utils.StringUtil;
-import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlJdxjDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlJdxjService;
+import com.winning.hic.service.MbzDataSetService;
 import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +37,9 @@ public class HlhtZybcjlJdxjServiceImpl implements  HlhtZybcjlJdxjService {
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
     private MbzDataSetDao mbzDataSetDao;
+
+    @Autowired
+    private MbzDataSetService mbzDataSetService;
 
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
@@ -82,86 +83,48 @@ public class HlhtZybcjlJdxjServiceImpl implements  HlhtZybcjlJdxjService {
         List<MbzDataCheck> mbzDataChecks = null;
 
         MbzDataSet mbzDataSet = new MbzDataSet();
-        mbzDataSet.setSourceType(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
-        mbzDataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE));
+        mbzDataSet.setSourceType(Constants.WN_ZYBCJL_JDXJ_SOURCE_TYPE);
+        mbzDataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_JDXJ_SOURCE_TYPE));
+        List<MbzDataSet> mbzDataSetList = mbzDataSetService.getMbzDataSetList(mbzDataSet);
         //1.获取对应的首次病程的模板ID集合
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
+        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_JDXJ_SOURCE_TYPE);
         List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
         try{
-            for(MbzDataListSet dataListSet :dataListSets){
+            //获取首次病程的对象集合
+            Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlJdxj.class);
+            for(MbzDataListSet dataListSet :dataListSets) {
                 //2.根据首次病程去找到对应的病人病历
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
-                if(qtbljlkList != null){
-                    for(EmrQtbljlk emrQtbljlk:qtbljlkList){
-                        HlhtZybcjlJdxj scbcjl = new HlhtZybcjlJdxj();
-                        scbcjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                        scbcjl = this.getHlhtZybcjlJdxj(scbcjl);
-                        if(scbcjl ==null){ //重复判断是否已经插入
-                            //2.获取病历的其他信息，获取HIS，CIS的信息
-                            HlhtZybcjlJdxj entity = new HlhtZybcjlJdxj();
-                            entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                            entity = this.getInitialHlhtZybcjlJdxj(entity);
-                            StringBuffer xml= new StringBuffer();
-                            xml.append(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                            //3.xml文件解析 获取病历信息
-                            Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                            List<MbzDataSet> mbzDataSetList = mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
-                            //获取首次病程的对象集合
-                            Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlJdxj.class);
-                            for (MbzDataSet dataSet : mbzDataSetList) {
-                                //获取属性名
-                                String pyCode = dataSet.getPyCode();
-                                String methodName = "set" + StringUtil.titleCase(pyCode);
-                                String strValue = XmlUtil.getAttrValueByDataSet(document, dataSet);
-                                Object value = null;
-                                String paramType = paramTypeMap.get(pyCode);
-                                if (paramType.contains("String")) {
-                                    value = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[2];
-                                } else if (paramType.contains("Short")) {
-                                    //格式：50`50`50
-                                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[2];
-                                    value = StringUtil.isEmptyOrNull(strValue) ? null : Short.parseShort(shortStr);
-                                } else if (paramType.contains("Date")) {//                格式：636467930400000000`2017-11-20,16:44
-                                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-                                    String pattern = "yyyy-MM-dd,HH:mm";
-                                    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-                                    try {
-                                        Date date = StringUtil.isEmptyOrNull(dateStr) ? null : sdf.parse(dateStr);
-                                        if (date != null) {
-                                            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                                            value = sqlDate;
-                                        }
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
-                                    }
-                                } else if (paramType.contains("BigDecimal")) {
-                                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-                                    value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
-                                } else if (paramType.contains("Integer")) {
-                                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.split("`")[1];
-                                    value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
+                if (qtbljlkList != null) {
+                            for (EmrQtbljlk emrQtbljlk : qtbljlkList) {
+                                HlhtZybcjlJdxj jdxj = new HlhtZybcjlJdxj();
+                                jdxj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                                jdxj =  this.getHlhtZybcjlJdxj(jdxj);
+                                if (jdxj != null) {
+                                    //初始化数据
+                                    HlhtZybcjlJdxj oldRcyjl = new HlhtZybcjlJdxj();
+                                    oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                                    this.removeHlhtZybcjlJdxj(oldRcyjl);
                                 }
-                                //类型
+                                HlhtZybcjlJdxj entity = new HlhtZybcjlJdxj();
+                                entity.getMap().put("QTBLJLXH", emrQtbljlk.getQtbljlxh());
+                                entity = this.getInitialHlhtZybcjlJdxj(entity);
+                                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                                 try {
-                                    if(value!=null){
-                                        ReflectUtil.setParam(entity, methodName, value);
-                                    }
-                                } catch (Exception e) {
+                                    entity = (HlhtZybcjlJdxj) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
+                                } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
+                                this.createHlhtZybcjlJdxj(entity);
+
                             }
-                            this.createHlhtZybcjlJdxj(entity);
+
                         }
 
-                    }
-                }
-
             }
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -169,4 +132,5 @@ public class HlhtZybcjlJdxjServiceImpl implements  HlhtZybcjlJdxjService {
 
         return mbzDataChecks;
     }
+
 }
