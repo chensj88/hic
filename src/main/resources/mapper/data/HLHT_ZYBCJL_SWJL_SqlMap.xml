@@ -235,8 +235,9 @@
             </trim>
         </set>
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
+            <if test="(yjlxh != null and yjlxh != '')">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
+            <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">
+                and (yjlxh) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
             </if>
         </where>
@@ -245,15 +246,17 @@
     <delete id="deleteHlhtZybcjlSwjl" parameterType="com.winning.hic.model.HlhtZybcjlSwjl">
         delete from HLHT_ZYBCJL_SWJL
         <where>
-            <if test=" and (map.pks != null and map.pks != '')">
-                and () in
+            <if test="(yjlxh != null and yjlxh != '')">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
+            <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">
+                and (yjlxh) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
             </if>
         </where>
     </delete>
 
     <delete id="deleteHlhtZybcjlSwjlByYjlxh" parameterType="com.winning.hic.model.HlhtZybcjlSwjl">
-        delete from HLHT_ZYBCJL_SWJL WHERE yjlxh = #{yjlxh}
+        delete from HLHT_ZYBCJL_SWJL
+        WHERE yjlxh = #{yjlxh}
     </delete>
 
 
@@ -300,63 +303,64 @@
     <select id="getHlhtZybcjlSwjlListFromBaseData" resultMap="hlhtZybcjlSwjlResult"
             parameterType="com.winning.hic.model.EmrQtbljlk">
         SELECT
-            ISNULL(q.QTBLJLXH,'N') AS yjlxh,
-            c.SYXH AS jzlsh,
-            c.PATID AS patid,
-            ISNULL(b.ZYHM, 'N') AS zyh,
-            #{map.zzjgdm} AS zzjgdm ,
-            #{map.zzjgmc} AS zzjgmc,
-            ISNULL(c.BQDM, 'N') AS bqdm,
-            ISNULL(c.BQMC, 'N') AS bqmc,
-            ISNULL(c.KSDM, 'N') AS ksdm,
-            ISNULL(c.KSMC, 'N') AS ksmc,
-            ISNULL(m.fjh,'N') AS bfh,
-            ISNULL(m.fjh, 'N') AS bfmc,
-            ISNULL(b.RYCW, 'N') AS bch,
-            ISNULL(b.HZXM, 'N') AS hzxm,
-            ISNULL(b.SFZH, 'N') AS sfzhm,
-            ISNULL(b.BRXB, 'N') AS xbdm,
+            ISNULL(q.QTBLJLXH, 'N')                   AS yjlxh,
+            c.SYXH                                    AS jzlsh,
+            c.PATID                                   AS patid,
+            ISNULL(b.ZYHM, 'N')                       AS zyh,
+            #{map.zzjgdm}                             AS zzjgdm,
+            #{map.zzjgmc}                             AS zzjgmc,
+            ISNULL(c.BQDM, 'N')                       AS bqdm,
+            ISNULL(c.BQMC, 'N')                       AS bqmc,
+            ISNULL(c.KSDM, 'N')                       AS ksdm,
+            ISNULL(c.KSMC, 'N')                       AS ksmc,
+            ISNULL(m.fjh, 'N')                        AS bfh,
+            ISNULL(m.fjh, 'N')                        AS bfmc,
+            ISNULL(b.RYCW, 'N')                       AS bch,
+            ISNULL(b.HZXM, 'N')                       AS hzxm,
+            ISNULL(b.SFZH, 'N')                       AS sfzhm,
+            ISNULL(b.BRXB, 'N')                       AS xbdm,
             (
-            SELECT
-            CASE b.BRXB
-            WHEN '2' THEN
-            '女'
-            WHEN '1' THEN
-            '男'
-            ELSE
-            '其它'
-            END
-            ) AS xbmc,
+                SELECT CASE b.BRXB
+                       WHEN '2'
+                           THEN
+                               '女'
+                       WHEN '1'
+                           THEN
+                               '男'
+                       ELSE
+                           '其它'
+                       END
+            )                                         AS xbmc,
             ISNULL(
-            CONVERT (
-            VARCHAR,
-            (
-            YEAR (GETDATE()) - YEAR (CONVERT(datetime, b.CSRQ))
-            )
-            ),
+                    CONVERT(
+                                VARCHAR,
+                                (
+                                    YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
+                                )
+                    ),
 
-            'N'
-            ) AS nls,
-            SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
-            b.RYRQ AS ryrq,
-            q.QTBLJLXH AS syxh,
-            q.TJZT AS tjzt,
-            q.YXJL AS yxjl,
+                    'N'
+            )                                         AS nls,
+            SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
+            b.RYRQ                                    AS ryrq,
+            q.QTBLJLXH                                AS syxh,
+            q.TJZT                                    AS tjzt,
+            q.YXJL                                    AS yxjl,
             ISNULL(
-            q.GXRQ,
-            q.CJSJ
-            ) AS gxsj
+                    q.GXRQ,
+                    q.CJSJ
+            )                                         AS gxsj
         FROM
-        CISDB.dbo.EMR_QTBLJLK q
-        LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
-        LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON b.SYXH = c.EMRXH
-        LEFT JOIN CISDB.dbo.EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
-        LEFT JOIN CISDB.dbo.PUB_ZYDMK p ON b.ZYDM = p.ID
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
-        m.id = b.RYCW
-        AND m.bqdm = b.RYBQ
-        )
-        WHERE q.BLDM=#{bldm}
+            CISDB.dbo.EMR_QTBLJLK q
+            LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
+            LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON b.SYXH = c.EMRXH
+            LEFT JOIN CISDB.dbo.EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
+            LEFT JOIN CISDB.dbo.PUB_ZYDMK p ON b.ZYDM = p.ID
+            LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+            m.id = b.RYCW
+            AND m.bqdm = b.RYBQ
+            )
+        WHERE q.BLDM = #{bldm}
 
     </select>
 
