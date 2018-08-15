@@ -77,12 +77,11 @@ public class MbzDataSetController extends BaseController {
             }
     )
     @GetMapping("/basic/clist")
-    public Map<String, Object> loadBasicTemplateInfoListChild(Row row, MbzDataSet dataSet, Integer config){
-        dataSet.setRow(row);
+    public Map<String, Object> loadBasicTemplateInfoListChild(MbzDataSet dataSet, Integer config){
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("total", getFacade().getMbzDataSetService().getMbzDataSetCount(dataSet));
-        result.put("rows", getFacade().getMbzDataSetService().getMbzDataSetPageList(dataSet));
+        result.put("rows", getFacade().getMbzDataSetService().getMbzDataSetList(dataSet));
         return result;
     }
 

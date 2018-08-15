@@ -127,7 +127,7 @@
         <where>
             <include refid="sql-mbzDataSet" />
         </where>
-        ORDER BY t.ID ASC
+        ORDER BY t.RECORD_NAME ASC
     </select>
 
     <select id="selectMbzDataSetCount" resultType="int" parameterType="com.winning.hic.model.MbzDataSet">
