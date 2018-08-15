@@ -366,7 +366,7 @@
     </select>
 
     <!-- Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据-->
-    <select id="selectInitialHlhtZqgzxxQtzqtys" resultMap="hlhtZqgzxxQtzqtysResult" parameterType="com.winning.hic.model.HlhtZqgzxxQtzqtys">
+    <select id="selectInitialHlhtZybcjlHzjl" resultMap="hlhtZybcjlHzjlResult" parameterType="com.winning.hic.model.HlhtZybcjlHzjl">
         SELECT t.QTBLJLXH AS yjlxh,
         b.HISSYXH AS jzlsh,
         c.PATID AS patid,
