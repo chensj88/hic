@@ -613,7 +613,7 @@
         LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
         LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
         LEFT JOIN CISDB.dbo.PUB_ZYDMK k ON b.ZYDM = k.ID
-        WHERE 1 = 1;
+        WHERE 1 = 1
         <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>
 
     </select>

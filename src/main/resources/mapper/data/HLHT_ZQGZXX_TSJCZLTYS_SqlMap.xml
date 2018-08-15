@@ -73,11 +73,11 @@
         <if test="(hzdlrqm != null and hzdlrqm != '')">and t.hzdlrqm = #{hzdlrqm}</if>
         <if test="(hzdlrgxdm != null and hzdlrgxdm != '')">and t.hzdlrgxdm = #{hzdlrgxdm}</if>
         <if test="(hzdlrgxmc != null and hzdlrgxmc != '')">and t.hzdlrgxmc = #{hzdlrgxmc}</if>
-        <if test="(dlrqmrq != null and dlrqmrq != '')">and t.dlrqmrq = #{dlrqmrq}</if>
+        <if test="(dlrqmrq != null )">and t.dlrqmrq = #{dlrqmrq}</if>
         <if test="(ysbm != null and ysbm != '')">and t.ysbm = #{ysbm}</if>
         <if test="(ysqm != null and ysqm != '')">and t.ysqm = #{ysqm}</if>
-        <if test="(ysqmrq != null and ysqmrq != '')">and t.ysqmrq = #{ysqmrq}</if>
-        <if test="(gxsj != null and gxsj != '')">and t.gxsj = #{gxsj}</if>
+        <if test="(ysqmrq != null)">and t.ysqmrq = #{ysqmrq}</if>
+        <if test="(gxsj != null )">and t.gxsj = #{gxsj}</if>
     </sql>
 
     <insert id="insertHlhtZqgzxxTsjczltys" parameterType="com.winning.hic.model.HlhtZqgzxxTsjczltys">
@@ -112,11 +112,11 @@
             <if test="(hzdlrqm != null and hzdlrqm != '')">hzdlrqm ,</if>
             <if test="(hzdlrgxdm != null and hzdlrgxdm != '')">hzdlrgxdm ,</if>
             <if test="(hzdlrgxmc != null and hzdlrgxmc != '')">hzdlrgxmc ,</if>
-            <if test="(dlrqmrq != null and dlrqmrq != '')">dlrqmrq ,</if>
+            <if test="(dlrqmrq != null )">dlrqmrq ,</if>
             <if test="(ysbm != null and ysbm != '')">ysbm ,</if>
             <if test="(ysqm != null and ysqm != '')">ysqm ,</if>
-            <if test="(ysqmrq != null and ysqmrq != '')">ysqmrq ,</if>
-            <if test="(gxsj != null and gxsj != '')">gxsj ,</if>
+            <if test="(ysqmrq != null)">ysqmrq ,</if>
+            <if test="(gxsj != null )">gxsj ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -148,11 +148,11 @@
             <if test="(hzdlrqm != null and hzdlrqm != '')">#{hzdlrqm , jdbcType= VARCHAR },</if>
             <if test="(hzdlrgxdm != null and hzdlrgxdm != '')">#{hzdlrgxdm , jdbcType= VARCHAR },</if>
             <if test="(hzdlrgxmc != null and hzdlrgxmc != '')">#{hzdlrgxmc , jdbcType= VARCHAR },</if>
-            <if test="(dlrqmrq != null and dlrqmrq != '')">#{dlrqmrq , jdbcType= TIMESTAMP },</if>
+            <if test="(dlrqmrq != null )">#{dlrqmrq , jdbcType= TIMESTAMP },</if>
             <if test="(ysbm != null and ysbm != '')">#{ysbm , jdbcType= VARCHAR },</if>
             <if test="(ysqm != null and ysqm != '')">#{ysqm , jdbcType= VARCHAR },</if>
-            <if test="(ysqmrq != null and ysqmrq != '')">#{ysqmrq , jdbcType= TIMESTAMP },</if>
-            <if test="(gxsj != null and gxsj != '')">#{gxsj , jdbcType= TIMESTAMP },</if>
+            <if test="(ysqmrq != null)">#{ysqmrq , jdbcType= TIMESTAMP },</if>
+            <if test="(gxsj != null )">#{gxsj , jdbcType= TIMESTAMP },</if>
         </trim>
     </insert>
 
@@ -188,11 +188,11 @@
                 <if test="(hzdlrqm != null and hzdlrqm != '')">hzdlrqm = #{hzdlrqm , jdbcType= VARCHAR },</if>
                 <if test="(hzdlrgxdm != null and hzdlrgxdm != '')">hzdlrgxdm = #{hzdlrgxdm , jdbcType= VARCHAR },</if>
                 <if test="(hzdlrgxmc != null and hzdlrgxmc != '')">hzdlrgxmc = #{hzdlrgxmc , jdbcType= VARCHAR },</if>
-                <if test="(dlrqmrq != null and dlrqmrq != '')">dlrqmrq = #{dlrqmrq , jdbcType= TIMESTAMP },</if>
+                <if test="(dlrqmrq != null )">dlrqmrq = #{dlrqmrq , jdbcType= TIMESTAMP },</if>
                 <if test="(ysbm != null and ysbm != '')">ysbm = #{ysbm , jdbcType= VARCHAR },</if>
                 <if test="(ysqm != null and ysqm != '')">ysqm = #{ysqm , jdbcType= VARCHAR },</if>
-                <if test="(ysqmrq != null and ysqmrq != '')">ysqmrq = #{ysqmrq , jdbcType= TIMESTAMP },</if>
-                <if test="(gxsj != null and gxsj != '')">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
+                <if test="(ysqmrq != null)">ysqmrq = #{ysqmrq , jdbcType= TIMESTAMP },</if>
+                <if test="(gxsj != null )">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
             </trim>
         </set>
         <where>

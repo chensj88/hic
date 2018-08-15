@@ -1,52 +1,148 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.Base64Utils;
+import com.winning.hic.base.utils.HicHelper;
+import com.winning.hic.base.utils.ReflectUtil;
+import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
+import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZqgzxxSstysDao;
-import com.winning.hic.model.HlhtZqgzxxSstys;
+import com.winning.hic.dao.data.MbzDataListSetDao;
+import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZqgzxxSstysService;
+import org.dom4j.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 
 /**
-* @author HLHT
-* @title HLHT_ZQGZXX_SSTYS
-* @email Winning Health
-* @package com.winning.hic.service.impl
-* @date 2018-32-31 16:32:38
-*/
+ * @author HLHT
+ * @title HLHT_ZQGZXX_SSTYS
+ * @email Winning Health
+ * @package com.winning.hic.service.impl
+ * @date 2018-32-31 16:32:38
+ */
 @Service
-public class HlhtZqgzxxSstysServiceImpl implements  HlhtZqgzxxSstysService {
+public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
+
+    private static final Logger logger = LoggerFactory.getLogger(HlhtZqgzxxSstysServiceImpl.class);
 
     @Autowired
     private HlhtZqgzxxSstysDao hlhtZqgzxxSstysDao;
+    @Autowired
+    private CommonQueryDao commonQueryDao;
+    @Autowired
+    private MbzDataSetDao mbzDataSetDao;
+    @Autowired
+    private MbzDataListSetDao mbzDataListSetDao;
+    @Autowired
+    private EmrQtbljlkDao emrQtbljlkDao;
 
-    public int createHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys){
+    public int createHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
         return this.hlhtZqgzxxSstysDao.insertHlhtZqgzxxSstys(hlhtZqgzxxSstys);
     }
 
-    public int modifyHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys){
+    public int modifyHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
         return this.hlhtZqgzxxSstysDao.updateHlhtZqgzxxSstys(hlhtZqgzxxSstys);
     }
 
-    public int removeHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys){
+    public int removeHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
         return this.hlhtZqgzxxSstysDao.deleteHlhtZqgzxxSstys(hlhtZqgzxxSstys);
     }
 
-    public HlhtZqgzxxSstys getHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys){
+    public HlhtZqgzxxSstys getHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
         return this.hlhtZqgzxxSstysDao.selectHlhtZqgzxxSstys(hlhtZqgzxxSstys);
     }
 
-    public int getHlhtZqgzxxSstysCount(HlhtZqgzxxSstys hlhtZqgzxxSstys){
-        return (Integer)this.hlhtZqgzxxSstysDao.selectHlhtZqgzxxSstysCount(hlhtZqgzxxSstys);
+    public int getHlhtZqgzxxSstysCount(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
+        return (Integer) this.hlhtZqgzxxSstysDao.selectHlhtZqgzxxSstysCount(hlhtZqgzxxSstys);
     }
 
-    public List<HlhtZqgzxxSstys> getHlhtZqgzxxSstysList(HlhtZqgzxxSstys hlhtZqgzxxSstys){
+    public List<HlhtZqgzxxSstys> getHlhtZqgzxxSstysList(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
         return this.hlhtZqgzxxSstysDao.selectHlhtZqgzxxSstysList(hlhtZqgzxxSstys);
     }
 
-    public List<HlhtZqgzxxSstys> getHlhtZqgzxxSstysPageList(HlhtZqgzxxSstys hlhtZqgzxxSstys){
+    public List<HlhtZqgzxxSstys> getHlhtZqgzxxSstysPageList(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
         return this.hlhtZqgzxxSstysDao.selectHlhtZqgzxxSstysPageList(hlhtZqgzxxSstys);
+    }
+
+    /**
+     * 数据抽取接口
+     *
+     * @param hlhtZqgzxxSstys
+     * @return
+     */
+    @Override
+    public List<MbzDataCheck> interfaceHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) throws IOException, ParseException {
+        List<MbzDataCheck> dataChecks = null;
+
+        //配置接口表字段配置信息
+        MbzDataSet mbzDataSet = new MbzDataSet();
+        mbzDataSet.setSourceType(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE);
+        mbzDataSet.setPId(Long.parseLong(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE));
+        List<MbzDataSet> mbzDataSetList = mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
+
+        //获取接口表名称
+        mbzDataSet = new MbzDataSet();
+        mbzDataSet.setPId(0L);
+        mbzDataSet.setSourceType(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE);
+        mbzDataSet = mbzDataSetDao.selectMbzDataSet(mbzDataSet);
+
+        //配置并加载对应的出入院模板集合
+        MbzDataListSet mbzDataListSet = new MbzDataListSet();
+        mbzDataListSet.setSourceType(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE);
+        List<MbzDataListSet> dataListSets = mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
+
+        //获取接口对象字段集合信息
+        Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZqgzxxSstys.class);
+
+        if (dataListSets != null && dataListSets.size() > 0) {
+            //获取模板集合，遍历
+            for (MbzDataListSet dataListSet : dataListSets) {
+                //查询病历数据 数据来源
+                EmrQtbljlk qtbljlk = new EmrQtbljlk();
+                qtbljlk.setBldm(dataListSet.getModelCode());
+                List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
+                if (qtbljlkList != null && qtbljlkList.size() > 0) {
+                    //循环病历
+                    for (EmrQtbljlk emrQtbljlk : qtbljlkList) {
+                        //获取接口数据
+                        HlhtZqgzxxSstys obj = new HlhtZqgzxxSstys();
+                        obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                        obj = getHlhtZqgzxxSstys(obj);
+                        //解析病历xml
+                        Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                        //判断是否存在重复,存在则删除，重新新增
+                        if (obj != null) {
+                            //初始化数据
+                            HlhtZqgzxxSstys oldObj = new HlhtZqgzxxSstys();
+                            oldObj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            this.removeHlhtZqgzxxSstys(oldObj);
+                        }
+                        obj = new HlhtZqgzxxSstys();
+                        obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                        obj = this.commonQueryDao.selectInitHlhtZqgzxxSstys(obj);
+                        obj = (HlhtZqgzxxSstys) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                        this.createHlhtZqgzxxSstys(obj);
+                    }
+                } else {
+                    logger.info("接口数据集:{}无相关的病历信息，请先书写病历信息", mbzDataSet.getRecordName());
+                }
+            }
+        } else {
+            logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板", mbzDataSet.getRecordName());
+        }
+
+
+        return dataChecks;
     }
 }

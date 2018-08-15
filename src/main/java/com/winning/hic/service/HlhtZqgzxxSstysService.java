@@ -1,8 +1,11 @@
 package com.winning.hic.service;
 
-import java.util.List;  
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
 
-import com.winning.hic.model.HlhtZqgzxxSstys;  
+import com.winning.hic.model.HlhtZqgzxxSstys;
+import com.winning.hic.model.MbzDataCheck;
 
 
 /**
@@ -27,4 +30,6 @@ public interface HlhtZqgzxxSstysService {
     public List<HlhtZqgzxxSstys> getHlhtZqgzxxSstysList(HlhtZqgzxxSstys hlhtZqgzxxSstys);
 
     public List<HlhtZqgzxxSstys> getHlhtZqgzxxSstysPageList(HlhtZqgzxxSstys hlhtZqgzxxSstys);
+
+    public List<MbzDataCheck> interfaceHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) throws IOException, ParseException;
 }

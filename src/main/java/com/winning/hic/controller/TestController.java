@@ -94,4 +94,13 @@ public class TestController extends BaseController {
         result.put("data", super.getFacade().getHlhtZybcjlSjyscfjlService().interfaceHlhtZybcjlSjyscfjl(null));
         return result;
     }
+
+    @GetMapping(value = "/test/sstys")
+    @ApiOperation(value="/test/sstys",notes = "知情告知信息/手术同意书")
+    public Map<String, Object> testSSTYS() throws IOException, ParseException {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtZqgzxxSstysService().interfaceHlhtZqgzxxSstys(null));
+        return result;
+    }
 }
