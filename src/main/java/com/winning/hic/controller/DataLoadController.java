@@ -85,6 +85,7 @@ public class DataLoadController extends BaseController {
             //23.上级医师查房记录数据集表*  --陈世杰
             List<MbzDataCheck> mbzDataChecks23 = super.getFacade().getHlhtZybcjlSjyscfjlService().interfaceHlhtZybcjlSjyscfjl(null);
             //24.手术知情同意书表*--陈世杰
+            List<MbzDataCheck> mbzDataChecks24 = super.getFacade().getHlhtZqgzxxSstysService().interfaceHlhtZqgzxxSstys(null);
             //25.输血治疗同意书表* -- 陈枫
             //26.疑难病例讨论数据集表* --陈枫
             //27.转科记录数据集表*  --陈蒯
@@ -92,10 +93,12 @@ public class DataLoadController extends BaseController {
             //28.转诊(院)记录数据集表* --陈蒯
             List<MbzDataCheck> mbzDataChecks28 = super.getFacade().getHlhtZzyjlZzyjlService().interfaceHlhtZzyjlZzyjl();
             //29.特殊检查及特殊治疗同意书* --陈世杰
+            List<MbzDataCheck> mbzDataChecks29 = super.getFacade().getHlhtZqgzxxTsjczltysService().interfaceHlhtZqgzxxTsjczltys(null);
             //30.输血记录表* --陈枫
             //31.门急诊病历记录表* --陈蒯
             List<MbzDataCheck> mbzDataChecks31 = super.getFacade().getHlhtZzyjlZzyjlService().interfaceHlhtZzyjlZzyjl();
             //32.急诊留观病历记录表*   --陈世杰
+            List<MbzDataCheck> mbzDataChecks32 = super.getFacade().getHlhtMjzblJzlgblService().interfaceHlhtMjzblJzlgbl(null);
             //33.治疗记录表* --陈枫
             //34.阴道分娩记录表*  --陈枫
             //35.剖宫产记录表* --陈蒯

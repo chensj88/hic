@@ -63,4 +63,24 @@ public interface CommonQueryDao {
      * @return
      */
     HlhtZybcjlSjyscfjl selectInitHlhtZybcjlSjyscfjl(HlhtZybcjlSjyscfjl hlhtZybcjlSjyscfjl);
+
+    /**
+     * 知情告知信息/手术同意书
+     * @param hlhtZqgzxxSstys
+     * @return
+     */
+    HlhtZqgzxxSstys selectInitHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys);
+    /**
+     * 知情告知信息/特殊检查及特殊治疗同意书
+     * @param hlhtZqgzxxTsjczltys
+     * @return
+     */
+    HlhtZqgzxxTsjczltys selectInitHlhtZqgzxxTsjczltys(HlhtZqgzxxTsjczltys hlhtZqgzxxTsjczltys);
+
+    /**
+     * 门(急)诊病历/急诊留观病历
+     * @param obj
+     * @return
+     */
+    HlhtMjzblJzlgbl selectInitHlhtMjzblJzlgbl(HlhtMjzblJzlgbl obj);
 }
