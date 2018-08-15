@@ -873,8 +873,15 @@
     function dictTreeOnOnClick(event, treeId, treeNode) {
         let treeObj = $.fn.zTree.getZTreeObj(treeId);
         let node = treeObj.getNodeByTId(treeNode.tId);
-        let tnode1 = templateTree.getNodeByParam("nodeId",node.pyCode,null);
+        let pyCode = node.pyCode;
+        let tnode1 = templateTree.getNodeByParam("nodeId",pyCode,null);
         $("#"+tnode1.tId+"_a").click();
+
+        if(pyCode.length > 2){
+            let parentPyCode = pyCode.substring(0,pyCode.length -2 );
+            let pnode1 = templateTree.getNodeByParam("nodeId",parentPyCode,null);
+            templateTree.expandNode(pnode1);
+        }
         let queryJson = {
             'sourceType':node.dictValue
         };
