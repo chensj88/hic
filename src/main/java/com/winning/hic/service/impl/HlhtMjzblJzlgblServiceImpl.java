@@ -10,6 +10,7 @@ import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtMjzblJzlgblDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzDictInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtMjzblJzlgblService;
 import org.dom4j.Document;
@@ -45,6 +46,8 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
+    @Autowired
+    private MbzDictInfoDao mbzDictInfoDao;
 
     public int createHlhtMjzblJzlgbl(HlhtMjzblJzlgbl hlhtMjzblJzlgbl){
         return this.hlhtMjzblJzlgblDao.insertHlhtMjzblJzlgbl(hlhtMjzblJzlgbl);
@@ -77,6 +80,16 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
     @Override
     public List<MbzDataCheck> interfaceHlhtMjzblJzlgbl(HlhtMjzblJzlgbl hlhtMjzblJzlgbl) throws IOException, ParseException {
         List<MbzDataCheck> dataChecks = null;
+
+        MbzDictInfo nameDict = new MbzDictInfo();
+        nameDict.setDictCode("hospitalInfoName");
+        nameDict.setDictValue("1");
+        nameDict = mbzDictInfoDao.selectMbzDictInfo(nameDict);
+        MbzDictInfo codeDict = new MbzDictInfo();
+        codeDict.setDictCode("hospitalInfoNo");
+        codeDict.setDictValue("1");
+        codeDict = mbzDictInfoDao.selectMbzDictInfo(codeDict);
+
 
         //配置接口表字段配置信息
         MbzDataSet mbzDataSet = new MbzDataSet();
@@ -125,6 +138,8 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                         obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                         obj = this.commonQueryDao.selectInitHlhtMjzblJzlgbl(obj);
                         obj = (HlhtMjzblJzlgbl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                        obj.setZzjgdm(codeDict.getDictLabel());
+                        obj.setZzjgmc(nameDict.getDictLabel());
                         this.createHlhtMjzblJzlgbl(obj);
                     }
                 } else {
