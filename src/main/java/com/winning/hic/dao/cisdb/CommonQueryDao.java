@@ -56,4 +56,11 @@ public interface CommonQueryDao {
      * @return
      */
     HlhtZybcjlSwbltljl selectInitHlhtZybcjlSwbltljl(HlhtZybcjlSwbltljl swbltljl);
+
+    /**
+     * 住院病程记录/上级医生查房记录
+     * @param hlhtZybcjlSjyscfjl
+     * @return
+     */
+    HlhtZybcjlSjyscfjl selectInitHlhtZybcjlSjyscfjl(HlhtZybcjlSjyscfjl hlhtZybcjlSjyscfjl);
 }

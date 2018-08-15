@@ -59,4 +59,39 @@ public class TestController extends BaseController {
         result.put("data", super.getFacade().getHlhtZybcjlShscbcjlService().interfaceHlhtZybcjlShscbcjl(null));
         return result;
     }
+
+    @GetMapping(value = "/test/sqxj")
+    @ApiOperation(value="/test/sqxj",notes = "取住院病程/术前小结")
+    public Map<String, Object> testSQXJ() throws IOException, ParseException {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtZybcjlSqxjService().interfaceHlhtZybcjlSqxj(null));
+        return result;
+    }
+    @GetMapping(value = "/test/sqtl")
+    @ApiOperation(value="/test/sqtl",notes = "取住院病程/术前讨论")
+    public Map<String, Object> testSQTL() throws IOException, ParseException {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtZybcjlSqtlService().interfaceHlhtZybcjlSqtl(null));
+        return result;
+    }
+
+    @GetMapping(value = "/test/swbltl")
+    @ApiOperation(value="/test/swbltl",notes = "取住院病程/死亡病历讨论")
+    public Map<String, Object> testSWBLTL() throws IOException, ParseException {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtZybcjlSwbltljlService().interfaceHlhtZybcjlSwbltljl(null));
+        return result;
+    }
+
+    @GetMapping(value = "/test/sjyscfjl")
+    @ApiOperation(value="/test/sjyscfjl",notes = "取住院病程/上级医生查房记录")
+    public Map<String, Object> testSJYSCFJL() throws IOException, ParseException {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtZybcjlSjyscfjlService().interfaceHlhtZybcjlSjyscfjl(null));
+        return result;
+    }
 }
