@@ -106,6 +106,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                 qtbljlk.setBldm(dataListSet.getModelCode());
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
 
+
                 if(qtbljlkList != null){
                     for(EmrQtbljlk emrQtbljlk:qtbljlkList){
                         HlhtZybcjlScbcjl scbcjl = new HlhtZybcjlScbcjl();
