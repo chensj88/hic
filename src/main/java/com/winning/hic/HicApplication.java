@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.Map;
 		DataSourceAutoConfiguration.class
 })
 @MapperScan({"com.winning.hic.model","com.winning.hic.dao"})
+@EnableTransactionManagement
 public class HicApplication {
 
 	private static final String CONFIG_FILE = "-configfile";
