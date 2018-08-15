@@ -88,6 +88,13 @@ public class Constants {
     public static final String WN_MJZBL_MJZBL_SOURCE_TYPE = "31";//门诊病历
     public static final String WN_MJZBL_JZLGBL_SOURCE_TYPE = "32";//急诊留观
     public static final String WN_ZLCZJL_ZLJL_SOURCE_TYPE = "33";//诊疗记录单
+    public static final String WN_ZCJL_YDFM_SOURCE_TYPE = "34";//阴道分娩记录单
+    public static final String WN_ZCJL_PGC_SOURCE_TYPE = "35";//剖宫产记录单
+    public static final String WN_BLGY_JBJKXX_SOURCE_TYPE = "36";//基本健康信息单
+    public static final String WN_BLGY_WSSJZY_SOURCE_TYPE = "37";//卫生事件摘要单
+    public static final String WN_MJZCF_XYCF_SOURCE_TYPE = "38";//西药处方记录单
+    public static final String WN_MJZCF_ZYCF_SOURCE_TYPE = "39";//中药处方记录单
+
 
 
     public static final String SUCCESS = "SUCCESS";

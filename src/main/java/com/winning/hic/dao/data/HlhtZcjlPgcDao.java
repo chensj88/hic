@@ -34,4 +34,6 @@ public interface HlhtZcjlPgcDao {
     public List<HlhtZcjlPgc> selectHlhtZcjlPgcList(HlhtZcjlPgc hlhtZcjlPgc) throws DataAccessException;
 
     public List<HlhtZcjlPgc> selectHlhtZcjlPgcPageList(HlhtZcjlPgc hlhtZcjlPgc) throws DataAccessException;
+
+    public HlhtZcjlPgc selectInitialHlhtZcjlPgc(HlhtZcjlPgc entity);
 }
