@@ -83,6 +83,9 @@ public class HicHelper {
                 } else if (paramType.contains("Timestamp")) {
                     String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
+                    if(dateStr.length()<=10) {
+                        pattern="yyyy-MM-dd";
+                    }
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {
                         Date date = StringUtil.isEmptyOrNull(dateStr) ? null : sdf.parse(dateStr);
@@ -97,6 +100,9 @@ public class HicHelper {
                     //格式：636467930400000000`2017-11-20,16:44
                     String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
+                    if(dateStr.length()<=10) {
+                        pattern="yyyy-MM-dd";
+                    }
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {
                         Date date = StringUtil.isEmptyOrNull(dateStr) ? null : sdf.parse(dateStr);

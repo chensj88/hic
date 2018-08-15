@@ -37,7 +37,8 @@ public class RyjlJbxxExtractController extends BaseController {
 //        getFacade().getHlhtZybcjlRcbcjlService().interfaceHlhtZybcjlRcbcjl();
 //        getFacade().getHlhtZybcjlSwjlService().interfaceHlhtZybcjlSwjl();
 //        getFacade().getHlhtZlczjlMzsqfsjlService().interfaceHlhtZlczjlMzsqfsjl();
-        getFacade().getHlhtZqgzxxMzzqtysService().interfaceHlhtZqgzxxMzzqtys();
+//        getFacade().getHlhtZqgzxxMzzqtysService().interfaceHlhtZqgzxxMzzqtys();
+        getFacade().getHlhtZqgzxxSxzltysService().interfaceHlhtZqgzxxSxzltys();
         return resultMap;
     }
 
