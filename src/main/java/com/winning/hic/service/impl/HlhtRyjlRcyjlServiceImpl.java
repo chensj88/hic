@@ -87,6 +87,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
 
     @Override
     public List<MbzDataCheck> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException {
+        List<MbzDataCheck> dataChecks = null;
         //配置接口表字段配置信息
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_RYJL_RCYJL_SOURCE_TYPE);
@@ -144,7 +145,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
             logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板",mbzDataSet.getRecordName());
         }
 
-        return null;
+        return dataChecks;
     }
 
 }
