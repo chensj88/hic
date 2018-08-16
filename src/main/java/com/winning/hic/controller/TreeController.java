@@ -26,7 +26,7 @@ public class TreeController extends BaseController {
     @RequestMapping(value = "/mbk/tree" , method = RequestMethod.POST)
     @ApiOperation(value = "病历模板顶级树",notes = "加载病历模板顶级树")
     public Map<String, Object> queryMBKTree(){
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         result.put("status", true);
         result.put("data",getFacade().getEmrMxmcmlkService().createEmrMxmcmlkTree());
         return result;
