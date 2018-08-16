@@ -83,4 +83,18 @@ public interface CommonQueryDao {
      * @return
      */
     HlhtMjzblJzlgbl selectInitHlhtMjzblJzlgbl(HlhtMjzblJzlgbl obj);
+
+    /**
+     *病历概要/基本健康信息
+     * @param obj
+     * @return
+     */
+    HlhtBlgyJbjkxx selectInitHlhtBlgyJbjkxx(HlhtBlgyJbjkxx obj);
+
+    /**
+     * 门(急)诊处方/西药处方
+     * @param obj
+     * @return
+     */
+    HlhtMjzcfXycf selectInitHlhtMjzcfXycf(HlhtMjzcfXycf obj);
 }
