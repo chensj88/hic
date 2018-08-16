@@ -179,7 +179,7 @@
     var resultData = [];
     var templateTree,dictTree;
     /*初始化变量，为数据复制做准备*/
-    var dataTypeC,dtjddmC,qrmbdmC,qrdxdmC,yzjddmC;
+    var dataTypeC,dtjddmC,qrmbdmC,qrdxdmC,yzjddmC,dictCodeC,pyCodeC,btC;
     //页面初始化
     function initWindow(){
         //页面大小响应布局
@@ -340,7 +340,8 @@
         return result;
     }
 
-    function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm) {
+    function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt) {
+        var bt1 = bt === 'null' ? '0' :bt;
         var data = {row :{
             pid:parseInt(pId),
             sourceType:sourceType,
@@ -349,16 +350,18 @@
             qrmbdm:qrmbdm,
             qrdxdm:qrdxdm,
             yzjddm:yzjddm,
-            recordName:recordName,
+            recordName:'',
+            dictCode:dictCode,
+            pyCode:pyCode,
+            bt:bt1,
             status:1
         },
-            index:index+10000};
-        console.log(data);
+            index:index+1};
         $subTable.bootstrapTable('insertRow',data);
         console.log($subTable);
     }
 
-    function openCopyWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm) {
+    function openCopyWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt) {
         $.ajax({
             type: "post",
             url: ctx + "basic/tree",
@@ -390,6 +393,9 @@
         qrmbdmC = qrmbdm;
         qrdxdmC = qrdxdm;
         yzjddmC = yzjddm;
+        dictCodeC = dictCode;
+        pyCodeC = pyCode;
+        btC = bt;
         $('#treeModal').modal('show');
     }
 
@@ -570,12 +576,19 @@
                         align: 'center',
                         width: '210px',
                         formatter:function(value,row,index){
-                            return `<span>${value}</span>
-                                        <span class="pull-right span_icon" title="插入新的一行" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}','${row.qrmbdm}','${row.qrdxdm}','${row.yzjddm}')">
+                            let content = '';
+                            let status = row.status;
+                            if(status || value === ''){
+                                content = `<span>${value}</span>`;
+                            }else{
+                                content = `<span>${value}</span>
+                                        <span class="pull-right span_icon" title="插入新的一行" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}','${row.qrmbdm}','${row.qrdxdm}','${row.yzjddm}','${row.dictCode}','${row.pyCode}','${row.bt}')">
                                             <i class="glyphicon glyphicon-plus"></i>
                                         </span>
-                                        <span class="pull-right span_icon"  title="复制" onclick="openCopyWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}','${row.qrmbdm}','${row.qrdxdm}','${row.yzjddm}')">
+                                        <span class="pull-right span_icon"  title="复制" onclick="openCopyWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}','${row.qrmbdm}','${row.qrdxdm}','${row.yzjddm}','${row.dictCode}','${row.pyCode}','${row.bt}')">
                                         <i class="iconfont icon-copy"></i></span>`;
+                            }
+                            return content;
                         }
                     },
                     {
@@ -643,7 +656,8 @@
                         title: '必选',
                         width: '100px',
                         formatter:function(value,row,index){
-                            if(value === '0' || value === null ){
+                            console.log(value +' : '+value === 0);
+                            if(value === 0 || value === null ){
                                 return '0';
                             }else{
                                 return '1';
@@ -686,8 +700,8 @@
                 id:row.id,
                 pId:row.pid,
                 sourceType:row.sourceType,
-                recordName:row.recordName,
                 pyCode:row.pyCode,
+                recordName:'',
                 dictCode:row.dictCode,
                 dataType:row.dataType,
                 dtjddm:row.dtjddm,
@@ -738,6 +752,7 @@
         function searchListInfo(){
             $table.bootstrapTable('refresh', { pageNumber: 1 });
         }
+
         $('#dataSet').on('change',searchListInfo);
         $('#chosen').on('change',searchListInfo);
         $('#configPath').on('change',searchListInfo);
@@ -755,6 +770,9 @@
                     qrmbdm:qrmbdmC,
                     qrdxdm:qrdxdmC,
                     yzjddm:yzjddmC,
+                    dictCode:dictCodeC,
+                    pyCode:pyCodeC,
+                    bt:btC
                 };
                 $.ajax({
                     url: ctx + 'basic/edit',
