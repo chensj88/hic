@@ -2,7 +2,6 @@ package com.winning.hic.model;
 
 import java.io.Serializable;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.apache.ibatis.type.Alias;
 
 import com.winning.hic.model.BaseDomain;
