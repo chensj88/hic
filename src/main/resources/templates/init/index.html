@@ -656,7 +656,8 @@
                         title: '必选',
                         width: '100px',
                         formatter:function(value,row,index){
-                            if(value === '0' || value === null ){
+                            console.log(value +' : '+value === 0);
+                            if(value === 0 || value === null ){
                                 return '0';
                             }else{
                                 return '1';
