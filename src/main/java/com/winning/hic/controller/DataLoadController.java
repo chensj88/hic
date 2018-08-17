@@ -34,22 +34,22 @@ public class DataLoadController extends BaseController {
         try {
             //5.入院记录* --陈枫
             List<MbzDataCheck> mbzDataChecks5 = super.getFacade().getHlhtRyjlJbxxService().interfaceHlhtRyjlJbxx();
-//
-//            //6.首次病程记录表* --陈蒯
+
+            //6.首次病程记录表* --陈蒯
             List<MbzDataCheck> mbzDataCheck6 = super.getFacade().getHlhtZybcjlScbcjlService().interfaceHlhtZybcjlScbcjl();
-//
-//            //1. 24h内入出院记录  --陈世杰
+
+            //1. 24h内入出院记录  --陈世杰
             List<MbzDataCheck> mbzDataCheck1 = super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(null);
-//            //2. 24h内入院死亡记录*  -- 陈世杰
+            //2. 24h内入院死亡记录*  -- 陈世杰
             List<MbzDataCheck> mbzDataCheck2 = super.getFacade().getHlhtRyjlRyswjlService().interfaceHlhtRyjlRyswjl(null);
-//            //3. 病危（重）通知书*  --陈枫
+            //3. 病危（重）通知书*  --陈枫
             List<MbzDataCheck> mbzDataChecks3 = super.getFacade().getHlhtZqgzxxBwztzsService().interfaceHlhtZqgzxxBwztzs();
-//            //4.出院记录数据集表* --陈枫
+            //4.出院记录数据集表* --陈枫
             List<MbzDataCheck> mbzDataChecks4 = super.getFacade().getHlhtZybcjlCyjlService().interfaceHlhtZybcjlCyjl();
-//
-//            //7.日常病程记录数据集表*  --陈枫
-//
-//            //8.交接班记录数据集表(医院一般不在病历里面写交接班记录，CIS有一个交接班的功能)*    --陈蒯
+
+            //7.日常病程记录数据集表*  --陈枫
+
+            //8.交接班记录数据集表(医院一般不在病历里面写交接班记录，CIS有一个交接班的功能)*    --陈蒯
             List<MbzDataCheck> mbzDataChecks8 = super.getFacade().getHlhtZybcjlJjbjlService().interfaceHlhtZybcjlJjbjl();
 
             //9.--阶段小结数据集表*   --陈蒯

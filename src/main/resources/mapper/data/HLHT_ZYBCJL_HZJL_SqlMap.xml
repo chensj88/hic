@@ -115,11 +115,11 @@
         <if test="(hzysyljgmc != null and hzysyljgmc != '')">and t.hzysyljgmc = #{hzysyljgmc}</if>
         <if test="(hzszyljgdm != null and hzszyljgdm != '')">and t.hzszyljgdm = #{hzszyljgdm}</if>
         <if test="(hzszyljgmc != null and hzszyljgmc != '')">and t.hzszyljgmc = #{hzszyljgmc}</if>
-        <if test="(hzrq != null and hzrq != '')">and t.hzrq = #{hzrq}</if>
-        <if test="(gxsj != null and gxsj != '')">and t.gxsj = #{gxsj}</if>
-        <if test="(syxh != null and syxh != '')">and t.syxh = #{syxh}</if>
-        <if test="(tjzt != null and tjzt != '')">and t.tjzt = #{tjzt}</if>
-        <if test="(yxjl != null and yxjl != '')">and t.yxjl = #{yxjl}</if>
+        <if test="(hzrq != null )">and t.hzrq = #{hzrq}</if>
+        <if test="(gxsj != null )">and t.gxsj = #{gxsj}</if>
+        <if test="(syxh != null )">and t.syxh = #{syxh}</if>
+        <if test="(tjzt != null )">and t.tjzt = #{tjzt}</if>
+        <if test="(yxjl != null )">and t.yxjl = #{yxjl}</if>
     </sql>
 
     <insert id="insertHlhtZybcjlHzjl" parameterType="com.winning.hic.model.HlhtZybcjlHzjl">
@@ -175,11 +175,11 @@
             <if test="(hzysyljgmc != null and hzysyljgmc != '')">hzysyljgmc ,</if>
             <if test="(hzszyljgdm != null and hzszyljgdm != '')">hzszyljgdm ,</if>
             <if test="(hzszyljgmc != null and hzszyljgmc != '')">hzszyljgmc ,</if>
-            <if test="(hzrq != null and hzrq != '')">hzrq ,</if>
-            <if test="(gxsj != null and gxsj != '')">gxsj ,</if>
-            <if test="(syxh != null and syxh != '')">syxh ,</if>
-            <if test="(tjzt != null and tjzt != '')">tjzt ,</if>
-            <if test="(yxjl != null and yxjl != '')">yxjl ,</if>
+            <if test="(hzrq != null )">hzrq ,</if>
+            <if test="(gxsj != null )">gxsj ,</if>
+            <if test="(syxh != null )">syxh ,</if>
+            <if test="(tjzt != null )">tjzt ,</if>
+            <if test="(yxjl != null )">yxjl ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -232,11 +232,11 @@
             <if test="(hzysyljgmc != null and hzysyljgmc != '')">#{hzysyljgmc , jdbcType= VARCHAR },</if>
             <if test="(hzszyljgdm != null and hzszyljgdm != '')">#{hzszyljgdm , jdbcType= VARCHAR },</if>
             <if test="(hzszyljgmc != null and hzszyljgmc != '')">#{hzszyljgmc , jdbcType= VARCHAR },</if>
-            <if test="(hzrq != null and hzrq != '')">#{hzrq , jdbcType= TIMESTAMP },</if>
-            <if test="(gxsj != null and gxsj != '')">#{gxsj , jdbcType= TIMESTAMP },</if>
-            <if test="(syxh != null and syxh != '')">#{syxh , jdbcType= VARCHAR },</if>
-            <if test="(tjzt != null and tjzt != '')">#{tjzt , jdbcType= VARCHAR },</if>
-            <if test="(yxjl != null and yxjl != '')">#{yxjl , jdbcType= INTEGER },</if>
+            <if test="(hzrq != null )">#{hzrq , jdbcType= TIMESTAMP },</if>
+            <if test="(gxsj != null )">#{gxsj , jdbcType= TIMESTAMP },</if>
+            <if test="(syxh != null )">#{syxh , jdbcType= VARCHAR },</if>
+            <if test="(tjzt != null )">#{tjzt , jdbcType= VARCHAR },</if>
+            <if test="(yxjl != null )">#{yxjl , jdbcType= INTEGER },</if>
         </trim>
     </insert>
 
@@ -298,11 +298,11 @@
                 </if>
                 <if test="(hzszyljgmc != null and hzszyljgmc != '')">hzszyljgmc = #{hzszyljgmc , jdbcType= VARCHAR },
                 </if>
-                <if test="(hzrq != null and hzrq != '')">hzrq = #{hzrq , jdbcType= TIMESTAMP },</if>
-                <if test="(gxsj != null and gxsj != '')">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
-                <if test="(syxh != null and syxh != '')">syxh = #{syxh , jdbcType= VARCHAR },</if>
-                <if test="(tjzt != null and tjzt != '')">tjzt = #{tjzt , jdbcType= VARCHAR },</if>
-                <if test="(yxjl != null and yxjl != '')">yxjl = #{yxjl , jdbcType= INTEGER },</if>
+                <if test="(hzrq != null )">hzrq = #{hzrq , jdbcType= TIMESTAMP },</if>
+                <if test="(gxsj != null )">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
+                <if test="(syxh != null )">syxh = #{syxh , jdbcType= VARCHAR },</if>
+                <if test="(tjzt != null )">tjzt = #{tjzt , jdbcType= VARCHAR },</if>
+                <if test="(yxjl != null )">yxjl = #{yxjl , jdbcType= INTEGER },</if>
             </trim>
         </set>
         <where>
