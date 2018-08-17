@@ -84,10 +84,11 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlScbcjl(){
+    public MbzDataCheck interfaceHlhtZybcjlScbcjl(){
 
         //执行过程信息记录
-        List<MbzDataCheck> mbzDataChecks = null;
+        MbzDataCheck mbzDataCheck = null;
+        int count=0;
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
@@ -112,7 +113,6 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                         HlhtZybcjlScbcjl scbcjl = new HlhtZybcjlScbcjl();
                         scbcjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                         scbcjl = this.getHlhtZybcjlScbcjl(scbcjl);
-
                         if(scbcjl != null ){
                             //初始化数据
                             HlhtZybcjlScbcjl oldRcyjl  = new HlhtZybcjlScbcjl();
@@ -129,18 +129,19 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                             e.printStackTrace();
                         }
                         this.createHlhtZybcjlScbcjl(entity);
-
+                        count++;
                     }
                 }
 
             }
-
+            mbzDataCheck.setDataCount(count);
+            mbzDataCheck.setSourceType(Integer.parseInt(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE));
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
 
-        return mbzDataChecks;
+        return mbzDataCheck;
     }
 }

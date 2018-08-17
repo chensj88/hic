@@ -111,4 +111,6 @@ public interface Facade {
 
     HlhtZzyjlZzyjlService getHlhtZzyjlZzyjlService();
 
+    MbzDataErrorService getMbzDataErrorService();
+
 }

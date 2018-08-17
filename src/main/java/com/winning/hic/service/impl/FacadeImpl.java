@@ -167,6 +167,8 @@ public class FacadeImpl implements Facade {
     @Autowired
     HlhtZzyjlZzyjlService hlhtZzyjlZzyjlService;
 
+    @Autowired
+    MbzDataErrorService mbzDataErrorService;
 
     public HlhtBlgyJbjkxxService getHlhtBlgyJbjkxxService() {
         return hlhtBlgyJbjkxxService;
@@ -374,5 +376,10 @@ public class FacadeImpl implements Facade {
     public MbzDataSetService getMbzDataSetService() {
         return mbzDataSetService;
     }
+
+    public MbzDataErrorService getMbzDataErrorService() {
+        return mbzDataErrorService;
+    }
+
 
 }

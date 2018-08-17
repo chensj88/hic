@@ -1,23 +1,20 @@
 package com.winning.hic.service.impl;
 
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;  
-
-import com.winning.hic.model.MbzDataCheck;
-
 import com.winning.hic.dao.data.MbzDataCheckDao;
-
+import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.service.MbzDataCheckService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
-* @author MBZ
+* @author HLHT
 * @title MBZ_DATA_CHECK
 * @email Winning Health
 * @package com.winning.hic.service.impl
-* @date 2018-23-25 12:23:50
+* @date 2018-34-17 13:34:32
 */
 @Service
 public class MbzDataCheckServiceImpl implements  MbzDataCheckService {

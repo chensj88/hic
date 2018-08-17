@@ -31,5 +31,5 @@ public interface HlhtZybcjlScbcjlService {
 
     HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl entity);
 
-    List<MbzDataCheck> interfaceHlhtZybcjlScbcjl();
+    MbzDataCheck interfaceHlhtZybcjlScbcjl();
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.MbzDataErrorDao">
+
+    <resultMap id="mbzDataErrorResultForList" type="com.winning.hic.model.MbzDataError">
+         <result column="SOURCE_TYPE" property="sourceType" jdbcType="INTEGER" />
+         <result column="HZXM" property="hzxm" jdbcType="VARCHAR" />
+         <result column="ERROR_COLUMN" property="errorColumn" jdbcType="VARCHAR" />
+         <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="mbzDataErrorResult" type="com.winning.hic.model.MbzDataError" extends="mbzDataErrorResultForList">
+
+    </resultMap>
+
+    <sql id="sql-mbzDataError">
+        <if test="(sourceType != null and sourceType != '')"> and t.SOURCE_TYPE = #{sourceType} </if>
+        <if test="(hzxm != null and hzxm != '')"> and t.HZXM = #{hzxm} </if>
+        <if test="(errorColumn != null and errorColumn != '')"> and t.ERROR_COLUMN = #{errorColumn} </if>
+        <if test="(errorDesc != null and errorDesc != '')"> and t.ERROR_DESC = #{errorDesc} </if>
+    </sql>
+
+    <insert id="insertMbzDataError" parameterType="com.winning.hic.model.MbzDataError">
+        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+        INSERT INTO MBZ_DATA_ERROR
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE , </if>
+            <if test="(hzxm != null and hzxm != '')"> HZXM , </if>
+            <if test="(errorColumn != null and errorColumn != '')"> ERROR_COLUMN , </if>
+            <if test="(errorDesc != null and errorDesc != '')"> ERROR_DESC , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(sourceType != null and sourceType != '')"> #{sourceType , jdbcType= INTEGER },  </if>
+            <if test="(hzxm != null and hzxm != '')"> #{hzxm , jdbcType= VARCHAR },  </if>
+            <if test="(errorColumn != null and errorColumn != '')"> #{errorColumn , jdbcType= VARCHAR },  </if>
+            <if test="(errorDesc != null and errorDesc != '')"> #{errorDesc , jdbcType= VARCHAR },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateMbzDataError" parameterType="com.winning.hic.model.MbzDataError">
+        UPDATE MBZ_DATA_ERROR
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE = #{sourceType , jdbcType= INTEGER }, </if>
+                <if test="(hzxm != null and hzxm != '')"> HZXM = #{hzxm , jdbcType= VARCHAR }, </if>
+                <if test="(errorColumn != null and errorColumn != '')"> ERROR_COLUMN = #{errorColumn , jdbcType= VARCHAR }, </if>
+                <if test="(errorDesc != null and errorDesc != '')"> ERROR_DESC = #{errorDesc , jdbcType= VARCHAR }, </if>
+            </trim>
+        </set>
+        <where>
+            <if test=" and (map.pks != null and map.pks != '')">
+                and () in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteMbzDataError" parameterType="com.winning.hic.model.MbzDataError">
+        delete from  MBZ_DATA_ERROR
+        <where>
+            <if test=" and (map.pks != null and map.pks != '')">
+                and () in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectMbzDataError" resultMap="mbzDataErrorResult" parameterType="com.winning.hic.model.MbzDataError">
+        SELECT * FROM MBZ_DATA_ERROR t
+        <where>
+            <include refid="sql-mbzDataError" />
+        </where>
+    </select>
+
+    <select id="selectMbzDataErrorList" resultMap="mbzDataErrorResultForList" parameterType="com.winning.hic.model.MbzDataError">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM MBZ_DATA_ERROR t
+        <where>
+            <include refid="sql-mbzDataError" />
+        </where>
+        ORDER BY  ASC
+    </select>
+
+    <select id="selectMbzDataErrorCount" resultType="int" parameterType="com.winning.hic.model.MbzDataError">
+        select count(1) from  MBZ_DATA_ERROR t
+        <where>
+            <include refid="sql-mbzDataError" />
+        </where>
+    </select>
+
+    <select id="selectMbzDataErrorPageList" resultMap="mbzDataErrorResult" parameterType="com.winning.hic.model.MbzDataError">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY  DESC ) AS _RN
+        FROM MBZ_DATA_ERROR t
+        <where>
+            <include refid="sql-mbzDataError" />
+        </where>
+        <!-- order by  asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>

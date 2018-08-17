@@ -13,19 +13,13 @@ import com.winning.hic.model.BaseDomain;
  * @title 
  * @email Winning Health
  * @package com.winning.hic.model
- * @date 2018-34-17 13:34:32
+ * @date 2018-34-17 13:34:29
  */
-@Alias("mbzDataCheck")
-public class MbzDataCheck extends BaseDomain implements Serializable {
+@Alias("mbzDataError")
+public class MbzDataError extends BaseDomain implements Serializable {
 
     private static final long serialVersionUID = -1L;
 
-    /**
-     * 字段名：ID
-     * 备注: 
-     * 默认值：无
-     */
-    private String id;
     /**
      * 字段名：SOURCE_TYPE
      * 备注: 
@@ -33,17 +27,17 @@ public class MbzDataCheck extends BaseDomain implements Serializable {
      */
     private Integer sourceType;
     /**
-     * 字段名：DATA_COUNT
+     * 字段名：HZXM
      * 备注: 
      * 默认值：无
      */
-    private Integer dataCount;
+    private String hzxm;
     /**
-     * 字段名：REAL_COUNT
+     * 字段名：ERROR_COLUMN
      * 备注: 
      * 默认值：无
      */
-    private Integer realCount;
+    private String errorColumn;
     /**
      * 字段名：ERROR_DESC
      * 备注: 
@@ -51,28 +45,10 @@ public class MbzDataCheck extends BaseDomain implements Serializable {
      */
     private String errorDesc;
 
-    public MbzDataCheck (){
+    public MbzDataError (){
 
     }
 
-   /**
-   * 字段名：ID
-   * get方法
-   * 备注: 
-   */
-   public String getId(){
-
-        return id;
-   }
-
-   /**
-   * 字段名：ID
-   * set方法
-   * 备注: 
-   */
-   public void setId(String id){
-        this.id = id;
-   }
    /**
    * 字段名：SOURCE_TYPE
    * get方法
@@ -92,40 +68,40 @@ public class MbzDataCheck extends BaseDomain implements Serializable {
         this.sourceType = sourceType;
    }
    /**
-   * 字段名：DATA_COUNT
+   * 字段名：HZXM
    * get方法
    * 备注: 
    */
-   public Integer getDataCount(){
+   public String getHzxm(){
 
-        return dataCount;
+        return hzxm;
    }
 
    /**
-   * 字段名：DATA_COUNT
+   * 字段名：HZXM
    * set方法
    * 备注: 
    */
-   public void setDataCount(Integer dataCount){
-        this.dataCount = dataCount;
+   public void setHzxm(String hzxm){
+        this.hzxm = hzxm;
    }
    /**
-   * 字段名：REAL_COUNT
+   * 字段名：ERROR_COLUMN
    * get方法
    * 备注: 
    */
-   public Integer getRealCount(){
+   public String getErrorColumn(){
 
-        return realCount;
+        return errorColumn;
    }
 
    /**
-   * 字段名：REAL_COUNT
+   * 字段名：ERROR_COLUMN
    * set方法
    * 备注: 
    */
-   public void setRealCount(Integer realCount){
-        this.realCount = realCount;
+   public void setErrorColumn(String errorColumn){
+        this.errorColumn = errorColumn;
    }
    /**
    * 字段名：ERROR_DESC

@@ -2,15 +2,15 @@ package com.winning.hic.service;
 
 import java.util.List;  
 
-import com.winning.hic.model.MbzDataCheck;
+import com.winning.hic.model.MbzDataCheck;  
 
 
 /**
-* @author MBZ
+* @author HLHT
 * @title MBZ_DATA_CHECK
 * @email Winning Health
 * @package com.winning.hic.service
-* @date 2018-23-25 12:23:50
+* @date 2018-34-17 13:34:32
 */
 public interface MbzDataCheckService {
 

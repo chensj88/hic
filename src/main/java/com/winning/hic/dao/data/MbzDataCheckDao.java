@@ -2,22 +2,21 @@ package com.winning.hic.dao.data;
 
 
 
-import java.util.List;
+import java.util.List;  
 
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataAccessException;  
 
-import com.winning.hic.model.MbzDataCheck;
+import com.winning.hic.model.MbzDataCheck;  
 
 
 
 import org.springframework.stereotype.Repository;
 /**
-* @author MBZ
+* @author HLHT
 * @title DAO接口
 * @email Winning Health
 * @package com.winning.hic.dao
-* @date 2018-55-24 13:55:05
+* @date 2018-34-17 13:34:32
 */
 @Repository
 public interface MbzDataCheckDao {
