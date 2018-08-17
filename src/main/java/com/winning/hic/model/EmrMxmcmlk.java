@@ -2,7 +2,6 @@ package com.winning.hic.model;
 
 import java.io.Serializable;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.apache.ibatis.type.Alias;
 
 import com.winning.hic.model.BaseDomain;
@@ -223,7 +222,7 @@ public class EmrMxmcmlk extends BaseDomain implements Serializable {
    public MBNoteTree getMBNoteTree(){
        MBNoteTree tree = new MBNoteTree();
        tree.setNodeId(mldm);
-       tree.setNodePid(mldm.substring(0,mldm.length()-2));
+       tree.setNodePid("-1");
        tree.setNodeName(mlmc);
        tree.setNodeDesc(mlmc);
        tree.setParent(Integer.parseInt(getMap().get("num").toString()) == 0 ? false : true);

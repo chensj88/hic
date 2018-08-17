@@ -65,7 +65,7 @@
         <if test="(yjs != null and yjs != '')">and t.yjs = #{yjs}</if>
         <if test="(jzs != null and jzs != '')">and t.jzs = #{jzs}</if>
         <if test="(gxsj != null and gxsj != '')">and t.gxsj = #{gxsj}</if>
-        <if test="(syxh != null and syxh != '')">and t.syxh = #{syxh}</if>
+        <if test="(syxh != null )">and t.syxh = #{syxh}</if>
     </sql>
 
     <insert id="insertHlhtBlgyJbjkxx" parameterType="com.winning.hic.model.HlhtBlgyJbjkxx">
@@ -97,7 +97,7 @@
             <if test="(yjs != null and yjs != '')">yjs ,</if>
             <if test="(jzs != null and jzs != '')">jzs ,</if>
             <if test="(gxsj != null and gxsj != '')">gxsj ,</if>
-            <if test="(syxh != null and syxh != '')">syxh ,</if>
+            <if test="(syxh != null )">syxh ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -127,7 +127,7 @@
             <if test="(yjs != null and yjs != '')">#{yjs , jdbcType= VARCHAR },</if>
             <if test="(jzs != null and jzs != '')">#{jzs , jdbcType= VARCHAR },</if>
             <if test="(gxsj != null and gxsj != '')">#{gxsj , jdbcType= TIMESTAMP },</if>
-            <if test="(syxh != null and syxh != '')">#{syxh , jdbcType= VARCHAR },</if>
+            <if test="(syxh != null )">#{syxh , jdbcType= VARCHAR },</if>
         </trim>
     </insert>
 
@@ -161,7 +161,7 @@
                 <if test="(yjs != null and yjs != '')">yjs = #{yjs , jdbcType= VARCHAR },</if>
                 <if test="(jzs != null and jzs != '')">jzs = #{jzs , jdbcType= VARCHAR },</if>
                 <if test="(gxsj != null and gxsj != '')">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
-                <if test="(syxh != null and syxh != '')">syxh = #{syxh , jdbcType= VARCHAR },</if>
+                <if test="(syxh != null )">syxh = #{syxh , jdbcType= VARCHAR },</if>
             </trim>
         </set>
         <where>
