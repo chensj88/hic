@@ -1,5 +1,6 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.base.Constants;
 import com.winning.hic.dao.data.MbzDataCheckDao;
 import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.service.MbzDataCheckService;
@@ -49,4 +50,19 @@ public class MbzDataCheckServiceImpl implements  MbzDataCheckService {
     public List<MbzDataCheck> getMbzDataCheckPageList(MbzDataCheck mbzDataCheck){
         return this.mbzDataCheckDao.selectMbzDataCheckPageList(mbzDataCheck);
     }
+
+    /**
+     * 获取抽取的数量信息
+     */
+    public void createMbzDataCheckNum(int count,int emr_count,int sourceType){
+        MbzDataCheck mbzDataCheck = new MbzDataCheck();
+        mbzDataCheck.setDataCount(count);
+        mbzDataCheck.setRealCount(emr_count);
+        mbzDataCheck.setErrorDesc("错误分析");
+        mbzDataCheck.setSourceType(sourceType);
+        this.mbzDataCheckDao.insertMbzDataCheck(mbzDataCheck);
+
+    }
+
+
 }

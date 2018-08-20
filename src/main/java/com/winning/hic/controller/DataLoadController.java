@@ -46,7 +46,7 @@ public class DataLoadController extends BaseController {
             MbzDataCheck mbzDataCheck6 = super.getFacade().getHlhtZybcjlScbcjlService().interfaceHlhtZybcjlScbcjl();
             //7.日常病程记录数据集表*  --陈枫
             List<MbzDataCheck> mbzDataChecks7 = getFacade().getHlhtZybcjlRcbcjlService().interfaceHlhtZybcjlRcbcjl();
-            //8.交接班记录数据集表(医院一般不在病历里面写交接班记录，CIS有一个交接班的功能)*    --陈蒯
+            //8.交接班记录数据集表(医院一般不在病历里面写交接班记录，CIS有一个交接班的功能)*    --陈蒯（暂时不处理）
             List<MbzDataCheck> mbzDataChecks8 = super.getFacade().getHlhtZybcjlJjbjlService().interfaceHlhtZybcjlJjbjl();
             //9.--阶段小结数据集表*   --陈蒯
             List<MbzDataCheck> mbzDataChecks9 = super.getFacade().getHlhtZybcjlJdxjService().interfaceHlhtZybcjlJdxj();
@@ -62,9 +62,9 @@ public class DataLoadController extends BaseController {
             List<MbzDataCheck> mbzDataChecks14 = super.getFacade().getHlhtZybcjlSwbltljlService().interfaceHlhtZybcjlSwbltljl(null);
             //15.死亡记录数据集表*  --陈枫
             List<MbzDataCheck> mbzDataChecks15 = getFacade().getHlhtZybcjlSwjlService().interfaceHlhtZybcjlSwjl();
-            //16.麻醉术前访视记录表(由手麻系统处理）* --陈枫
+            //16.麻醉术前访视记录表(由手麻系统处理）* --陈枫（暂时不处理）
             List<MbzDataCheck> mbzDataChecks16 = getFacade().getHlhtZlczjlMzsqfsjlService().interfaceHlhtZlczjlMzsqfsjl();
-            //17.麻醉术后访视记录表(由手麻系统处理)*   --陈枫
+            //17.麻醉术后访视记录表(由手麻系统处理)*   --陈枫（暂时不处理）
             List<MbzDataCheck> mbzDataChecks17 = getFacade().getHlhtZlczjlMzshfsjlService().interfaceHlhtZlczjlMzshfsjl();
             //18.麻醉知情同意书表* --陈枫
             List<MbzDataCheck> mbzDataChecks18 = getFacade().getHlhtZqgzxxMzzqtysService().interfaceHlhtZqgzxxMzzqtys();
@@ -86,7 +86,7 @@ public class DataLoadController extends BaseController {
             List<MbzDataCheck> mbzDataChecks26 = getFacade().getHlhtZybcjlYnbltljlService().interfaceHlhtZybcjlYnbltljl();
             //27.转科记录数据集表*  --陈蒯
             List<MbzDataCheck> mbzDataChecks27 = super.getFacade().getHlhtZybcjlZkjlService().interfaceHlhtZybcjlZkjl();
-            //28.转诊(院)记录数据集表* --陈蒯
+            //28.转诊(院)记录数据集表* --陈蒯  (暂时不处理)
             List<MbzDataCheck> mbzDataChecks28 = super.getFacade().getHlhtZzyjlZzyjlService().interfaceHlhtZzyjlZzyjl();
             //29.特殊检查及特殊治疗同意书* --陈世杰
             List<MbzDataCheck> mbzDataChecks29 = super.getFacade().getHlhtZqgzxxTsjczltysService().interfaceHlhtZqgzxxTsjczltys(null);
@@ -98,7 +98,7 @@ public class DataLoadController extends BaseController {
             List<MbzDataCheck> mbzDataChecks32 = super.getFacade().getHlhtMjzblJzlgblService().interfaceHlhtMjzblJzlgbl(null);
             //33.治疗记录表* --陈枫
             List<MbzDataCheck> mbzDataChecks33 = getFacade().getHlhtZlczjlZljlService().interfaceHlhtZlczjlZljl();
-            //34.阴道分娩记录表*  --陈枫
+            //34.阴道分娩记录表*  --陈枫（暂时不处理）
             List<MbzDataCheck> mbzDataChecks34 = getFacade().getHlhtZcjlYdfmService().interfaceHlhtZcjlYdfm();
             //35.剖宫产记录表* --陈蒯
             List<MbzDataCheck> mbzDataChecks35 = super.getFacade().getHlhtZcjlPgcService().interfaceHlhtZcjlPgc();
