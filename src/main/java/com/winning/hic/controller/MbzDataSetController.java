@@ -40,6 +40,18 @@ public class MbzDataSetController extends BaseController {
     @RequestMapping(value = "/basic/edit",method = RequestMethod.POST)
     public Map<String, Object> editMbzDataSetInfo(MbzDataSet dataSet,Integer status){
         if (status == null ){
+            if("null".equals(dataSet.getDtjddm())){
+                dataSet.setDtjddm(null);
+            }
+            if("null".equals(dataSet.getQrmbdm())){
+                dataSet.setQrdxdm(null);
+            }
+            if("null".equals(dataSet.getQrdxdm())){
+                dataSet.setQrdxdm(null);
+            }
+            if("null".equals(dataSet.getYzjddm())){
+                dataSet.setYzjddm(null);
+            }
             getFacade().getMbzDataSetService().modifyMbzDataSet(dataSet);
         }else{
             dataSet.setId(null);

@@ -14,9 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootApplication(exclude = {
-		DataSourceAutoConfiguration.class
-})
+@SpringBootApplication
 @MapperScan({"com.winning.hic.model","com.winning.hic.dao"})
 @EnableTransactionManagement
 public class HicApplication {

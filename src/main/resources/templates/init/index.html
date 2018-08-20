@@ -656,7 +656,6 @@
                         title: '必选',
                         width: '100px',
                         formatter:function(value,row,index){
-                            console.log(value +' : '+value === 0);
                             if(value === 0 || value === null ){
                                 return '0';
                             }else{
@@ -701,7 +700,7 @@
                 pId:row.pid,
                 sourceType:row.sourceType,
                 pyCode:row.pyCode,
-                recordName:'',
+                recordName:row.recordName,
                 dictCode:row.dictCode,
                 dataType:row.dataType,
                 dtjddm:row.dtjddm,
@@ -724,7 +723,6 @@
                     }
                 },
                 error: function (response) {
-                    console.log(response.responseText);
                     toastr.error(response.responseText);
                 },
                 complete: function () {
@@ -770,9 +768,10 @@
                     qrmbdm:qrmbdmC,
                     qrdxdm:qrdxdmC,
                     yzjddm:yzjddmC,
-                    recordName:selectNode[0].recordName,
+                    recordName:selectNode[0].text,
                     bt:btC
                 };
+                console.log(data);
                 $.ajax({
                     url: ctx + 'basic/edit',
                     data: data,
