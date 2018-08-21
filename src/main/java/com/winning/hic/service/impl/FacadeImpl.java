@@ -381,5 +381,25 @@ public class FacadeImpl implements Facade {
         return mbzDataErrorService;
     }
 
+    @Autowired
+    OutpJzjlkService outpJzjlkService;
 
+    @Autowired
+    OutpOrderService outpOrderService;
+
+    @Autowired
+    OutpOrderitemService outpOrderitemService;
+
+
+    public OutpJzjlkService getOutpJzjlkService(){
+        return outpJzjlkService;
+    }
+
+    public OutpOrderService getOutpOrderService(){
+        return outpOrderService;
+    }
+
+    public OutpOrderitemService getOutpOrderitemService(){
+        return outpOrderitemService;
+    }
 }

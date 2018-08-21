@@ -1158,41 +1158,42 @@
     <!--chensj 病历概要/基本健康信息 2018-8-16 16:14:04-->
     <select id="selectInitHlhtBlgyJbjkxx" parameterType="com.winning.hic.model.HlhtBlgyJbjkxx" resultMap="hlhtBlgyJbjkxxResult">
         SELECT
-        t.QTBLJLXH as yjlxh,
-        b.HISSYXH as jzlsh,
-        c.PATID as patid,
-        b.HZXM as hzxm,
-        e.GHXH as mjzh,
-        b.ZYHM as zyh,
-        ISNULL(CONVERT (VARCHAR,(e.GHLB)),'N') AS jzlb,
-        b.BRXB as xbdm,
-        (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
-        b.SFZH as sfzhm,
-        'N' as jkkh,
-        'N' AS  aboxxdm,
-        'N' AS  aboxxmc,
-        'N' AS  rhxxdm,
-        'N' AS  rhxxmc,
-        'N' AS  jbs,
-        'N' AS  crbs,
-        'N' AS  yfjzs,
-        'N' AS  sss,
-        'N' AS  sxs,
-        'N' AS  gms,
-        'N' AS  grs,
-        'N' AS  hys,
-        'N' AS  yjs,
-        'N' AS  jzs,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
-        t.QTBLJLXH as syxh
-        FROM EMR_QTBLJLK t
-        LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
-        LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
-        LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
+            A.GHXH AS yjlxh,
+            B.SYXH as jzlsh,
+            A.PATID as patid,
+            A.HZXM as hzxm,
+            A.GHXH as mjzh,
+            C.ZYHM as zyh,
+            A.GHLB AS jzlb,
+            C.BRXB AS xbdm,
+            CASE BRXB WHEN '2' THEN '女'WHEN '1'THEN '男'ELSE '其它'END as xbmc,
+            C.SFZH as sfzh,
+            isnull(A.YBDM,'N') AS jkkh,
+            D.XXDM AS aboxxdm,
+            E.NAME AS aboxxmc,
+            D.RHJY AS rhxxdm,
+            F.NAME AS rhxxmc,
+            H.jbs AS jbs,
+            H.crbs AS crbs,
+            H.yfjzs as yfjzs,
+            H.sss as sss,
+            H.sxs as sxs,
+            H.gms as gms,
+            H.hys as hys,
+            H.yjs as yjs,
+            H.jzs as jzs,
+            GETDATE() AS gxsj
+            FROM OUTP_JZJLK A
+            LEFT JOIN CPOE_BRSYK B ON A.PATID = B.PATID
+            LEFT JOIN EMR_BRSYK C ON B.EMRXH = C.SYXH
+            LEFT JOIN EMR_BASYK D ON C.SYXH = D.SYXH
+            LEFT JOIN EMR_SYS_ZDFLMXK E ON D.XXDM = E.MXDM AND E.LBDM = '96'
+            LEFT JOIN EMR_SYS_ZDFLMXK F ON D.RHJY = F.MXDM AND F.LBDM = '97'
+            LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B-1020%'
+            LEFT JOIN CISDB_DATA..HLHT_RYJL_JBXX H ON  G.QTBLJLXH = H.yjlxh
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
-                AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
+            <if test="patid != null and patid != '' ">
+                AND A.PATID = #{patid , jdbcType= VARCHAR}
             </if>
         </where>
     </select>

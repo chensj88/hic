@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
-@MapperScan({"com.winning.hic.model","com.winning.hic.dao"})
+@MapperScan({"com.winning.hic.model","com.winning.hic.dao.cisdb","com.winning.hic.dao.data","com.winning.hic.dao.his","com.winning.hic.dao.platform"})
 @EnableTransactionManagement
 public class HicApplication {
 
