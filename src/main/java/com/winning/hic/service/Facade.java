@@ -113,4 +113,10 @@ public interface Facade {
 
     MbzDataErrorService getMbzDataErrorService();
 
+    OutpJzjlkService getOutpJzjlkService();
+
+    OutpOrderService getOutpOrderService();
+
+    OutpOrderitemService getOutpOrderitemService();
+
 }
