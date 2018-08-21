@@ -1200,64 +1200,62 @@
     <!--chensj 门(急)诊处方/西药处方 2018-8-16 16:21:45 HLHT_MJZCF_XYCF -->
     <select id="selectInitHlhtMjzcfXycf" parameterType="com.winning.hic.model.HlhtMjzcfXycf" resultMap="hlhtMjzcfXycfResult">
         SELECT
-        t.QTBLJLXH as yjlxh,
-        b.HISSYXH as jzlsh,
-        c.PATID as patid,
-        b.HZXM as hzxm,
-        e.GHXH as mjzh,
-        b.SFZH as sfzhm,
-        b.BRXB as xbdm,
-        (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
-        'N' AS cfxh,
-        'N' AS zzjgdm,
-        'N' AS zzjgmc,
-        'N' AS cfklrq,
-        'N' AS cfyxts,
-        'N' AS cfklskdm,
-        'N' AS cfklks,
-        'N' AS jbzdbm,
-        'N' AS jbzd,
-        'N' AS ywdm,
-        'N' AS ywmc,
-        'N' AS ywgg,
-        'N' AS ywjxdm,
-        'N' AS ywjx,
-        'N' AS ywsycjl,
-        'N' AS ywsyjldw,
-        'N' AS ywsypcdm,
-        'N' AS ywsypc,
-        'N' AS ywsytj,
-        'N' AS ywsytjmc,
-        'N' AS ywsyzjl,
-        'N' AS cfypzh,
-        'N' AS ysbm,
-        'N' AS klysqm,
-        'N' AS shyjsbm,
-        'N' AS shyjsqm,
-         CONVERT(DATE, '1990-01-01 00:00:00', 120) AS shyjsqmsj,
-        'N' AS tpyjsbm,
-        'N' AS tpyjsqm,
-         CONVERT(DATE, '1990-01-01 00:00:00', 120) AS cftpsj,
-        'N' AS hdyjsbm,
-        'N' AS hdyjsqm,
-         CONVERT(DATE, '1990-01-01 00:00:00', 120) AS cfhdsj,
-        'N' AS fyyjsbm,
-        'N' AS fyyjsqm,
-         CONVERT(DATE, '1990-01-01 00:00:00', 120) AS cffysj,
-        'N' AS cfbzxx,
-        'N' AS cfypje,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
-        t.QTBLJLXH as syxh
-        FROM EMR_QTBLJLK t
-        LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
-        LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
-        LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
-        <where>
-            <if test="yjlxh != null and yjlxh != '' ">
-                AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
-            </if>
-        </where>
+        T1.XH AS yjlxh,
+        T5.HISSYXH AS jzlsh,
+        T3.PATID AS patid,
+        T5.HZXM AS hzxm,
+        T3.GHXH AS mjzh,
+        T5.SFZH AS sfzhm,
+        T5.BRXB AS xbdm,
+        (SELECT CASE T5.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, T5.CSRQ)))) ,'N') AS nls,
+        SUBSTRING(replace(T5.CSRQ,'-',''),0,9) nly,
+        T1.CFXH AS cfxh,
+        '' AS zzjgdm,'' AS zzjgmc,
+        T2.LRRQ AS cfklrq,
+        T1.TS AS cfyxts,
+        T2.KSDM AS ksdm,
+        T2.KSMC AS ksmc,
+        T3.ZDDM AS jbzdbm,
+        T3.ZDMC AS jbzd,
+        T1.YPDM AS ywdm,
+        T1.YPMC AS ywmc,
+        T1.YPGG AS ywgg,
+        T1.JXDM AS ywjxdm,
+        T1.JXMC AS ywjx,
+        T1.YPJL AS ywsycjl,
+        T1.JLDW AS ywsyjldw,
+        T1.PCDM AS ywsypcdm,T1.PCMC AS ywsypc,
+        T1.YPYF AS ywsytj,T1.YPYFMC AS ywsytjmc,
+        T1.YPSL*T1.YPJL AS ywsyzjl,
+        T1.FZXH AS cfypzh,
+        T2.YSMC AS klysqm,
+        T2.YSMC AS ysbm,
+        '' AS shyjsbm,
+        '' AS shyjsqm,
+        CONVERT(DATE, '1990-01-01 00:00:00', 120) AS shyjsqmsj,
+        '' AS tpyjsbm,
+        '' AS tpyjsqm,
+        CONVERT(DATE, '1990-01-01 00:00:00', 120) AS cftpsj,
+        '' AS hdyjsbm,
+        '' AS hdyjsqm,
+        CONVERT(DATE, '1990-01-01 00:00:00', 120) AS cfhdsj,
+        '' AS fyyjsbm,
+        '' AS fyyjsqm,
+        CONVERT(DATE, '1990-01-01 00:00:00', 120) AS cffysj,
+        T2.MEMO AS cfbzxx,
+        CONVERT(DECIMAL(18,2),(T1.YPSL*T1.YLSJ)/T1.YKXS) AS cfypje,
+        GETDATE() AS gxsj
+        FROM OUTP_ORDERITEM T1
+        LEFT JOIN OUTP_ORDER T2 ON T1.CFXH = T2.XH
+        LEFT JOIN OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
+        LEFT JOIN CPOE_BRSYK T4 ON T4.PATID = T3.PATID
+        LEFT JOIN EMR_BRSYK T5 ON T4.EMRXH = T5.SYXH
+        LEFT JOIN [THIS4]..YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
+        WHERE T6.yplh='01' and (T3.ZDDM is not null and T3.ZDDM != '')
+        <if test="yjlxh != null and yjlxh != '' ">
+            AND T1.XH = #{yjlxh , jdbcType= VARCHAR}
+        </if>
     </select>
 
 </mapper>
