@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.dao.data.HlhtBlgyWssjzyDao;
 import com.winning.hic.model.HlhtBlgyWssjzy;
+import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.service.HlhtBlgyWssjzyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,12 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
 
     public List<HlhtBlgyWssjzy> getHlhtBlgyWssjzyPageList(HlhtBlgyWssjzy hlhtBlgyWssjzy){
         return this.hlhtBlgyWssjzyDao.selectHlhtBlgyWssjzyPageList(hlhtBlgyWssjzy);
+    }
+
+    @Override
+    public MbzDataCheck interfaceHlhtBlgyWssjzy() {
+
+
+        return null;
     }
 }

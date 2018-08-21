@@ -34,4 +34,6 @@ public interface MbzDataCheckDao {
     public List<MbzDataCheck> selectMbzDataCheckList(MbzDataCheck mbzDataCheck) throws DataAccessException;
 
     public List<MbzDataCheck> selectMbzDataCheckPageList(MbzDataCheck mbzDataCheck) throws DataAccessException;
+
+    public void deleteMbzDataCheckList();
 }

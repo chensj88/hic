@@ -5,10 +5,7 @@ import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtRyjlRcyjlDao;
 import com.winning.hic.model.*;
-import com.winning.hic.service.EmrQtbljlkService;
-import com.winning.hic.service.HlhtRyjlRcyjlService;
-import com.winning.hic.service.MbzDataListSetService;
-import com.winning.hic.service.MbzDataSetService;
+import com.winning.hic.service.*;
 import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +44,9 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
     private MbzDataSetService mbzDataSetService;
     @Autowired
     private EmrQtbljlkService emrQtbljlkService;
+
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl){
         return this.hlhtRyjlRcyjlDao.insertHlhtRyjlRcyjl(hlhtRyjlRcyjl);
@@ -87,7 +87,10 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
 
     @Override
     public List<MbzDataCheck> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException {
-        List<MbzDataCheck> dataChecks = null;
+        //执行过程信息记录
+        MbzDataCheck mbzDataCheck = new MbzDataCheck();
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
         //配置接口表字段配置信息
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_RYJL_RCYJL_SOURCE_TYPE);
@@ -114,6 +117,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkService.getEmrQtbljlkList(qtbljlk);
+                emr_count = emr_count+qtbljlkList.size();
                 if(qtbljlkList != null && qtbljlkList.size() > 0){
                     //循环病历
                     for(EmrQtbljlk emrQtbljlk:qtbljlkList){
@@ -136,6 +140,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
                         rcyjl = this.commonQueryDao.selectInitHlhtRyjlRcyjlData(rcyjl);
                         rcyjl = (HlhtRyjlRcyjl) HicHelper.initModelValue(mbzDataSetList,document,rcyjl,paramTypeMap);
                         this.createHlhtRyjlRcyjl(rcyjl);
+                        real_count++;
                     }
                 }else{
                     logger.info("接口数据集:{}无相关的病历信息，请先书写病历信息",mbzDataSet.getRecordName());
@@ -144,8 +149,10 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
         }else{
             logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板",mbzDataSet.getRecordName());
         }
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_RYJL_RCYJL_SOURCE_TYPE));
 
-        return dataChecks;
+        return null;
     }
 
 }

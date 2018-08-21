@@ -32,6 +32,9 @@ public class DataLoadController extends BaseController {
     public String index() {
         //数据抽取
         try {
+            //删除原来的检验结果
+            super.getFacade().getMbzDataCheckService().removeMbzDataCheckList();
+
             //1. 24h内入出院记录  --陈世杰
             List<MbzDataCheck> mbzDataCheck1 = super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(null);
             //2. 24h内入院死亡记录*  -- 陈世杰
@@ -105,6 +108,7 @@ public class DataLoadController extends BaseController {
             //非病历抽取
             //36.基本健康信息表* --陈世杰
             //37.卫生事件摘要表* --陈蒯
+            MbzDataCheck mbzDataCheck37 = super.getFacade().getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
             //38.西药处方记录表* --陈世杰
             //39.中药处方记录表* --陈枫
 

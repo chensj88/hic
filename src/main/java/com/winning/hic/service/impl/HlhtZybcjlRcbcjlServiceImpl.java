@@ -8,6 +8,7 @@ import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlRcbcjlService;
+import com.winning.hic.service.MbzDataCheckService;
 import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +45,9 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
     private EmrQtbljlkDao emrQtbljlkDao;
     @Autowired
     private HlhtZybcjlRcbcjlDao hlhtZybcjlRcbcjlDao;
+
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtZybcjlRcbcjl(HlhtZybcjlRcbcjl hlhtZybcjlRcbcjl) {
         return this.hlhtZybcjlRcbcjlDao.insertHlhtZybcjlRcbcjl(hlhtZybcjlRcbcjl);
@@ -87,7 +91,8 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
     public List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl() {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
-
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_RCBCJL_SOURCE_TYPE);
@@ -102,6 +107,7 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
             qtbljlk.setBldm(dataListSet.getModelCode());
             //2.根据模板代码去找到对应的病人病历
             List<HlhtZybcjlRcbcjl> hlhtZybcjlRcbcjlListFromBaseData = this.hlhtZybcjlRcbcjlDao.getHlhtZybcjlRcbcjlListFromBaseData(qtbljlk);
+            emr_count = emr_count+hlhtZybcjlRcbcjlListFromBaseData.size();
             if (hlhtZybcjlRcbcjlListFromBaseData != null) {
                 for (HlhtZybcjlRcbcjl hlhtZybcjlRcbcjl : hlhtZybcjlRcbcjlListFromBaseData) {
                     EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
@@ -126,9 +132,14 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
                     }
                     logger.info("Model:{}", hlhtZybcjlRcbcjl);
                     this.hlhtZybcjlRcbcjlDao.insertHlhtZybcjlRcbcjl(hlhtZybcjlRcbcjl);
+                    real_count++;
+
                 }
             }
         }
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_RCBCJL_SOURCE_TYPE));
+
         return mbzDataChecks;
     }
 }
