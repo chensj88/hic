@@ -33,9 +33,9 @@ public interface HlhtZybcjlShscbcjlService {
 
     /**
      * 病历数据抽取
-     * @param hlhtZybcjlShscbcjl
+     * @param entity
      * @return
      */
-    public List<MbzDataCheck> interfaceHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl) throws IOException, ParseException;
+    public List<MbzDataCheck> interfaceHlhtZybcjlShscbcjl(MbzDataCheck entity) throws IOException, ParseException;
 
 }

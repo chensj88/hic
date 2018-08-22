@@ -71,7 +71,7 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtZybcjlShscbcjl(MbzDataCheck entity) throws IOException, ParseException {
         List<MbzDataCheck> dataCheckList = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量

@@ -40,10 +40,10 @@ public interface HlhtRyjlRyswjlService {
 
     /**
      * 入院死亡记录数据处理
-     * @param hlhtRyjlRyswjl
+     * @param entity
      * @return
      * @throws IOException
      * @throws ParseException
      */
-    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl) throws IOException, ParseException;
+    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(MbzDataCheck entity) throws IOException, ParseException;
 }

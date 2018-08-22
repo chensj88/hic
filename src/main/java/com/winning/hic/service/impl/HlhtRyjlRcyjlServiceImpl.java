@@ -86,7 +86,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtRyjlRcyjl(MbzDataCheck entity) throws IOException, ParseException {
         //执行过程信息记录
         MbzDataCheck mbzDataCheck = new MbzDataCheck();
         int emr_count =0;//病历数量

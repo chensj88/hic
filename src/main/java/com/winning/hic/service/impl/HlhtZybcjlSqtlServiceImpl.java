@@ -76,7 +76,7 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlSqtl(HlhtZybcjlSqtl hlhtZybcjlSqtl) {
+    public List<MbzDataCheck> interfaceHlhtZybcjlSqtl(MbzDataCheck entity) {
         List<MbzDataCheck> dataChecks = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量

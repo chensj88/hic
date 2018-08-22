@@ -83,7 +83,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
     public HlhtRyjlRyswjl getInitHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl){
         return this.commonQueryDao.selectInitHlhtRyjlRyswjl(hlhtRyjlRyswjl);
     }
-    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(HlhtRyjlRyswjl ryjlRyswjl) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(MbzDataCheck entity) throws IOException, ParseException {
         //加载模板库 根据模板类型获取对应的病历模板代码
         MbzDataCheck mbzDataCheck = new MbzDataCheck();
         int emr_count =0;//病历数量

@@ -34,5 +34,5 @@ public interface HlhtZybcjlSqxjService {
      * @param hlhtZybcjlSqxj
      * @return
      */
-    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(HlhtZybcjlSqxj hlhtZybcjlSqxj);
+    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(MbzDataCheck entity);
 }
