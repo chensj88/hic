@@ -110,6 +110,8 @@ public class HlhtZqgzxxTsjczltysServiceImpl implements  HlhtZqgzxxTsjczltysServi
                 //查询病历数据 数据来源
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
+                qtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
+                qtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
                 emr_count = emr_count+qtbljlkList.size();
 

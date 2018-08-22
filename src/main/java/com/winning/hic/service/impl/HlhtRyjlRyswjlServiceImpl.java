@@ -112,6 +112,8 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                 //查询病历信息
                 EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
                 emrQtbljlk.setBldm(dataListSet.getModelCode());
+                emrQtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
+                emrQtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(emrQtbljlk);
                 emr_count = emr_count+qtbljlkList.size();
                 if(qtbljlkList != null && qtbljlkList.size() > 0){
