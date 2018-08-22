@@ -1,15 +1,11 @@
 package com.winning.hic.model;
 
-import java.util.Date; 
-import java.math.BigDecimal; 
-import java.math.BigDecimal; 
-import java.math.BigDecimal; 
-import java.util.Date; 
-import java.io.Serializable; 
+import org.apache.ibatis.type.Alias;
 
-import org.apache.ibatis.type.Alias; 
-
-import com.winning.hic.model.BaseDomain;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 
 
@@ -366,7 +362,7 @@ public class HlhtMjzcfZycf extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date gxsj;
+    private Timestamp gxsj;
 
     public HlhtMjzcfZycf (){
 
@@ -1385,7 +1381,7 @@ public class HlhtMjzcfZycf extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getGxsj(){
+   public Timestamp getGxsj(){
 
         return gxsj;
    }
@@ -1395,7 +1391,7 @@ public class HlhtMjzcfZycf extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setGxsj(Date gxsj){
+   public void setGxsj(Timestamp gxsj){
         this.gxsj = gxsj;
    }
 

@@ -107,6 +107,7 @@ public class DataLoadController extends BaseController {
             //37.卫生事件摘要表* --陈蒯
             //38.西药处方记录表* --陈世杰
             //39.中药处方记录表* --陈枫
+            List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf();
 
 
         } catch (Exception e) {
