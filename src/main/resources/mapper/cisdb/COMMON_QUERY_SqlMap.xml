@@ -712,8 +712,8 @@
         '其它'
         END
         ) AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
-        datediff(month,T3.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'') as nls,
+        datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
         d.NAME as mzmc,
         b.HYZK as hyzkdm,
@@ -780,7 +780,7 @@
         END
         ) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
-        datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
+        datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
         d.NAME as mzmc,
         b.HYZK as hyzkdm,
@@ -882,7 +882,7 @@
         END
         ) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
-        datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
+        datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt,
         t.CJSJ as jlrq,
