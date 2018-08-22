@@ -1,9 +1,11 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.base.Constants;
 import com.winning.hic.dao.data.HlhtBlgyWssjzyDao;
 import com.winning.hic.model.HlhtBlgyWssjzy;
 import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.service.HlhtBlgyWssjzyService;
+import com.winning.hic.service.MbzDataCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
 
     @Autowired
     private HlhtBlgyWssjzyDao hlhtBlgyWssjzyDao;
+
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtBlgyWssjzy(HlhtBlgyWssjzy hlhtBlgyWssjzy){
         return this.hlhtBlgyWssjzyDao.insertHlhtBlgyWssjzy(hlhtBlgyWssjzy);
@@ -53,7 +58,16 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
 
     @Override
     public MbzDataCheck interfaceHlhtBlgyWssjzy() {
-
+        this.hlhtBlgyWssjzyDao.insertHlhtBlgyWssjzyAll();
+        //插入数据集中
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
+        HlhtBlgyWssjzy entity = new HlhtBlgyWssjzy();
+        List<HlhtBlgyWssjzy> hlhtBlgyWssjzyList = this.hlhtBlgyWssjzyDao.selectHlhtBlgyWssjzyList(entity);
+        emr_count = hlhtBlgyWssjzyList.size();
+        real_count = hlhtBlgyWssjzyList.size();
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_BLGY_WSSJZY_SOURCE_TYPE));
 
         return null;
     }

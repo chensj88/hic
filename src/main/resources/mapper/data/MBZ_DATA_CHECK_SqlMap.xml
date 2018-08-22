@@ -9,9 +9,11 @@
          <result column="DATA_COUNT" property="dataCount" jdbcType="INTEGER" />
          <result column="REAL_COUNT" property="realCount" jdbcType="INTEGER" />
          <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR" />
+
     </resultMap>
 
     <resultMap id="mbzDataCheckResult" type="com.winning.hic.model.MbzDataCheck" extends="mbzDataCheckResultForList">
+        <result column="SOURCE_NAME" property="map.sourceName" jdbcType="VARCHAR" />
 
     </resultMap>
 
@@ -114,6 +116,21 @@
         </where>
         <!-- order by t.ID asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+    <select id="selectMbzDataCheckHandList" resultMap="mbzDataCheckResult" parameterType="com.winning.hic.model.MbzDataCheck">
+        SELECT
+        i.DICT_LABEL AS SOURCE_NAME,
+        t.REAL_COUNT,
+        t.DATA_COUNT,
+        t.ERROR_DESC
+        FROM
+        MBZ_DATA_CHECK t
+        LEFT JOIN MBZ_DICT_INFO i ON t.SOURCE_TYPE = i.DICT_VALUE
+        WHERE
+        i.DICT_CODE = 'platformTableName'
+        ORDER BY
+        t.SOURCE_TYPE ASC;
     </select>
 
 

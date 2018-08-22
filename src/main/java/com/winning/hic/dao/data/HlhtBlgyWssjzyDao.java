@@ -34,4 +34,6 @@ public interface HlhtBlgyWssjzyDao {
     public List<HlhtBlgyWssjzy> selectHlhtBlgyWssjzyList(HlhtBlgyWssjzy hlhtBlgyWssjzy) throws DataAccessException;
 
     public List<HlhtBlgyWssjzy> selectHlhtBlgyWssjzyPageList(HlhtBlgyWssjzy hlhtBlgyWssjzy) throws DataAccessException;
+
+    public void insertHlhtBlgyWssjzyAll();
 }
