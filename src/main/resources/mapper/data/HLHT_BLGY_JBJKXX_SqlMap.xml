@@ -64,7 +64,7 @@
         <if test="(hys != null and hys != '')">and t.hys = #{hys}</if>
         <if test="(yjs != null and yjs != '')">and t.yjs = #{yjs}</if>
         <if test="(jzs != null and jzs != '')">and t.jzs = #{jzs}</if>
-        <if test="(gxsj != null and gxsj != '')">and t.gxsj = #{gxsj}</if>
+        <if test="(gxsj != null )">and t.gxsj = #{gxsj}</if>
         <if test="(syxh != null )">and t.syxh = #{syxh}</if>
     </sql>
 
@@ -96,7 +96,7 @@
             <if test="(hys != null and hys != '')">hys ,</if>
             <if test="(yjs != null and yjs != '')">yjs ,</if>
             <if test="(jzs != null and jzs != '')">jzs ,</if>
-            <if test="(gxsj != null and gxsj != '')">gxsj ,</if>
+            <if test="(gxsj != null )">gxsj ,</if>
             <if test="(syxh != null )">syxh ,</if>
         </trim>
         VALUES
@@ -126,7 +126,7 @@
             <if test="(hys != null and hys != '')">#{hys , jdbcType= VARCHAR },</if>
             <if test="(yjs != null and yjs != '')">#{yjs , jdbcType= VARCHAR },</if>
             <if test="(jzs != null and jzs != '')">#{jzs , jdbcType= VARCHAR },</if>
-            <if test="(gxsj != null and gxsj != '')">#{gxsj , jdbcType= TIMESTAMP },</if>
+            <if test="(gxsj != null )">#{gxsj , jdbcType= TIMESTAMP },</if>
             <if test="(syxh != null )">#{syxh , jdbcType= VARCHAR },</if>
         </trim>
     </insert>
@@ -160,7 +160,7 @@
                 <if test="(hys != null and hys != '')">hys = #{hys , jdbcType= VARCHAR },</if>
                 <if test="(yjs != null and yjs != '')">yjs = #{yjs , jdbcType= VARCHAR },</if>
                 <if test="(jzs != null and jzs != '')">jzs = #{jzs , jdbcType= VARCHAR },</if>
-                <if test="(gxsj != null and gxsj != '')">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
+                <if test="(gxsj != null )">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
                 <if test="(syxh != null )">syxh = #{syxh , jdbcType= VARCHAR },</if>
             </trim>
         </set>
