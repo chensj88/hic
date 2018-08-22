@@ -220,37 +220,20 @@
 
     //手动抽取数据
     $("#handDataLoad").click(function(){
+        var startDate =$("#startDate").val();
+        var endDate =$("#endDate").val();
+
         $.ajax({
             type: "POST",
-            url:"mobile/wechatSiteQuestion/checkQuestion.do",
-            data:{id:questionId},
+            url:"startLoad",
+            data:{startDate:startDate,endDate:endDate},
             cache : false,
             dataType:"json",
             async: false,
             error: function(request) {
-                mui.toast('服务端错误，或网络不稳定，本次操作被终止。',{ duration:'long', type:'div' })
             },
             success: function(data) {
-                if (data.status == "success") {
-                    if(data.data == 1){
-                        mui.toast('当前问题已分配或已导入系统，不允许删除！',{ duration:'long', type:'div' });
-                        setTimeout(function() {
-                            $.swipeoutClose(li);
-                        }, 0);
-                    }else{
-                        mui.confirm('', '确认删除该条记录？',  ['确认','取消'], function(e) {
-                            console.log(e);
-                            if (e.index == 0) {
-                                li.parentNode.removeChild(li);
-                                deleteQuestion(questionId);
-                            } else {
-                                setTimeout(function() {
-                                    $.swipeoutClose(li);
-                                }, 0);
-                            }
-                        });
-                    }
-                }
+                $simple_table.bootstrapTable('refresh');
             }
         });
     });

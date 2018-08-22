@@ -87,7 +87,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
     }
 
     @Override
-    public MbzDataCheck interfaceHlhtZybcjlScbcjl(){
+    public MbzDataCheck interfaceHlhtZybcjlScbcjl(MbzDataCheck t){
 
         //执行过程信息记录
         MbzDataCheck mbzDataCheck = new MbzDataCheck();
@@ -108,6 +108,8 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                 //2.根据首次病程去找到对应的病人病历
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
+                qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
+                qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
                 emr_count = emr_count+qtbljlkList.size();
 

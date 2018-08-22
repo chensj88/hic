@@ -7,15 +7,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class DataLoadController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(RyjlJbxxExtractController.class);
 
     @RequestMapping("/dataLoad/index")
-    public String index() {
+    public  String index(){
+        return "/dataLoad/index";
+    }
+
+
+    @RequestMapping("/dataLoad/startLoad")
+    @ResponseBody
+    public Map<String,Object> startLoad(String startDate, String endDate) {
         //数据抽取
+        Map<String, Object> result = new HashMap<String, Object>();
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate",startDate);
+        entity.getMap().put("endDate",endDate);
         try {
             //删除原来的检验结果
             super.getFacade().getMbzDataCheckService().removeMbzDataCheckList();
@@ -31,7 +44,7 @@ public class DataLoadController extends BaseController {
             //5.入院记录* --陈枫
             List<MbzDataCheck> mbzDataChecks5 = super.getFacade().getHlhtRyjlJbxxService().interfaceHlhtRyjlJbxx();
             //6.首次病程记录表* --陈蒯
-            MbzDataCheck mbzDataCheck6 = super.getFacade().getHlhtZybcjlScbcjlService().interfaceHlhtZybcjlScbcjl();
+            MbzDataCheck mbzDataCheck6 = super.getFacade().getHlhtZybcjlScbcjlService().interfaceHlhtZybcjlScbcjl(entity);
             //7.日常病程记录数据集表*  --陈枫
             List<MbzDataCheck> mbzDataChecks7 = getFacade().getHlhtZybcjlRcbcjlService().interfaceHlhtZybcjlRcbcjl();
             //8.交接班记录数据集表(医院一般不在病历里面写交接班记录，CIS有一个交接班的功能)*    --陈蒯（暂时不处理）
@@ -100,12 +113,12 @@ public class DataLoadController extends BaseController {
             //39.中药处方记录表* --陈枫
             List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf();
 
-
+            result.put("success","1");
         } catch (Exception e) {
             e.printStackTrace();
+            result.put("fail","0");
         }
-
-        return "/dataLoad/index";
+        return result;
     }
 
     @RequestMapping("/handDataCheckTable/list")
