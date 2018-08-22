@@ -68,7 +68,7 @@ public class DataLoadController extends BaseController {
             //17.麻醉术后访视记录表(由手麻系统处理)*   --陈枫（暂时不处理）
             List<MbzDataCheck> mbzDataChecks17 = getFacade().getHlhtZlczjlMzshfsjlService().interfaceHlhtZlczjlMzshfsjl(entity);
             //18.麻醉知情同意书表* --陈枫
-            List<MbzDataCheck> mbzDataChecks18 = getFacade().getHlhtZqgzxxMzzqtysService().interfaceHlhtZqgzxxMzzqtys();
+            List<MbzDataCheck> mbzDataChecks18 = getFacade().getHlhtZqgzxxMzzqtysService().interfaceHlhtZqgzxxMzzqtys(entity);
             //19.其他知情告知同意书*  --陈蒯
             List<MbzDataCheck> mbzDataChecks19 = super.getFacade().getHlhtZqgzxxQtzqtysService().interfaceHlhtZqgzxxQtzqtys();
             //20.一般手术记录表(待定）*    --陈蒯
@@ -82,7 +82,7 @@ public class DataLoadController extends BaseController {
             //24.手术知情同意书表*--陈世杰
             List<MbzDataCheck> mbzDataChecks24 = super.getFacade().getHlhtZqgzxxSstysService().interfaceHlhtZqgzxxSstys(entity);
             //25.输血治疗同意书表* -- 陈枫
-            List<MbzDataCheck> mbzDataChecks25 = getFacade().getHlhtZqgzxxSxzltysService().interfaceHlhtZqgzxxSxzltys();
+            List<MbzDataCheck> mbzDataChecks25 = getFacade().getHlhtZqgzxxSxzltysService().interfaceHlhtZqgzxxSxzltys(entity);
             //26.疑难病例讨论数据集表* --陈枫
             List<MbzDataCheck> mbzDataChecks26 = getFacade().getHlhtZybcjlYnbltljlService().interfaceHlhtZybcjlYnbltljl(entity);
             //27.转科记录数据集表*  --陈蒯
