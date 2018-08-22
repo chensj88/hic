@@ -12,6 +12,7 @@ import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlSqtlService;
+import com.winning.hic.service.MbzDataCheckService;
 import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,8 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
     private EmrQtbljlkDao emrQtbljlkDao;
     @Autowired
     private CommonQueryDao commonQueryDao;
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtZybcjlSqtl(HlhtZybcjlSqtl hlhtZybcjlSqtl){
         return this.hlhtZybcjlSqtlDao.insertHlhtZybcjlSqtl(hlhtZybcjlSqtl);
@@ -75,7 +78,8 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
     @Override
     public List<MbzDataCheck> interfaceHlhtZybcjlSqtl(HlhtZybcjlSqtl hlhtZybcjlSqtl) {
         List<MbzDataCheck> dataChecks = null;
-
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
         //加载需要抽取的数据的字段信息
         MbzDataSet dataSet = new MbzDataSet();
         dataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_SQTL_SOURCE_TYPE));
@@ -101,6 +105,7 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
                     EmrQtbljlk qtbljlk = new EmrQtbljlk();
                     qtbljlk.setBldm(mbzDataListSet.getModelCode());
                     List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
+                    emr_count = emr_count+qtbljlkList.size();
                     if(qtbljlkList != null && qtbljlkList.size() > 0 ){
                         for (EmrQtbljlk emrQtbljlk : qtbljlkList) {
                             HlhtZybcjlSqtl sqtl = new HlhtZybcjlSqtl();
@@ -118,6 +123,8 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
                             sqtl = this.commonQueryDao.selectInitHlhtZybcjlSqtl(sqtl);
                             sqtl = (HlhtZybcjlSqtl) HicHelper.initModelValue(mbzDataSetList,document,sqtl,paramTypeMap);
                             this.createHlhtZybcjlSqtl(sqtl);
+                            real_count++;
+
                         }
                     }else{
                         logger.info("接口数据集:{}无相关的病历信息，请先书写病历信息",dataSet.getRecordName());
@@ -130,6 +137,8 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
         }catch (Exception e){
             e.printStackTrace();
         }
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SQTL_SOURCE_TYPE));
 
         return dataChecks;
     }

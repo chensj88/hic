@@ -8,6 +8,7 @@ import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlQjjlService;
+import com.winning.hic.service.MbzDataCheckService;
 import com.winning.hic.service.MbzDataSetService;
 import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,9 @@ public class HlhtZybcjlQjjlServiceImpl implements  HlhtZybcjlQjjlService {
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
 
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
+
     public int createHlhtZybcjlQjjl(HlhtZybcjlQjjl hlhtZybcjlQjjl){
         return this.hlhtZybcjlQjjlDao.insertHlhtZybcjlQjjl(hlhtZybcjlQjjl);
     }
@@ -81,6 +85,8 @@ public class HlhtZybcjlQjjlServiceImpl implements  HlhtZybcjlQjjlService {
     public List<MbzDataCheck> interfaceHlhtZybcjlQjjl() {
 //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_QJJL_SOURCE_TYPE);
@@ -98,6 +104,7 @@ public class HlhtZybcjlQjjlServiceImpl implements  HlhtZybcjlQjjlService {
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
+                emr_count = emr_count+qtbljlkList.size();
                 if (qtbljlkList != null) {
                     for (EmrQtbljlk emrQtbljlk : qtbljlkList) {
                         HlhtZybcjlQjjl qjjl = new HlhtZybcjlQjjl();
@@ -119,6 +126,7 @@ public class HlhtZybcjlQjjlServiceImpl implements  HlhtZybcjlQjjlService {
                             e.printStackTrace();
                         }
                         this.createHlhtZybcjlQjjl(entity);
+                        real_count++;
 
                     }
 
@@ -128,6 +136,8 @@ public class HlhtZybcjlQjjlServiceImpl implements  HlhtZybcjlQjjlService {
         }catch (Exception e){
             e.printStackTrace();
         }
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_QJJL_SOURCE_TYPE));
 
         return mbzDataChecks;
     }

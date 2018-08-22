@@ -1,5 +1,6 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtBlgyJbjkxxDao;
 import com.winning.hic.model.HlhtBlgyJbjkxx;
 import com.winning.hic.service.HlhtBlgyJbjkxxService;
@@ -21,7 +22,8 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
 
     @Autowired
     private HlhtBlgyJbjkxxDao hlhtBlgyJbjkxxDao;
-
+    @Autowired
+    private CommonQueryDao commonQueryDao;
     public int createHlhtBlgyJbjkxx(HlhtBlgyJbjkxx hlhtBlgyJbjkxx){
         return this.hlhtBlgyJbjkxxDao.insertHlhtBlgyJbjkxx(hlhtBlgyJbjkxx);
     }
@@ -48,5 +50,11 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
 
     public List<HlhtBlgyJbjkxx> getHlhtBlgyJbjkxxPageList(HlhtBlgyJbjkxx hlhtBlgyJbjkxx){
         return this.hlhtBlgyJbjkxxDao.selectHlhtBlgyJbjkxxPageList(hlhtBlgyJbjkxx);
+    }
+
+    public void selectHlhtBlgyJbjkxxInfo(HlhtBlgyJbjkxx jbjkxx){
+        List<HlhtBlgyJbjkxx> jbjkxxList = this.getHlhtBlgyJbjkxxList(jbjkxx);
+
+
     }
 }

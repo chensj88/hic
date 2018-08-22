@@ -12,6 +12,7 @@ import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZqgzxxSstysService;
+import com.winning.hic.service.MbzDataCheckService;
 import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,8 @@ public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
         return this.hlhtZqgzxxSstysDao.insertHlhtZqgzxxSstys(hlhtZqgzxxSstys);
@@ -84,6 +87,8 @@ public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
     @Override
     public List<MbzDataCheck> interfaceHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) throws IOException, ParseException {
         List<MbzDataCheck> dataChecks = null;
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
 
         //配置接口表字段配置信息
         MbzDataSet mbzDataSet = new MbzDataSet();
@@ -112,6 +117,7 @@ public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
+                emr_count = emr_count+qtbljlkList.size();
                 if (qtbljlkList != null && qtbljlkList.size() > 0) {
                     //循环病历
                     for (EmrQtbljlk emrQtbljlk : qtbljlkList) {
@@ -133,6 +139,8 @@ public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
                         obj = this.commonQueryDao.selectInitHlhtZqgzxxSstys(obj);
                         obj = (HlhtZqgzxxSstys) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
                         this.createHlhtZqgzxxSstys(obj);
+                        real_count++;
+
                     }
                 } else {
                     logger.info("接口数据集:{}无相关的病历信息，请先书写病历信息", mbzDataSet.getRecordName());
@@ -142,6 +150,8 @@ public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
             logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板", mbzDataSet.getRecordName());
         }
 
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE));
 
         return dataChecks;
     }

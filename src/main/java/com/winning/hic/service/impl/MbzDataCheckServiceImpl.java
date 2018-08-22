@@ -64,5 +64,10 @@ public class MbzDataCheckServiceImpl implements  MbzDataCheckService {
 
     }
 
+    @Override
+    public void removeMbzDataCheckList() {
+        this.mbzDataCheckDao.deleteMbzDataCheckList();
+    }
+
 
 }

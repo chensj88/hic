@@ -9,6 +9,7 @@ import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtRyjlJbxxService;
+import com.winning.hic.service.MbzDataCheckService;
 import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,8 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
 
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtRyjlJbxx(HlhtRyjlJbxx hlhtRyjlJbxx) {
         return this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
@@ -84,7 +87,8 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
     public List<MbzDataCheck> interfaceHlhtRyjlJbxx() {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
-
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_RYJL_JBXX_SOURCE_TYPE);
@@ -99,6 +103,8 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
             qtbljlk.setBldm(dataListSet.getModelCode());
             //2.根据模板代码去找到对应的病人病历
             List<HlhtRyjlJbxx> hlhtRyjlJbxxListFromBaseData = this.hlhtRyjlJbxxDao.getHlhtRyjlJbxxListFromBaseData(qtbljlk);
+            emr_count = emr_count+hlhtRyjlJbxxListFromBaseData.size();
+
             if (hlhtRyjlJbxxListFromBaseData != null) {
                 for (HlhtRyjlJbxx hlhtRyjlJbxx : hlhtRyjlJbxxListFromBaseData) {
                     EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
@@ -123,9 +129,13 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                     }
                     logger.info("Model:{}", hlhtRyjlJbxx);
                     this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
+                    real_count++;
                 }
             }
         }
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_RYJL_JBXX_SOURCE_TYPE));
+
         return mbzDataChecks;
     }
 

@@ -11,6 +11,7 @@ import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZlczjlZljlService;
+import com.winning.hic.service.MbzDataCheckService;
 import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +42,9 @@ public class HlhtZlczjlZljlServiceImpl implements HlhtZlczjlZljlService {
 
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
+
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
 
     @Autowired
@@ -88,7 +92,8 @@ public class HlhtZlczjlZljlServiceImpl implements HlhtZlczjlZljlService {
     public List<MbzDataCheck> interfaceHlhtZlczjlZljl() {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
-
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZLCZJL_ZLJL_SOURCE_TYPE);
@@ -103,6 +108,8 @@ public class HlhtZlczjlZljlServiceImpl implements HlhtZlczjlZljlService {
             qtbljlk.setBldm(dataListSet.getModelCode());
             //2.根据模板代码去找到对应的病人病历
             List<HlhtZlczjlZljl> hlhtZlczjlZljlListFromBaseData = this.hlhtZlczjlZljlDao.getHlhtZlczjlZljlListFromBaseData(qtbljlk);
+            emr_count = emr_count+hlhtZlczjlZljlListFromBaseData.size();
+
             if (hlhtZlczjlZljlListFromBaseData != null) {
                 for (HlhtZlczjlZljl hlhtZlczjlZljl : hlhtZlczjlZljlListFromBaseData) {
                     EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
@@ -127,9 +134,15 @@ public class HlhtZlczjlZljlServiceImpl implements HlhtZlczjlZljlService {
                     }
                     logger.info("Model:{}", hlhtZlczjlZljl);
                     this.hlhtZlczjlZljlDao.insertHlhtZlczjlZljl(hlhtZlczjlZljl);
+                    real_count++;
+
                 }
             }
         }
+
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZLCZJL_ZLJL_SOURCE_TYPE));
+
         return mbzDataChecks;
     }
 }

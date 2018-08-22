@@ -8,10 +8,7 @@ import com.winning.hic.base.utils.XmlUtil;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtZybcjlShscbcjlDao;
 import com.winning.hic.model.*;
-import com.winning.hic.service.EmrQtbljlkService;
-import com.winning.hic.service.HlhtZybcjlShscbcjlService;
-import com.winning.hic.service.MbzDataListSetService;
-import com.winning.hic.service.MbzDataSetService;
+import com.winning.hic.service.*;
 import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +39,8 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
     private MbzDataSetService mbzDataSetService;
     @Autowired
     private MbzDataListSetService mbzDataListSetService;
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl){
         return this.hlhtZybcjlShscbcjlDao.insertHlhtZybcjlShscbcjl(hlhtZybcjlShscbcjl);
@@ -74,6 +73,8 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
     @Override
     public List<MbzDataCheck> interfaceHlhtZybcjlShscbcjl(HlhtZybcjlShscbcjl hlhtZybcjlShscbcjl) throws IOException, ParseException {
         List<MbzDataCheck> dataCheckList = null;
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
          //加载模板
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE);
@@ -92,6 +93,7 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
             EmrQtbljlk qtbljlk = new EmrQtbljlk();
             qtbljlk.setBldm(dataListSet.getModelCode());
             List<EmrQtbljlk> qtbljlkList = emrQtbljlkService.getEmrQtbljlkList(qtbljlk);
+            emr_count = emr_count+qtbljlkList.size();
             if(qtbljlkList != null){
                 //循环病历
                 for(EmrQtbljlk emrQtbljlk:qtbljlkList){
@@ -113,9 +115,12 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
                     shscbcjl = this.commonQueryDao.selectInitHlhtZybcjlShscbcjl(shscbcjl);
                     shscbcjl = (HlhtZybcjlShscbcjl) HicHelper.initModelValue(mbzDataSetList,document,shscbcjl,paramTypeMap);
                     this.createHlhtZybcjlShscbcjl(shscbcjl);
+                    real_count++;
                 }
             }
         }
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE));
         return dataCheckList;
     }
 }

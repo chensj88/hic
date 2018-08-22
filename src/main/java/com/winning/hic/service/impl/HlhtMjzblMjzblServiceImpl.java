@@ -12,6 +12,7 @@ import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtMjzblMjzblService;
+import com.winning.hic.service.MbzDataCheckService;
 import com.winning.hic.service.MbzDataSetService;
 import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,8 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
 
     @Autowired
     private MbzDataSetService mbzDataSetService;
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtMjzblMjzbl(HlhtMjzblMjzbl hlhtMjzblMjzbl){
         return this.hlhtMjzblMjzblDao.insertHlhtMjzblMjzbl(hlhtMjzblMjzbl);
@@ -82,6 +85,8 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
     public List<MbzDataCheck> interfaceHlhtMjzblMjzbl() {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
@@ -99,7 +104,7 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
-
+                emr_count = emr_count+qtbljlkList.size();
 
                 if(qtbljlkList != null){
                     for(EmrQtbljlk emrQtbljlk:qtbljlkList){
@@ -123,18 +128,18 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
                             e.printStackTrace();
                         }
                         this.createHlhtMjzblMjzbl(entity);
+                        real_count++;
 
                     }
                 }
 
             }
 
-
+            //1.病历总数 2.抽取的病历数量 3.子集类型
+            this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE));
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
 
         return mbzDataChecks;
     }
