@@ -90,12 +90,12 @@ public class HlhtZcjlPgcServiceImpl implements  HlhtZcjlPgcService {
         int real_count=0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
-        mbzDataSet.setSourceType(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
-        mbzDataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE));
+        mbzDataSet.setSourceType(Constants.WN_ZCJL_PGC_SOURCE_TYPE);
+        mbzDataSet.setPId(Long.parseLong(Constants.WN_ZCJL_PGC_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = mbzDataSetService.getMbzDataSetList(mbzDataSet);
         //1.获取对应的首次病程的模板ID集合
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
+        mbzDataListSet.setSourceType(Constants.WN_ZCJL_PGC_SOURCE_TYPE);
         List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
         try{
             //获取首次病程的对象集合
@@ -142,7 +142,7 @@ public class HlhtZcjlPgcServiceImpl implements  HlhtZcjlPgcService {
         }
 
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZCJL_PGC_SOURCE_TYPE));
 
         return null;
     }

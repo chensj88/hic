@@ -15,14 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class DataLoadController extends BaseController {
@@ -117,6 +115,16 @@ public class DataLoadController extends BaseController {
         }
 
         return "/dataLoad/index";
+    }
+
+    @RequestMapping("/handDataCheckTable/list")
+    @ResponseBody
+    public List<MbzDataCheck> handDataLoad(){
+        //Map<String, Object> result = new HashMap<String, Object>();
+        MbzDataCheck entity = new MbzDataCheck();
+        List<MbzDataCheck> mbzDataCheckList = super.getFacade().getMbzDataCheckService().getMbzDataCheckHandList(entity);
+        //result.put("mbzDataCheckList",mbzDataCheckList);
+        return mbzDataCheckList;
     }
 
 

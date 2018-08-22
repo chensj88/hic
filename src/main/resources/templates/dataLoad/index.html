@@ -19,6 +19,9 @@
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>-->
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>-->
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datepicker3.min.css}">
+
+
 </head>
 
 <body>
@@ -66,16 +69,26 @@
                         <div id="simple_toolbar">
                             <form class="form-inline">
                                 <div class="form-group">
-                                    <label class="sr-only" for="productLine">病例模板选择</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">病例模板选择</span>
-                                        <select class="form-control" name="product_line" id="productLine">
-                                            <option value="">-----全部-----</option>
-                                        </select>
+                                    <label >开始日期</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="startDate" class="form-control hasDatepicker" data-date-format="yyyy-mm-dd"/>
+                                        <span class="input-group-addon">
+                                                            <i class="ace-icon fa fa-calendar"></i>
+                                                        </span>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary">开始校验</button>
-                                <button type="button" class="btn btn-primary">生成报告</button>
+
+                                <div class="form-group">
+                                    <label> 结束日期</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="endDate" class="form-control hasDatepicker" data-date-format="yyyy-mm-dd">
+                                        <span class="input-group-addon">
+                                                            <i class="ace-icon fa fa-calendar"></i>
+                                                        </span>
+                                    </div>
+                                </div>
+
+                                <button id="handDataLoad" type="button" class="btn btn-primary">开始抽取</button>
                             </form>
 
                         </div>
@@ -94,17 +107,35 @@
 <script th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table-treegrid.min.js}"></script>
 <script th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap-datepicker.zh-CN.min.js}"></script>
+
 <!--ace-->
 <script th:src="@{/assets/js/ace-elements.min.js}"></script>
 <script th:src="@{/assets/js/ace.min.js}"></script>
 <script th:src="@{/assets/js/ace-extra.min.js}"></script>
 
+
 <script th:inline="javascript" type="text/javascript">
+
+
+
+
+
     var ctx = /*[[@{/}]]*/'';
     // alert(ctx+'modelCheck/modelCheck');
     var $table = $('#treegrid_table');
     var $simple_table = $('#simple_table');
     $(function () {
+        $(".hasDatepicker").datepicker({
+
+            language:"zh-CN",
+            todayHighlight: true,
+            minView:2,//最精准的时间选择为日期0-分 1-时 2-日 3-月
+            weekStart:1
+        });
+
+
         $table.bootstrapTable({
             url: ctx + 'modelCheck/list',
             height: $(window).height(),
@@ -145,7 +176,7 @@
         });
 
         $simple_table.bootstrapTable({
-            url: ctx + 'modelCheck/list',
+            url: ctx + 'handDataCheckTable/list',
             height: $(window).height(),
             striped: true,
             toolbar: '#simple_toolbar',
@@ -157,24 +188,75 @@
                 //     checkbox: true
                 // },
                 {
-                    field: 'colummName',
-                    width: '30%',
-                    title: '模板名称'
+                    field: 'map.sourceName',
+                    width: '40%',
+                    title: '数据子集'
                 },
                 {
-                    field: 'status',
-                    title: '验证结果',
+                    field: 'realCount',
+                    title: '抽取数量',
+                    width: '10%',
+                    formatter : function (value, row, index) {
+                        if (row['dataCount'] != row['realCount'] ) {
+                            return '<i style="color: red;font-weight: bold;">'+row['realCount']+'</i>';
+                        }
+                        return value;
+                    },
                     align: 'center',
-                    formatter: 'statusFormatter'
+                },
+                {
+                    field: 'dataCount',
+                    width: '10%',
+                    title: '病历总数'
                 },
                 {
                     field: 'errorDesc',
                     width: '40%',
-                    title: '错误描述'
+                    title: '错误分析'
                 }
             ],
         });
     });
+
+    //手动抽取数据
+    $("#handDataLoad").click(function(){
+        $.ajax({
+            type: "POST",
+            url:"mobile/wechatSiteQuestion/checkQuestion.do",
+            data:{id:questionId},
+            cache : false,
+            dataType:"json",
+            async: false,
+            error: function(request) {
+                mui.toast('服务端错误，或网络不稳定，本次操作被终止。',{ duration:'long', type:'div' })
+            },
+            success: function(data) {
+                if (data.status == "success") {
+                    if(data.data == 1){
+                        mui.toast('当前问题已分配或已导入系统，不允许删除！',{ duration:'long', type:'div' });
+                        setTimeout(function() {
+                            $.swipeoutClose(li);
+                        }, 0);
+                    }else{
+                        mui.confirm('', '确认删除该条记录？',  ['确认','取消'], function(e) {
+                            console.log(e);
+                            if (e.index == 0) {
+                                li.parentNode.removeChild(li);
+                                deleteQuestion(questionId);
+                            } else {
+                                setTimeout(function() {
+                                    $.swipeoutClose(li);
+                                }, 0);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
+
+
+
 
     // 格式化类型
     function typeFormatter(value, row, index) {
@@ -202,6 +284,11 @@
             return '';
         }
     }
+
+    function countAndRealCount(){
+
+    }
+
 </script>
 
 </html>
