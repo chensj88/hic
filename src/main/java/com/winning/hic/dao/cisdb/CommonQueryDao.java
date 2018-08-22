@@ -4,6 +4,7 @@ import com.winning.hic.model.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -89,12 +90,12 @@ public interface CommonQueryDao {
      * @param obj
      * @return
      */
-    HlhtBlgyJbjkxx selectInitHlhtBlgyJbjkxx(HlhtBlgyJbjkxx obj);
+    List<HlhtBlgyJbjkxx> selectInitHlhtBlgyJbjkxx(HlhtBlgyJbjkxx obj);
 
     /**
      * 门(急)诊处方/西药处方
      * @param obj
      * @return
      */
-    HlhtMjzcfXycf selectInitHlhtMjzcfXycf(HlhtMjzcfXycf obj);
+    List<HlhtMjzcfXycf> selectInitHlhtMjzcfXycf(HlhtMjzcfXycf obj);
 }

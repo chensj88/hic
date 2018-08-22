@@ -307,8 +307,24 @@
             c.SYXH                                    AS jzlsh,
             c.PATID                                   AS patid,
             ISNULL(b.ZYHM, 'N')                       AS zyh,
-            #{map.zzjgdm}                             AS zzjgdm,
-            #{map.zzjgmc}                             AS zzjgmc,
+            (
+                SELECT
+                    t.DICT_LABEL
+                FROM
+                    CISDB_DATA.dbo.MBZ_DICT_INFO t
+                WHERE
+                    t.DICT_CODE = 'hospitalInfoNo'
+                AND t.DICT_VALUE = 1
+            )                            AS zzjgdm,
+            (
+                SELECT
+                    t.DICT_LABEL
+                FROM
+                    CISDB_DATA.dbo.MBZ_DICT_INFO t
+                WHERE
+                    t.DICT_CODE = 'hospitalInfoName'
+                AND t.DICT_VALUE = 1
+            )                             AS zzjgmc,
             ISNULL(c.BQDM, 'N')                       AS bqdm,
             ISNULL(c.BQMC, 'N')                       AS bqmc,
             ISNULL(c.KSDM, 'N')                       AS ksdm,

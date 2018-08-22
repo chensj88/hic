@@ -1,26 +1,12 @@
 package com.winning.hic.controller;
 
-import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.Base64Utils;
-import com.winning.hic.base.utils.ReflectUtil;
-import com.winning.hic.base.utils.StringUtil;
-import com.winning.hic.base.utils.XmlUtil;
-import com.winning.hic.model.*;
-import org.dom4j.Attribute;
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
+import com.winning.hic.model.MbzDataCheck;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
 
 @Controller
 public class DataLoadController extends BaseController {
@@ -105,10 +91,14 @@ public class DataLoadController extends BaseController {
             List<MbzDataCheck> mbzDataChecks35 = super.getFacade().getHlhtZcjlPgcService().interfaceHlhtZcjlPgc();
             //非病历抽取
             //36.基本健康信息表* --陈世杰
-            //38.西药处方记录表* --陈世杰
-            //39.中药处方记录表* --陈枫
-            //37.卫生事件摘要表* --陈蒯（要取中药处方）
+            List<MbzDataCheck> mbzDataCheck36 = super.getFacade().getHlhtBlgyJbjkxxService().interfaceHlhtBlgyJbjkxx(null);
+            //37.卫生事件摘要表* --陈蒯
             MbzDataCheck mbzDataCheck37 = super.getFacade().getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
+            //38.西药处方记录表* --陈世杰
+            List<MbzDataCheck> mbzDataCheck38 = super.getFacade().getHlhtMjzcfXycfService().interfaceHlhtMjzcfXycf(null);
+            //39.中药处方记录表* --陈枫
+            List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf();
+
 
         } catch (Exception e) {
             e.printStackTrace();

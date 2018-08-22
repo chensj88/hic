@@ -1,8 +1,11 @@
 package com.winning.hic.service;
 
-import java.util.List;  
+import java.util.List;
 
-import com.winning.hic.model.HlhtMjzcfZycf;  
+import com.winning.hic.model.EmrQtbljlk;
+import com.winning.hic.model.HlhtMjzcfZycf;
+import com.winning.hic.model.MbzDataCheck;
+import org.springframework.dao.DataAccessException;
 
 
 /**
@@ -27,4 +30,10 @@ public interface HlhtMjzcfZycfService {
     public List<HlhtMjzcfZycf> getHlhtMjzcfZycfList(HlhtMjzcfZycf hlhtMjzcfZycf);
 
     public List<HlhtMjzcfZycf> getHlhtMjzcfZycfPageList(HlhtMjzcfZycf hlhtMjzcfZycf);
+
+    public List<HlhtMjzcfZycf> getHlhtMjzcfZycfListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    public void deleteHlhtMjzcfZycfByYjlxh(HlhtMjzcfZycf hlhtMjzcfZycf);
+
+    List<MbzDataCheck> interfaceHlhtMjzcfZycf();
 }

@@ -1,8 +1,13 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtMjzcfXycfDao;
 import com.winning.hic.model.HlhtMjzcfXycf;
+import com.winning.hic.model.HlhtMjzcfZycf;
+import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.service.HlhtMjzcfXycfService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +23,11 @@ import java.util.List;
 */
 @Service
 public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
-
+    private final Logger logger = LoggerFactory.getLogger(HlhtMjzcfXycfServiceImpl.class);
     @Autowired
     private HlhtMjzcfXycfDao hlhtMjzcfXycfDao;
+    @Autowired
+    private CommonQueryDao commonQueryDao;
 
     public int createHlhtMjzcfXycf(HlhtMjzcfXycf hlhtMjzcfXycf){
         return this.hlhtMjzcfXycfDao.insertHlhtMjzcfXycf(hlhtMjzcfXycf);
@@ -48,5 +55,19 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
 
     public List<HlhtMjzcfXycf> getHlhtMjzcfXycfPageList(HlhtMjzcfXycf hlhtMjzcfXycf){
         return this.hlhtMjzcfXycfDao.selectHlhtMjzcfXycfPageList(hlhtMjzcfXycf);
+    }
+
+    @Override
+    public List<MbzDataCheck> interfaceHlhtMjzcfXycf(HlhtMjzcfXycf hlhtMjzcfXycf) {
+        List<MbzDataCheck> dataChecks = null;
+        List<HlhtMjzcfXycf> mjzcfXycfList = this.commonQueryDao.selectInitHlhtMjzcfXycf(null);
+        for (HlhtMjzcfXycf mjzcfXycf : mjzcfXycfList) {
+            HlhtMjzcfXycf tempXycf = new HlhtMjzcfXycf();
+            tempXycf.setYjlxh(mjzcfXycf.getYjlxh());
+            this.hlhtMjzcfXycfDao.deleteHlhtMjzcfXycf(tempXycf);
+            logger.info("Model:{}", mjzcfXycf);
+            this.hlhtMjzcfXycfDao.insertHlhtMjzcfXycf(mjzcfXycf);
+        }
+        return dataChecks;
     }
 }
