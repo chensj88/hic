@@ -588,7 +588,7 @@
             LEFT JOIN CISDB.dbo.OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
             LEFT JOIN [THIS4].dbo.YK_YPCDMLK T6 ON T1.CD_IDM = T6.idm
             WHERE
-                T6.yplh IN ('01', '02', '03')
+                T6.yplh IN ('02', '03')
             AND (
                 T3.ZDDM IS NOT NULL
                 AND T3.ZDDM != '')
