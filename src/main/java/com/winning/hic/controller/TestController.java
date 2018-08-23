@@ -111,9 +111,23 @@ public class TestController extends BaseController {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20180720");
         entity.getMap().put("endDate","20180720");
+
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("data", super.getFacade().getHlhtBlgyJbjkxxService().interfaceHlhtBlgyJbjkxx(entity));
+        return result;
+    }
+
+
+    @GetMapping(value = "/test/xycf")
+    @ApiOperation(value="/test/xycf",notes = "门(急)诊处方/西药处方")
+    public Map<String, Object> testXYCF() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20180806");
+        entity.getMap().put("endDate","20180806");
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtMjzcfXycfService().interfaceHlhtMjzcfXycf(entity));
         return result;
     }
 }
