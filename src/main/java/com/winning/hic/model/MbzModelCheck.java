@@ -32,19 +32,25 @@ public class MbzModelCheck extends BaseDomain implements Serializable {
      */
     private Long pId;
     /**
+     * 字段名：SOURCE_TYPE
+     * 备注:
+     * 默认值：无
+     */
+    private String sourceType;
+    /**
      * 字段名：LEVEL
      * 备注:
      * 默认值：无
      */
     private Integer level;
     /**
-     * 字段名：QRMBDM
+     * 字段名：MODEL_CODE
      * 备注:
      * 默认值：无
      */
-    private String qrmbdm;
+    private String modelCode;
     /**
-     * 字段名：COLUMM_NAME
+     * 字段名：QRMBDM
      * 备注:
      * 默认值：无
      */
@@ -63,6 +69,12 @@ public class MbzModelCheck extends BaseDomain implements Serializable {
     private String dtjddm;
     /**
      * 字段名：QRDXDM
+     * 备注:
+     * 默认值：无
+     */
+    private String qrmbdm;
+    /**
+     * 字段名：COLUMM_NAME
      * 备注:
      * 默认值：无
      */
@@ -299,4 +311,28 @@ public class MbzModelCheck extends BaseDomain implements Serializable {
         this.status = status;
     }
 
+
+    public String getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(String sourceType) {
+        this.sourceType = sourceType;
+    }
+
+    public String getModelCode() {
+        return modelCode;
+    }
+
+    public void setModelCode(String modelCode) {
+        this.modelCode = modelCode;
+    }
+
+    public Long getpId() {
+        return pId;
+    }
+
+    public void setpId(Long pId) {
+        this.pId = pId;
+    }
 }

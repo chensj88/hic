@@ -29,7 +29,8 @@ public class ModelCheckController extends BaseController {
     @RequestMapping("/modelCheck/list")
     @ResponseBody
     public List<MbzModelCheck> list(MbzModelCheck mbzModelCheck) {
-        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.getMbzModelCheckList(mbzModelCheck);
+        //获取数据集目录
+        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.selectDataSet();
         return mbzModelCheckList;
     }
 

@@ -52,4 +52,9 @@ public class MbzModelCheckServiceImpl implements  MbzModelCheckService {
     public List<MbzModelCheck> getMbzModelCheckPageList(MbzModelCheck mbzModelCheck){
         return this.mbzModelCheckDao.selectMbzModelCheckPageList(mbzModelCheck);
     }
+
+    @Override
+    public List<MbzModelCheck> selectDataSet() {
+        return this.mbzModelCheckDao.selectDataSet();
+    }
 }
