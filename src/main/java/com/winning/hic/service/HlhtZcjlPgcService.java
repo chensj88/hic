@@ -29,5 +29,5 @@ public interface HlhtZcjlPgcService {
 
     public List<HlhtZcjlPgc> getHlhtZcjlPgcPageList(HlhtZcjlPgc hlhtZcjlPgc);
 
-    List<MbzDataCheck> interfaceHlhtZcjlPgc();
+    List<MbzDataCheck> interfaceHlhtZcjlPgc(MbzDataCheck t);
 }
