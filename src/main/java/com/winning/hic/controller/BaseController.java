@@ -4,6 +4,7 @@ import com.winning.hic.model.MbzDataSet;
 import com.winning.hic.service.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +19,7 @@ public class BaseController {
     @Autowired
     private Facade facade;
 
-    protected Map resultMap;
+    protected Map resultMap = new HashMap();
 
     public Facade getFacade() {
         return facade;

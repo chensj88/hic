@@ -1,9 +1,11 @@
 package com.winning.hic.controller;
 
 import com.winning.hic.model.MbzDataCheck;
+import com.winning.hic.model.MbzDictInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,19 +18,43 @@ public class DataLoadController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(RyjlJbxxExtractController.class);
 
     @RequestMapping("/dataLoad/index")
-    public  String index(){
+    public String index(Model model) {
+        MbzDictInfo temp = new MbzDictInfo();
+        temp.setDictCode("hospitalInfoName");
+        temp.setDictValue("1");
+        String orgName = getFacade().getMbzDictInfoService().getMbzDictInfo(temp).getDictLabel();
+        temp.setDictCode("hospitalInfoNo");
+        String orgCode = getFacade().getMbzDictInfoService().getMbzDictInfo(temp).getDictLabel();
+        resultMap.put("orgCode", orgCode);
+        resultMap.put("orgName", orgName);
+        model.addAllAttributes(resultMap);
         return "/dataLoad/index";
+    }
+
+    @RequestMapping("/dataLoad/orgInfo")
+    @ResponseBody
+    public Map orgInfo(String orgName, String orgCode) {
+        MbzDictInfo temp = new MbzDictInfo();
+        temp.setDictCode("hospitalInfoName");
+        temp.setDictValue("1");
+        temp.setDictLabel(orgName);
+        getFacade().getMbzDictInfoService().modifyMbzDictInfo(temp);
+        temp.setDictCode("hospitalInfoNo");
+        temp.setDictLabel(orgCode);
+        getFacade().getMbzDictInfoService().modifyMbzDictInfo(temp);
+        resultMap.put("msg", "success");
+        return resultMap;
     }
 
 
     @RequestMapping("/dataLoad/startLoad")
     @ResponseBody
-    public Map<String,Object> startLoad(String startDate, String endDate) {
+    public Map<String, Object> startLoad(String startDate, String endDate) {
         //数据抽取
         Map<String, Object> result = new HashMap<String, Object>();
         MbzDataCheck entity = new MbzDataCheck();
-        entity.getMap().put("startDate",startDate);
-        entity.getMap().put("endDate",endDate);
+        entity.getMap().put("startDate", startDate);
+        entity.getMap().put("endDate", endDate);
         try {
             //删除原来的检验结果
             super.getFacade().getMbzDataCheckService().removeMbzDataCheckList();
@@ -113,17 +139,17 @@ public class DataLoadController extends BaseController {
             //39.中药处方记录表* --陈枫
             List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf();
 
-            result.put("success","1");
+            result.put("success", "1");
         } catch (Exception e) {
             e.printStackTrace();
-            result.put("fail","0");
+            result.put("fail", "0");
         }
         return result;
     }
 
     @RequestMapping("/handDataCheckTable/list")
     @ResponseBody
-    public List<MbzDataCheck> handDataLoad(){
+    public List<MbzDataCheck> handDataLoad() {
         //Map<String, Object> result = new HashMap<String, Object>();
         MbzDataCheck entity = new MbzDataCheck();
         List<MbzDataCheck> mbzDataCheckList = super.getFacade().getMbzDataCheckService().getMbzDataCheckHandList(entity);

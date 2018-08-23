@@ -4,12 +4,12 @@
 <mapper namespace="com.winning.hic.dao.data.MbzDictInfoDao">
 
     <resultMap id="mbzDictInfoResultForList" type="com.winning.hic.model.MbzDictInfo">
-         <result column="DICT_CODE" property="dictCode" jdbcType="VARCHAR" />
-         <result column="DICT_VALUE" property="dictValue" jdbcType="VARCHAR" />
-         <result column="DICT_LABEL" property="dictLabel" jdbcType="VARCHAR" />
-         <result column="DICT_SORT" property="dictSort" jdbcType="VARCHAR" />
-         <result column="DICT_DESC" property="dictDesc" jdbcType="VARCHAR" />
-         <result column="PY_CODE" property="pyCode" jdbcType="VARCHAR" />
+        <result column="DICT_CODE" property="dictCode" jdbcType="VARCHAR"/>
+        <result column="DICT_VALUE" property="dictValue" jdbcType="VARCHAR"/>
+        <result column="DICT_LABEL" property="dictLabel" jdbcType="VARCHAR"/>
+        <result column="DICT_SORT" property="dictSort" jdbcType="VARCHAR"/>
+        <result column="DICT_DESC" property="dictDesc" jdbcType="VARCHAR"/>
+        <result column="PY_CODE" property="pyCode" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="mbzDictInfoResult" type="com.winning.hic.model.MbzDictInfo" extends="mbzDictInfoResultForList">
@@ -17,33 +17,33 @@
     </resultMap>
 
     <sql id="sql-mbzDictInfo">
-        <if test="(dictCode != null and dictCode != '')"> and t.DICT_CODE = #{dictCode} </if>
-        <if test="(dictValue != null and dictValue != '')"> and t.DICT_VALUE = #{dictValue} </if>
-        <if test="(dictLabel != null and dictLabel != '')"> and t.DICT_LABEL = #{dictLabel} </if>
-        <if test="(dictSort != null and dictSort != '')"> and t.DICT_SORT = #{dictSort} </if>
-        <if test="(dictDesc != null and dictDesc != '')"> and t.DICT_DESC = #{dictDesc} </if>
-        <if test="(pyCode != null and pyCode != '')"> and t.PY_CODE = #{pyCode} </if>
+        <if test="(dictCode != null and dictCode != '')">and t.DICT_CODE = #{dictCode}</if>
+        <if test="(dictValue != null and dictValue != '')">and t.DICT_VALUE = #{dictValue}</if>
+        <if test="(dictLabel != null)">and t.DICT_LABEL = #{dictLabel}</if>
+        <if test="(dictSort != null and dictSort != '')">and t.DICT_SORT = #{dictSort}</if>
+        <if test="(dictDesc != null and dictDesc != '')">and t.DICT_DESC = #{dictDesc}</if>
+        <if test="(pyCode != null and pyCode != '')">and t.PY_CODE = #{pyCode}</if>
     </sql>
 
     <insert id="insertMbzDictInfo" parameterType="com.winning.hic.model.MbzDictInfo">
 
         INSERT INTO MBZ_DICT_INFO
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="(dictCode != null and dictCode != '')"> DICT_CODE , </if>
-            <if test="(dictValue != null and dictValue != '')"> DICT_VALUE , </if>
-            <if test="(dictLabel != null and dictLabel != '')"> DICT_LABEL , </if>
-            <if test="(dictSort != null and dictSort != '')"> DICT_SORT , </if>
-            <if test="(dictDesc != null and dictDesc != '')"> DICT_DESC , </if>
-            <if test="(pyCode != null and pyCode != '')"> PY_CODE , </if>
+            <if test="(dictCode != null and dictCode != '')">DICT_CODE ,</if>
+            <if test="(dictValue != null and dictValue != '')">DICT_VALUE ,</if>
+            <if test="(dictLabel != null and dictLabel != '')">DICT_LABEL ,</if>
+            <if test="(dictSort != null and dictSort != '')">DICT_SORT ,</if>
+            <if test="(dictDesc != null and dictDesc != '')">DICT_DESC ,</if>
+            <if test="(pyCode != null and pyCode != '')">PY_CODE ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="(dictCode != null and dictCode != '')"> #{dictCode , jdbcType= VARCHAR },  </if>
-            <if test="(dictValue != null and dictValue != '')"> #{dictValue , jdbcType= VARCHAR },  </if>
-            <if test="(dictLabel != null and dictLabel != '')"> #{dictLabel , jdbcType= VARCHAR },  </if>
-            <if test="(dictSort != null and dictSort != '')"> #{dictSort , jdbcType= VARCHAR },  </if>
-            <if test="(dictDesc != null and dictDesc != '')"> #{dictDesc , jdbcType= VARCHAR },  </if>
-            <if test="(pyCode != null and pyCode != '')"> #{pyCode , jdbcType= VARCHAR },  </if>
+            <if test="(dictCode != null and dictCode != '')">#{dictCode , jdbcType= VARCHAR },</if>
+            <if test="(dictValue != null and dictValue != '')">#{dictValue , jdbcType= VARCHAR },</if>
+            <if test="(dictLabel != null and dictLabel != '')">#{dictLabel , jdbcType= VARCHAR },</if>
+            <if test="(dictSort != null and dictSort != '')">#{dictSort , jdbcType= VARCHAR },</if>
+            <if test="(dictDesc != null and dictDesc != '')">#{dictDesc , jdbcType= VARCHAR },</if>
+            <if test="(pyCode != null and pyCode != '')">#{pyCode , jdbcType= VARCHAR },</if>
         </trim>
     </insert>
 
@@ -51,32 +51,32 @@
         UPDATE MBZ_DICT_INFO
         <set>
             <trim suffixOverrides=",">
-                <if test="(dictCode != null and dictCode != '')"> DICT_CODE , </if>
-                <if test="(dictValue != null and dictValue != '')"> DICT_VALUE , </if>
-                <if test="(dictLabel != null and dictLabel != '')"> DICT_LABEL , </if>
-                <if test="(dictSort != null and dictSort != '')"> DICT_SORT , </if>
-                <if test="(dictDesc != null and dictDesc != '')"> DICT_DESC , </if>
-                <if test="(pyCode != null and pyCode != '')"> PY_CODE , </if>
+                <if test="(dictCode != null and dictCode != '')">DICT_CODE = #{dictCode , jdbcType= VARCHAR },</if>
+                <if test="(dictValue != null and dictValue != '')">DICT_VALUE = #{dictValue , jdbcType= VARCHAR },</if>
+                <if test="(dictLabel != null)">DICT_LABEL = #{dictLabel , jdbcType= VARCHAR },</if>
+                <if test="(dictSort != null and dictSort != '')">DICT_SORT = #{dictSort , jdbcType= VARCHAR },</if>
+                <if test="(dictDesc != null and dictDesc != '')">DICT_DESC = #{dictDesc , jdbcType= VARCHAR },</if>
+                <if test="(pyCode != null and pyCode != '')">PY_CODE = #{pyCode , jdbcType= VARCHAR },</if>
             </trim>
         </set>
         <where>
-            <if test="(dictCode != null and dictCode != '')"> and DICT_CODE = #{ dictCode }   </if>
-            <if test="(dictValue != null and dictValue != '')"> and DICT_VALUE = #{ dictValue }   </if>
+            <if test="(dictCode != null and dictCode != '')">and DICT_CODE = #{ dictCode }</if>
+            <if test="(dictValue != null and dictValue != '')">and DICT_VALUE = #{ dictValue }</if>
             <if test="(dictCode !=null or dictCode!='') and (dictValue !=null or dictValue!='') and (map.pks != null and map.pks != '')">
                 and (DICT_CODE,DICT_VALUE) in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
             </if>
         </where>
     </update>
 
     <delete id="deleteMbzDictInfo" parameterType="com.winning.hic.model.MbzDictInfo">
-        delete from  MBZ_DICT_INFO
+        delete from MBZ_DICT_INFO
         <where>
-            <if test="(dictCode != null and dictCode != '')"> and DICT_CODE = #{ dictCode }   </if>
-            <if test="(dictValue != null and dictValue != '')"> and DICT_VALUE = #{ dictValue }   </if>
+            <if test="(dictCode != null and dictCode != '')">and DICT_CODE = #{ dictCode }</if>
+            <if test="(dictValue != null and dictValue != '')">and DICT_VALUE = #{ dictValue }</if>
             <if test="(dictCode !=null or dictCode!='') and (dictValue !=null or dictValue!='') and (map.pks != null and map.pks != '')">
                 and (DICT_CODE,DICT_VALUE) in
-                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
             </if>
         </where>
     </delete>
@@ -85,40 +85,42 @@
     <select id="selectMbzDictInfo" resultMap="mbzDictInfoResult" parameterType="com.winning.hic.model.MbzDictInfo">
         SELECT * FROM MBZ_DICT_INFO t
         <where>
-            <include refid="sql-mbzDictInfo" />
+            <include refid="sql-mbzDictInfo"/>
         </where>
     </select>
 
-    <select id="selectMbzDictInfoList" resultMap="mbzDictInfoResultForList" parameterType="com.winning.hic.model.MbzDictInfo">
+    <select id="selectMbzDictInfoList" resultMap="mbzDictInfoResultForList"
+            parameterType="com.winning.hic.model.MbzDictInfo">
         SELECT
-        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        <if test="row.count != null and row.count != ''">top ${row.count}</if>
         * FROM MBZ_DICT_INFO t
         <where>
-            <include refid="sql-mbzDictInfo" />
+            <include refid="sql-mbzDictInfo"/>
         </where>
         ORDER BY convert(int,t.DICT_VALUE) ASC
     </select>
 
     <select id="selectMbzDictInfoCount" resultType="int" parameterType="com.winning.hic.model.MbzDictInfo">
-        select count(1) from  MBZ_DICT_INFO t
+        select count(1) from MBZ_DICT_INFO t
         <where>
-            <include refid="sql-mbzDictInfo" />
+            <include refid="sql-mbzDictInfo"/>
         </where>
     </select>
 
-    <select id="selectMbzDictInfoPageList" resultMap="mbzDictInfoResult" parameterType="com.winning.hic.model.MbzDictInfo">
+    <select id="selectMbzDictInfoPageList" resultMap="mbzDictInfoResult"
+            parameterType="com.winning.hic.model.MbzDictInfo">
         SELECT * FROM (
         SELECT t.* ,
         ROW_NUMBER() OVER ( ORDER BY t.DICT_CODE,t.DICT_VALUE DESC ) AS _RN
         FROM MBZ_DICT_INFO t
         <where>
-            <include refid="sql-mbzDictInfo" />
+            <include refid="sql-mbzDictInfo"/>
         </where>
         <!-- order by t.DICT_CODE,t.DICT_VALUE asc -->
-        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+        ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
     <!--获取模板代码信息-->
-    <select id="selectMbzDictInfoListForMB" resultType="java.lang.String" >
+    <select id="selectMbzDictInfoListForMB" resultType="java.lang.String">
           SELECT DISTINCT PY_CODE FROM  MBZ_DICT_INFO WHERE DICT_CODE='platformTableName'
     </select>
 

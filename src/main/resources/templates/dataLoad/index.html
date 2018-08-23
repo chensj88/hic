@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
+<!--suppress ALL-->
 <html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,11 +50,13 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label for="exampleInputName2">数据子集:</label>
-                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                                    <input type="text" class="form-control" id="exampleInputName2"
+                                           placeholder="Jane Doe">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">搜索条件:</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                                    <input type="email" class="form-control" id="exampleInputEmail2"
+                                           placeholder="jane.doe@example.com">
                                 </div>
 
                                 <button type="button" class="btn btn-primary">搜索</button>
@@ -68,10 +70,22 @@
                     <div id="profile" class="tab-pane">
                         <div id="simple_toolbar">
                             <form class="form-inline">
+
                                 <div class="form-group">
-                                    <label >开始日期</label>
+                                    <label for="orgCode">机构代码:</label>
+                                    <input type="text" class="form-control" id="orgCode" th:value="${orgCode}"
+                                           placeholder="请输入机构代码"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="orgName">机构名称:</label>
+                                    <input type="text" class="form-control" id="orgName" th:value="${orgName}"
+                                           placeholder="请输入机构名称"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>开始日期</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" id="startDate" class="form-control hasDatepicker" data-date-format="yyyy-mm-dd"/>
+                                        <input type="text" id="startDate" class="form-control hasDatepicker"
+                                               data-date-format="yyyy-mm-dd"/>
                                         <span class="input-group-addon">
                                                             <i class="ace-icon fa fa-calendar"></i>
                                                         </span>
@@ -81,7 +95,8 @@
                                 <div class="form-group">
                                     <label> 结束日期</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" id="endDate" class="form-control hasDatepicker" data-date-format="yyyy-mm-dd">
+                                        <input type="text" id="endDate" class="form-control hasDatepicker"
+                                               data-date-format="yyyy-mm-dd">
                                         <span class="input-group-addon">
                                                             <i class="ace-icon fa fa-calendar"></i>
                                                         </span>
@@ -119,20 +134,42 @@
 <script th:inline="javascript" type="text/javascript">
 
 
-
-
-
     var ctx = /*[[@{/}]]*/'';
     // alert(ctx+'modelCheck/modelCheck');
     var $table = $('#treegrid_table');
     var $simple_table = $('#simple_table');
     $(function () {
+        //机构代码和机构名称
+        $("#orgCode").blur(function () {
+            let orgCode = $("#orgCode").val();
+            let orgName = $("#orgName").val();
+            $.ajax({
+                url: ctx + "/dataLoad/orgInfo",
+                method: "post",
+                data: {orgCode: orgCode, orgName: orgName},
+                success: function (data) {
+
+                }
+            });
+        });
+        $("#orgName").blur(function () {
+            let orgCode = $("#orgCode").val();
+            let orgName = $("#orgName").val();
+            $.ajax({
+                url: ctx + "/dataLoad/orgInfo",
+                method: "post",
+                data: {orgCode: orgCode, orgName: orgName},
+                success: function (data) {
+
+                }
+            });
+        });
         $(".hasDatepicker").datepicker({
 
-            language:"zh-CN",
+            language: "zh-CN",
             todayHighlight: true,
-            minView:2,//最精准的时间选择为日期0-分 1-时 2-日 3-月
-            weekStart:1
+            minView: 2,//最精准的时间选择为日期0-分 1-时 2-日 3-月
+            weekStart: 1
         });
 
 
@@ -196,9 +233,9 @@
                     field: 'realCount',
                     title: '抽取数量',
                     width: '10%',
-                    formatter : function (value, row, index) {
-                        if (row['dataCount'] != row['realCount'] ) {
-                            return '<i style="color: red;font-weight: bold;">'+row['realCount']+'</i>';
+                    formatter: function (value, row, index) {
+                        if (row['dataCount'] != row['realCount']) {
+                            return '<i style="color: red;font-weight: bold;">' + row['realCount'] + '</i>';
                         }
                         return value;
                     },
@@ -219,26 +256,24 @@
     });
 
     //手动抽取数据
-    $("#handDataLoad").click(function(){
-        var startDate =$("#startDate").val();
-        var endDate =$("#endDate").val();
+    $("#handDataLoad").click(function () {
+        var startDate = $("#startDate").val();
+        var endDate = $("#endDate").val();
 
         $.ajax({
             type: "POST",
-            url:"startLoad",
-            data:{startDate:startDate,endDate:endDate},
-            cache : false,
-            dataType:"json",
+            url: "startLoad",
+            data: {startDate: startDate, endDate: endDate},
+            cache: false,
+            dataType: "json",
             async: false,
-            error: function(request) {
+            error: function (request) {
             },
-            success: function(data) {
+            success: function (data) {
                 $simple_table.bootstrapTable('refresh');
             }
         });
     });
-
-
 
 
     // 格式化类型
@@ -261,14 +296,14 @@
         if (value === 0) {
             //0：正确 1：错误
             return '<i class="fa fa-check" style="color: #00B83F"></i>';
-        } else if(value === 1) {
+        } else if (value === 1) {
             return '<i class="fa fa-times" style="color: red"></i>';
-        }else{
+        } else {
             return '';
         }
     }
 
-    function countAndRealCount(){
+    function countAndRealCount() {
 
     }
 
