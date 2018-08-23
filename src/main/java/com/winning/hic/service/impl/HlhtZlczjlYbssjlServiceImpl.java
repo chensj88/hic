@@ -80,7 +80,7 @@ public class HlhtZlczjlYbssjlServiceImpl implements  HlhtZlczjlYbssjlService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZlczjlYbssjl() {
+    public List<MbzDataCheck> interfaceHlhtZlczjlYbssjl(MbzDataCheck t) {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
         int emr_count =0;//病历数量
@@ -101,6 +101,8 @@ public class HlhtZlczjlYbssjlServiceImpl implements  HlhtZlczjlYbssjlService {
                 //2.根据首次病程去找到对应的病人病历
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
+                qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
+                qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
                 emr_count = emr_count+qtbljlkList.size();
 

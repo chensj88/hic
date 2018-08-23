@@ -20,6 +20,7 @@
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>-->
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datepicker3.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/toastr/css/toastr.min.css}">
 
 
 </head>
@@ -99,6 +100,11 @@
         </div><!-- /span -->
     </div>
 </div>
+
+<div id="myAlert" class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>警告！</strong>您的网络连接有问题。
+</div>
 </body>
 <!--[if !IE]> -->
 <script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
@@ -109,6 +115,7 @@
 <script th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-datepicker.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-datepicker.zh-CN.min.js}"></script>
+<script th:src="@{/bootstrap/toastr/js/toastr.min.js}"></script>
 
 <!--ace-->
 <script th:src="@{/assets/js/ace-elements.min.js}"></script>
@@ -118,15 +125,25 @@
 
 <script th:inline="javascript" type="text/javascript">
 
-
-
-
-
     var ctx = /*[[@{/}]]*/'';
     // alert(ctx+'modelCheck/modelCheck');
     var $table = $('#treegrid_table');
     var $simple_table = $('#simple_table');
     $(function () {
+        toastr.options= {
+            "closeButton":false,//显示关闭按钮
+            "debug":false,//启用debug
+            "positionClass":"toast-top-center",//弹出的位置
+            "showDuration":"300",//显示的时间
+            "hideDuration":"1000",//消失的时间
+            "timeOut":"5000",//停留的时间
+            "extendedTimeOut":"1000",//控制时间
+            "showEasing":"swing",//显示时的动画缓冲方式
+            "hideEasing":"linear",//消失时的动画缓冲方式
+            "showMethod":"fadeIn",//显示时的动画方式
+            "hideMethod":"fadeOut"//消失时的动画方式
+        };
+
         $(".hasDatepicker").datepicker({
 
             language:"zh-CN",
@@ -222,6 +239,18 @@
     $("#handDataLoad").click(function(){
         var startDate =$("#startDate").val();
         var endDate =$("#endDate").val();
+        if(startDate ==null || startDate ==''){
+            toastr.warning('开始时间不能为空');
+            return false;
+        }
+        if(endDate ==null || endDate ==''){
+            toastr.warning("结束时间不能为空");
+            return false;
+        }
+        if(startDate >= endDate ){
+            toastr.warning("开始时间不能大于结束时间");
+            return false;
+        }
 
         $.ajax({
             type: "POST",
@@ -233,7 +262,11 @@
             error: function(request) {
             },
             success: function(data) {
-                $simple_table.bootstrapTable('refresh');
+                if(data.success=='1'){
+                    $simple_table.bootstrapTable('refresh');
+                }else{
+                    toastr.warning("抽取失败");
+                }
             }
         });
     });
