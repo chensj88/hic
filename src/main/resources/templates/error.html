@@ -5,11 +5,17 @@
     <title>统一异常处理</title>
 </head>
 <body>
-<h1>Error Handler</h1>
+<h1>异常问题</h1>
 <!--/*@thymesVar id="url" type="java.lang.String"*/-->
-<!--<div th:text="${url}"></div>-->
-<!--/*@thymesVar id="exception" type="java.lang.Exception"*/-->
-<!--/*@thymesVar id="message" type="java.lang.String"*/-->
-<!--<div th:text="${exception.message}"></div>-->
+<p>访问URL:</p>
+<div th:text="${url}"></div>
+<!--/*@thymesVar id="msg" type="java.util.List"*/-->
+<p>错误原因:</p>
+<div>
+    <div th:each=" str : ${msg}">
+        <span th:text="${str}"></span>
+    </div>
+</div>
+
 </body>
 </html>

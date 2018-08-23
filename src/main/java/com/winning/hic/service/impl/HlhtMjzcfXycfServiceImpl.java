@@ -60,7 +60,10 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
     @Override
     public List<MbzDataCheck> interfaceHlhtMjzcfXycf(MbzDataCheck entity) {
         List<MbzDataCheck> dataChecks = null;
-        List<HlhtMjzcfXycf> mjzcfXycfList = this.commonQueryDao.selectInitHlhtMjzcfXycf(null);
+        HlhtMjzcfXycf xycf = new HlhtMjzcfXycf();
+        xycf.getMap().put("startDate",entity.getMap().get("startDate"));
+        xycf.getMap().put("endDate",entity.getMap().get("endDate"));
+        List<HlhtMjzcfXycf> mjzcfXycfList = this.commonQueryDao.selectInitHlhtMjzcfXycf(xycf);
         for (HlhtMjzcfXycf mjzcfXycf : mjzcfXycfList) {
             HlhtMjzcfXycf tempXycf = new HlhtMjzcfXycf();
             tempXycf.setYjlxh(mjzcfXycf.getYjlxh());

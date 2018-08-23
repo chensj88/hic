@@ -29,5 +29,5 @@ public interface HlhtZzyjlZzyjlService {
 
     public List<HlhtZzyjlZzyjl> getHlhtZzyjlZzyjlPageList(HlhtZzyjlZzyjl hlhtZzyjlZzyjl);
 
-    public List<MbzDataCheck> interfaceHlhtZzyjlZzyjl();
+    public List<MbzDataCheck> interfaceHlhtZzyjlZzyjl(MbzDataCheck t);
 }

@@ -1,14 +1,7 @@
 package com.winning.hic.model;
 
 import java.util.Date; 
-import java.math.BigDecimal; 
-import java.math.BigDecimal; 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
-import java.math.BigDecimal; 
-import java.util.Date; 
+import java.math.BigDecimal;
 import java.io.Serializable; 
 
 import org.apache.ibatis.type.Alias; 
@@ -112,7 +105,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date cfklrq;
+    private java.sql.Timestamp cfklrq;
     /**
      * 字段名：cfyxts
      * 备注: 
@@ -250,7 +243,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date shyjsqmsj;
+    private java.sql.Timestamp shyjsqmsj;
     /**
      * 字段名：tpyjsbm
      * 备注: 
@@ -268,7 +261,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date cftpsj;
+    private java.sql.Timestamp cftpsj;
     /**
      * 字段名：hdyjsbm
      * 备注: 
@@ -286,7 +279,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date cfhdsj;
+    private java.sql.Timestamp cfhdsj;
     /**
      * 字段名：fyyjsbm
      * 备注: 
@@ -304,7 +297,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date cffysj;
+    private java.sql.Timestamp cffysj;
     /**
      * 字段名：cfbzxx
      * 备注: 
@@ -322,7 +315,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date gxsj;
+    private java.sql.Timestamp gxsj;
 
     public HlhtMjzcfXycf (){
 
@@ -567,7 +560,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getCfklrq(){
+   public java.sql.Timestamp getCfklrq(){
 
         return cfklrq;
    }
@@ -577,7 +570,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setCfklrq(Date cfklrq){
+   public void setCfklrq(java.sql.Timestamp cfklrq){
         this.cfklrq = cfklrq;
    }
    /**
@@ -981,7 +974,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getShyjsqmsj(){
+   public java.sql.Timestamp getShyjsqmsj(){
 
         return shyjsqmsj;
    }
@@ -991,7 +984,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setShyjsqmsj(Date shyjsqmsj){
+   public void setShyjsqmsj(java.sql.Timestamp shyjsqmsj){
         this.shyjsqmsj = shyjsqmsj;
    }
    /**
@@ -1035,7 +1028,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getCftpsj(){
+   public java.sql.Timestamp getCftpsj(){
 
         return cftpsj;
    }
@@ -1045,7 +1038,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setCftpsj(Date cftpsj){
+   public void setCftpsj(java.sql.Timestamp cftpsj){
         this.cftpsj = cftpsj;
    }
    /**
@@ -1089,7 +1082,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getCfhdsj(){
+   public java.sql.Timestamp getCfhdsj(){
 
         return cfhdsj;
    }
@@ -1099,7 +1092,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setCfhdsj(Date cfhdsj){
+   public void setCfhdsj(java.sql.Timestamp cfhdsj){
         this.cfhdsj = cfhdsj;
    }
    /**
@@ -1143,7 +1136,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getCffysj(){
+   public java.sql.Timestamp getCffysj(){
 
         return cffysj;
    }
@@ -1153,7 +1146,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setCffysj(Date cffysj){
+   public void setCffysj(java.sql.Timestamp cffysj){
         this.cffysj = cffysj;
    }
    /**
@@ -1197,7 +1190,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getGxsj(){
+   public java.sql.Timestamp getGxsj(){
 
         return gxsj;
    }
@@ -1207,7 +1200,7 @@ public class HlhtMjzcfXycf extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setGxsj(Date gxsj){
+   public void setGxsj(java.sql.Timestamp gxsj){
         this.gxsj = gxsj;
    }
 
