@@ -252,23 +252,23 @@
             return false;
         }
 
-        // $.ajax({
-        //     type: "POST",
-        //     url:"startLoad",
-        //     data:{startDate:startDate,endDate:endDate},
-        //     cache : false,
-        //     dataType:"json",
-        //     async: false,
-        //     error: function(request) {
-        //     },
-        //     success: function(data) {
-        //         if(data.success=='1'){
-        //             $simple_table.bootstrapTable('refresh');
-        //         }else{
-        //             alert("抽取失败");
-        //         }
-        //     }
-        // });
+        $.ajax({
+            type: "POST",
+            url:"startLoad",
+            data:{startDate:startDate,endDate:endDate},
+            cache : false,
+            dataType:"json",
+            async: false,
+            error: function(request) {
+            },
+            success: function(data) {
+                if(data.success=='1'){
+                    $simple_table.bootstrapTable('refresh');
+                }else{
+                    toastr.warning("抽取失败");
+                }
+            }
+        });
     });
 
 
