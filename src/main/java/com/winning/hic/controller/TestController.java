@@ -35,10 +35,12 @@ public class TestController extends BaseController {
     @GetMapping(value = "/test/ryjl")
     @ApiOperation(value="/test/ryjl",notes = "24H出入院接口表数据抽取测试")
     public Map<String, Object> testRYJL() throws IOException, ParseException {
-
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20180806");
+        entity.getMap().put("endDate","20180806");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(null));
+        result.put("data", super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(entity));
         return result;
     }
 
