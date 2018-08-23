@@ -28,6 +28,7 @@ public class GlobalExceptionHandler {
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         String msg = e.getMessage();
         List<String> sbMsg = new ArrayList<>();
+        //错误信息格式化
         if(msg != null){
             if(msg.contains("###")){
                 String[] msgs = msg.split("###");
