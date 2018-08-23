@@ -58,6 +58,6 @@ public class EmrQtbljlkServiceImpl implements EmrQtbljlkService {
 
 	@Override
 	public List<EmrQtbljlk> getEmrQtbljlkPaginatedList(EmrQtbljlk t) {
-		return emrQtbljlkDao.selectEmrQtbljlkPageList(t);
+		return emrQtbljlkDao.selectEmrQtbljlkPaginatedList(t);
 	}
 }

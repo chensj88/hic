@@ -32,7 +32,7 @@ public interface HlhtZqgzxxBwztzsService {
 
     public List<HlhtZqgzxxBwztzs> getHlhtZqgzxxBwztzsListFromBaseData(EmrQtbljlk emrQtbljlk);
 
-    List<MbzDataCheck> interfaceHlhtZqgzxxBwztzs();
+    List<MbzDataCheck> interfaceHlhtZqgzxxBwztzs(MbzDataCheck entity);
 
     public void deleteHlhtZqgzxxBwztzsByYjlxh(HlhtZqgzxxBwztzs hlhtZqgzxxBwztzs);
 

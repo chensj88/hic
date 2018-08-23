@@ -58,7 +58,7 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtMjzcfXycf(HlhtMjzcfXycf hlhtMjzcfXycf) {
+    public List<MbzDataCheck> interfaceHlhtMjzcfXycf(MbzDataCheck entity) {
         List<MbzDataCheck> dataChecks = null;
         List<HlhtMjzcfXycf> mjzcfXycfList = this.commonQueryDao.selectInitHlhtMjzcfXycf(null);
         for (HlhtMjzcfXycf mjzcfXycf : mjzcfXycfList) {

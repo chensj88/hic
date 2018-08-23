@@ -2,6 +2,7 @@ package com.winning.hic.controller;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.Base64Utils;
+import com.winning.hic.model.MbzDataCheck;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -101,6 +102,18 @@ public class TestController extends BaseController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("data", super.getFacade().getHlhtZqgzxxSstysService().interfaceHlhtZqgzxxSstys(null));
+        return result;
+    }
+
+    @GetMapping(value = "/test/jbjkxx")
+    @ApiOperation(value="/test/jbjkxx",notes = "病历概要/基本健康信息")
+    public Map<String, Object> testJBJKXX() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20180720");
+        entity.getMap().put("endDate","20180720");
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtBlgyJbjkxxService().interfaceHlhtBlgyJbjkxx(entity));
         return result;
     }
 }

@@ -77,7 +77,7 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(HlhtZybcjlSqxj hlhtZybcjlSqxj) {
+    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(MbzDataCheck entity) {
         List<MbzDataCheck> dataChecks = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
@@ -106,6 +106,8 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
                     //查询病历
                     EmrQtbljlk qtbljlk = new EmrQtbljlk();
                     qtbljlk.setBldm(mbzDataListSet.getModelCode());
+                    qtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
+                    qtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
                     List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
                     emr_count = emr_count+qtbljlkList.size();
                     if(qtbljlkList != null && qtbljlkList.size() > 0 ){

@@ -35,5 +35,5 @@ public interface HlhtZlczjlSxjlService {
 
     public void deleteHlhtZlczjlSxjlByYjlxh(HlhtZlczjlSxjl hlhtZlczjlSxjl);
 
-    List<MbzDataCheck> interfaceHlhtZlczjlSxjl();
+    List<MbzDataCheck> interfaceHlhtZlczjlSxjl(MbzDataCheck entity);
 }

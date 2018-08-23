@@ -57,8 +57,11 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtBlgyJbjkxx(HlhtBlgyJbjkxx jbjkxx) {
+    public List<MbzDataCheck> interfaceHlhtBlgyJbjkxx(MbzDataCheck entity) {
         List<MbzDataCheck> dataCheckList = null;
+        HlhtBlgyJbjkxx jbjkxx = new HlhtBlgyJbjkxx();
+        jbjkxx.getMap().put("startDate",entity.getMap().get("startDate"));
+        jbjkxx.getMap().put("endDate",entity.getMap().get("endDate"));
         List<HlhtBlgyJbjkxx> jbjkxxList = commonQueryDao.selectInitHlhtBlgyJbjkxx(jbjkxx);
         for (HlhtBlgyJbjkxx jbxx : jbjkxxList) {
             //清除历史数据

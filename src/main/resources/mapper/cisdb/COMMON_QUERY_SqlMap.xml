@@ -1182,7 +1182,8 @@
             H.hys as hys,
             H.yjs as yjs,
             H.jzs as jzs,
-            GETDATE() AS gxsj
+            GETDATE() AS gxsj,
+            B.SYXH as syxh
             FROM OUTP_JZJLK A
             LEFT JOIN CPOE_BRSYK B ON A.PATID = B.PATID
             LEFT JOIN EMR_BRSYK C ON B.EMRXH = C.SYXH
@@ -1192,8 +1193,11 @@
             LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B-1020%'
             LEFT JOIN CISDB_DATA..HLHT_RYJL_JBXX H ON  G.QTBLJLXH = H.yjlxh
         <where>
-            <if test="patid != null and patid != '' ">
-                AND A.PATID = #{patid , jdbcType= VARCHAR}
+            <if test="map.startDate != null and map.startDate != ''">
+                and <![CDATA[CONVERT(date,substring(A.GHRQ,1,4)+'-'+substring(A.GHRQ,5,2)+'-'+substring(A.GHRQ,7,2))  >= #{map.startDate}]]>
+            </if>
+            <if test="map.startDate != null and map.startDate != ''">
+                and <![CDATA[CONVERT(date,substring(A.GHRQ,1,4)+'-'+substring(A.GHRQ,5,2)+'-'+substring(A.GHRQ,7,2))  <= #{map.endDate}]]>
             </if>
         </where>
     </select>
@@ -1260,9 +1264,13 @@
         LEFT JOIN OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
         LEFT JOIN [THIS4]..YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
         WHERE  T6.yplh='01' AND T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
-        <if test="yjlxh != null and yjlxh != '' ">
-            AND T1.XH = #{yjlxh , jdbcType= VARCHAR}
+        <if test="map.startDate != null and map.startDate != ''">
+            and <![CDATA[CONVERT(date,substring(T1.CJRQ,1,4)+'-'+substring(T1.CJRQ,5,2)+'-'+substring(T1.CJRQ,7,2))  >= #{map.startDate}]]>
         </if>
+        <if test="map.endDate != null and map.endDate != ''">
+            and <![CDATA[CONVERT(date,substring(T1.CJRQ,1,4)+'-'+substring(T1.CJRQ,5,2)+'-'+substring(T1.CJRQ,7,2)) <= #{map.endDate}]]>
+        </if>
+
     </select>
 
 </mapper>

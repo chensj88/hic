@@ -80,7 +80,7 @@ public class HlhtZqgzxxTsjczltysServiceImpl implements  HlhtZqgzxxTsjczltysServi
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZqgzxxTsjczltys(HlhtZqgzxxTsjczltys hlhtZqgzxxTsjczltys) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtZqgzxxTsjczltys(MbzDataCheck entity) throws IOException, ParseException {
         List<MbzDataCheck> dataChecks = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
@@ -110,6 +110,8 @@ public class HlhtZqgzxxTsjczltysServiceImpl implements  HlhtZqgzxxTsjczltysServi
                 //查询病历数据 数据来源
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
+                qtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
+                qtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
                 emr_count = emr_count+qtbljlkList.size();
 

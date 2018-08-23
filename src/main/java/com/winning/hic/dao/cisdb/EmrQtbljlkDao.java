@@ -27,7 +27,7 @@ public interface EmrQtbljlkDao {
 
     public List<EmrQtbljlk> selectEmrQtbljlkList(EmrQtbljlk emrMxmcmlk) throws DataAccessException;
 
-    public List<EmrQtbljlk> selectEmrQtbljlkPageList(EmrQtbljlk emrMxmcmlk) throws DataAccessException;
+    public List<EmrQtbljlk> selectEmrQtbljlkPaginatedList(EmrQtbljlk emrMxmcmlk) throws DataAccessException;
 
 
 }

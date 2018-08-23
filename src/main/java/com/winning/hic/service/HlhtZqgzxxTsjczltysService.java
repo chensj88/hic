@@ -31,5 +31,5 @@ public interface HlhtZqgzxxTsjczltysService {
 
     public List<HlhtZqgzxxTsjczltys> getHlhtZqgzxxTsjczltysPageList(HlhtZqgzxxTsjczltys hlhtZqgzxxTsjczltys);
 
-    List<MbzDataCheck> interfaceHlhtZqgzxxTsjczltys(HlhtZqgzxxTsjczltys hlhtZqgzxxTsjczltys) throws IOException, ParseException;
+    List<MbzDataCheck> interfaceHlhtZqgzxxTsjczltys(MbzDataCheck entity) throws IOException, ParseException;
 }

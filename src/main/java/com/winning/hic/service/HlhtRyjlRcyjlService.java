@@ -37,5 +37,5 @@ public interface HlhtRyjlRcyjlService {
      */
     public HlhtRyjlRcyjl getInitHlhtRyjlRcyjlData(HlhtRyjlRcyjl rcyjl);
 
-    public List<MbzDataCheck> interfaceHlhtRyjlRcyjl(HlhtRyjlRcyjl hlhtRyjlRcyjl) throws IOException, ParseException;
+    public List<MbzDataCheck> interfaceHlhtRyjlRcyjl( MbzDataCheck entity) throws IOException, ParseException;
 }
