@@ -648,7 +648,7 @@
         <result column="cfxh" property="cfxh" jdbcType="VARCHAR"/>
         <result column="zzjgdm" property="zzjgdm" jdbcType="VARCHAR"/>
         <result column="zzjgmc" property="zzjgmc" jdbcType="VARCHAR"/>
-        <result column="cfklrq" property="cfklrq" jdbcType="DATE"/>
+        <result column="cfklrq" property="cfklrq" jdbcType="TIMESTAMP"/>
         <result column="cfyxts" property="cfyxts" jdbcType="NUMERIC"/>
         <result column="cfklskdm" property="cfklskdm" jdbcType="VARCHAR"/>
         <result column="cfklks" property="cfklks" jdbcType="VARCHAR"/>
