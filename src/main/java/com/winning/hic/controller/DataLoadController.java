@@ -28,7 +28,7 @@ public class DataLoadController extends BaseController {
         resultMap.put("orgCode", orgCode);
         resultMap.put("orgName", orgName);
         model.addAllAttributes(resultMap);
-        return "/dataLoad/index";
+        return "dataLoad/index";
     }
 
     @RequestMapping("/dataLoad/orgInfo")
@@ -137,7 +137,7 @@ public class DataLoadController extends BaseController {
             //39.中药处方记录表* --陈枫
             List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf();
             //37.卫生事件摘要表* --陈蒯
-            MbzDataCheck mbzDataCheck37 = super.getFacade().getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
+            //MbzDataCheck mbzDataCheck37 = super.getFacade().getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
 
             result.put("success", "1");
         } catch (Exception e) {

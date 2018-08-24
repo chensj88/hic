@@ -36,8 +36,8 @@ public class TestController extends BaseController {
     @ApiOperation(value="/test/ryjl",notes = "24H出入院接口表数据抽取测试")
     public Map<String, Object> testRYJL() throws IOException, ParseException {
         MbzDataCheck entity = new MbzDataCheck();
-        entity.getMap().put("startDate","20180806");
-        entity.getMap().put("endDate","20180806");
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("data", super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(entity));
@@ -47,9 +47,12 @@ public class TestController extends BaseController {
     @GetMapping(value = "/test/ryswjl")
     @ApiOperation(value="/test/ryswjl",notes = "入院死亡记录表数据抽取测试")
     public Map<String, Object> testRYSWJL() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", super.getFacade().getHlhtRyjlRyswjlService().interfaceHlhtRyjlRyswjl(null));
+        result.put("data", super.getFacade().getHlhtRyjlRyswjlService().interfaceHlhtRyjlRyswjl(entity));
         return result;
     }
 
@@ -57,53 +60,71 @@ public class TestController extends BaseController {
     @GetMapping(value = "/test/shscbcjl")
     @ApiOperation(value="/test/shscbcjl",notes = "取住院病程/手术术后首次病程初始化数据")
     public Map<String, Object> testSHSCBCJL() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", super.getFacade().getHlhtZybcjlShscbcjlService().interfaceHlhtZybcjlShscbcjl(null));
+        result.put("data", super.getFacade().getHlhtZybcjlShscbcjlService().interfaceHlhtZybcjlShscbcjl(entity));
         return result;
     }
 
     @GetMapping(value = "/test/sqxj")
     @ApiOperation(value="/test/sqxj",notes = "取住院病程/术前小结")
     public Map<String, Object> testSQXJ() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", super.getFacade().getHlhtZybcjlSqxjService().interfaceHlhtZybcjlSqxj(null));
+        result.put("data", super.getFacade().getHlhtZybcjlSqxjService().interfaceHlhtZybcjlSqxj(entity));
         return result;
     }
     @GetMapping(value = "/test/sqtl")
     @ApiOperation(value="/test/sqtl",notes = "取住院病程/术前讨论")
     public Map<String, Object> testSQTL() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", super.getFacade().getHlhtZybcjlSqtlService().interfaceHlhtZybcjlSqtl(null));
+        result.put("data", super.getFacade().getHlhtZybcjlSqtlService().interfaceHlhtZybcjlSqtl(entity));
         return result;
     }
 
     @GetMapping(value = "/test/swbltl")
     @ApiOperation(value="/test/swbltl",notes = "取住院病程/死亡病历讨论")
     public Map<String, Object> testSWBLTL() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", super.getFacade().getHlhtZybcjlSwbltljlService().interfaceHlhtZybcjlSwbltljl(null));
+        result.put("data", super.getFacade().getHlhtZybcjlSwbltljlService().interfaceHlhtZybcjlSwbltljl(entity));
         return result;
     }
 
     @GetMapping(value = "/test/sjyscfjl")
     @ApiOperation(value="/test/sjyscfjl",notes = "取住院病程/上级医生查房记录")
     public Map<String, Object> testSJYSCFJL() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", super.getFacade().getHlhtZybcjlSjyscfjlService().interfaceHlhtZybcjlSjyscfjl(null));
+        result.put("data", super.getFacade().getHlhtZybcjlSjyscfjlService().interfaceHlhtZybcjlSjyscfjl(entity));
         return result;
     }
 
     @GetMapping(value = "/test/sstys")
     @ApiOperation(value="/test/sstys",notes = "知情告知信息/手术同意书")
     public Map<String, Object> testSSTYS() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", super.getFacade().getHlhtZqgzxxSstysService().interfaceHlhtZqgzxxSstys(null));
+        result.put("data", super.getFacade().getHlhtZqgzxxSstysService().interfaceHlhtZqgzxxSstys(entity));
         return result;
     }
 
@@ -125,8 +146,8 @@ public class TestController extends BaseController {
     @ApiOperation(value="/test/xycf",notes = "门(急)诊处方/西药处方")
     public Map<String, Object> testXYCF() throws IOException, ParseException {
         MbzDataCheck entity = new MbzDataCheck();
-        entity.getMap().put("startDate","20180806");
-        entity.getMap().put("endDate","20180806");
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("data", super.getFacade().getHlhtMjzcfXycfService().interfaceHlhtMjzcfXycf(entity));
