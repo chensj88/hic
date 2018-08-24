@@ -111,12 +111,21 @@
     <!-- Chen,Kuai 2018年8月21日15:58:09  插入全部的数据 -->
     <insert id="insertHlhtBlgyWssjzyAll" parameterType="com.winning.hic.model.HlhtBlgyWssjzy">
             INSERT INTO HLHT_BLGY_WSSJZY
-            SELECT
-                t.XH AS yjlxh,t.GHXH AS jzlsh,t.PATID AS patid,t.HZXM AS hzxm,ISNULL(CONVERT (VARCHAR,(t.GHXH)),'N') AS mjzh,
-                ISNULL(tt.zyh,'N') AS zyh,ISNULL(CONVERT (VARCHAR,(t.GHLB)),'N') AS jzlb,ISNULL(tt.sfzhm, 'N') AS sfzhm,
-                b.BRXB AS xbdm,c.SEX AS xbmc,ISNULL(cyxj.jkkh, 'N') AS jmjkkh,
+                        SELECT
+                t.XH AS yjlxh,
+								t.GHXH AS jzlsh,
+								t.PATID AS patid,
+								t.HZXM AS hzxm,
+								ISNULL(CONVERT (VARCHAR,(t.GHXH)),'N') AS mjzh,
+                ISNULL(tt.zyh,'N') AS zyh,
+								ISNULL(CONVERT (VARCHAR,(t.GHLB)),'N') AS jzlb,
+								ISNULL(tt.sfzhm, 'N') AS sfzhm,
+                b.BRXB AS xbdm,
+								c.SEX AS xbmc,
+								ISNULL(cyxj.jkkh, 'N') AS jmjkkh,
                 --居民健康卡
-                ii.DICT_LABEL AS zzjgdm, i.DICT_LABEL AS zzjgmc,
+                ii.DICT_LABEL AS zzjgdm,
+								i.DICT_LABEL AS zzjgmc,
                 c.KSDM AS ksdm,
                 c.KSMC AS ksmc,
                 '3' AS hzlxdm,
@@ -132,8 +141,8 @@
                 tt.czxyzdmc AS xyzdmc,
                 tt.czzybmdm AS zybm,
                 tt.czzybmmc AS zybmmc,
-                tt.czzyzhmc AS zyzhmc,
                 tt.czzyzhdm AS zyzh,
+                tt.czzyzhmc AS zyzhmc,
                 NULL AS qtxyzd,
                 --其他西医诊断编码
                 NULL AS qtxyzdmc,
@@ -164,26 +173,20 @@
                 t.YSDM AS zrysbm,
                 t.YSMC AS zrys,
                 tt.gxsj AS gxsj,
-                tt.yxjl AS yxjl,
-                tt.syxh AS syxh,
-                tt.tjzt AS tjzt ---cyxj代表的是HLHT_CYXJ_CYXJ
+                tt.syxh AS syxh
                 --剩下的不知道从哪里取了
             FROM
                 CISDB.dbo.OUTP_JZJLK t
-            LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX tt ON tt.jzlsh = t.XH
-            LEFT JOIN CISDB_DATA.dbo.HLHT_CYXJ_CYXJ cyxj ON cyxj.jzlsh = t.XH
-            LEFT JOIN CISDB_DATA.dbo.HLHT_MJZCF_ZYCF zycf ON cyxj.jzlsh = t.XH
+            LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX tt ON tt.jzlsh = t.GHXH
+            LEFT JOIN CISDB_DATA.dbo.HLHT_CYXJ_CYXJ cyxj ON cyxj.jzlsh = t.GHXH
+            LEFT JOIN CISDB_DATA.dbo.HLHT_MJZCF_ZYCF zycf ON cyxj.jzlsh = t.GHXH
             LEFT JOIN CISDB_DATA.dbo.HLHT_ZYBCJL_CYJL cy ON cy.jzlsh = tt.jzlsh
-            LEFT JOIN CISDB.dbo.EMR_BRSYK b ON tt.jzlsh = b.SYXH
-            LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.XH = c.EMRXH
-            LEFT JOIN CISDB.dbo.CPOE_CQYZK cq ON cq.XH = t.XH
+            LEFT JOIN CISDB.dbo.EMR_BRSYK b ON t.EMRXH = b.SYXH
+            LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.EMRXH = c.EMRXH
+            LEFT JOIN CISDB.dbo.CPOE_CQYZK cq ON cq.XH = t.EMRXH
             LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
-            LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
-
-
+            LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo';
     </insert>
-
-
 
     <insert id="insertHlhtBlgyWssjzy" parameterType="com.winning.hic.model.HlhtBlgyWssjzy">
         INSERT INTO HLHT_BLGY_WSSJZY

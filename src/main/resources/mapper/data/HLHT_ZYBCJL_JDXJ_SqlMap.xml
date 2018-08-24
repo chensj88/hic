@@ -309,7 +309,7 @@
         b.ZYHM as zyh,c.KSDM as ksdm,c.KSMC as ksmc,c.BQDM as bqdm,
         c.BQMC as bqmc ,ISNULL(a.fjh, 'N') AS bfh,
         NULL AS bfmc ,c.CWDM as bch ,b.HZXM as hzxm,
-        b.SFZH as sfzhm,b.BRXB as xbdm,c.SEX as xbmc,
+        b.SFZH as sfzhm,b.BRXB as xbdm,c.SEX as xbmc,b.CSRQ AS csrq,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
         SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly,b.RYRQ as ryrq, ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
         t.YXJL AS yxjl,
