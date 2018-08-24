@@ -21,7 +21,11 @@
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datepicker3.min.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/toastr/css/toastr.min.css}">
-
+    <style>
+        .input-length{
+            width: 150px;
+        }
+    </style>
 
 </head>
 
@@ -71,36 +75,34 @@
                             <form class="form-inline">
 
                                 <div class="form-group">
-                                    <label for="orgCode">机构代码:</label>
-                                    <input type="text" class="form-control" id="orgCode" th:value="${orgCode}"
-                                           placeholder="请输入机构代码"/>
+                                    <label for="orgCode">机构代码</label>
+                                    <input type="text" class="form-control input-sm input-length" id="orgCode" th:value="${orgCode}"
+                                           placeholder="请输入机构代码" style="width: 150px;"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="orgName">机构名称:</label>
-                                    <input type="text" class="form-control" id="orgName" th:value="${orgName}"
-                                           placeholder="请输入机构名称"/>
+                                    <label for="orgName">机构名称</label>
+                                    <input type="text" class="form-control input-sm input-length" id="orgName" th:value="${orgName}"
+                                           placeholder="请输入机构名称" style="width: 150px;"/>
                                 </div>
                                 <div class="form-group">
                                     <label >开始日期</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" id="startDate" class="form-control hasDatepicker" data-date-format="yyyy-mm-dd"/>
+                                        <input type="text" id="startDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 150px;"/>
                                         <span class="input-group-addon">
                                                             <i class="ace-icon fa fa-calendar"></i>
                                                         </span>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label> 结束日期</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" id="endDate" class="form-control hasDatepicker" data-date-format="yyyy-mm-dd">
+                                        <input type="text" id="endDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 150px;">
                                         <span class="input-group-addon">
                                                             <i class="ace-icon fa fa-calendar"></i>
                                                         </span>
                                     </div>
                                 </div>
-
-                                <button id="handDataLoad" type="button" class="btn btn-primary">开始抽取</button>
+                                <button id="handDataLoad" type="button" class="btn btn-primary btn-sm">开始抽取</button>
                             </form>
 
                         </div>
@@ -120,8 +122,12 @@
 <!--[if !IE]> -->
 <script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
 <!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript" th:src="@{/bootstrap/js/jquery-1.12.4.min.js}"></script>
+<![endif]-->
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap-table-zh-CN.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table-treegrid.min.js}"></script>
 <script th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-datepicker.min.js}"></script>

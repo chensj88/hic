@@ -23,7 +23,7 @@ public class ModelCheckController extends BaseController {
 
     @RequestMapping("/modelCheck/index")
     public String index() {
-        return "/modelCheck/modelCheck";
+        return "modelCheck/modelCheck";
     }
 
     @RequestMapping("/modelCheck/list")

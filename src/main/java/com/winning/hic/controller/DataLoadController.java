@@ -28,7 +28,7 @@ public class DataLoadController extends BaseController {
         resultMap.put("orgCode", orgCode);
         resultMap.put("orgName", orgName);
         model.addAllAttributes(resultMap);
-        return "/dataLoad/index";
+        return "dataLoad/index";
     }
 
     @RequestMapping("/dataLoad/orgInfo")
