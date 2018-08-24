@@ -1210,7 +1210,8 @@
         ISNULL(CONVERT(VARCHAR,T2.PATID),'N')                                                                          AS patid,
         ISNULL(CONVERT(VARCHAR,T2.HZXM ),'N')                                                                          AS hzxm,
         ISNULL(CONVERT(VARCHAR,T2.GHXH ),'N')                                                                          AS mjzh,
-        ISNULL(CONVERT(VARCHAR,T3.SFZH ),'N')                                                                          AS sfzhm,
+        CASE WHEN RTRIM(LTRIM(T3.SFZH)) = '' THEN 'N'
+             ELSE ISNULL(CONVERT(VARCHAR,T3.SFZH ),'N') END                                                            AS sfzhm,
         CASE T3.SEX WHEN '女' THEN '2' WHEN '男' THEN '1' ELSE '3'  END                                                AS xbdm,
         ISNULL(T3.SEX, 'N')                                                                                            AS xbmc,
         ISNULL(CONVERT (VARCHAR,(YEAR(GETDATE())-YEAR(CONVERT(DATETIME, T3.BIRTH)))) ,'')                              AS nls,
