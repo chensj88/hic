@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!--suppress ALL-->
 <html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -49,8 +50,10 @@
                                     <label class="sr-only" for="model">模板类别</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">模板类别</span>
-                                        <select class="form-control" name="product_line" id="model">
+                                        <select class="form-control" name="data_set" id="data_set">
                                             <option value="">-----全部-----</option>
+                                            <option th:each="list:${dataSet}" th:value="${list.dictValue}"
+                                                    th:text="${list.dictLabel }"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -58,8 +61,7 @@
                                     <label class="sr-only" for="msgType">全院模板总数</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">全院模板总数</span>
-                                        <span class="form-control" name="msg_type" id="msgType">
-                                            4396
+                                        <span class="form-control" name="msg_type" id="msgType" th:text="${num}">
                                         </span>
                                     </div>
                                 </div>
@@ -109,10 +111,10 @@
 <script th:src="@{/assets/js/ace-extra.min.js}"></script>
 
 <script th:inline="javascript" type="text/javascript">
-    var ctx = /*[[@{/}]]*/'';
+    let ctx = /*[[@{/}]]*/'';
     // alert(ctx+'modelCheck/modelCheck');
-    var $table = $('#treegrid_table');
-    var $simple_table = $('#simple_table');
+    let $table = $('#treegrid_table');
+    let $simple_table = $('#simple_table');
     $(function () {
         $table.bootstrapTable({
             url: ctx + 'modelCheck/list',
@@ -182,40 +184,22 @@
          * 父子表
          */
         function InitSubTable(index, row, $detail) {
-            var parentid = row.id;
-            var sourceType = row.sourceType;
-            var cur_table = $detail.html('<table></table>').find('table');
-
-            // function initParam(params) {
-            //     let queryJson = {
-            //         sourceType: sourceType,
-            //         pId: parentid
-            //     };
-            //     if ($('#chosen').is(':checked')) {
-            //         queryJson['bt'] = 1;
-            //     }
-            //     if ($('#configPath').is(':checked')) {
-            //         queryJson['config'] = 1;
-            //     }
-            //     queryJson['count'] = params.limit;    // 每页显示条数
-            //     queryJson['first'] = params.offset;   // 显示条数
-            //     queryJson['sort'] = params.sort;      // 排序列名
-            //     queryJson['order'] = params.order;     // 排位命令（desc，asc）
-            //     return queryJson;
-            // }
-
+            let sourceType = row.sourceType;
+            let cur_table = $detail.html('<table></table>').find('table');
             $subTable = $(cur_table);
             $subTable.bootstrapTable({
-                url: ctx + 'modelCheck/list',
+                url: ctx + 'modelCheck/modelList',
+                method: 'get', // 请求方法
+                queryParams: {
+                    sourceType: sourceType,
+                },
                 striped: true,
                 clickToSelect: true,                // 是否启用点击选中行
                 detailView: true,                  // 是否显示父子表
-                method: 'POST', // 请求方法
                 cache: false,  // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
                 pagination: false,                   // 是否显示分页（*）
                 sortable: true,                     // 是否启用排序
                 sortOrder: "asc",                   // 排序方式
-                uniqueId: "id",
                 idField: 'id',
                 sortName: 'id',
                 uniqueId: "id",                 // 每一行的唯一标识，一般为主键列
@@ -235,75 +219,27 @@
                 },
             });
         }
-
-
-        $simple_table.bootstrapTable({
-            url: ctx + 'modelCheck/list',
-            height: $(window).height(),
-            striped: true,
-            toolbar: '#simple_toolbar',
-            sidePagination: 'client',
-            idField: 'id',
-            columns: [
-                // {
-                //     field: 'ck',
-                //     checkbox: true
-                // },
-                {
-                    field: 'colummName',
-                    width: '30%',
-                    title: '模板名称'
-                },
-                {
-                    field: 'status',
-                    title: '验证结果',
-                    align: 'center',
-                    formatter: 'statusFormatter'
-                },
-                {
-                    field: 'errorDesc',
-                    width: '40%',
-                    title: '错误描述'
-                }
-            ],
-        });
 
         /**
          * 父子表
          */
         function childTable(index, row, $detail) {
-            var parentid = row.id;
-            var sourceType = row.sourceType;
-            var cur_table = $detail.html('<table></table>').find('table');
-
-            // function initParam(params) {
-            //     let queryJson = {
-            //         sourceType: sourceType,
-            //         pId: parentid
-            //     };
-            //     if ($('#chosen').is(':checked')) {
-            //         queryJson['bt'] = 1;
-            //     }
-            //     if ($('#configPath').is(':checked')) {
-            //         queryJson['config'] = 1;
-            //     }
-            //     queryJson['count'] = params.limit;    // 每页显示条数
-            //     queryJson['first'] = params.offset;   // 显示条数
-            //     queryJson['sort'] = params.sort;      // 排序列名
-            //     queryJson['order'] = params.order;     // 排位命令（desc，asc）
-            //     return queryJson;
-            // }
-
+            let sourceType = row.sourceType;
+            let modelCode = row.modelCode;
+            let cur_table = $detail.html('<table></table>').find('table');
             $subTable = $(cur_table);
             $subTable.bootstrapTable({
-                url: ctx + 'modelCheck/list',
+                url: ctx + 'modelCheck/modelCheckList',
                 striped: true,
-                method: 'POST', // 请求方法
+                method: 'get', // 请求方法
+                queryParams: {
+                    sourceType: sourceType,
+                    modelCode: modelCode,
+                },
                 cache: false,  // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
                 pagination: false,                   // 是否显示分页（*）
                 sortable: true,                     // 是否启用排序
                 sortOrder: "asc",                   // 排序方式
-                uniqueId: "id",
                 idField: 'id',
                 sortName: 'id',
                 uniqueId: "id",                 // 每一行的唯一标识，一般为主键列
@@ -318,13 +254,13 @@
                         title: '结果分析'
                     }
                 ],
-                onExpandRow: function (index, row, $detail) {
-                    childTable(index, row, $detail);
-                },
             });
         }
 
 
+        /**
+         * 单数据集查询
+         */
         $simple_table.bootstrapTable({
             url: ctx + 'modelCheck/list',
             height: $(window).height(),
