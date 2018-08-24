@@ -103,6 +103,7 @@ public class HlhtZlczjlSxjlServiceImpl implements HlhtZlczjlSxjlService {
         for (MbzDataListSet dataListSet : dataListSets) {
             EmrQtbljlk qtbljlk = new EmrQtbljlk();
             qtbljlk.setBldm(dataListSet.getModelCode());
+            qtbljlk.setYxjl(1);
             qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
             qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
             //2.根据模板代码去找到对应的病人病历

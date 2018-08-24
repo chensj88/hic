@@ -100,6 +100,17 @@ public class HicHelper {
                     //格式：636467930400000000`2017-11-20,16:44
                     String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
+                    if(StringUtil.hasChinese(dateStr)){
+                        if(dateStr.contains("年")){
+                            dateStr = dateStr.replace("年","-");
+                        }
+                        if(dateStr.contains("月")){
+                            dateStr = dateStr.replace("月","-");
+                        }
+                        if(dateStr.contains("日")){
+                            dateStr = dateStr.replace("日","");
+                        }
+                    }
                     if(dateStr.length()<=10) {
                         pattern="yyyy-MM-dd";
                     }

@@ -116,6 +116,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
                 //查询病历数据 数据来源
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
+                qtbljlk.setYxjl(1);
                 qtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
                 qtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkService.getEmrQtbljlkList(qtbljlk);

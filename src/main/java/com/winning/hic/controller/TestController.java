@@ -32,9 +32,9 @@ public class TestController extends BaseController {
         return result;
     }
 
-    @GetMapping(value = "/test/ryjl")
-    @ApiOperation(value="/test/ryjl",notes = "24H出入院接口表数据抽取测试")
-    public Map<String, Object> testRYJL() throws IOException, ParseException {
+    @GetMapping(value = "/test/24ryjl")
+    @ApiOperation(value="/test/24ryjl",notes = "24H出入院接口表数据抽取测试")
+    public Map<String, Object> test24RYJL() throws IOException, ParseException {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -43,6 +43,19 @@ public class TestController extends BaseController {
         result.put("data", super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(entity));
         return result;
     }
+
+    @GetMapping(value = "/test/ryjl")
+    @ApiOperation(value="/test/ryjl",notes = "入院记录接口表数据抽取测试")
+    public Map<String, Object> testRYJL() throws IOException, ParseException {
+        MbzDataCheck entity = new MbzDataCheck();
+        entity.getMap().put("startDate","20170701");
+        entity.getMap().put("endDate","20180824");
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", super.getFacade().getHlhtRyjlJbxxService().interfaceHlhtRyjlJbxx(entity));
+        return result;
+    }
+
 
     @GetMapping(value = "/test/ryswjl")
     @ApiOperation(value="/test/ryswjl",notes = "入院死亡记录表数据抽取测试")

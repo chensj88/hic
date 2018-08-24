@@ -104,6 +104,7 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
                     //查询病历
                     EmrQtbljlk qtbljlk = new EmrQtbljlk();
                     qtbljlk.setBldm(mbzDataListSet.getModelCode());
+                    qtbljlk.setYxjl(1);
                     qtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
                     qtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
                     List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);

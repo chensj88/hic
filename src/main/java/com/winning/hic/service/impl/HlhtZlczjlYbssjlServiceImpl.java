@@ -101,6 +101,7 @@ public class HlhtZlczjlYbssjlServiceImpl implements  HlhtZlczjlYbssjlService {
                 //2.根据首次病程去找到对应的病人病历
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
+                qtbljlk.setYxjl(1);
                 qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
                 qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
