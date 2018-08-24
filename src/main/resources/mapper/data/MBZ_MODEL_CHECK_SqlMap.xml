@@ -60,9 +60,9 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(id != null and id != '')">#{id , jdbcType= VARCHAR },</if>
             <if test="(pId != null and pId != '')">#{pId , jdbcType= VARCHAR },</if>
-            <if test="(sourceType != null and sourceType != '')">#{sourceType, jdbcType= VARCHAR}</if>
+            <if test="(sourceType != null and sourceType != '')">#{sourceType, jdbcType= VARCHAR},</if>
             <if test="(level != null and level != '')">#{level , jdbcType= INTEGER },</if>
-            <if test="(modelCode != null and modelCode != '')">#{modelCode , jdbcType= VARCHAR}</if>
+            <if test="(modelCode != null and modelCode != '')">#{modelCode , jdbcType= VARCHAR},</if>
             <if test="(qrmbdm != null and qrmbdm != '')">#{qrmbdm , jdbcType= VARCHAR },</if>
             <if test="(colummName != null and colummName != '')">#{colummName , jdbcType= VARCHAR },</if>
             <if test="(type != null and type != '')">#{type , jdbcType= INTEGER },</if>
@@ -161,6 +161,53 @@
         WHERE
         t.DICT_CODE='platformTableName'
     </select>
+
+    <select id="selectModelListBySourceType" resultMap="mbzModelCheckResult"
+            parameterType="com.winning.hic.model.MbzModelCheck">
+        SELECT
+            t.SOURCE_TYPE AS SOURCE_TYPE,
+            t.MODEL_CODE AS MODEL_CODE,
+            t.MODEL_NAME AS COLUMM_NAME
+        FROM
+            MBZ_DATA_LIST_SET t
+        WHERE
+            t.SOURCE_TYPE = #{sourceType}
+    </select>
+
+    <insert id="innitModelCheckData">
+        INSERT INTO MBZ_MODEL_CHECK
+        (
+          SOURCE_TYPE,
+          P_ID,
+          LEVEL,
+          MODEL_CODE,
+          COLUMM_NAME,
+          TYPE,
+          DTJDDM,
+          QRMBDM,
+          QRDXDM,
+          YZJDDM,
+          STATUS
+        )
+        SELECT
+           t.SOURCE_TYPE AS SOURCE_TYPE,
+           m.ID AS P_ID,
+           3 AS LEVEL,
+           t.MODEL_CODE AS MODEL_CODE,
+           m.RECORD_NAME AS COLUMM_NAME,
+           m.DATA_TYPE AS TYPE,
+           m.DTJDDM AS DTJDDM,
+           m.QRMBDM AS QRMBDM,
+           m.QRDXDM AS QRDXDM,
+           m.YZJDDM AS YZJDDM,
+           0 AS STATUS
+        FROM
+            MBZ_DATA_LIST_SET t,
+            MBZ_DATA_SET m
+        WHERE
+            t.SOURCE_TYPE = m.SOURCE_TYPE
+        AND m.P_ID != 0
+    </insert>
 
 
 </mapper>

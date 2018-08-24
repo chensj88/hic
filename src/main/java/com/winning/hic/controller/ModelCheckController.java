@@ -1,14 +1,17 @@
 package com.winning.hic.controller;
 
+import com.winning.hic.base.utils.StringUtil;
+import com.winning.hic.model.EmrMbk;
+import com.winning.hic.model.MbzDictInfo;
 import com.winning.hic.model.MbzModelCheck;
 import com.winning.hic.service.MbzModelCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 模板校验Controller
@@ -22,7 +25,20 @@ public class ModelCheckController extends BaseController {
     private MbzModelCheckService mbzModelCheckService;
 
     @RequestMapping("/modelCheck/index")
-    public String index() {
+    public String index(Model model) {
+        //清库
+        getFacade().getMbzModelCheckService().removeMbzModelCheck(new MbzModelCheck());
+        //数据初始化
+        getFacade().getMbzModelCheckService().innitModelCheckData();
+        //获取去模板总数
+        Integer emrMbkCount = getFacade().getEmrMbkService().getEmrMbkCount(new EmrMbk());
+        //从字典表获取数据集
+        MbzDictInfo mbzDictInfo = new MbzDictInfo();
+        mbzDictInfo.setDictCode("platformTableName");
+        List<MbzDictInfo> mbzDictInfoList = getFacade().getMbzDictInfoService().getMbzDictInfoList(mbzDictInfo);
+        resultMap.put("num", emrMbkCount);
+        resultMap.put("dataSet", mbzDictInfoList);
+        model.addAllAttributes(resultMap);
         return "/modelCheck/modelCheck";
     }
 
@@ -31,6 +47,28 @@ public class ModelCheckController extends BaseController {
     public List<MbzModelCheck> list(MbzModelCheck mbzModelCheck) {
         //获取数据集目录
         List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.selectDataSet();
+        return mbzModelCheckList;
+    }
+
+    @RequestMapping("/modelCheck/modelList")
+    @ResponseBody
+    public List<MbzModelCheck> modelList(MbzModelCheck mbzModelCheck) {
+        if (StringUtil.isEmptyOrNull(mbzModelCheck.getSourceType())) {
+            return null;
+        }
+        //获取数据集目录
+        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.selectModelListBySourceType(mbzModelCheck);
+        return mbzModelCheckList;
+    }
+
+    @RequestMapping("/modelCheck/modelCheckList")
+    @ResponseBody
+    public List<MbzModelCheck> modelCheckList(MbzModelCheck mbzModelCheck) {
+        if (StringUtil.isEmptyOrNull(mbzModelCheck.getSourceType())) {
+            return null;
+        }
+        //获取数据集目录
+        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.getMbzModelCheckList(mbzModelCheck);
         return mbzModelCheckList;
     }
 
