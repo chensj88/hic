@@ -282,6 +282,8 @@
     $("#handDataLoad").click(function(){
         var startDate =$("#startDate").val();
         var endDate =$("#endDate").val();
+        var orgCode =$("#orgCode").val();
+        var orgName =$("#orgName").val();
         if(startDate ==null || startDate ==''){
             toastr.warning('开始时间不能为空');
             return false;
@@ -294,6 +296,15 @@
             toastr.warning("开始时间不能大于结束时间");
             return false;
         }
+        if(orgCode ==null || orgCode ==''){
+            toastr.warning("医院代码不能为空");
+            return false;
+        }
+        if(orgName ==null || orgName ==''){
+            toastr.warning("医院名称不能为空");
+            return false;
+        }
+
 
         $.ajax({
             type: "POST",
