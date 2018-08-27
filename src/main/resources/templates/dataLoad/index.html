@@ -98,7 +98,7 @@
                                 <div class="form-group">
                                     <label >开始日期</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" id="startDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 150px;"/>
+                                        <input type="text" id="startDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;"/>
                                         <span class="input-group-addon">
                                                             <i class="ace-icon fa fa-calendar"></i>
                                                         </span>
@@ -107,7 +107,7 @@
                                 <div class="form-group">
                                     <label> 结束日期</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" id="endDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 150px;">
+                                        <input type="text" id="endDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;">
                                         <span class="input-group-addon">
                                                             <i class="ace-icon fa fa-calendar"></i>
                                                         </span>
@@ -314,7 +314,8 @@
             toastr.warning("开始时间不能大于结束时间");
             return false;
         }
-
+        startDate =startDate+" 00:00:00";
+        endDate =endDate+" 23:59:59";
         $.ajax({
             type: "POST",
             url:"startLoad",
