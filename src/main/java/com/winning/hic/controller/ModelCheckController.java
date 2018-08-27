@@ -2,6 +2,7 @@ package com.winning.hic.controller;
 
 import com.winning.hic.base.utils.StringUtil;
 import com.winning.hic.model.EmrMbk;
+import com.winning.hic.model.MbzDataListSet;
 import com.winning.hic.model.MbzDictInfo;
 import com.winning.hic.model.MbzModelCheck;
 import com.winning.hic.service.MbzModelCheckService;
@@ -27,7 +28,7 @@ public class ModelCheckController extends BaseController {
     @RequestMapping("/modelCheck/index")
     public String index(Model model) {
         //清库
-        getFacade().getMbzModelCheckService().removeMbzModelCheck(new MbzModelCheck());
+        //getFacade().getMbzModelCheckService().removeMbzModelCheck(new MbzModelCheck());
         //数据初始化
         getFacade().getMbzModelCheckService().innitModelCheckData();
         //获取去模板总数
@@ -36,17 +37,24 @@ public class ModelCheckController extends BaseController {
         MbzDictInfo mbzDictInfo = new MbzDictInfo();
         mbzDictInfo.setDictCode("platformTableName");
         List<MbzDictInfo> mbzDictInfoList = getFacade().getMbzDictInfoService().getMbzDictInfoList(mbzDictInfo);
+        List<MbzDataListSet> modelList = getFacade().getMbzDataListSetService().getMbzDataListSetList(new MbzDataListSet());
         resultMap.put("num", emrMbkCount);
         resultMap.put("dataSet", mbzDictInfoList);
+        resultMap.put("modelList", modelList);
         model.addAllAttributes(resultMap);
         return "/modelCheck/modelCheck";
     }
 
+    /**
+     * 数据集
+     * @param mbzModelCheck
+     * @return
+     */
     @RequestMapping("/modelCheck/list")
     @ResponseBody
     public List<MbzModelCheck> list(MbzModelCheck mbzModelCheck) {
         //获取数据集目录
-        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.selectDataSet();
+        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.selectDataSet(mbzModelCheck);
         return mbzModelCheckList;
     }
 

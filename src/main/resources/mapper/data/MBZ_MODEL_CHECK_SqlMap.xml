@@ -160,6 +160,7 @@
         MBZ_DICT_INFO t
         WHERE
         t.DICT_CODE='platformTableName'
+        <if test="(sourceType != null and sourceType != '')">AND t.DICT_VALUE =#{sourceType}</if>
     </select>
 
     <select id="selectModelListBySourceType" resultMap="mbzModelCheckResult"
@@ -200,13 +201,22 @@
            m.QRMBDM AS QRMBDM,
            m.QRDXDM AS QRDXDM,
            m.YZJDDM AS YZJDDM,
-           0 AS STATUS
+           null AS STATUS
         FROM
             MBZ_DATA_LIST_SET t,
             MBZ_DATA_SET m
         WHERE
             t.SOURCE_TYPE = m.SOURCE_TYPE
         AND m.P_ID != 0
+        AND NOT EXISTS
+        ( SELECT 1
+          FROM MBZ_MODEL_CHECK c
+          where
+          t.MODEL_CODE=c.MODEL_CODE
+          AND
+          t.SOURCE_TYPE=c.SOURCE_TYPE
+          AND
+          m.ID=c.P_ID)
     </insert>
 
 

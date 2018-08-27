@@ -36,7 +36,7 @@ public interface MbzModelCheckDao {
 
     public List<MbzModelCheck> selectMbzModelCheckPageList(MbzModelCheck mbzModelCheck) throws DataAccessException;
 
-    public List<MbzModelCheck> selectDataSet();
+    public List<MbzModelCheck> selectDataSet(MbzModelCheck mbzModelCheck);
 
     public List<MbzModelCheck> selectModelListBySourceType(MbzModelCheck mbzModelCheck);
 

@@ -54,8 +54,8 @@ public class MbzModelCheckServiceImpl implements MbzModelCheckService {
     }
 
     @Override
-    public List<MbzModelCheck> selectDataSet() {
-        return this.mbzModelCheckDao.selectDataSet();
+    public List<MbzModelCheck> selectDataSet(MbzModelCheck mbzModelCheck) {
+        return this.mbzModelCheckDao.selectDataSet(mbzModelCheck);
     }
 
     @Override
