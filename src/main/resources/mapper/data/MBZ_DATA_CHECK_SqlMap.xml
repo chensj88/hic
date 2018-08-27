@@ -69,6 +69,7 @@
         delete from  MBZ_DATA_CHECK
         <where>
             <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE = #{sourceType , jdbcType= INTEGER } </if>
             <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
                 and (ID) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
