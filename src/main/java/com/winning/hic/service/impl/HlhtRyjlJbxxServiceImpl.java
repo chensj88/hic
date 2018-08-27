@@ -127,11 +127,11 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                     Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtRyjlJbxx.class);
                     try {
                         hlhtRyjlJbxx = (HlhtRyjlJbxx) HicHelper.initModelValue(mbzDataSetList, document, hlhtRyjlJbxx, paramTypeMap);
-                    } catch (ParseException e) {
+                        logger.info("Model:{}", hlhtRyjlJbxx);
+                        this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    logger.info("Model:{}", hlhtRyjlJbxx);
-                    this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
                     real_count++;
                 }
             }

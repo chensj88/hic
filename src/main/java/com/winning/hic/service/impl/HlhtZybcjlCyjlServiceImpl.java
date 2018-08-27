@@ -82,8 +82,8 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
     public List<MbzDataCheck> interfaceHlhtZybcjlCyjl(MbzDataCheck t) {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
-        int emr_count =0;//病历数量
-        int real_count=0;//实际数量
+        int emr_count = 0;//病历数量
+        int real_count = 0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE);
@@ -96,11 +96,11 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
         for (MbzDataListSet dataListSet : dataListSets) {
             EmrQtbljlk qtbljlk = new EmrQtbljlk();
             qtbljlk.setBldm(dataListSet.getModelCode());
-            qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
-            qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
+            qtbljlk.getMap().put("startDate", t.getMap().get("startDate"));
+            qtbljlk.getMap().put("endDate", t.getMap().get("endDate"));
             //2.根据模板代码去找到对应的病人病历
             List<HlhtZybcjlCyjl> hlhtRyjlJbxxListFromBaseData = this.hlhtZybcjlCyjlDao.getHlhtZybcjlCyjlListFromBaseData(qtbljlk);
-            emr_count = emr_count+hlhtRyjlJbxxListFromBaseData.size();
+            emr_count = emr_count + hlhtRyjlJbxxListFromBaseData.size();
             if (hlhtRyjlJbxxListFromBaseData != null) {
                 for (HlhtZybcjlCyjl hlhtZybcjlCyjl : hlhtRyjlJbxxListFromBaseData) {
                     EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
@@ -120,17 +120,18 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
                     Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlCyjl.class);
                     try {
                         hlhtZybcjlCyjl = (HlhtZybcjlCyjl) HicHelper.initModelValue(mbzDataSetList, document, hlhtZybcjlCyjl, paramTypeMap);
-                    } catch (ParseException e) {
+                        logger.info("Model:{}", hlhtZybcjlCyjl);
+                        this.hlhtZybcjlCyjlDao.insertHlhtZybcjlCyjl(hlhtZybcjlCyjl);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    logger.info("Model:{}", hlhtZybcjlCyjl);
-                    this.hlhtZybcjlCyjlDao.insertHlhtZybcjlCyjl(hlhtZybcjlCyjl);
+
                     real_count++;
                 }
             }
         }
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count, real_count, Integer.parseInt(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE));
 
         return mbzDataChecks;
     }
