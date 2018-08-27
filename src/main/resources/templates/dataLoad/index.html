@@ -18,9 +18,12 @@
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>-->
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>-->
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>-->
+    <link rel="stylesheet" th:href="@{/assets/css/chosen.css}"/>
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datepicker3.min.css}">
-    <link rel="stylesheet" th:href="@{/bootstrap/toastr/css/toastr.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datepicker3.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/toastr/css/toastr.min.css}"/>
+
+
     <style>
         .input-length{
             width: 150px;
@@ -75,19 +78,27 @@
                             <form class="form-inline">
 
                                 <div class="form-group">
-                                    <label for="orgCode">机构代码</label>
+                                    <label for="orgCode">医院代码</label>
                                     <input type="text" class="form-control input-sm input-length" id="orgCode" th:value="${orgCode}"
                                            placeholder="请输入机构代码" style="width: 150px;"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="orgName">机构名称</label>
+                                    <label for="orgName">医院名称</label>
                                     <input type="text" class="form-control input-sm input-length" id="orgName" th:value="${orgName}"
                                            placeholder="请输入机构名称" style="width: 150px;"/>
                                 </div>
                                 <div class="form-group">
+                                        <label for="orgName">数据子集</label>
+                                        <select class="form-control input-sm input-length" name="data_set" id="data_set" style="width: 200px;">
+                                            <option value="0">-----全部-----</option>
+                                            <option th:each="list:${dataSet}" th:value="${list.dictValue}"
+                                                    th:text="${list.dictLabel }"></option>
+                                        </select>
+                                </div>
+                                <div class="form-group">
                                     <label >开始日期</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" id="startDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 150px;"/>
+                                        <input type="text" id="startDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;"/>
                                         <span class="input-group-addon">
                                                             <i class="ace-icon fa fa-calendar"></i>
                                                         </span>
@@ -96,7 +107,7 @@
                                 <div class="form-group">
                                     <label> 结束日期</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" id="endDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 150px;">
+                                        <input type="text" id="endDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;">
                                         <span class="input-group-addon">
                                                             <i class="ace-icon fa fa-calendar"></i>
                                                         </span>
@@ -129,12 +140,11 @@
 <script th:src="@{/bootstrap/js/bootstrap-datepicker.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-datepicker.zh-CN.min.js}"></script>
 <script th:src="@{/bootstrap/toastr/js/toastr.min.js}"></script>
-
 <!--ace-->
 <script th:src="@{/assets/js/ace-elements.min.js}"></script>
 <script th:src="@{/assets/js/ace.min.js}"></script>
 <script th:src="@{/assets/js/ace-extra.min.js}"></script>
-
+<script th:src="@{/assets/js/chosen.jquery.min.js}"></script>
 
 <script th:inline="javascript" type="text/javascript">
 
@@ -157,6 +167,8 @@
             "showMethod":"fadeIn",//显示时的动画方式
             "hideMethod":"fadeOut"//消失时的动画方式
         };
+
+
 
         //机构代码和机构名称
         $("#orgCode").blur(function () {
@@ -184,13 +196,13 @@
             });
         });
         $(".hasDatepicker").datepicker({
-
+            autoclose: true,
             language:"zh-CN",
             todayHighlight: true,
             minView:2,//最精准的时间选择为日期0-分 1-时 2-日 3-月
             weekStart:1
-        });
 
+        });
 
         $table.bootstrapTable({
             url: ctx + 'modelCheck/list',
@@ -280,6 +292,16 @@
         var endDate =$("#endDate").val();
         var orgCode =$("#orgCode").val();
         var orgName =$("#orgName").val();
+        var data_set =$("#data_set").val();
+        if(orgCode ==null || orgCode ==''){
+            toastr.warning("医院代码不能为空");
+            return false;
+        }
+        if(orgName ==null || orgName ==''){
+            toastr.warning("医院名称不能为空");
+            return false;
+        }
+
         if(startDate ==null || startDate ==''){
             toastr.warning('开始时间不能为空');
             return false;
@@ -292,20 +314,12 @@
             toastr.warning("开始时间不能大于结束时间");
             return false;
         }
-        if(orgCode ==null || orgCode ==''){
-            toastr.warning("医院代码不能为空");
-            return false;
-        }
-        if(orgName ==null || orgName ==''){
-            toastr.warning("医院名称不能为空");
-            return false;
-        }
-
-
+        startDate =startDate+" 00:00:00";
+        endDate =endDate+" 23:59:59";
         $.ajax({
             type: "POST",
             url:"startLoad",
-            data:{startDate:startDate,endDate:endDate},
+            data:{startDate:startDate,endDate:endDate,data_set:data_set},
             cache : false,
             dataType:"json",
             async: false,

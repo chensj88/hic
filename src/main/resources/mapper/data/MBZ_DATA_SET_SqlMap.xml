@@ -84,10 +84,10 @@
                 <if test="(pyCode != null and pyCode != '')"> PY_CODE = #{pyCode , jdbcType= VARCHAR }, </if>
                 <if test="(dictCode != null )"> DICT_CODE = #{dictCode , jdbcType= VARCHAR }, </if>
                 <if test="(dataType != null and dataType != '')"> DATA_TYPE = #{dataType , jdbcType= INTEGER }, </if>
-                <if test="(dtjddm != null and dtjddm != '')"> DTJDDM = #{dtjddm , jdbcType= VARCHAR }, </if>
-                <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM = #{qrmbdm , jdbcType= VARCHAR }, </if>
-                <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM = #{qrdxdm , jdbcType= VARCHAR }, </if>
-                <if test="(yzjddm != null and yzjddm != '')"> YZJDDM = #{yzjddm , jdbcType= VARCHAR }, </if>
+                <if test="(dtjddm != null)"> DTJDDM = #{dtjddm , jdbcType= VARCHAR }, </if>
+                <if test="(qrmbdm != null)"> QRMBDM = #{qrmbdm , jdbcType= VARCHAR }, </if>
+                <if test="(qrdxdm != null)"> QRDXDM = #{qrdxdm , jdbcType= VARCHAR }, </if>
+                <if test="(yzjddm != null)"> YZJDDM = #{yzjddm , jdbcType= VARCHAR }, </if>
                 <if test="(bt != null and bt != '')"> BT = #{bt , jdbcType= INTEGER }, </if>
                 <if test="(dataLength != null and dataLength != '')"> DATA_LENGTH = #{dataLength , jdbcType= BIGINT }, </if>
             </trim>
