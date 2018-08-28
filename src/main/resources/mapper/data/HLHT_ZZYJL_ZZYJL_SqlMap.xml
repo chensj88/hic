@@ -319,7 +319,7 @@
         'N' AS jkkh,
         ISNULL(CONVERT (VARCHAR,(o.GHXH)),'N') AS mjzh,
         b.ZYHM AS zyh,
-        ISNULL(CONVERT (VARCHAR,(o.GHLB)),'N') AS jzlb,
+        ISNULL(CONVERT (VARCHAR,(o.GHLB)),'2') AS jzlb,
         b.HZXM AS hzxm,
         b.SFZH AS sfzhm,
         b.BRXB AS xbdm,

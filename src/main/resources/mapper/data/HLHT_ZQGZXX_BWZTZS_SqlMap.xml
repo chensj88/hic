@@ -283,7 +283,7 @@
             ISNULL(b.ZYHM, 'N')                       AS zyh,
             ISNULL(
                     CONVERT(VARCHAR, (o.GHLB)),
-                    'N'
+                    '2'
             )                                         AS jzlb,
             ISNULL(q.QTBLJLXH, 'N')                   AS tysbh,
             ISNULL(c.KSDM, 'N')                       AS ksdm,
