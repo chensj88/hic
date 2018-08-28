@@ -103,6 +103,8 @@ public class HicHelper {
                     dateStr=dateStr.trim();
                     if(dateStr.length()<=10) {
                         pattern="yyyy-MM-dd";
+                    }else{
+                        dateStr=dateStr.concat(":00").substring(0,18);
                     }
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {
