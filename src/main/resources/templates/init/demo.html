@@ -334,7 +334,8 @@
                         align: 'left',
                         width: '210px',
                         formatter:function(value,row,index){
-                          return `<span>${value}</span> <span class="pull-right" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}')"><i class="glyphicon glyphicon-plus"></i> </span>`;
+                          return `<span>${value}</span> <span class="pull-right" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}')"><i class="glyphicon glyphicon-plus"></i> </span>`
+                              +'<span class="pull-right" onclick="openAddWindow(\'${row.pid}\',\'${row.recordName}\',\'${index}\',\'${row.sourceType}\',\'${row.dataType}\',\'${row.dtjddm}\')"><i class="glyphicon glyphicon-remove"></i> </span>';
                         }
                     },
                     {
