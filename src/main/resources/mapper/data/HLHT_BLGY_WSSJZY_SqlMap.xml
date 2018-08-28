@@ -118,7 +118,7 @@
 								t.HZXM AS hzxm,
 								ISNULL(CONVERT (VARCHAR,(t.GHXH)),'N') AS mjzh,
                 ISNULL(tt.zyh,'N') AS zyh,
-								ISNULL(CONVERT (VARCHAR,(t.GHLB)),'N') AS jzlb,
+								ISNULL(CONVERT (VARCHAR,(t.GHLB)),'2') AS jzlb,
 								ISNULL(tt.sfzhm, 'N') AS sfzhm,
                 b.BRXB AS xbdm,
 								c.SEX AS xbmc,

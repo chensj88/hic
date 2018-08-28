@@ -105,10 +105,30 @@ public class XmlUtil {
                 if (id != null && elementID.equals(id)) {
                     return element;
                 }
-                element = getElementById(element, elementID);
-                if (element != null) {
+//                element = getElementById(element, elementID);
+//                if (element != null) {
+//                    return element;
+//                }
+            }
+        }
+        return null;
+    }
+
+    public static Element getElementByAttr(Element param, String attrName, String value) {
+        int i = 0;
+        for (int size = param.nodeCount(); i < size; ++i) {
+            Node node = param.node(i);
+            if (node instanceof Element) {
+                Element element = (Element) node;
+                String val = element.attribute(attrName) == null ? null : element.attribute(attrName).getValue();
+                if (val != null && value.equals(val)) {
                     return element;
                 }
+                //以下代码会查找节点下所有子节点
+//                element = getElementByAttr(element, attrName, value);
+//                if (element != null) {
+//                    return element;
+//                }
             }
         }
         return null;

@@ -31,7 +31,7 @@ public class ModelCheckUtil {
     public static final String atomNodeType = "AtomNode";
 
     public static void main(String[] args) {
-        InputStream in = com.winning.hic.base.utils.DomUtils.class.getClassLoader().getResourceAsStream("24hcryjl.xml");
+        InputStream in = com.winning.hic.base.utils.DomUtils.class.getClassLoader().getResourceAsStream("swjl.xml");
         System.out.println(in);
         SAXReader reader = new SAXReader();
         Document document = null;
@@ -43,11 +43,11 @@ public class ModelCheckUtil {
 
         Element rootElement = document.getRootElement();
         MbzModelCheck info = new MbzModelCheck();
-        info.setDtjddm("2079e311-fddc-488e-955a-e5dc61e18c35");
-        info.setQrmbdm(null);
-        info.setQrdxdm(null);
+        info.setDtjddm("69847544-7127-4a32-ab47-d306240e9fa8");
+        info.setQrmbdm("38948231-d584-41a0-ae65-5593c37e540a");
+        info.setQrdxdm("043a2b65-84f2-456e-850c-ae42173ed904");
         info.setYzjddm(null);
-        System.out.println(checkNode(rootElement, info));
+        checkNode(rootElement, info);
     }
 
     public static Document getDocument(String xmlStr) {
@@ -61,20 +61,18 @@ public class ModelCheckUtil {
     }
 
     /**
-     * 根据MbzDataSet获取值信息
-     * 备注：MbzDataSet中dictInfo字段作为取值界限参数，存在则取code，反之则取value
+     * 根据校验规则校验
      *
      * @param document
      * @param info
      * @return
      */
-    public static String getAttrValueByDataSet(Document document, MbzModelCheck info) {
+    public static void checkByModelCheck(Document document, MbzModelCheck info) {
         Element rootElement = document.getRootElement();
-        return checkNode(rootElement, info);
+        checkNode(rootElement, info);
     }
 
-    public static String checkNode(Element rootElement, MbzModelCheck info) {
-        StringBuilder result = new StringBuilder();
+    public static void checkNode(Element rootElement, MbzModelCheck info) {
         //文件结构id
         String dtjddm = info.getDtjddm();
         //基础模板id
@@ -85,153 +83,78 @@ public class ModelCheckUtil {
         String yzjddm = info.getYzjddm();
         if (StringUtil.isEmptyOrNull(dtjddm)) {
             //缺失文件结构id或字段未配置
-            result.append("字段未配置！");
-            return result.toString();
+            info.setStatus(1);
+            info.setErrorDesc("字段未配置");
+            return;
         }
         //获取文件结构节点
-        List<Element> nodeChildList = rootElement.elements(nodeTagName);
-        //定义需要的node子节点（文件结构）
-        Element dynamicModelNode = null;
-        //遍历所有的子节点,找到需要文件结构节点
-        for (Element childEle : nodeChildList) {
-            Attribute idAttr = childEle.attribute(idAttrName);
-            if (idAttr != null && info.getDtjddm().equals(idAttr.getValue())) {
-                //当node节点的id为文件结构id时，获取文件结构节点
-                dynamicModelNode = childEle;
-                break;
-            }
-        }
+        Element dynamicModelNode = XmlUtil.getElementByAttr(rootElement, idAttrName, dtjddm);
         if (dynamicModelNode == null) {
             //文件结构不存在
-            result.append("缺少节点");
-            return result.toString();
+            info.setStatus(1);
+            info.setErrorDesc("缺少文件结构节点");
+            return;
         }
-        StringBuilder builder = new StringBuilder();
         //遍历文件结构的子节点
         List<Element> dynamicChildNodeList = dynamicModelNode.elements(nodeTagName);
         //基础模板节点
         Element embededNode = null;
-        if (qrmbdm != null) {
-            //当模板id存在是，校验基础模板节点
+        if (!StringUtil.isEmptyOrNull(qrmbdm)) {
+            //当模板id存在时，校验基础模板节点
             for (Element element : dynamicChildNodeList) {
                 Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
                 if (nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())) {
-                    embededNode = checkRefNode(rootElement, element.attribute(refidAttrName).getValue(), info);
+                    embededNode = getEmbededNode(rootElement, element.attribute(refidAttrName).getValue(), qrmbdm);
                 }
             }
-        }
-        if (embededNode == null) {
-            //文件结构不存在
-            result.append("缺少基础模板节点");
-            return result.toString();
+            if (embededNode == null) {
+                //文件结构不存在
+                info.setStatus(1);
+                info.setErrorDesc("缺少基础模板节点");
+                return;
+            }
         }
         //元数据节点
-        Element objectNode = XmlUtil.getElementById(embededNode, qrdxdm);
-        if (objectNode == null) {
-            //文件结构不存在
-            result.append("缺少元数据节点");
-            return result.toString();
+        Element objectNode = null;
+        if (!StringUtil.isEmptyOrNull(qrdxdm)) {
+            objectNode = XmlUtil.getElementByAttr(embededNode, idAttrName, qrdxdm);
+            if (objectNode == null) {
+                //文件结构不存在
+                info.setStatus(1);
+                info.setErrorDesc("缺少元数据节点");
+                return;
+            }
         }
+
 
         //原子节点节点
-        Element atomNode = XmlUtil.getElementById(objectNode, yzjddm);
-        if (atomNode == null) {
-            //文件结构不存在
-            result.append("缺少原子节点节点");
-            return result.toString();
+        Element atomNode = null;
+        if (!StringUtil.isEmptyOrNull(yzjddm)) {
+            atomNode = XmlUtil.getElementByAttr(objectNode, idAttrName, yzjddm);
+            if (atomNode == null) {
+                //文件结构不存在
+                info.setStatus(1);
+                info.setErrorDesc("缺少原子节点节点");
+                return;
+            }
         }
-
-        System.out.println(builder.toString());
-        return builder.toString();
+        info.setStatus(0);
     }
 
     /**
-     * 解析Ref引用节点
+     * 获取基础模板节点
      *
      * @param rootElement
      * @param refId
+     * @param id
      * @return
      */
-    private static Element checkRefNode(Element rootElement, String refId, MbzModelCheck info) {
-        StringBuilder builder = new StringBuilder();
+    private static Element getEmbededNode(Element rootElement, String refId, String id) {
         //获取所有的Ref元素
-        List<Element> refList = rootElement.elements(refTagName);
-        Element refElement = null;
-        //提取指定基础模板元素
-        for (Element element : refList) {
-            Attribute idAttr = element.attribute(idAttrName);
-            if (idAttr != null && refId.equals(idAttr.getValue())) {
-                refElement = element;
-            }
-        }
+        Element refElement = XmlUtil.getElementByAttr(rootElement, idAttrName, refId);
         //获取基础模板元素
-        Element refChildElement = refElement.element(nodeTagName);
-        return refChildElement;
-    }
-
-    /**
-     * 解析元数据节点
-     *
-     * @param objElement
-     * @return
-     */
-    private static String resolveObjectNode(Element objElement, MbzModelCheck info) {
-        StringBuilder builder = new StringBuilder();
-        List<Element> objectChildList = objElement.elements(nodeTagName);
-        for (Element element : objectChildList) {
-            //获取节点类型属性
-            Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
-            //获取节点ID属性
-            Attribute idAttr = element.attribute(idAttrName);
-            if (info.getYzjddm() == null) {
-                if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) {
-                    builder.append(element.attribute(textAttrName) == null ? "" : resolveString(element.attribute(textAttrName).getValue()));
-                } else if (nodeTypeAttr != null && atomNodeType.equals(nodeTypeAttr.getValue())) {
-                    builder.append(resolveAtomNode(element, info));
-                }
-            } else {
-                if (nodeTypeAttr != null && atomNodeType.equals(nodeTypeAttr.getValue())
-                        && idAttr != null
-                        && info.getYzjddm().equals(idAttr.getValue())) {
-                    builder.append(resolveAtomNode(element, info));
-                }
-            }
-
-        }
-        return builder.toString();
-    }
-
-    /**
-     * 解析获取原子节点数据
-     *
-     * @param node
-     * @return
-     */
-    public static String resolveAtomNode(Element node, MbzModelCheck info) {
-        String nodeValue = node.attribute(valueAttrName).getValue();
-        String[] split = nodeValue.split("`");
-        String value = null;
-        if (split.length >= 2) {
-//            if (!StringUtil.isEmptyOrNull(info.getDictCode())) {
-//                value = resolveString(split[0]);
-//            } else {
-//                value = resolveString(split[1].trim());
-//            }
-        } else if (split.length == 0) {
-            value = "";
-        } else if (split.length == 1) {
-            value = split[0];
-        }
-
-        return value;
-    }
-
-
-    public static String resolveString(String str) {
-        str = str.trim();
-        str = str.replaceAll(" ", "");
-        str = str.replaceAll("&#xA;", "");
-        return str;
+        Element embededElement = XmlUtil.getElementByAttr(refElement, idAttrName, id);
+        return embededElement;
     }
 
 }
