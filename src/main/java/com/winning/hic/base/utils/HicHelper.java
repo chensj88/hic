@@ -35,6 +35,8 @@ public class HicHelper {
      */
     public static Object initModelValue(List<MbzDataSet> mbzDataSets, Document document,
                                         Object obj, Map<String, String> paramTypeMap) throws ParseException {
+
+        String bltd ="";
         for (MbzDataSet dataSet : mbzDataSets) {
             //获取属性名
             String pyCode = dataSet.getPyCode();
@@ -168,7 +170,13 @@ public class HicHelper {
                     }
                     logger.info("pyCode:{};methodName:{};strValue:{};info:{}", pyCode, methodName, value,info);*/
                     logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, value);
-                    ReflectUtil.setParam(obj, methodName, value);
+                    if(dataSet.getSourceType().equals("6")&&pyCode.equals("bltd")){
+                        bltd =bltd+" "+value;
+                        ReflectUtil.setParam(obj, methodName, bltd);
+                    }else{
+                        ReflectUtil.setParam(obj, methodName, value);
+
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
