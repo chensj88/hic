@@ -28,7 +28,7 @@ public interface MbzModelCheckService {
 
     public List<MbzModelCheck> getMbzModelCheckPageList(MbzModelCheck mbzModelCheck);
 
-    public List<MbzModelCheck> selectDataSet();
+    public List<MbzModelCheck> selectDataSet(MbzModelCheck mbzModelCheck);
 
     public List<MbzModelCheck> selectModelListBySourceType(MbzModelCheck mbzModelCheck);
 
