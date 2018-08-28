@@ -19,8 +19,8 @@
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>-->
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>-->
     <link rel="stylesheet" th:href="@{/assets/css/chosen.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/datepicker.css}"/>
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datepicker3.min.css}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/toastr/css/toastr.min.css}"/>
 
 
@@ -100,7 +100,7 @@
                                     <div class="input-group input-group-sm">
                                         <input type="text" id="startDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;"/>
                                         <span class="input-group-addon">
-                                                            <i class="ace-icon fa fa-calendar"></i>
+                                                            <i class="fa fa-calendar bigger-110"></i>
                                                         </span>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                     <div class="input-group input-group-sm">
                                         <input type="text" id="endDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;">
                                         <span class="input-group-addon">
-                                                            <i class="ace-icon fa fa-calendar"></i>
+                                                            <i class="fa fa-calendar bigger-110"></i>
                                                         </span>
                                     </div>
                                 </div>
@@ -195,13 +195,12 @@
                 }
             });
         });
-        $(".hasDatepicker").datepicker({
-            autoclose: true,
+        $('.hasDatepicker').datepicker({
+            autoclose:true,
             language:"zh-CN",
-            todayHighlight: true,
-            minView:2,//最精准的时间选择为日期0-分 1-时 2-日 3-月
-            weekStart:1
-
+            todayHighlight: true
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
         });
 
         $table.bootstrapTable({
@@ -285,6 +284,7 @@
             ],
         });
     });
+
 
     //手动抽取数据
     $("#handDataLoad").click(function(){
