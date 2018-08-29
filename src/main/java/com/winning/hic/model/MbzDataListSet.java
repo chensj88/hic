@@ -9,11 +9,11 @@ import com.winning.hic.model.BaseDomain;
 
 
 /**
- * @author MBZ
+ * @author HLHT
  * @title 
  * @email Winning Health
  * @package com.winning.hic.model
- * @date 2018-23-25 12:23:50
+ * @date 2018-53-29 09:53:35
  */
 @Alias("mbzDataListSet")
 public class MbzDataListSet extends BaseDomain implements Serializable {
@@ -44,19 +44,18 @@ public class MbzDataListSet extends BaseDomain implements Serializable {
      * 默认值：无
      */
     private String modelName;
+    /**
+     * 字段名：SOURCE_PCODE
+     * 备注: 
+     * 默认值：无
+     */
+    private String sourcePcode;
 
     public MbzDataListSet (){
 
     }
 
-    public MbzDataListSet(String sourceType, String modelCode, String sourceName, String modelName) {
-        this.sourceType = sourceType;
-        this.modelCode = modelCode;
-        this.sourceName = sourceName;
-        this.modelName = modelName;
-    }
-
-    /**
+   /**
    * 字段名：SOURCE_TYPE
    * get方法
    * 备注: 
@@ -127,6 +126,24 @@ public class MbzDataListSet extends BaseDomain implements Serializable {
    */
    public void setModelName(String modelName){
         this.modelName = modelName;
+   }
+   /**
+   * 字段名：SOURCE_PCODE
+   * get方法
+   * 备注: 
+   */
+   public String getSourcePcode(){
+
+        return sourcePcode;
+   }
+
+   /**
+   * 字段名：SOURCE_PCODE
+   * set方法
+   * 备注: 
+   */
+   public void setSourcePcode(String sourcePcode){
+        this.sourcePcode = sourcePcode;
    }
 
 }

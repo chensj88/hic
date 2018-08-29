@@ -97,7 +97,7 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
         List<MbzDataListSet> mbzDataListSetList = mbzDataListSetDao.selectMbzDataListSetList(dataListSet);
 
         //加载实体类中字段(变量信息)
-        Map<String,String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlSqxj.class);
+        Map<String,String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlSwbltljl.class);
         try {
             if(mbzDataListSetList != null && mbzDataListSetList.size() > 0){
                 //循环配置模板病历信息
@@ -123,7 +123,7 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
                                 this.removeHlhtZybcjlSwbltljl(oldSwbltl);
                             }
                             swbltljl = new HlhtZybcjlSwbltljl();
-                            swbltljl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
+                            swbltljl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             swbltljl = this.commonQueryDao.selectInitHlhtZybcjlSwbltljl(swbltljl);
                             swbltljl = (HlhtZybcjlSwbltljl) HicHelper.initModelValue(mbzDataSetList,document,swbltljl,paramTypeMap);
                             this.createHlhtZybcjlSwbltljl(swbltljl);
