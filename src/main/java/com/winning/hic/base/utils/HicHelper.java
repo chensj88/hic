@@ -105,7 +105,10 @@ public class HicHelper {
                     dateStr=dateStr.trim();
                     if(dateStr.length()<=10) {
                         pattern="yyyy-MM-dd";
-                    } else if(dateStr.contains("yyyy-MM-dd")){
+                    } else if(dateStr.contains("yyyy-MM-dd HH:mm:00")){
+                        dateStr = dateStr.substring(0,19);
+                        pattern="yyyy-MM-dd HH:mm:ss";
+                    }else if(dateStr.contains("yyyy-MM-dd")){
                         dateStr = dateStr.substring(0,10);
                         pattern="yyyy-MM-dd";
                     }else{
