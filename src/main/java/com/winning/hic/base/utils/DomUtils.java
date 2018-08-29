@@ -250,7 +250,10 @@ public class DomUtils {
             if(s.equals(o)&&i<=2){
                 value =split_display[i+1] + value;
             }else if(s.equals(o)&&i>2){
-                value =value + split_display[i+1];
+                if(StringUtils.isEmpty(value)){
+                }else{
+                    value =value + split_display[i+1];
+                }
             }
         }
         return value;
