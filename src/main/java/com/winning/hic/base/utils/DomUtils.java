@@ -243,19 +243,21 @@ public class DomUtils {
             value = split[0];
         }
         String[] split_display=nodeDisplay.split("`");
-
-        for(int i=0;i<split_display[0].length();i++){
-            Character s = split_display[0].charAt(i);
-            Character o=new Character('0');
-            if(s.equals(o)&&i<=2){
-                value =split_display[i+1] + value;
-            }else if(s.equals(o)&&i>2){
-                if(StringUtils.isEmpty(value)){
-                }else{
-                    value =value + split_display[i+1];
+        if(StringUtils.isEmpty(info.getQrmbdm())){
+            for(int i=0;i<split_display[0].length();i++){
+                Character s = split_display[0].charAt(i);
+                Character o=new Character('0');
+                if(s.equals(o)&&i<=2){
+                    value =split_display[i+1] + value;
+                }else if(s.equals(o)&&i>2){
+                    if(StringUtils.isEmpty(value)){
+                    }else{
+                        value =value + split_display[i+1];
+                    }
                 }
             }
         }
+
         return value;
     }
 

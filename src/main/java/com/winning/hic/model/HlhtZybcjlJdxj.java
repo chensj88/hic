@@ -1,8 +1,8 @@
 package com.winning.hic.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.io.Serializable; 
+import java.io.Serializable;
+import java.sql.Date;
 
 import org.apache.ibatis.type.Alias; 
 
@@ -117,7 +117,7 @@ public class HlhtZybcjlJdxj extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Timestamp csrq;
+    private Date csrq;
     /**
      * 字段名：nls
      * 备注: 
@@ -602,7 +602,7 @@ public class HlhtZybcjlJdxj extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Timestamp getCsrq(){
+   public Date getCsrq(){
 
         return csrq;
    }
@@ -612,7 +612,7 @@ public class HlhtZybcjlJdxj extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setCsrq(Timestamp csrq){
+   public void setCsrq(Date csrq){
         this.csrq = csrq;
    }
    /**
