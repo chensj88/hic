@@ -39,6 +39,7 @@ public class MbzDataSetController extends BaseController {
     @ApiImplicitParam(name = "dataSet",value = "接口表",required = true,dataType = "MbzDataSet")
     @RequestMapping(value = "/basic/edit",method = RequestMethod.POST)
     public Map<String, Object> editMbzDataSetInfo(MbzDataSet dataSet,Integer status){
+        Map<String, Object> result = new HashMap<String, Object>();
         if (status == null ){
             if("null".equals(dataSet.getDtjddm())){
                 dataSet.setDtjddm(null);
@@ -52,12 +53,51 @@ public class MbzDataSetController extends BaseController {
             if("null".equals(dataSet.getYzjddm())){
                 dataSet.setYzjddm(null);
             }
-            getFacade().getMbzDataSetService().modifyMbzDataSet(dataSet);
+            MbzDataSet oldDataSet = new MbzDataSet();
+            oldDataSet.setPId(dataSet.getPId());
+            oldDataSet.setSourceType(dataSet.getSourceType());
+            oldDataSet.setDtjddm(dataSet.getDtjddm());
+            oldDataSet.setQrmbdm(dataSet.getQrmbdm());
+            oldDataSet.setQrdxdm(dataSet.getQrdxdm());
+            oldDataSet.setYzjddm(dataSet.getYzjddm());
+            int count = super.getFacade().getMbzDataSetService().getMbzDataSetCount(oldDataSet);
+            if(count >= 1){
+                result.put("status", Constants.ERROR);
+                result.put("msg", "当前字段配置数据已经存在，请修改!");
+                return result;
+            }else {
+                getFacade().getMbzDataSetService().modifyMbzDataSet(dataSet);
+            }
         }else{
             dataSet.setId(null);
-            getFacade().getMbzDataSetService().createMbzDataSet(dataSet);
+            if("null".equals(dataSet.getDtjddm())){
+                dataSet.setDtjddm(null);
+            }
+            if("null".equals(dataSet.getQrmbdm())){
+                dataSet.setQrdxdm(null);
+            }
+            if("null".equals(dataSet.getQrdxdm())){
+                dataSet.setQrdxdm(null);
+            }
+            if("null".equals(dataSet.getYzjddm())){
+                dataSet.setYzjddm(null);
+            }
+            MbzDataSet oldDataSet = new MbzDataSet();
+            oldDataSet.setPId(dataSet.getPId());
+            oldDataSet.setSourceType(dataSet.getSourceType());
+            oldDataSet.setDtjddm(dataSet.getDtjddm());
+            oldDataSet.setQrmbdm(dataSet.getQrmbdm());
+            oldDataSet.setQrdxdm(dataSet.getQrdxdm());
+            oldDataSet.setYzjddm(dataSet.getYzjddm());
+            int count = super.getFacade().getMbzDataSetService().getMbzDataSetCount(oldDataSet);
+            if(count >= 1){
+                result.put("status", Constants.ERROR);
+                result.put("msg", "当前字段配置数据已经存在，请修改!");
+                return result;
+            }else{
+                getFacade().getMbzDataSetService().createMbzDataSet(dataSet);
+            }
         }
-        Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         return result;
     }
@@ -108,6 +148,21 @@ public class MbzDataSetController extends BaseController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("data", getFacade().getMbzDataSetService().getNodeTreeFromMbzDataSet(dataSet));
+        return result;
+    }
+
+
+    @ApiOperation(value = "/basic/delete",notes = "删除选中数据")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "dataSet",value = "接口表",required = true,dataType = "MbzDataSet")
+            }
+    )
+    @PostMapping("/basic/delete")
+    public Map<String, Object> removeMbzDataSetData(MbzDataSet dataSet){
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", getFacade().getMbzDataSetService().removeMbzDataSet(dataSet));
         return result;
     }
 }
