@@ -815,8 +815,6 @@
 
         let mbzDataListSet =[];
         let index = 0;
-        console.log(dictArr);
-        console.log(templateArr);
         for(let i =0 ;i < dictArr.length ;i++){
             for(let j =0 ;j < templateArr.length ;j++){
                 if(templateArr[j].nodeId.startsWith('B')){
@@ -827,11 +825,14 @@
                         'modelCode':templateArr[j].nodeId,
                         'sourceName':dictArr[i].dictLabel,
                         'modelName':templateArr[j].nodeName,
+                        'sourcePcode':templateArr[j].nodePid,
                     };
                     index++;
                 }
             }
         }
+        console.log(mbzDataListSet);
+        console.log(JSON.stringify(mbzDataListSet));
         $.ajax({
             url: ctx + 'dataList/addOrModify',
             async: false,
@@ -843,7 +844,6 @@
             success: function (data, status) {
                 toastr.info('保存成功');
             },error:function (response) {
-                console.log(response.responseText);
                 toastr.error(response.responseText);
             }
         });
@@ -892,7 +892,6 @@
         let pyCode = node.pyCode;
         let tnode1 = templateTree.getNodeByParam("nodeId",pyCode,null);
         $("#"+tnode1.tId+"_a").click();
-
         if(pyCode.length > 2){
             let parentPyCode = pyCode.substring(0,pyCode.length -2 );
             let pnode1 = templateTree.getNodeByParam("nodeId",parentPyCode,null);
@@ -916,9 +915,13 @@
                     console.log(result);
                     if(result.length > 0){
                         $.each(result,function(index,value){
-                            console.log(value.modelCode +':'+value.modelName);
                             var node1 = templateTree.getNodeByParam("nodeId",value.modelCode,null);
-                            console.log(node1);
+                            if(node1 == null || node1 == undefined){
+                                var pnode = templateTree.getNodeByParam("nodeId",value.sourcePcode,null);
+                                console.log(pnode);
+                                $('#'+pnode.tId+'_a').click();
+                            }
+                            node1 = templateTree.getNodeByParam("nodeId",value.modelCode,null);
                             templateTree.checkNode(node1, true, true);
                             templateTree.selectNode(node1);
                             console.log("node=="+node1);
