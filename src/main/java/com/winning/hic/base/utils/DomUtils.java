@@ -3,6 +3,7 @@ package com.winning.hic.base.utils;
 import com.winning.hic.model.MbzDataSet;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;
+import org.thymeleaf.util.StringUtils;
 
 import java.io.InputStream;
 import java.util.List;
@@ -52,6 +53,19 @@ public class DomUtils {
         info.setQrdxdm(null);
         info.setYzjddm(null);
         System.out.println(resolveNodeInfo(rootElement, info));
+
+        String ss = "1010111";
+        for(int i=0;i<ss.length();i++){
+            Character c = ss.charAt(i);
+            Character o=new Character('0');
+            if(c.equals(o)){
+                System.out.println("i="+i);
+            }
+        }
+
+
+
+
     }
 
     public static Document getDocument(String xmlStr) {
@@ -91,6 +105,12 @@ public class DomUtils {
             }
         }
         StringBuilder builder = new StringBuilder();
+        String dynamicDisplay =dynamicModelNode.attribute(displayAttrName).getValue();
+        String[] slipt_display =dynamicDisplay.split("`");
+        if(slipt_display[0].equals("20")&&slipt_display[3].equals("9")&& StringUtils.isEmpty(info.getDictCode())&&info.getPyCode().equals("bltd")){
+            builder.append(slipt_display[1]);
+        }
+
         //遍历文件结构的子节点
         List<Element> dynamicChildNodeList = dynamicModelNode.elements(nodeTagName);
 
@@ -109,7 +129,6 @@ public class DomUtils {
             }
 
         }
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -204,9 +223,6 @@ public class DomUtils {
     public static String resolveAtomNode(Element node, MbzDataSet info) {
         String nodeValue = node.attribute(valueAttrName).getValue();
         String nodeDisplay = node.attribute(displayAttrName).getValue();
-        System.out.println("nodeDisplay="+nodeDisplay);
-        String[] split_display=nodeDisplay.split("`");
-
         String[] split = nodeValue.split("`");
         String value = null;
         if (split.length > 2) {
@@ -226,7 +242,17 @@ public class DomUtils {
         } else if (split.length == 1) {
             value = split[0];
         }
+        String[] split_display=nodeDisplay.split("`");
 
+        for(int i=0;i<split_display[0].length();i++){
+            Character s = split_display[0].charAt(i);
+            Character o=new Character('0');
+            if(s.equals(o)&&i<=2){
+                value =split_display[i+1] + value;
+            }else if(s.equals(o)&&i>2){
+                value =value + split_display[i+1];
+            }
+        }
         return value;
     }
 
@@ -237,5 +263,6 @@ public class DomUtils {
         str = str.replaceAll("&#xA;", "");
         return str;
     }
+
 
 }
