@@ -19,11 +19,13 @@ public class DomUtils {
     public static final String nodeTagName = "node";
     public static final String refTagName = "Ref";
 
+
     private static final String valueAttrName = "value";
     private static final String textAttrName = "text";
     private static final String refidAttrName = "refid";
     private static final String nodetypeAttrName = "nodetype";
     private static final String idAttrName = "id";
+    public static final String displayAttrName = "display";
 
 
     public static final String dtjdNodeType = "DynamicMoleNode";
@@ -201,6 +203,10 @@ public class DomUtils {
      */
     public static String resolveAtomNode(Element node, MbzDataSet info) {
         String nodeValue = node.attribute(valueAttrName).getValue();
+        String nodeDisplay = node.attribute(displayAttrName).getValue();
+        System.out.println("nodeDisplay="+nodeDisplay);
+        String[] split_display=nodeDisplay.split("`");
+
         String[] split = nodeValue.split("`");
         String value = null;
         if (split.length > 2) {
