@@ -922,6 +922,7 @@
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt,
+        t.CJSJ as xjrq,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
