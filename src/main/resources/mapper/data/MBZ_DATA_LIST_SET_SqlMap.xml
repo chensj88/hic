@@ -8,6 +8,7 @@
          <result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR" />
          <result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR" />
          <result column="MODEL_NAME" property="modelName" jdbcType="VARCHAR" />
+         <result column="SOURCE_PCODE" property="sourcePcode" jdbcType="VARCHAR" />
     </resultMap>
 
     <resultMap id="mbzDataListSetResult" type="com.winning.hic.model.MbzDataListSet" extends="mbzDataListSetResultForList">
@@ -19,6 +20,7 @@
         <if test="(modelCode != null and modelCode != '')"> and t.MODEL_CODE = #{modelCode} </if>
         <if test="(sourceName != null and sourceName != '')"> and t.SOURCE_NAME = #{sourceName} </if>
         <if test="(modelName != null and modelName != '')"> and t.MODEL_NAME = #{modelName} </if>
+        <if test="(sourcePcode != null and sourcePcode != '')"> and t.SOURCE_PCODE = #{sourcePcode} </if>
     </sql>
 
     <insert id="insertMbzDataListSet" parameterType="com.winning.hic.model.MbzDataListSet">
@@ -28,6 +30,7 @@
             <if test="(modelCode != null and modelCode != '')"> MODEL_CODE , </if>
             <if test="(sourceName != null and sourceName != '')"> SOURCE_NAME , </if>
             <if test="(modelName != null and modelName != '')"> MODEL_NAME , </if>
+            <if test="(sourcePcode != null and sourcePcode != '')"> SOURCE_PCODE , </if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -35,6 +38,7 @@
             <if test="(modelCode != null and modelCode != '')"> #{modelCode , jdbcType= VARCHAR },  </if>
             <if test="(sourceName != null and sourceName != '')"> #{sourceName , jdbcType= VARCHAR },  </if>
             <if test="(modelName != null and modelName != '')"> #{modelName , jdbcType= VARCHAR },  </if>
+            <if test="(sourcePcode != null and sourcePcode != '')"> #{sourcePcode , jdbcType= VARCHAR },  </if>
         </trim>
     </insert>
 
@@ -42,16 +46,17 @@
         UPDATE MBZ_DATA_LIST_SET
         <set>
             <trim suffixOverrides=",">
-                <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE , </if>
-                <if test="(modelCode != null and modelCode != '')"> MODEL_CODE , </if>
-                <if test="(sourceName != null and sourceName != '')"> SOURCE_NAME , </if>
-                <if test="(modelName != null and modelName != '')"> MODEL_NAME , </if>
+                <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE = #{sourceType , jdbcType= VARCHAR }, </if>
+                <if test="(modelCode != null and modelCode != '')"> MODEL_CODE = #{modelCode , jdbcType= VARCHAR }, </if>
+                <if test="(sourceName != null and sourceName != '')"> SOURCE_NAME = #{sourceName , jdbcType= VARCHAR }, </if>
+                <if test="(modelName != null and modelName != '')"> MODEL_NAME = #{modelName , jdbcType= VARCHAR }, </if>
+                <if test="(sourcePcode != null and sourcePcode != '')"> SOURCE_PCODE = #{sourcePcode , jdbcType= VARCHAR }, </if>
             </trim>
         </set>
         <where>
-            <if test="(sourceType != null and sourceType != '')"> and SOURCE_TYPE = #{ sourceType }   </if>
-            <if test="(modelCode != null and modelCode != '')"> and MODEL_CODE = #{ modelCode }   </if>
-            <if test="(sourceType !=null or sourceType!='') and (modelCode !=null or modelCode!='') and (map.pks != null and map.pks != '')">
+            <if test="(sourceType != null and sourceType != '')"> and SOURCE_TYPE = #{ sourceType, jdbcType= VARCHAR }   </if>
+            <if test="(modelCode != null and modelCode != '')"> and MODEL_CODE = #{ modelCode, jdbcType= VARCHAR }   </if>
+            <if test="(sourceType !=null or sourceType!='') and (modelCode !=null or modelCode!='') and (map.pks != null and map.size > 0)">
                 and (SOURCE_TYPE,MODEL_CODE) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
@@ -63,7 +68,7 @@
         <where>
             <if test="(sourceType != null and sourceType != '')"> and SOURCE_TYPE = #{ sourceType }   </if>
             <if test="(modelCode != null and modelCode != '')"> and MODEL_CODE = #{ modelCode }   </if>
-            <if test="(sourceType !=null or sourceType!='') and (modelCode !=null or modelCode!='') and (map.pks != null and map.pks != '')">
+            <if test="(sourceType !=null or sourceType!='') and (modelCode !=null or modelCode!='') and (map.pks != null and map.size > 0)">
                 and (SOURCE_TYPE,MODEL_CODE) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
@@ -85,7 +90,7 @@
         <where>
             <include refid="sql-mbzDataListSet" />
         </where>
-        ORDER BY t.SOURCE_TYPE,t.MODEL_CODE DESC
+        ORDER BY t.SOURCE_TYPE,t.MODEL_CODE ASC
     </select>
 
     <select id="selectMbzDataListSetCount" resultType="int" parameterType="com.winning.hic.model.MbzDataListSet">
