@@ -150,6 +150,105 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editFormModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:575px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="editModalLabel">字段配置信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="row">
+                            <form class="form-horizontal col-lg-6 col-md-6 col-sm-6 col-xs-6" role="form" id="editForm">
+                                <!--<div class="form-group">
+                                    <label class="col-sm-3 control-label" for="recordName">字段名称</label>
+                                    <div class="col-sm-7">
+                                        <span class="form-control" id="recordName" name="recordName"></span>
+                                    </div>
+                                </div>-->
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="dataType">类型</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" name="dataType" id="dataType">
+                                            <option value="1">文件结构</option>
+                                            <option value="2">基础模板</option>
+                                            <option value="3">元数据</option>
+                                            <option value="4">原子节点</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="dtjddmDiv">
+                                    <label class="col-sm-3 control-label" for="dtjddm">文件结构ID</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="dtjddm" name="dtjddm"
+                                               placeholder="请输入文件结构ID">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="qrmbdmDiv">
+                                    <label class="col-sm-3 control-label" for="qrmbdm">基础模板ID</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="qrmbdm" name="qrmbdm"
+                                               placeholder="请输入基础模板ID">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="qrdxdmDiv">
+                                    <label class="col-sm-3 control-label" for="qrdxdm">元数据ID</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="qrdxdm" name="qrdxdm"
+                                               placeholder="请输入元数据ID">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="yzjddmDiv">
+                                    <label class="col-sm-3 control-label" for="yzjddm">原子节点ID</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="yzjddm" name="yzjddm"
+                                               placeholder="请输入原子节点ID">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="dictCode">字典字段</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" name="dictCode" id="dictCode">
+                                            <option value="0">否</option>
+                                            <option value="1">是</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="bt">必选</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" name="bt" id="bt">
+                                            <option value="0">非必选</option>
+                                            <option value="1">必选</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="id">
+                                <input type="hidden" id="pId">
+                                <input type="hidden" id="sourceType">
+                                <input type="hidden" id="pyCode">
+                                <input type="hidden" id="status">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 text-center">
+                            <button class="btn btn-primary" id="saveForm" type="button">保存</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!--[if !IE]> -->
 <script type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
 <!-- <![endif]-->
@@ -174,6 +273,7 @@
 <script th:src="@{/assets/ztree/js/jquery.ztree.exedit.min.js}"></script>
 <script th:src="@{/assets/ztree/js/jquery.ztree.excheck.min.js}"></script>
 <script th:src="@{/assets/ztree/js/jquery.ztree.exhide.min.js}"></script>
+<script th:src="@{/assets/common.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     var ctx = /*[[@{/}]]*/'';
     var resultData = [];
@@ -339,7 +439,10 @@
         }
         return result;
     }
-
+    /**
+     * 复制一行数据
+     *
+     */
     function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt) {
         var bt1 = bt === 'null' ? '0' :bt;
         var data = {row :{
@@ -349,7 +452,7 @@
             dtjddm:dtjddm,
             qrmbdm:qrmbdm,
             qrdxdm:qrdxdm,
-            yzjddm:yzjddm,
+            yzjddm:yzjddm == 'null' ? '' : yzjddm,
             recordName:'',
             dictCode:dictCode,
             pyCode:pyCode,
@@ -358,9 +461,10 @@
         },
             index:index+1};
         $subTable.bootstrapTable('insertRow',data);
-        console.log($subTable);
     }
-
+    /**
+     * 选定数据复制到指定字段
+     */
     function openCopyWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt) {
         $.ajax({
             type: "post",
@@ -398,11 +502,102 @@
         btC = bt;
         $('#treeModal').modal('show');
     }
+    /**
+     * 打开编辑页面
+     */
+    function openEditWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status){
+        $('#id').val(id);
+        $('#pId').val(pId);
+        $('#recordName').text(recordName);
+        $('#sourceType').val(sourceType);
+        $('#dataType').val(dataType);
+        $('#dtjddm').val(dtjddm == 'null' ? '' : dtjddm);
+        $('#qrmbdm').val(qrmbdm == 'null' ? '' : qrmbdm);
+        $('#qrdxdm').val(qrdxdm == 'null' ? '' : qrdxdm);
+        $('#yzjddm').val(yzjddm == 'null' ? '' : yzjddm);
+        if(dictCode !== '' && dictCode !== 'null'){
+            $('#dictCode').val('1');
+        }else{
+            $('#dictCode').val('0');
+        }
+        $('#pyCode').val(pyCode);
+        $('#bt').val(bt);
+        $('#status').val(status);
+        showOrHideDivByDatatype(dataType);
+        $('#editModal').modal('show');
+    }
+    /**
+     * 数据删除
+     */
+    function openDeleteWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status){
+        let queryJson = {
+            sourceType :sourceType,
+            pId:pId
+        };
+        var param = {
+            id:id,
+
+        };
+        Ewin.confirm({message: "确认要删除选择的数据吗？"}).on(function (e) {
+            if (!e) {
+                return;
+            }
+            if(status){
+                toastr.info('提交数据成功');
+                $subTable.bootstrapTable('refresh',queryJson);
+            }else {
+                $.ajax({
+                    url:  ctx + 'basic/delete',
+                    data: param,
+                    type: "post",
+                    dataType: 'json',
+                    async: false,
+                    cache: false,
+                    success: function (data, status) {
+                        if (status == 'success') {
+                            toastr.info('提交数据成功');
+                            $subTable.bootstrapTable('refresh',queryJson);
+                        }
+                    },
+                    error: function (response) {
+                        toastr.error(response.responseText);
+                    },
+                    complete: function () {
+                    }
+                });
+            }
+
+        });
+    }
+
+    function showOrHideDivByDatatype(dataType){
+        if(dataType == '1'){
+            $('#dtjddmDiv').show();
+            $('#qrmbdmDiv').hide();
+            $('#qrdxdmDiv').hide();
+            $('#yzjddmDiv').hide();
+        }else if(dataType == '2'){
+            $('#dtjddmDiv').show();
+            $('#qrmbdmDiv').show();
+            $('#qrdxdmDiv').hide();
+            $('#yzjddmDiv').hide();
+        }else if(dataType == '3'){
+            $('#dtjddmDiv').show();
+            $('#qrmbdmDiv').show();
+            $('#qrdxdmDiv').show();
+            $('#yzjddmDiv').hide();
+        }else{
+            $('#dtjddmDiv').show();
+            $('#qrmbdmDiv').show();
+            $('#qrdxdmDiv').show();
+            $('#yzjddmDiv').show();
+        }
+    }
 
     $(function(){
         //toastr 插件全局配置
         toastr.options.positionClass = 'toast-top-center';
-        toastr.options.timeOut = 30;
+        toastr.options.timeOut = 2000;
         toastr.options.extendedTimeOut = 60;
 
         $table.bootstrapTable({
@@ -578,17 +773,29 @@
                         formatter:function(value,row,index){
                             let content = '';
                             let status = row.status;
-                            if(status || value === ''){
-                                content = `<span>${value}</span>`;
-                            }else{
-                                content = `<span>${value}</span>
-                                        <span class="pull-right span_icon" title="插入新的一行" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}','${row.qrmbdm}','${row.qrdxdm}','${row.yzjddm}','${row.dictCode}','${row.pyCode}','${row.bt}')">
-                                            <i class="glyphicon glyphicon-plus"></i>
-                                        </span>
-                                        <span class="pull-right span_icon"  title="复制" onclick="openCopyWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}','${row.qrmbdm}','${row.qrdxdm}','${row.yzjddm}','${row.dictCode}','${row.pyCode}','${row.bt}')">
-                                        <i class="iconfont icon-copy"></i></span>`;
-                            }
+                            content = `<span>${value}</span>`;
                             return content;
+                        }
+                    },
+                    {
+                        field: 'recordName',
+                        title: '操作',
+                        align: 'center',
+                        width: '130px',
+                        formatter: function (value,row,index) {
+                            var add = '<span href="#" class="btn btn-info btn-xs" title="插入新的一行" ' +
+                                'onclick="openAddWindow('+row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+')">' +
+                                '<i class="glyphicon glyphicon-plus"></i></span> ';
+                            var b = '<span href="#" class="btn btn-info btn-xs" title="复制"' +
+                                'onclick="openCopyWindow('+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+')">' +
+                                '<i class="glyphicon glyphicon-copy"></i></span> ';
+                            var e = '<span href="#" class="btn btn-info btn-xs" title="编辑"' +
+                                    'onclick="openEditWindow('+row.id+','+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+','+row.status+')">'+
+                                '<i class="glyphicon glyphicon-edit"></i></span> ';
+                            var d = '<span href="#" class="btn btn-danger btn-xs" title="删除"  ' +
+                                'onclick="openDeleteWindow('+row.id+','+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+','+row.status+')">' +
+                                '<i class="glyphicon glyphicon-trash"></i> </span> ';
+                            return add + e + b + d ;
                         }
                     },
                     {
@@ -596,59 +803,41 @@
                         title: '类型',
                         align: 'center',
                         width: '100px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'select',
-                            source:[
-                                {value:"1",text:"文件结构"},
-                                {value:"2",text:"基础模板"},
-                                {value:"3",text:"元数据"},
-                                {value:"4",text:"原子节点"}]
+                        formatter:function(value,row,index){
+                            if(value == '1'){
+                                return '文件结构';
+                            }else if(value == '2'){
+                                return '基础模板';
+                            }else  if(value == '3'){
+                                return '元数据';
+                            }else{
+                                return '原子节点';
+                            }
                         }
                     },
                     {
                         field: 'dtjddm',
                         align: 'center',
                         title: '文件结构ID',
-                        width: '250px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'text',
-                            title: '文件结构ID'
-                        }
+                        width: '250px'
                     },
                     {
                         field: 'qrmbdm',
                         align: 'center',
                         title: '基础模板ID',
-                        width: '250px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'text',
-                            title: '基础模板ID'
-                        }
+                        width: '250px'
                     },
                     {
                         field: 'qrdxdm',
                         align: 'center',
                         title: '元数据ID',
-                        width: '250px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'text',
-                            title: '元数据ID'
-                        }
+                        width: '250px'
                     },
                     {
                         field: 'yzjddm',
                         align: 'center',
                         title: '原子节点ID',
-                        width: '250px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'text',
-                            title: '原子节点ID'
-                        }
+                        width: '250px'
                     },
                     {
                         field: 'bt',
@@ -657,17 +846,10 @@
                         width: '100px',
                         formatter:function(value,row,index){
                             if(value === 0 || value === null ){
-                                return '0';
+                                return '非必选';
                             }else{
-                                return '1';
+                                return '必选';
                             }
-                        },
-                        editable: {
-                            emptytext:'-',
-                            type: 'select',
-                            source:[
-                                {value:"0",text:"非必选"},
-                                {value:"1",text:"必选"}]
                         }
                     },
                     {
@@ -677,17 +859,10 @@
                         width: '100px',
                         formatter:function(value,row,index){
                             if(value !== '' && value !== null){
-                                return '1';
+                                return '是';
                             }else{
-                                return '';
+                                return '否';
                             }
-                        },
-                        editable: {
-                            emptytext:'-',
-                            type: 'select',
-                            source:[
-                                {value:"",text:"否"},
-                                {value:"1",text:"是"}]
                         }
                     }
                 ],
@@ -798,6 +973,59 @@
 
         })
 
+        $('#dataType').on('change',function(){
+           showOrHideDivByDatatype($(this).val());
+        });
+
+        $('#saveForm').on('click',function(e){
+            e.preventDefault();
+            var param = {
+                id:$('#id').val(),
+                pId: $('#pId').val(),
+                sourceType: $('#sourceType').val(),
+                pyCode:$('#pyCode').val(),
+                recordName:$('#recordName').val() == null ? '' :$('#recordName').val(),
+                dictCode:$('#dictCode').val(),
+                dataType:$('#dataType').val(),
+                dtjddm:$('#dtjddm').val(),
+                qrmbdm:$('#qrmbdm').val(),
+                qrdxdm:$('#qrdxdm').val(),
+                yzjddm:$('#yzjddm').val(),
+                bt:$('#bt').val(),
+                status:$('#status').val() == '' ? null : $('#status').val()
+            };
+            $.ajax({
+                url: ctx + "basic/edit",
+                data: param,
+                type: "post",
+                dataType: 'json',
+                async: false,
+                cache: false,
+                success: function (result,status) {
+                    if(status === 'success'){
+                        if(result.status === 'SUCCESS'){
+                            toastr.info('数据提交成功');
+                            let queryJson = {
+                                sourceType :$('#sourceType').val(),
+                                pId:$('#pId').val()
+                            };
+                            $('#editModal').modal('hide');
+                            $subTable.bootstrapTable('refresh',queryJson);
+                        }else{
+                            toastr.error(result.msg);
+                        }
+
+                    }
+                },
+                error: function (response) {
+                    toastr.error(response.responseText);
+                },
+                complete: function () {
+                }
+            });
+
+
+        });
     });
 
 

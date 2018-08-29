@@ -123,7 +123,7 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
                                 this.removeHlhtZybcjlSwbltljl(oldSwbltl);
                             }
                             swbltljl = new HlhtZybcjlSwbltljl();
-                            swbltljl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
+                            swbltljl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             swbltljl = this.commonQueryDao.selectInitHlhtZybcjlSwbltljl(swbltljl);
                             swbltljl = (HlhtZybcjlSwbltljl) HicHelper.initModelValue(mbzDataSetList,document,swbltljl,paramTypeMap);
                             this.createHlhtZybcjlSwbltljl(swbltljl);
