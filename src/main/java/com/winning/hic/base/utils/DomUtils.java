@@ -95,6 +95,7 @@ public class DomUtils {
         for (Element element : dynamicChildNodeList) {
             Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
             if (StringUtil.isEmptyOrNull(info.getQrmbdm())) {
+
                 if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) { //文本节点
                     builder.append(resolveString(element.attribute(textAttrName).getValue()));
                 } else if (nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())) { //引入节点
@@ -132,31 +133,33 @@ public class DomUtils {
         }
         //获取基础模板元素
         Element refChildElement = refElement.element(nodeTagName);
-        //获取基础模板元素子节点集合
-        List<Element> embededElementList = refChildElement.elements(nodeTagName);
-        //遍历解析基础模板子节点
-        for (Element element : embededElementList) {
-            //获取节点类型属性
-            Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
-            //获取节点ID属性
-            Attribute idAttr = element.attribute(idAttrName);
-            //只有文件结构ID，没有模板ID，取全部数据
-            if (StringUtil.isEmptyOrNull(info.getQrmbdm())) {
-                if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) {
-                    builder.append(
-                            element.attribute(textAttrName) == null ? "" : resolveString(element.attribute(textAttrName).getValue()));
-                } else if (nodeTypeAttr != null && objectNodeType.equals(nodeTypeAttr.getValue())) {
-                    builder.append(resolveObjectNode(element, info));
-                }
-            } else {//存在基础模板ID取模板数据
-                if (nodeTypeAttr != null && objectNodeType.equals(nodeTypeAttr.getValue())
-                        && idAttr != null
-                        && info.getQrdxdm().equals(idAttr.getValue())) {
-                    builder.append(resolveObjectNode(element, info));
+        //基础模板id
+        String qrmbdm = info.getQrmbdm();
+        if ((!StringUtil.isEmptyOrNull(qrmbdm)&&qrmbdm.equals(refChildElement.attribute(idAttrName).getValue()))||StringUtil.isEmptyOrNull(qrmbdm)) {
+            //获取基础模板元素子节点集合
+            List<Element> embededElementList = refChildElement.elements(nodeTagName);
+            //遍历解析基础模板子节点
+            for (Element element : embededElementList) {
+                //获取节点类型属性
+                Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
+                //获取节点ID属性
+                Attribute idAttr = element.attribute(idAttrName);
+                //只有文件结构ID，没有模板ID，取全部数据
+                if (StringUtil.isEmptyOrNull(info.getQrmbdm()) || (!StringUtil.isEmptyOrNull(info.getQrmbdm()) && StringUtil.isEmptyOrNull(info.getQrdxdm()))) {
+                    if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) {
+                        builder.append(
+                                element.attribute(textAttrName) == null ? "" : resolveString(element.attribute(textAttrName).getValue()));
+                    } else if (nodeTypeAttr != null && objectNodeType.equals(nodeTypeAttr.getValue())) {
+                        builder.append(resolveObjectNode(element, info));
+                    }
+                } else {//存在基础模板ID取模板数据
+                    if (nodeTypeAttr != null && objectNodeType.equals(nodeTypeAttr.getValue())
+                            && idAttr != null
+                            && info.getQrdxdm().equals(idAttr.getValue())) {
+                        builder.append(resolveObjectNode(element, info));
+                    }
                 }
             }
-
-
         }
         return builder.toString();
     }

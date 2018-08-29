@@ -40,6 +40,9 @@ public class HicHelper {
         for (MbzDataSet dataSet : mbzDataSets) {
             //获取属性名
             String pyCode = dataSet.getPyCode();
+            if(pyCode.equals("yfjzs")){
+                System.out.println("yfjzs");
+            }
             String methodName = "set" + StringUtil.titleCase(pyCode);
             String strValue = null ;
 
