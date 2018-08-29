@@ -1,10 +1,13 @@
 package com.winning.hic.base.utils;
 
 import com.winning.hic.model.HlhtRyjlJbxx;
-import com.winning.hic.model.MbzLog;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +24,40 @@ public class ReflectUtil {
     public static void setParam(Object object, String methodName, Object param) throws Exception {
         Class<?> objectClass = object.getClass();
         Class<?> paramClass = param.getClass();
+        String getMethodName = "get" + methodName.substring(3);
+//        System.out.println("getMethodName:"+getMethodName);
+        Method getMethod = objectClass.getDeclaredMethod(getMethodName);
+        Object value = getMethod.invoke(object);
+        if (value != null) {
+            if ((value instanceof String) && !"N".equals(value)) {
+                return;
+            }
+            if (value instanceof Date) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(((Date) value).getTime());
+                int year = calendar.get(Calendar.YEAR);
+                if (year != 1990) {
+                    return;
+                }
+            }
+            if ((value instanceof Short) && ((Short) value).intValue() != -9) {
+                return;
+            }
+            if (value instanceof Timestamp) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(((Timestamp) value).getTime());
+                int year = calendar.get(Calendar.YEAR);
+                if (year != 1990) {
+                    return;
+                }
+            }
+            if (value instanceof BigDecimal && (((BigDecimal) value).intValue() != -9)) {
+                return;
+            }
+            if (value instanceof Integer && (((Integer) value).intValue() != -9)) {
+                return;
+            }
+        }
         Method setMethod = objectClass.getDeclaredMethod(methodName, paramClass);//得到方法对象,有参的方法需要指定参数类型
         setMethod.invoke(object, param);
     }
@@ -37,13 +74,28 @@ public class ReflectUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        MbzLog mbzLog = new MbzLog();
-        String method = "setContent";
-        String param = "hello world!";
-        ReflectUtil.setParam(mbzLog, method, param);
-        Object obj = new HlhtRyjlJbxx();
-        getParamTypeMap(obj.getClass());
-        System.out.println(mbzLog.getContent());
+        HlhtRyjlJbxx mbzLog = new HlhtRyjlJbxx();
+//        java.util.Date dd=new java.util.Date();
+//        Date date=new Date(dd.getTime() );
+//        String pattern = "yyyy-MM-dd HH:mm:ss";
+//        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+//        String dateStr = "1990-01-01 00:00:00";
+//        java.sql.Date sqlDate = new java.sql.Date(sdf.parse(dateStr).getTime());
+//        mbzLog.setBzrq(date);
+//        java.sql.Timestamp date=new java.sql.Timestamp(new java.util.Date().getTime() );
+//        String pattern = "yyyy-MM-dd HH:mm:ss";
+//        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+//        String dateStr = "1990-01-01 00:00:00";
+//        java.sql.Timestamp sqlDate = new java.sql.Timestamp(sdf.parse(dateStr).getTime());
+//         mbzLog.setGxsj(sqlDate);
+//        Short value = new Short("-9");
+//        Short num = new Short("72");
+//        mbzLog.setTjml(value);
+//        mbzLog.setTjsg();
+//        mbzLog.setYxjl();
+//        String method = "setTjml";
+//        ReflectUtil.setParam(mbzLog, method, num);
+//        System.out.println(mbzLog.getTjml());
     }
 
 

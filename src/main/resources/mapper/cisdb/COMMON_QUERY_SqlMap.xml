@@ -1025,7 +1025,7 @@
         ISNULL(a.fjh,'N') as bfh,
         ISNULL(a.fjh,'N') as bfmc,
         ISNULL(b.RYCW,'N') as bch,
-        CONVERT(DATE,'1990-01-01 00:00:00',120) AS cfrq,
+        CONVERT(DATE,ISNULL(t.FSSJ,'1990-01-01 00:00:00'),120) AS cfrq,
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
         CONVERT(DATE, ISNULL(b.CSRQ, '1990-01-01 00:00:00'), 120) AS csrq,
@@ -1033,6 +1033,7 @@
         (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
+        isnull(f.zljh,'N')  as yljh,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
@@ -1041,6 +1042,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
+        LEFT JOIN  CISDB_DATA.dbo.HLHT_ZYBCJL_SCBCJL f ON f.jzlsh = b.HISSYXH
         LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
