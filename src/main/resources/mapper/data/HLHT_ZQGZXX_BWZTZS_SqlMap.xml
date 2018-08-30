@@ -277,8 +277,8 @@
             c.SYXH                                    AS jzlsh,
             c.PATID                                   AS patid,
             ISNULL(
-                    CONVERT(VARCHAR, (o.GHXH)),
-                    'N'
+                    CONVERT(VARCHAR, (c.MZH)),
+                    ''
             )                                         AS mjzh,
             ISNULL(b.ZYHM, 'N')                       AS zyh,
             ISNULL(
