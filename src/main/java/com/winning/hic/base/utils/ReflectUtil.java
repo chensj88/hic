@@ -62,6 +62,22 @@ public class ReflectUtil {
         setMethod.invoke(object, param);
     }
 
+    /**
+     * Chen,Kuai
+     * 2018年8月30日09:11:28
+     * 用于累加查找的数据
+     * @param object
+     * @param methodName
+     * @param param
+     * @throws Exception
+     */
+    public static void setParamKind(Object object, String methodName, Object param) throws Exception {
+        Class<?> objectClass = object.getClass();
+        Class<?> paramClass = param.getClass();
+        Method setMethod = objectClass.getDeclaredMethod(methodName, paramClass);//得到方法对象,有参的方法需要指定参数类型
+        setMethod.invoke(object, param);
+    }
+
     public static Map<String, String> getParamTypeMap(Class<?> objectClass) {
         Map<String, String> map = new HashMap();
         // 获取实体类的所有属性信息，返回Field数组
