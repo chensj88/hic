@@ -190,8 +190,10 @@ public class HicHelper {
                     logger.info("pyCode:{};methodName:{};strValue:{};info:{}", pyCode, methodName, value,info);*/
                     logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, value);
                     if(dataSet.getSourceType().equals("6")&&pyCode.equals("bltd")){
-                        bltd =bltd+" "+value;
-                        ReflectUtil.setParam(obj, methodName, bltd);
+                        if(!"N".equals(value)){
+                            bltd =bltd+" "+value;
+                            ReflectUtil.setParamKind(obj, methodName, bltd);
+                        }
                     }else{
                         ReflectUtil.setParam(obj, methodName, value);
 
