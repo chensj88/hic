@@ -144,6 +144,14 @@ public class HicHelper {
                     }
                     if(dateStr.length()<=10) {
                         pattern="yyyy-MM-dd";
+                    } else if(dateStr.contains("yyyy-MM-dd HH:mm:00")){
+                        dateStr = dateStr.substring(0,19);
+                        pattern="yyyy-MM-dd HH:mm:ss";
+                    }else if(dateStr.contains("yyyy-MM-dd")){
+                        dateStr = dateStr.substring(0,10);
+                        pattern="yyyy-MM-dd";
+                    }else{
+                        dateStr=dateStr.concat(":00").substring(0,18);
                     }
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {
