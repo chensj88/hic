@@ -357,5 +357,10 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
+    <!--十分重要 陈蒯 2018年8月30日10:03:39 子集的存储过程 -->
+    <select id="selectAllHandleQuery" statementType="CALLABLE">
+        {CALL usp_his5_hlht_tsdata()}
+    </select>
+
 
 </mapper>
