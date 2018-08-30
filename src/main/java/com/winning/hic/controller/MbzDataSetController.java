@@ -54,6 +54,7 @@ public class MbzDataSetController extends BaseController {
                 dataSet.setYzjddm(null);
             }
             MbzDataSet oldDataSet = new MbzDataSet();
+            oldDataSet.setPyCode(dataSet.getPyCode());
             oldDataSet.setPId(dataSet.getPId());
             oldDataSet.setSourceType(dataSet.getSourceType());
             oldDataSet.setDtjddm(dataSet.getDtjddm());
@@ -61,7 +62,7 @@ public class MbzDataSetController extends BaseController {
             oldDataSet.setQrdxdm(dataSet.getQrdxdm());
             oldDataSet.setYzjddm(dataSet.getYzjddm());
             int count = super.getFacade().getMbzDataSetService().getMbzDataSetCount(oldDataSet);
-            if(count >= 1){
+            if(count > 1){
                 result.put("status", Constants.ERROR);
                 result.put("msg", "当前字段配置数据已经存在，请修改!");
                 return result;
@@ -84,6 +85,7 @@ public class MbzDataSetController extends BaseController {
             }
             MbzDataSet oldDataSet = new MbzDataSet();
             oldDataSet.setPId(dataSet.getPId());
+            oldDataSet.setPyCode(dataSet.getPyCode());
             oldDataSet.setSourceType(dataSet.getSourceType());
             oldDataSet.setDtjddm(dataSet.getDtjddm());
             oldDataSet.setQrmbdm(dataSet.getQrmbdm());
