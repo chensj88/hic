@@ -231,6 +231,7 @@
                                 <input type="hidden" id="id">
                                 <input type="hidden" id="pId">
                                 <input type="hidden" id="sourceType">
+                                <input type="hidden" id="recordName">
                                 <input type="hidden" id="pyCode">
                                 <input type="hidden" id="status">
                             </form>
@@ -508,7 +509,7 @@
     function openEditWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status){
         $('#id').val(id);
         $('#pId').val(pId);
-        $('#recordName').text(recordName);
+        $('#recordName').val(recordName);
         $('#sourceType').val(sourceType);
         $('#dataType').val(dataType);
         $('#dtjddm').val(dtjddm == 'null' ? '' : dtjddm);
