@@ -516,7 +516,7 @@
         $('#qrmbdm').val(qrmbdm == 'null' ? '' : qrmbdm);
         $('#qrdxdm').val(qrdxdm == 'null' ? '' : qrdxdm);
         $('#yzjddm').val(yzjddm == 'null' ? '' : yzjddm);
-        if(dictCode !== '' && dictCode !== 'null'){
+        if(dictCode !== '0' && dictCode !== '' && dictCode !== 'null'){
             $('#dictCode').val('1');
         }else{
             $('#dictCode').val('0');
@@ -870,7 +870,7 @@
                         title: '字典字段',
                         width: '100px',
                         formatter:function(value,row,index){
-                            if(value !== '' && value !== null){
+                            if(value !== '0' && value !== '' && value !== null){
                                 return '是';
                             }else{
                                 return '否';
