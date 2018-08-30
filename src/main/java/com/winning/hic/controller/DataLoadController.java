@@ -336,6 +336,8 @@ public class DataLoadController extends BaseController {
             //37.卫生事件摘要表* --陈蒯
             //MbzDataCheck mbzDataCheck37 = super.getFacade().getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
             }
+            //执行特殊处理的脚本
+            super.getFacade().getHlhtZybcjlScbcjlService().selectAllHandleQuery();
 
             result.put("success", "1");
         } catch (Exception e) {

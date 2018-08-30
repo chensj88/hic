@@ -231,6 +231,7 @@
                                 <input type="hidden" id="id">
                                 <input type="hidden" id="pId">
                                 <input type="hidden" id="sourceType">
+                                <input type="hidden" id="recordName">
                                 <input type="hidden" id="pyCode">
                                 <input type="hidden" id="status">
                             </form>
@@ -508,7 +509,7 @@
     function openEditWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status){
         $('#id').val(id);
         $('#pId').val(pId);
-        $('#recordName').text(recordName);
+        $('#recordName').val(recordName);
         $('#sourceType').val(sourceType);
         $('#dataType').val(dataType);
         $('#dtjddm').val(dtjddm == 'null' ? '' : dtjddm);
@@ -594,6 +595,13 @@
         }
     }
 
+    function subTableValueFormatter(value,row,index){
+        if(value == null || value == 'null'){
+            return '';
+        }else{
+            return '<span style="font-size:11px;">'+value+'</span>';
+        }
+    }
     $(function(){
         //toastr 插件全局配置
         toastr.options.positionClass = 'toast-top-center';
@@ -781,7 +789,7 @@
                         field: 'recordName',
                         title: '操作',
                         align: 'center',
-                        width: '130px',
+                        width: '150px',
                         formatter: function (value,row,index) {
                             var add = '<span href="#" class="btn btn-info btn-xs" title="插入新的一行" ' +
                                 'onclick="openAddWindow('+row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+')">' +
@@ -805,13 +813,13 @@
                         width: '100px',
                         formatter:function(value,row,index){
                             if(value == '1'){
-                                return '文件结构';
+                                return '<span style="font-size:11px;">文件结构</span>';
                             }else if(value == '2'){
-                                return '基础模板';
+                                return '<span style="font-size:11px;">基础模板</span>';
                             }else  if(value == '3'){
-                                return '元数据';
+                                return '<span style="font-size:11px;">元数据</span>';
                             }else{
-                                return '原子节点';
+                                return '<span style="font-size:11px;">原子节点</span>';
                             }
                         }
                     },
@@ -819,25 +827,29 @@
                         field: 'dtjddm',
                         align: 'center',
                         title: '文件结构ID',
-                        width: '250px'
+                        width: '250px',
+                        formatter:subTableValueFormatter
                     },
                     {
                         field: 'qrmbdm',
                         align: 'center',
                         title: '基础模板ID',
-                        width: '250px'
+                        width: '250px',
+                        formatter:subTableValueFormatter
                     },
                     {
                         field: 'qrdxdm',
                         align: 'center',
                         title: '元数据ID',
-                        width: '250px'
+                        width: '250px',
+                        formatter:subTableValueFormatter
                     },
                     {
                         field: 'yzjddm',
                         align: 'center',
                         title: '原子节点ID',
-                        width: '250px'
+                        width: '250px',
+                        formatter:subTableValueFormatter
                     },
                     {
                         field: 'bt',
