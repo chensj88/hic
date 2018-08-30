@@ -121,6 +121,7 @@
 
     <select id="selectMbzDataCheckHandList" resultMap="mbzDataCheckResult" parameterType="com.winning.hic.model.MbzDataCheck">
         SELECT
+        t.SOURCE_TYPE,
         i.DICT_LABEL AS SOURCE_NAME,
         t.REAL_COUNT,
         t.DATA_COUNT,
