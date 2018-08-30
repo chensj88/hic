@@ -229,13 +229,13 @@ public class DomUtils {
         String[] split = nodeValue.split("`");
         String value = null;
         if (split.length > 2) {
-            if (!StringUtil.isEmptyOrNull(info.getDictCode())) {
+            if (!StringUtil.isEmptyOrNull(info.getDictCode())&&info.getDictCode().equals("1")) {
                 value = resolveString(split[0]);
             } else {
                 value = resolveString(split[1].trim());
             }
         } else if (split.length == 2) {
-            if (!StringUtil.isEmptyOrNull(info.getDictCode())) {
+            if (!StringUtil.isEmptyOrNull(info.getDictCode())&&info.getDictCode().equals("1")) {
                 value = resolveString(split[0]);
             } else {
                 value = split[1].trim();
