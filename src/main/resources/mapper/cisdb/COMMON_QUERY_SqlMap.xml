@@ -924,6 +924,7 @@
         t.TJZT as tjzt,
         t.CJSJ as xjrq,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        t.FSSJ as qmrq,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
@@ -1070,7 +1071,7 @@
         ISNULL(a.fjh,'N') as bfmc,
         ISNULL(b.RYCW,'N') as bch,
         b.HZXM as hzxm,
-        isnull(b.LXDH,'N') as lxdh,
+        case when b.LXDH ='' then 'N' else isnull(b.LXDH,'N') end as lxdh,
         b.SFZH as sfzhm,
         b.BRXB as xbdm,
         (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,

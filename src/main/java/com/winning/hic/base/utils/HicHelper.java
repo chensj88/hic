@@ -40,9 +40,6 @@ public class HicHelper {
         for (MbzDataSet dataSet : mbzDataSets) {
             //获取属性名
             String pyCode = dataSet.getPyCode();
-            if(pyCode.equals("yfjzs")){
-                System.out.println("yfjzs");
-            }
             String methodName = "set" + StringUtil.titleCase(pyCode);
             String strValue = null ;
 
@@ -112,6 +109,9 @@ public class HicHelper {
                         dateStr = dateStr.substring(0,19);
                         pattern="yyyy-MM-dd HH:mm:ss";
                     }else if(dateStr.contains("yyyy-MM-dd")){
+                        dateStr = dateStr.substring(0,10);
+                        pattern="yyyy-MM-dd";
+                    }else if(dateStr.contains("yyyy")){
                         dateStr = dateStr.substring(0,10);
                         pattern="yyyy-MM-dd";
                     }else{
