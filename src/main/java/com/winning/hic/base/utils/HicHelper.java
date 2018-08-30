@@ -26,9 +26,10 @@ public class HicHelper {
 
     /**
      * 解析xml信息获取对象字段信息
-     * @param mbzDataSets 接口表中定义字段名称信息
-     * @param document xml解析dom
-     * @param obj 初始化对象
+     *
+     * @param mbzDataSets  接口表中定义字段名称信息
+     * @param document     xml解析dom
+     * @param obj          初始化对象
      * @param paramTypeMap 对象定义变量信息 map集合
      * @return
      * @throws ParseException
@@ -36,45 +37,45 @@ public class HicHelper {
     public static Object initModelValue(List<MbzDataSet> mbzDataSets, Document document,
                                         Object obj, Map<String, String> paramTypeMap) throws ParseException {
 
-        String bltd ="";
+        String bltd = "";
         for (MbzDataSet dataSet : mbzDataSets) {
             //获取属性名
             String pyCode = dataSet.getPyCode();
             String methodName = "set" + StringUtil.titleCase(pyCode);
-            String strValue = null ;
+            String strValue = null;
 
             //判断是否可以取值到，不能则提供默认值
             try {
-                strValue =  DomUtils.getAttrValueByDataSet(document, dataSet);
+                strValue = DomUtils.getAttrValueByDataSet(document, dataSet);
                 logger.info("pyCode:{};methodName:{};strValue:{};", pyCode, methodName, strValue);
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 logger.info("pyCode:{};methodName:{};strValue:{};using default value", pyCode, methodName, strValue);
             }
             Object value = null;
-            if(strValue == null){
+            if (strValue == null) {
                 String paramType = paramTypeMap.get(pyCode.trim());
                 if (paramType.contains("String")) {
                     value = "N";
-                }else if (paramType.contains("Short")) {
+                } else if (paramType.contains("Short")) {
                     value = new Short("-9");
-                }else if (paramType.contains("Timestamp")) {
+                } else if (paramType.contains("Timestamp")) {
                     String pattern = "yyyy-MM-dd HH:mm:ss";
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     String dateStr = "1990-01-01 00:00:00";
                     java.sql.Timestamp sqlDate = new java.sql.Timestamp(sdf.parse(dateStr).getTime());
                     value = sqlDate;
-                }else if (paramType.contains("Date")) {
+                } else if (paramType.contains("Date")) {
                     String pattern = "yyyy-MM-dd HH:mm:ss";
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     String dateStr = "1990-01-01 00:00:00";
                     java.sql.Date sqlDate = new java.sql.Date(sdf.parse(dateStr).getTime());
                     value = sqlDate;
-                }else if (paramType.contains("BigDecimal")) {
+                } else if (paramType.contains("BigDecimal")) {
                     value = new BigDecimal(-9);
                 } else if (paramType.contains("Integer")) {
                     value = new Integer(-9);
                 }
-            }else{
+            } else {
                 String paramType = paramTypeMap.get(pyCode);
                 if (paramType.contains("String")) {
                     value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue;
@@ -85,37 +86,34 @@ public class HicHelper {
                 } else if (paramType.contains("Timestamp")) {
                     String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
-                    if(StringUtil.hasChinese(dateStr)){
-                        if(dateStr.contains("年")){
-                            dateStr = dateStr.replace("年","-");
+                    if (StringUtil.hasChinese(dateStr)) {
+                        if (dateStr.contains("年")) {
+                            dateStr = dateStr.replace("年", "-");
                         }
-                        if(dateStr.contains("月")){
-                            dateStr = dateStr.replace("月","-");
+                        if (dateStr.contains("月")) {
+                            dateStr = dateStr.replace("月", "-");
                         }
-                        if(dateStr.contains("日")){
-                            dateStr = dateStr.replace("日"," ");
+                        if (dateStr.contains("日")) {
+                            dateStr = dateStr.replace("日", " ");
                         }
-                        if(dateStr.contains("时")){
-                            dateStr = dateStr.replace("时",":");
+                        if (dateStr.contains("时")) {
+                            dateStr = dateStr.replace("时", ":");
                         }
-                        if(dateStr.contains("分")){
-                            dateStr = dateStr.replace("分",":00");
+                        if (dateStr.contains("分")) {
+                            dateStr = dateStr.replace("分", ":00");
                         }
                     }
-                    dateStr=dateStr.trim();
-                    if(dateStr.length()<=10) {
-                        pattern="yyyy-MM-dd";
-                    } else if(dateStr.contains("yyyy-MM-dd HH:mm:00")){
-                        dateStr = dateStr.substring(0,19);
-                        pattern="yyyy-MM-dd HH:mm:ss";
-                    }else if(dateStr.contains("yyyy-MM-dd")){
-                        dateStr = dateStr.substring(0,10);
-                        pattern="yyyy-MM-dd";
-                    }else if(dateStr.contains("yyyy")){
-                        dateStr = dateStr.substring(0,10);
-                        pattern="yyyy-MM-dd";
-                    }else{
-                        dateStr=dateStr.concat(":00").substring(0,18);
+                    dateStr = dateStr.trim();
+                    if (dateStr.length() <= 10) {
+                        pattern = "yyyy-MM-dd";
+                    } else if (dateStr.contains("yyyy-MM-dd")) {
+                        dateStr = dateStr.substring(0, 10);
+                        pattern = "yyyy-MM-dd";
+                    } else if (dateStr.contains("yyyy-MM-dd HH:mm:00")) {
+                        dateStr = dateStr.substring(0, 19);
+                        pattern = "yyyy-MM-dd HH:mm:ss";
+                    } else {
+                        dateStr = dateStr.concat(":00").substring(0, 18);
                     }
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {
@@ -127,31 +125,31 @@ public class HicHelper {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                }else if (paramType.contains("Date")) {
+                } else if (paramType.contains("Date")) {
                     //格式：636467930400000000`2017-11-20,16:44
                     String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
-                    if(StringUtil.hasChinese(dateStr)){
-                        if(dateStr.contains("年")){
-                            dateStr = dateStr.replace("年","-");
+                    if (StringUtil.hasChinese(dateStr)) {
+                        if (dateStr.contains("年")) {
+                            dateStr = dateStr.replace("年", "-");
                         }
-                        if(dateStr.contains("月")){
-                            dateStr = dateStr.replace("月","-");
+                        if (dateStr.contains("月")) {
+                            dateStr = dateStr.replace("月", "-");
                         }
-                        if(dateStr.contains("日")){
-                            dateStr = dateStr.replace("日","");
+                        if (dateStr.contains("日")) {
+                            dateStr = dateStr.replace("日", "");
                         }
                     }
-                    if(dateStr.length()<=10) {
-                        pattern="yyyy-MM-dd";
-                    } else if(dateStr.contains("yyyy-MM-dd HH:mm:00")){
-                        dateStr = dateStr.substring(0,19);
-                        pattern="yyyy-MM-dd HH:mm:ss";
-                    }else if(dateStr.contains("yyyy-MM-dd")){
-                        dateStr = dateStr.substring(0,10);
-                        pattern="yyyy-MM-dd";
-                    }else{
-                        dateStr=dateStr.concat(":00").substring(0,18);
+                    if (dateStr.length() <= 10) {
+                        pattern = "yyyy-MM-dd";
+                    } else if (dateStr.contains("yyyy-MM-dd HH:mm:00")) {
+                        dateStr = dateStr.substring(0, 19);
+                        pattern = "yyyy-MM-dd HH:mm:ss";
+                    } else if (dateStr.contains("yyyy-MM-dd")) {
+                        dateStr = dateStr.substring(0, 10);
+                        pattern = "yyyy-MM-dd";
+                    } else {
+                        dateStr = dateStr.concat(":00").substring(0, 18);
                     }
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {
@@ -173,7 +171,7 @@ public class HicHelper {
             }
             //类型
             try {
-                if(value!=null){
+                if (value != null) {
                      /*String info = "长度正常，可以入库";
                    if(value instanceof String){
                         String str = value.toString();
@@ -189,12 +187,12 @@ public class HicHelper {
                     }
                     logger.info("pyCode:{};methodName:{};strValue:{};info:{}", pyCode, methodName, value,info);*/
                     logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, value);
-                    if(dataSet.getSourceType().equals("6")&&pyCode.equals("bltd")){
-                        if(!"N".equals(value)){
-                            bltd =bltd+" "+value;
+                    if (dataSet.getSourceType().equals("6") && pyCode.equals("bltd")) {
+                        if (!"N".equals(value)) {
+                            bltd = bltd + " " + value;
                             ReflectUtil.setParamKind(obj, methodName, bltd);
                         }
-                    }else{
+                    } else {
                         ReflectUtil.setParam(obj, methodName, value);
 
                     }
@@ -203,8 +201,8 @@ public class HicHelper {
                 e.printStackTrace();
             }
 
-            logger.info("Model:{}",obj);
+            logger.info("Model:{}", obj);
         }
-        return  obj;
+        return obj;
     }
 }
