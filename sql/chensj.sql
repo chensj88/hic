@@ -46,9 +46,9 @@
     END
 
   --专业技术职务类别代码/名称
-  UPDATE D SET D.zyzwlbdm = F.dm ,D.zyzwlbmc = F.mc   FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL D LEFT JOIN (
-     SELECT  stuff((select ',' + A.ZCDM from CISDB.dbo.SYS_ZGDMK A where A.ID in (select * from f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'') as dm,
-             stuff((select ',' + B.ZCMC from CISDB.dbo.SYS_ZGDMK B where B.ID in (select * from f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'')  as mc,
+  UPDATE D SET D.zyzwlbdm = isnull(F.dm,'无') ,D.zyzwlbmc = isnull(F.mc,'无')   FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL D LEFT JOIN (
+     SELECT  stuff((select ',' + A.ZCDM from CISDB.dbo.SYS_ZGDMK A where A.ID in (select * from CISDB_DATA.dbo.f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'') as dm,
+             stuff((select ',' + B.ZCMC from CISDB.dbo.SYS_ZGDMK B where B.ID in (select * from CISDB_DATA.dbo.f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'')  as mc,
        C.yjlxh
      from CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'N' OR D.zyzwlbmc='N')
 
