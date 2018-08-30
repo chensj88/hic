@@ -132,6 +132,7 @@ public class DataLoadController extends BaseController {
 
             }else if(data_set ==15){
                 super.getFacade().getMbzDataCheckService().removeMbzDataCheck(entity);
+                List<MbzDataCheck> mbzDataChecks15 = getFacade().getHlhtZybcjlSwjlService().interfaceHlhtZybcjlSwjl(entity);
             }else if(data_set ==16){
                 super.getFacade().getMbzDataCheckService().removeMbzDataCheck(entity);
                 //16.麻醉术前访视记录表(由手麻系统处理）* --陈枫（暂时不处理）
