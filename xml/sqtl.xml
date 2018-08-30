@@ -1,0 +1,486 @@
+<!--<Model id="a41b62c4-1137-4be9-8a2a-bebf3cfb583f" name="术前讨论记录" description="描述主持人、参加讨论人员、讨论内容等。" text="徐斌权术前讨论记录"
+       nodetype="Model" canprint="False" printInOddPages="False" display="00```0`1" Version="124" titledisplay="1`0`1"
+       hospitalcoderange="10266" catalogcode="B-6260" illnesstypecode="FFFF" scalemodelxml="" modellogiccontent=""
+       indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass="" maxrefid="26"
+       RelateInstanceId="0">
+    <Ref id="4">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="00000000-0000-0000-0002-000000000001" nodetype="Embeded" nodelogiccontent="" name="病程日期" text="病程日期"
+              description="B.110" otherid="D-B1100" display="11```0`1">
+            <node embededId="0" id="00000000-0000-0000-0003-000000000001" nodetype="Object" nodelogiccontent=""
+                  name="病程日期" text="病程日期" description="病程日期" display="11```0`1">
+                <node id="00000000-0000-0000-0004-000000000001" nodetype="AtomNode" nodelogiccontent="" name="病程日期"
+                      text="病程日期" description="病程日期" atomtype="Time" value="636712394400000000`2018-08-30 15:24"
+                      defaultvalue="632761375986718750`2006-2-21 16:53:18"
+                      display="1111011`````yyyy-MM-dd HH:mm+Minute+-+(DTS: )``0" embededId="2" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="00000000-0000-0000-0001-000000000001" nodetype="DynamicMoleNode" nodelogiccontent="" name="病程日期"
+          visiable="False" text="病程日期" description="病程日期" display="11```0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="4" nodetype="Embeded"/>
+    </node>
+    <Ref id="3">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="0e04cc70-d1c0-4507-bf46-00c9aaab8452" nodetype="Embeded" nodelogiccontent="" name="讨论日期" text="讨论日期"
+              description="B.121" otherid="D-B1121" display="11```0`1">
+            <node embededId="2" id="714cb062-b631-4ce6-9f8d-131db12ef039" nodetype="Object" nodelogiccontent=""
+                  name="讨论日期" text="讨论日期" description="1.543" otherid="E-15431" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="讨论日期"
+                      text="讨论日期" description="8.001" otherid="F-80010" atomtype="Time"
+                      value="636711840000000000`2018年08月30日0时00分"
+                      display="1111011`````yyyy年MM月dd日HH时mm分+Minute++(DTS: )``0" embededId="3" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="0b5ad94f-bdd6-4832-8bc8-d257d2a7fb4d" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论日期"
+          text="讨论日期" description="5.305" display="20`&#xD;&#xA;讨论时间：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="3" nodetype="Embeded"/>
+    </node>
+    <node id="ed319f46-5fc5-460b-90a4-18878c537d85" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论地点"
+          text="讨论地点" otherid="C-1158" display="20`讨论地点：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="会诊" rtf="\'bb\'e1\'d5\'ef" nodetype="Text"/>
+        <node text="会议室" rtf="\'bb\'e1\'d2\'e9\'ca\'d2" nodetype="Text"/>
+    </node>
+    <Ref id="19">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="282110dc-93af-4ead-a237-1d23d793d318" nodetype="Embeded" nodelogiccontent="" name="其他住院信息(病史讨论主持人)"
+              text="其他住院信息(病史讨论主持人)" description="包括主持医师及医师级别。" display="11```0`1">
+            <node embededId="0" id="8cade705-bb98-4e36-9d3d-0a11d2a5baab" nodetype="Object" nodelogiccontent=""
+                  name="主持人" text="主持人" description="病史讨论主持人" display="11```0`1">
+                <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="职工代码库"
+                      text="主持人及级别" description="院内职工表。" atomtype="String" maxrequired="6" value="00166`沈佳佳实习医师`00166"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1///ysjbmc//"
+                      inputdirect="False" display="1111111```````0" embededId="17" autoeditnext="True" spaceholder="0"
+                      forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="58e85f19-4337-4870-adba-4999a2682a37" nodetype="DynamicMoleNode" nodelogiccontent="" name="主持人" text="主持人"
+          description="3.561" display="20`讨论主持人：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+          canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+          useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="19" nodetype="Embeded"/>
+    </node>
+    <Ref id="10">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="b89d0396-9dc8-4da6-a546-e7ba091639a0" nodetype="Embeded" nodelogiccontent="" name="其他住院信息(参与病史讨论人员)"
+              text="其他住院信息(参与病史讨论人员)" description="包括主任、主治、住院医师及进修医师。" display="11```0`1">
+            <node embededId="0" id="eb6acfa2-1b48-41ad-8090-1c9df6b9f721" nodetype="Object" nodelogiccontent=""
+                  name="医师姓名" text="医师姓名" otherid="E-1011" display="11```0`1">
+                <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="职工代码库"
+                      text="讨论医师及级别" description="院内职工表。" otherid="F-30" atomtype="String" maxrequired="20"
+                      value="00203,00205,00206`胡伟东主治医师、周勤伟副主任医师、徐斌权副主任医师`00203,00205,00206" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1///ysjbmc//" inputdirect="False"
+                      display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0" forbidDel="False"
+                      isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="bb20f2db-5f98-4b2f-9ff8-dd28a48a11b0" nodetype="DynamicMoleNode" nodelogiccontent="" name="参加讨论人员"
+          text="参加讨论人员" description="3.564" display="20`参加人员（姓名及职称）：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="10" nodetype="Embeded"/>
+    </node>
+    <Ref id="22">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="86f0e2e9-f53a-4781-bea6-dd75a64dbf2b" nodetype="Embeded" nodelogiccontent="" name="手术信息(术前诊断)"
+              text="手术信息(术前诊断)" description="用于术前小结、术前讨论等记录中。" otherid="D-101529" display="11```0`1">
+            <node embededId="0" id="b96f6b9b-3d5c-4e9e-af8c-ea79a1b5c826" nodetype="Object" nodelogiccontent=""
+                  name="术前诊断" text="术前诊断" description="6.231" otherid="E-62" display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术前诊断"
+                      text="术前诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
+                      value="A00.901`霍乱`A00.901" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="1"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="26">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="af857c27-832f-4210-a80a-de8cf95ee499" nodetype="Embeded" nodelogiccontent="" name="其他诊断" text="其他诊断"
+              description="除主要诊断及医院感染名称外的其他诊断。" otherid="D-5435" display="11```0`1">
+            <node embededId="0" id="03003b01-933f-4b81-97b6-34768da6746f" nodetype="Object" nodelogiccontent=""
+                  name="其他诊断" text="其他诊断" description="6.205" otherid="E-62105" display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术前诊断"
+                      text="术前诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
+                      value="K37xx01`2.阑尾炎`K37xx01" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="1"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="2ef0a3e4-f75d-4f36-aef0-93562b802c47" nodetype="DynamicMoleNode" nodelogiccontent="" name="术前诊断"
+          text="术前诊断" description="5.736" otherid="C-81" display="20`术前诊断：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="22" nodetype="Embeded"/>
+        <node text="  " rtf="  " nodetype="Text"/>
+        <node refid="26" nodetype="Embeded"/>
+    </node>
+    <Ref id="23">
+        <node identity="12" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="abcc0b6b-10fc-4b57-827e-64f02025b780" nodetype="Embeded" nodelogiccontent="" name="手术信息(手术指征和拟施手术名称)"
+              text="手术信息(手术指征和拟施手术名称)" description="院内手术字典" otherid="D-101529" display="11```0`1">
+            <node embededId="8" id="9bf56932-8685-4b44-a32d-0eb9945945e7" nodetype="Object" nodelogiccontent=""
+                  name="手术指征" text="手术指征" description="自由输入" otherid="E-5233" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="字符型结点"
+                      text="手术指征" description="输入自由文本的原子类型。" otherid="F-10" atomtype="String"
+                      value="术前讨论指症`术前讨论指症`术前讨论指症" display="1111111```````0" embededId="9" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="1b4b9377-ff50-42df-86dd-f6f74b852373" nodetype="DynamicMoleNode" nodelogiccontent="" name="手术指征"
+          text="手术指征" description="5.113" otherid="C-51" display="20`手术指征：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="23" nodetype="Embeded"/>
+    </node>
+    <Ref id="24">
+        <node identity="10" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="99bed721-544e-456a-8bd4-a5ea77485dad" nodetype="Embeded" nodelogiccontent="" name="手术信息(手术方式)"
+              text="手术信息(手术方式)" description="院内手术字典" otherid="D-101529" display="11```0`1">
+            <node embededId="8" id="6dd38132-4d99-4bcc-afb4-ab6d513253b2" nodetype="Object" nodelogiccontent=""
+                  name="手术方式" text="手术方式"
+                  description="选项：根治术（R0）、姑息切除术（R1、R2）、转流术、造瘘术、探查术；胃大部切除、全胃切除；D2、D3、完全性切除术、不完全性切除术、不确定切除术、剖胸探查术、肺段切除术、楔行切除术、准确切除术"
+                  otherid="E-5201" display="11```0`1">
+                <node id="b71ec7f6-5756-45ff-9fa6-085d58359acd" nodetype="AtomNode" nodelogiccontent="" name="手术和麻醉操作"
+                      text="手术方式" description="手术、麻醉等操作方式。" otherid="F-40" atomtype="String" value="95626`切除术`P1-03000"
+                      ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="操作///Procedure///代码范围//P1-03054, P1-03055,P1-03000,P1-28420,P1-28414,P1-28414,P1-03050, P1-67369, P1-5510A, P1-5510B, P1-55103, P1-55104, P1-5510E, P1-5510F,P1-03002,P1-03001,P1-0300A,P1-0E442,P1-0300B,P1-0300C,P1-0300D"
+                      inputdirect="False" display="1111111```````0" embededId="9" autoeditnext="True" spaceholder="0"
+                      forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="d899bb16-c70b-4b91-b2c7-7aec4a850b3a" nodetype="DynamicMoleNode" nodelogiccontent="" name="手术方案"
+          text="手术方案" otherid="C-51" display="20`手术方案：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="24" nodetype="Embeded"/>
+    </node>
+    <node id="9c8a4fe9-a0eb-43eb-8309-8da9489ee5e7" nodetype="DynamicMoleNode" nodelogiccontent="" name="术前准备"
+          text="术前准备" otherid="C-51" display="20`术前准备：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="准备" rtf="\'d7\'bc\'b1\'b8" nodetype="Text"/>
+        <node text="一下" rtf="\'d2\'bb\'cf\'c2" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="准备" rtf="\'d7\'bc\'b1\'b8" nodetype="Text"/>
+        <node text="一下" rtf="\'d2\'bb\'cf\'c2" nodetype="Text"/>
+    </node>
+    <node id="425e6862-b583-42bd-ae50-524d12c6f6c7" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论意见"
+          text="讨论意见" description="3.101" otherid="C-1151" display="20`讨论意见：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="讨论" rtf="\'cc\'d6\'c2\'db" nodetype="Text"/>
+        <node text="手术" rtf="\'ca\'d6\'ca\'f5" nodetype="Text"/>
+        <node text="处理" rtf="\'b4\'a6\'c0\'ed" nodetype="Text"/>
+        <node text="方案" rtf="\'b7\'bd\'b0\'b8" nodetype="Text"/>
+    </node>
+    <node id="1bfe69a3-bb80-4185-a4fa-5ff2a4550ff1" nodetype="DynamicMoleNode" nodelogiccontent="" name="主持人总结"
+          text="主持人总结" otherid="C-1158" display="20`主持人小结：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="准备" rtf="\'d7\'bc\'b1\'b8" nodetype="Text"/>
+        <node text="手术" rtf="\'ca\'d6\'ca\'f5" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="万事大吉" rtf="\'cd\'f2\'ca\'c2\'b4\'f3\'bc\'aa" nodetype="Text"/>
+    </node>
+    <Ref id="25">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
+              description="病史记录者签名" display="11```0`1">
+            <node embededId="0" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
+                  name="医师签名" text="医师签名" display="11```0`1">
+                <node id="769ca781-6e6c-4eba-8e8e-2e17d78001d7" nodetype="AtomNode" nodelogiccontent="" name="普通医师"
+                      text="医师签名" description="院内职工表。" atomtype="String" value="00166`沈佳佳`00166" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="职工表///EmployeeBook//////" inputdirect="False"
+                      display="1111111```````0" embededId="6" autoeditnext="True" spaceholder="0" forbidDel="False"
+                      isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="581f3027-3a60-4e0b-9a82-c2d2dee31b73" nodetype="DynamicMoleNode" nodelogiccontent="" name="医师签名"
+          text="医师签名" description="3.571" display="20`　　　　　　　　　　　　　　　　　　　　　   记录者：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="25" nodetype="Embeded"/>
+    </node>
+</Model>-->
+<Model id="a41b62c4-1137-4be9-8a2a-bebf3cfb583f" name="术前讨论记录" description="描述主持人、参加讨论人员、讨论内容等。" text="术前讨论记录"
+       nodetype="Model" canprint="False" printInOddPages="False" display="00```0`1" Version="123" titledisplay="1`0`1"
+       hospitalcoderange="10266" catalogcode="B-6260" illnesstypecode="FFFF" scalemodelxml="" modellogiccontent=""
+       indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass="" maxrefid="26"
+       RelateInstanceId="0">
+<Ref id="4">
+    <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="00000000-0000-0000-0002-000000000001" nodetype="Embeded" nodelogiccontent="" name="病程日期" text="病程日期"
+          description="B.110" otherid="D-B1100" display="11```0`1">
+        <node embededId="0" id="00000000-0000-0000-0003-000000000001" nodetype="Object" nodelogiccontent="" name="病程日期"
+              text="病程日期" description="病程日期" display="11```0`1">
+            <node id="00000000-0000-0000-0004-000000000001" nodetype="AtomNode" nodelogiccontent="" name="病程日期"
+                  text="病程日期" description="病程日期" atomtype="Time" value="636711518400000000`2018-08-29 15:04"
+                  defaultvalue="632761375986718750`2006-2-21 16:53:18"
+                  display="1111011`````yyyy-MM-dd HH:mm+Minute+-+(DTS: )``0" embededId="2" autoeditnext="True"
+                  spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<node id="00000000-0000-0000-0001-000000000001" nodetype="DynamicMoleNode" nodelogiccontent="" name="病程日期"
+      visiable="False" text="病程日期" description="病程日期" display="11```0`1" permitobjs="" defaultobjs=""
+      allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+      permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node refid="4" nodetype="Embeded"/>
+</node>
+<Ref id="3">
+    <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="0e04cc70-d1c0-4507-bf46-00c9aaab8452" nodetype="Embeded" nodelogiccontent="" name="讨论日期" text="讨论日期"
+          description="B.121" otherid="D-B1121" display="11```0`1">
+        <node embededId="2" id="714cb062-b631-4ce6-9f8d-131db12ef039" nodetype="Object" nodelogiccontent="" name="讨论日期"
+              text="讨论日期" description="1.543" otherid="E-15431" display="11```0`1">
+            <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="讨论日期"
+                  text="讨论日期" description="8.001" otherid="F-80010" atomtype="Time"
+                  value="636710976000000000`2018年08月29日0时00分" display="1111011`````yyyy年MM月dd日HH时mm分+Minute++(DTS: )``0"
+                  embededId="3" autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<node id="0b5ad94f-bdd6-4832-8bc8-d257d2a7fb4d" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论日期" text="讨论日期"
+      description="5.305" display="20`&#xD;&#xA;讨论时间：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+      allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+      permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node refid="3" nodetype="Embeded"/>
+</node>
+<node id="ed319f46-5fc5-460b-90a4-18878c537d85" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论地点" text="讨论地点"
+      otherid="C-1158" display="20`讨论地点：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+      canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+      useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node text="心" rtf="\'d0\'c4" nodetype="Text"/>
+    <node text="外" rtf="\'cd\'e2" nodetype="Text"/>
+    <node text="科" rtf="\'bf\'c6" nodetype="Text"/>
+</node>
+<Ref id="19">
+    <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="282110dc-93af-4ead-a237-1d23d793d318" nodetype="Embeded" nodelogiccontent="" name="其他住院信息(病史讨论主持人)"
+          text="其他住院信息(病史讨论主持人)" description="包括主持医师及医师级别。" display="11```0`1">
+        <node embededId="0" id="8cade705-bb98-4e36-9d3d-0a11d2a5baab" nodetype="Object" nodelogiccontent="" name="主持人"
+              text="主持人" description="病史讨论主持人" display="11```0`1">
+            <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="职工代码库"
+                  text="主持人及级别" description="院内职工表。" atomtype="String" maxrequired="6"
+                  value="00187,00166`余小艳实习医师、沈佳佳实习医师`00187,00166" ischoiceatom="True" ChoiceType="ShowList"
+                  sqlstr="职工表///EmployeeBook///记录状态//1///ysjbmc//" inputdirect="False" display="1111111```````0"
+                  embededId="17" autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<node id="58e85f19-4337-4870-adba-4999a2682a37" nodetype="DynamicMoleNode" nodelogiccontent="" name="主持人" text="主持人"
+      description="3.561" display="20`讨论主持人：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+      canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+      useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node refid="19" nodetype="Embeded"/>
+</node>
+<Ref id="10">
+    <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="b89d0396-9dc8-4da6-a546-e7ba091639a0" nodetype="Embeded" nodelogiccontent="" name="其他住院信息(参与病史讨论人员)"
+          text="其他住院信息(参与病史讨论人员)" description="包括主任、主治、住院医师及进修医师。" display="11```0`1">
+        <node embededId="0" id="eb6acfa2-1b48-41ad-8090-1c9df6b9f721" nodetype="Object" nodelogiccontent="" name="医师姓名"
+              text="医师姓名" otherid="E-1011" display="11```0`1">
+            <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="职工代码库"
+                  text="讨论医师及级别" description="院内职工表。" otherid="F-30" atomtype="String" maxrequired="20"
+                  value="0101`张三主治医师`0101" ischoiceatom="True" ChoiceType="ShowList"
+                  sqlstr="职工表///EmployeeBook///记录状态//1///ysjbmc//" inputdirect="False" display="1111111```````0"
+                  embededId="1" autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<node id="bb20f2db-5f98-4b2f-9ff8-dd28a48a11b0" nodetype="DynamicMoleNode" nodelogiccontent="" name="参加讨论人员"
+      text="参加讨论人员" description="3.564" display="20`参加人员（姓名及职称）：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+      allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+      permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node refid="10" nodetype="Embeded"/>
+</node>
+<Ref id="22">
+    <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="86f0e2e9-f53a-4781-bea6-dd75a64dbf2b" nodetype="Embeded" nodelogiccontent="" name="手术信息(术前诊断)"
+          text="手术信息(术前诊断)" description="用于术前小结、术前讨论等记录中。" otherid="D-101529" display="11```0`1">
+        <node embededId="0" id="b96f6b9b-3d5c-4e9e-af8c-ea79a1b5c826" nodetype="Object" nodelogiccontent="" name="术前诊断"
+              text="术前诊断" description="6.231" otherid="E-62" display="11```0`1">
+            <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术前诊断"
+                  text="术前诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
+                  value="A00.901`霍乱`A00.901" ischoiceatom="True" ChoiceType="ShowList" sqlstr="ICD-10///ICD10///记录状态//1"
+                  inputdirect="False" display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0"
+                  forbidDel="False" isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<Ref id="26">
+    <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="af857c27-832f-4210-a80a-de8cf95ee499" nodetype="Embeded" nodelogiccontent="" name="其他诊断" text="其他诊断"
+          description="除主要诊断及医院感染名称外的其他诊断。" otherid="D-5435" display="11```0`1">
+        <node embededId="0" id="03003b01-933f-4b81-97b6-34768da6746f" nodetype="Object" nodelogiccontent="" name="其他诊断"
+              text="其他诊断" description="6.205" otherid="E-62105" display="11```0`1">
+            <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术前诊断"
+                  text="术前诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
+                  value="K37xx01`2.阑尾炎`K37xx01" ischoiceatom="True" ChoiceType="ShowList"
+                  sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="1"
+                  autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<node id="2ef0a3e4-f75d-4f36-aef0-93562b802c47" nodetype="DynamicMoleNode" nodelogiccontent="" name="术前诊断" text="术前诊断"
+      description="5.736" otherid="C-81" display="20`术前诊断：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+      allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+      permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node refid="22" nodetype="Embeded"/>
+    <node text="  " rtf="  " nodetype="Text"/>
+    <node refid="26" nodetype="Embeded"/>
+</node>
+<Ref id="23">
+    <node identity="12" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="abcc0b6b-10fc-4b57-827e-64f02025b780" nodetype="Embeded" nodelogiccontent="" name="手术信息(手术指征和拟施手术名称)"
+          text="手术信息(手术指征和拟施手术名称)" description="院内手术字典" otherid="D-101529" display="11```0`1">
+        <node embededId="8" id="9bf56932-8685-4b44-a32d-0eb9945945e7" nodetype="Object" nodelogiccontent="" name="手术指征"
+              text="手术指征" description="自由输入" otherid="E-5233" display="11```0`1">
+            <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="字符型结点"
+                  text="手术指征" description="输入自由文本的原子类型。" otherid="F-10" atomtype="String"
+                  value="我是手术指征我是手术指征`我是手术指征我是手术指征`我是手术指征我是手术指征" display="1111111```````0" embededId="9"
+                  autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<node id="1b4b9377-ff50-42df-86dd-f6f74b852373" nodetype="DynamicMoleNode" nodelogiccontent="" name="手术指征" text="手术指征"
+      description="5.113" otherid="C-51" display="20`手术指征：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+      allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+      permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node refid="23" nodetype="Embeded"/>
+</node>
+<Ref id="24">
+    <node identity="10" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="99bed721-544e-456a-8bd4-a5ea77485dad" nodetype="Embeded" nodelogiccontent="" name="手术信息(手术方式)"
+          text="手术信息(手术方式)" description="院内手术字典" otherid="D-101529" display="11```0`1">
+        <node embededId="8" id="6dd38132-4d99-4bcc-afb4-ab6d513253b2" nodetype="Object" nodelogiccontent="" name="手术方式"
+              text="手术方式"
+              description="选项：根治术（R0）、姑息切除术（R1、R2）、转流术、造瘘术、探查术；胃大部切除、全胃切除；D2、D3、完全性切除术、不完全性切除术、不确定切除术、剖胸探查术、肺段切除术、楔行切除术、准确切除术"
+              otherid="E-5201" display="11```0`1">
+            <node id="b71ec7f6-5756-45ff-9fa6-085d58359acd" nodetype="AtomNode" nodelogiccontent="" name="手术和麻醉操作"
+                  text="手术方式" description="手术、麻醉等操作方式。" otherid="F-40" atomtype="String" value="95656`根治切除术`P1-03050"
+                  ischoiceatom="True" ChoiceType="ShowList"
+                  sqlstr="操作///Procedure///代码范围//P1-03054, P1-03055,P1-03000,P1-28420,P1-28414,P1-28414,P1-03050, P1-67369, P1-5510A, P1-5510B, P1-55103, P1-55104, P1-5510E, P1-5510F,P1-03002,P1-03001,P1-0300A,P1-0E442,P1-0300B,P1-0300C,P1-0300D"
+                  inputdirect="False" display="1111111```````0" embededId="9" autoeditnext="True" spaceholder="0"
+                  forbidDel="False" isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<node id="d899bb16-c70b-4b91-b2c7-7aec4a850b3a" nodetype="DynamicMoleNode" nodelogiccontent="" name="手术方案" text="手术方案"
+      otherid="C-51" display="20`手术方案：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+      canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+      useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node refid="24" nodetype="Embeded"/>
+    <node text="我" rtf="\'ce\'d2" nodetype="Text"/>
+    <node text="是" rtf="\'ca\'c7" nodetype="Text"/>
+    <node text="手" rtf="\'ca\'d6" nodetype="Text"/>
+    <node text="术" rtf="\'ca\'f5" nodetype="Text"/>
+    <node text="方" rtf="\'b7\'bd" nodetype="Text"/>
+    <node text="案" rtf="\'b0\'b8" nodetype="Text"/>
+</node>
+<node id="9c8a4fe9-a0eb-43eb-8309-8da9489ee5e7" nodetype="DynamicMoleNode" nodelogiccontent="" name="术前准备" text="术前准备"
+      otherid="C-51" display="20`术前准备：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+      canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+      useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node text="我" rtf="\'ce\'d2" nodetype="Text"/>
+    <node text="是" rtf="\'ca\'c7" nodetype="Text"/>
+    <node text="术" rtf="\'ca\'f5" nodetype="Text"/>
+    <node text="前" rtf="\'c7\'b0" nodetype="Text"/>
+    <node text="准备" rtf="\'d7\'bc\'b1\'b8" nodetype="Text"/>
+    <node text="我" rtf="\'ce\'d2" nodetype="Text"/>
+    <node text="是" rtf="\'ca\'c7" nodetype="Text"/>
+    <node text="术" rtf="\'ca\'f5" nodetype="Text"/>
+    <node text="前" rtf="\'c7\'b0" nodetype="Text"/>
+    <node text="准备" rtf="\'d7\'bc\'b1\'b8" nodetype="Text"/>
+</node>
+<node id="425e6862-b583-42bd-ae50-524d12c6f6c7" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论意见" text="讨论意见"
+      description="3.101" otherid="C-1151" display="20`讨论意见：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+      allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+      permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node text="我" rtf="\'ce\'d2" nodetype="Text"/>
+    <node text="是" rtf="\'ca\'c7" nodetype="Text"/>
+    <node text="讨论" rtf="\'cc\'d6\'c2\'db" nodetype="Text"/>
+    <node text="意" rtf="\'d2\'e2" nodetype="Text"/>
+    <node text="见" rtf="\'bc\'fb" nodetype="Text"/>
+    <node text="我" rtf="\'ce\'d2" nodetype="Text"/>
+    <node text="是" rtf="\'ca\'c7" nodetype="Text"/>
+    <node text="讨论" rtf="\'cc\'d6\'c2\'db" nodetype="Text"/>
+    <node text="意" rtf="\'d2\'e2" nodetype="Text"/>
+    <node text="见" rtf="\'bc\'fb" nodetype="Text"/>
+</node>
+<node id="1bfe69a3-bb80-4185-a4fa-5ff2a4550ff1" nodetype="DynamicMoleNode" nodelogiccontent="" name="主持人总结" text="主持人总结"
+      otherid="C-1158" display="20`主持人小结：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+      canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+      useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node text="我" rtf="\'ce\'d2" nodetype="Text"/>
+    <node text="是" rtf="\'ca\'c7" nodetype="Text"/>
+    <node text="主" rtf="\'d6\'f7" nodetype="Text"/>
+    <node text="持" rtf="\'b3\'d6" nodetype="Text"/>
+    <node text="人" rtf="\'c8\'cb" nodetype="Text"/>
+    <node text="小" rtf="\'d0\'a1" nodetype="Text"/>
+    <node text="结" rtf="\'bd\'e1" nodetype="Text"/>
+    <node text="我" rtf="\'ce\'d2" nodetype="Text"/>
+    <node text="是" rtf="\'ca\'c7" nodetype="Text"/>
+    <node text="主" rtf="\'d6\'f7" nodetype="Text"/>
+    <node text="持" rtf="\'b3\'d6" nodetype="Text"/>
+    <node text="人" rtf="\'c8\'cb" nodetype="Text"/>
+    <node text="小" rtf="\'d0\'a1" nodetype="Text"/>
+    <node text="结" rtf="\'bd\'e1" nodetype="Text"/>
+</node>
+<Ref id="25">
+    <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+          illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+          id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
+          description="病史记录者签名" display="11```0`1">
+        <node embededId="0" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent="" name="医师签名"
+              text="医师签名" display="11```0`1">
+            <node id="769ca781-6e6c-4eba-8e8e-2e17d78001d7" nodetype="AtomNode" nodelogiccontent="" name="普通医师"
+                  text="医师签名" description="院内职工表。" atomtype="String" value="00``00" ischoiceatom="True"
+                  ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///科室代码//@当前科室///" inputdirect="False"
+                  display="1111111```````0" embededId="6" autoeditnext="True" spaceholder="0" forbidDel="False"
+                  isComplexShowlist="False"/>
+        </node>
+    </node>
+</Ref>
+<node id="581f3027-3a60-4e0b-9a82-c2d2dee31b73" nodetype="DynamicMoleNode" nodelogiccontent="" name="医师签名" text="医师签名"
+      description="3.571" display="20`　　　　　　　　　　　　　　　　　　　　　   记录者：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+      allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+      permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+    <node refid="25" nodetype="Embeded"/>
+</node>
+</Model>

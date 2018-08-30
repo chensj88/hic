@@ -959,6 +959,7 @@
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.RYRQ as ryrq,
+        t.FSSJ as qmrq,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,

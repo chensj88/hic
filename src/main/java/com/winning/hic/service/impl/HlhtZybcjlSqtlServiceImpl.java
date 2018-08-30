@@ -114,8 +114,8 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
                             HlhtZybcjlSqtl sqtl = new HlhtZybcjlSqtl();
                             sqtl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             sqtl = this.getHlhtZybcjlSqtl(sqtl);
+                            System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-
                             if(sqtl != null){ //删除历史数据
                                 HlhtZybcjlSqtl oldSqtl  = new HlhtZybcjlSqtl();
                                 oldSqtl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
