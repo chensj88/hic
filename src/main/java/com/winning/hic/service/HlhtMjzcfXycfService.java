@@ -30,4 +30,6 @@ public interface HlhtMjzcfXycfService {
     public List<HlhtMjzcfXycf> getHlhtMjzcfXycfPageList(HlhtMjzcfXycf hlhtMjzcfXycf);
 
     List<MbzDataCheck> interfaceHlhtMjzcfXycf(MbzDataCheck entity);
+
+
 }

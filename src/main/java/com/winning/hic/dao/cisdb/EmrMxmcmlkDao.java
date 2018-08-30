@@ -39,4 +39,5 @@ public interface EmrMxmcmlkDao {
     List<EmrMxmcmlk> selectEmrMxmcmlkParentList(EmrMxmcmlk emrMxmcmlk);
 
     List<EmrMxmcmlk> selectEmrMxmcmlkFirstChildList(EmrMxmcmlk mxmcmlk);
+
 }

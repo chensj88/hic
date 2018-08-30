@@ -149,4 +149,9 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
         return mbzDataCheck;
     }
+
+    @Override
+    public void selectAllHandleQuery() {
+        this.hlhtZybcjlScbcjlDao.selectAllHandleQuery();
+    }
 }

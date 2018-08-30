@@ -32,4 +32,6 @@ public interface HlhtZybcjlScbcjlService {
     HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl entity);
 
     MbzDataCheck interfaceHlhtZybcjlScbcjl(MbzDataCheck t);
+
+    void selectAllHandleQuery();
 }
