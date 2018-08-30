@@ -306,6 +306,7 @@
                     'N'
             )                                               AS nls,
             SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9)       AS nly,
+            q.FSSJ                                          AS qmrq,
             q.QTBLJLXH                                      AS syxh,
             q.TJZT                                          AS tjzt,
             q.YXJL                                          AS yxjl,
