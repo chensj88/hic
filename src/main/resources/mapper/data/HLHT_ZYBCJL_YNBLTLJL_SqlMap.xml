@@ -296,6 +296,31 @@
                 ISNULL(c.KSMC, 'N')                       AS ksmc,
                 ISNULL(m.fjh, 'N')                        AS bfh,
                 ISNULL(b.RYCW, 'N')                       AS bch,
+                ISNULL(b.HZXM, 'N')                       AS hzxm,
+                ISNULL(b.SFZH, 'N')                       AS sfzhm,
+                ISNULL(b.BRXB, 'N')                       AS xbdm,
+                (
+                    SELECT CASE b.BRXB
+                           WHEN '2'
+                               THEN
+                                   '女'
+                           WHEN '1'
+                               THEN
+                                   '男'
+                           ELSE
+                               '其它'
+                           END
+                )                                         AS xbmc,
+                ISNULL(
+                    CONVERT(
+                                VARCHAR,
+                                (
+                                    YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
+                                )
+                            ),
+                                'N'
+        )                                                 AS nls,
+                SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
                 q.QTBLJLXH                                AS syxh,
                 q.TJZT                                    AS tjzt,
                 q.YXJL                                    AS yxjl,
