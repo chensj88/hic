@@ -51,20 +51,54 @@
              stuff((select ',' + B.ZCMC from CISDB.dbo.SYS_ZGDMK B where B.ID in (select * from CISDB_DATA.dbo.f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'')  as mc,
        C.yjlxh
      from CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'N' OR D.zyzwlbmc='N')
+  --拟实施麻醉方法
+  UPDATE A SET A.mzffdm = ISNULL(B.MZDM,'无') ,A.mzffmc = ISNULL(B.MZMC,'无') FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A  LEFT JOIN CISDB.dbo.CPOE_SSYZK B ON A.jzlsh = B.SYXH
+   WHERE (A.mzffdm = 'N' OR A.mzffmc='N')
+  --术前诊断
+  UPDATE A SET A.sqzdbm = C.ZDMC,A.sqzdmc = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+  WHERE  ( CONVERT(varchar,A.sqzdbm) ='N' OR CONVERT(varchar,A.sqzdmc) ='N' )
+  --拟实施手术及操作名称
+  UPDATE A SET A.ssczmc = ISNULL(B.ssmc,'无') FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A LEFT JOIN CISDB_DATA.dbo.HLHT_ZLCZJL_YBSSJL B ON A.jzlsh = B.jzlsh WHERE A.ssczmc = 'N'
+  --拟实施手术及操作编码
+  UPDATE A SET A.ssczbm = ISNULL(B.ssjczbm,'无') FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A LEFT JOIN CISDB_DATA.dbo.HLHT_ZLCZJL_YBSSJL B ON A.jzlsh = B.jzlsh WHERE A.ssczbm = 'N'
+  --拟实施手术目标部位代码
+  UPDATE A SET A.ssmbbwdm = ISNULL(B.ssmbbwdm,'无') FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A LEFT JOIN CISDB_DATA.dbo.HLHT_ZLCZJL_YBSSJL B ON A.jzlsh = B.jzlsh WHERE A.ssmbbwdm = 'N'
+  --拟实施手术目标部位名称
+  UPDATE A SET A.ssbwmc = ISNULL(B.ssmbbw,'无') FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A LEFT JOIN CISDB_DATA.dbo.HLHT_ZLCZJL_YBSSJL B ON A.jzlsh = B.jzlsh WHERE A.ssbwmc = 'N'
+  --拟实施手术及操作日期时间
+  UPDATE A SET A.ssczrq = ISNULL(B.ssksrq,CONVERT(DATE,'1990-01-01 00:00:00',120)) FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A LEFT JOIN CISDB_DATA.dbo.HLHT_ZLCZJL_YBSSJL B ON A.jzlsh = B.jzlsh WHERE A.ssczrq = '1990-01-01 00:00:00'
+  --手术要点
+  UPDATE A SET A.ssyd = '无' FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A WHERE A.ssyd = 'N'
+  --术前准备
+  UPDATE A SET A.sqzb = '无' FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A WHERE A.sqzb = 'N'
+  --手术方案
+  UPDATE A SET A.ssfa = ISNULL(B.ssmc,'无') FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A LEFT JOIN CISDB_DATA.dbo.HLHT_ZLCZJL_YBSSJL B ON A.jzlsh = B.jzlsh WHERE A.ssfa = 'N'
+  --注意事项
+  UPDATE A SET A.zysx = '无' FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A  WHERE A.zysx = 'N'
+  --讨论意见
+  UPDATE A SET A.tlyj = ISNULL(A.tljl,'无') FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A WHERE A.tlyj = 'N'
+  --麻醉医师工号 麻醉医师签名
+  UPDATE A SET A.mzsqm=CASE WHEN B.MZZDMC = '' THEN '无' ELSE ISNULL(B.MZZDMC,'无') END,A.mzysbm=CASE WHEN B.MZZDYS = '' THEN '无' ELSE ISNULL(B.MZZDYS,'无') END
+  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.mzsqm = 'N' OR A.mzysbm='N')
+
 
 -- 死亡记录
   --专业技术职务类别代码/名称
   UPDATE D SET D.zyzwlbdm = CASE WHEN F.dm = '' THEN '无' ELSE ISNULL(F.dm,'无') END ,D.zyzwlbmc = CASE WHEN F.mc = '' THEN '无' ELSE  ISNULL(F.mc,'无') END  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SWBLTLJL D LEFT JOIN (
     SELECT  stuff((select ',' + A.ZCDM from CISDB.dbo.SYS_ZGDMK A where A.ID in (select * from CISDB_DATA.dbo.f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'') as dm,
     stuff((select ',' + B.ZCMC from CISDB.dbo.SYS_ZGDMK B where B.ID in (select * from CISDB_DATA.dbo.f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'')  as mc,
-    C.yjlxh
-    from CISDB_DATA.dbo.HLHT_ZYBCJL_SWBLTLJL C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'N' OR D.zyzwlbmc='N')
+    C.yjlxh    from CISDB_DATA.dbo.HLHT_ZYBCJL_SWBLTLJL C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'N' OR D.zyzwlbmc='N')
 
+  --主治医师
+  UPDATE A SET A.zzysbm = CASE WHEN B.ZZYSDM = '' THEN '无' ELSE ISNULL(B.ZZYSDM,'无') end ,A.zzysqm = CASE WHEN B.ZZYSXM = '' THEN '无' ELSE ISNULL(B.ZZYSXM,'无') end FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SWBLTLJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zzysbm ='N' OR A.zzysqm = 'N');
+  --主任医师
+  UPDATE A SET A.zrysbm = ISNULL(B.ZRYSDM,'无'),A.zrysqm = ISNULL(B.ZRYSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SWBLTLJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zrysbm ='N' OR A.zrysqm = 'N');
 --住院病程记录/上级医师查房记录 医嘱内容 中医“四诊”观察结果  辨证论治详细描述  中药煎煮方法  中药用药方法
   UPDATE A SET yznr='无',zyszgcjg='无',bzlzms='无',zyjzff='无',zyyyff='无'  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SJYSCFJL A  WHERE (convert(varchar,A.yznr) ='N' OR convert(varchar,A.zyszgcjg)='N' OR convert(varchar,A.bzlzms) ='N' OR A.zyjzff ='N' OR convert(varchar,A.zyyyff) ='N');
 
-
-  -- 手术同意书/HLHT_ZQGZXX_SSTYS
+-- 手术同意书/HLHT_ZQGZXX_SSTYS
   -- 联系电话
     UPDATE A SET A.lxdh='无' FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A WHERE A.lxdh='N';
   -- 手术禁忌症
@@ -75,5 +109,5 @@
     UPDATE A SET A.nmzdm = ISNULL(B.MZDM,'无') ,A.nmzffmc = ISNULL(B.MZMC,'无') FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A  LEFT JOIN CISDB.dbo.CPOE_SSYZK B ON A.jzlsh = B.SYXH WHERE (A.nmzdm = 'N' OR A.nmzffmc='N');
   --经治医师/责任医生
     UPDATE A SET A.jzysdm = ISNULL(B.YSDM,'无'),A.jzysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysdm ='N' or A.jzysqm = 'N');
-  UPDATE A SET A.zrysdm = ISNULL(B.ZRYSDM,'无'),A.zrysxm = ISNULL(B.ZRYSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zrysdm ='N' or A.zrysxm = 'N')
+    UPDATE A SET A.zrysdm = ISNULL(B.ZRYSDM,'无'),A.zrysxm = ISNULL(B.ZRYSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zrysdm ='N' or A.zrysxm = 'N')
     UPDATE A SET A.hzqm = ISNULL(A.hzxm,'无')   FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A  WHERE (A.hzqm ='N');
