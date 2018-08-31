@@ -127,7 +127,7 @@
         <where>
             <include refid="sql-mbzDataSet" />
         </where>
-        ORDER BY t.PY_CODE ASC
+        ORDER BY t.PY_CODE ASC,t.RECORD_NAME DESC
     </select>
 
     <select id="selectMbzDataSetCount" resultType="int" parameterType="com.winning.hic.model.MbzDataSet">

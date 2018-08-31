@@ -312,6 +312,7 @@
         b.SFZH as sfzhm,b.BRXB as xbdm,c.SEX as xbmc,b.CSRQ AS csrq,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
         SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly,b.RYRQ as ryrq, ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
+        t.FSSJ AS xjrq,
         t.YXJL AS yxjl,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt
