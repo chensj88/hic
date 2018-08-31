@@ -1,0 +1,423 @@
+<Model id="790bacfd-d115-4118-9cbd-9b9e2fa720ee" name="（手术知情同意书（通用））" description="适用于浙江省中医院" text="手术知情同意书"
+       nodetype="Model" canprint="True" printInOddPages="False" display="11```0`1" Version="1.0.0.333"
+       titledisplay="1`1`1" hospitalcoderange="10266" catalogcode="B-A512" illnesstypecode="FFFF" scalemodelxml=""
+       modellogiccontent="" indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass=""
+       maxrefid="67" RelateInstanceId="0">
+    <Ref id="44">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="9"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="d698c3c5-3af0-4d90-b2c9-2b86613f10a8" nodetype="Embeded" nodelogiccontent="" name="术前诊断" text="术前诊断"
+              description="患者术前诊断。" display="11```0`1">
+            <node embededId="0" id="b96f6b9b-3d5c-4e9e-af8c-ea79a1b5c826" nodetype="Object" nodelogiccontent=""
+                  name="术前诊断" signid="术前诊断编码|515" text="术前诊断" description="6.231" display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术前诊断"
+                      signid="术前诊断编码|515" text="术前诊断" description="6.001" atomtype="String" minrequired="1"
+                      maxrequired="10" value="I28.807`肺血管炎`I28.807" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````13" embededId="3"
+                      autoeditnext="True" spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="45">
+        <node identity="0" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="abcc0b6b-10fc-4b57-827e-64f02025b780" nodetype="Embeded" nodelogiccontent="" name="手术信息(手术指征和拟施手术名称)"
+              text="手术信息(手术指征和拟施手术名称)" description="院内手术字典" display="11```0`1">
+            <node embededId="0" id="9bf56932-8685-4b44-a32d-0eb9945945e7" nodetype="Object" nodelogiccontent=""
+                  name="手术指征" signid="手术指征|413" text="手术指征" description="自由输入" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="字符型结点"
+                      signid="手术指征|413" text="手术指征" description="输入自由文本的原子类型。" atomtype="String"
+                      value="手术知情同意书`手术知情同意书`手术知情同意书" display="1111111```````13" embededId="9" autoeditnext="True"
+                      spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="46">
+        <node identity="0" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="cecebffb-fb7b-4eeb-9add-2ece3848d907" nodetype="Embeded" nodelogiccontent="" name="手术信息(拟施手术名称)"
+              text="手术信息(拟施手术名称)" description="院内手术字典" display="11```0`1">
+            <node embededId="0" id="e3ad07ae-6457-4997-b4f4-079f1bf7e1f5" nodetype="Object" nodelogiccontent=""
+                  name="手术名称" signid="拟实施手术及操作编码|461" text="手术名称" description="5.206" display="11```0`1">
+                <node id="468a187b-fbdf-4b10-9684-3ba52c40fe6c" nodetype="AtomNode" nodelogiccontent="" name="手术名称"
+                      signid="拟实施手术及操作编码|461" text="拟施手术名称" description="3.004" atomtype="String" minrequired="1"
+                      value="47.09005`阑尾切除术`47.09005" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="院内手术操作字典///CustomOperationBook///记录状态//1" inputdirect="False" display="1011111`` `````13"
+                      embededId="3" autoeditnext="True" spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="47">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="fff15156-8d1e-4940-ad1c-063e68b18c84" nodetype="Embeded" nodelogiccontent="" name="手术日期" text="手术日期"
+              description="具体时间" display="11```0`1">
+            <node embededId="0" id="f0c3be41-ed44-4500-8c3b-cbef5dd97645" nodetype="Object" nodelogiccontent=""
+                  name="手术日期" signid="拟实施手术及操作日期时间|462" text="手术日期" description="绝对时间表述方式。" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="绝对时间"
+                      signid="拟实施手术及操作日期时间|462" text="手术日期" description="支持绝对时间显示格式和精度等设置。" atomtype="Time"
+                      minrequired="1" value="636711840000000000`2018年08月30日"
+                      display="1111011`````yyyy年MM月dd日+Day++(DTS: )``13" embededId="7" autoeditnext="True"
+                      spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="48">
+        <node identity="0" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="ec08413a-968b-406c-aef1-73ee2307133d" nodetype="Embeded" nodelogiccontent="" name="手术信息(手术部位)"
+              text="手术信息(手术部位)" display="11```0`1">
+            <node embededId="0" id="017d8cbe-1773-4c80-be5d-dc9efb815e62" nodetype="Object" nodelogiccontent=""
+                  name="手术部位" signid="手术目标部位名称|438" text="手术部位" description="5.208" display="11```0`1">
+                <node id="752933a0-03d8-4448-899b-0083a456d561" nodetype="AtomNode" nodelogiccontent="" name="手术部位"
+                      text="手术部位" description="4.001" atomtype="String" value="0013`左下腹`0013" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//155///"
+                      inputdirect="False" display="1111111```````0" embededId="10" autoeditnext="True" spaceholder="0"
+                      forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="9df9194e-f288-4656-a8fe-58325a1fb9d7" nodetype="DynamicMoleNode" nodelogiccontent="" name="手术信息"
+          text="手术信息" description="0.401" otherid="C-51" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="【术前诊断】" rtf="\'a1\'be\b\'ca\'f5\'c7\'b0\'d5\'ef\'b6\'cf\b0\'a1\'bf" nodetype="Text"/>
+        <node refid="44" nodetype="Embeded"/>
+        <node text="&#xA;【手术指征】" rtf="\par&#xD;&#xA;\'a1\'be\b\'ca\'d6\'ca\'f5\'d6\'b8\'d5\'f7\b0\'a1\'bf"
+              nodetype="Text"/>
+        <node refid="45" nodetype="Embeded"/>
+        <node text="&#xA;【拟行手术名称】"
+              rtf="\par&#xD;&#xA;\pard\'a1\'be\b\'c4\'e2\'d0\'d0\'ca\'d6\'ca\'f5\'c3\'fb\'b3\'c6\b0\'a1\'bf"
+              nodetype="Text"/>
+        <node refid="46" nodetype="Embeded"/>
+        <node text="&#xA;【拟行手术日期】"
+              rtf="\par&#xD;&#xA;\pard\'a1\'be\b\'c4\'e2\'d0\'d0\'ca\'d6\'ca\'f5\'c8\'d5\'c6\'da\b0\'a1\'bf"
+              nodetype="Text"/>
+        <node refid="47" nodetype="Embeded"/>
+        <node text="        【手术部位】" rtf="        \'a1\'be\b\'ca\'d6\'ca\'f5\'b2\'bf\'ce\'bb\b0\'a1\'bf"
+              nodetype="Text"/>
+        <node refid="48" nodetype="Embeded"/>
+    </node>
+    <node id="9c8a4fe9-a0eb-43eb-8309-8da9489ee5e7" nodetype="DynamicMoleNode" nodelogiccontent="" name="术前准备"
+          signid="术前准备|514" text="术前准备" otherid="C-51" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" isnewPage="False" canNull="False" canNullSubmit="False"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="【" rtf="\'a1\'be" nodetype="Text"/>
+        <node text="术前准备】" rtf="\b \'ca\'f5\'c7\'b0\'d7\'bc\'b1\'b8\b0\'a1\'bf" nodetype="Text"/>
+    </node>
+    <node id="e74839a4-0403-4f10-ace3-d8afc91ecab0" nodetype="DynamicMoleNode" nodelogiccontent="" name="手术中可能出现的意外及风险"
+          signid="手术中可能出现的意外及风险|419" text="手术中可能出现的意外及风险" description="有创检查知情同意书项目" otherid="C-1192"
+          display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False"
+          isnewPage="False" canNull="False" canNullSubmit="False" permittedDoctorGradeRange=""
+          useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="【" rtf="\'a1\'be" nodetype="Text"/>
+        <node text="可能发生的风险及并发症】&#xA;"
+              rtf="\b \'bf\'c9\'c4\'dc\'b7\'a2\'c9\'fa\'b5\'c4\'b7\'e7\'cf\'d5\'bc\'b0\'b2\'a2\'b7\'a2\'d6\'a2\b0\'a1\'bf\par&#xD;&#xA;"
+              nodetype="Text"/>
+        <node text="1.任何手术麻醉都存在风险，麻醉并发症，严重者可致休克，危及生命。&#xA;2.任何所用药物都可能产生副作用，包括轻度的恶心、皮疹等症状到严重的过敏性休克，甚至危及生命。&#xA;3.本次手术存在以下风险：&#xA;1）术中因病情变化、解剖位置及关系变异，导致手术方式、手术范围更改，或手术进程中断 ；    &#xA;2）病灶无法切除或无法全部切除；&#xA;3）突发难以控制的大量出血，严重者可危及生命；&#xA;4）误伤邻近组织、器官、神经、血管；&#xA;5）术中突发意外，出现心、肺、肾或其他重要器官功能衰竭，危及患者生命；&#xA;6）术后出血、伤口局部或全身感染，切口愈合时间过长或不愈合；&#xA;7）由于手术创伤引发的脏器功能衰竭，甚至危及患者生命；&#xA;8）诱发、加重原有或潜在疾病；&#xA;9）依患者实际情况，术后需入住重症监护病房治疗；&#xA;10）术后病理报告与术中快速病理报告结果不符，需行二次手术；&#xA;11）其他目前无法预料的风险和并发症。&#xA;4.患有高血压、心脏病、糖尿病、肝肾功能不全、静脉血栓等疾病或者有吸烟史，以上风险可能会加大，或者在术中或术后出现相关的病情加重或心脑血管意外，甚至死亡。&#xA;5.术后如果不遵医嘱，可能影响手术效果。&#xA;6.术中可能使用的自费医用耗材"
+              rtf="1.\'c8\'ce\'ba\'ce\'ca\'d6\'ca\'f5\'c2\'e9\'d7\'ed\'b6\'bc\'b4\'e6\'d4\'da\'b7\'e7\'cf\'d5\'a3\'ac\'c2\'e9\'d7\'ed\'b2\'a2\'b7\'a2\'d6\'a2\'a3\'ac\'d1\'cf\'d6\'d8\'d5\'df\'bf\'c9\'d6\'c2\'d0\'dd\'bf\'cb\'a3\'ac\'ce\'a3\'bc\'b0\'c9\'fa\'c3\'fc\'a1\'a3\par&#xD;&#xA;2.\'c8\'ce\'ba\'ce\'cb\'f9\'d3\'c3\'d2\'a9\'ce\'ef\'b6\'bc\'bf\'c9\'c4\'dc\'b2\'fa\'c9\'fa\'b8\'b1\'d7\'f7\'d3\'c3\'a3\'ac\'b0\'fc\'c0\'a8\'c7\'e1\'b6\'c8\'b5\'c4\'b6\'f1\'d0\'c4\'a1\'a2\'c6\'a4\'d5\'ee\'b5\'c8\'d6\'a2\'d7\'b4\'b5\'bd\'d1\'cf\'d6\'d8\'b5\'c4\'b9\'fd\'c3\'f4\'d0\'d4\'d0\'dd\'bf\'cb\'a3\'ac\'c9\'f5\'d6\'c1\'ce\'a3\'bc\'b0\'c9\'fa\'c3\'fc\'a1\'a3\par&#xD;&#xA;3.\'b1\'be\'b4\'ce\'ca\'d6\'ca\'f5\'b4\'e6\'d4\'da\'d2\'d4\'cf\'c2\'b7\'e7\'cf\'d5\'a3\'ba\par&#xD;&#xA;1\'a3\'a9\'ca\'f5\'d6\'d0\'d2\'f2\'b2\'a1\'c7\'e9\'b1\'e4\'bb\'af\'a1\'a2\'bd\'e2\'c6\'ca\'ce\'bb\'d6\'c3\'bc\'b0\'b9\'d8\'cf\'b5\'b1\'e4\'d2\'ec\'a3\'ac\'b5\'bc\'d6\'c2\'ca\'d6\'ca\'f5\'b7\'bd\'ca\'bd\'a1\'a2\'ca\'d6\'ca\'f5\'b7\'b6\'ce\'a7\'b8\'fc\'b8\'c4\'a3\'ac\'bb\'f2\'ca\'d6\'ca\'f5\'bd\'f8\'b3\'cc\'d6\'d0\'b6\'cf \'a3\'bb    \par&#xD;&#xA;2\'a3\'a9\'b2\'a1\'d4\'ee\'ce\'de\'b7\'a8\'c7\'d0\'b3\'fd\'bb\'f2\'ce\'de\'b7\'a8\'c8\'ab\'b2\'bf\'c7\'d0\'b3\'fd\'a3\'bb\par&#xD;&#xA;3\'a3\'a9\'cd\'bb\'b7\'a2\'c4\'d1\'d2\'d4\'bf\'d8\'d6\'c6\'b5\'c4\'b4\'f3\'c1\'bf\'b3\'f6\'d1\'aa\'a3\'ac\'d1\'cf\'d6\'d8\'d5\'df\'bf\'c9\'ce\'a3\'bc\'b0\'c9\'fa\'c3\'fc\'a3\'bb\par&#xD;&#xA;4\'a3\'a9\'ce\'f3\'c9\'cb\'c1\'da\'bd\'fc\'d7\'e9\'d6\'af\'a1\'a2\'c6\'f7\'b9\'d9\'a1\'a2\'c9\'f1\'be\'ad\'a1\'a2\'d1\'aa\'b9\'dc\'a3\'bb\par&#xD;&#xA;5\'a3\'a9\'ca\'f5\'d6\'d0\'cd\'bb\'b7\'a2\'d2\'e2\'cd\'e2\'a3\'ac\'b3\'f6\'cf\'d6\'d0\'c4\'a1\'a2\'b7\'ce\'a1\'a2\'c9\'f6\'bb\'f2\'c6\'e4\'cb\'fb\'d6\'d8\'d2\'aa\'c6\'f7\'b9\'d9\'b9\'a6\'c4\'dc\'cb\'a5\'bd\'df\'a3\'ac\'ce\'a3\'bc\'b0\'bb\'bc\'d5\'df\'c9\'fa\'c3\'fc\'a3\'bb\par&#xD;&#xA;6\'a3\'a9\'ca\'f5\'ba\'f3\'b3\'f6\'d1\'aa\'a1\'a2\'c9\'cb\'bf\'da\'be\'d6\'b2\'bf\'bb\'f2\'c8\'ab\'c9\'ed\'b8\'d0\'c8\'be\'a3\'ac\'c7\'d0\'bf\'da\'d3\'fa\'ba\'cf\'ca\'b1\'bc\'e4\'b9\'fd\'b3\'a4\'bb\'f2\'b2\'bb\'d3\'fa\'ba\'cf\'a3\'bb\par&#xD;&#xA;7\'a3\'a9\'d3\'c9\'d3\'da\'ca\'d6\'ca\'f5\'b4\'b4\'c9\'cb\'d2\'fd\'b7\'a2\'b5\'c4\'d4\'e0\'c6\'f7\'b9\'a6\'c4\'dc\'cb\'a5\'bd\'df\'a3\'ac\'c9\'f5\'d6\'c1\'ce\'a3\'bc\'b0\'bb\'bc\'d5\'df\'c9\'fa\'c3\'fc\'a3\'bb\par&#xD;&#xA;8\'a3\'a9\'d3\'d5\'b7\'a2\'a1\'a2\'bc\'d3\'d6\'d8\'d4\'ad\'d3\'d0\'bb\'f2\'c7\'b1\'d4\'da\'bc\'b2\'b2\'a1\'a3\'bb\par&#xD;&#xA;9\'a3\'a9\'d2\'c0\'bb\'bc\'d5\'df\'ca\'b5\'bc\'ca\'c7\'e9\'bf\'f6\'a3\'ac\'ca\'f5\'ba\'f3\'d0\'e8\'c8\'eb\'d7\'a1\'d6\'d8\'d6\'a2\'bc\'e0\'bb\'a4\'b2\'a1\'b7\'bf\'d6\'ce\'c1\'c6\'a3\'bb\par&#xD;&#xA;10\'a3\'a9\'ca\'f5\'ba\'f3\'b2\'a1\'c0\'ed\'b1\'a8\'b8\'e6\'d3\'eb\'ca\'f5\'d6\'d0\'bf\'ec\'cb\'d9\'b2\'a1\'c0\'ed\'b1\'a8\'b8\'e6\'bd\'e1\'b9\'fb\'b2\'bb\'b7\'fb\'a3\'ac\'d0\'e8\'d0\'d0\'b6\'fe\'b4\'ce\'ca\'d6\'ca\'f5\'a3\'bb\par&#xD;&#xA;11\'a3\'a9\'c6\'e4\'cb\'fb\'c4\'bf\'c7\'b0\'ce\'de\'b7\'a8\'d4\'a4\'c1\'cf\'b5\'c4\'b7\'e7\'cf\'d5\'ba\'cd\'b2\'a2\'b7\'a2\'d6\'a2\'a1\'a3\par&#xD;&#xA;4.\'bb\'bc\'d3\'d0\'b8\'df\'d1\'aa\'d1\'b9\'a1\'a2\'d0\'c4\'d4\'e0\'b2\'a1\'a1\'a2\'cc\'c7\'c4\'f2\'b2\'a1\'a1\'a2\'b8\'ce\'c9\'f6\'b9\'a6\'c4\'dc\'b2\'bb\'c8\'ab\'a1\'a2\'be\'b2\'c2\'f6\'d1\'aa\'cb\'a8\'b5\'c8\'bc\'b2\'b2\'a1\'bb\'f2\'d5\'df\'d3\'d0\'ce\'fc\'d1\'cc\'ca\'b7\'a3\'ac\'d2\'d4\'c9\'cf\'b7\'e7\'cf\'d5\'bf\'c9\'c4\'dc\'bb\'e1\'bc\'d3\'b4\'f3\'a3\'ac\'bb\'f2\'d5\'df\'d4\'da\'ca\'f5\'d6\'d0\'bb\'f2\'ca\'f5\'ba\'f3\'b3\'f6\'cf\'d6\'cf\'e0\'b9\'d8\'b5\'c4\'b2\'a1\'c7\'e9\'bc\'d3\'d6\'d8\'bb\'f2\'d0\'c4\'c4\'d4\'d1\'aa\'b9\'dc\'d2\'e2\'cd\'e2\'a3\'ac\'c9\'f5\'d6\'c1\'cb\'c0\'cd\'f6\'a1\'a3\par&#xD;&#xA;5.\'ca\'f5\'ba\'f3\'c8\'e7\'b9\'fb\'b2\'bb\'d7\'f1\'d2\'bd\'d6\'f6\'a3\'ac\'bf\'c9\'c4\'dc\'d3\'b0\'cf\'ec\'ca\'d6\'ca\'f5\'d0\'a7\'b9\'fb\'a1\'a3\par&#xD;&#xA;\pard 6.\'ca\'f5\'d6\'d0\'bf\'c9\'c4\'dc\'ca\'b9\'d3\'c3\'b5\'c4\'d7\'d4\'b7\'d1\'d2\'bd\'d3\'c3\'ba\'c4\'b2\'c4"
+              nodetype="Text"/>
+        <node text="：　　" rtf="\'a3\'ba\ul\'a1\'a1\'a1\'a1" nodetype="Text"/>
+        <node text="自费医用" rtf="\'d7\'d4\'b7\'d1\'d2\'bd\'d3\'c3" nodetype="Text"/>
+        <node text="                                    　" rtf="\ul                                     \'a1\'a1"
+              nodetype="Text"/>
+        <node text="&#xA;" rtf="\ul \par&#xD;&#xA;" nodetype="Text"/>
+        <node text="7.本例手术特殊告知" rtf="7.\'b1\'be\'c0\'fd\'ca\'d6\'ca\'f5\'cc\'d8\'ca\'e2\'b8\'e6\'d6\'aa"
+              nodetype="Text"/>
+        <node text="事项" rtf="\'ca\'c2\'cf\'ee" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node text="　      " rtf="\ul \'a1\'a1      " nodetype="Text"/>
+        <node text="告知" rtf="\'b8\'e6\'d6\'aa" nodetype="Text"/>
+        <node text="事项" rtf="\'ca\'c2\'cf\'ee" nodetype="Text"/>
+        <node text="                                " rtf="\ul                                 " nodetype="Text"/>
+    </node>
+    <node id="3bf68ac8-8770-4032-a66a-81ff6b42c3df" nodetype="DynamicMoleNode" nodelogiccontent="" name="并发症和意外情况"
+          signid="手术后可能出现的意外及并发症|415" text="并发症和意外情况" description="有创检查知情同意书项目" otherid="C-1192"
+          display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False"
+          isnewPage="False" canNull="False" canNullSubmit="False" permittedDoctorGradeRange=""
+          useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="【患者自身存在的高危因素】　　     "
+              rtf="\'a1\'be\b\'bb\'bc\'d5\'df\'d7\'d4\'c9\'ed\'b4\'e6\'d4\'da\'b5\'c4\'b8\'df\'ce\'a3\'d2\'f2\'cb\'d8\b0\'a1\'bf\ul\'a1\'a1\'a1\'a1     "
+              nodetype="Text"/>
+        <node text="高危" rtf="\b \'b8\'df\'ce\'a3" nodetype="Text"/>
+        <node text="                                　" rtf="\ul                                 \'a1\'a1"
+              nodetype="Text"/>
+    </node>
+    <node id="8a4f0e5e-94aa-4853-bf8a-c03662366ab4" nodetype="DynamicMoleNode" nodelogiccontent="" name="替代方案"
+          signid="替代方案|500" text="替代方案" otherid="C-1192" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="【医疗替代方案】　        "
+              rtf="\'a1\'be\b\'d2\'bd\'c1\'c6\'cc\'e6\'b4\'fa\'b7\'bd\'b0\'b8\b0\'a1\'bf\ul\'a1\'a1        "
+              nodetype="Text"/>
+        <node text="医疗替代方案" rtf="\b \'d2\'bd\'c1\'c6\'cc\'e6\'b4\'fa\'b7\'bd\'b0\'b8" nodetype="Text"/>
+        <node text="                                      　" rtf="\ul                                       \'a1\'a1"
+              nodetype="Text"/>
+    </node>
+    <Ref id="58">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="af93e224-ab45-43e6-b95c-c1b5d28df79e" nodetype="Embeded" nodelogiccontent="" name="医师签名（单个医师签名）"
+              text="医师签名（单个医师签名）" description="病史记录者签名" display="11```0`1">
+            <node embededId="0" id="395af5e6-1851-4acb-8bf7-05b73aa7ffc2" nodetype="Object" nodelogiccontent=""
+                  name="医师签名（单个医师签名）" signid="经治医师签名|680" text="医师签名（单个医师签名）" display="11```0`1">
+                <node id="240d0ef4-ba27-4c11-b735-7d62c1f744c3" nodetype="AtomNode" nodelogiccontent="" name="医师签名"
+                      signid="经治医师签名|680" text="医师签名" description="院内职工表。" atomtype="String" value="``"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///科室代码//@当前科室///"
+                      inputdirect="False" display="1110111````　```0" embededId="6" autoeditnext="True" spaceholder="0"
+                      forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="62">
+        <node identity="0" isfixed="False" spaceholder="10" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="ae4df96d-9379-4cb5-b8c3-1436228020eb" nodetype="Embeded" nodelogiccontent="" name="手术信息(参加手术人员)"
+              text="手术信息(参加手术人员)" description="描述参加手术的医师。" display="11```0`1">
+            <node embededId="0" id="3fd2a3c0-94c3-4606-9579-b92b67836266" nodetype="Object" nodelogiccontent=""
+                  name="手术医师" signid="手术者签名|408" text="手术医师" description="5.210(主刀)" display="11```0`1">
+                <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="手术医师"
+                      signid="手术者签名|408" text="手术者签名" description="3.003" atomtype="String" minrequired="1"
+                      maxrequired="8" value="00203`胡伟东`00203" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="职工表///EmployeeBook///记录状态//1" inputdirect="False" display="1111111`手术者` `````0"
+                      embededId="3" autoeditnext="True" spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="98becfcd-f725-4a50-a83c-993bf3f8e8d3" nodetype="DynamicMoleNode" nodelogiccontent="" name="医疗机构意见"
+          signid="医疗机构意见|264" text="医疗机构意见" description="知情同意书中项目" otherid="C-1192" display="11```0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="True" canNotInputText="False" isnewPage="False" canNull="False"
+          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="    经治医生签名：" rtf="    \'be\'ad\'d6\'ce\'d2\'bd\'c9\'fa\'c7\'a9\'c3\'fb\'a3\'ba" nodetype="Text"/>
+        <node refid="58" nodetype="Embeded"/>
+        <node text="     手术者签名：" rtf="     \'ca\'d6\'ca\'f5\'d5\'df\'c7\'a9\'c3\'fb\'a3\'ba" nodetype="Text"/>
+        <node refid="62" nodetype="Embeded"/>
+        <node text="   " rtf="   " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+    </node>
+    <Ref id="63">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="34e00ca9-f630-4a0a-bb9a-2400a3d7392f" nodetype="Embeded" nodelogiccontent="" name="日期(记录日期)"
+              text="记录日期" display="11```0`1">
+            <node embededId="0" id="fe028248-7533-49c0-8c47-11132c39fbfe" nodetype="Object" nodelogiccontent=""
+                  name="记录日期" text="记录日期" description="各项文书的记录日期。" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="记录日期"
+                      text="签名日期" description="8.001" atomtype="Time" value="636711840000000000`2018年08月30日"
+                      display="1111011`````yyyy年MM月dd日+Day++(DTS: )``0" embededId="3" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="602e6095-d362-4fd9-b71a-daf12243307f" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(记录日期)"
+          signid="医师签名日期时间|241" text="日期(记录日期)" description="病程的记录日期" otherid="C-B1" display="20`日期：`&#xD;&#xA;`9`1"
+          permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False" isnewPage="False" canNull="False"
+          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="63" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+    </node>
+    <node id="5dd97bd6-7168-4f58-a5fc-24e0c94d08db" nodetype="DynamicMoleNode" nodelogiccontent="" name="患方意见"
+          signid="患者/法定代理人意见|388" text="患方意见" description="知情同意书中项目" otherid="C-1192" display="20``&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="False"
+          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="【患方意见】以上事项医生已详细告知，我对由于疾病本身及可能出现的医疗风险表示充分理解，也明白并愿意承担如果拒绝手术而可能发生的一切后果。经慎重考虑，我决定：&#xA;1.　　   "
+              rtf="\'a1\'be\b\'bb\'bc\'b7\'bd\'d2\'e2\'bc\'fb\b0\'a1\'bf\'d2\'d4\'c9\'cf\'ca\'c2\'cf\'ee\'d2\'bd\'c9\'fa\'d2\'d1\'cf\'ea\'cf\'b8\'b8\'e6\'d6\'aa\'a3\'ac\'ce\'d2\'b6\'d4\'d3\'c9\'d3\'da\'bc\'b2\'b2\'a1\'b1\'be\'c9\'ed\'bc\'b0\'bf\'c9\'c4\'dc\'b3\'f6\'cf\'d6\'b5\'c4\'d2\'bd\'c1\'c6\'b7\'e7\'cf\'d5\'b1\'ed\'ca\'be\'b3\'e4\'b7\'d6\'c0\'ed\'bd\'e2\'a3\'ac\'d2\'b2\'c3\'f7\'b0\'d7\'b2\'a2\'d4\'b8\'d2\'e2\'b3\'d0\'b5\'a3\'c8\'e7\'b9\'fb\'be\'dc\'be\'f8\'ca\'d6\'ca\'f5\'b6\'f8\'bf\'c9\'c4\'dc\'b7\'a2\'c9\'fa\'b5\'c4\'d2\'bb\'c7\'d0\'ba\'f3\'b9\'fb\'a1\'a3\'be\'ad\'c9\'f7\'d6\'d8\'bf\'bc\'c2\'c7\'a3\'ac\'ce\'d2\'be\'f6\'b6\'a8\'a3\'ba\par&#xD;&#xA;\pard 1.\ul\'a1\'a1\'a1\'a1   "
+              nodetype="Text"/>
+        <node text="风险已知，我选择" rtf="\'b7\'e7\'cf\'d5\'d2\'d1\'d6\'aa\'a3\'ac\'ce\'d2\'d1\'a1\'d4\'f1" nodetype="Text"/>
+        <node text="        　　（" rtf="\ul         \'a1\'a1\'a1\'a1\ulnone\'a3\'a8" nodetype="Text"/>
+        <node text="请填：风险已知，我选择）拟行手术方案，并愿意承担手术风险，授权并接受医师在紧急情况下更改并选择最适宜的手术方案与抢救处置。&#xA;2.　"
+              rtf="\'c7\'eb\'cc\'ee\'a3\'ba\'b7\'e7\'cf\'d5\'d2\'d1\'d6\'aa\'a3\'ac\'ce\'d2\'d1\'a1\'d4\'f1\'a3\'a9\'c4\'e2\'d0\'d0\'ca\'d6\'ca\'f5\'b7\'bd\'b0\'b8\'a3\'ac\'b2\'a2\'d4\'b8\'d2\'e2\'b3\'d0\'b5\'a3\'ca\'d6\'ca\'f5\'b7\'e7\'cf\'d5\'a3\'ac\'ca\'da\'c8\'a8\'b2\'a2\'bd\'d3\'ca\'dc\'d2\'bd\'ca\'a6\'d4\'da\'bd\'f4\'bc\'b1\'c7\'e9\'bf\'f6\'cf\'c2\'b8\'fc\'b8\'c4\'b2\'a2\'d1\'a1\'d4\'f1\'d7\'ee\'ca\'ca\'d2\'cb\'b5\'c4\'ca\'d6\'ca\'f5\'b7\'bd\'b0\'b8\'d3\'eb\'c7\'c0\'be\'c8\'b4\'a6\'d6\'c3\'a1\'a3\par&#xD;&#xA;\pard 2.\ul\'a1\'a1"
+              nodetype="Text"/>
+        <node text="风险已知，我拒绝" rtf="\'b7\'e7\'cf\'d5\'d2\'d1\'d6\'aa\'a3\'ac\'ce\'d2\'be\'dc\'be\'f8" nodetype="Text"/>
+        <node text="  　（请填：风险已知，我拒绝）拟行手术方案，并愿意承担因拒绝手术而发生的一切后果。"
+              rtf="\ul   \'a1\'a1\ulnone\'a3\'a8\'c7\'eb\'cc\'ee\'a3\'ba\'b7\'e7\'cf\'d5\'d2\'d1\'d6\'aa\'a3\'ac\'ce\'d2\'be\'dc\'be\'f8\'a3\'a9\'c4\'e2\'d0\'d0\'ca\'d6\'ca\'f5\'b7\'bd\'b0\'b8\'a3\'ac\'b2\'a2\'d4\'b8\'d2\'e2\'b3\'d0\'b5\'a3\'d2\'f2\'be\'dc\'be\'f8\'ca\'d6\'ca\'f5\'b6\'f8\'b7\'a2\'c9\'fa\'b5\'c4\'d2\'bb\'c7\'d0\'ba\'f3\'b9\'fb\'a1\'a3"
+              nodetype="Text"/>
+    </node>
+    <Ref id="67">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="732ef4d2-234a-41b3-902f-82d825965f42" nodetype="Embeded" nodelogiccontent="" name="患方人员" text="患方人员"
+              display="11```0`1">
+            <node embededId="0" id="f9e5ece2-79bc-428b-8ca5-6f7c7ddd1542" nodetype="Object" nodelogiccontent=""
+                  name="联系人姓名" text="联系人姓名" description="0.148" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="联系人姓名"
+                      text="患者/法定代理人签名" description="0.000" atomtype="String" value="王丹`王丹`王丹"
+                      display="1111111```````13" embededId="1" autoeditnext="True" spaceholder="0" forbidDel="False"
+                      isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="60">
+        <node identity="6" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="FFFF" hospitalcoderange="" diagnosisInsertstype="-1"
+              FirstCharOfDiagnosisInsertVertical="0" id="1a7b5ae2-893d-4468-812a-10460d86e3e9" nodetype="Embeded"
+              nodelogiccontent="" name="个人史(人际关系)" text="个人史(人际关系)" description="个人史中对人际关系的描述。" otherid="D-2723"
+              display="11```0`1">
+            <node embededId="4" id="29a8fd79-8798-4ff2-b3d3-47725b89f98c" nodetype="Object" nodelogiccontent=""
+                  name="与患者关系" signid="法定代理人与患者的关系代码|593" text="与患者关系" description="选项：父子、母子、夫妻、弟兄、同事、同学等"
+                  otherid="E-1001" display="11```0`1">
+                <node id="c13f0e3e-9b5b-43bc-a865-b1fc624a08dc" nodetype="AtomNode" nodelogiccontent="" name="与患者关系"
+                      signid="法定代理人与患者的关系代码|593" text="与患者关系" description="1.1109" otherid="F-11090" atomtype="String"
+                      value="01`父子`01" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//44" inputdirect="False"
+                      display="1111111```````13" embededId="5" autoeditnext="True" spaceholder="0" forbidDel="False"
+                      isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="c7374a28-3fbd-4154-aadf-053aa3545d73" nodetype="DynamicMoleNode" nodelogiccontent="" name="病人签名"
+          signid="患者签名|394" text="病人签名" otherid="C-D6" display="20`患者/法定代理人签名：``9`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="67" nodetype="Embeded"/>
+        <node text="    与患者关系：" rtf="    \'d3\'eb\'bb\'bc\'d5\'df\'b9\'d8\'cf\'b5\'a3\'ba" nodetype="Text"/>
+        <node refid="60" nodetype="Embeded"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+    </node>
+    <Ref id="66">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="34e00ca9-f630-4a0a-bb9a-2400a3d7392f" nodetype="Embeded" nodelogiccontent="" name="日期(记录日期)"
+              text="记录日期" display="11```0`1">
+            <node embededId="0" id="fe028248-7533-49c0-8c47-11132c39fbfe" nodetype="Object" nodelogiccontent=""
+                  name="记录日期" text="记录日期" description="各项文书的记录日期。" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="记录日期"
+                      text="签名日期" description="8.001" atomtype="Time" value=""
+                      display="1111011`````yyyy年MM月dd日+Day+``13" embededId="3" autoeditnext="True" spaceholder="0"
+                      forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="0efed995-e0be-4cfe-808e-04d8a4951d8c" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(签署日期或记录时间)"
+          signid="患者/法定代理人签名日期时间|390" text="日期(签署日期或记录时间)" description="3.573" otherid="C-B1"
+          display="20`日期：`&#xD;&#xA;`9`1" permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False"
+          isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+          useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="66" nodetype="Embeded"/>
+    </node>
+    <node id="ef9d05fc-3382-4bb9-b157-29a8f601ef5c" nodetype="DynamicMoleNode" nodelogiccontent="" name="同意书与委托书(告知书内容)"
+          text="同意书与委托书(告知书内容)" description="适用于告知书。" otherid="C-1192" display="20``&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="&#xA;                            手术知情同意书签字须知&#xA;"
+              rtf="\par&#xD;&#xA;                            \b\'ca\'d6\'ca\'f5\'d6\'aa\'c7\'e9\'cd\'ac\'d2\'e2\'ca\'e9\'c7\'a9\'d7\'d6\'d0\'eb\'d6\'aa\b0\par&#xD;&#xA;"
+              nodetype="Text"/>
+        <node text="尊敬的患者及家属：&#xA;    您或您的亲属因病（伤）在我院接受手术治疗，感谢您对我们的信任。任何手术均存在较高的风险，在您决定手术前，由手术医师负责向您解释手术相关事项。希望您逐项仔细阅读，不理解之处务必请在手术、麻醉实施前询问清楚。在您充分理解后，自主决定是否选择手术治疗，请在文书上写明意见并签字。&#xA;    手术医师将严格遵守医疗规范，认真准备，密切观察，仔细操作，及时处理意外情况。一旦出现紧急情况时，手术及麻醉医师将作出相应处理，同时向患者家属通报病情，请患者家属理解并配合医院紧急抢救的实施。感谢您的理解与合作！"
+              rtf="\'d7\'f0\'be\'b4\'b5\'c4\'bb\'bc\'d5\'df\'bc\'b0\'bc\'d2\'ca\'f4\'a3\'ba\par&#xD;&#xA;    \'c4\'fa\'bb\'f2\'c4\'fa\'b5\'c4\'c7\'d7\'ca\'f4\'d2\'f2\'b2\'a1\'a3\'a8\'c9\'cb\'a3\'a9\'d4\'da\'ce\'d2\'d4\'ba\'bd\'d3\'ca\'dc\'ca\'d6\'ca\'f5\'d6\'ce\'c1\'c6\'a3\'ac\'b8\'d0\'d0\'bb\'c4\'fa\'b6\'d4\'ce\'d2\'c3\'c7\'b5\'c4\'d0\'c5\'c8\'ce\'a1\'a3\'c8\'ce\'ba\'ce\'ca\'d6\'ca\'f5\'be\'f9\'b4\'e6\'d4\'da\'bd\'cf\'b8\'df\'b5\'c4\'b7\'e7\'cf\'d5\'a3\'ac\'d4\'da\'c4\'fa\'be\'f6\'b6\'a8\'ca\'d6\'ca\'f5\'c7\'b0\'a3\'ac\'d3\'c9\'ca\'d6\'ca\'f5\'d2\'bd\'ca\'a6\'b8\'ba\'d4\'f0\'cf\'f2\'c4\'fa\'bd\'e2\'ca\'cd\'ca\'d6\'ca\'f5\'cf\'e0\'b9\'d8\'ca\'c2\'cf\'ee\'a1\'a3\'cf\'a3\'cd\'fb\'c4\'fa\'d6\'f0\'cf\'ee\'d7\'d0\'cf\'b8\'d4\'c4\'b6\'c1\'a3\'ac\'b2\'bb\'c0\'ed\'bd\'e2\'d6\'ae\'b4\'a6\'ce\'f1\'b1\'d8\'c7\'eb\'d4\'da\'ca\'d6\'ca\'f5\'a1\'a2\'c2\'e9\'d7\'ed\'ca\'b5\'ca\'a9\'c7\'b0\'d1\'af\'ce\'ca\'c7\'e5\'b3\'fe\'a1\'a3\'d4\'da\'c4\'fa\'b3\'e4\'b7\'d6\'c0\'ed\'bd\'e2\'ba\'f3\'a3\'ac\'d7\'d4\'d6\'f7\'be\'f6\'b6\'a8\'ca\'c7\'b7\'f1\'d1\'a1\'d4\'f1\'ca\'d6\'ca\'f5\'d6\'ce\'c1\'c6\'a3\'ac\'c7\'eb\'d4\'da\'ce\'c4\'ca\'e9\'c9\'cf\'d0\'b4\'c3\'f7\'d2\'e2\'bc\'fb\'b2\'a2\'c7\'a9\'d7\'d6\'a1\'a3\par&#xD;&#xA;\pard     \'ca\'d6\'ca\'f5\'d2\'bd\'ca\'a6\'bd\'ab\'d1\'cf\'b8\'f1\'d7\'f1\'ca\'d8\'d2\'bd\'c1\'c6\'b9\'e6\'b7\'b6\'a3\'ac\'c8\'cf\'d5\'e6\'d7\'bc\'b1\'b8\'a3\'ac\'c3\'dc\'c7\'d0\'b9\'db\'b2\'ec\'a3\'ac\'d7\'d0\'cf\'b8\'b2\'d9\'d7\'f7\'a3\'ac\'bc\'b0\'ca\'b1\'b4\'a6\'c0\'ed\'d2\'e2\'cd\'e2\'c7\'e9\'bf\'f6\'a1\'a3\'d2\'bb\'b5\'a9\'b3\'f6\'cf\'d6\'bd\'f4\'bc\'b1\'c7\'e9\'bf\'f6\'ca\'b1\'a3\'ac\'ca\'d6\'ca\'f5\'bc\'b0\'c2\'e9\'d7\'ed\'d2\'bd\'ca\'a6\'bd\'ab\'d7\'f7\'b3\'f6\'cf\'e0\'d3\'a6\'b4\'a6\'c0\'ed\'a3\'ac\'cd\'ac\'ca\'b1\'cf\'f2\'bb\'bc\'d5\'df\'bc\'d2\'ca\'f4\'cd\'a8\'b1\'a8\'b2\'a1\'c7\'e9\'a3\'ac\'c7\'eb\'bb\'bc\'d5\'df\'bc\'d2\'ca\'f4\'c0\'ed\'bd\'e2\'b2\'a2\'c5\'e4\'ba\'cf\'d2\'bd\'d4\'ba\'bd\'f4\'bc\'b1\'c7\'c0\'be\'c8\'b5\'c4\'ca\'b5\'ca\'a9\'a1\'a3\'b8\'d0\'d0\'bb\'c4\'fa\'b5\'c4\'c0\'ed\'bd\'e2\'d3\'eb\'ba\'cf\'d7\'f7\'a3\'a1"
+              nodetype="Text"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="　　                                    　"
+              rtf="\ul \'a1\'a1\'a1\'a1                                    \'a1\'a1" nodetype="Text"/>
+        <node text="　　                                    　"
+              rtf="\ul \'a1\'a1\'a1\'a1                                    \'a1\'a1" nodetype="Text"/>
+        <node text="　" rtf="\ul \'a1\'a1" nodetype="Text"/>
+    </node>
+    <Ref id="33">
+        <node identity="4" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="59314c47-608b-4220-87f7-ce0f17723799" nodetype="Embeded" nodelogiccontent="" name="手术信息(术中诊断)"
+              text="手术信息(术中诊断)" description="用于术前小结、术前讨论等记录中。" otherid="D-101529" display="11```0`1">
+            <node embededId="2" id="81a26c28-103f-4347-8368-67980c32f3ae" nodetype="Object" nodelogiccontent=""
+                  name="术中诊断" text="术中诊断" description="6.232" otherid="E-62" display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术中诊断"
+                      text="术中诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
+                      value="K37xx01`阑尾炎`K37xx01" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="3"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="34">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="af93e224-ab45-43e6-b95c-c1b5d28df79e" nodetype="Embeded" nodelogiccontent="" name="医师签名（单个医师签名）"
+              text="医师签名（单个医师签名）" description="病史记录者签名" display="11```0`1">
+            <node embededId="0" id="395af5e6-1851-4acb-8bf7-05b73aa7ffc2" nodetype="Object" nodelogiccontent=""
+                  name="医师签名（单个医师签名）" text="医师签名（单个医师签名）" display="11```0`1">
+                <node id="240d0ef4-ba27-4c11-b735-7d62c1f744c3" nodetype="AtomNode" nodelogiccontent="" name="医师签名"
+                      text="医师签名" description="院内职工表。" atomtype="String" value="00166`沈佳佳`00166" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1" inputdirect="False"
+                      display="1110111````　```0" embededId="6" autoeditnext="True" spaceholder="0" forbidDel="False"
+                      isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="35">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="34e00ca9-f630-4a0a-bb9a-2400a3d7392f" nodetype="Embeded" nodelogiccontent="" name="日期(记录日期)"
+              text="记录日期" display="11```0`1">
+            <node embededId="0" id="fe028248-7533-49c0-8c47-11132c39fbfe" nodetype="Object" nodelogiccontent=""
+                  name="记录日期" text="记录日期" description="各项文书的记录日期。" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="记录日期"
+                      text="记录日期" description="8.001" atomtype="Time" value="636711840000000000`2018年08月30日0时00分"
+                      display="1111011`````yyyy年MM月dd日HH时mm分+Minute++(DTS: )``0" embededId="3" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="ded47b8a-7b7a-4699-82c2-edd832e301b0" nodetype="DynamicMoleNode" nodelogiccontent="" name="谈话记录"
+          text="谈话记录" description="知情同意书中项目" otherid="C-1192" display="20``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="                                   术中谈话记录&#xA;【术中所见及补充诊断】"
+              rtf="                                   \b\'ca\'f5\'d6\'d0\'cc\'b8\'bb\'b0\'bc\'c7\'c2\'bc\par&#xD;&#xA;\pard\b0\'a1\'be\b\'ca\'f5\'d6\'d0\'cb\'f9\'bc\'fb\'bc\'b0\'b2\'b9\'b3\'e4\'d5\'ef\'b6\'cf\b0\'a1\'bf"
+              nodetype="Text"/>
+        <node refid="33" nodetype="Embeded"/>
+        <node text="&#xA;&#xA;&#xA;" rtf="\par&#xD;&#xA;\par&#xD;&#xA;\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="【建议治疗方案】" rtf="\'a1\'be\b\'bd\'a8\'d2\'e9\'d6\'ce\'c1\'c6\'b7\'bd\'b0\'b8\b0\'a1\'bf"
+              nodetype="Text"/>
+        <node text="　　    切除阑尾                                             　　　"
+              rtf="\ul \'a1\'a1\'a1\'a1    \'c7\'d0\'b3\'fd\'c0\'bb\'ce\'b2                                             \'a1\'a1\'a1\'a1\'a1\'a1"
+              nodetype="Text"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="    谈话医生签名：" rtf="    \'cc\'b8\'bb\'b0\'d2\'bd\'c9\'fa\'c7\'a9\'c3\'fb\'a3\'ba" nodetype="Text"/>
+        <node refid="34" nodetype="Embeded"/>
+        <node text="                    " rtf="                    " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node refid="35" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+    </node>
+    <node id="5f25c876-b079-4e30-aa1e-aa60be475d85" nodetype="DynamicMoleNode" nodelogiccontent="" name="家属或患者意见"
+          text="家属或患者意见" otherid="C-11F1" display="20``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="【患方意见】&#xA;    患者或其法定授权人意见：医师在手术中，己向我详细告知了术中发现的情况、及如何处理或不做处理的利弊，本人确认，对手术相关情况、可能出现的意外和风险表示理解，愿意承担相关风险。经慎重考虑，决定：&#xA;1）　　"
+              rtf="\'a1\'be\b\'bb\'bc\'b7\'bd\'d2\'e2\'bc\'fb\b0\'a1\'bf\par&#xD;&#xA;    \'bb\'bc\'d5\'df\'bb\'f2\'c6\'e4\'b7\'a8\'b6\'a8\'ca\'da\'c8\'a8\'c8\'cb\'d2\'e2\'bc\'fb\'a3\'ba\'d2\'bd\'ca\'a6\'d4\'da\'ca\'d6\'ca\'f5\'d6\'d0\'a3\'ac\'bc\'ba\'cf\'f2\'ce\'d2\'cf\'ea\'cf\'b8\'b8\'e6\'d6\'aa\'c1\'cb\'ca\'f5\'d6\'d0\'b7\'a2\'cf\'d6\'b5\'c4\'c7\'e9\'bf\'f6\'a1\'a2\'bc\'b0\'c8\'e7\'ba\'ce\'b4\'a6\'c0\'ed\'bb\'f2\'b2\'bb\'d7\'f6\'b4\'a6\'c0\'ed\'b5\'c4\'c0\'fb\'b1\'d7\'a3\'ac\'b1\'be\'c8\'cb\'c8\'b7\'c8\'cf\'a3\'ac\'b6\'d4\'ca\'d6\'ca\'f5\'cf\'e0\'b9\'d8\'c7\'e9\'bf\'f6\'a1\'a2\'bf\'c9\'c4\'dc\'b3\'f6\'cf\'d6\'b5\'c4\'d2\'e2\'cd\'e2\'ba\'cd\'b7\'e7\'cf\'d5\'b1\'ed\'ca\'be\'c0\'ed\'bd\'e2\'a3\'ac\'d4\'b8\'d2\'e2\'b3\'d0\'b5\'a3\'cf\'e0\'b9\'d8\'b7\'e7\'cf\'d5\'a1\'a3\'be\'ad\'c9\'f7\'d6\'d8\'bf\'bc\'c2\'c7\'a3\'ac\'be\'f6\'b6\'a8\'a3\'ba\par&#xD;&#xA;1\'a3\'a9\ul\'a1\'a1\'a1\'a1"
+              nodetype="Text"/>
+        <node text="我选择" rtf="\'ce\'d2\'d1\'a1\'d4\'f1" nodetype="Text"/>
+        <node text=" 　（请填：我选择）建议治疗方案，授权并接受医师在紧急情况下的抢救处置。 &#xA;2）　　　"
+              rtf="\ul  \'a1\'a1\ulnone\'a3\'a8\'c7\'eb\'cc\'ee\'a3\'ba\'ce\'d2\'d1\'a1\'d4\'f1\'a3\'a9\'bd\'a8\'d2\'e9\'d6\'ce\'c1\'c6\'b7\'bd\'b0\'b8\'a3\'ac\'ca\'da\'c8\'a8\'b2\'a2\'bd\'d3\'ca\'dc\'d2\'bd\'ca\'a6\'d4\'da\'bd\'f4\'bc\'b1\'c7\'e9\'bf\'f6\'cf\'c2\'b5\'c4\'c7\'c0\'be\'c8\'b4\'a6\'d6\'c3\'a1\'a3 \par&#xD;&#xA;2\'a3\'a9\ul\'a1\'a1\'a1\'a1\'a1\'a1"
+              nodetype="Text"/>
+        <node text="我拒绝" rtf="\'ce\'d2\'be\'dc\'be\'f8" nodetype="Text"/>
+        <node text=" 　（请填：我拒绝）建议治疗方案，并愿意承担因拒绝手术而发生的一切后果。&#xA;"
+              rtf="\ul  \'a1\'a1\ulnone\'a3\'a8\'c7\'eb\'cc\'ee\'a3\'ba\'ce\'d2\'be\'dc\'be\'f8\'a3\'a9\'bd\'a8\'d2\'e9\'d6\'ce\'c1\'c6\'b7\'bd\'b0\'b8\'a3\'ac\'b2\'a2\'d4\'b8\'d2\'e2\'b3\'d0\'b5\'a3\'d2\'f2\'be\'dc\'be\'f8\'ca\'d6\'ca\'f5\'b6\'f8\'b7\'a2\'c9\'fa\'b5\'c4\'d2\'bb\'c7\'d0\'ba\'f3\'b9\'fb\'a1\'a3\par&#xD;&#xA;"
+              nodetype="Text"/>
+        <node text="患方签名：" rtf="\'bb\'bc\'b7\'bd\'c7\'a9\'c3\'fb\'a3\'ba" nodetype="Text"/>
+        <node text="　　张三   　" rtf="\ul \'a1\'a1\'a1\'a1\'d5\'c5\'c8\'fd   \'a1\'a1" nodetype="Text"/>
+        <node text="与患者关系：" rtf="\'d3\'eb\'bb\'bc\'d5\'df\'b9\'d8\'cf\'b5\'a3\'ba" nodetype="Text"/>
+        <node text="本人　  　" rtf="\ul \'b1\'be\'c8\'cb\'a1\'a1  \'a1\'a1" nodetype="Text"/>
+        <node text="    2018 　年" rtf="  \ul   2018 \'a1\'a1\ulnone\'c4\'ea" nodetype="Text"/>
+        <node text="  " rtf="\ul   " nodetype="Text"/>
+        <node text="08月" rtf="\ul 08\ulnone\'d4\'c2" nodetype="Text"/>
+        <node text="   30" rtf="\ul    30" nodetype="Text"/>
+        <node text="日" rtf="\'c8\'d5" nodetype="Text"/>
+        <node text="　14时35分" rtf="\ul \'a1\'a114\ulnone\'ca\'b1\ul 35\ulnone\'b7\'d6" nodetype="Text"/>
+    </node>
+</Model>

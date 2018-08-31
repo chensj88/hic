@@ -52,3 +52,28 @@
        C.yjlxh
      from CISDB_DATA.dbo.HLHT_ZYBCJL_SQTL C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'N' OR D.zyzwlbmc='N')
 
+-- 死亡记录
+  --专业技术职务类别代码/名称
+  UPDATE D SET D.zyzwlbdm = CASE WHEN F.dm = '' THEN '无' ELSE ISNULL(F.dm,'无') END ,D.zyzwlbmc = CASE WHEN F.mc = '' THEN '无' ELSE  ISNULL(F.mc,'无') END  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SWBLTLJL D LEFT JOIN (
+    SELECT  stuff((select ',' + A.ZCDM from CISDB.dbo.SYS_ZGDMK A where A.ID in (select * from CISDB_DATA.dbo.f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'') as dm,
+    stuff((select ',' + B.ZCMC from CISDB.dbo.SYS_ZGDMK B where B.ID in (select * from CISDB_DATA.dbo.f_splitSTR(C.tlrybm,',')) for xml path('')),1,1,'')  as mc,
+    C.yjlxh
+    from CISDB_DATA.dbo.HLHT_ZYBCJL_SWBLTLJL C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'N' OR D.zyzwlbmc='N')
+
+--住院病程记录/上级医师查房记录 医嘱内容 中医“四诊”观察结果  辨证论治详细描述  中药煎煮方法  中药用药方法
+  UPDATE A SET yznr='无',zyszgcjg='无',bzlzms='无',zyjzff='无',zyyyff='无'  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SJYSCFJL A  WHERE (convert(varchar,A.yznr) ='N' OR convert(varchar,A.zyszgcjg)='N' OR convert(varchar,A.bzlzms) ='N' OR A.zyjzff ='N' OR convert(varchar,A.zyyyff) ='N');
+
+
+  -- 手术同意书/HLHT_ZQGZXX_SSTYS
+  -- 联系电话
+    UPDATE A SET A.lxdh='无' FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A WHERE A.lxdh='N';
+  -- 手术禁忌症
+    UPDATE A SET A.ssjjz='无' FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A WHERE A.ssjjz='N';
+  --手术方式
+    UPDATE A SET A.ssfs = ISNULL(B.ssmc,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB_DATA.dbo.HLHT_ZLCZJL_YBSSJL B ON A.jzlsh =B.jzlsh WHERE A.ssfs ='N';
+  --拟实施麻醉方法代码  拟实施麻醉方法名称
+    UPDATE A SET A.nmzdm = ISNULL(B.MZDM,'无') ,A.nmzffmc = ISNULL(B.MZMC,'无') FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A  LEFT JOIN CISDB.dbo.CPOE_SSYZK B ON A.jzlsh = B.SYXH WHERE (A.nmzdm = 'N' OR A.nmzffmc='N');
+  --经治医师/责任医生
+    UPDATE A SET A.jzysdm = ISNULL(B.YSDM,'无'),A.jzysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysdm ='N' or A.jzysqm = 'N');
+  UPDATE A SET A.zrysdm = ISNULL(B.ZRYSDM,'无'),A.zrysxm = ISNULL(B.ZRYSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zrysdm ='N' or A.zrysxm = 'N')
+    UPDATE A SET A.hzqm = ISNULL(A.hzxm,'无')   FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A  WHERE (A.hzqm ='N');
