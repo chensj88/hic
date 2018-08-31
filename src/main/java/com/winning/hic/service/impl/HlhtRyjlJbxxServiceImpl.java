@@ -2,7 +2,6 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
-import com.winning.hic.controller.RyjlJbxxExtractController;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtRyjlJbxxDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
@@ -17,11 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

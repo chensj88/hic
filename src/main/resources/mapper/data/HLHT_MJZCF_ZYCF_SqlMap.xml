@@ -592,6 +592,12 @@
             AND (
                 T3.ZDDM IS NOT NULL
                 AND T3.ZDDM != '')
+            <if test="map.startDate != null and map.startDate != ''">
+                and <![CDATA[CONVERT(date,substring(T1.CJRQ,1,4)+'-'+substring(T1.CJRQ,5,2)+'-'+substring(T1.CJRQ,7,2))  >= #{map.startDate}]]>
+            </if>
+            <if test="map.endDate != null and map.endDate != ''">
+                and <![CDATA[CONVERT(date,substring(T1.CJRQ,1,4)+'-'+substring(T1.CJRQ,5,2)+'-'+substring(T1.CJRQ,7,2)) <= #{map.endDate}]]>
+            </if>
     </select>
 
 

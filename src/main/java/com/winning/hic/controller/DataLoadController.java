@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Controller
 public class DataLoadController extends BaseController {
-    private final Logger logger = LoggerFactory.getLogger(RyjlJbxxExtractController.class);
+    private final Logger logger = LoggerFactory.getLogger(DataLoadController.class);
 
     @RequestMapping("/dataLoad/index")
     public String index(Model model) {
@@ -250,7 +250,7 @@ public class DataLoadController extends BaseController {
             }else if(data_set ==39){
                 super.getFacade().getMbzDataCheckService().removeMbzDataCheck(entity);
                 //39.中药处方记录表* --陈枫
-                List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf();
+                List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf(entity);
 
             }else{
             //删除原来的检验结果
@@ -332,7 +332,7 @@ public class DataLoadController extends BaseController {
             //38.西药处方记录表* --陈世杰
             List<MbzDataCheck> mbzDataCheck38 = super.getFacade().getHlhtMjzcfXycfService().interfaceHlhtMjzcfXycf(entity);
             //39.中药处方记录表* --陈枫
-            List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf();
+            List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf(entity);
             //37.卫生事件摘要表* --陈蒯
             //MbzDataCheck mbzDataCheck37 = super.getFacade().getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
             }

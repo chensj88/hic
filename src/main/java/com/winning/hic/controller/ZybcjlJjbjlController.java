@@ -25,7 +25,7 @@ import java.util.Map;
 @Controller
 public class ZybcjlJjbjlController extends BaseController{
 
-    private final Logger logger = LoggerFactory.getLogger(RyjlJbxxExtractController.class);
+    private final Logger logger = LoggerFactory.getLogger(ZybcjlJjbjlController.class);
 
     @RequestMapping("/zybcjlJjbjl/index")
     public String index() {

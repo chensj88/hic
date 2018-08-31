@@ -464,6 +464,9 @@
         AND m.bqdm = b.RYBQ
         )
         WHERE q.BLDM = #{bldm}
+        AND q.YXJL = #{yxjl}
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
 
     </select>
 

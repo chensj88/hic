@@ -76,15 +76,15 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtMjzcfZycf() {
+    public List<MbzDataCheck> interfaceHlhtMjzcfZycf(MbzDataCheck entity) {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
-        List<HlhtMjzcfZycf> hlhtMjzcfZycfListFromBaseData = this.hlhtMjzcfZycfDao.getHlhtMjzcfZycfListFromBaseData(new EmrQtbljlk());
+        EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
+        emrQtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
+        emrQtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
+        List<HlhtMjzcfZycf> hlhtMjzcfZycfListFromBaseData = this.hlhtMjzcfZycfDao.getHlhtMjzcfZycfListFromBaseData(emrQtbljlk);
         if (hlhtMjzcfZycfListFromBaseData != null) {
             for (HlhtMjzcfZycf hlhtMjzcfZycf : hlhtMjzcfZycfListFromBaseData) {
-                EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
-                emrQtbljlk.setQtbljlxh(Long.parseLong(hlhtMjzcfZycf.getYjlxh()));
-                emrQtbljlk = this.emrQtbljlkDao.selectEmrQtbljlk(emrQtbljlk);
                 //清库
                 HlhtMjzcfZycf temp = new HlhtMjzcfZycf();
                 temp.setYjlxh(hlhtMjzcfZycf.getYjlxh());
