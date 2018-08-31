@@ -103,6 +103,7 @@ public class HlhtZybcjlJdxjServiceImpl implements  HlhtZybcjlJdxjService {
                 //2.根据首次病程去找到对应的病人病历
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSet.getModelCode());
+                qtbljlk.setYxjl(1);
                 qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
                 qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
@@ -122,6 +123,7 @@ public class HlhtZybcjlJdxjServiceImpl implements  HlhtZybcjlJdxjService {
                                 HlhtZybcjlJdxj entity = new HlhtZybcjlJdxj();
                                 entity.getMap().put("QTBLJLXH", emrQtbljlk.getQtbljlxh());
                                 entity = this.getInitialHlhtZybcjlJdxj(entity);
+                                System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                                 Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                                 try {
                                     entity = (HlhtZybcjlJdxj) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
