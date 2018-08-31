@@ -211,7 +211,7 @@ public class DataLoadController extends BaseController {
             }else if(data_set ==31){
                 super.getFacade().getMbzDataCheckService().removeMbzDataCheck(entity);
                 //31.门急诊病历记录表* --陈蒯
-                List<MbzDataCheck> mbzDataChecks31 = super.getFacade().getHlhtMjzblMjzblService().interfaceHlhtMjzblMjzbl();
+                List<MbzDataCheck> mbzDataChecks31 = super.getFacade().getHlhtMjzblMjzblService().interfaceHlhtMjzblMjzbl(entity);
 
             }else if(data_set ==32){
                 super.getFacade().getMbzDataCheckService().removeMbzDataCheck(entity);
@@ -317,7 +317,7 @@ public class DataLoadController extends BaseController {
             //30.输血记录表* --陈枫
             List<MbzDataCheck> mbzDataChecks30 = getFacade().getHlhtZlczjlSxjlService().interfaceHlhtZlczjlSxjl(entity);
             //31.门急诊病历记录表* --陈蒯
-            List<MbzDataCheck> mbzDataChecks31 = super.getFacade().getHlhtMjzblMjzblService().interfaceHlhtMjzblMjzbl();
+            List<MbzDataCheck> mbzDataChecks31 = super.getFacade().getHlhtMjzblMjzblService().interfaceHlhtMjzblMjzbl(entity);
             //32.急诊留观病历记录表*   --陈世杰
             List<MbzDataCheck> mbzDataChecks32 = super.getFacade().getHlhtMjzblJzlgblService().interfaceHlhtMjzblJzlgbl(entity);
             //33.治疗记录表* --陈枫
