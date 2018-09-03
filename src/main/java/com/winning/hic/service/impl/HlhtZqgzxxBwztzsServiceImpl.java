@@ -36,8 +36,6 @@ import java.util.Map;
 @Service
 public class HlhtZqgzxxBwztzsServiceImpl implements HlhtZqgzxxBwztzsService {
     private final Logger logger = LoggerFactory.getLogger(HlhtZqgzxxBwztzsServiceImpl.class);
-    @Autowired
-    private HlhtRyjlJbxxDao hlhtRyjlJbxxDao;
 
     @Autowired
     private MbzDataListSetDao mbzDataListSetDao;

@@ -79,6 +79,9 @@ public class HicHelper {
                 String paramType = paramTypeMap.get(pyCode);
                 if (paramType.contains("String")) {
                     value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue;
+                    if(((String) value).contains("yyyy年MM月dd日+Day行")){
+                        value = ((String) value).replace("yyyy年MM月dd日+Day行","");
+                    }
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
                     String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue;

@@ -280,7 +280,7 @@
     var resultData = [];
     var templateTree,dictTree;
     /*初始化变量，为数据复制做准备*/
-    var dataTypeC,dtjddmC,qrmbdmC,qrdxdmC,yzjddmC,dictCodeC,pyCodeC,btC;
+    var dataTypeC,dtjddmC,qrmbdmC,qrdxdmC,yzjddmC,dictCodeC,pyCodeC,btC,pIdC,sourceTypeC;
     //页面初始化
     function initWindow(){
         //页面大小响应布局
@@ -501,6 +501,8 @@
         dictCodeC = dictCode;
         pyCodeC = pyCode;
         btC = bt;
+        pIdC = pId;
+        sourceTypeC = sourceType;
         $('#treeModal').modal('show');
     }
     /**
@@ -956,6 +958,8 @@
                     qrdxdm:qrdxdmC,
                     yzjddm:yzjddmC,
                     recordName:selectNode[0].text,
+                    pid:pIdC,
+                    sourceType:sourceTypeC,
                     bt:btC
                 };
                 console.log(data);
