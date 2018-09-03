@@ -119,13 +119,13 @@ public class DomUtils {
             if (StringUtil.isEmptyOrNull(info.getQrmbdm())) {
 
                 if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) { //文本节点
-                    builder.append(resolveString(element.attribute(textAttrName).getValue()));
+                    builder.append(" "+resolveString(element.attribute(textAttrName).getValue()).trim());
                 } else if (nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())) { //引入节点
-                    builder.append(resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info));
+                    builder.append(" "+resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info).trim());
                 }
             } else {
                 if (nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())) { //引入节点
-                    builder.append(resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info));
+                    builder.append(" "+resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info).trim());
                 }
             }
 
@@ -150,6 +150,7 @@ public class DomUtils {
             Attribute idAttr = element.attribute(idAttrName);
             if (idAttr != null && refId.equals(idAttr.getValue())) {
                 refElement = element;
+                break;
             }
         }
         //获取基础模板元素
