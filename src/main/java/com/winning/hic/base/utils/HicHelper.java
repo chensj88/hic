@@ -38,6 +38,8 @@ public class HicHelper {
                                         Object obj, Map<String, String> paramTypeMap) throws ParseException {
 
         String bltd = "";
+        String shzdbm = "";
+        String shzdmc = "";
         for (MbzDataSet dataSet : mbzDataSets) {
             //获取属性名
             String pyCode = dataSet.getPyCode();
@@ -82,6 +84,7 @@ public class HicHelper {
                     if(((String) value).contains("yyyy年MM月dd日+Day行")){
                         value = ((String) value).replace("yyyy年MM月dd日+Day行","");
                     }
+                    value = StringUtil.isEmptyOrNull(((String) value).trim()) ? "N" :((String) value).trim();
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
                     String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue;
@@ -195,7 +198,13 @@ public class HicHelper {
                             bltd = bltd + " " + value;
                             ReflectUtil.setParamKind(obj, methodName, bltd);
                         }
-                    } else {
+                    } else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdbm"))){
+                        shzdbm = shzdbm + " " + value;
+                        ReflectUtil.setParamKind(obj, methodName, shzdbm);
+                    }else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdmc"))){
+                        shzdmc = shzdmc + " " + value;
+                        ReflectUtil.setParamKind(obj, methodName, shzdmc);
+                    }else{
                         ReflectUtil.setParam(obj, methodName, value);
 
                     }

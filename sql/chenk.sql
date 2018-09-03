@@ -16,11 +16,31 @@ UPDATE CISDB_DATA..HLHT_ZYBCJL_SCBCJL SET jzzyzhmc=NULL WHERE jzzyzhmc='N'
 UPDATE CISDB_DATA..HLHT_ZYBCJL_SCBCJL SET zfbm='无' WHERE zfbm='N'
 UPDATE CISDB_DATA..HLHT_ZYBCJL_SCBCJL SET zzzf='无' WHERE zzzf='N'
 
---阶段小结
-UPDATE A SET A.zs=B.zs
-FROM CISDB_DATA..HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB_DATA..HLHT_ZYBCJL_SCBCJL B ON A.jzlsh=B.jzlsh;
+------阶段小结------------------------------------------------------------------------------------------------------
+--入院诊断-中医病名代码 入院诊断-中医病名名称
+UPDATE A SET A.rzzybm = C.ZDMC,A.rzzybmdm = C.ZDDM
 
+FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+  LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
+WHERE  (CONVERT(varchar,A.rzzybmdm) ='N' OR CONVERT(varchar,A.rzzybm) ='N')  AND ZDDM LIKE'B%';
+
+UPDATE A SET A.zs=isnull(B.zs,'无')  FROM CISDB_DATA..HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB_DATA..HLHT_ZYBCJL_SCBCJL B ON A.jzlsh=B.jzlsh
 UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zyszgcjg='无' WHERE CONVERT(varchar,zyszgcjg) ='N'
+--入院诊断-中医证候代码 入院诊断-中医证候名称
+UPDATE A SET A.rzzyzh = C.ZDMC,A.rzzyzhdm = C.ZDDM
+FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+  LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
+WHERE  ( CONVERT(varchar,A.rzzyzh) ='N' OR CONVERT(varchar,A.rzzyzhdm) ='N' ) AND (ZDDM LIKE'A%' OR ZDDM LIKE'Z%') ;
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zfbm='无' WHERE zfbm='N'
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zzzf='无' WHERE zzzf='N'
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zyjzff='无' WHERE zyjzff='N'
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zyyyff='无' WHERE zyyyff='N'
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET yznr='无' WHERE  CONVERT(varchar,yznr) ='N'
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET mqzdzybmdm='无' WHERE mqzdzybmdm='N' ;
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET mqzdzybm='无' WHERE mqzdzybm='N' ;
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET mqzdzyzhdm='无' WHERE mqzdzyzhdm='N' ;
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET mqzdzyzh='无' WHERE mqzdzyzh='N' ;
+
 
 
 
