@@ -29,7 +29,7 @@ public class ReflectUtil {
         Method getMethod = objectClass.getDeclaredMethod(getMethodName);
         Object value = getMethod.invoke(object);
         if (value != null) {
-            if ((value instanceof String) && !"N".equals(value)) {
+            if ((value instanceof String) && !"NA".equals(value)) {
                 return;
             }
             if (value instanceof Date) {
@@ -40,7 +40,7 @@ public class ReflectUtil {
                     return;
                 }
             }
-            if ((value instanceof Short) && ((Short) value).intValue() != -9) {
+            if ((value instanceof Short) && ((Short) value).intValue() != 0) {
                 return;
             }
             if (value instanceof Timestamp) {
@@ -51,10 +51,10 @@ public class ReflectUtil {
                     return;
                 }
             }
-            if (value instanceof BigDecimal && (((BigDecimal) value).intValue() != -9)) {
+            if (value instanceof BigDecimal && (((BigDecimal) value).intValue() != 0)) {
                 return;
             }
-            if (value instanceof Integer && (((Integer) value).intValue() != -9)) {
+            if (value instanceof Integer && (((Integer) value).intValue() != 0)) {
                 return;
             }
         }
@@ -104,7 +104,7 @@ public class ReflectUtil {
 //        String dateStr = "1990-01-01 00:00:00";
 //        java.sql.Timestamp sqlDate = new java.sql.Timestamp(sdf.parse(dateStr).getTime());
 //         mbzLog.setGxsj(sqlDate);
-//        Short value = new Short("-9");
+//        Short value = new Short("0");
 //        Short num = new Short("72");
 //        mbzLog.setTjml(value);
 //        mbzLog.setTjsg();
