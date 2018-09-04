@@ -158,6 +158,7 @@ public class Environment {
         this.platformDBPassword = platformDBPassword;
     }
 
+
     public String getCISDBURL(){
         return Constants.URL_PREFIX +cisdbUrl+";"+Constants.DATABASE_PREFIX+"="+cisdbName;
     }
@@ -173,4 +174,49 @@ public class Environment {
     public String getPlatformURL(){
         return Constants.URL_PREFIX+platformDBUrl+";"+Constants.DATABASE_PREFIX+"="+platformDBName;
     }
+
+    /**
+     * 门诊医生站数据库
+     */
+    private String mzCisdbUrl;
+    private String mzCisdbName;
+    private String mzCisdbUsername;
+    private String mzCisdbPassword;
+
+    public String getMzCisdbUrl() {
+        return mzCisdbUrl;
+    }
+
+    public void setMzCisdbUrl(String mzCisdbUrl) {
+        this.mzCisdbUrl = mzCisdbUrl;
+    }
+
+    public String getMzCisdbName() {
+        return mzCisdbName;
+    }
+
+    public void setMzCisdbName(String mzCisdbName) {
+        this.mzCisdbName = mzCisdbName;
+    }
+
+    public String getMzCisdbUsername() {
+        return mzCisdbUsername;
+    }
+
+    public void setMzCisdbUsername(String mzCisdbUsername) {
+        this.mzCisdbUsername = mzCisdbUsername;
+    }
+
+    public String getMzCisdbPassword() {
+        return mzCisdbPassword;
+    }
+
+    public void setMzCisdbPassword(String mzCisdbPassword) {
+        this.mzCisdbPassword = mzCisdbPassword;
+    }
+
+    public String getMZCISDBURL(){
+        return Constants.URL_PREFIX +mzCisdbUrl+";"+Constants.DATABASE_PREFIX+"="+mzCisdbName;
+    }
+
 }

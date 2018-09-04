@@ -25,7 +25,7 @@ public class ConfigUtils {
     }
 
     private static void initEnvConfig(Properties properties) {
-        //门诊医生站/住院医生站
+        //住院医生站
         environment.setCisdbUrl(properties.getProperty("cisdb.url"));
         environment.setCisdbName(properties.getProperty("cisdb.dbName"));
         environment.setCisdbUsername(properties.getProperty("cisdb.username"));
@@ -45,6 +45,11 @@ public class ConfigUtils {
         environment.setPlatformDBName(properties.getProperty("platformdb.dbName"));
         environment.setPlatformDBUsername(properties.getProperty("platformdb.username"));
         environment.setPlatformDBPassword(properties.getProperty("platformdb.password"));
+        //门诊医生站
+        environment.setMzCisdbUrl(properties.getProperty("cisdb.mz.url"));
+        environment.setMzCisdbName(properties.getProperty("cisdb.mz.dbName"));
+        environment.setMzCisdbUsername(properties.getProperty("cisdb.mz.username"));
+        environment.setMzCisdbPassword(properties.getProperty("cisdb.mz.password"));
     }
 
     public static Environment getEnvironment(){
