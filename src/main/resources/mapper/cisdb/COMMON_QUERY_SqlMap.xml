@@ -841,8 +841,8 @@
         ISNULL(b.RYCW,'N') as bch,
         b.HZXM as hzxm,
         b.CSRQ AS birth,
-        CASE WHEN b.LXDH is null then 'N'
-        WHEN b.LXDH = '' then 'N'
+        CASE WHEN b.LXDH is null then '无'
+        WHEN b.LXDH = '' then '无'
         else b.LXDH end as lxdh,
         ISNULL(b.HYZK,'-9') as hyzkdm,
         (
@@ -886,6 +886,7 @@
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt,
         t.CJSJ as jlrq,
+        t.FSSJ as qmrq,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
@@ -1101,7 +1102,7 @@
         t.QTBLJLXH as yjlxh,
         b.HISSYXH as jzlsh,
         c.PATID as patid,
-        e.GHXH as mjzh,
+        ISNULL(CONVERT (VARCHAR,(e.GHXH)),'N') AS mjzh,
         b.ZYHM as zyh,
         ISNULL(CONVERT (VARCHAR,(e.GHLB)),'N') AS jzlb,
         t.QTBLJLXH as tysbh,
@@ -1115,7 +1116,7 @@
         b.SFZH as sfzhm,
         b.BRXB as xbdm,
         (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
+        ISNULL(convert(varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj
         FROM EMR_QTBLJLK t
@@ -1132,32 +1133,34 @@
     </select>
     <!--chensj 门(急)诊病历/急诊留观病历 2018-8-15 14:33:06-->
     <select id="selectInitHlhtMjzblJzlgbl" parameterType="com.winning.hic.model.HlhtMjzblJzlgbl" resultMap="hlhtMjzblJzlgblResult">
-        SELECT
-        t.QTBLJLXH as yjlxh,
-        b.HISSYXH as jzlsh,
-        c.PATID as patid,
-        b.HZXM as hzxm,
-        ISNULL(CONVERT (VARCHAR,(e.GHXH)),'N') AS mjzh,
-        b.ZYHM as zyh,
-        b.SFZH as sfzhm,
-        c.KSDM as ksdm,
-        c.KSMC as ksmc,
-        c.BQDM as bqdm,
-        c.BQMC as bqmc,
-        b.BRXB as xbdm,
-        (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
-        CONVERT(DATE, ISNULL(b.CSRQ, '1990-01-01 00:00:00'), 120) AS csrq,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
-        datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj
-        FROM EMR_QTBLJLK t
-        LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
-        LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
-        LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
+        select
+        a.QTBLJLXH                                                                        as yjlxh,
+        b.GHXH                                                                            as jzlsh,
+        b.PATID                                                                           as patid,
+        b.HZXM                                                                            as hzxm,
+        b.GHXH                                                                            as mjzh,
+        ISNULL(b.BLH,'N')                                                                 as zyh,
+        b.SFZH                                                                            as sfzhm,
+        b.KSDM                                                                            as ksdm,
+        b.KSMC                                                                            as ksmc,
+        ISNULL(c.BQDM,'N')                                                                as bqdm,
+        ISNULL(c.BQMC,'N')                                                                as bqmc,
+        b.SEX                                                                             as xbmc,
+        CASE b.SEX WHEN '女' THEN '2' WHEN '男' THEN '1'ELSE '3' END                      as xbdm,
+        CONVERT(DATE, ISNULL(b.BIRTH, '1990-01-01 00:00:00'), 120)                        AS csrq,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.BIRTH)))) ,'N') as nls,
+        datediff(month,b.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12         as nly,
+        CONVERT(datetime,substring( b.JZRQ,1,4)+'-'+substring(b.JZRQ,5,2)+'-'+
+                 substring(b.JZRQ,7,2)+' ' +substring(b.JZRQ,9,8) )                       as jzrqsj,
+        b.CFZBZ                                                                           as czbzdm,
+        case when b.CFZBZ = '0' then '初诊' else '复诊' end                                as czbzmc,
+        ISNULL(a.GXRQ,a.CJSJ)                                                             as gxsj
+        from EMR_QTBLJLK a
+        left join OUTP_JZJLK b on a.SYXH = b.EMRXH
+        left join CPOE_BRSYK c on a.SYXH = c.EMRXH
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
-                AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
+                AND a.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
     </select>
@@ -1172,7 +1175,7 @@
             C.ZYHM                                                        AS zyh,
             A.GHLB                                                        AS jzlb,
             A.SEX                                                         AS xbmc,
-            CASE A.SEX WHEN '女' THEN '2'WHEN '男'THEN '1'ELSE '0' END    AS xbdm,
+            CASE SEX WHEN '男' THEN '1' WHEN '女' THEN '2' ELSE '3' END   AS xbdm,
             ISNULL(C.SFZH,'N')                                            AS sfzhm,
             A.YBDM                                                        AS jkkh,
             ISNULL(D.XXDM,'N')                                            AS aboxxdm,

@@ -1,0 +1,505 @@
+<Model id="123c9485-a865-40dd-ac98-74dad3ce1812" name="(急诊留观记录(湖滨版）)" description="" text="急诊留观记录" nodetype="Model"
+       canprint="True" printInOddPages="False" display="11```0`1" Version="826" titledisplay="1`1`1"
+       hospitalcoderange="10266" catalogcode="B+9868" illnesstypecode="FFFF" scalemodelxml="" modellogiccontent=""
+       indentEnabled="False" isReview="False" NodeLogicContent="" maxrefid="649" RelateInstanceId="0">
+    <Ref id="616">
+        <node identity="74" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="235372ac-6455-4ba2-8728-c2c2a9628bc0" nodetype="Embeded"
+              nodelogiccontent="" name="身份信息(一般信息)" text="身份信息(一般信息)" description="用于病程中对病例特点的描述，包括姓名、性别、年龄等信息。"
+              otherid="D-1001" display="11```0`1">
+            <node embededId="66" id="c9a9b2ab-81ca-4d9a-8da7-7308e7cb90f6" nodetype="Object" nodelogiccontent=""
+                  name="病人姓名" text="病人姓名" description="当前病人姓名" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="病人姓名"
+                      visiable="False" text="病人姓名" description="默认当前病人姓名" otherid="F-01000" atomtype="String"
+                      value="lg-test-0001`lg-test-0001`lg-test-0001" defaultvalue="#patname`当前病人姓名`"
+                      display="1111111```````0" embededId="67" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node embededId="52" id="c0290a1d-9542-4c32-921a-ff4da213b866" nodetype="Object" nodelogiccontent=""
+                  name="门诊号／病历号" text="门诊号／病历号" description="0.206" otherid="E-1011" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="门诊号／病历号"
+                      visiable="False" text="住院号" description="0.000" otherid="F-01000" atomtype="String"
+                      value="2018000009`2018000009`2018000009" defaultvalue="#zyhm`住院号`" display="1111111```````13"
+                      embededId="53" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="姓名" rtf="\'d0\'d5\'c3\'fb" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="18" id="c9a9b2ab-81ca-4d9a-8da7-7308e7cb90f6" nodetype="Object" nodelogiccontent=""
+                  name="病人姓名" text="病人姓名" description="0.101" otherid="E-01101" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="病人姓名"
+                      text="病人姓名" description="0.000" otherid="F-01000" atomtype="String"
+                      value="lg-test-0001`lg-test-0001`lg-test-0001" defaultvalue="#patname`当前病人姓名`"
+                      display="1111111```````0" embededId="19" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="性别" rtf="\'d0\'d4\'b1\'f0" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="20" id="40ba47b2-acd3-47cb-acb6-68cd40e95df6" nodetype="Object" nodelogiccontent=""
+                  name="病人性别" text="病人性别" description="0.102" otherid="E-01102" display="11```0`1">
+                <node id="620ab5a7-82a5-412d-ab12-26fa5204b86d" nodetype="AtomNode" nodelogiccontent="" name="病人性别"
+                      text="性别" description="1.1103" otherid="F-11030" atomtype="String" value="1`男`1"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//3"
+                      inputdirect="False" defaultvalue="#brxb`当前病人性别`" display="1111111```````0" embededId="21"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="年龄" rtf="\'c4\'ea\'c1\'e4" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="22" id="2e001711-f319-4095-9878-c4214d40a486" nodetype="Object" nodelogiccontent=""
+                  name="病人年龄" text="病人年龄" description="0.103(有后缀：岁)" otherid="E-01103" display="11```0`1">
+                <node id="4a9c797d-6a49-402c-b79f-4f7646cf26b9" nodetype="AtomNode" nodelogiccontent="" name="病人年龄"
+                      text="年龄" description="7.201" otherid="F-72010" atomtype="String" value="31岁`31岁`31岁"
+                      defaultvalue="#DisplayAge`显示年龄（入院时）`" display="1111111````岁```0" embededId="23"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="职业" rtf="\'d6\'b0\'d2\'b5" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="36" id="0eab0ca9-ab6f-44df-abfc-5183bb74bc84" nodetype="Object" nodelogiccontent=""
+                  name="职业" text="职业" description="0.107" otherid="E-1001" display="11```0`1">
+                <node id="5c2cd00b-78f0-4998-9af6-25cade5343bf" nodetype="AtomNode" nodelogiccontent="" name="职业"
+                      text="职业" description="1.1107" otherid="F-11070" atomtype="String" value="1`技术干部`1"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//41"
+                      inputdirect="False" defaultvalue="#PatientOccupation`职业`" display="1111111```````0" embededId="37"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="婚况" rtf="\'bb\'e9\'bf\'f6" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="30" id="901a1997-e1b0-45e4-bdc3-4fb4961ae7d1" nodetype="Object" nodelogiccontent=""
+                  name="婚姻状况" text="婚姻状况" description="0.105" otherid="E-1001" display="11```0`1">
+                <node id="cfa25103-a641-4a7a-a125-0a2ca114a2c2" nodetype="AtomNode" nodelogiccontent="" name="婚姻状况"
+                      text="婚姻状况" description="1.1104" otherid="F-11040" atomtype="String" value="1`已婚`1"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//4"
+                      inputdirect="False" defaultvalue="#PatientMarriageCondition`婚姻状况`" display="1111111```````0"
+                      embededId="31" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="&#xA;住址" rtf="\par&#xD;&#xA;\pard\'d7\'a1\'d6\'b7" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="38" id="baa81413-4e3b-436c-8212-64c4a3f866ed" nodetype="Object" nodelogiccontent=""
+                  name="居住地址" text="居住地址" description="0.138" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="居住地址"
+                      text="居住地址" description="0.000" otherid="F-01000" atomtype="String" value="通州区人员`通州区人员`通州区人员"
+                      defaultvalue="#CurrentAddress`目前住址`" display="1111111```````0" embededId="39" autoeditnext="True"
+                      spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="电话" rtf="\'b5\'e7\'bb\'b0" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="58" id="6f9190c2-d77d-4390-900e-a981d4f741c3" nodetype="Object" nodelogiccontent=""
+                  name="联系人电话" text="联系人电话" description="联系人电话" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="联系人电话"
+                      text="电话" description="0.000" otherid="F-01000" atomtype="String"
+                      value="025-62101475`025-62101475`025-62101475" defaultvalue="`Custom`" display="1111111```````0"
+                      embededId="59" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="&#xA;送诊" rtf="\par&#xD;&#xA;\pard\'cb\'cd\'d5\'ef" nodetype="Text"/>
+            <node text="（" rtf="\'a3\'a8" nodetype="Text"/>
+            <node text="联系）" rtf="\'c1\'aa\'cf\'b5\'a3\'a9" nodetype="Text"/>
+            <node text="人" rtf="\'c8\'cb" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="68" id="f9e5ece2-79bc-428b-8ca5-6f7c7ddd1542" nodetype="Object" nodelogiccontent=""
+                  name="联系人姓名" text="联系人姓名" description="联系人姓名" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="联系人姓名"
+                      text="送诊（联系）人" description="0.000" otherid="F-01000" atomtype="String" value="CXX`CXX`CXX"
+                      defaultvalue="#PatientLinkManName`联系人`" display="1111111```````0" embededId="69"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="与患者" rtf="\'d3\'eb\'bb\'bc\'d5\'df" nodetype="Text"/>
+            <node text="关系" rtf="\'b9\'d8\'cf\'b5" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="70" id="29a8fd79-8798-4ff2-b3d3-47725b89f98c" nodetype="Object" nodelogiccontent=""
+                  name="与患者关系" text="与患者关系" description="选项：父子、母子、夫妻、弟兄、同事、同学等" otherid="E-1001" display="11```0`1">
+                <node id="c13f0e3e-9b5b-43bc-a865-b1fc624a08dc" nodetype="AtomNode" nodelogiccontent="" name="与患者关系"
+                      text="与患者关系" description="1.1109" otherid="F-11090" atomtype="String" value="01`父子`01"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//44"
+                      inputdirect="False" display="1111111```````0" embededId="71" autoeditnext="True" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="电话" rtf="\'b5\'e7\'bb\'b0" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="72" id="6f9190c2-d77d-4390-900e-a981d4f741c3" nodetype="Object" nodelogiccontent=""
+                  name="联系人电话" text="联系人电话" description="联系人电话" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="联系人电话"
+                      text="联系人电话" description="0.000" otherid="F-01000" atomtype="String"
+                      value="13312345678`13312345678`13312345678" defaultvalue="#PatientLinkManPhoneNo`联系人电话`"
+                      display="1111111```````0" embededId="73" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="9a6ff28e-a294-44ba-8077-abe075b4dae4" nodetype="DynamicMoleNode" nodelogiccontent="" name="基本信息"
+          text="基本信息" description="0.121" otherid="C-11D1" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="616" nodetype="Embeded"/>
+    </node>
+    <Ref id="639">
+        <node identity="0" isfixed="False" spaceholder="12" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="94f78699-0772-496a-baa1-2d554664b735" nodetype="Embeded"
+              nodelogiccontent="" name="一般信息(出入院日期)" text="一般信息(出入院日期)" description="用于出院记录，包括出院日期和入院日期。"
+              display="11```0`1">
+            <node embededId="0" id="e1f0471c-d08d-47ea-a853-36e52119c09e" nodetype="Object" nodelogiccontent=""
+                  name="入院日期" signid="收入观察室日期时间|486" text="入院日期" description="0.211" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="入观日期"
+                      text="入观时间" description="8.001" atomtype="Time" minrequired="1"
+                      value="636716535000000000`2018年09月04日10时25分" defaultvalue="90`入区日期"
+                      display="1111011`入院日期：` ```yyyy年MM月dd日HH时mm分+Minute++(DTS: )``0" embededId="5" autoeditnext="True"
+                      spaceholder="24" forbidDel="True"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="b7ead7b9-7aac-418f-a130-ca488922be8f" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(入观日期)"
+          signid="收入观察室日期时间|486" text="日期(入观日期)" description="急诊离观的日期" otherid="C-B1" display="20`入观时间：`&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="False" canNotInputText="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="639" nodetype="Embeded"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+    </node>
+    <node id="63950bdc-9952-4641-98dc-05bc68b2e071" nodetype="DynamicMoleNode" nodelogiccontent="" name="主诉"
+          signid="主诉|49" text="主诉" description="1.121" otherid="C-1111" display="20`主诉：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="True" canNotInputText="False" canNull="False" canNullSubmit="False"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="这是" rtf="\'d5\'e2\'ca\'c7" nodetype="Text"/>
+        <node text="留观" rtf="\'c1\'f4\'b9\'db" nodetype="Text"/>
+        <node text="记录" rtf="\'bc\'c7\'c2\'bc" nodetype="Text"/>
+        <node text="中" rtf="\'d6\'d0" nodetype="Text"/>
+        <node text="的" rtf="\'b5\'c4" nodetype="Text"/>
+        <node text="主诉" rtf="\'d6\'f7\'cb\'df" nodetype="Text"/>
+        <node text="信息" rtf="\'d0\'c5\'cf\'a2" nodetype="Text"/>
+    </node>
+    <node id="1ce56d4d-f776-4f3c-843d-3b4d729ee6cf" nodetype="DynamicMoleNode" nodelogiccontent="" name="现病史"
+          signid="现病史|613" text="现病史" description="1.123" otherid="C-1111" display="20`现病史：`&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False" canNull="False"
+          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="这是" rtf="\'d5\'e2\'ca\'c7" nodetype="Text"/>
+        <node text="留观" rtf="\'c1\'f4\'b9\'db" nodetype="Text"/>
+        <node text="记录" rtf="\'bc\'c7\'c2\'bc" nodetype="Text"/>
+        <node text="中" rtf="\'d6\'d0" nodetype="Text"/>
+        <node text="的" rtf="\'b5\'c4" nodetype="Text"/>
+        <node text="现病史" rtf="\'cf\'d6\'b2\'a1\'ca\'b7" nodetype="Text"/>
+    </node>
+    <node id="64c82ffa-ddaa-4320-9dbc-c70debb75822" nodetype="DynamicMoleNode" nodelogiccontent="" name="既往史"
+          signid="既往史|497" text="既往史" description="1.125" otherid="C-1111" display="20`既往史：`&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False" canNull="False"
+          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="这是" rtf="\'d5\'e2\'ca\'c7" nodetype="Text"/>
+        <node text="留观" rtf="\'c1\'f4\'b9\'db" nodetype="Text"/>
+        <node text="记录" rtf="\'bc\'c7\'c2\'bc" nodetype="Text"/>
+        <node text="中" rtf="\'d6\'d0" nodetype="Text"/>
+        <node text="的" rtf="\'b5\'c4" nodetype="Text"/>
+        <node text="既往史" rtf="\'bc\'c8\'cd\'f9\'ca\'b7" nodetype="Text"/>
+    </node>
+    <Ref id="649">
+        <node identity="4" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="9cc96364-958d-4f50-8315-c9e2b356ddd7" nodetype="Embeded"
+              nodelogiccontent="" name="药物过敏史(有无药物过敏史)" signid="过敏史|837" text="药物过敏史(有无药物过敏史)" description="描述有无药物过敏史。"
+              otherid="D-2419" display="11```0`1">
+            <node embededId="0" id="ad5895b1-a0d0-4113-b4e8-7e959edb5434" nodetype="Object" nodelogiccontent=""
+                  name="有无药物过敏史" signid="过敏史标志|838" text="有无药物过敏史" description="特指药品的过敏史" otherid="E-54"
+                  display="11```0`1">
+                <node id="76ac966f-c1e3-40b4-888e-40fbe0c0a6e4" nodetype="AtomNode" nodelogiccontent="" name="有无药物过敏史"
+                      text="有/无" description="4.004" otherid="F-40040" atomtype="String" minrequired="1"
+                      value="138267`否认`G-0011" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="关联词(修饰词)///GeneralLinkage///代码范围//G-A38D,G-0011,G-0020" inputdirect="False"
+                      display="1111111`药物过敏史：``````0" embededId="1" autoeditnext="True" spaceholder="0"
+                      forbidDel="True"/>
+            </node>
+            <node text="药物过敏史。" rtf="\'d2\'a9\'ce\'ef\'b9\'fd\'c3\'f4\'ca\'b7\'a1\'a3" nodetype="Text"/>
+        </node>
+    </Ref>
+    <node id="ded71f26-9a70-4a7d-b5af-870da17cb34f" nodetype="DynamicMoleNode" nodelogiccontent="" name="过敏史" text="过敏史"
+          description="描述对药品及食物等的过敏情况。" otherid="C-1111" display="20`过敏史：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="649" nodetype="Embeded"/>
+    </node>
+    <node id="8ca52d2b-6752-4e2c-a25b-2eb1a07824fb" nodetype="DynamicMoleNode" nodelogiccontent="" name="个人史" text="个人史"
+          description="1.126" otherid="C-1111" display="20`个人史：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" canNull="False" canNullSubmit="False"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="这是" rtf="\'d5\'e2\'ca\'c7" nodetype="Text"/>
+        <node text="留观" rtf="\'c1\'f4\'b9\'db" nodetype="Text"/>
+        <node text="记录" rtf="\'bc\'c7\'c2\'bc" nodetype="Text"/>
+        <node text="中" rtf="\'d6\'d0" nodetype="Text"/>
+        <node text="的" rtf="\'b5\'c4" nodetype="Text"/>
+        <node text="个人史" rtf="\'b8\'f6\'c8\'cb\'ca\'b7" nodetype="Text"/>
+    </node>
+    <node id="a0b414f2-8c9d-4a63-88cb-3a304153036a" nodetype="DynamicMoleNode" nodelogiccontent="" name="家族史"
+          signid="家族史|347" text="家族史" description="1.141" otherid="C-1111" display="20`家族史：`&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False" canNull="False"
+          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="这是" rtf="\'d5\'e2\'ca\'c7" nodetype="Text"/>
+        <node text="留观" rtf="\'c1\'f4\'b9\'db" nodetype="Text"/>
+        <node text="记录" rtf="\'bc\'c7\'c2\'bc" nodetype="Text"/>
+        <node text="中" rtf="\'d6\'d0" nodetype="Text"/>
+        <node text="的" rtf="\'b5\'c4" nodetype="Text"/>
+        <node text="家族史" rtf="\'bc\'d2\'d7\'e5\'ca\'b7" nodetype="Text"/>
+    </node>
+    <Ref id="640">
+        <node identity="2" isfixed="False" spaceholder="3" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="42b72c20-fe06-4639-878b-65791052eff2" nodetype="Embeded"
+              nodelogiccontent="" name="一般检查(01.生命体征通用)" text="一般检查(01.生命体征通用)" description="描述体温、脉搏、呼吸及血压。"
+              display="11```0`1">
+            <node embededId="0" id="ce3d099a-e791-42c0-ac05-5e03b719c88f" nodetype="Object" nodelogiccontent=""
+                  name="体温" text="体温" description="4.101" display="11```0`1">
+                <node id="cbcba265-7777-4c5e-81c6-c324a78c2b42" nodetype="AtomNode" nodelogiccontent="" name="体温"
+                      text="体温" description="7.190" atomtype="Double" value="37.2`37.2`37.2"
+                      display="1111111`T`体温``℃```0" embededId="11" autoeditnext="True" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+            <node text="℃" rtf="\'A1\'E6" nodetype="Text"/>
+            <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+            <node text="脉搏" rtf="\'c2\'f6\'b2\'ab" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="8815d26a-00ea-4366-8ac0-9c715428e888" nodetype="Object" nodelogiccontent=""
+                  name="脉搏" text="脉搏" description="4.102" display="11```0`1">
+                <node id="4a9c797d-6a49-402c-b79f-4f7646cf26b9" nodetype="AtomNode" nodelogiccontent="" name="脉搏"
+                      text="脉搏" description="7.201" atomtype="Integer" value="75`75`75" display="1111111`P`，脉搏``次/分```0"
+                      embededId="13" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="次/分" rtf="\'B4\'CE/\'B7\'D6" nodetype="Text"/>
+            <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+            <node text="呼吸" rtf="\'ba\'f4\'ce\'fc" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="4da9df1d-647b-48f5-b90d-5735d9a2f11d" nodetype="Object" nodelogiccontent=""
+                  name="呼吸" text="呼吸" description="4.103" display="11```0`1">
+                <node id="4a9c797d-6a49-402c-b79f-4f7646cf26b9" nodetype="AtomNode" nodelogiccontent="" name="呼吸"
+                      text="呼吸" description="7.201" atomtype="Integer" value="69`69`69" display="1111111`R`，呼吸``次/分```0"
+                      embededId="15" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="次/分" rtf="\'B4\'CE/\'B7\'D6" nodetype="Text"/>
+            <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+            <node text="血压" rtf="\'d1\'aa\'d1\'b9" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="32d5b9eb-f6f1-4dc8-8dbd-6517ee33365b" nodetype="Object" nodelogiccontent=""
+                  name="血压" text="血压" description="4.104" display="11```0`1">
+                <node id="4a9c797d-6a49-402c-b79f-4f7646cf26b9" nodetype="AtomNode" nodelogiccontent="" name="收缩压"
+                      text="收缩压" description="7.201" atomtype="Integer" value="142`142`142"
+                      display="1111111`BP`，血压`````0" embededId="17" autoeditnext="True" spaceholder="0"
+                      forbidDel="False"/>
+                <node id="8219e0fd-9463-4071-9e70-3f403321700d" nodetype="AtomNode" nodelogiccontent="" name="舒张压"
+                      text="舒张压" description="7.202" atomtype="Double" value="98`98`98" display="1011111``/``mmHg```0"
+                      embededId="18" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="mmHg" rtf="mmHg" nodetype="Text"/>
+            <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+            <node text="S" rtf="S" nodetype="Text"/>
+            <node text="p" rtf="p" nodetype="Text"/>
+            <node text="O" rtf="O" nodetype="Text"/>
+            <node text="2" rtf="\sub 2" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="5a916848-4381-483b-a237-9a07719f5cd2" nodetype="Object" nodelogiccontent=""
+                  name="SpO2(%)" text="SpO2(%)" description="血氧饱和度" otherid="E-411435" display="11```0`1">
+                <node id="8219e0fd-9463-4071-9e70-3f403321700d" nodetype="AtomNode" nodelogiccontent="" name="小数"
+                      text="SpO2(%)" description="不带单位的浮点型数值。" otherid="F-72" atomtype="Double" value="10`10`10"
+                      display="1110111````%```0" embededId="1" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="34f66025-3c72-4ba8-b535-e78785e0f874" nodetype="DynamicMoleNode" nodelogiccontent="" name="体格检查"
+          signid="体格检查|113" text="体格检查" description="1.301" otherid="C-1111"
+          display="20`　　                                体 格 检 查`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" canNull="False" canNullSubmit="False"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="体温" rtf="\'cc\'e5\'ce\'c2" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="640" nodetype="Embeded"/>
+    </node>
+    <node id="99ec323f-f90c-4661-8b40-29fd99afa373" nodetype="DynamicMoleNode" nodelogiccontent="" name="辅助检查"
+          signid="辅助检查项目|813" text="辅助检查" description="1.608" otherid="C-1111" display="20`辅助检查项目：`&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="血常规" rtf="\'d1\'aa\'b3\'a3\'b9\'e6" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="肝功能" rtf="\'b8\'ce\'b9\'a6\'c4\'dc" nodetype="Text"/>
+    </node>
+    <node id="e4332aba-1cec-4d01-ab82-f38dadb9a717" nodetype="DynamicMoleNode" nodelogiccontent=""
+          name="辅助检查 专用于特殊类抗菌药物" signid="辅助检查结果|814" text="辅助检查 专用于特殊类抗菌药物" description="治疗性抗菌药物使用指征" otherid="C-11F1"
+          display="20`辅助检查结果：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+          canNotInputText="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+          useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="血常规" rtf="\'d1\'aa\'b3\'a3\'b9\'e6" nodetype="Text"/>
+        <node text="正常" rtf="\'d5\'fd\'b3\'a3" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="肝功能" rtf="\'b8\'ce\'b9\'a6\'c4\'dc" nodetype="Text"/>
+        <node text="正常" rtf="\'d5\'fd\'b3\'a3" nodetype="Text"/>
+    </node>
+    <Ref id="643">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="1e4a2ae9-dc8f-437e-b028-7f1e234477b7" nodetype="Embeded"
+              nodelogiccontent="" name="门诊系统诊断" text="门诊系统诊断" description="门诊系统诊断" display="11```0`1">
+            <node embededId="0" id="5d01d7b8-a9b2-4cf8-af25-85628824bcf3" nodetype="Object" nodelogiccontent=""
+                  name="门诊系统诊断" signid="初步诊断-西医诊断名称|230" text="门诊系统诊断" description="门诊系统诊断" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="门诊系统诊断"
+                      text="请点击输入诊断" description="输入自由文本的原子类型。" atomtype="Dynamic"
+                      value="&lt;MonitorData&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;Zddm&gt;J18.901&lt;/Zddm&gt;&#xD;&#xA;&lt;Zdmc&gt;肺炎&lt;/Zdmc&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;Zddm&gt;I10xx02&lt;/Zddm&gt;&#xD;&#xA;&lt;Zdmc&gt;高血压&lt;/Zdmc&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;/MonitorData&gt;&#xD;&#xA;`1肺炎  2高血压  `1肺炎  2高血压  "
+                      defaultvalue="17101297-d6fc-46e8-935b-d19f7d74ad9e|[序号][Zdmc]  `17101297-d6fc-46e8-935b-d19f7d74ad9e|[序号][Zdmc]  `"
+                      display="1111111```````0" embededId="13" autoeditnext="False" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="23e665d8-dbe5-4356-8edd-d37688124b11" nodetype="DynamicMoleNode" nodelogiccontent="" name="初步诊断"
+          text="初步诊断" description="1.801" otherid="C-81" display="20`初步诊断：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="643" nodetype="Embeded"/>
+    </node>
+    <Ref id="644">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="39db7636-3670-47ae-9e82-15e8e1ce21aa" nodetype="Embeded"
+              nodelogiccontent="" name="门诊处方检查检验" text="门诊处方检查检验" description="门诊处方检查检验" display="11```0`1">
+            <node embededId="0" id="a4732e82-6d98-41d7-85b8-5b6a7cde974e" nodetype="Object" nodelogiccontent=""
+                  name="处方信息" text="处方信息" description="处方信息" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="处方信息"
+                      text="请点击输入处方信息" description="输入自由文本的原子类型。" atomtype="Dynamic"
+                      value="&lt;MonitorData&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;1&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2673&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4058&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;17307&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]硝普钠针&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYplcmc&gt;[甲]硝普钠针&lt;/sYplcmc&gt;&#xD;&#xA;&lt;sYpgg&gt;50mg&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;01&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;静滴&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;01&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;BID&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;50.000&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;mg&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;50.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;mg&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;2&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;支&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]硝普钠针  50mg  总量:2支  Sig:50.000mg*BID*广瑞路门诊西药房*1天&lt;/sYznr&gt;&#xD;&#xA;&lt;nZbz&gt;&lt;/nZbz&gt;&#xD;&#xA;&lt;fYpsl&gt;2.00&lt;/fYpsl&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;sYzzt&gt;&lt;/sYzzt&gt;&#xD;&#xA;&lt;sMemoInfo&gt;&lt;/sMemoInfo&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;1&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2673&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4059&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;17036&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]氯化钠注射液&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYplcmc&gt;[甲]氯化钠注射液&lt;/sYplcmc&gt;&#xD;&#xA;&lt;sYpgg&gt;500ml&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;01&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;静滴&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;05&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;QD&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;500.000&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;ml&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;500.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;ml&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;1&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;代&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]氯化钠注射液  500ml  总量:1代  Sig:500.000ml*QD*广瑞路门诊西药房*1天&lt;/sYznr&gt;&#xD;&#xA;&lt;nZbz&gt;&lt;/nZbz&gt;&#xD;&#xA;&lt;fYpsl&gt;1.00&lt;/fYpsl&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;sYzzt&gt;&lt;/sYzzt&gt;&#xD;&#xA;&lt;sMemoInfo&gt;&lt;/sMemoInfo&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;1&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2673&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4060&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;16651&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]奥硝唑注射液&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYplcmc&gt;[甲]奥硝唑注射液&lt;/sYplcmc&gt;&#xD;&#xA;&lt;sYpgg&gt;0.5g&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;01&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;静滴&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;05&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;QD&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;0.500&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;g&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;0.500&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;g&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;1&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;代&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]奥硝唑注射液  0.5g  总量:1代  Sig:0.500g*QD*广瑞路门诊西药房*1天&lt;/sYznr&gt;&#xD;&#xA;&lt;nZbz&gt;&lt;/nZbz&gt;&#xD;&#xA;&lt;fYpsl&gt;1.00&lt;/fYpsl&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;sYzzt&gt;&lt;/sYzzt&gt;&#xD;&#xA;&lt;sMemoInfo&gt;&lt;/sMemoInfo&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;/MonitorData&gt;&#xD;&#xA;` [甲]硝普钠针 50mg  用法: 50.000 mg  BIDx静滴 天数：1  数量：2支&#xD;&#xA; [甲]氯化钠注射液 500ml  用法: 500.000 ml  QDx静滴 天数：1  数量：1代&#xD;&#xA; [甲]奥硝唑注射液 0.5g  用法: 0.500 g  QDx静滴 天数：1  数量：1代` [甲]硝普钠针 50mg  用法: 50.000 mg  BIDx静滴 天数：1  数量：2支&#xD;&#xA; [甲]氯化钠注射液 500ml  用法: 500.000 ml  QDx静滴 天数：1  数量：1代&#xD;&#xA; [甲]奥硝唑注射液 0.5g  用法: 0.500 g  QDx静滴 天数：1  数量：1代"
+                      defaultvalue="9762e32b-6a59-4a4f-a013-cb3cacc00858|[nZbz] [sYpmc] [sYpgg]  用法: [fYpjl] [sJldw]  [sPcmc]x[sYpyfmc] 天数：[nYyts]  数量：[fMzypsl][sMzdw]&#xD;&#xA;`9762e32b-6a59-4a4f-a013-cb3cacc00858|[nZbz] [sYpmc] [sYpgg]  用法: [fYpjl] [sJldw]  [sPcmc]x[sYpyfmc] 天数：[nYyts]  数量：[fMzypsl][sMzdw]&#xD;&#xA;`"
+                      display="1011011`````    ``0" embededId="1" autoeditnext="False" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+            <node embededId="0" id="9ea4cf19-24f1-425a-b5ec-3c0c4791b7b4" nodetype="Object" nodelogiccontent=""
+                  name="门诊草药处方" text="门诊草药处方" description="门诊草药处方" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="门诊草药处方"
+                      text="请点击输入草药处方" description="输入自由文本的原子类型。" atomtype="Dynamic"
+                      value="&lt;MonitorData&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;sYpdm&gt;90352&lt;/sYpdm&gt;&#xD;&#xA;&lt;nCflx&gt;3&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2674&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4061&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;17822&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]菟丝子&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;1g/克&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;05&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;煎服&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;12&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;g&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;12.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;g&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;12&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;克&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]菟丝子  总量:12克  煎服&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;sCymrjl&gt;1&lt;/sCymrjl&gt;&#xD;&#xA;&lt;SCycyjx&gt;&lt;/SCycyjx&gt;&#xD;&#xA;&lt;SCyfycs&gt;1&lt;/SCyfycs&gt;&#xD;&#xA;&lt;SCyyyff&gt;&lt;/SCyyyff&gt;&#xD;&#xA;&lt;SCyfyyq&gt;&lt;/SCyfyyq&gt;&#xD;&#xA;&lt;sTsjfzfmc&gt;&lt;/sTsjfzfmc&gt;&#xD;&#xA;&lt;sCfyfmc&gt;煎服&lt;/sCfyfmc&gt;&#xD;&#xA;&lt;sCfyfdm&gt;05&lt;/sCfyfdm&gt;&#xD;&#xA;&lt;sYzzt&gt;&lt;/sYzzt&gt;&#xD;&#xA;&lt;sYplcmc&gt;[甲]菟丝子&lt;/sYplcmc&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;sYpdm&gt;90379&lt;/sYpdm&gt;&#xD;&#xA;&lt;nCflx&gt;3&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2674&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4062&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;17849&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]三七粉&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;1g/克&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;05&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;煎服&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;14&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;g&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;14.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;g&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;14&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;克&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]三七粉  总量:14克  煎服&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;sCymrjl&gt;1&lt;/sCymrjl&gt;&#xD;&#xA;&lt;SCycyjx&gt;&lt;/SCycyjx&gt;&#xD;&#xA;&lt;SCyfycs&gt;1&lt;/SCyfycs&gt;&#xD;&#xA;&lt;SCyyyff&gt;&lt;/SCyyyff&gt;&#xD;&#xA;&lt;SCyfyyq&gt;&lt;/SCyfyyq&gt;&#xD;&#xA;&lt;sTsjfzfmc&gt;&lt;/sTsjfzfmc&gt;&#xD;&#xA;&lt;sCfyfmc&gt;煎服&lt;/sCfyfmc&gt;&#xD;&#xA;&lt;sCfyfdm&gt;05&lt;/sCfyfdm&gt;&#xD;&#xA;&lt;sYzzt&gt;&lt;/sYzzt&gt;&#xD;&#xA;&lt;sYplcmc&gt;[甲]三七粉&lt;/sYplcmc&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;sYpdm&gt;90356&lt;/sYpdm&gt;&#xD;&#xA;&lt;nCflx&gt;3&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2674&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4063&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;17826&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]乌梢蛇&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;1g/克&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;05&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;煎服&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;18&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;g&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;18.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;g&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;18&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;克&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]乌梢蛇  总量:18克  煎服&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;sCymrjl&gt;1&lt;/sCymrjl&gt;&#xD;&#xA;&lt;SCycyjx&gt;&lt;/SCycyjx&gt;&#xD;&#xA;&lt;SCyfycs&gt;1&lt;/SCyfycs&gt;&#xD;&#xA;&lt;SCyyyff&gt;&lt;/SCyyyff&gt;&#xD;&#xA;&lt;SCyfyyq&gt;&lt;/SCyfyyq&gt;&#xD;&#xA;&lt;sTsjfzfmc&gt;&lt;/sTsjfzfmc&gt;&#xD;&#xA;&lt;sCfyfmc&gt;煎服&lt;/sCfyfmc&gt;&#xD;&#xA;&lt;sCfyfdm&gt;05&lt;/sCfyfdm&gt;&#xD;&#xA;&lt;sYzzt&gt;&lt;/sYzzt&gt;&#xD;&#xA;&lt;sYplcmc&gt;[甲]乌梢蛇&lt;/sYplcmc&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;sYpdm&gt;90183&lt;/sYpdm&gt;&#xD;&#xA;&lt;nCflx&gt;3&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2674&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4064&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;17639&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]金银花&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;1g/克&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;05&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;煎服&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;20&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;g&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;20.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;g&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;20&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;克&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]金银花  总量:20克  煎服&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;sCymrjl&gt;1&lt;/sCymrjl&gt;&#xD;&#xA;&lt;SCycyjx&gt;&lt;/SCycyjx&gt;&#xD;&#xA;&lt;SCyfycs&gt;1&lt;/SCyfycs&gt;&#xD;&#xA;&lt;SCyyyff&gt;&lt;/SCyyyff&gt;&#xD;&#xA;&lt;SCyfyyq&gt;&lt;/SCyfyyq&gt;&#xD;&#xA;&lt;sTsjfzfmc&gt;&lt;/sTsjfzfmc&gt;&#xD;&#xA;&lt;sCfyfmc&gt;煎服&lt;/sCfyfmc&gt;&#xD;&#xA;&lt;sCfyfdm&gt;05&lt;/sCfyfdm&gt;&#xD;&#xA;&lt;sYzzt&gt;&lt;/sYzzt&gt;&#xD;&#xA;&lt;sYplcmc&gt;[甲]金银花&lt;/sYplcmc&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;sYpdm&gt;90187&lt;/sYpdm&gt;&#xD;&#xA;&lt;nCflx&gt;3&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2674&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4065&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;17643&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]桔梗&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;1g/克&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;05&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;煎服&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;10&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;g&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;10.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;g&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;10&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;克&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]桔梗  总量:10克  煎服&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;sCymrjl&gt;1&lt;/sCymrjl&gt;&#xD;&#xA;&lt;SCycyjx&gt;&lt;/SCycyjx&gt;&#xD;&#xA;&lt;SCyfycs&gt;1&lt;/SCyfycs&gt;&#xD;&#xA;&lt;SCyyyff&gt;&lt;/SCyyyff&gt;&#xD;&#xA;&lt;SCyfyyq&gt;&lt;/SCyfyyq&gt;&#xD;&#xA;&lt;sTsjfzfmc&gt;&lt;/sTsjfzfmc&gt;&#xD;&#xA;&lt;sCfyfmc&gt;煎服&lt;/sCfyfmc&gt;&#xD;&#xA;&lt;sCfyfdm&gt;05&lt;/sCfyfdm&gt;&#xD;&#xA;&lt;sYzzt&gt;&lt;/sYzzt&gt;&#xD;&#xA;&lt;sYplcmc&gt;[甲]桔梗&lt;/sYplcmc&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;/MonitorData&gt;&#xD;&#xA;`[甲]菟丝子1克  [甲]三七粉14克  [甲]乌梢蛇18克[甲]金银花1克  [甲]桔梗10克  &#xD;&#xA;      用法：煎服   付数：1   &#xD;&#xA;       每日剂量：1   每剂次数：1   `[甲]菟丝子1克  [甲]三七粉14克  [甲]乌梢蛇18克[甲]金银花1克  [甲]桔梗10克  &#xD;&#xA;      用法：煎服   付数：1   &#xD;&#xA;       每日剂量：1   每剂次数：1   "
+                      defaultvalue="021fc33a-d267-4fd7-82e5-1060fcd1976f|[sYpmc][nCfts][sMzdw]  ≡[sYpmc][fMzypsl][sMzdw]  ≡[sYpmc][fMzypsl][sMzdw]{20}`021fc33a-d267-4fd7-82e5-1060fcd1976f|[sYpmc][nCfts][sMzdw]  ≡[sYpmc][fMzypsl][sMzdw]  ≡[sYpmc][fMzypsl][sMzdw]{20}`"
+                      display="1011111```````0" embededId="7" autoeditnext="False" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="645">
+        <node identity="0" isfixed="True" spaceholder="26" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="c98a6e81-7009-44f3-8131-913efe5e4e8d" nodetype="Embeded"
+              nodelogiccontent="" name="补充病史信息(补充)" text="补充病史信息(补充)" description="描述病史陈述者及记录时间。" display="11```0`1">
+            <node embededId="0" id="2d8497b5-4536-4fbd-a6a6-e892853bcfbd" nodetype="Object" nodelogiccontent=""
+                  name="病史陈述者" text="病史陈述者" description="0.155" display="11```0`1">
+                <node id="d921a8b0-f464-4e80-831b-b48fcf8bbacd" nodetype="AtomNode" nodelogiccontent="" name="治疗处方信息"
+                      text="点击输入治疗处方信息" description="治疗处方信息" atomtype="Dynamic"
+                      value="&lt;MonitorData&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;5&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2675&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4066&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;0&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]静脉输液&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;组&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;1&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;组&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;1.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;组&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;1&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;组&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]静脉输液  总量:1组  备注:③用法联动&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;5&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2676&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4067&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;0&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]小儿静脉输液&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;组&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;1&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;次&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;1.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;次&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;1&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;次&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]小儿静脉输液  总量:1次  备注:③用法联动&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;5&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2677&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4068&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;0&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]静脉输液&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;组&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;1&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;组&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;1.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;组&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;1&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;组&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]静脉输液  总量:1组  备注:③用法联动&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;5&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2678&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4069&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;0&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]小儿静脉输液&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;组&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;1&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;次&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;1.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;次&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;1&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;次&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]小儿静脉输液  总量:1次  备注:③用法联动&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;5&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2679&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4070&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;0&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]静脉输液&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;组&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;1&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;组&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;1.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;组&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;1&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;组&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]静脉输液  总量:1组  备注:③用法联动&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;rows&gt;&#xD;&#xA;&lt;nCflx&gt;5&lt;/nCflx&gt;&#xD;&#xA;&lt;nGhxh&gt;72&lt;/nGhxh&gt;&#xD;&#xA;&lt;nPatid&gt;55&lt;/nPatid&gt;&#xD;&#xA;&lt;RecipeNo&gt;2680&lt;/RecipeNo&gt;&#xD;&#xA;&lt;nOrdXh&gt;4071&lt;/nOrdXh&gt;&#xD;&#xA;&lt;nIdm&gt;0&lt;/nIdm&gt;&#xD;&#xA;&lt;sYpmc&gt;[甲]小儿静脉输液&lt;/sYpmc&gt;&#xD;&#xA;&lt;sYpgg&gt;组&lt;/sYpgg&gt;&#xD;&#xA;&lt;sYpyfdm&gt;&lt;/sYpyfdm&gt;&#xD;&#xA;&lt;sYpyfmc&gt;&lt;/sYpyfmc&gt;&#xD;&#xA;&lt;sPcdm&gt;&lt;/sPcdm&gt;&#xD;&#xA;&lt;sPcmc&gt;&lt;/sPcmc&gt;&#xD;&#xA;&lt;fYpjl&gt;1&lt;/fYpjl&gt;&#xD;&#xA;&lt;sJldw&gt;次&lt;/sJldw&gt;&#xD;&#xA;&lt;fYpmcsl&gt;1.000&lt;/fYpmcsl&gt;&#xD;&#xA;&lt;sMcjldw&gt;次&lt;/sMcjldw&gt;&#xD;&#xA;&lt;nYyts&gt;1&lt;/nYyts&gt;&#xD;&#xA;&lt;fMzYpsl&gt;1&lt;/fMzYpsl&gt;&#xD;&#xA;&lt;sMzdw&gt;次&lt;/sMzdw&gt;&#xD;&#xA;&lt;sYznr&gt;[甲]小儿静脉输液  总量:1次  备注:③用法联动&lt;/sYznr&gt;&#xD;&#xA;&lt;nCfts&gt;1&lt;/nCfts&gt;&#xD;&#xA;&lt;/rows&gt;&#xD;&#xA;&lt;/MonitorData&gt;&#xD;&#xA;`[甲]静脉输液 总量: 1组;[甲]小儿静脉输液 总量: 1次;[甲]静脉输液 总量: 1组;[甲]小儿静脉输液 总量: 1次;[甲]静脉输液 总量: 1组;[甲]小儿静脉输液 总量: 1次;`[甲]静脉输液 总量: 1组;[甲]小儿静脉输液 总量: 1次;[甲]静脉输液 总量: 1组;[甲]小儿静脉输液 总量: 1次;[甲]静脉输液 总量: 1组;[甲]小儿静脉输液 总量: 1次;"
+                      defaultvalue="097156be-292a-4fc4-a231-cc63f9bb0754|[sYpmc] 总量: [fMzypsl][sMzdw];`097156be-292a-4fc4-a231-cc63f9bb0754|[sYpmc] 总量: [fMzypsl][sMzdw];`"
+                      display="1111111``治疗处方:````治疗处方:`0" embededId="1" autoeditnext="True" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="646">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="3edfb3a3-1f88-444d-8683-f222296ab5e7" nodetype="Embeded"
+              nodelogiccontent="" name="入院治疗(治疗)" text="检验" display="11```0`1">
+            <node embededId="0" id="0e29d2ab-2008-4bf0-a919-694af749f7c0" nodetype="Object" nodelogiccontent=""
+                  name="门诊检验申请单" text="门诊检验申请单" description="门诊检验申请单" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="检验申请单"
+                      text="请点击输入检验申请单" description="输入自由文本的原子类型。" atomtype="Dynamic"
+                      value="`乙型肝炎表面抗原测定  血细胞分析(门诊)  血型鉴定(门诊)  `乙型肝炎表面抗原测定  血细胞分析(门诊)  血型鉴定(门诊)  "
+                      defaultvalue="19c36b25-a474-4385-a885-ba1dcc31306e|[Name]  `19c36b25-a474-4385-a885-ba1dcc31306e|[Name]  `"
+                      display="1011111``检验 `````0" embededId="5" autoeditnext="False" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="647">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="3edfb3a3-1f88-444d-8683-f222296ab5e7" nodetype="Embeded"
+              nodelogiccontent="" name="入院治疗(治疗)" text="检查" display="11```0`1">
+            <node embededId="0" id="bb82a324-3706-4db0-ac2d-c5e34e60ed59" nodetype="Object" nodelogiccontent=""
+                  name="门诊检查申请单" text="门诊检查申请单" description="门诊检查申请单" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="门诊检查申请单"
+                      text="请点击输入检查申请单" description="输入自由文本的原子类型。" atomtype="Dynamic"
+                      value="`心血管彩超(心脏彩超(预约))，`心血管彩超(心脏彩超(预约))，"
+                      defaultvalue="f7441719-34ab-4a05-9249-5978f263ed20|[NoteName]([Name])，`f7441719-34ab-4a05-9249-5978f263ed20|[NoteName]([Name])，`"
+                      display="1011111``检查 `````0" embededId="3" autoeditnext="False" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="648">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="de4cd09c-1942-4e29-acec-86cdea9f6096" nodetype="Embeded"
+              nodelogiccontent="" name="注意事项" text="注意事项" description="内分泌内科注意事项" display="11```0`1">
+            <node embededId="0" id="dd9b1af8-df79-4c64-a7bc-362c72cc548e" nodetype="Object" nodelogiccontent=""
+                  name="术后注意事项" signid="医嘱使用备注|255" text="术后注意事项" description="描述术后患者注意事项" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="术后注意事项"
+                      text="注意事项" description="输入自由文本的原子类型。" atomtype="String" value="戒烟戒酒`戒烟戒酒`戒烟戒酒"
+                      display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="743ce58e-319e-48e4-8cf3-34ddb0eeb54a" nodetype="DynamicMoleNode" nodelogiccontent="" name="诊疗计划"
+          text="诊疗计划" description="3.131" otherid="C-1151" display="20`诊疗计划：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="True" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node refid="644" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node refid="645" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node refid="646" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node refid="647" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node refid="648" nodetype="Embeded"/>
+    </node>
+    <Ref id="641">
+        <node identity="32" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded"
+              nodelogiccontent="" name="医师签名" text="医师签名" description="病史记录者签名" otherid="D-101189" display="11```0`1">
+            <node embededId="7" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
+                  name="医师签名" signid="医师签名|240" text="医师签名" otherid="E-1011" display="11```0`1">
+                <node id="769ca781-6e6c-4eba-8e8e-2e17d78001d7" nodetype="AtomNode" nodelogiccontent="" name="普通医师"
+                      text="医师签名" description="院内职工表。" otherid="F-2010" atomtype="String" minrequired="1"
+                      value="00203`胡伟东`00203" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="职工表///EmployeeBook///记录状态//1" inputdirect="False" display="1111111```````0" embededId="6"
+                      autoeditnext="True" spaceholder="0" forbidDel="True"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="581f3027-3a60-4e0b-9a82-c2d2dee31b73" nodetype="DynamicMoleNode" nodelogiccontent="" name="医师签名"
+          text="医师签名" description="3.571" otherid="C-D6"
+          display="20`                                                                医师签名：`&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="641" nodetype="Embeded"/>
+    </node>
+    <Ref id="642">
+        <node identity="4" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="34e00ca9-f630-4a0a-bb9a-2400a3d7392f" nodetype="Embeded"
+              nodelogiccontent="" name="日期(记录日期)" text="记录日期" otherid="D-82" display="11```0`1">
+            <node embededId="2" id="fe028248-7533-49c0-8c47-11132c39fbfe" nodetype="Object" nodelogiccontent=""
+                  name="记录日期" signid="记录日期时间|773" text="记录日期" description="各项文书的记录日期。" otherid="E-15"
+                  display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="记录日期"
+                      text="记录时间" description="8.001" otherid="F-80010" atomtype="Time" minrequired="1"
+                      value="636716567400000000`2018年09月04日11时19分"
+                      display="1111011`````yyyy年MM月dd日HH时mm分+Minute++(DTS: )``0" embededId="3" autoeditnext="True"
+                      spaceholder="0" forbidDel="True"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="602e6095-d362-4fd9-b71a-daf12243307f" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(记录日期)"
+          signid="记录日期时间|773" text="日期(记录日期)" description="病程的记录日期" otherid="C-B1"
+          display="20`                                                                记录时间：`&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="642" nodetype="Embeded"/>
+    </node>
+</Model>

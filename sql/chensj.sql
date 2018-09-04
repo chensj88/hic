@@ -111,3 +111,91 @@
     UPDATE A SET A.jzysdm = ISNULL(B.YSDM,'无'),A.jzysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysdm ='N' or A.jzysqm = 'N');
     UPDATE A SET A.zrysdm = ISNULL(B.ZRYSDM,'无'),A.zrysxm = ISNULL(B.ZRYSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zrysdm ='N' or A.zrysxm = 'N')
     UPDATE A SET A.hzqm = ISNULL(A.hzxm,'无')   FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A  WHERE (A.hzqm ='N');
+
+
+--24h内入出院记录
+  --地址-村（街、路、弄等）
+  UPDATE A SET A.dzc='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A WHERE A.dzc ='N'
+  --地址-门牌号码
+  UPDATE A SET A.dzmphm='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A WHERE A.dzmphm ='N'
+  --接诊医师
+  UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'无'),A.jzysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='N' or A.jzysqm = 'N')
+  --住院医师
+  UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'无'),A.zyysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='N' OR A.zyysqm='N')
+  --治则治法
+  UPDATE A SET A.zfbm = '无',A.zzzf = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zfbm ='N' OR A.zzzf='N')
+  --中医“四诊”观察结果
+  UPDATE A SET A.zyszgcjg = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (convert(varchar,A.zyszgcjg) ='N')
+  --陈述内容可靠标志 来源入院记录
+  UPDATE A SET A.csnrbz=isnull(B.csnrbz,'无')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE A.csnrbz ='N'
+  --现病史 来源入院记录
+  UPDATE A SET A.xbs=isnull(B.xbs,'无')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE A.xbs ='N'
+
+--24小时内入院死亡记录
+  --地址-村（街、路、弄等）
+  UPDATE A SET A.dzc='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A WHERE A.dzc ='N'
+  --地址-门牌号码
+  UPDATE A SET A.dzmphm='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A WHERE A.dzmphm ='N'
+  --陈述内容可靠标志 来源入院记录
+  UPDATE A SET A.csnrbz=isnull(B.csnrbz,'无')  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE A.csnrbz ='N'
+  --治则治法
+  UPDATE A SET A.zfbm = '无',A.zzzf = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zfbm ='N' OR A.zzzf='N')
+  --中医“四诊”观察结果
+  UPDATE A SET A.zyszgcjg = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (convert(varchar,A.zyszgcjg) ='N')
+  --接诊医师
+  UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'无'),A.jzysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='N' or A.jzysqm = 'N')
+  --住院医师
+  UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'无'),A.zyysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='N' OR A.zyysqm='N')
+
+--术后首次病程记录
+  --户口所在地	hkszd
+  UPDATE A SET A.hkszd='无'  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A WHERE A.hkszd ='N'
+  --出生地址	csdz
+  UPDATE A SET A.csdz='无'  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A WHERE A.csdz ='N'
+  --工作单位名称	gzdw
+  UPDATE A SET A.gzdw='无'  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A WHERE A.gzdw ='N'
+  --工作地点	gzdwdz
+  UPDATE A SET A.gzdwdz='无'  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A WHERE A.gzdwdz ='N'
+  --工作单位电话	gzdwdh
+  UPDATE A SET A.gzdwdh='无'  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A WHERE A.gzdwdh ='N'
+  --籍贯地	jgd
+  UPDATE A SET A.jgd='无'  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A WHERE A.jgd ='N'
+  --接诊开始日期
+  UPDATE A SET A.jzkssj =
+  CASE WHEN B.RYRQ IS NULL THEN CONVERT(DATE,'1990-01-01 00:00:00') ELSE
+    CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,2)+':'+substring(B.RYRQ,12,2)+':'+substring(B.RYRQ,15,2)) END  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A LEFT JOIN  CISDB.dbo.CPOE_BRSYK B ON A.jzlsh = B.SYXH WHERE A.jzkssj = CONVERT(DATE,'1990-01-01 00:00:00')
+  --接诊结束日期
+  UPDATE A SET A.jzjssj =
+  CASE WHEN B.CYRQ IS NULL THEN  CONVERT(DATE,'1990-01-01 00:00:00') ELSE
+    CONVERT(datetime,substring(B.CYRQ,1,4)+'-'+substring(B.CYRQ,5,2)+'-'+substring(B.CYRQ,7,2)+' '+substring(B.CYRQ,9,2)+':'+substring(B.CYRQ,12,2)+':'+substring(B.CYRQ,15,2)) END  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A LEFT JOIN  CISDB.dbo.CPOE_BRSYK B ON A.jzlsh = B.SYXH WHERE A.jzjssj = CONVERT(DATE,'1990-01-01 00:00:00')
+
+--特殊检查及特殊治疗同意书
+  --疾病诊断
+  UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_TSJCZLTYS A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+  WHERE  ( CONVERT(varchar,A.jbzd) ='N' OR CONVERT(varchar,A.jbzdbm) ='N' )
+  --医生信息
+  UPDATE A SET A.ysbm = ISNULL(B.YSDM,'无'),A.ysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_TSJCZLTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.ysbm ='N' or A.ysqm = 'N');
+
+--急诊留观
+  --中医“四诊”观察结果
+  UPDATE A SET A.zyszgcjg='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE CONVERT(varchar,A.zyszgcjg)='N'
+  --治则治法
+  UPDATE A SET A.zfbm='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE A.zfbm='N'
+  UPDATE A SET A.zzzf='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE A.zzzf='N'
+  --中医诊断
+  UPDATE A SET A.zdyj = C.ZDMC,A.zdyjdm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+  WHERE  ( CONVERT(varchar,A.zdyj) ='N' OR CONVERT(varchar,A.zdyjdm) ='N' )
+  --中医病名
+  UPDATE A SET A.rzzybm = C.ZDMC,A.rzzybmdm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
+  WHERE  (CONVERT(varchar,A.rzzybmdm) ='N' OR CONVERT(varchar,A.rzzybm) ='N')  AND ZDDM LIKE'B%'
+  --中医证候
+  UPDATE A SET A.rzzyzh = C.ZDMC,A.rzzyzhdm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
+  WHERE  ( CONVERT(varchar,A.rzzyzh) ='N' OR CONVERT(varchar,A.rzzyzhdm) ='N' ) AND (ZDDM LIKE'A%' OR ZDDM LIKE'Z%')
