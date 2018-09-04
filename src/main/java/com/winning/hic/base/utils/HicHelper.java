@@ -90,7 +90,7 @@ public class HicHelper {
                     String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue;
                     value = StringUtil.isEmptyOrNull(shortStr) ? -9 : Short.parseShort(shortStr);
                 } else if (paramType.contains("Timestamp")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
+                    String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
                     if (StringUtil.hasChinese(dateStr)) {
                         if (dateStr.contains("年")) {
@@ -133,7 +133,7 @@ public class HicHelper {
                     }
                 } else if (paramType.contains("Date")) {
                     //格式：636467930400000000`2017-11-20,16:44
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "1990-01-01 00:00:00" : strValue;
+                    String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
                     if (StringUtil.hasChinese(dateStr)) {
                         if (dateStr.contains("年")) {
@@ -159,7 +159,7 @@ public class HicHelper {
                     }
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {
-                        Date date = StringUtil.isEmptyOrNull(dateStr) ? null : sdf.parse(dateStr);
+                        Date date = StringUtil.isEmptyOrNull(dateStr.trim()) ? null : sdf.parse(dateStr.trim());
                         if (date != null) {
                             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                             value = sqlDate;
