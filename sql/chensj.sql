@@ -178,5 +178,24 @@
   --医生信息
   UPDATE A SET A.ysbm = ISNULL(B.YSDM,'无'),A.ysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_TSJCZLTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.ysbm ='N' or A.ysqm = 'N');
 
-
-
+--急诊留观
+  --中医“四诊”观察结果
+  UPDATE A SET A.zyszgcjg='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE CONVERT(varchar,A.zyszgcjg)='N'
+  --治则治法
+  UPDATE A SET A.zfbm='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE A.zfbm='N'
+  UPDATE A SET A.zzzf='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE A.zzzf='N'
+  --中医诊断
+  UPDATE A SET A.zdyj = C.ZDMC,A.zdyjdm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+  WHERE  ( CONVERT(varchar,A.zdyj) ='N' OR CONVERT(varchar,A.zdyjdm) ='N' )
+  --中医病名
+  UPDATE A SET A.rzzybm = C.ZDMC,A.rzzybmdm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
+  WHERE  (CONVERT(varchar,A.rzzybmdm) ='N' OR CONVERT(varchar,A.rzzybm) ='N')  AND ZDDM LIKE'B%'
+  --中医证候
+  UPDATE A SET A.rzzyzh = C.ZDMC,A.rzzyzhdm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
+  WHERE  ( CONVERT(varchar,A.rzzyzh) ='N' OR CONVERT(varchar,A.rzzyzhdm) ='N' ) AND (ZDDM LIKE'A%' OR ZDDM LIKE'Z%')
