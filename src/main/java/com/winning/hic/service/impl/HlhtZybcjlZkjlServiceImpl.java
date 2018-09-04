@@ -124,6 +124,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                         HlhtZybcjlZkjl entity = new HlhtZybcjlZkjl();
                         entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
                         entity = this.getInitialHlhtZybcjlZkjl(entity);
+                        System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         try {
                             entity = (HlhtZybcjlZkjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
