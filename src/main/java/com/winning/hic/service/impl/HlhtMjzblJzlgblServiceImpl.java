@@ -115,7 +115,7 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
         List<MbzDataListSet> dataListSets = mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
 
         //获取接口对象字段集合信息
-        Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZqgzxxSstys.class);
+        Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtMjzblJzlgbl.class);
 
         if (dataListSets != null && dataListSets.size() > 0) {
             //获取模板集合，遍历
@@ -138,6 +138,7 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                         obj = getHlhtMjzblJzlgbl(obj);
                         //解析病历xml
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                        System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         //判断是否存在重复,存在则删除，重新新增
                         if (obj != null) {
                             //初始化数据
@@ -151,6 +152,15 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                         obj = (HlhtMjzblJzlgbl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
                         obj.setZzjgdm(codeDict.getDictLabel());
                         obj.setZzjgmc(nameDict.getDictLabel());
+                        if(obj.getGms().contains("否认") || obj.getGms().contains("不详")  ){
+                            String value = obj.getGms() + "药物过敏史";
+                            obj.setGms(value);
+                            obj.setGmsbz("F");
+                        } else{
+                            String value = obj.getGms() + "药物过敏史";
+                            obj.setGms(value);
+                            obj.setGmsbz("T");
+                        }
                         this.createHlhtMjzblJzlgbl(obj);
                         real_count++;
 

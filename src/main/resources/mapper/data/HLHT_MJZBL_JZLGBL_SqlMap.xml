@@ -17,7 +17,7 @@
         <result column="ksmc" property="ksmc" jdbcType="VARCHAR"/>
         <result column="xbdm" property="xbdm" jdbcType="VARCHAR"/>
         <result column="xbmc" property="xbmc" jdbcType="VARCHAR"/>
-        <result column="csrq" property="csrq" jdbcType="DATE"/>
+        <result column="csrq" property="csrq" jdbcType="TIMESTAMP"/>
         <result column="nls" property="nls" jdbcType="NUMERIC"/>
         <result column="nly" property="nly" jdbcType="VARCHAR"/>
         <result column="gmsbz" property="gmsbz" jdbcType="CHAR"/>
@@ -111,7 +111,7 @@
         <if test="(ksmc != null and ksmc != '')">and t.ksmc = #{ksmc}</if>
         <if test="(xbdm != null and xbdm != '')">and t.xbdm = #{xbdm}</if>
         <if test="(xbmc != null and xbmc != '')">and t.xbmc = #{xbmc}</if>
-        <if test="(csrq != null and csrq != '')">and t.csrq = #{csrq}</if>
+        <if test="(csrq != null )">and t.csrq = #{csrq}</if>
         <if test="(nls != null and nls != '')">and t.nls = #{nls}</if>
         <if test="(nly != null and nly != '')">and t.nly = #{nly}</if>
         <if test="(gmsbz != null and gmsbz != '')">and t.gmsbz = #{gmsbz}</if>
@@ -203,7 +203,7 @@
             <if test="(ksmc != null and ksmc != '')">ksmc ,</if>
             <if test="(xbdm != null and xbdm != '')">xbdm ,</if>
             <if test="(xbmc != null and xbmc != '')">xbmc ,</if>
-            <if test="(csrq != null and csrq != '')">csrq ,</if>
+            <if test="(csrq != null )">csrq ,</if>
             <if test="(nls != null and nls != '')">nls ,</if>
             <if test="(nly != null and nly != '')">nly ,</if>
             <if test="(gmsbz != null and gmsbz != '')">gmsbz ,</if>
@@ -292,7 +292,7 @@
             <if test="(ksmc != null and ksmc != '')">#{ksmc , jdbcType= VARCHAR },</if>
             <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
             <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
-            <if test="(csrq != null and csrq != '')">#{csrq , jdbcType= DATE },</if>
+            <if test="(csrq != null )">#{csrq , jdbcType= TIMESTAMP },</if>
             <if test="(nls != null and nls != '')">#{nls , jdbcType= NUMERIC },</if>
             <if test="(nly != null and nly != '')">#{nly , jdbcType= VARCHAR },</if>
             <if test="(gmsbz != null and gmsbz != '')">#{gmsbz , jdbcType= CHAR },</if>
@@ -385,7 +385,7 @@
                 <if test="(ksmc != null and ksmc != '')">ksmc = #{ksmc , jdbcType= VARCHAR },</if>
                 <if test="(xbdm != null and xbdm != '')">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
                 <if test="(xbmc != null and xbmc != '')">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
-                <if test="(csrq != null and csrq != '')">csrq = #{csrq , jdbcType= DATE },</if>
+                <if test="(csrq != null )">csrq = #{csrq , jdbcType= TIMESTAMP },</if>
                 <if test="(nls != null and nls != '')">nls = #{nls , jdbcType= NUMERIC },</if>
                 <if test="(nly != null and nly != '')">nly = #{nly , jdbcType= VARCHAR },</if>
                 <if test="(gmsbz != null and gmsbz != '')">gmsbz = #{gmsbz , jdbcType= CHAR },</if>

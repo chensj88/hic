@@ -270,6 +270,30 @@ public class DomUtils {
         str = str.trim();
         str = str.replaceAll(" ", "");
         str = str.replaceAll("&#xA;", "");
+        /**
+         * <MonitorData>
+         *  <rows>
+         *      <Zddm>J18.901</Zddm>
+         *      <Zdmc>肺炎</Zdmc>
+         *  </rows>
+         *  <rows>
+         *      <Zddm>I10xx02</Zddm>
+         *      <Zdmc>高血压</Zdmc>
+         *  </rows>
+         * </MonitorData>
+         */
+        if(str.contains("MonitorData")){
+            StringBuilder stringBuilder = new StringBuilder();
+            System.out.println(str);
+            Document document = XmlUtil.getDocument(str);
+            Element rootElement = document.getRootElement();
+            List<Element> nodeChildList = rootElement.elements("rows");
+            for (Element element : nodeChildList) {
+                Element element1 = element.element("Zddm");
+                stringBuilder.append(element1.getStringValue()+" ");
+            }
+            return stringBuilder.toString();
+        }
         return str;
     }
 

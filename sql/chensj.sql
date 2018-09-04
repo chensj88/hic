@@ -178,5 +178,15 @@
   --医生信息
   UPDATE A SET A.ysbm = ISNULL(B.YSDM,'无'),A.ysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_TSJCZLTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.ysbm ='N' or A.ysqm = 'N');
 
-
-
+--急诊留观
+  --中医“四诊”观察结果
+  UPDATE A SET A.zyszgcjg='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE CONVERT(varchar,A.zyszgcjg)='N'
+  --治则治法
+  UPDATE A SET A.zfbm='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE A.zfbm='N'
+  UPDATE A SET A.zzzf='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE A.zzzf='N'
+  --中医病名
+  UPDATE A SET A.zybmdm='无',A.zybmmc='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE (A.zybmdm='N' or A.zybmmc='N')
+  --中医症候
+  UPDATE A SET A.zyzhdm='无',A.zyzhmc='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE (A.zyzhdm='N' or A.zyzhmc='N' )
+  --辨证依据
+  UPDATE A SET A.bzyj='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE (A.bzyj='N')
