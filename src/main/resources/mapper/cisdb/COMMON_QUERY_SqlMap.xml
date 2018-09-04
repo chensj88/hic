@@ -1102,7 +1102,7 @@
         t.QTBLJLXH as yjlxh,
         b.HISSYXH as jzlsh,
         c.PATID as patid,
-        e.GHXH as mjzh,
+        ISNULL(CONVERT (VARCHAR,(e.GHXH)),'N') AS mjzh,
         b.ZYHM as zyh,
         ISNULL(CONVERT (VARCHAR,(e.GHLB)),'N') AS jzlb,
         t.QTBLJLXH as tysbh,
@@ -1116,7 +1116,7 @@
         b.SFZH as sfzhm,
         b.BRXB as xbdm,
         (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
+        ISNULL(convert(varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj
         FROM EMR_QTBLJLK t
