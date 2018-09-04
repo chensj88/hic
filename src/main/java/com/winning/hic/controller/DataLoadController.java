@@ -131,6 +131,7 @@ public class DataLoadController extends BaseController {
                 List<MbzDataCheck> mbzDataChecks14 = super.getFacade().getHlhtZybcjlSwbltljlService().interfaceHlhtZybcjlSwbltljl(entity);
 
             }else if(data_set ==15){
+                //15.死亡记录数据集表* --陈枫
                 super.getFacade().getMbzDataCheckService().removeMbzDataCheck(entity);
                 List<MbzDataCheck> mbzDataChecks15 = getFacade().getHlhtZybcjlSwjlService().interfaceHlhtZybcjlSwjl(entity);
             }else if(data_set ==16){
