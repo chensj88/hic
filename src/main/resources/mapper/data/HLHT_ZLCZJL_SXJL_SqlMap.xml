@@ -349,59 +349,81 @@
     <!--Evol 2018年8月14日16:45:45 在数据库中抽取所有麻醉知情同意书数据-->
     <select id="getHlhtZlczjlSxjlListFromBaseData" resultMap="hlhtZlczjlSxjlResult"
             parameterType="com.winning.hic.model.EmrQtbljlk">
-                SELECT
-                ISNULL(q.QTBLJLXH, 'N')                   AS yjlxh,
-                c.SYXH                                    AS jzlsh,
-                c.PATID                                   AS patid,
-                ISNULL(b.ZYHM, 'N')                       AS zyh,
-                ISNULL(
-                CONVERT (VARCHAR,(o.GHXH)),
-                'N'
-                ) AS mjzh,
-                ISNULL(
-                CONVERT (VARCHAR,(o.GHLB)),
-                'N'
-                ) AS jzlb,
-                ISNULL(q.QTBLJLXH, 'N') AS tysbh,
-                ISNULL(c.BQDM, 'N')                       AS bqdm,
-                ISNULL(c.BQMC, 'N')                       AS bqmc,
-                ISNULL(c.KSDM, 'N')                       AS ksdm,
-                ISNULL(c.KSMC, 'N')                       AS ksmc,
-                ISNULL(m.fjh, 'N')                        AS bfh,
-                ISNULL(b.RYCW, 'N')                       AS bch,
-                ISNULL(b.HZXM, 'N')                       AS hzxm,
-                ISNULL(b.SFZH, 'N')                       AS sfzhm,
-                ISNULL(b.BRXB, 'N')                       AS xbdm,
-                (
-                SELECT CASE b.BRXB
-                WHEN '2'
-                THEN
-                '女'
-                WHEN '1'
-                THEN
-                '男'
-                ELSE
-                '其它'
-                END
-                )                                         AS xbmc,
-                ISNULL(
-                CONVERT(
-                VARCHAR,
-                (
-                YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
-                )
-                ),
+        SELECT
+        ISNULL(q.QTBLJLXH, 'N') AS yjlxh,
+        c.SYXH AS jzlsh,
+        c.PATID AS patid,
+        ISNULL(b.ZYHM, 'N') AS zyh,
+        ISNULL(
+        CONVERT (VARCHAR,(o.GHXH)),
+        'N'
+        ) AS mjzh,
+        ISNULL(
+        CONVERT (VARCHAR,(o.GHLB)),
+        'N'
+        ) AS jzlb,
+        ISNULL(q.QTBLJLXH, 'N') AS tysbh,
+        ISNULL(c.BQDM, 'N') AS bqdm,
+        ISNULL(c.BQMC, 'N') AS bqmc,
+        ISNULL(c.KSDM, 'N') AS ksdm,
+        ISNULL(c.KSMC, 'N') AS ksmc,
+        ISNULL(m.fjh, 'N') AS bfh,
+        ISNULL(b.RYCW, 'N') AS bch,
+        ISNULL(b.HZXM, 'N') AS hzxm,
+        ISNULL(b.SFZH, 'N') AS sfzhm,
+        ISNULL(b.BRXB, 'N') AS xbdm,
+        (
+        SELECT CASE b.BRXB
+        WHEN '2'
+        THEN
+        '女'
+        WHEN '1'
+        THEN
+        '男'
+        ELSE
+        '其它'
+        END
+        ) AS xbmc,
+        ISNULL(
+        CONVERT(
+        VARCHAR,
+        (
+        YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
+        )
+        ),
 
-                'N'
-                )                                         AS nls,
-                SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
-                q.QTBLJLXH                                AS syxh,
-                q.TJZT                                    AS tjzt,
-                q.YXJL                                    AS yxjl,
-                ISNULL(
-                q.GXRQ,
-                q.CJSJ
-                )                                         AS gxsj
+        'N'
+        ) AS nls,
+        SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
+        ISNULL(
+            CONVERT (
+                VARCHAR,
+                    (
+                        SELECT
+                        SQXH
+                        FROM
+                        CISDB.dbo.CPOE_RIS_BRJCSQD
+                        WHERE
+                        BRBS = q.SYXH
+                        AND SQDMBID IN (
+                        SELECT
+                        sqdmbid
+                        FROM
+                        THIS4.dbo.CL_Template
+                        WHERE
+                        isBloodBanks = 1
+                        )
+                    )
+                ),
+            '无'
+        ) AS dzsqdbh,
+        q.QTBLJLXH AS syxh,
+        q.TJZT AS tjzt,
+        q.YXJL AS yxjl,
+        ISNULL(
+        q.GXRQ,
+        q.CJSJ
+        ) AS gxsj
         FROM
         CISDB.dbo.EMR_QTBLJLK q
         LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
@@ -415,8 +437,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
 
     </select>
 

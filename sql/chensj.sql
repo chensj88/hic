@@ -184,18 +184,9 @@
   --治则治法
   UPDATE A SET A.zfbm='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE A.zfbm='N'
   UPDATE A SET A.zzzf='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE A.zzzf='N'
-  --中医诊断
-  UPDATE A SET A.zdyj = C.ZDMC,A.zdyjdm = C.ZDDM
-  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SQXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
-    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1
-  WHERE  ( CONVERT(varchar,A.zdyj) ='N' OR CONVERT(varchar,A.zdyjdm) ='N' )
   --中医病名
-  UPDATE A SET A.rzzybm = C.ZDMC,A.rzzybmdm = C.ZDDM
-  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
-    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
-  WHERE  (CONVERT(varchar,A.rzzybmdm) ='N' OR CONVERT(varchar,A.rzzybm) ='N')  AND ZDDM LIKE'B%'
-  --中医证候
-  UPDATE A SET A.rzzyzh = C.ZDMC,A.rzzyzhdm = C.ZDDM
-  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
-    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
-  WHERE  ( CONVERT(varchar,A.rzzyzh) ='N' OR CONVERT(varchar,A.rzzyzhdm) ='N' ) AND (ZDDM LIKE'A%' OR ZDDM LIKE'Z%')
+  UPDATE A SET A.zybmdm='无',A.zybmmc='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE (A.zybmdm='N' or A.zybmmc='N')
+  --中医症候
+  UPDATE A SET A.zyzhdm='无',A.zyzhmc='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE (A.zyzhdm='N' or A.zyzhmc='N' )
+  --辨证依据
+  UPDATE A SET A.bzyj='无' FROM CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL A WHERE (A.bzyj='N')

@@ -57,9 +57,9 @@ public class HicHelper {
             if (strValue == null) {
                 String paramType = paramTypeMap.get(pyCode.trim());
                 if (paramType.contains("String")) {
-                    value = "N";
+                    value = "NA";
                 } else if (paramType.contains("Short")) {
-                    value = new Short("-9");
+                    value = new Short("0");
                 } else if (paramType.contains("Timestamp")) {
                     String pattern = "yyyy-MM-dd HH:mm:ss";
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -73,22 +73,22 @@ public class HicHelper {
                     java.sql.Date sqlDate = new java.sql.Date(sdf.parse(dateStr).getTime());
                     value = sqlDate;
                 } else if (paramType.contains("BigDecimal")) {
-                    value = new BigDecimal(-9);
+                    value = new BigDecimal(0);
                 } else if (paramType.contains("Integer")) {
-                    value = new Integer(-9);
+                    value = new Integer(0);
                 }
             } else {
                 String paramType = paramTypeMap.get(pyCode);
                 if (paramType.contains("String")) {
-                    value = StringUtil.isEmptyOrNull(strValue) ? "N" : strValue;
+                    value = StringUtil.isEmptyOrNull(strValue) ? "NA" : strValue;
                     if(((String) value).contains("yyyy年MM月dd日+Day行")){
                         value = ((String) value).replace("yyyy年MM月dd日+Day行","");
                     }
-                    value = StringUtil.isEmptyOrNull(((String) value).trim()) ? "N" :((String) value).trim();
+                    value = StringUtil.isEmptyOrNull(((String) value).trim()) ? "NA" :((String) value).trim();
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
                     String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue;
-                    value = StringUtil.isEmptyOrNull(shortStr) ? -9 : Short.parseShort(shortStr);
+                    value = StringUtil.isEmptyOrNull(shortStr) ? 0 : Short.parseShort(shortStr);
                 } else if (paramType.contains("Timestamp")) {
                     String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue;
                     String pattern = "yyyy-MM-dd HH:mm:ss";
@@ -168,10 +168,10 @@ public class HicHelper {
                         e.printStackTrace();
                     }
                 } else if (paramType.contains("BigDecimal")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue;
+                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "0" : strValue;
                     value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
                 } else if (paramType.contains("Integer")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "-9" : strValue;
+                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "0" : strValue;
                     value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
                 }
             }
@@ -194,7 +194,7 @@ public class HicHelper {
                     logger.info("pyCode:{};methodName:{};strValue:{};info:{}", pyCode, methodName, value,info);*/
                     logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, value);
                     if (dataSet.getSourceType().equals("6") && pyCode.equals("bltd")) {
-                        if (!"N".equals(value)) {
+                        if (!"NA".equals(value)) {
                             bltd = bltd + " " + value;
                             ReflectUtil.setParamKind(obj, methodName, bltd);
                         }
