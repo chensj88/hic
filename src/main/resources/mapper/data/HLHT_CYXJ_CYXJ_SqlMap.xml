@@ -128,8 +128,8 @@
         <if test="(yzbm != null and yzbm != '')">and t.yzbm = #{yzbm}</if>
         <if test="(lxrxm != null and lxrxm != '')">and t.lxrxm = #{lxrxm}</if>
         <if test="(lxrdhhm != null and lxrdhhm != '')">and t.lxrdhhm = #{lxrdhhm}</if>
-        <if test="(ryrq != null and ryrq != '')">and t.ryrq = #{ryrq}</if>
-        <if test="(cyrq != null and cyrq != '')">and t.cyrq = #{cyrq}</if>
+        <if test="(ryrq != null )">and t.ryrq = #{ryrq}</if>
+        <if test="(cyrq != null )">and t.cyrq = #{cyrq}</if>
         <if test="(sjzyts != null and sjzyts != '')">and t.sjzyts = #{sjzyts}</if>
         <if test="(ryqk != null and ryqk != '')">and t.ryqk = #{ryqk}</if>
         <if test="(yxfzjcjg != null and yxfzjcjg != '')">and t.yxfzjcjg = #{yxfzjcjg}</if>
@@ -152,7 +152,7 @@
         <if test="(qkyhdjmc != null and qkyhdjmc != '')">and t.qkyhdjmc = #{qkyhdjmc}</if>
         <if test="(ssczbm != null and ssczbm != '')">and t.ssczbm = #{ssczbm}</if>
         <if test="(ssjczmc != null and ssjczmc != '')">and t.ssjczmc = #{ssjczmc}</if>
-        <if test="(ssczksrq != null and ssczksrq != '')">and t.ssczksrq = #{ssczksrq}</if>
+        <if test="(ssczksrq != null )">and t.ssczksrq = #{ssczksrq}</if>
         <if test="(mzffdm != null and mzffdm != '')">and t.mzffdm = #{mzffdm}</if>
         <if test="(mzffmc != null and mzffmc != '')">and t.mzffmc = #{mzffmc}</if>
         <if test="(ssgc != null and ssgc != '')">and t.ssgc = #{ssgc}</if>
@@ -170,8 +170,8 @@
         <if test="(zyysqm != null and zyysqm != '')">and t.zyysqm = #{zyysqm}</if>
         <if test="(sjysbm != null and sjysbm != '')">and t.sjysbm = #{sjysbm}</if>
         <if test="(sjysqm != null and sjysqm != '')">and t.sjysqm = #{sjysqm}</if>
-        <if test="(qmrq != null and qmrq != '')">and t.qmrq = #{qmrq}</if>
-        <if test="(gxsj != null and gxsj != '')">and t.gxsj = #{gxsj}</if>
+        <if test="(qmrq != null )">and t.qmrq = #{qmrq}</if>
+        <if test="(gxsj != null )">and t.gxsj = #{gxsj}</if>
         <if test="(syxh != null and syxh != '')">and t.syxh = #{syxh}</if>
         <if test="(tjzt != null and tjzt != '')">and t.tjzt = #{tjzt}</if>
         <if test="(yxjl != null and yxjl != '')">and t.yxjl = #{yxjl}</if>
@@ -216,8 +216,8 @@
             <if test="(yzbm != null and yzbm != '')">yzbm ,</if>
             <if test="(lxrxm != null and lxrxm != '')">lxrxm ,</if>
             <if test="(lxrdhhm != null and lxrdhhm != '')">lxrdhhm ,</if>
-            <if test="(ryrq != null and ryrq != '')">ryrq ,</if>
-            <if test="(cyrq != null and cyrq != '')">cyrq ,</if>
+            <if test="(ryrq != null )">ryrq ,</if>
+            <if test="(cyrq != null )">cyrq ,</if>
             <if test="(sjzyts != null and sjzyts != '')">sjzyts ,</if>
             <if test="(ryqk != null and ryqk != '')">ryqk ,</if>
             <if test="(yxfzjcjg != null and yxfzjcjg != '')">yxfzjcjg ,</if>
@@ -240,7 +240,7 @@
             <if test="(qkyhdjmc != null and qkyhdjmc != '')">qkyhdjmc ,</if>
             <if test="(ssczbm != null and ssczbm != '')">ssczbm ,</if>
             <if test="(ssjczmc != null and ssjczmc != '')">ssjczmc ,</if>
-            <if test="(ssczksrq != null and ssczksrq != '')">ssczksrq ,</if>
+            <if test="(ssczksrq != null )">ssczksrq ,</if>
             <if test="(mzffdm != null and mzffdm != '')">mzffdm ,</if>
             <if test="(mzffmc != null and mzffmc != '')">mzffmc ,</if>
             <if test="(ssgc != null and ssgc != '')">ssgc ,</if>
@@ -258,8 +258,8 @@
             <if test="(zyysqm != null and zyysqm != '')">zyysqm ,</if>
             <if test="(sjysbm != null and sjysbm != '')">sjysbm ,</if>
             <if test="(sjysqm != null and sjysqm != '')">sjysqm ,</if>
-            <if test="(qmrq != null and qmrq != '')">qmrq ,</if>
-            <if test="(gxsj != null and gxsj != '')">gxsj ,</if>
+            <if test="(qmrq != null )">qmrq ,</if>
+            <if test="(gxsj != null )">gxsj ,</if>
             <if test="(syxh != null and syxh != '')">syxh ,</if>
             <if test="(tjzt != null and tjzt != '')">tjzt ,</if>
             <if test="(yxjl != null and yxjl != '')">yxjl ,</if>
@@ -301,8 +301,8 @@
             <if test="(yzbm != null and yzbm != '')">#{yzbm , jdbcType= VARCHAR },</if>
             <if test="(lxrxm != null and lxrxm != '')">#{lxrxm , jdbcType= VARCHAR },</if>
             <if test="(lxrdhhm != null and lxrdhhm != '')">#{lxrdhhm , jdbcType= VARCHAR },</if>
-            <if test="(ryrq != null and ryrq != '')">#{ryrq , jdbcType= TIMESTAMP },</if>
-            <if test="(cyrq != null and cyrq != '')">#{cyrq , jdbcType= TIMESTAMP },</if>
+            <if test="(ryrq != null )">#{ryrq , jdbcType= TIMESTAMP },</if>
+            <if test="(cyrq != null )">#{cyrq , jdbcType= TIMESTAMP },</if>
             <if test="(sjzyts != null and sjzyts != '')">#{sjzyts , jdbcType= INTEGER },</if>
             <if test="(ryqk != null and ryqk != '')">#{ryqk , jdbcType= VARCHAR },</if>
             <if test="(yxfzjcjg != null and yxfzjcjg != '')">#{yxfzjcjg , jdbcType= VARCHAR },</if>
@@ -325,7 +325,7 @@
             <if test="(qkyhdjmc != null and qkyhdjmc != '')">#{qkyhdjmc , jdbcType= VARCHAR },</if>
             <if test="(ssczbm != null and ssczbm != '')">#{ssczbm , jdbcType= VARCHAR },</if>
             <if test="(ssjczmc != null and ssjczmc != '')">#{ssjczmc , jdbcType= VARCHAR },</if>
-            <if test="(ssczksrq != null and ssczksrq != '')">#{ssczksrq , jdbcType= TIMESTAMP },</if>
+            <if test="(ssczksrq != null )">#{ssczksrq , jdbcType= TIMESTAMP },</if>
             <if test="(mzffdm != null and mzffdm != '')">#{mzffdm , jdbcType= VARCHAR },</if>
             <if test="(mzffmc != null and mzffmc != '')">#{mzffmc , jdbcType= VARCHAR },</if>
             <if test="(ssgc != null and ssgc != '')">#{ssgc , jdbcType= VARCHAR },</if>
@@ -343,8 +343,8 @@
             <if test="(zyysqm != null and zyysqm != '')">#{zyysqm , jdbcType= VARCHAR },</if>
             <if test="(sjysbm != null and sjysbm != '')">#{sjysbm , jdbcType= VARCHAR },</if>
             <if test="(sjysqm != null and sjysqm != '')">#{sjysqm , jdbcType= VARCHAR },</if>
-            <if test="(qmrq != null and qmrq != '')">#{qmrq , jdbcType= TIMESTAMP },</if>
-            <if test="(gxsj != null and gxsj != '')">#{gxsj , jdbcType= TIMESTAMP },</if>
+            <if test="(qmrq != null )">#{qmrq , jdbcType= TIMESTAMP },</if>
+            <if test="(gxsj != null )">#{gxsj , jdbcType= TIMESTAMP },</if>
             <if test="(syxh != null and syxh != '')">#{syxh , jdbcType= VARCHAR },</if>
             <if test="(tjzt != null and tjzt != '')">#{tjzt , jdbcType= VARCHAR },</if>
             <if test="(yxjl != null and yxjl != '')">#{yxjl , jdbcType= INTEGER },</if>
@@ -390,8 +390,8 @@
                 <if test="(yzbm != null and yzbm != '')">yzbm = #{yzbm , jdbcType= VARCHAR },</if>
                 <if test="(lxrxm != null and lxrxm != '')">lxrxm = #{lxrxm , jdbcType= VARCHAR },</if>
                 <if test="(lxrdhhm != null and lxrdhhm != '')">lxrdhhm = #{lxrdhhm , jdbcType= VARCHAR },</if>
-                <if test="(ryrq != null and ryrq != '')">ryrq = #{ryrq , jdbcType= TIMESTAMP },</if>
-                <if test="(cyrq != null and cyrq != '')">cyrq = #{cyrq , jdbcType= TIMESTAMP },</if>
+                <if test="(ryrq != null )">ryrq = #{ryrq , jdbcType= TIMESTAMP },</if>
+                <if test="(cyrq != null )">cyrq = #{cyrq , jdbcType= TIMESTAMP },</if>
                 <if test="(sjzyts != null and sjzyts != '')">sjzyts = #{sjzyts , jdbcType= INTEGER },</if>
                 <if test="(ryqk != null and ryqk != '')">ryqk = #{ryqk , jdbcType= VARCHAR },</if>
                 <if test="(yxfzjcjg != null and yxfzjcjg != '')">yxfzjcjg = #{yxfzjcjg , jdbcType= VARCHAR },</if>
@@ -414,7 +414,7 @@
                 <if test="(qkyhdjmc != null and qkyhdjmc != '')">qkyhdjmc = #{qkyhdjmc , jdbcType= VARCHAR },</if>
                 <if test="(ssczbm != null and ssczbm != '')">ssczbm = #{ssczbm , jdbcType= VARCHAR },</if>
                 <if test="(ssjczmc != null and ssjczmc != '')">ssjczmc = #{ssjczmc , jdbcType= VARCHAR },</if>
-                <if test="(ssczksrq != null and ssczksrq != '')">ssczksrq = #{ssczksrq , jdbcType= TIMESTAMP },</if>
+                <if test="(ssczksrq != null )">ssczksrq = #{ssczksrq , jdbcType= TIMESTAMP },</if>
                 <if test="(mzffdm != null and mzffdm != '')">mzffdm = #{mzffdm , jdbcType= VARCHAR },</if>
                 <if test="(mzffmc != null and mzffmc != '')">mzffmc = #{mzffmc , jdbcType= VARCHAR },</if>
                 <if test="(ssgc != null and ssgc != '')">ssgc = #{ssgc , jdbcType= VARCHAR },</if>
@@ -432,8 +432,8 @@
                 <if test="(zyysqm != null and zyysqm != '')">zyysqm = #{zyysqm , jdbcType= VARCHAR },</if>
                 <if test="(sjysbm != null and sjysbm != '')">sjysbm = #{sjysbm , jdbcType= VARCHAR },</if>
                 <if test="(sjysqm != null and sjysqm != '')">sjysqm = #{sjysqm , jdbcType= VARCHAR },</if>
-                <if test="(qmrq != null and qmrq != '')">qmrq = #{qmrq , jdbcType= TIMESTAMP },</if>
-                <if test="(gxsj != null and gxsj != '')">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
+                <if test="(qmrq != null )">qmrq = #{qmrq , jdbcType= TIMESTAMP },</if>
+                <if test="(gxsj != null )">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
                 <if test="(syxh != null and syxh != '')">syxh = #{syxh , jdbcType= VARCHAR },</if>
                 <if test="(tjzt != null and tjzt != '')">tjzt = #{tjzt , jdbcType= VARCHAR },</if>
                 <if test="(yxjl != null and yxjl != '')">yxjl = #{yxjl , jdbcType= INTEGER },</if>
@@ -544,41 +544,16 @@
         b.ZYDM AS zylbdm,
         k.NAME AS zylbmc,
         b.LXDH AS hzdhhm,
-        'N' AS zzlbdm,
-        'N' AS zzlbmc,
         ISNULL(
-        (
-        SELECT
-        e.NAME
-        FROM
-        CISDB.dbo.EMR_SYS_DQDMK e
-        WHERE
-        b.SSDM = e.DQDM
-        ),
-        'N'
-        ) AS dzsf,
+        (SELECT TOP 1 e.SSDQDM FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'N') AS zzlbdm,
         ISNULL(
-        (
-        SELECT
-        e.NAME
-        FROM
-        CISDB.dbo.EMR_SYS_DQDMK e
-        WHERE
-        b.QXDM = e.DQDM
-        ),
-        'N'
-        ) AS dzsq,
+        (SELECT TOP 1 e.SSDQMC FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'N') AS zzlbmc,
         ISNULL(
-        (
-        SELECT
-        e.NAME
-        FROM
-        CISDB.dbo.EMR_SYS_DQDMK e
-        WHERE
-        b.QXDM = e.DQDM
-        ),
-        'N'
-        ) AS dzx,
+        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'N') AS dzsf,
+        ISNULL(
+        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') AS dzsq,
+        ISNULL(
+        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') AS dzx,
         ISNULL(
         (
         SELECT
@@ -598,7 +573,7 @@
         CASE WHEN c.LXRDH ='' THEN 'N' ELSE  c.LXRDH END as lxrdhhm,
         b.RYRQ as ryrq,
         CASE WHEN b.CYRQ ='' THEN GETDATE() ELSE  b.CYRQ END as cyrq,
-        -9 AS sjzyts,
+        DATEDIFF( day ,  CONVERT(varchar(100), b.RYRQ, 23),  CONVERT(varchar(100), GETDATE(), 23))  AS sjzyts,
         ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
         t.YXJL AS yxjl,
         t.QTBLJLXH AS syxh,

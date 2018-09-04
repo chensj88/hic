@@ -69,3 +69,74 @@ select * from f_splitSTR(C.cjqjrydm,',')) for xml path('')),1,1,'')  as mc,
      C.yjlxh
    from CISDB_DATA.dbo.HLHT_ZYBCJL_QJJL C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'N' OR D.zyzwlbmc='N')
 
+-- 其他知情告知同意书
+UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_QTZQTYS A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+  WHERE  ( CONVERT(varchar,A.jbzd) ='N' OR CONVERT(varchar,A.jbzdbm) ='N' );
+
+UPDATE CISDB_DATA..HLHT_ZQGZXX_QTZQTYS SET yljgyj='无' WHERE CONVERT(varchar,yljgyj)='N' ;
+UPDATE CISDB_DATA..HLHT_ZQGZXX_QTZQTYS SET dlryj='无' WHERE CONVERT(varchar,dlryj)='N' ;
+UPDATE CISDB_DATA..HLHT_ZQGZXX_QTZQTYS SET hzqm=dlrqm WHERE CONVERT(varchar,hzqm)='N' ;
+UPDATE CISDB_DATA..HLHT_ZQGZXX_QTZQTYS SET dlrhzgx='无' WHERE CONVERT(varchar,dlrhzgx)='N' ;
+UPDATE CISDB_DATA..HLHT_ZQGZXX_QTZQTYS SET dlrhzmc='无' WHERE CONVERT(varchar,dlrhzmc)='N' ;
+
+
+
+-- 出院小结
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET jkkh='无' WHERE CONVERT(varchar,jkkh)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET dzc='无' WHERE CONVERT(varchar,dzc)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET dzmphm='无' WHERE CONVERT(varchar,dzmphm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET yzbm='无' WHERE CONVERT(varchar,yzbm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET yxfzjcjg='无' WHERE CONVERT(varchar,yxfzjcjg)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET zyszgcjg='无' WHERE CONVERT(varchar,zyszgcjg)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET rzxyzdbm='无' WHERE CONVERT(varchar,rzxyzdbm)='N' ;
+--入院诊断-中医病名代码 入院诊断-中医病名名称
+UPDATE A SET A.rzzybm = C.ZDMC,A.rzzybmdm = C.ZDDM
+FROM CISDB_DATA.dbo.HLHT_CYXJ_CYXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+  LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
+WHERE  (CONVERT(varchar,A.rzzybmdm) ='N' OR CONVERT(varchar,A.rzzybm) ='N')  AND ZDDM LIKE'B%';
+--入院诊断-中医证候代码 入院诊断-中医证候名称
+UPDATE A SET A.rzzyzh = C.ZDMC,A.rzzyzhdm = C.ZDDM
+FROM CISDB_DATA.dbo.HLHT_CYXJ_CYXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+  LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
+WHERE  ( CONVERT(varchar,A.rzzyzh) ='N' OR CONVERT(varchar,A.rzzyzhdm) ='N' ) AND (ZDDM LIKE'A%' OR ZDDM LIKE'Z%') ;
+
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET czzybmdm='无' WHERE CONVERT(varchar,czzybmdm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET czzybm='无' WHERE CONVERT(varchar,czzybm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET czzybmdm='无' WHERE CONVERT(varchar,czzybmdm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET czzybm='无' WHERE CONVERT(varchar,czzybm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET czzyzhdm='无' WHERE CONVERT(varchar,czzyzhdm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET ssqklbdm='无' WHERE CONVERT(varchar,ssqklbdm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET ssqklbmc='无' WHERE CONVERT(varchar,ssqklbmc)='N' ;
+--切口愈合等级代码、名称
+UPDATE A SET A.qkyhdjdm = CASE WHEN B.SSDJ IS NULL THEN '无' ELSE B.SSDJ END,A.qkyhdjmc = CASE WHEN B.SSDJMC IS NULL THEN '无' ELSE B.SSDJMC END
+FROM CISDB_DATA..HLHT_CYXJ_CYXJ A LEFT JOIN CISDB.dbo.CPOE_SSYZK B ON A.jzlsh = B.SYXH
+WHERE (A.qkyhdjmc = 'N' OR A.qkyhdjdm ='N');
+
+---手术编码、手术名称
+UPDATE A SET A.mzffdm = CASE WHEN B.SSDM IS NULL THEN '无' ELSE B.SSDM END,A.mzffmc = CASE WHEN B.SSMC IS NULL THEN '无' ELSE B.SSMC END
+FROM CISDB_DATA..HLHT_CYXJ_CYXJ A LEFT JOIN CISDB.dbo.CPOE_SSYZK B ON A.jzlsh = B.SYXH
+WHERE (A.mzffdm = 'N' OR A.mzffmc ='N');
+
+--麻醉方法代码、名称
+UPDATE A SET A.mzffdm = CASE WHEN B.MZDM IS NULL THEN '无' ELSE B.MZDM END,A.mzffmc = CASE WHEN B.MZMC IS NULL THEN '无' ELSE B.MZMC END
+FROM CISDB_DATA..HLHT_CYXJ_CYXJ A LEFT JOIN CISDB.dbo.CPOE_SSYZK B ON A.jzlsh = B.SYXH
+WHERE (A.mzffdm = 'N' OR A.mzffmc ='N');
+
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET zfbm='无' WHERE CONVERT(varchar,zfbm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET zzzf='无' WHERE CONVERT(varchar,zzzf)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET zyjzff='无' WHERE CONVERT(varchar,zyjzff)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET zyyyff='无' WHERE CONVERT(varchar,zyyyff)='N' ;
+
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET zljgdm='无' WHERE CONVERT(varchar,zljgdm)='N' ;
+UPDATE CISDB_DATA..HLHT_CYXJ_CYXJ SET zljgmc='无' WHERE CONVERT(varchar,zljgmc)='N' ;
+--治疗结果代码
+UPDATE A SET A.zljgdm=CASE WHEN B.ZGQK IS NULL THEN '无' ELSE B.ZGQK END
+ FROM CISDB_DATA..HLHT_CYXJ_CYXJ A LEFT JOIN CISDB.dbo.EMR_BASY_ZDK B ON A.jzlsh=B.SYXH;
+--治疗结果名称
+UPDATE A SET A.zljgmc=CASE WHEN B.NAME IS NULL THEN '无' ELSE B.NAME END
+ FROM CISDB_DATA..HLHT_CYXJ_CYXJ A LEFT JOIN CISDB.dbo.EMR_SYS_ZDFLMXK B  ON A.zljgdm=B.MXDM
+WHERE B.LBDM=8 AND A.zljgdm !='无' AND A.zljgdm ='N';
+
+
