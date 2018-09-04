@@ -169,5 +169,14 @@
   CASE WHEN B.CYRQ IS NULL THEN  CONVERT(DATE,'1990-01-01 00:00:00') ELSE
     CONVERT(datetime,substring(B.CYRQ,1,4)+'-'+substring(B.CYRQ,5,2)+'-'+substring(B.CYRQ,7,2)+' '+substring(B.CYRQ,9,2)+':'+substring(B.CYRQ,12,2)+':'+substring(B.CYRQ,15,2)) END  FROM CISDB_DATA.dbo.HLHT_ZYBCJL_SHSCBCJL A LEFT JOIN  CISDB.dbo.CPOE_BRSYK B ON A.jzlsh = B.SYXH WHERE A.jzjssj = CONVERT(DATE,'1990-01-01 00:00:00')
 
+--特殊检查及特殊治疗同意书
+  --疾病诊断
+  UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
+  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_TSJCZLTYS A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
+    LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+  WHERE  ( CONVERT(varchar,A.jbzd) ='N' OR CONVERT(varchar,A.jbzdbm) ='N' )
+  --医生信息
+  UPDATE A SET A.ysbm = ISNULL(B.YSDM,'无'),A.ysqm = ISNULL(B.YSXM,'无')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_TSJCZLTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.ysbm ='N' or A.ysqm = 'N');
+
 
 

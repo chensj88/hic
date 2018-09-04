@@ -1,8 +1,5 @@
 package com.winning.hic.model;
 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
 import java.io.Serializable; 
 
 import org.apache.ibatis.type.Alias; 
@@ -196,7 +193,7 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date dlrqmrq;
+    private java.sql.Timestamp dlrqmrq;
     /**
      * 字段名：ysbm
      * 备注: 
@@ -214,13 +211,13 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date ysqmrq;
+    private java.sql.Timestamp ysqmrq;
     /**
      * 字段名：gxsj
      * 备注: 
      * 默认值：无
      */
-    private Date gxsj;
+    private java.sql.Timestamp gxsj;
 
     public HlhtZqgzxxTsjczltys (){
 
@@ -735,7 +732,7 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getDlrqmrq(){
+   public java.sql.Timestamp getDlrqmrq(){
 
         return dlrqmrq;
    }
@@ -745,7 +742,7 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setDlrqmrq(Date dlrqmrq){
+   public void setDlrqmrq(java.sql.Timestamp dlrqmrq){
         this.dlrqmrq = dlrqmrq;
    }
    /**
@@ -789,7 +786,7 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getYsqmrq(){
+   public java.sql.Timestamp getYsqmrq(){
 
         return ysqmrq;
    }
@@ -799,7 +796,7 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setYsqmrq(Date ysqmrq){
+   public void setYsqmrq(java.sql.Timestamp ysqmrq){
         this.ysqmrq = ysqmrq;
    }
    /**
@@ -807,7 +804,7 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getGxsj(){
+   public java.sql.Timestamp getGxsj(){
 
         return gxsj;
    }
@@ -817,7 +814,7 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setGxsj(Date gxsj){
+   public void setGxsj(java.sql.Timestamp gxsj){
         this.gxsj = gxsj;
    }
 
