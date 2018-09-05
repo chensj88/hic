@@ -390,7 +390,7 @@
         c.BQDM AS bqdm,
         c.BQMC AS bqmc ,
         a.fjh AS rybfmc,
-        ISNULL(a.fjh, 'N') AS bfh,
+        ISNULL(a.fjh, 'NA') AS bfh,
         c.CWDM AS bch ,
         b.HZXM AS hzxm,
         b.SFZH AS sfzhm,

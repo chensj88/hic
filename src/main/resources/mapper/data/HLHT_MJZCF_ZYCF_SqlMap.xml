@@ -381,23 +381,23 @@
     <select id="getHlhtMjzcfZycfListFromBaseData" resultMap="hlhtMjzcfZycfResult"
             parameterType="com.winning.hic.model.EmrQtbljlk">
             SELECT
-                ISNULL(T1.XH, 'N') AS yjlxh,
-                ISNULL(CONVERT (VARCHAR, T2.GHXH), 'N') AS jzlsh,
+                ISNULL(T1.XH, 'NA') AS yjlxh,
+                ISNULL(CONVERT (VARCHAR, T2.GHXH), 'NA') AS jzlsh,
                 ISNULL(
                     CONVERT (VARCHAR, T3.PATID),
-                    'N'
+                    'NA'
                 ) AS patid,
                 ISNULL(
                     CONVERT (VARCHAR, T2.HZXM),
-                    'N'
+                    'NA'
                 ) AS hzxm,
                 ISNULL(
                     CONVERT (VARCHAR, T2.GHXH),
-                    'N'
+                    'NA'
                 ) AS mjzh,
                 ISNULL(
                     CONVERT (VARCHAR, T3.SFZH),
-                    'N'
+                    'NA'
                 ) AS sfzhm,
                 (
                     CASE T3.SEX
@@ -409,7 +409,7 @@
                         '3'
                     END
                 ) AS xbdm,
-                ISNULL(T3.SEX, 'N') AS xbmc,
+                ISNULL(T3.SEX, 'NA') AS xbmc,
                 ISNULL(
                     CONVERT (
                         VARCHAR,
@@ -428,7 +428,7 @@
                         8
                     )
                 ) % 12 AS nly,
-                ISNULL(T1.CFXH, 'N') AS cfxh,
+                ISNULL(T1.CFXH, 'NA') AS cfxh,
                 (
                     SELECT
                         t.DICT_LABEL
@@ -455,10 +455,10 @@
                     WHEN '03' THEN
                         '1'
                     ELSE
-                        'N'
+                        'NA'
                     END
                 ) AS cflb,
-                'N' AS cflbmc,
+                'NA' AS cflbmc,
                 (
 		        SUBSTRING (T2.LRRQ, 1, 4) + '-' + SUBSTRING (T2.LRRQ, 5, 2) + '-' + SUBSTRING (T2.LRRQ, 7, 2) + ' ' + SUBSTRING (T2.LRRQ, 9, 8)
 	            ) AS cfklrq,
@@ -496,7 +496,7 @@
                         AND T7.ZDLB = 1
                         AND T7.ZDLX = 0
                     ),
-                    'N'
+                    'NA'
                 ) AS zybmdm,
                 ISNULL(
                     (
@@ -509,7 +509,7 @@
                         AND T7.ZDLB = 1
                         AND T7.ZDLX = 0
                     ),
-                    'N'
+                    'NA'
                 ) AS zybm,
                 ISNULL(
                     (
@@ -522,7 +522,7 @@
                         AND T7.ZDLB = 1
                         AND T7.ZDLX = 0
                     ),
-                    'N'
+                    'NA'
                 ) AS zyzhdm,
                 ISNULL(
                     (
@@ -535,7 +535,7 @@
                         AND T7.ZDLB = 1
                         AND T7.ZDLX = 0
                     ),
-                    'N'
+                    'NA'
                 ) AS zyzh,
                 T1.YPDM AS ywdm,
                 T1.YPMC AS ywmc,
@@ -561,22 +561,22 @@
                 ) AS ywsyzjl,
                 T1.FZXH AS cfypzh,
                 T1.YPMC AS zyypcf,
-                'N' AS zyypjs,
-                'N' AS zyypjzf,
+                'NA' AS zyypjs,
+                'NA' AS zyypjzf,
                 T1.PCDM AS zyyyff,
-                'N' AS zfbm,
-                'N' AS zzzf,
+                'NA' AS zfbm,
+                'NA' AS zzzf,
                 T2.YSMC AS klysqm,
                 T2.YSDM AS ysbm,
-                'N' AS shyjsbm,
-                'N' AS shyjsqm,
-                'N' AS tpyjsbm,
-                'N' AS tpyjsqm,
-                'N' AS hdyjsbm,
-                'N' AS hdyjsqm,
-                'N' AS fyyjsbm,
-                'N' AS fyyjsqm,
-                ISNULL(T2.MEMO, 'N') AS cfbzxx,
+                'NA' AS shyjsbm,
+                'NA' AS shyjsqm,
+                'NA' AS tpyjsbm,
+                'NA' AS tpyjsqm,
+                'NA' AS hdyjsbm,
+                'NA' AS hdyjsqm,
+                'NA' AS fyyjsbm,
+                'NA' AS fyyjsqm,
+                ISNULL(T2.MEMO, 'NA') AS cfbzxx,
                 CONVERT (
                     DECIMAL (18, 2),
                     (T1.YPSL * T1.YLSJ) / T1.YKXS

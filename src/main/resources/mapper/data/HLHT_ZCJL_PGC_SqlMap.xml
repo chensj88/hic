@@ -618,7 +618,7 @@
         c.KSMC AS ksmc ,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
-        ISNULL(a.fjh, 'N') AS bfh,
+        ISNULL(a.fjh, 'NA') AS bfh,
         c.CWDM AS bch,
         ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
         t.YXJL AS yxjl,

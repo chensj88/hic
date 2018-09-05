@@ -507,12 +507,12 @@
         b.ZYHM AS zyh,
         i.DICT_LABEL AS zzjgmc,
         ii.DICT_LABEL AS zzjgdm,
-        'N' AS jkkh,
+        'NA' AS jkkh,
         c.KSDM AS ksdm,
         c.KSMC AS ksmc,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
-        ISNULL(a.fjh, 'N') AS bfh,
+        ISNULL(a.fjh, 'NA') AS bfh,
         c.CWDM AS bch,
         b.HZXM AS hzxm,
         b.SFZH AS sfzhm,
@@ -545,15 +545,15 @@
         k.NAME AS zylbmc,
         b.LXDH AS hzdhhm,
         ISNULL(
-        (SELECT TOP 1 e.SSDQDM FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'N') AS zzlbdm,
+        (SELECT TOP 1 e.SSDQDM FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,
         ISNULL(
-        (SELECT TOP 1 e.SSDQMC FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'N') AS zzlbmc,
+        (SELECT TOP 1 e.SSDQMC FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbmc,
         ISNULL(
-        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'N') AS dzsf,
+        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'NA') AS dzsf,
         ISNULL(
-        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') AS dzsq,
+        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'NA') AS dzsq,
         ISNULL(
-        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'N') AS dzx,
+        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'NA') AS dzx,
         ISNULL(
         (
         SELECT
@@ -563,14 +563,14 @@
         WHERE
         b.QXDM = e.DQDM
         ),
-        'N'
+        'NA'
         ) AS dzxz,
 
-        'N' AS dzc,
-        'N' AS dzmphm,
-        'N' AS yzbm,
-        CASE WHEN c.LXR ='' THEN 'N' ELSE  c.LXR END as lxrxm,
-        CASE WHEN c.LXRDH ='' THEN 'N' ELSE  c.LXRDH END as lxrdhhm,
+        'NA' AS dzc,
+        'NA' AS dzmphm,
+        'NA' AS yzbm,
+        CASE WHEN c.LXR ='' THEN 'NA' ELSE  c.LXR END as lxrxm,
+        CASE WHEN c.LXRDH ='' THEN 'NA' ELSE  c.LXRDH END as lxrdhhm,
         b.RYRQ as ryrq,
         CASE WHEN b.CYRQ ='' THEN GETDATE() ELSE  b.CYRQ END as cyrq,
         DATEDIFF( day ,  CONVERT(varchar(100), b.RYRQ, 23),  CONVERT(varchar(100), GETDATE(), 23))  AS sjzyts,

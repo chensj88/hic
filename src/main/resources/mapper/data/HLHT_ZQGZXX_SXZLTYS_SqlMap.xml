@@ -313,28 +313,28 @@
     <select id="getHlhtZqgzxxSxzltysListFromBaseData" resultMap="hlhtZqgzxxSxzltysResult"
             parameterType="com.winning.hic.model.EmrQtbljlk">
         SELECT
-            ISNULL(q.QTBLJLXH, 'N')                   AS yjlxh,
+            ISNULL(q.QTBLJLXH, 'NA')                   AS yjlxh,
             c.SYXH                                    AS jzlsh,
             c.PATID                                   AS patid,
-            ISNULL(b.ZYHM, 'N')                       AS zyh,
+            ISNULL(b.ZYHM, 'NA')                       AS zyh,
             ISNULL(
                     CONVERT (VARCHAR,(o.GHXH)),
-                    'N'
+                    'NA'
                 ) AS mjzh,
             ISNULL(
                     CONVERT (VARCHAR,(o.GHLB)),
-                    'N'
+                    'NA'
                 ) AS jzlb,
-            ISNULL(q.QTBLJLXH, 'N')                   AS tysbh,
-            ISNULL(c.BQDM, 'N')                       AS bqdm,
-            ISNULL(c.BQMC, 'N')                       AS bqmc,
-            ISNULL(c.KSDM, 'N')                       AS ksdm,
-            ISNULL(c.KSMC, 'N')                       AS ksmc,
-            ISNULL(m.fjh, 'N')                        AS bfh,
-            ISNULL(b.RYCW, 'N')                       AS bch,
-            ISNULL(b.HZXM, 'N')                       AS hzxm,
-            ISNULL(b.SFZH, 'N')                       AS sfzhm,
-            ISNULL(b.BRXB, 'N')                       AS xbdm,
+            ISNULL(q.QTBLJLXH, 'NA')                   AS tysbh,
+            ISNULL(c.BQDM, 'NA')                       AS bqdm,
+            ISNULL(c.BQMC, 'NA')                       AS bqmc,
+            ISNULL(c.KSDM, 'NA')                       AS ksdm,
+            ISNULL(c.KSMC, 'NA')                       AS ksmc,
+            ISNULL(m.fjh, 'NA')                        AS bfh,
+            ISNULL(b.RYCW, 'NA')                       AS bch,
+            ISNULL(b.HZXM, 'NA')                       AS hzxm,
+            ISNULL(b.SFZH, 'NA')                       AS sfzhm,
+            ISNULL(b.BRXB, 'NA')                       AS xbdm,
             (
             SELECT CASE b.BRXB
             WHEN '2'
@@ -355,7 +355,7 @@
             )
             ),
 
-            'N'
+            'NA'
             )                                         AS nls,
             SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
             q.QTBLJLXH                                AS syxh,
