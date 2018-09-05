@@ -42,7 +42,7 @@ public class ModelCheckController extends BaseController {
         resultMap.put("dataSet", mbzDictInfoList);
         resultMap.put("modelList", modelList);
         model.addAllAttributes(resultMap);
-        return "/modelCheck/modelCheck";
+        return "modelCheck/modelCheck";
     }
 
     /**
