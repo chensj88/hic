@@ -1,5 +1,6 @@
 package com.winning.hic.service.impl;
 
+import com.alibaba.druid.sql.visitor.functions.Char;
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
@@ -123,6 +124,40 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         try {
                             entity = (HlhtZybcjlScbcjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
+                            //初步诊断-中医病名代码、名称处理
+                            if(!"NA".equals(entity.getCzzybmdm())){
+                                String bmdm="";
+                                String bm="";
+                                String[] str=entity.getCzzybmdm().split("  ");
+                                String[] str2=entity.getCzzybm().split("  ");
+                                Character o=new Character('B');
+                                for (int i=0;str.length>i;i++){
+                                    if(o.equals(str[i].charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
+                                }
+                                entity.setCzzybmdm(bmdm);
+                                entity.setCzzybm(bm);
+                                }
+                            //初步诊断-中医证候代码
+                            if(!"NA".equals(entity.getCzzyzhdm())){
+                                String bmdm="";
+                                String bm="";
+                                String[] str=entity.getCzzyzhdm().split("  ");
+                                String[] str2=entity.getCzzyzh().split("  ");
+                                Character o=new Character('B');
+                                for (int i=0;str.length>i;i++){
+                                    if(!o.equals(str[i].charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
+                                }
+                                entity.setCzzyzhdm(bmdm);
+                                entity.setCzzyzh(bm);
+                            }
+
+
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
