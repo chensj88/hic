@@ -98,6 +98,21 @@ public class MbzModelCheck extends BaseDomain implements Serializable {
      */
     private Integer status;
 
+    /**
+     * 字段名：BT
+     * 备注:
+     * 默认值：无
+     */
+    private Integer bt;
+
+    public Integer getBt() {
+        return bt;
+    }
+
+    public void setBt(Integer bt) {
+        this.bt = bt;
+    }
+
     public MbzModelCheck() {
 
     }

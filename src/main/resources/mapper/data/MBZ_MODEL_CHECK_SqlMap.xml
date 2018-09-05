@@ -17,6 +17,7 @@
         <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR"/>
         <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR"/>
         <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="BT" property="bt" jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="mbzModelCheckResult" type="com.winning.hic.model.MbzModelCheck" extends="mbzModelCheckResultForList">
@@ -55,6 +56,7 @@
             <if test="(yzjddm != null and yzjddm != '')">YZJDDM ,</if>
             <if test="(errorDesc != null and errorDesc != '')">ERROR_DESC ,</if>
             <if test="(status != null and status != '')">STATUS ,</if>
+            <if test="(bt != null and bt != '')">BT ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -71,6 +73,7 @@
             <if test="(yzjddm != null and yzjddm != '')">#{yzjddm , jdbcType= VARCHAR },</if>
             <if test="(errorDesc != null and errorDesc != '')">#{errorDesc , jdbcType= VARCHAR },</if>
             <if test="(status != null and status != '')">#{status , jdbcType= INTEGER },</if>
+            <if test="(bt != null and bt != '')">#{bt , jdbcType= INTEGER },</if>
         </trim>
     </insert>
 
@@ -90,6 +93,7 @@
                 <if test="(yzjddm != null and yzjddm != '')">YZJDDM=#{yzjddm} ,</if>
                 <if test="(errorDesc != null and errorDesc != '')">ERROR_DESC=#{errorDesc} ,</if>
                 <if test="(status != null and status != '')">STATUS=#{status} ,</if>
+                <if test="(bt != null and bt != '')">BT =#{bt},</if>
             </trim>
         </set>
         <where>
@@ -188,7 +192,8 @@
           QRMBDM,
           QRDXDM,
           YZJDDM,
-          STATUS
+          STATUS,
+          BT
         )
         SELECT
            t.SOURCE_TYPE AS SOURCE_TYPE,
@@ -201,7 +206,8 @@
            m.QRMBDM AS QRMBDM,
            m.QRDXDM AS QRDXDM,
            m.YZJDDM AS YZJDDM,
-           null AS STATUS
+           null AS STATUS,
+           m.BT AS BT
         FROM
             MBZ_DATA_LIST_SET t,
             MBZ_DATA_SET m
