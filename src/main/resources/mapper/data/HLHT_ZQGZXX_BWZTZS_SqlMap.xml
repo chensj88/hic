@@ -278,7 +278,7 @@
             c.PATID                                   AS patid,
             ISNULL(
                     CONVERT(VARCHAR, (c.MZH)),
-                    ''
+                    'NA'
             )                                         AS mjzh,
             ISNULL(b.ZYHM, 'NA')                       AS zyh,
             ISNULL(

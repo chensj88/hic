@@ -1154,6 +1154,7 @@
                  substring(b.JZRQ,7,2)+' ' +substring(b.JZRQ,9,8) )                       as jzrqsj,
         case when b.CFZBZ = '0' then 1 else 2 end                                         as czbzdm,
         case when b.CFZBZ = '0' then '初诊' else '复诊' end                                as czbzmc,
+        a.FSSJ                                                                            as jlrqsj,
         ISNULL(a.GXRQ,a.CJSJ)                                                             as gxsj
         from EMR_QTBLJLK a
         left join OUTP_JZJLK b on a.SYXH = b.EMRXH

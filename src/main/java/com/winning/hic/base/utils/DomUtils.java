@@ -25,6 +25,7 @@ public class DomUtils {
     private static final String textAttrName = "text";
     private static final String refidAttrName = "refid";
     private static final String nodetypeAttrName = "nodetype";
+    private static final String atomtypeAttrName = "atomtype";
     private static final String idAttrName = "id";
     public static final String displayAttrName = "display";
 
@@ -34,6 +35,9 @@ public class DomUtils {
     public static final String refNodeType = "Embeded";
     public static final String objectNodeType = "Object";
     public static final String atomNodeType = "AtomNode";
+    public static final String ATOM_TYPE_DYNAMIC = "Dynamic";
+    public static final String ATOM_TYPE_STRING = "String";
+    public static final String ATOM_TYPE_CHECK = "Check";
 
     public static void main(String[] args) {
         InputStream in = DomUtils.class.getClassLoader().getResourceAsStream("24hcryjl.xml");
@@ -227,6 +231,8 @@ public class DomUtils {
     public static String resolveAtomNode(Element node, MbzDataSet info) {
         String nodeValue = node.attribute(valueAttrName).getValue();
         String nodeDisplay = node.attribute(displayAttrName).getValue();
+        String atomtype = node.attribute(atomtypeAttrName).getValue();
+        System.out.println(atomtype);
         String[] split = nodeValue.split("`");
         String value = null;
         if (split.length > 2) {
@@ -269,6 +275,7 @@ public class DomUtils {
     public static String resolveString(String str) {
         str = str.trim();
         str = str.replaceAll(" ", "");
+        str = str.replaceAll("　+", "");
         str = str.replaceAll("&#xA;", "");
         /**
          * <MonitorData>

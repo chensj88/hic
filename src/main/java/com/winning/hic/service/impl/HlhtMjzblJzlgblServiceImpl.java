@@ -1,10 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.Base64Utils;
-import com.winning.hic.base.utils.HicHelper;
-import com.winning.hic.base.utils.ReflectUtil;
-import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtMjzblJzlgblDao;
@@ -22,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -117,6 +115,24 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
         //获取接口对象字段集合信息
         Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtMjzblJzlgbl.class);
 
+        String[] bcCode = {"jzlgbcjl"};
+        String[] syCode = {"hzqxdm","hzqxmc"};
+        List<MbzDataSet> bcDataSetList = new ArrayList<>();
+        List<MbzDataSet> syDataSetList = new ArrayList<>();
+        for (MbzDataSet dataSet : mbzDataSetList) {
+            for (int i = 0; i < bcCode.length ; i++) {
+                if(bcCode[i].equals(dataSet.getPyCode())){
+                    bcDataSetList.add(dataSet);
+                }
+            }
+
+            for (int i = 0; i < syCode.length ; i++) {
+                if(syCode[i].equals(dataSet.getPyCode())){
+                    syDataSetList.add(dataSet);
+                }
+            }
+        }
+
         if (dataListSets != null && dataListSets.size() > 0) {
             //获取模板集合，遍历
             for (MbzDataListSet dataListSet : dataListSets) {
@@ -138,6 +154,8 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                         obj = getHlhtMjzblJzlgbl(obj);
                         //解析病历xml
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                        Document bcDocument = null;
+                        Document syDocument = null;
                         System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         //判断是否存在重复,存在则删除，重新新增
                         if (obj != null) {
@@ -146,20 +164,76 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                             oldObj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             this.removeHlhtMjzblJzlgbl(oldObj);
                         }
+
+                        EmrQtbljlk coQtbljlk = new EmrQtbljlk();
+                        coQtbljlk.setYxjl(1);
+                        coQtbljlk.setSyxh(emrQtbljlk.getSyxh());
+                        List<EmrQtbljlk> qtbljlkList1 = emrQtbljlkDao.selectEmrQtbljlkList(coQtbljlk);
+                        //病程记录
+                        List<EmrQtbljlk> bcEmrQtbljlks = new ArrayList<>();
+                        //留观首页
+                        List<EmrQtbljlk> syEmrQtbljlks = new ArrayList<>();
+
+                        for (EmrQtbljlk qtbljlkTemp : qtbljlkList1) {
+                            if (qtbljlkTemp.getBlmc().contains("急诊留观病程记录")) {
+                                //病程记录
+                                bcEmrQtbljlks.add(qtbljlkTemp);
+                            }
+                            if (qtbljlkTemp.getBlmc().contains("急诊留观病历首页")) {
+                                //留观首页
+                                syEmrQtbljlks.add(qtbljlkTemp);
+                            }
+                        }
+                        if (bcEmrQtbljlks.size() >= 1) {
+                            mbzDataSetList.removeAll(bcDataSetList);
+                            bcDocument = XmlUtil.getDocument(Base64Utils.unzipEmrXml(bcEmrQtbljlks.get(0).getBlnr()));
+                        }
+                        if (syEmrQtbljlks.size() >= 1) {
+                            mbzDataSetList.removeAll(syDataSetList);
+                            syDocument = XmlUtil.getDocument(Base64Utils.unzipEmrXml(syEmrQtbljlks.get(0).getBlnr()));
+                            System.out.println(Base64Utils.unzipEmrXml(syEmrQtbljlks.get(0).getBlnr()));
+                        }
                         obj = new HlhtMjzblJzlgbl();
                         obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                         obj = this.commonQueryDao.selectInitHlhtMjzblJzlgbl(obj);
                         obj = (HlhtMjzblJzlgbl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                        if (bcDataSetList != null) {
+                            obj = (HlhtMjzblJzlgbl) HicHelper.initModelValue(bcDataSetList, bcDocument, obj, paramTypeMap);
+                        }
+                        if (syDataSetList != null) {
+                            obj = (HlhtMjzblJzlgbl) HicHelper.initModelValue(syDataSetList, syDocument, obj, paramTypeMap);
+                        }
                         obj.setZzjgdm(codeDict.getDictLabel());
                         obj.setZzjgmc(nameDict.getDictLabel());
-                        if(obj.getGms().contains("否认") || obj.getGms().contains("不详")  ){
-                            String value = obj.getGms() + "药物过敏史";
+                        if(obj.getGms().contains("否认") || obj.getGms().contains("不详") || obj.getGms().contains("NA") ){
+                            String value = "";
+                            if(obj.getGms().contains("否认") || obj.getGms().contains("不详")){
+                                value = obj.getGms() + "药物过敏史";
+                            }else{
+                                value = "否认药物过敏史";
+                            }
                             obj.setGms(value);
                             obj.setGmsbz("F");
                         } else{
                             String value = obj.getGms() + "药物过敏史";
                             obj.setGms(value);
                             obj.setGmsbz("T");
+                        }
+                        String hzqx = obj.getHzqxmc();
+                        if(!"NA".equals(hzqx)){
+                            hzqx = hzqx.substring("出观去向： ".length());
+                            hzqx = hzqx.replaceAll(" +","");
+                            Map<String,String> hzqxMap = StringUtil.resolveStringToMap(hzqx);
+                            StringBuilder code = new StringBuilder();
+                            StringBuilder value = new StringBuilder();
+                            for (String s : hzqxMap.keySet()) {
+                                if(s.startsWith("1")){
+                                    code.append(s.substring(1)+",");
+                                    value.append(hzqxMap.get(s)+",");
+                                }
+                            }
+                            obj.setHzqxmc(value.toString().substring(0,value.length()-1));
+                            obj.setHzqxdm(code.toString().substring(0,code.length()-1));
                         }
                         this.createHlhtMjzblJzlgbl(obj);
                         real_count++;

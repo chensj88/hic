@@ -1,7 +1,9 @@
 package com.winning.hic.base.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -308,6 +310,30 @@ public class StringUtil {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 将字符串转换为map
+     * @param str
+     * @return
+     */
+    public static Map<String,String> resolveStringToMap(String str){
+        Map<String,String> strMap = new HashMap<>();
+        while (str.indexOf(".") != -1){
+            String key = str.substring(0,str.indexOf("."));
+            String temp  = str.substring(str.indexOf(".")+1);
+            String value = "";
+            if(str.indexOf(".") == str.lastIndexOf(".")){
+                value = temp;
+                str = "";
+            }else{
+                value = temp.substring(0,temp.indexOf(".")-2);
+                str = temp.substring(temp.indexOf(".")-2);
+            }
+            strMap.put(key,value);
+
+        }
+        return strMap;
     }
 
     public static void main(String[] args) {

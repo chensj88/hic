@@ -80,17 +80,17 @@ public class HicHelper {
             } else {
                 String paramType = paramTypeMap.get(pyCode);
                 if (paramType.contains("String")) {
-                    value = StringUtil.isEmptyOrNull(strValue) ? "NA" : strValue;
+                    value = StringUtil.isEmptyOrNull(strValue) ? "NA" : strValue.trim();
                     if(((String) value).contains("yyyy年MM月dd日+Day行")){
                         value = ((String) value).replace("yyyy年MM月dd日+Day行","");
                     }
                     value = StringUtil.isEmptyOrNull(((String) value).trim()) ? "NA" :((String) value).trim();
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
-                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue;
+                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.trim();
                     value = StringUtil.isEmptyOrNull(shortStr) ? 0 : Short.parseShort(shortStr);
                 } else if (paramType.contains("Timestamp")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue;
+                    String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue.trim();
                     String pattern = "yyyy-MM-dd HH:mm:ss";
                     if (StringUtil.hasChinese(dateStr)) {
                         if (dateStr.contains("年")) {
@@ -133,7 +133,7 @@ public class HicHelper {
                     }
                 } else if (paramType.contains("Date")) {
                     //格式：636467930400000000`2017-11-20,16:44
-                    String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue;
+                    String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue.trim();
                     String pattern = "yyyy-MM-dd HH:mm:ss";
                     if (StringUtil.hasChinese(dateStr)) {
                         if (dateStr.contains("年")) {
@@ -168,10 +168,10 @@ public class HicHelper {
                         e.printStackTrace();
                     }
                 } else if (paramType.contains("BigDecimal")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "0" : strValue;
+                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "0" : strValue.trim();
                     value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
                 } else if (paramType.contains("Integer")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "0" : strValue;
+                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "0" : strValue.trim();
                     value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
                 }
             }
