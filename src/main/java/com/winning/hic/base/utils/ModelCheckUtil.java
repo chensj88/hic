@@ -94,6 +94,8 @@ public class ModelCheckUtil {
             info.setStatus(1);
             info.setErrorDesc("缺少文件结构节点");
             return;
+        }else{
+
         }
         //遍历文件结构的子节点
         List<Element> dynamicChildNodeList = dynamicModelNode.elements(nodeTagName);
@@ -127,14 +129,14 @@ public class ModelCheckUtil {
         }
 
 
-        //原子节点节点
+        //原子节点
         Element atomNode = null;
         if (!StringUtil.isEmptyOrNull(yzjddm)) {
             atomNode = XmlUtil.getElementByAttr(objectNode, idAttrName, yzjddm);
             if (atomNode == null) {
                 //文件结构不存在
                 info.setStatus(1);
-                info.setErrorDesc("缺少原子节点节点");
+                info.setErrorDesc("缺少原子节点");
                 return;
             }
         }

@@ -318,12 +318,12 @@
             c.PATID                                   AS patid,
             ISNULL(b.ZYHM, 'NA')                       AS zyh,
             ISNULL(
-                    CONVERT (VARCHAR,(o.GHXH)),
+                    CONVERT (VARCHAR,(c.MZH)),
                     'NA'
                 ) AS mjzh,
             ISNULL(
                     CONVERT (VARCHAR,(o.GHLB)),
-                    'NA'
+                    '2'
                 ) AS jzlb,
             ISNULL(q.QTBLJLXH, 'NA')                   AS tysbh,
             ISNULL(c.BQDM, 'NA')                       AS bqdm,
