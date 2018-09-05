@@ -116,13 +116,13 @@
 								t.GHXH AS jzlsh,
 								t.PATID AS patid,
 								t.HZXM AS hzxm,
-								ISNULL(CONVERT (VARCHAR,(t.GHXH)),'N') AS mjzh,
-                ISNULL(tt.zyh,'N') AS zyh,
+								ISNULL(CONVERT (VARCHAR,(t.GHXH)),'NA') AS mjzh,
+                ISNULL(tt.zyh,'NA') AS zyh,
 								ISNULL(CONVERT (VARCHAR,(t.GHLB)),'2') AS jzlb,
-								ISNULL(tt.sfzhm, 'N') AS sfzhm,
+								ISNULL(tt.sfzhm, 'NA') AS sfzhm,
                 b.BRXB AS xbdm,
 								c.SEX AS xbmc,
-								ISNULL(cyxj.jkkh, 'N') AS jmjkkh,
+								ISNULL(cyxj.jkkh, 'NA') AS jmjkkh,
                 --居民健康卡
                 ii.DICT_LABEL AS zzjgdm,
 								i.DICT_LABEL AS zzjgmc,
@@ -154,13 +154,13 @@
                 cq.YPDM AS gjywdm,
                 cq.YPMC AS gjywmc,
                 cq.YPYF AS gjywyf,
-                'N' AS ywblfy,
+                'NA' AS ywblfy,
                 --药物不良反应情况
                 zycf.cflb AS zysylb,
                 --中药使用类别代码
                 zycf.cflbmc AS zysylbmc,
                 --中药使用类别名称
-                'N' AS qtyxcz,
+                'NA' AS qtyxcz,
                 --其他医学处置
                 NULL AS gbsy,
                 --根本死因代码

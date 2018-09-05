@@ -779,7 +779,7 @@
         '其它'
         END
         ) AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'N') as nls,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
         d.NAME as mzmc,
