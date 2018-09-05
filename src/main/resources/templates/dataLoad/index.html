@@ -309,12 +309,12 @@
             toastr.warning("结束时间不能为空");
             return false;
         }
+        startDate =startDate+" 00:00:00";
+        endDate =endDate+" 23:59:59";
         if(startDate >= endDate ){
             toastr.warning("开始时间不能大于结束时间");
             return false;
         }
-        startDate =startDate+" 00:00:00";
-        endDate =endDate+" 23:59:59";
         $.ajax({
             type: "POST",
             url:"startLoad",
