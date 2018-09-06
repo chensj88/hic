@@ -1165,44 +1165,88 @@
             </if>
         </where>
     </select>
-    <!--chensj 病历概要/基本健康信息 2018-8-16 16:14:04-->
+    <!--chensj 病历概要/基本健康信息 住院2018-8-16 16:14:04-->
     <select id="selectInitHlhtBlgyJbjkxx" parameterType="com.winning.hic.model.HlhtBlgyJbjkxx" resultMap="hlhtBlgyJbjkxxResult">
         SELECT
-            A.GHXH                                                        AS yjlxh,
-            A.GHXH                                                        AS jzlsh,
-            A.PATID                                                       AS patid,
-            A.HZXM                                                        AS hzxm,
-            A.GHXH                                                        AS mjzh,
-            C.ZYHM                                                        AS zyh,
-            A.GHLB                                                        AS jzlb,
-            A.SEX                                                         AS xbmc,
-            CASE SEX WHEN '男' THEN '1' WHEN '女' THEN '2' ELSE '3' END   AS xbdm,
-            ISNULL(C.SFZH,'NA')                                            AS sfzhm,
-            A.YBDM                                                        AS jkkh,
-            ISNULL(D.XXDM,'NA')                                            AS aboxxdm,
-            ISNULL(E.NAME,'NA')                                            AS aboxxmc,
-            ISNULL(D.RHJY,'NA')                                            AS rhxxdm,
-            ISNULL(F.NAME,'NA')                                            AS rhxxmc,
-            ISNULL(H.jbs  ,'NA')                                           AS jbs,
-            ISNULL(H.crbs ,'NA')                                           AS crbs,
-            ISNULL(H.yfjzs,'NA')                                           AS yfjzs,
-            ISNULL(H.sss  ,'NA')                                           AS sss,
-            ISNULL(H.sxs  ,'NA')                                           AS sxs,
-            ISNULL(H.gms  ,'NA')                                           AS gms,
-            ISNULL(H.grs  ,'NA')                                           AS grs,
-            ISNULL(H.hys  ,'NA')                                           AS hys,
-            ISNULL(H.yjs  ,'NA')                                           AS yjs,
-            ISNULL(H.jzs  ,'NA')                                           AS jzs,
-            GETDATE()                                                     AS gxsj,
-            ISNULL(CONVERT(varchar,B.SYXH),'NA')                           AS syxh
-            FROM OUTP_JZJLK A
-            LEFT JOIN CPOE_BRSYK B ON A.PATID = B.PATID
-            LEFT JOIN EMR_BRSYK C ON B.EMRXH = C.SYXH
-            LEFT JOIN EMR_BASYK D ON C.SYXH = D.SYXH
-            LEFT JOIN EMR_SYS_ZDFLMXK E ON D.XXDM = E.MXDM AND E.LBDM = '96'
-            LEFT JOIN EMR_SYS_ZDFLMXK F ON D.RHJY = F.MXDM AND F.LBDM = '97'
-            LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B-1020%'
-            LEFT JOIN CISDB_DATA..HLHT_RYJL_JBXX H ON  G.QTBLJLXH = H.yjlxh
+        CONVERT(VARCHAR,A.SYXH)                                                         AS yjlxh,
+        CONVERT(VARCHAR,A.SYXH)                                                         AS jzlsh,
+        CONVERT(VARCHAR,A.PATID)                                                        AS patid,
+        CONVERT(VARCHAR,A.HZXM)                                                         AS hzxm,
+        CONVERT(VARCHAR,A.SYXH)                                                         AS mjzh,
+        CONVERT(VARCHAR,B.ZYHM)                                                         AS zyh,
+        CONVERT(VARCHAR,'2')                                                            AS jzlb,
+        CONVERT(VARCHAR,A.SEX)                                                          AS xbmc,
+        CONVERT(VARCHAR,CASE A.SEX WHEN '男' THEN '1' WHEN '女' THEN '2' ELSE '3' END)  AS xbdm,
+        CONVERT(VARCHAR,CASE WHEN A.SFZH = '' THEN 'NA' ELSE A.SFZH END)                AS sfzhm,
+        CONVERT(VARCHAR,A.YBDM)                                                         AS jkkh,
+        CONVERT(VARCHAR,ISNULL(C.XXDM,'NA'))                                            AS aboxxdm,
+        CONVERT(VARCHAR,ISNULL(E.NAME,'NA'))                                            AS aboxxmc,
+        CONVERT(VARCHAR,ISNULL(C.RHJY,'NA'))                                            AS rhxxdm,
+        CONVERT(VARCHAR,ISNULL(F.NAME,'NA'))                                            AS rhxxmc,
+        CONVERT(VARCHAR,ISNULL(H.jbs  ,'NA'))                                           AS jbs,
+        CONVERT(VARCHAR,ISNULL(H.crbs ,'NA'))                                           AS crbs,
+        CONVERT(VARCHAR,ISNULL(H.yfjzs,'NA'))                                           AS yfjzs,
+        CONVERT(VARCHAR,ISNULL(H.sss  ,'NA'))                                           AS sss,
+        CONVERT(VARCHAR,ISNULL(H.sxs  ,'NA'))                                           AS sxs,
+        CONVERT(VARCHAR,ISNULL(H.gms  ,'NA'))                                           AS gms,
+        CONVERT(VARCHAR,ISNULL(H.grs  ,'NA'))                                           AS grs,
+        CONVERT(VARCHAR,ISNULL(H.hys  ,'NA'))                                           AS hys,
+        CONVERT(VARCHAR,ISNULL(H.yjs  ,'NA'))                                           AS yjs,
+        CONVERT(VARCHAR,ISNULL(H.jzs  ,'NA'))                                           AS jzs,
+        GETDATE()                                                                       AS gxsj,
+        CONVERT(VARCHAR,ISNULL(CONVERT(varchar,A.SYXH),'NA'))                           AS syxh
+        FROM CPOE_BRSYK A
+        LEFT JOIN EMR_BRSYK B ON A.EMRXH = B.SYXH
+        LEFT JOIN EMR_BASYK C ON C.SYXH = B.SYXH
+        LEFT JOIN EMR_SYS_ZDFLMXK E ON C.XXDM = E.MXDM AND E.LBDM = '96'
+        LEFT JOIN EMR_SYS_ZDFLMXK F ON C.RHJY = F.MXDM AND F.LBDM = '97'
+        LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B-1020%' AND G.YXJL = 1
+        LEFT JOIN CISDB_DATA..HLHT_RYJL_JBXX H ON  G.QTBLJLXH = H.yjlxh
+        <where>
+            <if test="map.startDate != null and map.startDate != ''">
+                and <![CDATA[CONVERT(date,substring(A.RYRQ,1,4)+'-'+substring(A.RYRQ,5,2)+'-'+substring(A.RYRQ,7,2))  >= #{map.startDate}]]>
+            </if>
+            <if test="map.startDate != null and map.startDate != ''">
+                and <![CDATA[CONVERT(date,substring(A.RYRQ,1,4)+'-'+substring(A.RYRQ,5,2)+'-'+substring(A.RYRQ,7,2))  <= #{map.endDate}]]>
+            </if>
+        </where>
+    </select>
+    <!--chensj 病历概要/基本健康信息 门诊  2018-9-6 11:06:29-->
+    <select id="selectInitHlhtBlgyJbjkxxForMz" parameterType="com.winning.hic.model.HlhtBlgyJbjkxx" resultMap="hlhtBlgyJbjkxxResult">
+        SELECT
+        CONVERT(VARCHAR,A.GHXH )                                                                     AS yjlxh,
+        CONVERT(VARCHAR,A.GHXH )                                                                     AS jzlsh,
+        CONVERT(VARCHAR,A.PATID)                                                                     AS patid,
+        CONVERT(VARCHAR,A.HZXM )                                                                     AS hzxm,
+        CONVERT(VARCHAR,A.GHXH )                                                                     AS mjzh,
+        CONVERT(VARCHAR,'NA'   )                                                                     AS zyh,
+        CONVERT(VARCHAR,'1'    )                                                                     AS jzlb,
+        CONVERT(VARCHAR,A.SEX  )                                                                     AS xbmc,
+        CONVERT(VARCHAR,CASE A.SEX WHEN '男' THEN '1' WHEN '女' THEN '2' ELSE '3' END)               AS xbdm,
+        CONVERT(VARCHAR,CASE WHEN A.SFZH = '' THEN 'NA' ELSE A.SFZH END)                             AS sfzhm,
+        CONVERT(VARCHAR,A.YBDM)                                                                      AS jkkh,
+        CONVERT(VARCHAR,ISNULL(B.XXDM,'NA'))                                                         AS aboxxdm,
+        CONVERT(VARCHAR,ISNULL(E.NAME,'NA'))                                                         AS aboxxmc,
+        CONVERT(VARCHAR,ISNULL(B.RHJY,'NA'))                                                         AS rhxxdm,
+        CONVERT(VARCHAR,ISNULL(F.NAME,'NA'))                                                         AS rhxxmc,
+        CONVERT(VARCHAR,ISNULL(H.xbs,'NA') )                                                         AS jbs,
+        CONVERT(VARCHAR,'NA' )                                                                       AS crbs,
+        CONVERT(VARCHAR,'NA' )                                                                       AS yfjzs,
+        CONVERT(VARCHAR,'NA' )                                                                       AS sss,
+        CONVERT(VARCHAR,'NA' )                                                                       AS sxs,
+        CONVERT(VARCHAR,ISNULL(H.gms,'NA'))                                                          AS gms,
+        CONVERT(VARCHAR,'NA'                  )                                                      AS grs,
+        CONVERT(VARCHAR,'NA'                  )                                                      AS hys,
+        CONVERT(VARCHAR,'NA'                  )                                                      AS yjs,
+        CONVERT(VARCHAR,'NA'                  )                                                      AS jzs,
+        GETDATE()                                                                                    AS gxsj,
+        CONVERT(VARCHAR,ISNULL(A.EMRXH,'0'))                                                        AS syxh
+        FROM OUTP_JZJLK A
+        LEFT JOIN EMR_BASYK B ON A.EMRXH  = B.SYXH
+        LEFT JOIN EMR_SYS_ZDFLMXK E ON B.XXDM = E.MXDM AND E.LBDM = '96'
+        LEFT JOIN EMR_SYS_ZDFLMXK F ON B.RHJY = F.MXDM AND F.LBDM = '97'
+        LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B+9868%' AND G.YXJL = 1
+        LEFT JOIN CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL H ON  G.QTBLJLXH = H.yjlxh
         <where>
             <if test="map.startDate != null and map.startDate != ''">
                 and <![CDATA[CONVERT(date,substring(A.GHRQ,1,4)+'-'+substring(A.GHRQ,5,2)+'-'+substring(A.GHRQ,7,2))  >= #{map.startDate}]]>
@@ -1212,6 +1256,7 @@
             </if>
         </where>
     </select>
+
     <!--chensj 门(急)诊处方/西药处方 2018-8-16 16:21:45 HLHT_MJZCF_XYCF -->
     <select id="selectInitHlhtMjzcfXycf" parameterType="com.winning.hic.model.HlhtMjzcfXycf" resultMap="hlhtMjzcfXycfResult">
         SELECT
