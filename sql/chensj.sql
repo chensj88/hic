@@ -123,6 +123,16 @@
   --UPDATE A SET A.dzc='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A WHERE A.dzc ='NA'
   --地址-门牌号码
   --UPDATE A SET A.dzmphm='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A WHERE A.dzmphm ='NA'
+  --出院医嘱开立日期时间
+  UPDATE A SET cyyzklrq = CASE when T.cqyzrq > T.lsyzrq THEN T.cqyzrq ELSE T.lsyzrq END
+  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN  (
+   SELECT (SELECT top 1 CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) yzrq
+           FROM  CISDB.dbo.CPOE_CQYZK B WHERE A.jzlsh = B.SYXH  order by yzrq DESC) cqyzrq,
+          (SELECT top 1 CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) yzrq
+           FROM  CISDB.dbo.CPOE_LSYZK B WHERE A.jzlsh = B.SYXH  order by yzrq DESC) lsyzrq,A.jzlsh
+   FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A) T ON T.jzlsh = A.jzlsh WHERE A.cyyzklrq =  '1990-01-01 00:00:00'
+  --医嘱开立医师
+  UPDATE A SET A.cyyzklrqm = ISNULL(B.YSDM,'NA'),A.yzklysbm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
   --接诊医师
   UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
   --住院医师
@@ -130,7 +140,7 @@
   --治则治法
   --UPDATE A SET A.zfbm = '无',A.zzzf = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zfbm ='NA' OR A.zzzf='NA')
   --中医“四诊”观察结果
-  --UPDATE A SET A.zyszgcjg = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (convert(varchar,A.zyszgcjg) ='NA')
+  UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM CISDB_DATA..HLHT_RYJL_RCYJL A,CISDB_DATA.dbo.HLHT_RYJL_JBXX C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
   --陈述内容可靠标志 来源入院记录
   UPDATE A SET A.csnrbz=isnull(B.csnrbz,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE A.csnrbz ='NA'
   --现病史 来源入院记录
