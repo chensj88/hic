@@ -173,14 +173,14 @@ public class MbzDataSetController extends BaseController {
 
     private MbzDataSet convertToNull(MbzDataSet set){
         if(set.getDataType() == 1){
-            set.setQrmbdm(null);
-            set.setQrdxdm(null);
-            set.setYzjddm(null);
+            set.setQrmbdm("");
+            set.setQrdxdm("");
+            set.setYzjddm("");
         }else if(set.getDataType() == 2){
-            set.setQrdxdm(null);
-            set.setYzjddm(null);
+            set.setQrdxdm("");
+            set.setYzjddm("");
         }else if(set.getDataType() == 3){
-            set.setYzjddm(null);
+            set.setYzjddm("");
         }
         return set;
     }
