@@ -402,4 +402,11 @@ public class FacadeImpl implements Facade {
     public OutpOrderitemService getOutpOrderitemService(){
         return outpOrderitemService;
     }
+
+    @Autowired
+    EmrMbmxkService emrMbmxkService;
+
+    public EmrMbmxkService getEmrMbmxkService(){
+        return emrMbmxkService;
+    }
 }

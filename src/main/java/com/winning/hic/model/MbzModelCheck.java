@@ -343,11 +343,4 @@ public class MbzModelCheck extends BaseDomain implements Serializable {
         this.modelCode = modelCode;
     }
 
-    public Long getpId() {
-        return pId;
-    }
-
-    public void setpId(Long pId) {
-        this.pId = pId;
-    }
 }

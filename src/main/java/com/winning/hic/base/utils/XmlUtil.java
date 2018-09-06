@@ -134,6 +134,14 @@ public class XmlUtil {
         return null;
     }
 
+    public static String getValueByAttrName(Element param, String attrName) {
+        String value = null;
+        if (param != null) {
+            value = param.attribute(attrName) == null ? null : param.attribute(attrName).getValue();
+        }
+        return value;
+    }
+
 
     /**
      * 根据数据配置抽取数
