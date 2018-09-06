@@ -14,6 +14,7 @@ import com.winning.hic.service.MbzDataSetService;
 import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import java.text.ParseException;
 import java.util.List;
@@ -137,8 +138,16 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                         bm = bm+str2[i]+" ";
                                     }
                                 }
-                                entity.setCzzybmdm(bmdm);
-                                entity.setCzzybm(bm);
+                                if(StringUtils.isEmpty(bmdm)){
+                                    entity.setCzzybmdm("NA");
+                                }else{
+                                    entity.setCzzybmdm(bmdm);
+                                }
+                                if(StringUtils.isEmpty(bm)){
+                                    entity.setCzzybm("NA");
+                                }else{
+                                    entity.setCzzybm(bm);
+                                }
                                 }
                             //初步诊断-中医证候代码
                             if(!"NA".equals(entity.getCzzyzhdm())){
@@ -153,8 +162,64 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                         bm = bm+str2[i]+" ";
                                     }
                                 }
-                                entity.setCzzyzhdm(bmdm);
-                                entity.setCzzyzh(bm);
+                                if(StringUtils.isEmpty(bmdm)){
+                                    entity.setCzzyzhdm("NA");
+                                }else{
+                                    entity.setCzzyzhdm(bmdm);
+                                }
+                                if(StringUtils.isEmpty(bm)){
+                                    entity.setCzzyzh("NA");
+                                }else{
+                                    entity.setCzzyzh(bm);
+                                }
+                            }
+                            //鉴别诊断-中医病名编码、名称
+                            if(!"NA".equals(entity.getJzzybmdm())){
+                                String bmdm="";
+                                String bm="";
+                                String[] str=entity.getJzzybmdm().split(",");
+                                String[] str2=entity.getJzzybmmc().split("、");
+                                Character o=new Character('B');
+                                for (int i=0;str.length>i;i++){
+                                    if(o.equals(str[i].charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
+                                }
+                                if(StringUtils.isEmpty(bmdm)){
+                                    entity.setJzzybmdm("NA");
+                                }else{
+                                    entity.setJzzybmdm(bmdm);
+                                }
+                                if(StringUtils.isEmpty(bm)){
+                                    entity.setJzzybmmc("NA");
+                                }else{
+                                    entity.setJzzybmmc(bm);
+                                }
+                            }
+                            //鉴别诊断-中医证候编码、名称
+                            if(!"NA".equals(entity.getJzzyzhbm())){
+                                String bmdm="";
+                                String bm="";
+                                String[] str=entity.getJzzyzhbm().split(",");
+                                String[] str2=entity.getJzzyzhmc().split("、");
+                                Character o=new Character('B');
+                                for (int i=0;str.length>i;i++){
+                                    if(!o.equals(str[i].charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
+                                }
+                                if(StringUtils.isEmpty(bmdm)){
+                                    entity.setJzzyzhbm("NA");
+                                }else{
+                                    entity.setJzzyzhbm(bmdm);
+                                }
+                                if(StringUtils.isEmpty(bm)){
+                                    entity.setJzzyzhmc("NA");
+                                }else{
+                                    entity.setJzzyzhmc(bm);
+                                }
                             }
 
 
