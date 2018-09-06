@@ -343,7 +343,6 @@
             key:{
                 name:'nodeName',
                 isParent: "parent",
-                isHidden: "hidden"
             },
             simpleData: {
                 enable: true,
@@ -1120,6 +1119,9 @@
                     if (data.data != null && data.data != "") {
                         //添加新节点
                         newNode = treeObj.addNodes(node, data.data);
+                        // $.each(data.data,function(index,value){
+                        //     treeObj.addNodes(node, value)
+                        // });
                     }
                 },
                 error: function ( response) {
