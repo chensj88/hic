@@ -88,7 +88,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary">开始校验</button>
+                                <button type="button" class="btn btn-primary" onclick="doCheck(1)">开始校验</button>
                                 <button type="button" class="btn btn-primary">生成报告</button>
                             </form>
 
@@ -338,6 +338,33 @@
         } else {
             return '';
         }
+    }
+
+    //模板校验
+    function doCheck(type) {
+        //type:0/1;0:批量校验  1：单个校验
+        let sourceType = '';
+        if (type == 1) {
+            //获取当前选中的模板类型
+            sourceType = $("#modelList").children("option:selected").attr("sourceType");
+        }
+        $.ajax({
+            url: ctx + 'modelCheck/doCheck',
+            type: 'POST', // 请求方法
+            data: {sourceType: sourceType},
+            success: function (data) {
+                if(data.msg=="success"){
+                    if(type==1){
+                        $simple_table.bootstrapTable('refresh');
+                    }else if(type==0){
+                        $table.bootstrapTable('refresh');
+                    }
+                }
+
+            }
+        });
+
+
     }
 
 </script>
