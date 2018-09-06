@@ -63,6 +63,8 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
         jbjkxx.getMap().put("startDate",entity.getMap().get("startDate"));
         jbjkxx.getMap().put("endDate",entity.getMap().get("endDate"));
         List<HlhtBlgyJbjkxx> jbjkxxList = commonQueryDao.selectInitHlhtBlgyJbjkxx(jbjkxx);
+        List<HlhtBlgyJbjkxx> jbjkxxListMZ = commonQueryDao.selectInitHlhtBlgyJbjkxxForMz(jbjkxx);
+        jbjkxxList.addAll(jbjkxxListMZ);
         for (HlhtBlgyJbjkxx jbxx : jbjkxxList) {
             //清除历史数据
             HlhtBlgyJbjkxx tempJbxx = new HlhtBlgyJbjkxx();

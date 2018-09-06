@@ -67,7 +67,7 @@ public class EmrMxmcmlkServiceImpl implements  EmrMxmcmlkService {
         List<EmrMxmcmlk> parentList = emrMxmcmlkDao.selectEmrMxmcmlkParentList(emrMxmcmlk);
         List<MBNoteTree> mbNoteTrees = new ArrayList<>();
         for (EmrMxmcmlk mxmcmlk1 : parentList) {
-            MBNoteTree tree = mxmcmlk1.getMBNoteTree();
+            MBNoteTree tree = mxmcmlk1.getMBPNoteTree();
             tree.setParent(true);
             mbNoteTrees.add(tree);
         }
@@ -79,7 +79,8 @@ public class EmrMxmcmlkServiceImpl implements  EmrMxmcmlkService {
         List<MBNoteTree> mbNoteTrees = new ArrayList<>();
         List<EmrMxmcmlk> mxmcmlkList = emrMxmcmlkDao.selectEmrMxmcmlkFirstChildList(mxmcmlk);
         for (EmrMxmcmlk emrMxmcmlk : mxmcmlkList) {
-            mbNoteTrees.add(emrMxmcmlk.getMBNoteTree());
+            MBNoteTree tree = emrMxmcmlk.getMBNoteTree();
+            mbNoteTrees.add(tree);
         }
         return mbNoteTrees;
     }

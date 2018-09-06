@@ -164,11 +164,11 @@
         t.ID as ID,
         t.ID as NODE_ID,
         t.P_ID as NODE_PID,
-        t.RECORD_NAME as NODE_TEXT
+        t.PY_CODE + '[' + t.RECORD_NAME + ']' as NODE_TEXT
         FROM MBZ_DATA_SET t
         <where>
             <include refid="sql-mbzDataSet" />
         </where>
-        order by t.RECORD_NAME
+        ORDER BY t.PY_CODE ASC,t.RECORD_NAME DESC
     </select>
 </mapper>
