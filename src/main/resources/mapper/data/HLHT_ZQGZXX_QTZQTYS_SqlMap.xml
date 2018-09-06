@@ -295,7 +295,18 @@
             b.SFZH AS sfzhm,
             t.CJSJ AS jlrq,
             b.BRXB AS xbdm,
-            c.SEX AS xbmc,
+            (
+            SELECT CASE b.BRXB
+            WHEN '2'
+            THEN
+            '女'
+            WHEN '1'
+            THEN
+            '男'
+            ELSE
+            '其它'
+            END
+            ) AS xbmc,
             ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') AS nls,
             SUBSTRING(replace(b.CSRQ,'-',''),0,9) AS nly,
             ISNULL(t.GXRQ, t.CJSJ) AS gxsj,

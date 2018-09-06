@@ -517,7 +517,18 @@
         b.HZXM AS hzxm,
         b.SFZH AS sfzhm,
         b.BRXB AS xbdm,
-        c.SEX AS xbmc,
+        (
+        SELECT CASE b.BRXB
+        WHEN '2'
+        THEN
+        '女'
+        WHEN '1'
+        THEN
+        '男'
+        ELSE
+        '其它'
+        END
+        )                                               AS xbmc,
         ISNULL(
         CONVERT (
         VARCHAR,
