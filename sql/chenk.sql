@@ -1,7 +1,14 @@
 ----首次病程
-UPDATE A SET A.sjysbm =C.ZRYSDM,A.sjysqm=C.ZRYSXM
+UPDATE A SET A.sjysbm =isnull(C.ZRYSDM,'NA'),A.sjysqm=isnull(C.ZRYSXM,'NA')
 FROM CISDB_DATA..HLHT_ZYBCJL_SCBCJL A,CISDB..CPOE_BRSYK C
-WHERE A.jzlsh=C.SYXH AND (A.sjysbm ='N' OR A.sjysqm ='N' )
+WHERE A.jzlsh=C.SYXH AND (A.sjysbm ='NA' OR A.sjysqm ='NA' )
+
+--中医四诊
+UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
+FROM CISDB_DATA..HLHT_ZYBCJL_SCBCJL A,HLHT_RYJL_JBXX C
+WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
+UPDATE CISDB_DATA..HLHT_ZYBCJL_SCBCJL SET jzxyzdbm =czxyzdbm, jzxyzdmc=czxyzd
+WHERE jzxyzdbm='NA' AND jzxyzdmc='NA';
 
 UPDATE CISDB_DATA..HLHT_ZYBCJL_SCBCJL SET zyszgcjg='无' WHERE CONVERT(varchar,zyszgcjg) ='N'
 UPDATE CISDB_DATA..HLHT_ZYBCJL_SCBCJL SET zdyjdm=NULL WHERE zdyjdm='N'
@@ -22,10 +29,17 @@ UPDATE A SET A.rzzybm = C.ZDMC,A.rzzybmdm = C.ZDDM
 
 FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
   LEFT JOIN CISDB.dbo.EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 3
-WHERE  (CONVERT(varchar,A.rzzybmdm) ='N' OR CONVERT(varchar,A.rzzybm) ='N')  AND ZDDM LIKE'B%';
+WHERE  (CONVERT(varchar,A.rzzybmdm) ='NA' OR CONVERT(varchar,A.rzzybm) ='NA')  AND ZDDM LIKE'B%';
 
-UPDATE A SET A.zs=isnull(B.zs,'无')  FROM CISDB_DATA..HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB_DATA..HLHT_ZYBCJL_SCBCJL B ON A.jzlsh=B.jzlsh
-UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zyszgcjg='无' WHERE CONVERT(varchar,zyszgcjg) ='N'
+UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
+FROM CISDB_DATA..HLHT_ZYBCJL_JDXJ A,HLHT_RYJL_JBXX C
+WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
+
+UPDATE CISDB_DATA..HLHT_ZYBCJL_SCBCJL SET jzxyzdbm =czxyzdbm, jzxyzdmc=czxyzd
+WHERE jzxyzdbm='NA' AND jzxyzdmc='NA';
+
+UPDATE A SET A.zs=isnull(B.zs,'NA')  FROM CISDB_DATA..HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB_DATA..HLHT_ZYBCJL_SCBCJL B ON A.jzlsh=B.jzlsh
+UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zyszgcjg='NA' WHERE CONVERT(varchar,zyszgcjg) ='NA'
 --入院诊断-中医证候代码 入院诊断-中医证候名称
 UPDATE A SET A.rzzyzh = C.ZDMC,A.rzzyzhdm = C.ZDDM
 FROM CISDB_DATA.dbo.HLHT_ZYBCJL_JDXJ A LEFT JOIN CISDB.dbo.EMR_BRSYK B ON A.jzlsh =B.HISSYXH
@@ -36,11 +50,9 @@ UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zzzf='无' WHERE zzzf='N'
 UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zyjzff='无' WHERE zyjzff='N'
 UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET zyyyff='无' WHERE zyyyff='N'
 UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET yznr='无' WHERE  CONVERT(varchar,yznr) ='N'
-UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET mqzdzybmdm='无' WHERE mqzdzybmdm='N' ;
-UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET mqzdzybm='无' WHERE mqzdzybm='N' ;
-UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET mqzdzyzhdm='无' WHERE mqzdzyzhdm='N' ;
-UPDATE CISDB_DATA..HLHT_ZYBCJL_JDXJ SET mqzdzyzh='无' WHERE mqzdzyzh='N' ;
-
+UPDATE A SET A.rzzybmdm =C.czzybmdm,A.rzzybm=C.czzybmmc,A.rzzyzhdm=C.czzyzhdm,A.rzzyzh=C.czzyzhmc
+FROM CISDB_DATA..HLHT_ZYBCJL_JDXJ A,HLHT_RYJL_JBXX C
+WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.rzzybmdm) ='NA' OR CONVERT(varchar,A.rzzyzhdm) ='NA';
 
 
 

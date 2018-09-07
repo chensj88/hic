@@ -554,7 +554,7 @@
         END AS hyzkmc,
         b.ZYDM AS zylbdm,
         k.NAME AS zylbmc,
-        b.LXDH AS hzdhhm,
+        (CASE b.LXDH WHEN '' THEN 'NA' ELSE b.LXDH END)AS hzdhhm,
         ISNULL(
         (SELECT TOP 1 e.SSDQDM FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,
         ISNULL(

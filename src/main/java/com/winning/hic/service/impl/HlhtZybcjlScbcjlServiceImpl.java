@@ -19,6 +19,8 @@ import org.thymeleaf.util.StringUtils;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -173,54 +175,119 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                     entity.setCzzyzh(bm);
                                 }
                             }
-                            //鉴别诊断-中医病名编码、名称
-                            if(!"NA".equals(entity.getJzzybmdm())){
-                                String bmdm="";
-                                String bm="";
+                            //鉴别诊断-西医诊断编码
+                            if(!"NA".equals(entity.getJzxyzdbm())){
+                                String xybmdm="";//西医编码
+                                String xybm="";//西医名称
+                                String zybmdm="";//中医编码
+                                String zybm="";//中医名称
+                                String zhbmdm="";//中医症候编码
+                                String zhbm="";//中医症候名称
                                 String[] str=entity.getJzzybmdm().split(",");
                                 String[] str2=entity.getJzzybmmc().split("、");
-                                Character o=new Character('B');
+                                //区分西医、中医
                                 for (int i=0;str.length>i;i++){
-                                    if(o.equals(str[i].charAt(0))){
-                                        bmdm = bmdm+str[i]+" ";
-                                        bm = bm+str2[i]+" ";
+                                    if(str[i].contains(".")){ //西医
+                                        xybmdm= xybmdm + str[i]+" ";
+                                        xybm = xybm + str2[i]+" ";
+                                    }else{
+                                        Character o=new Character('B');//病
+                                        if(o.equals(str[i].charAt(0))){
+                                            zybmdm =zybmdm +str[i] +" ";             //存入病
+                                            zybm =zybm + str2[i]+" ";                //存入病
+                                        }else{
+                                            zhbmdm = zhbmdm +str[i]+" ";             //症候
+                                            zhbm =zhbm + str2[i]+" ";
+                                        }
                                     }
                                 }
-                                if(StringUtils.isEmpty(bmdm)){
+                                //鉴别诊断-西医病名编码、名称
+                                if(StringUtils.isEmpty(xybmdm)){
+                                    entity.setJzxyzdbm("NA");
+                                }else{
+                                    entity.setJzxyzdbm(xybmdm);
+                                }
+                                if(StringUtils.isEmpty(xybm)){
+                                    entity.setJzxyzdmc("NA");
+                                }else{
+                                    entity.setJzxyzdmc(xybm);
+                                }
+                                //鉴别诊断-中医病名编码、名称
+                                if(StringUtils.isEmpty(zybmdm)){
                                     entity.setJzzybmdm("NA");
                                 }else{
-                                    entity.setJzzybmdm(bmdm);
+                                    entity.setJzzybmdm(zybmdm);
                                 }
-                                if(StringUtils.isEmpty(bm)){
+                                if(StringUtils.isEmpty(zybm)){
                                     entity.setJzzybmmc("NA");
                                 }else{
-                                    entity.setJzzybmmc(bm);
+                                    entity.setJzzybmmc(zybm);
                                 }
-                            }
-                            //鉴别诊断-中医证候编码、名称
-                            if(!"NA".equals(entity.getJzzyzhbm())){
-                                String bmdm="";
-                                String bm="";
-                                String[] str=entity.getJzzyzhbm().split(",");
-                                String[] str2=entity.getJzzyzhmc().split("、");
-                                Character o=new Character('B');
-                                for (int i=0;str.length>i;i++){
-                                    if(!o.equals(str[i].charAt(0))){
-                                        bmdm = bmdm+str[i]+" ";
-                                        bm = bm+str2[i]+" ";
-                                    }
-                                }
-                                if(StringUtils.isEmpty(bmdm)){
+                                //鉴别诊断-中医症候编码、名称
+                                if(StringUtils.isEmpty(zhbmdm)){
                                     entity.setJzzyzhbm("NA");
                                 }else{
-                                    entity.setJzzyzhbm(bmdm);
+                                    entity.setJzzyzhbm(zhbmdm);
                                 }
-                                if(StringUtils.isEmpty(bm)){
+                                if(StringUtils.isEmpty(zhbm)){
                                     entity.setJzzyzhmc("NA");
                                 }else{
-                                    entity.setJzzyzhmc(bm);
+                                    entity.setJzzyzhmc(zhbm);
                                 }
+
+
+
                             }
+
+
+//                            //鉴别诊断-中医病名编码、名称
+//                            if(!"NA".equals(entity.getJzzybmdm())){
+//                                String bmdm="";
+//                                String bm="";
+//                                String[] str=entity.getJzzybmdm().split(",");
+//                                String[] str2=entity.getJzzybmmc().split("、");
+//                                Character o=new Character('B');
+//                                for (int i=0;str.length>i;i++){
+//                                    if(o.equals(str[i].charAt(0))){
+//                                        bmdm = bmdm+str[i]+" ";
+//                                        bm = bm+str2[i]+" ";
+//                                    }
+//                                }
+//                                if(StringUtils.isEmpty(bmdm)){
+//                                    entity.setJzzybmdm("NA");
+//                                }else{
+//                                    entity.setJzzybmdm(bmdm);
+//                                }
+//                                if(StringUtils.isEmpty(bm)){
+//                                    entity.setJzzybmmc("NA");
+//                                }else{
+//                                    entity.setJzzybmmc(bm);
+//                                }
+//                            }
+//                            //鉴别诊断-中医证候编码、名称
+//                            if(!"NA".equals(entity.getJzzyzhbm())){
+//                                String bmdm="";
+//                                String bm="";
+//                                String[] str=entity.getJzzyzhbm().split(",");
+//                                String[] str2=entity.getJzzyzhmc().split("、");
+//                                Character o=new Character('B');
+//                                for (int i=0;str.length>i;i++){
+//                                    if(!o.equals(str[i].charAt(0))){
+//                                        bmdm = bmdm+str[i]+" ";
+//                                        bm = bm+str2[i]+" ";
+//                                    }
+//                                }
+//                                if(StringUtils.isEmpty(bmdm)){
+//                                    entity.setJzzyzhbm("NA");
+//                                }else{
+//                                    entity.setJzzyzhbm(bmdm);
+//                                }
+//                                if(StringUtils.isEmpty(bm)){
+//                                    entity.setJzzyzhmc("NA");
+//                                }else{
+//                                    entity.setJzzyzhmc(bm);
+//                                }
+//                            }
 
 
                         } catch (ParseException e) {
@@ -240,6 +307,20 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
 
         return mbzDataCheck;
+    }
+
+    public static void main(String[] args) {
+        String ss ="E56.901";
+        boolean isContain =ss.contains(".");
+
+        String pattern ="\\w{3,}\\.\\+";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(ss);
+
+        boolean isMatch = r.matcher(ss).matches();
+        System.out.println("isMatch="+ isMatch );
+        System.out.println("isContain="+ isContain );
+
     }
 
     @Override

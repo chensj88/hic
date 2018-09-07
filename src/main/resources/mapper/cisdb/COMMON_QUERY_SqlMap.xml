@@ -837,7 +837,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房' as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         b.CSRQ AS birth,
@@ -913,7 +913,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房'  as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
@@ -951,7 +951,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房' as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
@@ -989,7 +989,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房'  as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
@@ -1026,7 +1026,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房' as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         CONVERT(DATE,ISNULL(t.FSSJ,'1990-01-01 00:00:00'),120) AS cfrq,
         b.HZXM as hzxm,
@@ -1061,9 +1061,9 @@
         t.QTBLJLXH as yjlxh,
         b.HISSYXH as jzlsh,
         c.PATID as patid,
-        ISNULL(CONVERT (VARCHAR,(e.GHXH)),'NA') AS mjzh,
+        ISNULL(CONVERT(VARCHAR,(e.GHXH)),'NA') AS mjzh,
         b.ZYHM as zyh,
-        ISNULL(CONVERT (VARCHAR,(e.GHLB)),'NA') AS jzlb,
+        '2' AS jzlb,
         t.QTBLJLXH as zqtysbh,
         ISNULL(t.FSSJ,CONVERT(DATE,'1990-01-01 00:00:00',120)) AS tjsj,
         c.KSDM as ksdm,
@@ -1071,7 +1071,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房' as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         case when b.LXDH ='' then 'NA' else isnull(b.LXDH,'NA') end as lxdh,
@@ -1202,14 +1202,15 @@
         LEFT JOIN EMR_SYS_ZDFLMXK F ON C.RHJY = F.MXDM AND F.LBDM = '97'
         LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B-1020%' AND G.YXJL = 1
         LEFT JOIN CISDB_DATA..HLHT_RYJL_JBXX H ON  G.QTBLJLXH = H.yjlxh
-        <where>
+        <!--<where>
             <if test="map.startDate != null and map.startDate != ''">
                 and <![CDATA[CONVERT(date,substring(A.RYRQ,1,4)+'-'+substring(A.RYRQ,5,2)+'-'+substring(A.RYRQ,7,2))  >= #{map.startDate}]]>
             </if>
             <if test="map.startDate != null and map.startDate != ''">
                 and <![CDATA[CONVERT(date,substring(A.RYRQ,1,4)+'-'+substring(A.RYRQ,5,2)+'-'+substring(A.RYRQ,7,2))  <= #{map.endDate}]]>
             </if>
-        </where>
+        </where>-->
+        where H.jzlsh is not null
     </select>
     <!--chensj 病历概要/基本健康信息 门诊  2018-9-6 11:06:29-->
     <select id="selectInitHlhtBlgyJbjkxxForMz" parameterType="com.winning.hic.model.HlhtBlgyJbjkxx" resultMap="hlhtBlgyJbjkxxResult">
@@ -1247,14 +1248,15 @@
         LEFT JOIN EMR_SYS_ZDFLMXK F ON B.RHJY = F.MXDM AND F.LBDM = '97'
         LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B+9868%' AND G.YXJL = 1
         LEFT JOIN CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL H ON  G.QTBLJLXH = H.yjlxh
-        <where>
+        <!--<where>
             <if test="map.startDate != null and map.startDate != ''">
                 and <![CDATA[CONVERT(date,substring(A.GHRQ,1,4)+'-'+substring(A.GHRQ,5,2)+'-'+substring(A.GHRQ,7,2))  >= #{map.startDate}]]>
             </if>
             <if test="map.startDate != null and map.startDate != ''">
                 and <![CDATA[CONVERT(date,substring(A.GHRQ,1,4)+'-'+substring(A.GHRQ,5,2)+'-'+substring(A.GHRQ,7,2))  <= #{map.endDate}]]>
             </if>
-        </where>
+        </where>-->
+        where H.jzlsh is not null
     </select>
 
     <!--chensj 门(急)诊处方/西药处方 2018-8-16 16:21:45 HLHT_MJZCF_XYCF -->
