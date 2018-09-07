@@ -219,10 +219,29 @@ public class EmrMxmcmlk extends BaseDomain implements Serializable {
    }
 
 
+    public MBNoteTree getMBPNoteTree(){
+        MBNoteTree tree = new MBNoteTree();
+        tree.setNodeId(mldm);
+        tree.setNodePid("-1");
+        tree.setNodeName(mlmc);
+        tree.setNodeDesc(mlmc);
+        tree.setParent(Integer.parseInt(getMap().get("num").toString()) == 0 ? false : true);
+        if(mldm.startsWith("B") && (Integer.parseInt(getMap().get("num").toString()) == 0)){
+            tree.setHidden(true);
+        }
+        if(Integer.parseInt(getMap().get("num").toString()) == 0 ){
+            tree.setIcon("glyphicon glyphicon-leaf");
+        }else{
+            tree.setIconClose("glyphicon glyphicon-chevron-right");
+            tree.setIconOpen("glyphicon glyphicon-chevron-down");
+        }
+
+        return tree;
+    }
    public MBNoteTree getMBNoteTree(){
        MBNoteTree tree = new MBNoteTree();
        tree.setNodeId(mldm);
-       tree.setNodePid("-1");
+       tree.setNodePid(mldm.substring(0,mldm.length()-2));
        tree.setNodeName(mlmc);
        tree.setNodeDesc(mlmc);
        tree.setParent(Integer.parseInt(getMap().get("num").toString()) == 0 ? false : true);

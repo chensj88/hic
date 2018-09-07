@@ -31,10 +31,10 @@
         <if test="(pyCode != null and pyCode != '')"> and t.PY_CODE = #{pyCode} </if>
         <if test="(dictCode != null and dictCode != '')"> and t.DICT_CODE = #{dictCode} </if>
         <if test="(dataType != null and dataType != '')"> and t.DATA_TYPE = #{dataType} </if>
-        <if test="(dtjddm != null and dtjddm != '')"> and t.DTJDDM = #{dtjddm} </if>
-        <if test="(qrmbdm != null and qrmbdm != '')"> and t.QRMBDM = #{qrmbdm} </if>
-        <if test="(qrdxdm != null and qrdxdm != '')"> and t.QRDXDM = #{qrdxdm} </if>
-        <if test="(yzjddm != null and yzjddm != '')"> and t.YZJDDM = #{yzjddm} </if>
+        <if test="(dtjddm != null )"> and t.DTJDDM = #{dtjddm} </if>
+        <if test="(qrmbdm != null )"> and t.QRMBDM = #{qrmbdm} </if>
+        <if test="(qrdxdm != null )"> and t.QRDXDM = #{qrdxdm} </if>
+        <if test="(yzjddm != null )"> and t.YZJDDM = #{yzjddm} </if>
         <if test="(bt != null and bt != '')"> and t.BT = #{bt} </if>
         <if test="(dataLength != null and dataLength != '')"> and t.DATA_LENGTH = #{dataLength} </if>
     </sql>
@@ -49,10 +49,10 @@
             <if test="(pyCode != null and pyCode != '')"> PY_CODE , </if>
             <if test="(dictCode != null and dictCode != '')"> DICT_CODE , </if>
             <if test="(dataType != null and dataType != '')"> DATA_TYPE , </if>
-            <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
-            <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
-            <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
-            <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+            <if test="(dtjddm != null )"> DTJDDM , </if>
+            <if test="(qrmbdm != null )"> QRMBDM , </if>
+            <if test="(qrdxdm != null )"> QRDXDM , </if>
+            <if test="(yzjddm != null )"> YZJDDM , </if>
             <if test="(bt != null and bt != '')"> BT , </if>
             <if test="(dataLength != null and dataLength != '')"> DATA_LENGTH , </if>
         </trim>
@@ -65,10 +65,10 @@
             <if test="(pyCode != null and pyCode != '')"> #{pyCode , jdbcType= VARCHAR },  </if>
             <if test="(dictCode != null and dictCode != '')"> #{dictCode , jdbcType= VARCHAR },  </if>
             <if test="(dataType != null and dataType != '')"> #{dataType , jdbcType= INTEGER },  </if>
-            <if test="(dtjddm != null and dtjddm != '')"> #{dtjddm , jdbcType= VARCHAR },  </if>
-            <if test="(qrmbdm != null and qrmbdm != '')"> #{qrmbdm , jdbcType= VARCHAR },  </if>
-            <if test="(qrdxdm != null and qrdxdm != '')"> #{qrdxdm , jdbcType= VARCHAR },  </if>
-            <if test="(yzjddm != null and yzjddm != '')"> #{yzjddm , jdbcType= VARCHAR },  </if>
+            <if test="(dtjddm != null )"> #{dtjddm , jdbcType= VARCHAR },  </if>
+            <if test="(qrmbdm != null )"> #{qrmbdm , jdbcType= VARCHAR },  </if>
+            <if test="(qrdxdm != null )"> #{qrdxdm , jdbcType= VARCHAR },  </if>
+            <if test="(yzjddm != null )"> #{yzjddm , jdbcType= VARCHAR },  </if>
             <if test="(bt != null and bt != '')"> #{bt , jdbcType= INTEGER },  </if>
             <if test="(dataLength != null and dataLength != '')"> #{dataLength , jdbcType= BIGINT },  </if>
         </trim>
@@ -164,11 +164,11 @@
         t.ID as ID,
         t.ID as NODE_ID,
         t.P_ID as NODE_PID,
-        t.RECORD_NAME as NODE_TEXT
+        t.PY_CODE + '[' + t.RECORD_NAME + ']' as NODE_TEXT
         FROM MBZ_DATA_SET t
         <where>
             <include refid="sql-mbzDataSet" />
         </where>
-        order by t.RECORD_NAME
+        ORDER BY t.PY_CODE ASC,t.RECORD_NAME DESC
     </select>
 </mapper>

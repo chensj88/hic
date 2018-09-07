@@ -93,6 +93,13 @@ public interface CommonQueryDao {
     List<HlhtBlgyJbjkxx> selectInitHlhtBlgyJbjkxx(HlhtBlgyJbjkxx obj);
 
     /**
+     *病历概要/基本健康信息 门诊
+     * @param obj
+     * @return
+     */
+    List<HlhtBlgyJbjkxx> selectInitHlhtBlgyJbjkxxForMz(HlhtBlgyJbjkxx obj);
+
+    /**
      * 门(急)诊处方/西药处方
      * @param obj
      * @return

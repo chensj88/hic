@@ -119,4 +119,6 @@ public interface Facade {
 
     OutpOrderitemService getOutpOrderitemService();
 
+    EmrMbmxkService getEmrMbmxkService();
+
 }

@@ -81,18 +81,18 @@
         UPDATE MBZ_MODEL_CHECK
         <set>
             <trim suffixOverrides=",">
-                <if test="(pId != null and pId != '')">P_ID = #{pid},</if>
+                <if test="(pId != null and pId != '')">P_ID = #{pId},</if>
                 <if test="(sourceType != null and sourceType != '')">SOURCE_TYPE =#{sourceType},</if>
                 <if test="(level != null and level != '')">LEVEL =#{level},</if>
                 <if test="(modelCode != null and modelCode != '')">MODEL_CODE=#{modelCode},</if>
-                <if test="(qrmbdm != null and qrmbdm != '')">QRMBDM ={qrmbdm},</if>
+                <if test="(qrmbdm != null and qrmbdm != '')">QRMBDM =#{qrmbdm},</if>
                 <if test="(colummName != null and colummName != '')">COLUMM_NAME =#{colummName},</if>
                 <if test="(type != null and type != '')">TYPE =#{type},</if>
                 <if test="(dtjddm != null and dtjddm != '')">DTJDDM =#{dtjddm},</if>
                 <if test="(qrdxdm != null and qrdxdm != '')">QRDXDM=#{qrdxdm} ,</if>
                 <if test="(yzjddm != null and yzjddm != '')">YZJDDM=#{yzjddm} ,</if>
                 <if test="(errorDesc != null and errorDesc != '')">ERROR_DESC=#{errorDesc} ,</if>
-                <if test="(status != null and status != '')">STATUS=#{status} ,</if>
+                <if test="(status != null)">STATUS=#{status} ,</if>
                 <if test="(bt != null and bt != '')">BT =#{bt},</if>
             </trim>
         </set>

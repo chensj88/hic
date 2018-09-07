@@ -62,6 +62,7 @@ public class MbzDataSetController extends BaseController {
             oldDataSet.setQrdxdm(dataSet.getQrdxdm());
             oldDataSet.setYzjddm(dataSet.getYzjddm());
             int count = super.getFacade().getMbzDataSetService().getMbzDataSetCount(oldDataSet);
+            convertToNull(dataSet);
             if(count > 1){
                 result.put("status", Constants.ERROR);
                 result.put("msg", "当前字段配置数据已经存在，请修改!");
@@ -92,6 +93,7 @@ public class MbzDataSetController extends BaseController {
             oldDataSet.setQrdxdm(dataSet.getQrdxdm());
             oldDataSet.setYzjddm(dataSet.getYzjddm());
             int count = super.getFacade().getMbzDataSetService().getMbzDataSetCount(oldDataSet);
+            convertToNull(dataSet);
             if(count >= 1){
                 result.put("status", Constants.ERROR);
                 result.put("msg", "当前字段配置数据已经存在，请修改!");
@@ -166,5 +168,20 @@ public class MbzDataSetController extends BaseController {
         result.put("status", Constants.SUCCESS);
         result.put("data", getFacade().getMbzDataSetService().removeMbzDataSet(dataSet));
         return result;
+    }
+
+
+    private MbzDataSet convertToNull(MbzDataSet set){
+        if(set.getDataType() == 1){
+            set.setQrmbdm("");
+            set.setQrdxdm("");
+            set.setYzjddm("");
+        }else if(set.getDataType() == 2){
+            set.setQrdxdm("");
+            set.setYzjddm("");
+        }else if(set.getDataType() == 3){
+            set.setYzjddm("");
+        }
+        return set;
     }
 }
