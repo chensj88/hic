@@ -10,6 +10,7 @@
         <result column="DICT_SORT" property="dictSort" jdbcType="VARCHAR"/>
         <result column="DICT_DESC" property="dictDesc" jdbcType="VARCHAR"/>
         <result column="PY_CODE" property="pyCode" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="mbzDictInfoResult" type="com.winning.hic.model.MbzDictInfo" extends="mbzDictInfoResultForList">
@@ -23,6 +24,7 @@
         <if test="(dictSort != null and dictSort != '')">and t.DICT_SORT = #{dictSort}</if>
         <if test="(dictDesc != null and dictDesc != '')">and t.DICT_DESC = #{dictDesc}</if>
         <if test="(pyCode != null and pyCode != '')">and t.PY_CODE = #{pyCode}</if>
+        <if test="(status != null )">and t.STATUS = #{status}</if>
     </sql>
 
     <insert id="insertMbzDictInfo" parameterType="com.winning.hic.model.MbzDictInfo">
@@ -35,6 +37,7 @@
             <if test="(dictSort != null and dictSort != '')">DICT_SORT ,</if>
             <if test="(dictDesc != null and dictDesc != '')">DICT_DESC ,</if>
             <if test="(pyCode != null and pyCode != '')">PY_CODE ,</if>
+            <if test="(status != null )">STATUS ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -44,6 +47,7 @@
             <if test="(dictSort != null and dictSort != '')">#{dictSort , jdbcType= VARCHAR },</if>
             <if test="(dictDesc != null and dictDesc != '')">#{dictDesc , jdbcType= VARCHAR },</if>
             <if test="(pyCode != null and pyCode != '')">#{pyCode , jdbcType= VARCHAR },</if>
+            <if test="(status != null )">#{status , jdbcType= INTEGER },</if>
         </trim>
     </insert>
 
@@ -57,6 +61,7 @@
                 <if test="(dictSort != null and dictSort != '')">DICT_SORT = #{dictSort , jdbcType= VARCHAR },</if>
                 <if test="(dictDesc != null and dictDesc != '')">DICT_DESC = #{dictDesc , jdbcType= VARCHAR },</if>
                 <if test="(pyCode != null and pyCode != '')">PY_CODE = #{pyCode , jdbcType= VARCHAR },</if>
+                <if test="(status != null )">STATUS = #{status , jdbcType= VARCHAR },</if>
             </trim>
         </set>
         <where>
@@ -121,7 +126,8 @@
     </select>
     <!--获取模板代码信息-->
     <select id="selectMbzDictInfoListForMB" resultType="java.lang.String">
-          SELECT DISTINCT PY_CODE FROM  MBZ_DICT_INFO WHERE DICT_CODE='platformTableName'
+          SELECT DISTINCT PY_CODE FROM  MBZ_DICT_INFO WHERE DICT_CODE='platformTableName' AND PY_CODE IS NOT NULL
+          AND STATUS = 1
     </select>
 
 

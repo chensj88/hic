@@ -1,3 +1,75 @@
+--24h内入出院记录----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--出院医嘱开立日期时间
+UPDATE A SET cyyzklrq = CASE when T.cqyzrq > T.lsyzrq THEN T.cqyzrq ELSE T.lsyzrq END
+FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN  (
+                                                   SELECT (SELECT top 1 CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) yzrq
+                                                           FROM  CISDB.dbo.CPOE_CQYZK B WHERE A.jzlsh = B.SYXH  order by yzrq DESC) cqyzrq,
+                                                          (SELECT top 1 CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) yzrq
+                                                           FROM  CISDB.dbo.CPOE_LSYZK B WHERE A.jzlsh = B.SYXH  order by yzrq DESC) lsyzrq,A.jzlsh
+                                                   FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A) T ON T.jzlsh = A.jzlsh WHERE A.cyyzklrq =  '1990-01-01 00:00:00'
+--医嘱开立医师
+UPDATE A SET A.cyyzklrqm = ISNULL(B.YSDM,'NA'),A.yzklysbm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
+--接诊医师
+UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
+--住院医师
+UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='NA' OR A.zyysqm='NA')
+--治则治法
+--UPDATE A SET A.zfbm = '无',A.zzzf = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zfbm ='NA' OR A.zzzf='NA')
+--中医“四诊”观察结果
+UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM CISDB_DATA..HLHT_RYJL_RCYJL A,CISDB_DATA.dbo.HLHT_RYJL_JBXX C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
+--陈述内容可靠标志 来源入院记录
+UPDATE A SET A.csnrbz=isnull(B.csnrbz,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE A.csnrbz ='NA'
+--现病史 来源入院记录
+UPDATE A SET A.xbs=isnull(B.xbs,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE convert(varchar,A.xbs) ='NA'
+--陈述者关系
+UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM CISDB_DATA..HLHT_RYJL_RCYJL A
+  LEFT JOIN (
+              SELECT CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '2'
+                     WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
+                     WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
+                     WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
+                     WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '6'
+                     WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
+                     else '8' end cszhzgxdm,
+                     CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
+                     WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
+                     WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
+                     WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
+                     WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
+                     WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
+                     else '其他' end cszhzgxmc,A.jzlsh
+              FROM CISDB_DATA..HLHT_RYJL_RCYJL A) T ON A.jzlsh =T.jzlsh
+--陈述内容可靠标志
+UPDATE A SET A.csnrbz = 'T'   FROM CISDB_DATA..HLHT_RYJL_RCYJL A
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--## 24小时内入院死亡记录 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--陈述内容可靠标志
+UPDATE A SET A.csnrbz = 'T'   FROM CISDB_DATA..HLHT_RYJL_RYSWJL A
+--陈述者关系
+UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM CISDB_DATA..HLHT_RYJL_RYSWJL A
+  LEFT JOIN (
+              SELECT CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '2'
+                     WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
+                     WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
+                     WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
+                     WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '6'
+                     WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
+                     else '8' end cszhzgxdm,
+                     CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
+                     WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
+                     WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
+                     WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
+                     WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
+                     WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
+                     else '其他' end cszhzgxmc,A.jzlsh
+              FROM CISDB_DATA..HLHT_RYJL_RYSWJL A) T ON A.jzlsh =T.jzlsh
+--中医“四诊”观察结果
+UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM CISDB_DATA..HLHT_RYJL_RYSWJL A,CISDB_DATA.dbo.HLHT_RYJL_JBXX C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA'
+--接诊医师
+UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
+--住院医师
+UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='NA' OR A.zyysqm='NA')
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --术前小结
   --从病人诊断中获取诊断依据编码和诊断依据
   UPDATE A SET A.zdyj = C.ZDMC,A.zdyjdm = C.ZDDM
@@ -114,55 +186,19 @@
     UPDATE A SET A.ssfs = ISNULL(B.ssmc,'NA')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB_DATA.dbo.HLHT_ZLCZJL_YBSSJL B ON A.jzlsh =B.jzlsh WHERE A.ssfs ='NA'
   --拟实施麻醉方法代码  拟实施麻醉方法名称
     UPDATE A SET A.nmzdm = ISNULL(B.MZDM,'NA') ,A.nmzffmc = ISNULL(B.MZMC,'NA') FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A  LEFT JOIN CISDB.dbo.CPOE_SSYZK B ON A.jzlsh = B.SYXH WHERE (A.nmzdm = 'NA' OR A.nmzffmc='NA')
-  --经治医师/责任医生
+  --经治医师
     UPDATE A SET A.jzysdm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysdm ='NA' or A.jzysqm = 'NA')
-    UPDATE A SET A.zrysdm = ISNULL(B.ZRYSDM,'NA'),A.zrysxm = ISNULL(B.ZRYSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zrysdm ='NA' or A.zrysxm = 'NA')
+  --责任医生
+   UPDATE A SET A.zrysdm = ISNULL(B.YSDM,'NA'),A.zrysxm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zrysdm ='NA' or A.zrysxm = 'NA')
     UPDATE A SET A.hzqm = ISNULL(A.hzxm,'NA')   FROM CISDB_DATA.dbo.HLHT_ZQGZXX_SSTYS A  WHERE (A.hzqm ='NA')
 
-
---24h内入出院记录
-  --地址-村（街、路、弄等）
-  --UPDATE A SET A.dzc='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A WHERE A.dzc ='NA'
-  --地址-门牌号码
-  --UPDATE A SET A.dzmphm='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A WHERE A.dzmphm ='NA'
-  --出院医嘱开立日期时间
-  UPDATE A SET cyyzklrq = CASE when T.cqyzrq > T.lsyzrq THEN T.cqyzrq ELSE T.lsyzrq END
-  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN  (
-   SELECT (SELECT top 1 CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) yzrq
-           FROM  CISDB.dbo.CPOE_CQYZK B WHERE A.jzlsh = B.SYXH  order by yzrq DESC) cqyzrq,
-          (SELECT top 1 CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) yzrq
-           FROM  CISDB.dbo.CPOE_LSYZK B WHERE A.jzlsh = B.SYXH  order by yzrq DESC) lsyzrq,A.jzlsh
-   FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A) T ON T.jzlsh = A.jzlsh WHERE A.cyyzklrq =  '1990-01-01 00:00:00'
-  --医嘱开立医师
-  UPDATE A SET A.cyyzklrqm = ISNULL(B.YSDM,'NA'),A.yzklysbm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
-  --接诊医师
-  UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
-  --住院医师
-  UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='NA' OR A.zyysqm='NA')
-  --治则治法
-  --UPDATE A SET A.zfbm = '无',A.zzzf = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zfbm ='NA' OR A.zzzf='NA')
-  --中医“四诊”观察结果
-  UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM CISDB_DATA..HLHT_RYJL_RCYJL A,CISDB_DATA.dbo.HLHT_RYJL_JBXX C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
-  --陈述内容可靠标志 来源入院记录
-  UPDATE A SET A.csnrbz=isnull(B.csnrbz,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE A.csnrbz ='NA'
-  --现病史 来源入院记录
-  UPDATE A SET A.xbs=isnull(B.xbs,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RCYJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE convert(varchar,A.xbs) ='NA'
-
---24小时内入院死亡记录
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--
   --地址-村（街、路、弄等）
   --UPDATE A SET A.dzc='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A WHERE A.dzc ='NA'
   --地址-门牌号码
   --UPDATE A SET A.dzmphm='无'  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A WHERE A.dzmphm ='NA'
-  --陈述内容可靠标志 来源入院记录
-  UPDATE A SET A.csnrbz=isnull(B.csnrbz,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB_DATA.dbo.HLHT_RYJL_JBXX B ON A.jzlsh =B.jzlsh WHERE A.csnrbz ='NA'
-  --治则治法
-  --UPDATE A SET A.zfbm = '无',A.zzzf = '无' FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zfbm ='NA' OR A.zzzf='NA')
-  --中医“四诊”观察结果
-  --UPDATE A SET A.zyszgcjg = 'NA' FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (convert(varchar,A.zyszgcjg) ='NA')
-  --接诊医师
-  UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
-  --住院医师
-  UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM CISDB_DATA.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='NA' OR A.zyysqm='NA')
+
 
 --术后首次病程记录
   /*

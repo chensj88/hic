@@ -58,6 +58,7 @@ public class TreeController extends BaseController {
     public Map<String, Object> queryDICTTree(){
         MbzDictInfo dictInfo = new MbzDictInfo();
         dictInfo.setDictCode("platformTableName");
+        dictInfo.setStatus(1);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", true);
         result.put("data",getFacade().getMbzDictInfoService().getMbzDictInfoList(dictInfo));
