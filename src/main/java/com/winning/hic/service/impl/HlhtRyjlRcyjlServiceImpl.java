@@ -130,7 +130,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
                         rcyjl = getHlhtRyjlRcyjl(rcyjl);
                         //解析病历xml
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-
+                        System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         //判断是否存在重复,存在则删除，重新新增
                         if(rcyjl != null ){
                             //初始化数据
@@ -142,6 +142,126 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
                         rcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                         rcyjl = this.commonQueryDao.selectInitHlhtRyjlRcyjlData(rcyjl);
                         rcyjl = (HlhtRyjlRcyjl) HicHelper.initModelValue(mbzDataSetList,document,rcyjl,paramTypeMap);
+
+                        //去除入院诊断西医病名和代码的冗余字符串
+                        rcyjl.setRzxzzdbm(rcyjl.getRzxzzdbm() == null ? "NA" : rcyjl.getRzxzzdbm().replace("西医诊断： ", "").trim());
+                        rcyjl.setRzxyzdmc(rcyjl.getRzxyzdmc() == null ? "NA" : rcyjl.getRzxyzdmc().replace("西医诊断： ", "").trim());
+                        //去除入院诊断中医病名和代码的冗余字符串
+                        rcyjl.setRzzybmdm(rcyjl.getRzzybmdm() == null ? "NA" : rcyjl.getRzzybmdm().replace("中医诊断： ", "").trim());
+                        rcyjl.setRzzybmmc(rcyjl.getRzzybmmc() == null ? "NA" : rcyjl.getRzzybmmc().replace("中医诊断： ", "").trim());
+                        //去除入院诊断中医症候和代码的冗余字符串
+                        rcyjl.setRzzyzhdm(rcyjl.getRzzyzhdm() == null ? "NA" : rcyjl.getRzzyzhdm().replace("中医诊断： ", "").trim());
+                        rcyjl.setRzzyzhmc(rcyjl.getRzzyzhmc() == null ? "NA" : rcyjl.getRzzyzhmc().replace("中医诊断： ", "").trim());
+
+                        //去除出院诊断西医病名和代码的冗余字符串
+                        rcyjl.setCzxyzdbm(rcyjl.getCzxyzdbm() == null ? "NA" : rcyjl.getCzxyzdbm().replace("西医诊断： ", "").trim());
+                        rcyjl.setCzxyzdmc(rcyjl.getCzxyzdmc() == null ? "NA" : rcyjl.getCzxyzdmc().replace("西医诊断： ", "").trim());
+                        //去除出院诊断中医病名和代码的冗余字符串
+                        rcyjl.setCzzybmdm(rcyjl.getCzzybmdm() == null ? "NA" : rcyjl.getCzzybmdm().replace("中医诊断： ", "").trim());
+                        rcyjl.setCzzybmmc(rcyjl.getCzzybmmc() == null ? "NA" : rcyjl.getCzzybmmc().replace("中医诊断： ", "").trim());
+                        //去除出院诊断中医症候和代码的冗余字符串
+                        rcyjl.setCzzyzhdm(rcyjl.getCzzyzhdm() == null ? "NA" : rcyjl.getCzzyzhdm().replace("中医诊断： ", "").trim());
+                        rcyjl.setCzzyzhmc(rcyjl.getCzzyzhmc() == null ? "NA" : rcyjl.getCzzyzhmc().replace("中医诊断： ", "").trim());
+
+                        //入院诊断-中医病名代码、名称处理
+                        if (!"NA".equals(rcyjl.getRzzybmdm())) {
+                            String bmdm = "";
+                            String bm = "";
+                            String[] str = rcyjl.getRzzybmdm().split("  ");
+                            String[] str2 = rcyjl.getRzzybmmc().split("  ");
+                            Character o = new Character('B');
+                            for (int i = 0; str.length > i; i++) {
+                                if (o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i].trim() + " ";
+                                    bm = bm + str2[i].trim() + " ";
+                                }
+                            }
+                            if (StringUtil.isEmptyOrNull(bmdm)) {
+                                rcyjl.setRzzybmdm("NA");
+                            } else {
+                                rcyjl.setRzzybmdm(bmdm);
+                            }
+                            if (StringUtil.isEmptyOrNull(bm)) {
+                                rcyjl.setRzzybmmc("NA");
+                            } else {
+                                rcyjl.setRzzybmmc(bm);
+                            }
+                        }
+
+                        //入院诊断-中医证候代码
+                        if (!"NA".equals(rcyjl.getRzzyzhdm())) {
+                            String bmdm = "";
+                            String bm = "";
+                            String[] str = rcyjl.getRzzyzhdm().split("  ");
+                            String[] str2 = rcyjl.getRzzyzhmc().split("  ");
+                            Character o = new Character('B');
+                            for (int i = 0; str.length > i; i++) {
+                                if (!o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i].trim() + " ";
+                                    bm = bm + str2[i].trim() + " ";
+                                }
+                            }
+                            if (StringUtil.isEmptyOrNull(bmdm)) {
+                                rcyjl.setRzzyzhdm("NA");
+                            } else {
+                                rcyjl.setRzzyzhdm(bmdm);
+                            }
+                            if (StringUtil.isEmptyOrNull(bm)) {
+                                rcyjl.setRzzyzhmc("NA");
+                            } else {
+                                rcyjl.setRzzyzhmc(bm);
+                            }
+                        }
+
+                        //出院诊断-中医病名代码、名称处理
+                        if (!"NA".equals(rcyjl.getCzzybmdm())) {
+                            String bmdm = "";
+                            String bm = "";
+                            String[] str = rcyjl.getCzzybmdm().split("  ");
+                            String[] str2 = rcyjl.getCzzybmmc().split("  ");
+                            Character o = new Character('B');
+                            for (int i = 0; str.length > i; i++) {
+                                if (o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i].trim() + " ";
+                                    bm = bm + str2[i].trim() + " ";
+                                }
+                            }
+                            if (StringUtil.isEmptyOrNull(bmdm)) {
+                                rcyjl.setCzzybmdm("NA");
+                            } else {
+                                rcyjl.setCzzybmdm(bmdm);
+                            }
+                            if (StringUtil.isEmptyOrNull(bm)) {
+                                rcyjl.setCzzybmmc("NA");
+                            } else {
+                                rcyjl.setCzzybmmc(bm);
+                            }
+                        }
+
+                        //出院诊断-中医证候代码
+                        if (!"NA".equals(rcyjl.getCzzyzhdm())) {
+                            String bmdm = "";
+                            String bm = "";
+                            String[] str = rcyjl.getCzzyzhdm().split("  ");
+                            String[] str2 = rcyjl.getCzzyzhmc().split("  ");
+                            Character o = new Character('B');
+                            for (int i = 0; str.length > i; i++) {
+                                if (!o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i].trim() + " ";
+                                    bm = bm + str2[i].trim() + " ";
+                                }
+                            }
+                            if (StringUtil.isEmptyOrNull(bmdm)) {
+                                rcyjl.setCzzyzhdm("NA");
+                            } else {
+                                rcyjl.setCzzyzhdm(bmdm);
+                            }
+                            if (StringUtil.isEmptyOrNull(bm)) {
+                                rcyjl.setCzzyzhmc("NA");
+                            } else {
+                                rcyjl.setCzzyzhmc(bm);
+                            }
+                        }
                         this.createHlhtRyjlRcyjl(rcyjl);
                         real_count++;
                     }
