@@ -87,7 +87,7 @@ public class HicHelper {
                     value = StringUtil.isEmptyOrNull(((String) value).trim()) ? "NA" :((String) value).trim();
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
-                    String shortStr = StringUtil.isEmptyOrNull(strValue) ? null : strValue.trim();
+                    String shortStr = StringUtil.isEmptyOrNull(strValue.trim()) ? null : strValue.trim();
                     value = StringUtil.isEmptyOrNull(shortStr) ? 0 : Short.parseShort(shortStr);
                 } else if (paramType.contains("Timestamp")) {
                     String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue.trim();
@@ -168,10 +168,10 @@ public class HicHelper {
                         e.printStackTrace();
                     }
                 } else if (paramType.contains("BigDecimal")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "0" : strValue.trim();
+                    String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "0" : strValue.trim();
                     value = StringUtil.isEmptyOrNull(dateStr) ? null : new BigDecimal(dateStr);
                 } else if (paramType.contains("Integer")) {
-                    String dateStr = StringUtil.isEmptyOrNull(strValue) ? "0" : strValue.trim();
+                    String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "0" : strValue.trim();
                     value = StringUtil.isEmptyOrNull(dateStr) ? null : Integer.parseInt(dateStr);
                 }
             }
