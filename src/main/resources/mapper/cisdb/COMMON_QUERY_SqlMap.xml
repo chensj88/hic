@@ -1061,7 +1061,7 @@
         t.QTBLJLXH as yjlxh,
         b.HISSYXH as jzlsh,
         c.PATID as patid,
-        b.ZYHM AS mjzh,
+        ISNULL(CONVERT(VARCHAR,(e.GHXH)),'NA') AS mjzh,
         b.ZYHM as zyh,
         '2' AS jzlb,
         t.QTBLJLXH as zqtysbh,
