@@ -56,6 +56,12 @@ public class MbzDictInfo extends BaseDomain implements Serializable {
      * 默认值：无
      */
     private String pyCode;
+    /**
+     * 字段名：STATUS
+     * 备注: 是否使用 0 否 1 是
+     * 默认值：无
+     */
+    private Integer status;
 
     public MbzDictInfo (){
 
@@ -170,4 +176,11 @@ public class MbzDictInfo extends BaseDomain implements Serializable {
         this.pyCode = pyCode;
    }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }
