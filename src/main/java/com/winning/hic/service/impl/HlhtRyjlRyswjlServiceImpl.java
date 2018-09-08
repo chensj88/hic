@@ -124,6 +124,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                         ryswjl = this.getHlhtRyjlRyswjl(ryswjl);
                         //解析病历报文xml
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(qtbljlk.getBlnr()));
+                        System.out.println(Base64Utils.unzipEmrXml(qtbljlk.getBlnr()));
                         if(ryswjl != null ){ //判断记录是否已经创建,存在则删除，重新新增
                             HlhtRyjlRyswjl oldRyswjl = new HlhtRyjlRyswjl();
                             oldRyswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
@@ -144,15 +145,15 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                         ryswjl.setRzzyzhdm(ryswjl.getRzzyzhdm() == null ? "NA" : ryswjl.getRzzyzhdm().replace("中医诊断： ", "").trim());
                         ryswjl.setRzzyzhmc(ryswjl.getRzzyzhmc() == null ? "NA" : ryswjl.getRzzyzhmc().replace("中医诊断： ", "").trim());
 
-                        //去除出院诊断西医病名和代码的冗余字符串
-                        ryswjl.setSzxyzdbm(ryswjl.getSzxyzdbm() == null ? "NA" : ryswjl.getSzxyzdbm().replace("西医诊断： ", "").trim());
-                        ryswjl.setSzxyzdmc(ryswjl.getSzxyzdmc() == null ? "NA" : ryswjl.getSzxyzdmc().replace("西医诊断： ", "").trim());
-                        //去除出院诊断中医病名和代码的冗余字符串
-                        ryswjl.setSzzybmdm(ryswjl.getSzzybmdm() == null ? "NA" : ryswjl.getSzzybmdm().replace("中医诊断： ", "").trim());
-                        ryswjl.setSzzybmmc(ryswjl.getSzzybmmc() == null ? "NA" : ryswjl.getSzzybmmc().replace("中医诊断： ", "").trim());
-                        //去除出院诊断中医症候和代码的冗余字符串
-                        ryswjl.setSzzyzhdm(ryswjl.getSzzyzhdm() == null ? "NA" : ryswjl.getSzzyzhdm().replace("中医诊断： ", "").trim());
-                        ryswjl.setSzzyzhmc(ryswjl.getSzzyzhmc() == null ? "NA" : ryswjl.getSzzyzhmc().replace("中医诊断： ", "").trim());
+                        //去除死亡诊断西医病名和代码的冗余字符串
+                        ryswjl.setSzxyzdbm(ryswjl.getSzxyzdbm() == null ? "NA" : ryswjl.getSzxyzdbm().replace("西医诊断 ： ", "").trim());
+                        ryswjl.setSzxyzdmc(ryswjl.getSzxyzdmc() == null ? "NA" : ryswjl.getSzxyzdmc().replace("西医诊断 ： ", "").trim());
+                        //去除死亡诊断中医病名和代码的冗余字符串
+                        ryswjl.setSzzybmdm(ryswjl.getSzzybmdm() == null ? "NA" : ryswjl.getSzzybmdm().replace("中医 诊断 ： ", "").trim());
+                        ryswjl.setSzzybmmc(ryswjl.getSzzybmmc() == null ? "NA" : ryswjl.getSzzybmmc().replace("中医 诊断 ： ", "").trim());
+                        //去除死亡诊断中医症候和代码的冗余字符串
+                        ryswjl.setSzzyzhdm(ryswjl.getSzzyzhdm() == null ? "NA" : ryswjl.getSzzyzhdm().replace("中医 诊断 ： ", "").trim());
+                        ryswjl.setSzzyzhmc(ryswjl.getSzzyzhmc() == null ? "NA" : ryswjl.getSzzyzhmc().replace("中医 诊断 ： ", "").trim());
 
                         //入院诊断-中医病名代码、名称处理
                         if (!"NA".equals(ryswjl.getRzzybmdm())) {
@@ -204,7 +205,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                             }
                         }
 
-                        //出院诊断-中医病名代码、名称处理
+                        //死亡诊断-中医病名代码、名称处理
                         if (!"NA".equals(ryswjl.getSzzybmdm())) {
                             String bmdm = "";
                             String bm = "";
@@ -229,7 +230,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                             }
                         }
 
-                        //出院诊断-中医证候代码
+                        //死亡诊断-中医证候代码
                         if (!"NA".equals(ryswjl.getSzzyzhdm())) {
                             String bmdm = "";
                             String bm = "";
