@@ -198,13 +198,13 @@ public class HicHelper {
                             bltd = bltd + " " + value;
                             ReflectUtil.setParamKind(obj, methodName, bltd);
                         }
-                    } else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdbm"))){
+                    } /*else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdbm"))){
                         shzdbm = shzdbm + " " + value;
                         ReflectUtil.setParamKind(obj, methodName, shzdbm);
                     }else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdmc"))){
                         shzdmc = shzdmc + " " + value;
                         ReflectUtil.setParamKind(obj, methodName, shzdmc);
-                    }else{
+                    }*/else{
                         ReflectUtil.setParam(obj, methodName, value);
 
                     }
