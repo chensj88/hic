@@ -373,7 +373,7 @@
 
             'NA'
             )                                         AS nls,
-            SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
+            DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
             q.QTBLJLXH                                AS syxh,
             q.TJZT                                    AS tjzt,
             q.YXJL                                    AS yxjl,

@@ -81,10 +81,10 @@ public class HicHelper {
                 String paramType = paramTypeMap.get(pyCode);
                 if (paramType.contains("String")) {
                     value = StringUtil.isEmptyOrNull(strValue) ? "NA" : strValue.trim();
-                    if(((String) value).contains("yyyy年MM月dd日+Day行")){
-                        value = ((String) value).replace("yyyy年MM月dd日+Day行","");
+                    if (((String) value).contains("yyyy年MM月dd日+Day行")) {
+                        value = ((String) value).replace("yyyy年MM月dd日+Day行", "");
                     }
-                    value = StringUtil.isEmptyOrNull(((String) value).trim()) ? "NA" :((String) value).trim();
+                    value = StringUtil.isEmptyOrNull(((String) value).trim()) ? "NA" : ((String) value).trim();
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
                     String shortStr = StringUtil.isEmptyOrNull(strValue.trim()) ? null : strValue.trim();
@@ -112,12 +112,19 @@ public class HicHelper {
                     dateStr = dateStr.trim();
                     if (dateStr.length() <= 10) {
                         pattern = "yyyy-MM-dd";
-                    } else if (dateStr.contains("yyyy-MM-dd")) {
+                    } else if (dateStr.contains("yyyy-MM-dd") && !dateStr.contains("yyyy-MM-dd HH:mm:00")) {
                         dateStr = dateStr.substring(0, 10);
                         pattern = "yyyy-MM-dd";
                     } else if (dateStr.contains("yyyy-MM-dd HH:mm:00")) {
-                        dateStr = dateStr.substring(0, 19);
-                        pattern = "yyyy-MM-dd HH:mm:ss";
+                        int index = dateStr.indexOf("yyyy-MM-dd");
+                        int index2 = dateStr.indexOf("yyyy-MM-dd HH:mm:00");
+                        if (index2 == index) {
+                            dateStr = dateStr.substring(0, 19);
+                            pattern = "yyyy-MM-dd HH:mm:ss";
+                        } else {
+                            dateStr = dateStr.substring(0, 10);
+                            pattern = "yyyy-MM-dd";
+                        }
                     } else {
                         dateStr = dateStr.concat(":00").substring(0, 18);
                     }
@@ -198,13 +205,13 @@ public class HicHelper {
                             bltd = bltd + " " + value;
                             ReflectUtil.setParamKind(obj, methodName, bltd);
                         }
-                    } else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdbm"))){
+                    } else if ((dataSet.getSourceType().equals("11") && pyCode.equals("shzdbm"))) {
                         shzdbm = shzdbm + " " + value;
                         ReflectUtil.setParamKind(obj, methodName, shzdbm);
-                    }else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdmc"))){
+                    } else if ((dataSet.getSourceType().equals("11") && pyCode.equals("shzdmc"))) {
                         shzdmc = shzdmc + " " + value;
                         ReflectUtil.setParamKind(obj, methodName, shzdmc);
-                    }else{
+                    } else {
                         ReflectUtil.setParam(obj, methodName, value);
 
                     }

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -122,6 +123,54 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
                     try {
                         hlhtZybcjlCyjl = (HlhtZybcjlCyjl) HicHelper.initModelValue(mbzDataSetList, document, hlhtZybcjlCyjl, paramTypeMap);
                         logger.info("Model:{}", hlhtZybcjlCyjl);
+                        //初步诊断-中医病名代码、名称处理
+                        if(!"NA".equals(hlhtZybcjlCyjl.getCzzybmdm())){
+                            String bmdm="";
+                            String bm="";
+                            String[] str=hlhtZybcjlCyjl.getCzzybmdm().split("  ");
+                            String[] str2=hlhtZybcjlCyjl.getCzzybmmc().split("  ");
+                            Character o=new Character('B');
+                            for (int i=0;str.length>i;i++){
+                                if(o.equals(str[i].charAt(0))){
+                                    bmdm = bmdm+str[i]+" ";
+                                    bm = bm+str2[i]+" ";
+                                }
+                            }
+                            if(StringUtils.isEmpty(bmdm)){
+                                hlhtZybcjlCyjl.setCzzybmdm("NA");
+                            }else{
+                                hlhtZybcjlCyjl.setCzzybmdm(bmdm);
+                            }
+                            if(StringUtils.isEmpty(bm)){
+                                hlhtZybcjlCyjl.setCzzybmmc("NA");
+                            }else{
+                                hlhtZybcjlCyjl.setCzzybmmc(bm);
+                            }
+                        }
+                        //初步诊断-中医证候代码
+                        if(!"NA".equals(hlhtZybcjlCyjl.getCzzyzhdm())){
+                            String bmdm="";
+                            String bm="";
+                            String[] str=hlhtZybcjlCyjl.getCzzyzhdm().split("  ");
+                            String[] str2=hlhtZybcjlCyjl.getCzzyzhmc().split("  ");
+                            Character o=new Character('B');
+                            for (int i=0;str.length>i;i++){
+                                if(!o.equals(str[i].charAt(0))){
+                                    bmdm = bmdm+str[i]+" ";
+                                    bm = bm+str2[i]+" ";
+                                }
+                            }
+                            if(StringUtils.isEmpty(bmdm)){
+                                hlhtZybcjlCyjl.setCzzyzhdm("NA");
+                            }else{
+                                hlhtZybcjlCyjl.setCzzyzhdm(bmdm);
+                            }
+                            if(StringUtils.isEmpty(bm)){
+                                hlhtZybcjlCyjl.setCzzyzhmc("NA");
+                            }else{
+                                hlhtZybcjlCyjl.setCzzyzhmc(bm);
+                            }
+                        }
                         this.hlhtZybcjlCyjlDao.insertHlhtZybcjlCyjl(hlhtZybcjlCyjl);
                     } catch (Exception e) {
                         e.printStackTrace();

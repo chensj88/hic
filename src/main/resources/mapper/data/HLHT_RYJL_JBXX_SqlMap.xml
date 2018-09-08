@@ -671,9 +671,9 @@
 
                     'NA'
             )                                         AS nls,
-            SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
+            DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
             ISNULL(b.MZDM, 'NA')                       AS mz,
-            ISNULL(p.NAME, 'NA')                       AS mzmc,
+            ISNULL(z.NAME, 'NA')                       AS mzmc,
             ISNULL(b.HYZK, 'NA')                       AS hyzkdm,
             (
                 SELECT CASE b.HYZK
@@ -751,6 +751,7 @@
             LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON b.SYXH = c.EMRXH
             LEFT JOIN CISDB.dbo.EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
             LEFT JOIN CISDB.dbo.PUB_ZYDMK p ON b.ZYDM = p.ID
+            LEFT JOIN CISDB.dbo.PUB_MZDMK z ON z.ID = b.MZDM
             LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
             m.id = b.RYCW
             AND m.bqdm = b.RYBQ

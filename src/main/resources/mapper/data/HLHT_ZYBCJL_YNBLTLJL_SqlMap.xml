@@ -286,10 +286,10 @@
             parameterType="com.winning.hic.model.EmrQtbljlk">
         SELECT
                 ISNULL(q.QTBLJLXH, 'NA')                   AS yjlxh,
-                c.SYXH                                    AS jzlsh,
-                c.PATID                                   AS patid,
+                c.SYXH                                     AS jzlsh,
+                c.PATID                                    AS patid,
                 ISNULL(b.ZYHM, 'NA')                       AS zyh,
-                ISNULL(m.fjh, 'NA')                        AS rybfmc,
+                ISNULL(m.fjh, 'NA')+ '病房'                AS rybfmc,
                 ISNULL(c.BQDM, 'NA')                       AS bqdm,
                 ISNULL(c.BQMC, 'NA')                       AS bqmc,
                 ISNULL(c.KSDM, 'NA')                       AS ksdm,
@@ -299,6 +299,7 @@
                 ISNULL(b.HZXM, 'NA')                       AS hzxm,
                 ISNULL(b.SFZH, 'NA')                       AS sfzhm,
                 ISNULL(b.BRXB, 'NA')                       AS xbdm,
+
                 (
                     SELECT CASE b.BRXB
                            WHEN '2'
@@ -320,7 +321,7 @@
                             ),
                                 'NA'
         )                                                 AS nls,
-                SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
+                DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
                 q.QTBLJLXH                                AS syxh,
                 q.TJZT                                    AS tjzt,
                 q.YXJL                                    AS yxjl,

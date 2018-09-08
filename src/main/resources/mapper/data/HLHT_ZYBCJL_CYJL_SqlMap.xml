@@ -352,7 +352,7 @@
             ISNULL(c.BQDM, 'NA')                       AS bqdm,
             ISNULL(c.BQMC, 'NA')                       AS bqmc,
             ISNULL(m.fjh, 'NA')                        AS bfh,
-            ISNULL(m.fjh, 'NA')                        AS bfmc,
+            ISNULL(m.fjh, 'NA') + '病房'               AS bfmc,
             ISNULL(b.RYCW, 'NA')                       AS bch,
             ISNULL(b.HZXM, 'NA')                       AS hzxm,
             ISNULL(b.SFZH, 'NA')                       AS sfzhm,
@@ -378,7 +378,7 @@
                     ),
                     'NA'
             )                                         AS nls,
-            SUBSTRING(replace(b.CSRQ, '-', ''), 0, 9) AS nly,
+            DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
             b.RYRQ                                    AS ryrq,
             q.QTBLJLXH                                AS syxh,
             q.TJZT                                    AS tjzt,
