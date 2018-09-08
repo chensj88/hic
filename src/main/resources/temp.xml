@@ -1,0 +1,148 @@
+<Model id="cc351012-4c0f-492d-87e6-9443ec0a8674" name="入院记录(确定诊断)" description="适用于浙江省中医院" text="确定诊断" nodetype="Model"
+       canprint="False" printInOddPages="False" display="11```0`1" Version="1.0.0.159" titledisplay="1`1`1"
+       hospitalcoderange="10266" catalogcode="B-10" illnesstypecode="FFFF" scalemodelxml="" modellogiccontent=""
+       indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass="" maxrefid="34"
+       RelateInstanceId="0">
+    <node id="f3563355-21e3-4e0e-b7f7-4ab45324a3a2" nodetype="DynamicMoleNode" nodelogiccontent="" name="其他" text="其他"
+          description="其他补充内容" otherid="C-11F1" display="20`确定诊断`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="True" nodePrintArea="Right" indentLength="0"/>
+    <Ref id="31">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="cdd1056d-fdcd-4527-ae1c-1f3e88909d53" nodetype="Embeded" nodelogiccontent="" name="确定诊断" text="确定诊断"
+              description="入院记录中的确定诊断信息" display="11```0`1">
+            <node embededId="0" id="049246e3-c5eb-4fe7-b019-02dd81b292cb" nodetype="Object" nodelogiccontent=""
+                  name="确定诊断" signid="确定诊断-中医病名名称|662" text="确定诊断" description="6.202" display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="确定诊断"
+                      signid="确定诊断-中医病名名称|662" text="确定诊断" description="6.001" atomtype="String" minrequired="1"
+                      maxrequired="10" value="E56.901`维生素缺乏`E56.901" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="5"
+                      autoeditnext="True" spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="32">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="3"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="f8ee16cb-6225-4a78-aac0-18c1f6a1f835" nodetype="Embeded" nodelogiccontent="" name="入院诊断" text="入院诊断"
+              description="病人住院后由主治医师首次查房所确定的诊断。" otherid="D-5414" display="11```0`1">
+            <node embededId="0" id="65893b03-3277-42cc-8a6c-aa34ecf4ba62" nodetype="Object" nodelogiccontent=""
+                  name="入院诊断" signid="确定诊断-西医诊断名称|664" text="入院诊断" description="6.203" otherid="E-62103"
+                  display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="入院诊断"
+                      signid="确定诊断-西医诊断名称|664" text="入院诊断" description="6.001" otherid="F-60010" atomtype="String"
+                      minrequired="1" maxrequired="10" value="K74.602`肝硬化`K74.602" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False"
+                      display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0" forbidDel="True"
+                      isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="33">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="af857c27-832f-4210-a80a-de8cf95ee499" nodetype="Embeded" nodelogiccontent="" name="其他诊断" text="其他诊断"
+              description="除主要诊断及医院感染名称外的其他诊断。" otherid="D-5435" display="11```0`1">
+            <node embededId="0" id="03003b01-933f-4b81-97b6-34768da6746f" nodetype="Object" nodelogiccontent=""
+                  name="其他诊断" signid="确定诊断-中医病名名称|662" text="其他诊断" description="6.205" otherid="E-62105"
+                  display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="入院诊断"
+                      signid="确定诊断-中医病名名称|662" text="入院诊断" description="6.001" otherid="F-60010" atomtype="String"
+                      maxrequired="10" value="A00.902`霍乱轻型`A00.902" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="1"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="34">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="af857c27-832f-4210-a80a-de8cf95ee499" nodetype="Embeded" nodelogiccontent="" name="其他诊断" text="其他诊断"
+              description="除主要诊断及医院感染名称外的其他诊断。" otherid="D-5435" display="11```0`1">
+            <node embededId="0" id="03003b01-933f-4b81-97b6-34768da6746f" nodetype="Object" nodelogiccontent=""
+                  name="其他诊断" signid="确定诊断-中医病名名称|662" text="其他诊断" description="6.205" otherid="E-62105"
+                  display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="入院诊断"
+                      signid="确定诊断-中医病名名称|662" text="入院诊断" description="6.001" otherid="F-60010" atomtype="String"
+                      maxrequired="10" value="A01.006`伤寒迁延型`A01.006" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="1"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="15afe4ff-fb88-40db-8e63-a98d0ca932df" nodetype="DynamicMoleNode" nodelogiccontent="" name="确定诊断"
+          text="确定诊断" otherid="C-81" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+          canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+          useDiagContinuedPrint="True" nodePrintArea="Right" indentLength="0">
+        <node text="    中医诊断" rtf="    \'d6\'d0\'d2\'bd\'d5\'ef\'b6\'cf" nodetype="Text"/>
+        <node refid="31" nodetype="Embeded"/>
+        <node text="&#xA;    西医诊断" rtf="\par&#xD;&#xA;\pard     \'ce\'f7\'d2\'bd\'d5\'ef\'b6\'cf" nodetype="Text"/>
+        <node refid="32" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="            " rtf="            " nodetype="Text"/>
+        <node refid="33" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="            " rtf="            " nodetype="Text"/>
+        <node refid="34" nodetype="Embeded"/>
+    </node>
+    <Ref id="26">
+        <node identity="32" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
+              description="病史记录者签名" otherid="D-101189" display="11```0`1">
+            <node embededId="26" id="a6d9fe14-c345-471f-8eb4-2cc0a642e6bf" nodetype="Object" nodelogiccontent=""
+                  name="审核医师" signid="主任医师签名|51" text="审核医师" description="0.230" otherid="E-1011" display="11```0`1">
+                <node id="f98b67e3-e5ca-43d0-a9f3-8a958758f010" nodetype="AtomNode" nodelogiccontent="" name="审核医师"
+                      signid="主任医师签名|51" text="审核医师" description="院内职工表。" otherid="F-2010" atomtype="String"
+                      value="81163`艾永生`81163" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="职工表///EmployeeBook///记录状态//1" inputdirect="False" display="1110111````/```0"
+                      embededId="12" autoeditnext="True" spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="24">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
+              description="病史记录者签名" display="11```0`1">
+            <node embededId="0" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
+                  name="医师签名" signid="主治医师签名|48" text="医师签名" display="11```0`1">
+                <node id="769ca781-6e6c-4eba-8e8e-2e17d78001d7" nodetype="AtomNode" nodelogiccontent="" name="普通医师"
+                      signid="主治医师签名|48" text="医师签名" description="院内职工表。" atomtype="String" minrequired="1"
+                      value="68902`安纯正`68902" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="职工表///EmployeeBook//////" inputdirect="False" display="1111111```````0" embededId="6"
+                      autoeditnext="True" spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="581f3027-3a60-4e0b-9a82-c2d2dee31b73" nodetype="DynamicMoleNode" nodelogiccontent="" name="医师签名"
+          text="医师签名" description="3.571" otherid="C-D6" display="20`医师签名：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="True" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="True" nodePrintArea="Right" indentLength="0">
+        <node refid="26" nodetype="Embeded"/>
+        <node refid="24" nodetype="Embeded"/>
+        <node text="  " rtf="  " nodetype="Text"/>
+    </node>
+    <Ref id="18">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="34e00ca9-f630-4a0a-bb9a-2400a3d7392f" nodetype="Embeded" nodelogiccontent="" name="日期(记录日期)"
+              text="记录日期" display="11```0`1">
+            <node embededId="0" id="fe028248-7533-49c0-8c47-11132c39fbfe" nodetype="Object" nodelogiccontent=""
+                  name="记录日期" text="记录日期" description="各项文书的记录日期。" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="记录日期"
+                      text="记录日期" description="8.001" atomtype="Time" value="636719098200000000`2018-09-07 09:37"
+                      defaultvalue="157`当前日期时间" display="1111011`````yyyy-MM-dd HH:mm+Minute+-+(DTS: )``0" embededId="3"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="602e6095-d362-4fd9-b71a-daf12243307f" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(记录日期)"
+          signid="医师签名日期时间|241" text="日期(记录日期)" description="病程的记录日期" otherid="C-B1" display="20`日期：`&#xD;&#xA;`9`1"
+          permitobjs="" defaultobjs="" allowUserDefine="True" canNotInputText="False" isnewPage="False" canNull="False"
+          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="18" nodetype="Embeded"/>
+    </node>
+</Model>
