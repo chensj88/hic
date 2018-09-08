@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.data.MbzDataColumnDao">
+
+    <resultMap id="mbzDataColumnResultForList" type="com.winning.hic.model.MbzDataColumn">
+         <result column="ID" property="id" jdbcType="BIGINT" />
+         <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+         <result column="SOURCE_TYPE" property="sourceType" jdbcType="BIGINT" />
+         <result column="RECORD_NAME" property="recordName" jdbcType="VARCHAR" />
+         <result column="PY_CODE" property="pyCode" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="mbzDataColumnResult" type="com.winning.hic.model.MbzDataColumn" extends="mbzDataColumnResultForList">
+
+    </resultMap>
+
+    <sql id="sql-mbzDataColumn">
+        <if test="(id != null and id != '')"> and t.ID = #{id} </if>
+        <if test="(tableName != null and tableName != '')"> and t.TABLE_NAME = #{tableName} </if>
+        <if test="(sourceType != null and sourceType != '')"> and t.SOURCE_TYPE = #{sourceType} </if>
+        <if test="(recordName != null and recordName != '')"> and t.RECORD_NAME = #{recordName} </if>
+        <if test="(pyCode != null and pyCode != '')"> and t.PY_CODE = #{pyCode} </if>
+    </sql>
+
+    <insert id="insertMbzDataColumn" parameterType="com.winning.hic.model.MbzDataColumn">
+        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+        INSERT INTO MBZ_DATA_COLUMN
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> ID , </if>
+            <if test="(tableName != null and tableName != '')"> TABLE_NAME , </if>
+            <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE , </if>
+            <if test="(recordName != null and recordName != '')"> RECORD_NAME , </if>
+            <if test="(pyCode != null and pyCode != '')"> PY_CODE , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> #{id , jdbcType= BIGINT },  </if>
+            <if test="(tableName != null and tableName != '')"> #{tableName , jdbcType= VARCHAR },  </if>
+            <if test="(sourceType != null and sourceType != '')"> #{sourceType , jdbcType= BIGINT },  </if>
+            <if test="(recordName != null and recordName != '')"> #{recordName , jdbcType= VARCHAR },  </if>
+            <if test="(pyCode != null and pyCode != '')"> #{pyCode , jdbcType= VARCHAR },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateMbzDataColumn" parameterType="com.winning.hic.model.MbzDataColumn">
+        UPDATE MBZ_DATA_COLUMN
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(id != null and id != '')"> ID = #{id , jdbcType= BIGINT }, </if>
+                <if test="(tableName != null and tableName != '')"> TABLE_NAME = #{tableName , jdbcType= VARCHAR }, </if>
+                <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE = #{sourceType , jdbcType= BIGINT }, </if>
+                <if test="(recordName != null and recordName != '')"> RECORD_NAME = #{recordName , jdbcType= VARCHAR }, </if>
+                <if test="(pyCode != null and pyCode != '')"> PY_CODE = #{pyCode , jdbcType= VARCHAR }, </if>
+            </trim>
+        </set>
+        <where>
+            <if test=" and (map.pks != null and map.size > 0)">
+                and () in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteMbzDataColumn" parameterType="com.winning.hic.model.MbzDataColumn">
+        delete from  MBZ_DATA_COLUMN
+        <where>
+            <if test=" and (map.pks != null and map.size > 0)">
+                and () in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectMbzDataColumn" resultMap="mbzDataColumnResult" parameterType="com.winning.hic.model.MbzDataColumn">
+        SELECT * FROM MBZ_DATA_COLUMN t
+        <where>
+            <include refid="sql-mbzDataColumn" />
+        </where>
+    </select>
+
+    <select id="selectMbzDataColumnList" resultMap="mbzDataColumnResultForList" parameterType="com.winning.hic.model.MbzDataColumn">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM MBZ_DATA_COLUMN t
+        <where>
+            <include refid="sql-mbzDataColumn" />
+        </where>
+        ORDER BY  ASC
+    </select>
+
+    <select id="selectMbzDataColumnCount" resultType="int" parameterType="com.winning.hic.model.MbzDataColumn">
+        select count(1) from  MBZ_DATA_COLUMN t
+        <where>
+            <include refid="sql-mbzDataColumn" />
+        </where>
+    </select>
+
+    <select id="selectMbzDataColumnPageList" resultMap="mbzDataColumnResult" parameterType="com.winning.hic.model.MbzDataColumn">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY  DESC ) AS _RN
+        FROM MBZ_DATA_COLUMN t
+        <where>
+            <include refid="sql-mbzDataColumn" />
+        </where>
+        <!-- order by  asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>

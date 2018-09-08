@@ -239,6 +239,16 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="mustMatch">是否配置</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" name="mustMatch" id="mustMatch">
+                                            <option value="0">否</option>
+                                            <option value="1">是</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <input type="hidden" id="id">
                                 <input type="hidden" id="pId">
                                 <input type="hidden" id="sourceType">
@@ -291,7 +301,7 @@
     var resultData = [];
     var templateTree,dictTree;
     /*初始化变量，为数据复制做准备*/
-    var dataTypeC,dtjddmC,qrmbdmC,qrdxdmC,yzjddmC,dictCodeC,pyCodeC,btC,pIdC,sourceTypeC;
+    var dataTypeC,dtjddmC,qrmbdmC,qrdxdmC,yzjddmC,dictCodeC,pyCodeC,btC,pIdC,sourceTypeC,mustMatchC;
     //页面初始化
     function initWindow(){
         //页面大小响应布局
@@ -455,7 +465,7 @@
      * 复制一行数据
      *
      */
-    function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt) {
+    function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,mustMatch) {
         var bt1 = bt === 'null' ? '0' :bt;
         var data = {row :{
             pid:parseInt(pId),
@@ -469,6 +479,7 @@
             dictCode:dictCode,
             pyCode:pyCode,
             bt:bt1,
+            mustMatch:mustMatch,
             status:1
         },
             index:index+1};
@@ -477,7 +488,7 @@
     /**
      * 选定数据复制到指定字段
      */
-    function openCopyWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt) {
+    function openCopyWindow(pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,mustMatch) {
         $.ajax({
             type: "post",
             url: ctx + "basic/tree",
@@ -514,12 +525,13 @@
         btC = bt;
         pIdC = pId;
         sourceTypeC = sourceType;
+        mustMatchC = mustMatch;
         $('#treeModal').modal('show');
     }
     /**
      * 打开编辑页面
      */
-    function openEditWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status){
+    function openEditWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status,mustMatch){
         $('#id').val(id);
         $('#pId').val(pId);
         $('#recordName').val(recordName);
@@ -537,13 +549,14 @@
         $('#pyCode').val(pyCode);
         $('#bt').val(bt);
         $('#status').val(status);
+        $('#mustMatch').val(mustMatch);
         showOrHideDivByDatatype(dataType);
         $('#editModal').modal('show');
     }
     /**
      * 数据删除
      */
-    function openDeleteWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status){
+    function openDeleteWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status,mustMatch){
         let queryJson = {
             sourceType :sourceType,
             pId:pId
@@ -805,16 +818,16 @@
                         width: '150px',
                         formatter: function (value,row,index) {
                             var add = '<span href="#" class="btn btn-info btn-xs" title="插入新的一行" ' +
-                                'onclick="openAddWindow('+row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+')">' +
+                                'onclick="openAddWindow('+row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+','+row.mustMatch+')">' +
                                 '<i class="glyphicon glyphicon-plus"></i></span> ';
                             var b = '<span href="#" class="btn btn-info btn-xs" title="复制"' +
-                                'onclick="openCopyWindow('+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+')">' +
+                                'onclick="openCopyWindow('+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+','+row.mustMatch+')">' +
                                 '<i class="glyphicon glyphicon-copy"></i></span> ';
                             var e = '<span href="#" class="btn btn-info btn-xs" title="编辑"' +
-                                    'onclick="openEditWindow('+row.id+','+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+','+row.status+')">'+
+                                    'onclick="openEditWindow('+row.id+','+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+','+row.status+','+row.mustMatch+')">'+
                                 '<i class="glyphicon glyphicon-edit"></i></span> ';
                             var d = '<span href="#" class="btn btn-danger btn-xs" title="删除"  ' +
-                                'onclick="openDeleteWindow('+row.id+','+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+','+row.status+')">' +
+                                'onclick="openDeleteWindow('+row.id+','+ row.pid+',\''+row.recordName+'\','+index+',\''+row.sourceType+'\',\''+row.dataType+'\',\''+row.dtjddm+'\',\''+row.qrmbdm+'\',\''+row.qrdxdm+'\',\''+row.yzjddm+'\',\''+row.dictCode+'\',\''+row.pyCode+'\','+row.bt+','+row.status+','+row.mustMatch+')">' +
                                 '<i class="glyphicon glyphicon-trash"></i> </span> ';
                             return add + e + b + d ;
                         }
@@ -868,7 +881,7 @@
                         field: 'bt',
                         align: 'center',
                         title: '必选',
-                        width: '100px',
+                        width: '60px',
                         formatter:function(value,row,index){
                             if(value === 0 || value === null ){
                                 return '非必选';
@@ -881,9 +894,21 @@
                         field: 'dictCode',
                         align: 'center',
                         title: '字典字段',
-                        width: '100px',
+                        width: '70px',
                         formatter:function(value,row,index){
                             if(value !== '0' && value !== '' && value !== null){
+                                return '是';
+                            }else{
+                                return '否';
+                            }
+                        }
+                    },{
+                        field: 'mustMatch',
+                        align: 'center',
+                        title: '是否配置',
+                        width: '70px',
+                        formatter:function(value,row,index){
+                            if(value == '1'){
                                 return '是';
                             }else{
                                 return '否';
@@ -908,6 +933,7 @@
                 qrdxdm:row.qrdxdm,
                 yzjddm:row.yzjddm,
                 bt:row.bt,
+                mustMatch:row.mustMatch,
                 status:row.status
             };
             $.ajax({
@@ -971,7 +997,8 @@
                     recordName:selectNode[0].text,
                     pid:pIdC,
                     sourceType:sourceTypeC,
-                    bt:btC
+                    bt:btC,
+                    mustMatch:mustMatchC
                 };
                 console.log(data);
                 $.ajax({
@@ -1019,6 +1046,7 @@
                 qrdxdm:$('#qrdxdm').val(),
                 yzjddm:$('#yzjddm').val(),
                 bt:$('#bt').val(),
+                mustMatch:$('#mustMatch').val(),
                 status:$('#status').val() == '' ? null : $('#status').val()
             };
             $.ajax({
