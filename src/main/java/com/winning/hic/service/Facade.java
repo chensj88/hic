@@ -121,4 +121,6 @@ public interface Facade {
 
     EmrMbmxkService getEmrMbmxkService();
 
+    MbzDataColumnService getMbzDataColumnService();
+
 }
