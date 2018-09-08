@@ -98,6 +98,13 @@ public class MbzDataSet extends BaseDomain implements Serializable {
      */
     private Long dataLength;
 
+    /**
+     * 字段是否需要配置
+     * 主要用于校验
+     * 0 不需要 1 需要
+     */
+    private Integer mustMatch ;
+
     public MbzDataSet(){
 
     }
@@ -325,5 +332,13 @@ public class MbzDataSet extends BaseDomain implements Serializable {
 
     public void setDataLength(Long dataLength) {
         this.dataLength = dataLength;
+    }
+
+    public Integer getMustMatch() {
+        return mustMatch;
+    }
+
+    public void setMustMatch(Integer mustMatch) {
+        this.mustMatch = mustMatch;
     }
 }

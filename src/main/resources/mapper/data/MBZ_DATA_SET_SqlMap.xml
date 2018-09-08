@@ -17,6 +17,7 @@
          <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
          <result column="BT" property="bt" jdbcType="INTEGER" />
          <result column="DATA_LENGTH" property="dataLength" jdbcType="BIGINT" />
+        <result column="MUST_MATCH" property="mustMatch" jdbcType="INTEGER" />
     </resultMap>
 
     <resultMap id="mbzDataSetResult" type="com.winning.hic.model.MbzDataSet" extends="mbzDataSetResultForList">
@@ -35,8 +36,9 @@
         <if test="(qrmbdm != null )"> and t.QRMBDM = #{qrmbdm} </if>
         <if test="(qrdxdm != null )"> and t.QRDXDM = #{qrdxdm} </if>
         <if test="(yzjddm != null )"> and t.YZJDDM = #{yzjddm} </if>
-        <if test="(bt != null and bt != '')"> and t.BT = #{bt} </if>
+        <if test="(bt != null )"> and t.BT = #{bt} </if>
         <if test="(dataLength != null and dataLength != '')"> and t.DATA_LENGTH = #{dataLength} </if>
+        <if test="(mustMatch != null )"> and t.MUST_MATCH = #{mustMatch} </if>
     </sql>
 
     <insert id="insertMbzDataSet" parameterType="com.winning.hic.model.MbzDataSet">
@@ -53,8 +55,9 @@
             <if test="(qrmbdm != null )"> QRMBDM , </if>
             <if test="(qrdxdm != null )"> QRDXDM , </if>
             <if test="(yzjddm != null )"> YZJDDM , </if>
-            <if test="(bt != null and bt != '')"> BT , </if>
+            <if test="(bt != null )"> BT , </if>
             <if test="(dataLength != null and dataLength != '')"> DATA_LENGTH , </if>
+            <if test="(mustMatch != null )"> MUST_MATCH , </if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -69,8 +72,9 @@
             <if test="(qrmbdm != null )"> #{qrmbdm , jdbcType= VARCHAR },  </if>
             <if test="(qrdxdm != null )"> #{qrdxdm , jdbcType= VARCHAR },  </if>
             <if test="(yzjddm != null )"> #{yzjddm , jdbcType= VARCHAR },  </if>
-            <if test="(bt != null and bt != '')"> #{bt , jdbcType= INTEGER },  </if>
+            <if test="(bt != null )"> #{bt , jdbcType= INTEGER },  </if>
             <if test="(dataLength != null and dataLength != '')"> #{dataLength , jdbcType= BIGINT },  </if>
+            <if test="(mustMatch != null )"> #{mustMatch , jdbcType= INTEGER },  </if>
         </trim>
     </insert>
 
@@ -88,8 +92,9 @@
                 <if test="(qrmbdm != null)"> QRMBDM = #{qrmbdm , jdbcType= VARCHAR }, </if>
                 <if test="(qrdxdm != null)"> QRDXDM = #{qrdxdm , jdbcType= VARCHAR }, </if>
                 <if test="(yzjddm != null)"> YZJDDM = #{yzjddm , jdbcType= VARCHAR }, </if>
-                <if test="(bt != null and bt != '')"> BT = #{bt , jdbcType= INTEGER }, </if>
+                <if test="(bt != null )"> BT = #{bt , jdbcType= INTEGER }, </if>
                 <if test="(dataLength != null and dataLength != '')"> DATA_LENGTH = #{dataLength , jdbcType= BIGINT }, </if>
+                <if test="(mustMatch != null )"> MUST_MATCH = #{mustMatch , jdbcType= INTEGER }, </if>
             </trim>
         </set>
         <where>
