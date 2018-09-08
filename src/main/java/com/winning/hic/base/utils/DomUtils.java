@@ -232,7 +232,7 @@ public class DomUtils {
         String nodeValue = node.attribute(valueAttrName).getValue();
         String nodeDisplay = node.attribute(displayAttrName).getValue();
         String atomtype = node.attribute(atomtypeAttrName).getValue();
-        System.out.println(atomtype);
+       // System.out.println(atomtype);
         String[] split = nodeValue.split("`");
         String value = null;
         if (split.length > 2) {

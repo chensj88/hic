@@ -124,6 +124,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                         ryswjl = this.getHlhtRyjlRyswjl(ryswjl);
                         //解析病历报文xml
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(qtbljlk.getBlnr()));
+                        System.out.println(Base64Utils.unzipEmrXml(qtbljlk.getBlnr()));
                         if(ryswjl != null ){ //判断记录是否已经创建,存在则删除，重新新增
                             HlhtRyjlRyswjl oldRyswjl = new HlhtRyjlRyswjl();
                             oldRyswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
@@ -133,6 +134,126 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                         ryswjl.setYjlxh(String.valueOf(qtbljlk.getQtbljlxh()));
                         ryswjl = this.commonQueryDao.selectInitHlhtRyjlRyswjl(ryswjl);
                         ryswjl = (HlhtRyjlRyswjl) HicHelper.initModelValue(mbzDataSets,document,ryswjl,paramType);
+
+                        //去除入院诊断西医病名和代码的冗余字符串
+                        ryswjl.setRzxyzdbm(ryswjl.getRzxyzdbm() == null ? "NA" : ryswjl.getRzxyzdbm().replace("西医诊断： ", "").trim());
+                        ryswjl.setRzxyzdmc(ryswjl.getRzxyzdmc() == null ? "NA" : ryswjl.getRzxyzdmc().replace("西医诊断： ", "").trim());
+                        //去除入院诊断中医病名和代码的冗余字符串
+                        ryswjl.setRzzybmdm(ryswjl.getRzzybmdm() == null ? "NA" : ryswjl.getRzzybmdm().replace("中医诊断： ", "").trim());
+                        ryswjl.setRzzybmmc(ryswjl.getRzzybmmc() == null ? "NA" : ryswjl.getRzzybmmc().replace("中医诊断： ", "").trim());
+                        //去除入院诊断中医症候和代码的冗余字符串
+                        ryswjl.setRzzyzhdm(ryswjl.getRzzyzhdm() == null ? "NA" : ryswjl.getRzzyzhdm().replace("中医诊断： ", "").trim());
+                        ryswjl.setRzzyzhmc(ryswjl.getRzzyzhmc() == null ? "NA" : ryswjl.getRzzyzhmc().replace("中医诊断： ", "").trim());
+
+                        //去除死亡诊断西医病名和代码的冗余字符串
+                        ryswjl.setSzxyzdbm(ryswjl.getSzxyzdbm() == null ? "NA" : ryswjl.getSzxyzdbm().replace("西医诊断 ： ", "").trim());
+                        ryswjl.setSzxyzdmc(ryswjl.getSzxyzdmc() == null ? "NA" : ryswjl.getSzxyzdmc().replace("西医诊断 ： ", "").trim());
+                        //去除死亡诊断中医病名和代码的冗余字符串
+                        ryswjl.setSzzybmdm(ryswjl.getSzzybmdm() == null ? "NA" : ryswjl.getSzzybmdm().replace("中医 诊断 ： ", "").trim());
+                        ryswjl.setSzzybmmc(ryswjl.getSzzybmmc() == null ? "NA" : ryswjl.getSzzybmmc().replace("中医 诊断 ： ", "").trim());
+                        //去除死亡诊断中医症候和代码的冗余字符串
+                        ryswjl.setSzzyzhdm(ryswjl.getSzzyzhdm() == null ? "NA" : ryswjl.getSzzyzhdm().replace("中医 诊断 ： ", "").trim());
+                        ryswjl.setSzzyzhmc(ryswjl.getSzzyzhmc() == null ? "NA" : ryswjl.getSzzyzhmc().replace("中医 诊断 ： ", "").trim());
+
+                        //入院诊断-中医病名代码、名称处理
+                        if (!"NA".equals(ryswjl.getRzzybmdm())) {
+                            String bmdm = "";
+                            String bm = "";
+                            String[] str = ryswjl.getRzzybmdm().split("  ");
+                            String[] str2 = ryswjl.getRzzybmmc().split("  ");
+                            Character o = new Character('B');
+                            for (int i = 0; str.length > i; i++) {
+                                if (o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i].trim() + " ";
+                                    bm = bm + str2[i].trim() + " ";
+                                }
+                            }
+                            if (StringUtil.isEmptyOrNull(bmdm)) {
+                                ryswjl.setRzzybmdm("NA");
+                            } else {
+                                ryswjl.setRzzybmdm(bmdm);
+                            }
+                            if (StringUtil.isEmptyOrNull(bm)) {
+                                ryswjl.setRzzybmmc("NA");
+                            } else {
+                                ryswjl.setRzzybmmc(bm);
+                            }
+                        }
+
+                        //入院诊断-中医证候代码
+                        if (!"NA".equals(ryswjl.getRzzyzhdm())) {
+                            String bmdm = "";
+                            String bm = "";
+                            String[] str = ryswjl.getRzzyzhdm().split("  ");
+                            String[] str2 = ryswjl.getRzzyzhmc().split("  ");
+                            Character o = new Character('B');
+                            for (int i = 0; str.length > i; i++) {
+                                if (!o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i].trim() + " ";
+                                    bm = bm + str2[i].trim() + " ";
+                                }
+                            }
+                            if (StringUtil.isEmptyOrNull(bmdm)) {
+                                ryswjl.setRzzyzhdm("NA");
+                            } else {
+                                ryswjl.setRzzyzhdm(bmdm);
+                            }
+                            if (StringUtil.isEmptyOrNull(bm)) {
+                                ryswjl.setRzzyzhmc("NA");
+                            } else {
+                                ryswjl.setRzzyzhmc(bm);
+                            }
+                        }
+
+                        //死亡诊断-中医病名代码、名称处理
+                        if (!"NA".equals(ryswjl.getSzzybmdm())) {
+                            String bmdm = "";
+                            String bm = "";
+                            String[] str = ryswjl.getSzzybmdm().split("  ");
+                            String[] str2 = ryswjl.getSzzybmmc().split("  ");
+                            Character o = new Character('B');
+                            for (int i = 0; str.length > i; i++) {
+                                if (o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i].trim() + " ";
+                                    bm = bm + str2[i].trim() + " ";
+                                }
+                            }
+                            if (StringUtil.isEmptyOrNull(bmdm)) {
+                                ryswjl.setSzzybmdm("NA");
+                            } else {
+                                ryswjl.setSzzybmdm(bmdm);
+                            }
+                            if (StringUtil.isEmptyOrNull(bm)) {
+                                ryswjl.setSzzybmmc("NA");
+                            } else {
+                                ryswjl.setSzzybmmc(bm);
+                            }
+                        }
+
+                        //死亡诊断-中医证候代码
+                        if (!"NA".equals(ryswjl.getSzzyzhdm())) {
+                            String bmdm = "";
+                            String bm = "";
+                            String[] str = ryswjl.getSzzyzhdm().split("  ");
+                            String[] str2 = ryswjl.getSzzyzhmc().split("  ");
+                            Character o = new Character('B');
+                            for (int i = 0; str.length > i; i++) {
+                                if (!o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i].trim() + " ";
+                                    bm = bm + str2[i].trim() + " ";
+                                }
+                            }
+                            if (StringUtil.isEmptyOrNull(bmdm)) {
+                                ryswjl.setSzzyzhdm("NA");
+                            } else {
+                                ryswjl.setSzzyzhdm(bmdm);
+                            }
+                            if (StringUtil.isEmptyOrNull(bm)) {
+                                ryswjl.setSzzyzhmc("NA");
+                            } else {
+                                ryswjl.setSzzyzhmc(bm);
+                            }
+                        }
                         this.createHlhtRyjlRyswjl(ryswjl);
                         real_count++;
                     }

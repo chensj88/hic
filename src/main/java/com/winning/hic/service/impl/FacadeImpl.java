@@ -409,4 +409,11 @@ public class FacadeImpl implements Facade {
     public EmrMbmxkService getEmrMbmxkService(){
         return emrMbmxkService;
     }
+    @Autowired
+    MbzDataColumnService mbzDataColumnService;
+
+    public MbzDataColumnService getMbzDataColumnService(){
+        return mbzDataColumnService;
+    }
+
 }

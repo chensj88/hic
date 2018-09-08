@@ -837,12 +837,13 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
-        ISNULL(b.RYCW,'NA') as bch,
+        ISNULL(a.fjh,'NA') +'病房' as bfmc,
+        ISNULL(b.RYCW,'NA') as bch,  ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
+        datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.HZXM as hzxm,
         b.CSRQ AS birth,
-        CASE WHEN b.LXDH is null then '无'
-        WHEN b.LXDH = '' then '无'
+        CASE WHEN b.LXDH is null then 'NA'
+        WHEN b.LXDH = '' then 'NA'
         else b.LXDH end as lxdh,
         ISNULL(b.HYZK,'0') as hyzkdm,
         (
@@ -881,8 +882,7 @@
         '其它'
         END
         ) AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
-        datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
+
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt,
         t.CJSJ as jlrq,
@@ -913,7 +913,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房'  as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
@@ -951,7 +951,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房' as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
@@ -989,7 +989,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房'  as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         b.SFZH as sfzhm,
@@ -1026,7 +1026,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房' as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         CONVERT(DATE,ISNULL(t.FSSJ,'1990-01-01 00:00:00'),120) AS cfrq,
         b.HZXM as hzxm,
@@ -1061,7 +1061,7 @@
         t.QTBLJLXH as yjlxh,
         b.HISSYXH as jzlsh,
         c.PATID as patid,
-        b.ZYHM AS mjzh,
+        ISNULL(CONVERT(VARCHAR,(e.GHXH)),'NA') AS mjzh,
         b.ZYHM as zyh,
         '2' AS jzlb,
         t.QTBLJLXH as zqtysbh,
@@ -1071,7 +1071,7 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
-        ISNULL(a.fjh,'NA') as bfmc,
+        ISNULL(a.fjh,'NA') +'病房' as bfmc,
         ISNULL(b.RYCW,'NA') as bch,
         b.HZXM as hzxm,
         case when b.LXDH ='' then 'NA' else isnull(b.LXDH,'NA') end as lxdh,

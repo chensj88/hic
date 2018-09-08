@@ -2,7 +2,7 @@
        nodetype="Model" canprint="False" printInOddPages="False" display="00`术后首次病程记录``0`1" Version="231"
        titledisplay="1`0`1" hospitalcoderange="10266" catalogcode="B-7601" illnesstypecode="FFFF" scalemodelxml=""
        modellogiccontent="" indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass=""
-       maxrefid="36" RelateInstanceId="0">
+       maxrefid="34" RelateInstanceId="0">
     <Ref id="17">
         <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
               illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
@@ -11,7 +11,7 @@
             <node embededId="0" id="00000000-0000-0000-0003-000000000001" nodetype="Object" nodelogiccontent=""
                   name="病程日期" text="病程日期" description="病程日期" display="11```0`1">
                 <node id="00000000-0000-0000-0004-000000000001" nodetype="AtomNode" nodelogiccontent="" name="病程日期"
-                      text="病程日期" description="病程日期" atomtype="Time" value="636715776000000000`2018-09-03 13:20"
+                      text="病程日期" description="病程日期" atomtype="Time" value="636719295000000000`2018-09-07 15:05"
                       defaultvalue="632761381637031250`2006-2-21 17:02:43"
                       display="1111011`````yyyy-MM-dd HH:mm+Day+-+(DTS: )``0" embededId="1" autoeditnext="True"
                       spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
@@ -33,7 +33,7 @@
                   name="手术日期" signid="手术日期时间|437" text="手术日期" description="5.201" otherid="E-53101" display="11```0`1">
                 <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="手术日期"
                       text="手术日期" description="8.001" otherid="F-80010" atomtype="Time"
-                      value="636715642800000000`2018年09月03日9时38分"
+                      value="636718788000000000`2018年09月07日1时00分00秒"
                       display="1111011`` ```yyyy年MM月dd日HH时mm分+Minute++(DTS: )``0" embededId="7" autoeditnext="True"
                       spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
             </node>
@@ -55,38 +55,8 @@
                   name="术中诊断" signid="术后诊断名称|504" text="术中诊断" description="6.232" otherid="E-62" display="11```0`1">
                 <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术中诊断"
                       text="术中诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
-                      value="I10xx02`高血压`I10xx02" ischoiceatom="True" ChoiceType="ShowList"
+                      value="Q64.311`先天性尿道闭锁`Q64.311" ischoiceatom="True" ChoiceType="ShowList"
                       sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="3"
-                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
-            </node>
-        </node>
-    </Ref>
-    <Ref id="34">
-        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
-              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
-              id="af857c27-832f-4210-a80a-de8cf95ee499" nodetype="Embeded" nodelogiccontent="" name="其他诊断" text="其他诊断"
-              description="除主要诊断及医院感染名称外的其他诊断。" otherid="D-5435" display="11```0`1">
-            <node embededId="0" id="03003b01-933f-4b81-97b6-34768da6746f" nodetype="Object" nodelogiccontent=""
-                  name="其他诊断" signid="术后诊断名称|504" text="其他诊断" description="6.205" otherid="E-62105" display="11```0`1">
-                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术中诊断"
-                      text="术中诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
-                      value="J18.901`肺炎`J18.901" ischoiceatom="True" ChoiceType="ShowList"
-                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="1"
-                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
-            </node>
-        </node>
-    </Ref>
-    <Ref id="35">
-        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
-              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
-              id="af857c27-832f-4210-a80a-de8cf95ee499" nodetype="Embeded" nodelogiccontent="" name="其他诊断" text="其他诊断"
-              description="除主要诊断及医院感染名称外的其他诊断。" otherid="D-5435" display="11```0`1">
-            <node embededId="0" id="03003b01-933f-4b81-97b6-34768da6746f" nodetype="Object" nodelogiccontent=""
-                  name="其他诊断" signid="术后诊断名称|504" text="其他诊断" description="6.205" otherid="E-62105" display="11```0`1">
-                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="术中诊断"
-                      text="术中诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
-                      value="K37xx01`阑尾炎`K37xx01" ischoiceatom="True" ChoiceType="ShowList"
-                      sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="1"
                       autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
             </node>
         </node>
@@ -97,10 +67,6 @@
           canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
           indentLength="0">
         <node refid="30" nodetype="Embeded"/>
-        <node text="  " rtf="  " nodetype="Text"/>
-        <node refid="34" nodetype="Embeded"/>
-        <node text="  " rtf="  " nodetype="Text"/>
-        <node refid="35" nodetype="Embeded"/>
     </node>
     <Ref id="12">
         <node identity="14" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
@@ -111,7 +77,7 @@
                   name="手术部位" signid="手术目标部位名称|438" text="手术部位" description="5.208" otherid="E-5201" display="11```0`1">
                 <node id="752933a0-03d8-4448-899b-0083a456d561" nodetype="AtomNode" nodelogiccontent="" name="手术部位"
                       text="手术部位" description="4.001" otherid="F-40010" atomtype="String" minrequired="1"
-                      value="0013`左下腹`0013" ischoiceatom="True" ChoiceType="ShowList"
+                      value="0019`左大腿`0019" ischoiceatom="True" ChoiceType="ShowList"
                       sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//155///" inputdirect="False"
                       display="1111111```````0" embededId="13" autoeditnext="True" spaceholder="0" forbidDel="True"
                       isComplexShowlist="False"/>
@@ -120,7 +86,7 @@
                   name="手术名称" signid="手术及操作编码|431" text="手术名称" description="5.206" otherid="E-53202" display="11```0`1">
                 <node id="468a187b-fbdf-4b10-9684-3ba52c40fe6c" nodetype="AtomNode" nodelogiccontent="" name="手术名称"
                       text="手术名称" description="3.004" otherid="F-30040" atomtype="String" minrequired="1"
-                      maxrequired="10" value="47.09005`阑尾切除术`47.09005" ischoiceatom="True" ChoiceType="ShowList"
+                      maxrequired="10" value="58.43005`腹腔镜下尿道瘘修补术`58.43005" ischoiceatom="True" ChoiceType="ShowList"
                       sqlstr="院内手术操作字典///CustomOperationBook///记录状态//1" inputdirect="False" display="1111111`` `````0"
                       embededId="3" autoeditnext="True" spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
             </node>
@@ -164,14 +130,14 @@
                   name="诊断名称" signid="诊断依据|783" text="诊断名称" description="6.202" otherid="E-62102" display="11```0`1">
                 <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="诊断名称"
                       text="诊断名称" description="6.001" otherid="F-60010" atomtype="String" minrequired="1"
-                      maxrequired="10" value="J18.901`肺炎`J18.901" ischoiceatom="True" ChoiceType="ShowList"
+                      maxrequired="10" value="A40.901`链球菌败血症`A40.901" ischoiceatom="True" ChoiceType="ShowList"
                       sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False"
                       defaultvalue="#AdmissionDiagICD10`入院主要ICD10`" display="1111111```````0" embededId="1"
                       autoeditnext="True" spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
             </node>
         </node>
     </Ref>
-    <Ref id="36">
+    <Ref id="34">
         <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
               illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
               id="af857c27-832f-4210-a80a-de8cf95ee499" nodetype="Embeded" nodelogiccontent="" name="其他诊断" text="其他诊断"
@@ -180,7 +146,7 @@
                   name="其他诊断" signid="诊断依据|783" text="其他诊断" description="6.205" otherid="E-62105" display="11```0`1">
                 <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="诊断名称"
                       text="诊断名称" description="6.001" otherid="F-60010" atomtype="String" maxrequired="10"
-                      value="I10xx02`高血压`I10xx02" ischoiceatom="True" ChoiceType="ShowList"
+                      value="J44.004`2.慢性支气管炎合并肺部感染`J44.004" ischoiceatom="True" ChoiceType="ShowList"
                       sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False" display="1111111```````0" embededId="1"
                       autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
             </node>
@@ -192,52 +158,43 @@
           permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
         <node refid="32" nodetype="Embeded"/>
         <node text="  " rtf="  " nodetype="Text"/>
-        <node refid="36" nodetype="Embeded"/>
+        <node refid="34" nodetype="Embeded"/>
     </node>
     <node id="4dc6cf05-453f-4c66-9e15-edeaa02cfae1" nodetype="DynamicMoleNode" nodelogiccontent="" name="手术经过"
           signid="手术过程|427" text="手术经过" description="5.110" display="20`手术简要经过：`&#xD;&#xA;`0`1" permitobjs=""
           defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="False"
           canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
           indentLength="0">
-        <node text="阑尾" rtf="\'c0\'bb\'ce\'b2" nodetype="Text"/>
-        <node text="整体" rtf="\'d5\'fb\'cc\'e5" nodetype="Text"/>
-        <node text="切除" rtf="\'c7\'d0\'b3\'fd" nodetype="Text"/>
-        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
-        <node text="避免" rtf="\'b1\'dc\'c3\'e2" nodetype="Text"/>
-        <node text="阑尾炎" rtf="\'c0\'bb\'ce\'b2\'d1\'d7" nodetype="Text"/>
+        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
+        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
+        <node text="手" rtf="\'ca\'d6" nodetype="Text"/>
+        <node text="术" rtf="\'ca\'f5" nodetype="Text"/>
+        <node text="经" rtf="\'be\'ad" nodetype="Text"/>
+        <node text="过" rtf="\'b9\'fd" nodetype="Text"/>
     </node>
     <node id="b3c88c28-51bd-4bcf-b2c1-584108262343" nodetype="DynamicMoleNode" nodelogiccontent="" name="术后处理措施"
           text="术后处理措施" description="术后的处理措施" display="20`术后处理措施：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
           allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
           permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
-        <node text="1" rtf="1" nodetype="Text"/>
-        <node text="~" rtf="~" nodetype="Text"/>
-        <node text="3" rtf="3" nodetype="Text"/>
-        <node text="天" rtf="\'cc\'ec" nodetype="Text"/>
-        <node text="点滴" rtf="\'b5\'e3\'b5\'ce" nodetype="Text"/>
-        <node text="消毒" rtf="\'cf\'fb\'b6\'be" nodetype="Text"/>
-        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
-        <node text="第五天" rtf="\'b5\'da\'ce\'e5\'cc\'ec" nodetype="Text"/>
-        <node text="拆线" rtf="\'b2\'f0\'cf\'df" nodetype="Text"/>
-        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
-        <node text="第七天" rtf="\'b5\'da\'c6\'df\'cc\'ec" nodetype="Text"/>
-        <node text="出院" rtf="\'b3\'f6\'d4\'ba" nodetype="Text"/>
+        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
+        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
+        <node text="术" rtf="\'ca\'f5" nodetype="Text"/>
+        <node text="后" rtf="\'ba\'f3" nodetype="Text"/>
+        <node text="处理" rtf="\'b4\'a6\'c0\'ed" nodetype="Text"/>
+        <node text="措施" rtf="\'b4\'eb\'ca\'a9" nodetype="Text"/>
     </node>
     <node id="82315835-9882-4c48-a8b9-b62d3674e3e7" nodetype="DynamicMoleNode" nodelogiccontent="" name="术后注意事项"
           signid="注意事项|596" text="术后注意事项" description="术后注意事项" display="20`术后注意事项：`&#xD;&#xA;`0`1" permitobjs=""
           defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
           canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
           indentLength="0">
-        <node text="刀口" rtf="\'b5\'b6\'bf\'da" nodetype="Text"/>
-        <node text="远离" rtf="\'d4\'b6\'c0\'eb" nodetype="Text"/>
-        <node text="水" rtf="\'cb\'ae" nodetype="Text"/>
-        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
+        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
+        <node text="术" rtf="\'ca\'f5" nodetype="Text"/>
+        <node text="后" rtf="\'ba\'f3" nodetype="Text"/>
         <node text="注意" rtf="\'d7\'a2\'d2\'e2" nodetype="Text"/>
-        <node text="定期" rtf="\'b6\'a8\'c6\'da" nodetype="Text"/>
-        <node text="消毒" rtf="\'cf\'fb\'b6\'be" nodetype="Text"/>
-        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
-        <node text="避免" rtf="\'b1\'dc\'c3\'e2" nodetype="Text"/>
-        <node text="感染" rtf="\'b8\'d0\'c8\'be" nodetype="Text"/>
+        <node text="事" rtf="\'ca\'c2" nodetype="Text"/>
+        <node text="项" rtf="\'cf\'ee" nodetype="Text"/>
     </node>
     <Ref id="27">
         <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
@@ -247,7 +204,7 @@
             <node embededId="0" id="a6d9fe14-c345-471f-8eb4-2cc0a642e6bf" nodetype="Object" nodelogiccontent=""
                   name="审核医师" text="审核医师" description="0.230" display="11```0`1">
                 <node id="f98b67e3-e5ca-43d0-a9f3-8a958758f010" nodetype="AtomNode" nodelogiccontent="" name="审核医师"
-                      text="审核医师" description="院内职工表。" atomtype="String" value="04711`蔡冬梅`04711" ischoiceatom="True"
+                      text="审核医师" description="院内职工表。" atomtype="String" value="00187`余小艳`00187" ischoiceatom="True"
                       ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1" inputdirect="False"
                       display="1110111````/```0" embededId="12" autoeditnext="True" spaceholder="0" forbidDel="True"
                       isComplexShowlist="False"/>
@@ -262,7 +219,7 @@
             <node embededId="0" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
                   name="医师签名" signid="医师签名|240" text="医师签名" display="11```0`1">
                 <node id="769ca781-6e6c-4eba-8e8e-2e17d78001d7" nodetype="AtomNode" nodelogiccontent="" name="普通医师"
-                      text="医师签名" description="院内职工表。" atomtype="String" value="10256`安镁`10256" ischoiceatom="True"
+                      text="医师签名" description="院内职工表。" atomtype="String" value="00166`沈佳佳`00166" ischoiceatom="True"
                       ChoiceType="ShowList" sqlstr="职工表///EmployeeBook//////" inputdirect="False"
                       display="1111111```````0" embededId="6" autoeditnext="True" spaceholder="0" forbidDel="True"
                       isComplexShowlist="False"/>

@@ -106,6 +106,7 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
                     shscbcjl = getHlhtZybcjlShscbcjl(shscbcjl);
                     //解析病历xml
                     Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                    System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                     //判断是否存在重复,存在则删除，重新新增
                     if(shscbcjl != null ){
                         //初始化数据
