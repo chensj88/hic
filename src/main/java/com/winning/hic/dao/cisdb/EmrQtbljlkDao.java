@@ -29,5 +29,6 @@ public interface EmrQtbljlkDao {
 
     public List<EmrQtbljlk> selectEmrQtbljlkPaginatedList(EmrQtbljlk emrMxmcmlk) throws DataAccessException;
 
-
+    //获取匹配的ID
+    String selectEmrQtbljlkId(String cjsj);
 }

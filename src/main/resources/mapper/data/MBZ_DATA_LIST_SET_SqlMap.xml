@@ -93,6 +93,17 @@
         ORDER BY t.SOURCE_TYPE,t.MODEL_CODE ASC
     </select>
 
+    <!-- 转出入的排序而写的-->
+    <select id="selectMbzDataListSetList2" resultMap="mbzDataListSetResultForList" parameterType="com.winning.hic.model.MbzDataListSet">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM MBZ_DATA_LIST_SET t
+        <where>
+            <include refid="sql-mbzDataListSet" />
+        </where>
+        ORDER BY t.SOURCE_TYPE DESC
+    </select>
+
     <select id="selectMbzDataListSetCount" resultType="int" parameterType="com.winning.hic.model.MbzDataListSet">
         select count(1) from  MBZ_DATA_LIST_SET t
         <where>

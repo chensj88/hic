@@ -221,7 +221,7 @@
         c.BQDM AS bqdm,
         c.BQMC AS bqmc ,
         ISNULL(a.fjh, 'NA') AS bfh,
-        NULL AS bfmc ,
+        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch ,
         t.CJSJ AS jlrq,
         b.BRXB AS xbdm,

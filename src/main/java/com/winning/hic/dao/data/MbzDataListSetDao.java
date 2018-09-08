@@ -34,4 +34,6 @@ public interface MbzDataListSetDao {
     public List<MbzDataListSet> selectMbzDataListSetList(MbzDataListSet mbzDataListSet) throws DataAccessException;
 
     public List<MbzDataListSet> selectMbzDataListSetPageList(MbzDataListSet mbzDataListSet) throws DataAccessException;
+
+    public List<MbzDataListSet> selectMbzDataListSetList2(MbzDataListSet mbzDataListSet)throws DataAccessException;
 }
