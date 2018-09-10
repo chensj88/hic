@@ -743,7 +743,7 @@
         b.RYRQ as ryrq,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
-        t.QTBLJLXH as syxh,
+        t.SYXH as syxh,
         t.TJZT as tjzt,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
@@ -809,7 +809,7 @@
         i.NAME as zylbmc,
         b.RYRQ as ryrq,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
-        t.QTBLJLXH as syxh,
+        t.SYXH as syxh,
         t.TJZT as tjzt,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
         t.YXJL as yxjl
@@ -883,7 +883,7 @@
         END
         ) AS xbmc,
 
-        t.QTBLJLXH as syxh,
+        t.SYXH as syxh,
         t.TJZT as tjzt,
         t.CJSJ as jlrq,
         t.FSSJ as qmrq,
@@ -921,7 +921,7 @@
         (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
-        t.QTBLJLXH as syxh,
+        t.SYXH as syxh,
         t.TJZT as tjzt,
         t.CJSJ as xjrq,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
@@ -961,7 +961,7 @@
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.RYRQ as ryrq,
         t.FSSJ as qmrq,
-        t.QTBLJLXH as syxh,
+        t.SYXH as syxh,
         t.TJZT as tjzt,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
         t.YXJL as yxjl
@@ -998,7 +998,7 @@
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.RYRQ as ryrq,
-        t.QTBLJLXH as syxh,
+        t.SYXH as syxh,
         t.TJZT as tjzt,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
         t.YXJL as yxjl
@@ -1037,7 +1037,7 @@
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         isnull(f.zljh,'NA')  as yljh,
-        t.QTBLJLXH as syxh,
+        t.SYXH as syxh,
         t.TJZT as tjzt,
         t.FSSJ as qmrq,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
@@ -1080,7 +1080,7 @@
         (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
-        t.QTBLJLXH as syxh,
+        t.SYXH as syxh,
         t.TJZT as tjzt,
         ISNULL(t.GXRQ,t.CJSJ) as gxsj,
         t.YXJL as yxjl

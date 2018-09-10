@@ -28,6 +28,15 @@
         .input-length{
             width: 150px;
         }
+        .table-align{
+            white-space:nowrap;
+            overflow:hidden;
+        }
+        .table.table-hover > tr > td{
+            height: 16px;
+            max-height: 20px;
+
+        }
     </style>
 
 </head>
@@ -50,32 +59,43 @@
                             手动抽取
                         </a>
                     </li>
-                    <li>
-                        <a data-toggle="tab" href="#dataList">
-                            数据详情
-                        </a>
-                    </li>
                 </ul>
 
                 <div class="tab-content">
                     <div id="home" class="tab-pane in active">
-                        <div id="treegrid_toolbar">
+                        <div id="listBar">
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label for="exampleInputName2">数据子集:</label>
-                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                                    <select class="form-control input-sm input-length" name="dataSet" id="dataSet" style="width: 200px;">
+                                        <option th:each="list:${dataSet}" th:value="${list.dictValue}"
+                                                th:text="${list.dictLabel }"></option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail2">搜索条件:</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                                    <label >开始日期</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="listStartDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;"/>
+                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar bigger-110"></i>
+                                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label> 结束日期</label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="listEndDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;">
+                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar bigger-110"></i>
+                                                        </span>
+                                    </div>
                                 </div>
 
-                                <button type="button" class="btn btn-primary">搜索</button>
+                                <button id="loadData" type="button" class="btn btn-primary btn-sm">查看数据</button>
                             </form>
-
                         </div>
                         <!--表格区域  -->
-                        <table id="infoTable" class="table-align table-hover"></table>
+                        <table id="dataTable" class="table table-hover table-align"></table>
                     </div>
 
                     <div id="profile" class="tab-pane">
@@ -125,40 +145,6 @@
                         <table id="simple_table"></table>
                     </div>
 
-                    <div id="dataList" class="tab-pane">
-                        <br>
-                        <div id="listBar">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label for="dataSet">数据子集</label>
-                                    <select class="form-control input-sm input-length" name="dataSet" id="dataSet" style="width: 200px;">
-                                        <option th:each="list:${dataSet}" th:value="${list.dictValue}"
-                                                th:text="${list.dictLabel }"></option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label >开始日期</label>
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" id="listStartDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;"/>
-                                        <span class="input-group-addon">
-                                                            <i class="fa fa-calendar bigger-110"></i>
-                                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label> 结束日期</label>
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" id="listEndDate" class="form-control hasDatepicker input-sm input-length" data-date-format="yyyy-mm-dd" style="width: 100px;">
-                                        <span class="input-group-addon">
-                                                            <i class="fa fa-calendar bigger-110"></i>
-                                                        </span>
-                                    </div>
-                                </div>
-                                <button id="loadData" type="button" class="btn btn-primary btn-sm">查看数据</button>
-                            </form>
-                        </div>
-                        <table id="dataTable"></table>
-                    </div>
                 </div>
             </div>
         </div><!-- /span -->
@@ -323,6 +309,14 @@
                 }
             ],
         });
+
+        var param = {
+            sourceType:1,
+            count:10,
+            first:0
+        }
+        initColumnInfo(param);
+
     });
 
 
@@ -412,19 +406,28 @@
     var $dataTable = $('#dataTable');
 
     //初始化参数
-    function
-    initQueryParam(params){
+    function initQueryParam(params){
         var startDate =$("#listStartDate").val();
         var endDate =$("#listEndDate").val();
         var sourceType = $("#dataSet").val();
-
+        var date = new Date();
+        var seperator1 = "-";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
         if(startDate ==null || startDate ==''){
-            toastr.warning('开始时间不能为空');
-            return false;
+            $("#listStartDate").val(currentdate)
+            startDate = currentdate;
         }
         if(endDate ==null || endDate ==''){
-            toastr.warning("结束时间不能为空");
-            return false;
+            $("#listEndDate").val(currentdate);
+            endDate = currentdate;
         }
         startDate =startDate+" 00:00:00";
         endDate =endDate+" 23:59:59";
@@ -453,17 +456,21 @@
 
     $('#loadData').on('click',function(e){
         e.preventDefault();
+        $dataTable.bootstrapTable('destroy');
         initColumnInfo();
 
     });
 
+    $('#dataSet').on('change',function(){
+        $dataTable.bootstrapTable('destroy');
+        initColumnInfo();
+    });
     /**
      * 加载bootstrap Table 字段信息
      */
-    function initColumnInfo(){
-        var param = initQueryParam();
+    function initColumnInfo(param){
         $.ajax({
-            url:  ctx + 'dataList/index',
+            url:  ctx + 'dataList/initColumns',
             data: param,
             type: "post",
             dataType: 'json',
@@ -486,10 +493,10 @@
     function initBootstrapInfo(data) {
         $dataTable.bootstrapTable({
             url: ctx + 'dataList/loadData',
-            height: $(window).height(),
-            striped: true,
+            height: 500,
+            striped: false,
             pagination: true,                   // 是否显示分页（*）
-            sortable: true,                     // 是否启用排序
+            sortable: false,                     // 是否启用排序
             sortOrder: "asc",                   // 排序方式
             sidePagination: "server",           // 分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                      // 初始化加载第一页，默认第一页,并记录
@@ -504,7 +511,7 @@
             sortName: 'yjlxh',
             uniqueId: "yjlxh",                 // 每一行的唯一标识，一般为主键列
             cardView: false,                    // 是否显示详细视图
-            detailView: true,                  // 是否显示父子表
+            detailView: false,                  // 是否显示父子表
             toolbar: '#listBar',
             toolbarAlign: 'left',
             paginationPreText: '上一页',
@@ -516,6 +523,7 @@
         });
         
     }
+
 </script>
 
 </html>

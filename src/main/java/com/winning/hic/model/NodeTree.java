@@ -26,6 +26,14 @@ public class NodeTree {
      * 上级ID
      */
     private Long nodePid ;
+    /**
+     * 拼音码
+     */
+    private String pyCode;
+    /**
+     * 数据源类型
+     */
+    private String sourceType;
 
     public Long getNodeId() {
         return nodeId;
@@ -57,5 +65,21 @@ public class NodeTree {
 
     public void setNodePid(Long nodePid) {
         this.nodePid = nodePid;
+    }
+
+    public String getPyCode() {
+        return pyCode;
+    }
+
+    public void setPyCode(String pyCode) {
+        this.pyCode = pyCode;
+    }
+
+    public String getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(String sourceType) {
+        this.sourceType = sourceType;
     }
 }
