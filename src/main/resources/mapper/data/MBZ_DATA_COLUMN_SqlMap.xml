@@ -100,7 +100,7 @@
     <select id="selectMbzDataColumnPageList" resultMap="mbzDataColumnResult" parameterType="com.winning.hic.model.MbzDataColumn">
         SELECT * FROM (
         SELECT t.* ,
-        ROW_NUMBER() OVER ( ORDER BY  DESC ) AS _RN
+        ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
         FROM MBZ_DATA_COLUMN t
         <where>
             <include refid="sql-mbzDataColumn" />
@@ -108,6 +108,15 @@
         <!-- order by  asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
-
-
+    <!--根据数据源查询所有的字段信息-->
+    <select id="selectAllColumnsBySourceType" parameterType="com.winning.hic.model.MbzDataColumn" resultType="com.winning.hic.model.support.ColumnInfo">
+        select
+          t.RECORD_NAME as  title,
+          t.PY_CODE as field
+        from MBZ_DATA_COLUMN t
+        <where>
+            <include refid="sql-mbzDataColumn" />
+        </where>
+        order by t.ID asc
+    </select>
 </mapper>

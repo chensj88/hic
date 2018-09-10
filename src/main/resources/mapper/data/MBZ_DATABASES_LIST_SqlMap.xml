@@ -111,7 +111,7 @@
     <select id="selectMbzDatabasesListPageList" resultMap="mbzDatabasesListResult" parameterType="com.winning.hic.model.MbzDatabasesList">
         SELECT * FROM (
         SELECT t.* ,
-        ROW_NUMBER() OVER ( ORDER BY  DESC ) AS _RN
+        ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
         FROM MBZ_DATABASES_LIST t
         <where>
             <include refid="sql-mbzDatabasesList" />

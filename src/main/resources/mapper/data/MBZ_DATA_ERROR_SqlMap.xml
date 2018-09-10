@@ -61,7 +61,7 @@
         delete from  MBZ_DATA_ERROR
         <where>
             <if test=" and (map.pks != null and map.pks != '')">
-                and () in
+                and (SOURCE_TYPE) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
         </where>
@@ -95,7 +95,7 @@
     <select id="selectMbzDataErrorPageList" resultMap="mbzDataErrorResult" parameterType="com.winning.hic.model.MbzDataError">
         SELECT * FROM (
         SELECT t.* ,
-        ROW_NUMBER() OVER ( ORDER BY  DESC ) AS _RN
+        ROW_NUMBER() OVER ( ORDER BY t.SOURCE_TYPE DESC ) AS _RN
         FROM MBZ_DATA_ERROR t
         <where>
             <include refid="sql-mbzDataError" />
