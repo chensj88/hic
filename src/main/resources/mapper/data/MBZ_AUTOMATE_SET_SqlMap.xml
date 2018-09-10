@@ -127,7 +127,7 @@
     <select id="selectMbzAutomateSetPageList" resultMap="mbzAutomateSetResult" parameterType="com.winning.hic.model.MbzAutomateSet">
         SELECT * FROM (
         SELECT t.* ,
-        ROW_NUMBER() OVER ( ORDER BY  DESC ) AS _RN
+        ROW_NUMBER() OVER ( ORDER BY  t.EXCEUTE DESC ) AS _RN
         FROM MBZ_AUTOMATE_SET t
         <where>
             <include refid="sql-mbzAutomateSet" />

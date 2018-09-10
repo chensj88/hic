@@ -346,7 +346,7 @@
             parameterType="com.winning.hic.model.HlhtZybcjlSqtl">
         SELECT * FROM (
         SELECT t.* ,
-        ROW_NUMBER() OVER ( ORDER BY DESC ) AS _RN
+       ROW_NUMBER() OVER ( ORDER BY t.yjlxh DESC ) AS _RN
         FROM HLHT_ZYBCJL_SQTL t
         <where>
             <include refid="sql-hlhtZybcjlSqtl"/>
