@@ -513,6 +513,7 @@
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
         ISNULL(a.fjh, 'NA') AS bfh,
+        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch,
         b.HZXM AS hzxm,
         b.SFZH AS sfzhm,
@@ -538,7 +539,7 @@
         ),
         ''''
         ) AS nls,
-        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
+        SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
         b.HYZK AS hyzkdm,
         CASE b.HYZK
         WHEN '0' THEN

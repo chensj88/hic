@@ -301,10 +301,22 @@
         c.BQDM as bqdm,
         c.BQMC as bqmc ,
         ISNULL(a.fjh, 'NA') AS bfh,
-        NULL as bfmc,
+        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM as bch,
         b.HZXM as hzxm,
-        b.SFZH as sfzhm,b.BRXB as xbdm,c.SEX as xbmc,
+        b.SFZH as sfzhm,b.BRXB as xbdm,
+        (
+        SELECT CASE b.BRXB
+        WHEN '2'
+        THEN
+        '女'
+        WHEN '1'
+        THEN
+        '男'
+        ELSE
+        '其它'
+        END
+        ) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
         SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly,
         ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
