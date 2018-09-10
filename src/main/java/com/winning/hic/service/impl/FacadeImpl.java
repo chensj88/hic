@@ -15,6 +15,9 @@ import org.springframework.stereotype.Component;
 public class FacadeImpl implements Facade {
 
     @Autowired
+    EmrHzsqdjlkService emrHzsqdjlkService;
+
+    @Autowired
     EmrMxmcmlkService emrMxmcmlkService;
 
     @Autowired
@@ -169,6 +172,11 @@ public class FacadeImpl implements Facade {
 
     @Autowired
     MbzDataErrorService mbzDataErrorService;
+
+    @Override
+    public EmrHzsqdjlkService getEmrHzsqdjlkService() {
+        return emrHzsqdjlkService;
+    }
 
     public HlhtBlgyJbjkxxService getHlhtBlgyJbjkxxService() {
         return hlhtBlgyJbjkxxService;

@@ -141,7 +141,6 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
                             zkjl.setYjlxh(yjlxh);
                             zkjl =this.getHlhtZybcjlZkjl(zkjl);
-                            System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             try {
                                 zkjl = (HlhtZybcjlZkjl) HicHelper.initModelValue(mbzDataSetList, document, zkjl, paramTypeMap);

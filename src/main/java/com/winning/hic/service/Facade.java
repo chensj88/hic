@@ -9,6 +9,8 @@ package com.winning.hic.service;
 */
 public interface Facade {
 
+    EmrHzsqdjlkService getEmrHzsqdjlkService();
+
     EmrMxmcmlkService getEmrMxmcmlkService();
 
     EmrQtbljlkService getEmrQtbljlkService();
