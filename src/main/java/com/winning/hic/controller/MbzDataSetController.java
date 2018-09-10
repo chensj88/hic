@@ -116,6 +116,10 @@ public class MbzDataSetController extends BaseController {
     )
     @GetMapping("/basic/plist")
     public Map<String, Object> loadBasicTemplateInfoList(Row row, MbzDataSet dataSet, Integer config){
+        //sourceType等于0 则查看全部
+        if("0".equals(dataSet.getSourceType())){
+            dataSet.setSourceType(null);
+        }
         dataSet.setPId(0L);
         dataSet.setRow(row);
         Map<String, Object> result = new HashMap<String, Object>();

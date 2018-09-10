@@ -1,12 +1,16 @@
 package com.winning.hic.controller;
 
+import com.winning.hic.model.MbzDictInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Time: 15:25
  */
 @Controller
-public class PageController {
+public class PageController extends BaseController {
 
     @ApiOperation(value = "首页信息",notes = "")
     @RequestMapping(value = "/",method = RequestMethod.GET)
@@ -53,7 +57,13 @@ public class PageController {
 
     @ApiOperation(value = "跳转数据初始化页面",notes = "跳转初始化页面")
     @GetMapping(value = "/init/initData")
-    public String initDataPage(){
+    public String initDataPage(Model model){
+        //获取数据子集
+        MbzDictInfo temp2 = new MbzDictInfo();
+        temp2.setDictCode("platformTableName");
+        List<MbzDictInfo> dictList = super.getFacade().getMbzDictInfoService().getMbzDictInfoList(temp2);
+        resultMap.put("dataSet", dictList);
+        model.addAllAttributes(resultMap);
         return "init/index";
     }
 }
