@@ -10,6 +10,7 @@ import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlSqxjDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.EmrQtbljlkService;
 import com.winning.hic.service.HlhtZybcjlSqxjService;
@@ -20,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +49,9 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
     private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
+
 
     public int createHlhtZybcjlSqxj(HlhtZybcjlSqxj hlhtZybcjlSqxj){
         return this.hlhtZybcjlSqxjDao.insertHlhtZybcjlSqxj(hlhtZybcjlSqxj);
@@ -113,21 +118,33 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
                     emr_count = emr_count+qtbljlkList.size();
                     if(qtbljlkList != null && qtbljlkList.size() > 0 ){
                         for (EmrQtbljlk emrQtbljlk : qtbljlkList) {
-                            HlhtZybcjlSqxj sqxj = new HlhtZybcjlSqxj();
-                            sqxj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                            sqxj = this.getHlhtZybcjlSqxj(sqxj);
+                            HlhtZybcjlSqxj obj = new HlhtZybcjlSqxj();
+                            obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            obj = this.getHlhtZybcjlSqxj(obj);
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
 
-                            if(sqxj != null){ //删除历史数据
+                            if(obj != null){ //删除历史数据
                                 HlhtZybcjlSqxj oldSqxj  = new HlhtZybcjlSqxj();
                                 oldSqxj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                                 this.removeHlhtZybcjlSqxj(oldSqxj);
+
+                                //清除日志
+                                Map<String,Object> param = new HashMap<>();
+                                param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                                param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE);
+                                mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                             }
-                            sqxj = new HlhtZybcjlSqxj();
-                            sqxj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                            sqxj = this.commonQueryDao.selectInitHlhtZybcjlSqxj(sqxj);
-                            sqxj = (HlhtZybcjlSqxj) HicHelper.initModelValue(mbzDataSetList,document,sqxj,paramTypeMap);
-                            this.createHlhtZybcjlSqxj(sqxj);
+                            obj = new HlhtZybcjlSqxj();
+                            obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            obj = this.commonQueryDao.selectInitHlhtZybcjlSqxj(obj);
+                            obj = (HlhtZybcjlSqxj) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
+                            this.createHlhtZybcjlSqxj(obj);
+                            //插入日志
+                            mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                    Long.parseLong(Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE),
+                                    emrQtbljlk.getQtbljlxh(), emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                    obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                                    obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm()));
                             real_count++;
                         }
                     }else{

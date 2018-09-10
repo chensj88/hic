@@ -10,6 +10,7 @@ import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlSqtlDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlSqtlService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +48,8 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
     private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtZybcjlSqtl(HlhtZybcjlSqtl hlhtZybcjlSqtl){
         return this.hlhtZybcjlSqtlDao.insertHlhtZybcjlSqtl(hlhtZybcjlSqtl);
@@ -111,21 +115,32 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
                     emr_count = emr_count+qtbljlkList.size();
                     if(qtbljlkList != null && qtbljlkList.size() > 0 ){
                         for (EmrQtbljlk emrQtbljlk : qtbljlkList) {
-                            HlhtZybcjlSqtl sqtl = new HlhtZybcjlSqtl();
-                            sqtl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                            sqtl = this.getHlhtZybcjlSqtl(sqtl);
+                            HlhtZybcjlSqtl obj = new HlhtZybcjlSqtl();
+                            obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            obj = this.getHlhtZybcjlSqtl(obj);
                             System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                            if(sqtl != null){ //删除历史数据
+                            if(obj != null){ //删除历史数据
                                 HlhtZybcjlSqtl oldSqtl  = new HlhtZybcjlSqtl();
                                 oldSqtl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                                 this.removeHlhtZybcjlSqtl(oldSqtl);
+
+                                //清除日志
+                                Map<String,Object> param = new HashMap<>();
+                                param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                                param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_SQTL_SOURCE_TYPE);
+                                mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                             }
-                            sqtl = new HlhtZybcjlSqtl();
-                            sqtl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                            sqtl = this.commonQueryDao.selectInitHlhtZybcjlSqtl(sqtl);
-                            sqtl = (HlhtZybcjlSqtl) HicHelper.initModelValue(mbzDataSetList,document,sqtl,paramTypeMap);
-                            this.createHlhtZybcjlSqtl(sqtl);
+                            obj = new HlhtZybcjlSqtl();
+                            obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            obj = this.commonQueryDao.selectInitHlhtZybcjlSqtl(obj);
+                            obj = (HlhtZybcjlSqtl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
+                            this.createHlhtZybcjlSqtl(obj);
+                            mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                    Long.parseLong(Constants.WN_ZYBCJL_SQTL_SOURCE_TYPE),
+                                    emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                    obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                                    obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm()));
                             real_count++;
 
                         }

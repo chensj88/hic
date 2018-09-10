@@ -10,6 +10,7 @@ import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZqgzxxSstysDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZqgzxxSstysService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +51,8 @@ public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
     private EmrQtbljlkDao emrQtbljlkDao;
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtZqgzxxSstys(HlhtZqgzxxSstys hlhtZqgzxxSstys) {
         return this.hlhtZqgzxxSstysDao.insertHlhtZqgzxxSstys(hlhtZqgzxxSstys);
@@ -136,11 +140,23 @@ public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
                             HlhtZqgzxxSstys oldObj = new HlhtZqgzxxSstys();
                             oldObj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             this.removeHlhtZqgzxxSstys(oldObj);
+
+                            //清除日志
+                            Map<String,Object> param = new HashMap<>();
+                            param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                            param.put("SOURCE_TYPE",Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE);
+                            mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                         }
                         obj = new HlhtZqgzxxSstys();
                         obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                         obj = this.commonQueryDao.selectInitHlhtZqgzxxSstys(obj);
                         obj = (HlhtZqgzxxSstys) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                        //插入日志
+                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                Long.parseLong(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE),
+                                emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                                obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm()));
                         this.createHlhtZqgzxxSstys(obj);
                         real_count++;
 
