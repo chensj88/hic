@@ -35,7 +35,7 @@ public class DataDetailController extends BaseController {
      * @param endDate
      * @return
      */
-    @ApiOperation(value = "/dataList/initColumns",notes = "根据数据源表获取字段信息")
+    @ApiOperation(value = "/dataList/loadList",notes = "分页方法")
     @ApiImplicitParams(
             {
                     @ApiImplicitParam(name = "dataInfo",value = "字段信息",required = true,dataType = "MbzDataColumn"),
