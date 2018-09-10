@@ -111,42 +111,55 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
 
                 if(qtbljlkList != null){
                     for(EmrQtbljlk emrQtbljlk:qtbljlkList){
-                        HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
-                        zkjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                        zkjl = this.getHlhtZybcjlZkjl(zkjl);
+                        if(emrQtbljlk.getMxfldm().equals("B-8405")){ //转出记录
+                            HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
+                            zkjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            zkjl = this.getHlhtZybcjlZkjl(zkjl);
 
-                        if(zkjl != null ){
-                            //初始化数据
-                            HlhtZybcjlZkjl oldRcyjl  = new HlhtZybcjlZkjl();
-                            oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                            this.removeHlhtZybcjlZkjl(oldRcyjl);
-                        }
-                        HlhtZybcjlZkjl entity = new HlhtZybcjlZkjl();
-                        entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                        entity = this.getInitialHlhtZybcjlZkjl(entity);
-                        System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                        Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                        try {
-                            entity = (HlhtZybcjlZkjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
-                            //获取类型
-                            if("B-8408".equals(emrQtbljlk.getMxfldm())){
-                                entity.setZkjllx("1");
-                                entity.setZkjllxmc("转入记录");
-                            }else{
-                                entity.setZkjllx("2");
-                                entity.setZkjllxmc("转出记录");
+                            if(zkjl != null ){
+                                //初始化数据
+                                HlhtZybcjlZkjl oldRcyjl  = new HlhtZybcjlZkjl();
+                                oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                                this.removeHlhtZybcjlZkjl(oldRcyjl);
                             }
+                            HlhtZybcjlZkjl entity = new HlhtZybcjlZkjl();
+                            entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
+                            entity = this.getInitialHlhtZybcjlZkjl(entity);
+                            Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                            try {
+                                entity = (HlhtZybcjlZkjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
+                                //获取类型
+                                entity.setZkjllxmc("转出记录");
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            this.createHlhtZybcjlZkjl(entity);
 
-                        } catch (ParseException e) {
-                            e.printStackTrace();
+                        }else{ //转入记录
+                            //找出对应的转出记录，update它的值
+                            String yjlxh = emrQtbljlkDao.selectEmrQtbljlkId(emrQtbljlk.getCjsj());
+                            HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
+                            zkjl.setYjlxh(yjlxh);
+                            zkjl =this.getHlhtZybcjlZkjl(zkjl);
+                            System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                            Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                            try {
+                                zkjl = (HlhtZybcjlZkjl) HicHelper.initModelValue(mbzDataSetList, document, zkjl, paramTypeMap);
+                                //获取类型
+                                zkjl.setZkjllxmc("转入记录");
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            this.modifyHlhtZybcjlZkjl(zkjl);
                         }
-                        this.createHlhtZybcjlZkjl(entity);
                         real_count++;
 
                     }
                 }
 
             }
+
 
 
         }catch (Exception e){
