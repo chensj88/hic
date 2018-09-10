@@ -424,4 +424,11 @@ public class FacadeImpl implements Facade {
         return mbzDataColumnService;
     }
 
+    @Autowired
+    MbzLoadDataInfoService mbzLoadDataInfoService;
+
+    public MbzLoadDataInfoService getMbzLoadDataInfoService(){
+        return mbzLoadDataInfoService;
+    }
+
 }

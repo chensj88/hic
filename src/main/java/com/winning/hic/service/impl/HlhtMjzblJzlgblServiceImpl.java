@@ -4,10 +4,7 @@ import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
-import com.winning.hic.dao.data.HlhtMjzblJzlgblDao;
-import com.winning.hic.dao.data.MbzDataListSetDao;
-import com.winning.hic.dao.data.MbzDataSetDao;
-import com.winning.hic.dao.data.MbzDictInfoDao;
+import com.winning.hic.dao.data.*;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtMjzblJzlgblService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -20,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +48,8 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
 
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtMjzblJzlgbl(HlhtMjzblJzlgbl hlhtMjzblJzlgbl){
         return this.hlhtMjzblJzlgblDao.insertHlhtMjzblJzlgbl(hlhtMjzblJzlgbl);
@@ -156,13 +156,18 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         Document bcDocument = null;
                         Document syDocument = null;
-                        System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         //判断是否存在重复,存在则删除，重新新增
                         if (obj != null) {
                             //初始化数据
                             HlhtMjzblJzlgbl oldObj = new HlhtMjzblJzlgbl();
                             oldObj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             this.removeHlhtMjzblJzlgbl(oldObj);
+
+                            //清除日志
+                            Map<String,Object> param = new HashMap<>();
+                            param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                            param.put("SOURCE_TYPE",Constants.WN_MJZBL_JZLGBL_SOURCE_TYPE);
+                            mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                         }
 
                         EmrQtbljlk coQtbljlk = new EmrQtbljlk();
@@ -236,6 +241,13 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                             obj.setHzqxdm(code.toString().substring(0,code.length()-1));
                         }
                         this.createHlhtMjzblJzlgbl(obj);
+
+                        //插入日志
+                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                Long.parseLong(Constants.WN_MJZBL_JZLGBL_SOURCE_TYPE),
+                                emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                                obj.getKsmc(),obj.getKsdm(), "NA","NA", obj.getSfzhm()));
                         real_count++;
 
                     }

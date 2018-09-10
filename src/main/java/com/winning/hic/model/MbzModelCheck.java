@@ -105,6 +105,21 @@ public class MbzModelCheck extends BaseDomain implements Serializable {
      */
     private Integer bt;
 
+    /**
+     * 字段名：MUST_MATCH
+     * 备注:
+     * 默认值：无
+     */
+    private Integer mustMatch;
+
+    /**
+     * 字段名：PY_CODE
+     * 备注:
+     * 默认值：无
+     */
+    private String pyCode;
+
+
     public Integer getBt() {
         return bt;
     }
@@ -343,4 +358,19 @@ public class MbzModelCheck extends BaseDomain implements Serializable {
         this.modelCode = modelCode;
     }
 
+    public Integer getMustMatch() {
+        return mustMatch;
+    }
+
+    public void setMustMatch(Integer mustMatch) {
+        this.mustMatch = mustMatch;
+    }
+
+    public String getPyCode() {
+        return pyCode;
+    }
+
+    public void setPyCode(String pyCode) {
+        this.pyCode = pyCode;
+    }
 }

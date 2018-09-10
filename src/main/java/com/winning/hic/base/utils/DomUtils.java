@@ -59,15 +59,13 @@ public class DomUtils {
         System.out.println(resolveNodeInfo(rootElement, info));
 
         String ss = "1010111";
-        for(int i=0;i<ss.length();i++){
+        for (int i = 0; i < ss.length(); i++) {
             Character c = ss.charAt(i);
-            Character o=new Character('0');
-            if(c.equals(o)){
-                System.out.println("i="+i);
+            Character o = new Character('0');
+            if (c.equals(o)) {
+                System.out.println("i=" + i);
             }
         }
-
-
 
 
     }
@@ -96,6 +94,7 @@ public class DomUtils {
     }
 
     public static String resolveNodeInfo(Element rootElement, MbzDataSet info) {
+        StringBuilder builder = new StringBuilder();
         //获取所有的node子节点
         List<Element> nodeChildList = rootElement.elements(nodeTagName);
         //定义需要的node子节点
@@ -105,13 +104,18 @@ public class DomUtils {
             Attribute idAttr = childEle.attribute(idAttrName);
             if (idAttr != null && info.getDtjddm().equals(idAttr.getValue())) {
                 dynamicModelNode = childEle;
+                //判断节点是否可视
                 break;
             }
         }
-        StringBuilder builder = new StringBuilder();
-        String dynamicDisplay =dynamicModelNode.attribute(displayAttrName).getValue();
-        String[] slipt_display =dynamicDisplay.split("`");
-        if(slipt_display[0].equals("20")&&slipt_display[3].equals("9")&& StringUtils.isEmpty(info.getDictCode())&&info.getPyCode().equals("bltd")){
+        String visiable = XmlUtil.getValueByAttrName(dynamicModelNode, "visiable");
+        if ("False".equalsIgnoreCase(visiable)) {
+            builder.append("");
+            return builder.toString();
+        }
+        String dynamicDisplay = dynamicModelNode.attribute(displayAttrName).getValue();
+        String[] slipt_display = dynamicDisplay.split("`");
+        if (slipt_display[0].equals("20") && slipt_display[3].equals("9") && StringUtils.isEmpty(info.getDictCode()) && info.getPyCode().equals("bltd")) {
             builder.append(slipt_display[1]);
         }
 
@@ -119,17 +123,23 @@ public class DomUtils {
         List<Element> dynamicChildNodeList = dynamicModelNode.elements(nodeTagName);
 
         for (Element element : dynamicChildNodeList) {
+            //判断节点是否可视
+            String val = XmlUtil.getValueByAttrName(element, "visiable");
+            if ("False".equalsIgnoreCase(val)) {
+                builder.append("");
+                continue;
+            }
             Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
             if (StringUtil.isEmptyOrNull(info.getQrmbdm())) {
 
                 if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) { //文本节点
-                    builder.append(" "+resolveString(element.attribute(textAttrName).getValue()).trim());
+                    builder.append(" " + resolveString(element.attribute(textAttrName).getValue()).trim());
                 } else if (nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())) { //引入节点
-                    builder.append(" "+resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info).trim());
+                    builder.append(" " + resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info).trim());
                 }
             } else {
                 if (nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())) { //引入节点
-                    builder.append(" "+resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info).trim());
+                    builder.append(" " + resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info).trim());
                 }
             }
 
@@ -159,13 +169,24 @@ public class DomUtils {
         }
         //获取基础模板元素
         Element refChildElement = refElement.element(nodeTagName);
+        String val = XmlUtil.getValueByAttrName(refChildElement, "visiable");
+        if ("False".equalsIgnoreCase(val)) {
+            builder.append("");
+            return builder.toString();
+        }
         //基础模板id
         String qrmbdm = info.getQrmbdm();
-        if ((!StringUtil.isEmptyOrNull(qrmbdm)&&qrmbdm.equals(refChildElement.attribute(idAttrName).getValue()))||StringUtil.isEmptyOrNull(qrmbdm)) {
+        if ((!StringUtil.isEmptyOrNull(qrmbdm) && qrmbdm.equals(refChildElement.attribute(idAttrName).getValue())) || StringUtil.isEmptyOrNull(qrmbdm)) {
             //获取基础模板元素子节点集合
             List<Element> embededElementList = refChildElement.elements(nodeTagName);
             //遍历解析基础模板子节点
             for (Element element : embededElementList) {
+                //判断节点是否可视
+                String visiable = XmlUtil.getValueByAttrName(element, "visiable");
+                if ("False".equalsIgnoreCase(visiable)) {
+                    builder.append("");
+                    continue;
+                }
                 //获取节点类型属性
                 Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
                 //获取节点ID属性
@@ -198,8 +219,19 @@ public class DomUtils {
      */
     private static String resolveObjectNode(Element objElement, MbzDataSet info) {
         StringBuilder builder = new StringBuilder();
+        String visiable = XmlUtil.getValueByAttrName(objElement, "visiable");
+        if ("False".equalsIgnoreCase(visiable)) {
+            builder.append("");
+            return builder.toString();
+        }
         List<Element> objectChildList = objElement.elements(nodeTagName);
         for (Element element : objectChildList) {
+            //判断节点是否可视
+            String val = XmlUtil.getValueByAttrName(element, "visiable");
+            if ("False".equalsIgnoreCase(val)) {
+                builder.append("");
+                continue;
+            }
             //获取节点类型属性
             Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
             //获取节点ID属性
@@ -229,20 +261,27 @@ public class DomUtils {
      * @return
      */
     public static String resolveAtomNode(Element node, MbzDataSet info) {
+        String value = null;
+        //判断节点是否可视
+        String visiable = XmlUtil.getValueByAttrName(node, "visiable");
+        if ("False".equalsIgnoreCase(visiable)) {
+            value = "";
+            return value;
+        }
         String nodeValue = node.attribute(valueAttrName).getValue();
         String nodeDisplay = node.attribute(displayAttrName).getValue();
         String atomtype = node.attribute(atomtypeAttrName).getValue();
-       // System.out.println(atomtype);
+        // System.out.println(atomtype);
         String[] split = nodeValue.split("`");
-        String value = null;
+
         if (split.length > 2) {
-            if (!StringUtil.isEmptyOrNull(info.getDictCode())&&info.getDictCode().equals("1")) {
+            if (!StringUtil.isEmptyOrNull(info.getDictCode()) && info.getDictCode().equals("1")) {
                 value = resolveString(split[0]);
             } else {
                 value = resolveString(split[1].trim());
             }
         } else if (split.length == 2) {
-            if (!StringUtil.isEmptyOrNull(info.getDictCode())&&info.getDictCode().equals("1")) {
+            if (!StringUtil.isEmptyOrNull(info.getDictCode()) && info.getDictCode().equals("1")) {
                 value = resolveString(split[0]);
             } else {
                 value = split[1].trim();
@@ -252,17 +291,17 @@ public class DomUtils {
         } else if (split.length == 1) {
             value = split[0];
         }
-        String[] split_display=nodeDisplay.split("`");
-        if(StringUtils.isEmpty(info.getQrmbdm())){
-            for(int i=0;i<split_display[0].length();i++){
+        String[] split_display = nodeDisplay.split("`");
+        if (StringUtils.isEmpty(info.getQrmbdm())) {
+            for (int i = 0; i < split_display[0].length(); i++) {
                 Character s = split_display[0].charAt(i);
-                Character o=new Character('0');
-                if(s.equals(o)&&i<=2){
-                    value =split_display[i+1] + value;
-                }else if(s.equals(o)&&i>2){
-                    if(StringUtils.isEmpty(value)){
-                    }else{
-                        value =value + split_display[i+1];
+                Character o = new Character('0');
+                if (s.equals(o) && i <= 2) {
+                    value = split_display[i + 1] + value;
+                } else if (s.equals(o) && i > 2) {
+                    if (StringUtils.isEmpty(value)) {
+                    } else {
+                        value = value + split_display[i + 1];
                     }
                 }
             }
@@ -289,7 +328,7 @@ public class DomUtils {
          *  </rows>
          * </MonitorData>
          */
-        if(str.contains("MonitorData")){
+        if (str.contains("MonitorData")) {
             StringBuilder stringBuilder = new StringBuilder();
             System.out.println(str);
             Document document = XmlUtil.getDocument(str);
@@ -297,7 +336,7 @@ public class DomUtils {
             List<Element> nodeChildList = rootElement.elements("rows");
             for (Element element : nodeChildList) {
                 Element element1 = element.element("Zddm");
-                stringBuilder.append(element1.getStringValue()+" ");
+                stringBuilder.append(element1.getStringValue() + " ");
             }
             return stringBuilder.toString();
         }

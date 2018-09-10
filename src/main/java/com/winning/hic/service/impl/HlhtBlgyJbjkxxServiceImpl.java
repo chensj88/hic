@@ -1,16 +1,21 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.base.Constants;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtBlgyJbjkxxDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.HlhtBlgyJbjkxx;
 import com.winning.hic.model.MbzDataCheck;
+import com.winning.hic.model.MbzLoadDataInfo;
 import com.winning.hic.service.HlhtBlgyJbjkxxService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -28,6 +33,9 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
     private HlhtBlgyJbjkxxDao hlhtBlgyJbjkxxDao;
     @Autowired
     private CommonQueryDao commonQueryDao;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
+
     public int createHlhtBlgyJbjkxx(HlhtBlgyJbjkxx hlhtBlgyJbjkxx){
         return this.hlhtBlgyJbjkxxDao.insertHlhtBlgyJbjkxx(hlhtBlgyJbjkxx);
     }
@@ -65,14 +73,28 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
         List<HlhtBlgyJbjkxx> jbjkxxList = commonQueryDao.selectInitHlhtBlgyJbjkxx(jbjkxx);
         List<HlhtBlgyJbjkxx> jbjkxxListMZ = commonQueryDao.selectInitHlhtBlgyJbjkxxForMz(jbjkxx);
         jbjkxxList.addAll(jbjkxxListMZ);
-        for (HlhtBlgyJbjkxx jbxx : jbjkxxList) {
+        for (HlhtBlgyJbjkxx obj : jbjkxxList) {
             //清除历史数据
             HlhtBlgyJbjkxx tempJbxx = new HlhtBlgyJbjkxx();
-            tempJbxx.setYjlxh(jbxx.getYjlxh());
+            tempJbxx.setYjlxh(obj.getYjlxh());
             this.hlhtBlgyJbjkxxDao.deleteHlhtBlgyJbjkxx(tempJbxx);
-            logger.info("Model:{}", jbxx);
+            //清除日志
+            Map<String,Object> param = new HashMap<>();
+            param.put("SOURCE_ID",obj.getYjlxh());
+            param.put("SOURCE_TYPE",Constants.WN_BLGY_JBJKXX_SOURCE_TYPE);
+            mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+
+            logger.info("Model:{}", obj);
             //创建新的数据
-            this.hlhtBlgyJbjkxxDao.insertHlhtBlgyJbjkxx(jbxx);
+            this.hlhtBlgyJbjkxxDao.insertHlhtBlgyJbjkxx(obj);
+
+            //插入日志
+            mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                    Long.parseLong(Constants.WN_BLGY_JBJKXX_SOURCE_TYPE),
+                    Long.parseLong(obj.getYjlxh()),"基本健康信息表",obj.getSyxh()+"",
+                    obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                    "NA","NA","NA","NA", obj.getSfzhm()));
+
         }
         return dataCheckList;
     }

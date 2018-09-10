@@ -1,12 +1,15 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.base.Constants;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtMjzcfZycfDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.EmrQtbljlk;
 import com.winning.hic.model.HlhtMjzcfZycf;
 import com.winning.hic.model.MbzDataCheck;
+import com.winning.hic.model.MbzLoadDataInfo;
 import com.winning.hic.service.HlhtMjzcfZycfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -36,6 +41,8 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
     private EmrQtbljlkDao emrQtbljlkDao;
     @Autowired
     private HlhtMjzcfZycfDao hlhtMjzcfZycfDao;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtMjzcfZycf(HlhtMjzcfZycf hlhtMjzcfZycf) {
         return this.hlhtMjzcfZycfDao.insertHlhtMjzcfZycf(hlhtMjzcfZycf);
@@ -84,13 +91,24 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
         emrQtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
         List<HlhtMjzcfZycf> hlhtMjzcfZycfListFromBaseData = this.hlhtMjzcfZycfDao.getHlhtMjzcfZycfListFromBaseData(emrQtbljlk);
         if (hlhtMjzcfZycfListFromBaseData != null) {
-            for (HlhtMjzcfZycf hlhtMjzcfZycf : hlhtMjzcfZycfListFromBaseData) {
+            for (HlhtMjzcfZycf obj : hlhtMjzcfZycfListFromBaseData) {
                 //清库
                 HlhtMjzcfZycf temp = new HlhtMjzcfZycf();
-                temp.setYjlxh(hlhtMjzcfZycf.getYjlxh());
+                temp.setYjlxh(obj.getYjlxh());
                 this.hlhtMjzcfZycfDao.deleteHlhtMjzcfZycfByYjlxh(temp);
-                logger.info("Model:{}", hlhtMjzcfZycf);
-                this.hlhtMjzcfZycfDao.insertHlhtMjzcfZycf(hlhtMjzcfZycf);
+                //清除日志
+                Map<String,Object> param = new HashMap<>();
+                param.put("SOURCE_ID",obj.getYjlxh());
+                param.put("SOURCE_TYPE",Constants.WN_MJZCF_ZYCF_SOURCE_TYPE);
+                mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+                logger.info("Model:{}", obj);
+                this.hlhtMjzcfZycfDao.insertHlhtMjzcfZycf(obj);
+                //插入日志
+                mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                        Long.parseLong(Constants.WN_MJZCF_ZYCF_SOURCE_TYPE),
+                        Long.parseLong(obj.getYjlxh()),"中药处方","NA",
+                        obj.getPatid(),obj.getMjzh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                        "NA","NA", "NA","NA", obj.getSfzhm()));
             }
         }
         return mbzDataChecks;

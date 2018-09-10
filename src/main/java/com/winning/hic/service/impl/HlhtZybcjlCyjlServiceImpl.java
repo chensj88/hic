@@ -131,7 +131,7 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
                             String[] str2=hlhtZybcjlCyjl.getCzzybmmc().split("  ");
                             Character o=new Character('B');
                             for (int i=0;str.length>i;i++){
-                                if(o.equals(str[i].charAt(0))){
+                                if(o.equals(str[i].trim().charAt(0))){
                                     bmdm = bmdm+str[i]+" ";
                                     bm = bm+str2[i]+" ";
                                 }
@@ -155,7 +155,7 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
                             String[] str2=hlhtZybcjlCyjl.getCzzyzhmc().split("  ");
                             Character o=new Character('B');
                             for (int i=0;str.length>i;i++){
-                                if(!o.equals(str[i].charAt(0))){
+                                if(!o.equals(str[i].trim().charAt(0))){
                                     bmdm = bmdm+str[i]+" ";
                                     bm = bm+str2[i]+" ";
                                 }
