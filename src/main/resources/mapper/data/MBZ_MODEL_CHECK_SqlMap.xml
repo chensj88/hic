@@ -18,6 +18,8 @@
         <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR"/>
         <result column="STATUS" property="status" jdbcType="INTEGER"/>
         <result column="BT" property="bt" jdbcType="INTEGER"/>
+        <result column="MUST_MATCH" property="mustMatch" jdbcType="INTEGER"/>
+        <result column="PY_CODE" property="pyCode" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="mbzModelCheckResult" type="com.winning.hic.model.MbzModelCheck" extends="mbzModelCheckResultForList">
@@ -38,6 +40,8 @@
         <if test="(yzjddm != null and yzjddm != '')">and t.YZJDDM = #{yzjddm}</if>
         <if test="(errorDesc != null and errorDesc != '')">and t.ERROR_DESC = #{errorDesc}</if>
         <if test="(status != null and status != '')">and t.STATUS = #{status}</if>
+        <if test="(mustMatch != null and mustMatch != '')">and t.MUST_MATCH = #{mustMatch}</if>
+        <if test="(pyCode != null and pyCode != '')">and t.PY_CODE = #{pyCode}</if>
     </sql>
 
     <insert id="insertMbzModelCheck" parameterType="com.winning.hic.model.MbzModelCheck">
@@ -54,9 +58,11 @@
             <if test="(dtjddm != null and dtjddm != '')">DTJDDM ,</if>
             <if test="(qrdxdm != null and qrdxdm != '')">QRDXDM ,</if>
             <if test="(yzjddm != null and yzjddm != '')">YZJDDM ,</if>
-            <if test="(errorDesc != null and errorDesc != '')">ERROR_DESC ,</if>
+            <if test="(errorDesc != null)">ERROR_DESC ,</if>
             <if test="(status != null and status != '')">STATUS ,</if>
             <if test="(bt != null and bt != '')">BT ,</if>
+            <if test="(mustMatch != null and mustMatch != '')">MUST_MATCH ,</if>
+            <if test="(pyCode != null and pyCode != '')">PY_CODE ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -71,9 +77,11 @@
             <if test="(dtjddm != null and dtjddm != '')">#{dtjddm , jdbcType= VARCHAR },</if>
             <if test="(qrdxdm != null and qrdxdm != '')">#{qrdxdm , jdbcType= VARCHAR },</if>
             <if test="(yzjddm != null and yzjddm != '')">#{yzjddm , jdbcType= VARCHAR },</if>
-            <if test="(errorDesc != null and errorDesc != '')">#{errorDesc , jdbcType= VARCHAR },</if>
+            <if test="(errorDesc != null)">#{errorDesc , jdbcType= VARCHAR },</if>
             <if test="(status != null and status != '')">#{status , jdbcType= INTEGER },</if>
             <if test="(bt != null and bt != '')">#{bt , jdbcType= INTEGER },</if>
+            <if test="(mustMatch != null and mustMatch != '')">#{mustMatch , jdbcType= INTEGER },</if>
+            <if test="(pyCode != null and pyCode != '')">#{pyCode , jdbcType= VARCHAR },</if>
         </trim>
     </insert>
 
@@ -91,9 +99,11 @@
                 <if test="(dtjddm != null and dtjddm != '')">DTJDDM =#{dtjddm},</if>
                 <if test="(qrdxdm != null and qrdxdm != '')">QRDXDM=#{qrdxdm} ,</if>
                 <if test="(yzjddm != null and yzjddm != '')">YZJDDM=#{yzjddm} ,</if>
-                <if test="(errorDesc != null and errorDesc != '')">ERROR_DESC=#{errorDesc} ,</if>
+                <if test="(errorDesc != null)">ERROR_DESC=#{errorDesc} ,</if>
                 <if test="(status != null)">STATUS=#{status} ,</if>
                 <if test="(bt != null and bt != '')">BT =#{bt},</if>
+                <if test="(mustMatch != null and mustMatch != '')">MUST_MATCH =#{mustMatch},</if>
+                <if test="(pyCode != null and pyCode != '')">PY_CODE =#{pyCode},</if>
             </trim>
         </set>
         <where>
@@ -193,7 +203,8 @@
           QRDXDM,
           YZJDDM,
           STATUS,
-          BT
+          BT,
+          MUST_MATCH
         )
         SELECT
            t.SOURCE_TYPE AS SOURCE_TYPE,
@@ -207,7 +218,9 @@
            m.QRDXDM AS QRDXDM,
            m.YZJDDM AS YZJDDM,
            null AS STATUS,
-           m.BT AS BT
+           m.BT AS BT,
+           m.MUST_MATCH AS MUST_MATCH,
+           m.PY_CODE AS PY_CODE
         FROM
             MBZ_DATA_LIST_SET t,
             MBZ_DATA_SET m
@@ -222,7 +235,9 @@
           AND
           t.SOURCE_TYPE=c.SOURCE_TYPE
           AND
-          m.ID=c.P_ID)
+          m.ID=c.P_ID
+          AND
+          m.PY_CODE=c.PY_CODE)
     </insert>
 
 

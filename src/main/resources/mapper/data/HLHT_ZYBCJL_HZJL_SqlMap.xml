@@ -395,7 +395,14 @@
         END
         )                                               AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') AS nls,
-DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,        ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
+        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
+        i.DICT_LABEL AS hzsqyljgmc,
+        ii.DICT_LABEL AS hzsqyljgdm,
+        i.DICT_LABEL AS hzysyljgmc,
+        ii.DICT_LABEL AS hzyljgdm,
+        i.DICT_LABEL AS hzszyljgmc,
+        ii.DICT_LABEL AS hzszyljgdm,
+        ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
         t.YXJL AS yxjl,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt
@@ -404,6 +411,8 @@ DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       A
         LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN THIS4.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm=b.RYBQ
         LEFT JOIN CISDB.dbo.OUTP_JZJLK o ON t.SYXH = o.EMRXH
+        LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
+        LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
         WHERE  1=1
         <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>
 
