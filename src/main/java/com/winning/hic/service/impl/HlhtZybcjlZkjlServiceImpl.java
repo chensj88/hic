@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -87,14 +88,32 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
 
+
+
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE);
         mbzDataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = mbzDataSetService.getMbzDataSetList(mbzDataSet);
+        List<MbzDataSet> rDataSetList = new ArrayList<>();
+        String[] rCode = {"zrrq", "zrksdm", "zrks", "zrysbm", "zrysqm", "zrzljh"};
+        List<MbzDataSet> cDataSetList = new ArrayList<>();
+        String[] cCode = {};
+        List<MbzDataSet> bzDataSetList = new ArrayList<>();
+        for (MbzDataSet dataSet : mbzDataSetList) {
+            //修正诊断字段配置集合
+            for (int i = 0; i < rCode.length; i++) {
+                if (rCode[i].equals(dataSet.getPyCode())) {
+                    rDataSetList.add(dataSet);
+                }else{
+                    cDataSetList.add(dataSet);
+                }
+            }
+        }
+
         //1.获取对应的首次病程的模板ID集合
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
         mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE);
-        List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
+        List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList2(mbzDataListSet);
 
         try{
             //获取首次病程的对象集合
@@ -127,9 +146,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             entity = this.getInitialHlhtZybcjlZkjl(entity);
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             try {
-                                entity = (HlhtZybcjlZkjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
-                                //获取类型
-                                entity.setZkjllxmc("转出记录");
+                                entity = (HlhtZybcjlZkjl) HicHelper.initModelValue(cDataSetList, document, entity, paramTypeMap);
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
@@ -141,11 +158,12 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
                             zkjl.setYjlxh(yjlxh);
                             zkjl =this.getHlhtZybcjlZkjl(zkjl);
+                            zkjl.setZrrq(null);
+                            zkjl.setZrysbm(null);
+                            zkjl.setZrysqm(null);
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             try {
-                                zkjl = (HlhtZybcjlZkjl) HicHelper.initModelValue(mbzDataSetList, document, zkjl, paramTypeMap);
-                                //获取类型
-                                zkjl.setZkjllxmc("转入记录");
+                                zkjl = (HlhtZybcjlZkjl) HicHelper.initModelValue(rDataSetList, document, zkjl, paramTypeMap);
 
                             } catch (ParseException e) {
                                 e.printStackTrace();
