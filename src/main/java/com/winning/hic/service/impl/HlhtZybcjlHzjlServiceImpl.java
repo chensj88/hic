@@ -5,6 +5,7 @@ import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.HicHelper;
 import com.winning.hic.base.utils.ReflectUtil;
 import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.dao.cisdb.EmrHzsqdjlkDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlHzjlDao;
 import com.winning.hic.dao.data.HlhtZybcjlHzjlDao;
@@ -40,6 +41,9 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
 
     @Autowired
     private MbzDataListSetDao mbzDataListSetDao;
+
+    @Autowired
+    private EmrHzsqdjlkDao emrHzsqdjlkDao;
 
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
@@ -99,7 +103,7 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
         try{
             //获取首次病程的对象集合
             Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlHzjl.class);
-            //for(MbzDataListSet dataListSet :dataListSets){
+            for(MbzDataListSet dataListSet :dataListSets){
                 //2.根据首次病程去找到对应的病人病历
                 EmrQtbljlk qtbljlk = new EmrQtbljlk();
                 qtbljlk.setBldm(dataListSets.get(0).getModelCode());
@@ -110,32 +114,52 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
                 emr_count = emr_count+qtbljlkList.size();
                 if(qtbljlkList != null){
                     for(EmrQtbljlk emrQtbljlk:qtbljlkList){
-                        HlhtZybcjlHzjl scbcjl = new HlhtZybcjlHzjl();
-                        scbcjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                        scbcjl = this.getHlhtZybcjlHzjl(scbcjl);
+                        //判断属于哪一种单据（1.申请单 2.答复单）
+                        EmrHzsqdjlk s_hzsqdjlk = new EmrHzsqdjlk();
+                        s_hzsqdjlk.getMap().put("entity_param",emrQtbljlk.getQtbljlxh());
+                        List<EmrHzsqdjlk> hzsqdjlk_list=emrHzsqdjlkDao.selectEmrHzsqdjlkList2(s_hzsqdjlk);
+                        if(hzsqdjlk_list.size()>0 && hzsqdjlk_list !=null){
+                            if(hzsqdjlk_list.get(0).getQtbljlxh().equals(emrQtbljlk.getQtbljlxh())){ //会诊申请单 insert
+                                HlhtZybcjlHzjl scbcjl = new HlhtZybcjlHzjl();
+                                scbcjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                                scbcjl = this.getHlhtZybcjlHzjl(scbcjl);
 
-                        if(scbcjl != null ){
-                            //初始化数据
-                            HlhtZybcjlHzjl oldRcyjl  = new HlhtZybcjlHzjl();
-                            oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                            this.removeHlhtZybcjlHzjl(oldRcyjl);
+                                if(scbcjl != null ){
+                                    //初始化数据
+                                    HlhtZybcjlHzjl oldRcyjl  = new HlhtZybcjlHzjl();
+                                    oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                                    this.removeHlhtZybcjlHzjl(oldRcyjl);
+                                }
+                                HlhtZybcjlHzjl entity = new HlhtZybcjlHzjl();
+                                entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
+                                entity = this.getInitialHlhtZybcjlHzjl(entity);
+                                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                                try {
+                                    entity = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                this.createHlhtZybcjlHzjl(entity);
+
+                            }else{ //会诊答复单 update
+                                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                                HlhtZybcjlHzjl entity = new HlhtZybcjlHzjl();
+                                entity.setYjlxh(String.valueOf(hzsqdjlk_list.get(0).getDfqtbljlxh()));
+                                entity =this.getHlhtZybcjlHzjl(entity);
+                                try {
+                                    entity = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                this.modifyHlhtZybcjlHzjl(entity);
+
+                            }
+                            real_count++;
                         }
-                        HlhtZybcjlHzjl entity = new HlhtZybcjlHzjl();
-                        entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                        entity = this.getInitialHlhtZybcjlHzjl(entity);
-                        System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                        Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                        try {
-                            entity = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        this.createHlhtZybcjlHzjl(entity);
-                        real_count++;
                     }
                 }
 
-            //}
+            }
 
 
         }catch (Exception e){
