@@ -2,13 +2,11 @@ package com.winning.hic.dao.data;
 
 
 
-import java.util.List;  
-
-import org.springframework.dao.DataAccessException;  
+import java.util.List;
+import com.winning.hic.model.support.ColumnInfo;
+import org.springframework.dao.DataAccessException;
 
 import com.winning.hic.model.MbzDataColumn;  
-
-
 
 import org.springframework.stereotype.Repository;
 /**
@@ -34,4 +32,6 @@ public interface MbzDataColumnDao {
     public List<MbzDataColumn> selectMbzDataColumnList(MbzDataColumn mbzDataColumn) throws DataAccessException;
 
     public List<MbzDataColumn> selectMbzDataColumnPageList(MbzDataColumn mbzDataColumn) throws DataAccessException;
+
+    public List<ColumnInfo> selectAllColumnsBySourceType(MbzDataColumn mbzDataColumn);
 }

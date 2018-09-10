@@ -2,7 +2,8 @@ package com.winning.hic.service;
 
 import java.util.List;  
 
-import com.winning.hic.model.MbzDataColumn;  
+import com.winning.hic.model.MbzDataColumn;
+import com.winning.hic.model.support.ColumnInfo;
 
 
 /**
@@ -27,4 +28,6 @@ public interface MbzDataColumnService {
     public List<MbzDataColumn> getMbzDataColumnList(MbzDataColumn mbzDataColumn);
 
     public List<MbzDataColumn> getMbzDataColumnPageList(MbzDataColumn mbzDataColumn);
+
+    public List<ColumnInfo> getAllColumnsBySourceType(MbzDataColumn mbzDataColumn);
 }

@@ -50,6 +50,11 @@
                             手动抽取
                         </a>
                     </li>
+                    <li>
+                        <a data-toggle="tab" href="#dataList">
+                            数据详情
+                        </a>
+                    </li>
                 </ul>
 
                 <div class="tab-content">
@@ -125,9 +130,8 @@
                         <div id="listBar">
                             <form class="form-inline">
                                 <div class="form-group">
-                                    <label for="orgName">数据子集</label>
+                                    <label for="dataSet">数据子集</label>
                                     <select class="form-control input-sm input-length" name="dataSet" id="dataSet" style="width: 200px;">
-                                        <option value="0">-----全部-----</option>
                                         <option th:each="list:${dataSet}" th:value="${list.dictValue}"
                                                 th:text="${list.dictLabel }"></option>
                                     </select>
@@ -189,6 +193,7 @@
     // alert(ctx+'modelCheck/modelCheck');
     var $table = $('#treegrid_table');
     var $simple_table = $('#simple_table');
+    var $dataTable = $('#dataTable');
     $(function () {
         toastr.options= {
             "closeButton":false,//显示关闭按钮
@@ -406,9 +411,11 @@
     //===============================数据查看=============================================
     var $dataTable = $('#dataTable');
 
-    function initQueryParam(){
-        var startDate =$("#startDate").val();
-        var endDate =$("#endDate").val();
+    //初始化参数
+    function
+    initQueryParam(params){
+        var startDate =$("#listStartDate").val();
+        var endDate =$("#listEndDate").val();
         var sourceType = $("#dataSet").val();
 
         if(startDate ==null || startDate ==''){
@@ -425,27 +432,89 @@
             toastr.warning("开始时间不能大于结束时间");
             return false;
         }
+        var count,first;
+        if(params){
+            count = params.limit;
+            first = params.offset;
+        }else{
+            count = 10;
+            first = 0;
+        }
         var queryParam = {
             startDate:startDate,
             endDate:endDate,
-            sourceType:sourceType
+            sourceType:sourceType,
+            count:count,
+            first:first
         };
 
+        return queryParam;
+    }
+
+    $('#loadData').on('click',function(e){
+        e.preventDefault();
+        initColumnInfo();
+
+    });
+
+    /**
+     * 加载bootstrap Table 字段信息
+     */
+    function initColumnInfo(){
+        var param = initQueryParam();
         $.ajax({
-            type: "POST",
-            url:"startLoad",
-            data:{startDate:startDate,endDate:endDate,sourceType:sourceType},
-            cache : false,
-            dataType:"json",
+            url:  ctx + 'dataList/index',
+            data: param,
+            type: "post",
+            dataType: 'json',
             async: false,
-            error:function (response) {
+            cache: false,
+            success: function (data, status) {
+                console.log(data);
+                if (status == 'success') {
+                    initBootstrapInfo(data);
+                }
+            },
+            error: function (response) {
                 toastr.error(response.responseText);
             },
-            success:function(data,status){
-
+            complete: function () {
             }
         });
-
+    }
+    
+    function initBootstrapInfo(data) {
+        $dataTable.bootstrapTable({
+            url: ctx + 'dataList/loadData',
+            height: $(window).height(),
+            striped: true,
+            pagination: true,                   // 是否显示分页（*）
+            sortable: true,                     // 是否启用排序
+            sortOrder: "asc",                   // 排序方式
+            sidePagination: "server",           // 分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1,                      // 初始化加载第一页，默认第一页,并记录
+            pageSize: 10,                     // 每页的记录行数（*）
+            pageList: [10,20,50,100],        // 可供选择的每页的行数（*）
+            showPaginationSwitch: false,			//显示 数据条数选择框
+            search: false,                      // 是否显示表格搜索
+            strictSearch: true,
+            minimumCountColumns: 2,             // 最少允许的列数
+            clickToSelect: true,                // 是否启用点击选中行
+            idField: 'yjlxh',
+            sortName: 'yjlxh',
+            uniqueId: "yjlxh",                 // 每一行的唯一标识，一般为主键列
+            cardView: false,                    // 是否显示详细视图
+            detailView: true,                  // 是否显示父子表
+            toolbar: '#listBar',
+            toolbarAlign: 'left',
+            paginationPreText: '上一页',
+            paginationNextText: '下一页',
+            paginationLoop: false, //分页条无限循环的功能
+            singleSelect: true,
+            queryParams: initQueryParam,
+            columns:data.columns
+        });
+        
     }
 </script>
 

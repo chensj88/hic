@@ -1,5 +1,6 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.model.support.ColumnInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -51,5 +52,10 @@ public class MbzDataColumnServiceImpl implements  MbzDataColumnService {
 
     public List<MbzDataColumn> getMbzDataColumnPageList(MbzDataColumn mbzDataColumn){
         return this.mbzDataColumnDao.selectMbzDataColumnPageList(mbzDataColumn);
+    }
+
+    @Override
+    public List<ColumnInfo> getAllColumnsBySourceType(MbzDataColumn mbzDataColumn) {
+        return this.mbzDataColumnDao.selectAllColumnsBySourceType(mbzDataColumn);
     }
 }
