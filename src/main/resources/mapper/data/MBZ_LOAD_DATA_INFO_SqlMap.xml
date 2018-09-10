@@ -43,6 +43,8 @@
         <if test="(bqdm != null and bqdm != '')"> and t.BQDM = #{bqdm} </if>
         <if test="(sfzhm != null and sfzhm != '')"> and t.SFZHM = #{sfzhm} </if>
         <if test="(cqrq != null )"> and t.CQRQ = #{cqrq} </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[t.CQRQ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[t.CQRQ <= #{map.endDate}]]>  </if>
     </sql>
 
     <insert id="insertMbzLoadDataInfo" parameterType="com.winning.hic.model.MbzLoadDataInfo">

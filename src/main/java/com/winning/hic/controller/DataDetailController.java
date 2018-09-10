@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -23,13 +24,45 @@ import java.util.Map;
  * Time: 10:14
  */
 @RestController
+@RequestMapping(value = "/dataList")
 public class DataDetailController extends BaseController {
+
+    /**
+     * 分页加载查询数据
+     * @param dataInfo
+     * @param row
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    @ApiOperation(value = "/dataList/initColumns",notes = "根据数据源表获取字段信息")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "dataInfo",value = "字段信息",required = true,dataType = "MbzDataColumn"),
+                    @ApiImplicitParam(name = "row",value = "分页参数",required = true,dataType = "Row"),
+                    @ApiImplicitParam(name = "startDate",value = "开始日期",required = true,dataType = "String"),
+                    @ApiImplicitParam(name = "endDate",value = "结束日期",required = true,dataType = "String")
+            }
+    )
+    @PostMapping(value = "/loadList")
+    public Map<String, Object> loadMbzLoadDataInfo(MbzLoadDataInfo dataInfo,Row row,String startDate, String endDate){
+        dataInfo.setRow(row);
+        Map<String,Object> params = dataInfo.getMap();
+        params.put("startDate",startDate);
+        params.put("endDate",endDate);
+        //数据抽取
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("rows", super.getFacade().getMbzLoadDataInfoService().getMbzLoadDataInfoPageList(dataInfo));
+        result.put("total", super.getFacade().getMbzLoadDataInfoService().getMbzLoadDataInfoCount(dataInfo));
+        return result;
+    }
 
     @ApiOperation(value = "/dataList/initColumns",notes = "根据数据源表获取字段信息")
     @ApiImplicitParam(
             name = "column",value = "字段信息",required = true,dataType = "MbzDataColumn"
     )
-    @PostMapping(value = "/dataList/initColumns")
+    @PostMapping(value = "/initColumns")
     public Map<String, Object> initColumns(MbzDataColumn column){
         //数据抽取
         Map<String, Object> result = new HashMap<String, Object>();
@@ -47,7 +80,7 @@ public class DataDetailController extends BaseController {
                     @ApiImplicitParam(name = "endDate",value = "结束日期",required = true,dataType = "String")
             }
     )
-    @GetMapping(value = "/dataList/loadData")
+    @GetMapping(value = "/loadData")
     public Map<String, Object>  queryLoadDataBySourceType(Long sourceType, Row row,String startDate, String endDate){
         Map<String, Object> params = new HashMap<>();
         params.put("startDate",startDate);
