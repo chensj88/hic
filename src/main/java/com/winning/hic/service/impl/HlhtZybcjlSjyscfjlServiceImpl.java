@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,6 +107,16 @@ public class HlhtZybcjlSjyscfjlServiceImpl implements  HlhtZybcjlSjyscfjlService
         //获取接口对象字段集合信息
         Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlSjyscfjl.class);
 
+
+        String[] bcCode = {"bzlzms"};
+        List<MbzDataSet> bzlzmsDataSetList = new ArrayList<>();
+        for (MbzDataSet dataSet : mbzDataSetList) {
+            for (int i = 0; i < bcCode.length; i++) {
+                if (bcCode[i].equals(dataSet.getPyCode())) {
+                    bzlzmsDataSetList.add(dataSet);
+                }
+            }
+        }
         if(dataListSets != null && dataListSets.size() > 0){
             //获取模板集合，遍历
             for(MbzDataListSet dataListSet :dataListSets){
@@ -127,23 +138,46 @@ public class HlhtZybcjlSjyscfjlServiceImpl implements  HlhtZybcjlSjyscfjlService
                         obj = getHlhtZybcjlSjyscfjl(obj);
                         //解析病历xml
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                        Document bzlzmsDocument = null;
                         //判断是否存在重复,存在则删除，重新新增
                         if(obj != null ){
                             //初始化数据
                             HlhtZybcjlSjyscfjl oldObj  = new HlhtZybcjlSjyscfjl();
                             oldObj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             this.removeHlhtZybcjlSjyscfjl(oldObj);
-
                             //清除日志
                             Map<String,Object> param = new HashMap<>();
                             param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
                             param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_SJYSCFJL_SOURCE_TYPE);
                             mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                         }
+
+                        EmrQtbljlk coQtbljlk = new EmrQtbljlk();
+                        coQtbljlk.setYxjl(1);
+                        coQtbljlk.setSyxh(emrQtbljlk.getSyxh());
+                        //辨证论治详细描述
+                        List<EmrQtbljlk> bzlzmsEmrQtbljlks = new ArrayList<>();
+                        List<EmrQtbljlk> qtbljlkList1 = emrQtbljlkDao.selectEmrQtbljlkList(coQtbljlk);
+                        for (EmrQtbljlk qtbljlkTemp : qtbljlkList1) {
+                            if (qtbljlkTemp.getBlmc().contains("入院记录(中医入院记录)")) {
+                                //辨证论治详细描述
+                                bzlzmsEmrQtbljlks.add(qtbljlkTemp);
+                            }
+                        }
+                        //辨证论治详细描述
+                        if (bzlzmsEmrQtbljlks.size() >= 1) {
+                            mbzDataSetList.removeAll(bzlzmsDataSetList);
+                            bzlzmsDocument = XmlUtil.getDocument(Base64Utils.unzipEmrXml(bzlzmsEmrQtbljlks.get(0).getBlnr()));
+                        }
+
                         obj  = new HlhtZybcjlSjyscfjl();
                         obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                         obj = this.commonQueryDao.selectInitHlhtZybcjlSjyscfjl(obj);
                         obj = (HlhtZybcjlSjyscfjl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
+                        //辨证论治详细描述
+                        if (bzlzmsDataSetList != null) {
+                            obj = (HlhtZybcjlSjyscfjl) HicHelper.initModelValue(bzlzmsDataSetList, bzlzmsDocument, obj, paramTypeMap);
+                        }
                         this.createHlhtZybcjlSjyscfjl(obj);
 
                         //插入日志
