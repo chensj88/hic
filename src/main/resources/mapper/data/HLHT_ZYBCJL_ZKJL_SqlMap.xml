@@ -391,12 +391,24 @@
         c.BQMC AS bqmc ,
         a.fjh AS rybfmc,
         ISNULL(a.fjh, 'NA') AS bfh,
+        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch ,
         b.HZXM AS hzxm,
         b.SFZH AS sfzhm,
         CONVERT(datetime,substring( c.BIRTH,1,4)+'-'+substring(c.BIRTH,5,2)+'-'+substring(c.BIRTH,7,2)) AS hzcsrq,
         b.BRXB AS xbdm,
-        c.SEX AS xbmc,
+        (
+        SELECT CASE b.BRXB
+        WHEN '2'
+        THEN
+        '女'
+        WHEN '1'
+        THEN
+        '男'
+        ELSE
+        '其它'
+        END
+        )                                               AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') AS nls,
         SUBSTRING(replace(b.CSRQ,'-',''),0,9) AS nly,
         b.RYRQ AS ryrq,

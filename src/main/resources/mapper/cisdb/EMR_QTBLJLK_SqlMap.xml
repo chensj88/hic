@@ -80,6 +80,7 @@
 		 * from EMR_QTBLJLK t where 1 = 1
 		<include refid="sf-emrQtbljlk" />
 		<!-- order by ID asc -->
+		ORDER BY QTBLJLXH,SYXH ASC
 	</select>
 
 	<select id="selectEmrQtbljlkCount" resultType="int" parameterType="com.winning.hic.model.EmrQtbljlk">
@@ -94,6 +95,10 @@
 			<include refid="sf-emrQtbljlk" />
 			<!-- order by ID asc -->
 		) temp_table where _rn between #{row.first} + 1 and #{row.first} + #{row.count}
+	</select>
+
+	<select id="selectEmrQtbljlkId" resultType ="String" parameterType="String">
+		SELECT TOP 1 QTBLJLXH FROM CISDB..EMR_QTBLJLK WHERE CJSJ &lt; #{cjsj} AND MXFLDM='B-8405'  ORDER BY CJSJ DESC;
 	</select>
 
 	<insert id="insertEmrQtbljlk" parameterType="com.winning.hic.model.EmrQtbljlk">

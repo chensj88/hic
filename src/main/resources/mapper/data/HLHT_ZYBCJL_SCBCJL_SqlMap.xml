@@ -221,7 +221,7 @@
         c.BQDM AS bqdm,
         c.BQMC AS bqmc ,
         ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA') + '病房' AS bfmc ,
+        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch ,
         t.CJSJ AS jlrq,
         b.BRXB AS xbdm,
@@ -238,7 +238,7 @@
         END
         )                                               AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') AS nls,
-        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
+        SUBSTRING(replace(b.CSRQ,'-',''),0,9) AS nly,
         ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
         t.YXJL AS yxjl,
         t.QTBLJLXH as syxh,
