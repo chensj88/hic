@@ -977,11 +977,9 @@
                     qrmbdm:qrmbdmC,
                     qrdxdm:qrdxdmC,
                     yzjddm:yzjddmC,
-                    recordName:selectNode[0].text,
-                    pid:pIdC,
-                    sourceType:sourceTypeC,
-                    bt:btC,
-                    mustMatch:mustMatchC
+                    sourceType:selectNode[0].sourceType,
+                    pyCode:selectNode[0].pyCode,
+                    pid:selectNode[0].nodePid
                 };
                 console.log(data);
                 $.ajax({

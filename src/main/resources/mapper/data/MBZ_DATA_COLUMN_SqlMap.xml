@@ -112,7 +112,8 @@
     <select id="selectAllColumnsBySourceType" parameterType="com.winning.hic.model.MbzDataColumn" resultType="com.winning.hic.model.support.ColumnInfo">
         select
           t.RECORD_NAME as  title,
-          t.PY_CODE as field
+          t.PY_CODE as field,
+          'center'  as align
         from MBZ_DATA_COLUMN t
         <where>
             <include refid="sql-mbzDataColumn" />

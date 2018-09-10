@@ -11,6 +11,7 @@ public class ColumnInfo {
 
     private String title;
     private String field;
+    private String align;
 
     public String getTitle() {
         return title;
@@ -26,5 +27,13 @@ public class ColumnInfo {
 
     public void setField(String field) {
         this.field = field;
+    }
+
+    public String getAlign() {
+        return align;
+    }
+
+    public void setAlign(String align) {
+        this.align = align;
     }
 }

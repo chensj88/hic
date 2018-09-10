@@ -159,6 +159,8 @@
         <result column="NODE_ID" property="nodeId" jdbcType="BIGINT" />
         <result column="NODE_PID" property="nodePid" jdbcType="BIGINT" />
         <result column="NODE_TEXT" property="text" jdbcType="VARCHAR" />
+        <result column="PY_CODE" property="pyCode" jdbcType="VARCHAR" />
+        <result column="SOURCE_TYPE" property="sourceType" jdbcType="VARCHAR" />
     </resultMap>
 
     <resultMap id="nodeTreeResult" type="com.winning.hic.model.NodeTree" extends="nodeTreeResultForList">
@@ -169,7 +171,9 @@
         t.ID as ID,
         t.ID as NODE_ID,
         t.P_ID as NODE_PID,
-        t.PY_CODE + '[' + t.RECORD_NAME + ']' as NODE_TEXT
+        t.PY_CODE + '[' + t.RECORD_NAME + ']' as NODE_TEXT,
+        t.PY_CODE as PY_CODE,
+        t.SOURCE_TYPE as  SOURCE_TYPE
         FROM MBZ_DATA_SET t
         <where>
             <include refid="sql-mbzDataSet" />
