@@ -5,6 +5,7 @@ import com.winning.hic.base.utils.DateUtil;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtBlgyJbjkxxDao;
 import com.winning.hic.dao.data.MbzLoadDataInfoDao;
+import com.winning.hic.dao.mz.MZCommonQueryDao;
 import com.winning.hic.model.HlhtBlgyJbjkxx;
 import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.model.MbzLoadDataInfo;
@@ -35,6 +36,8 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
     private HlhtBlgyJbjkxxDao hlhtBlgyJbjkxxDao;
     @Autowired
     private CommonQueryDao commonQueryDao;
+    @Autowired
+    private MZCommonQueryDao mzCommonQueryDao;
     @Autowired
     private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 

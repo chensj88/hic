@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.mz.MZEmrMbkDao">
+
+    <resultMap id="emrMbkResultForList" type="com.winning.hic.model.EmrMbk">
+         <result column="MBDM" property="mbdm" jdbcType="VARCHAR" />
+         <result column="MBMC" property="mbmc" jdbcType="VARCHAR" />
+         <result column="MBMS" property="mbms" jdbcType="VARCHAR" />
+         <result column="MBNR" property="mbnr" jdbcType="NVARCHAR" />
+         <result column="VERSION" property="version" jdbcType="VARCHAR" />
+         <result column="MXFLDM" property="mxfldm" jdbcType="VARCHAR" />
+         <result column="BZDM" property="bzdm" jdbcType="VARCHAR" />
+         <result column="DYMB" property="dymb" jdbcType="VARCHAR" />
+         <result column="YXJL" property="yxjl" jdbcType="SMALLINT" />
+         <result column="XGSJ" property="xgsj" jdbcType="CHAR" />
+         <result column="GRMBBZ" property="grmbbz" jdbcType="SMALLINT" />
+         <result column="XSYSZ" property="xsysz" jdbcType="VARCHAR" />
+         <result column="XBBZ" property="xbbz" jdbcType="SMALLINT" />
+    </resultMap>
+
+    <resultMap id="emrMbkResult" type="com.winning.hic.model.EmrMbk" extends="emrMbkResultForList">
+
+    </resultMap>
+
+    <sql id="sql-emrMbk">
+        <if test="(mbdm != null and mbdm != '')"> and t.MBDM = #{mbdm} </if>
+        <if test="(mbmc != null and mbmc != '')"> and t.MBMC = #{mbmc} </if>
+        <if test="(mbms != null and mbms != '')"> and t.MBMS = #{mbms} </if>
+        <if test="(mbnr != null and mbnr != '')"> and t.MBNR = #{mbnr} </if>
+        <if test="(version != null and version != '')"> and t.VERSION = #{version} </if>
+        <if test="(mxfldm != null and mxfldm != '')"> and t.MXFLDM = #{mxfldm} </if>
+        <if test="(bzdm != null and bzdm != '')"> and t.BZDM = #{bzdm} </if>
+        <if test="(dymb != null and dymb != '')"> and t.DYMB = #{dymb} </if>
+        <if test="(yxjl != null and yxjl != '')"> and t.YXJL = #{yxjl} </if>
+        <if test="(xgsj != null and xgsj != '')"> and t.XGSJ = #{xgsj} </if>
+        <if test="(grmbbz != null and grmbbz != '')"> and t.GRMBBZ = #{grmbbz} </if>
+        <if test="(xsysz != null and xsysz != '')"> and t.XSYSZ = #{xsysz} </if>
+        <if test="(xbbz != null and xbbz != '')"> and t.XBBZ = #{xbbz} </if>
+    </sql>
+
+    <insert id="insertEmrMbk" parameterType="com.winning.hic.model.EmrMbk">
+        INSERT INTO EMR_MBK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(mbdm != null and mbdm != '')"> MBDM , </if>
+            <if test="(mbmc != null and mbmc != '')"> MBMC , </if>
+            <if test="(mbms != null and mbms != '')"> MBMS , </if>
+            <if test="(mbnr != null and mbnr != '')"> MBNR , </if>
+            <if test="(version != null and version != '')"> VERSION , </if>
+            <if test="(mxfldm != null and mxfldm != '')"> MXFLDM , </if>
+            <if test="(bzdm != null and bzdm != '')"> BZDM , </if>
+            <if test="(dymb != null and dymb != '')"> DYMB , </if>
+            <if test="(yxjl != null and yxjl != '')"> YXJL , </if>
+            <if test="(xgsj != null and xgsj != '')"> XGSJ , </if>
+            <if test="(grmbbz != null and grmbbz != '')"> GRMBBZ , </if>
+            <if test="(xsysz != null and xsysz != '')"> XSYSZ , </if>
+            <if test="(xbbz != null and xbbz != '')"> XBBZ , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(mbdm != null and mbdm != '')"> #{mbdm , jdbcType= VARCHAR },  </if>
+            <if test="(mbmc != null and mbmc != '')"> #{mbmc , jdbcType= VARCHAR },  </if>
+            <if test="(mbms != null and mbms != '')"> #{mbms , jdbcType= VARCHAR },  </if>
+            <if test="(mbnr != null and mbnr != '')"> #{mbnr , jdbcType= NVARCHAR },  </if>
+            <if test="(version != null and version != '')"> #{version , jdbcType= VARCHAR },  </if>
+            <if test="(mxfldm != null and mxfldm != '')"> #{mxfldm , jdbcType= VARCHAR },  </if>
+            <if test="(bzdm != null and bzdm != '')"> #{bzdm , jdbcType= VARCHAR },  </if>
+            <if test="(dymb != null and dymb != '')"> #{dymb , jdbcType= VARCHAR },  </if>
+            <if test="(yxjl != null and yxjl != '')"> #{yxjl , jdbcType= SMALLINT },  </if>
+            <if test="(xgsj != null and xgsj != '')"> #{xgsj , jdbcType= CHAR },  </if>
+            <if test="(grmbbz != null and grmbbz != '')"> #{grmbbz , jdbcType= SMALLINT },  </if>
+            <if test="(xsysz != null and xsysz != '')"> #{xsysz , jdbcType= VARCHAR },  </if>
+            <if test="(xbbz != null and xbbz != '')"> #{xbbz , jdbcType= SMALLINT },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateEmrMbk" parameterType="com.winning.hic.model.EmrMbk">
+        UPDATE EMR_MBK
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(mbdm != null and mbdm != '')"> MBDM , </if>
+                <if test="(mbmc != null and mbmc != '')"> MBMC , </if>
+                <if test="(mbms != null and mbms != '')"> MBMS , </if>
+                <if test="(mbnr != null and mbnr != '')"> MBNR , </if>
+                <if test="(version != null and version != '')"> VERSION , </if>
+                <if test="(mxfldm != null and mxfldm != '')"> MXFLDM , </if>
+                <if test="(bzdm != null and bzdm != '')"> BZDM , </if>
+                <if test="(dymb != null and dymb != '')"> DYMB , </if>
+                <if test="(yxjl != null and yxjl != '')"> YXJL , </if>
+                <if test="(xgsj != null and xgsj != '')"> XGSJ , </if>
+                <if test="(grmbbz != null and grmbbz != '')"> GRMBBZ , </if>
+                <if test="(xsysz != null and xsysz != '')"> XSYSZ , </if>
+                <if test="(xbbz != null and xbbz != '')"> XBBZ , </if>
+            </trim>
+        </set>
+        <where>
+            <if test="(mbdm != null and mbdm != '')"> and MBDM = #{ mbdm }   </if>
+            <if test="(mbdm !=null or mbdm!='') and (map.pks != null and map.pks != '')">
+                and (MBDM) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteEmrMbk" parameterType="com.winning.hic.model.EmrMbk">
+        delete from  EMR_MBK
+        <where>
+            <if test="(mbdm != null and mbdm != '')"> and MBDM = #{ mbdm }   </if>
+            <if test="(mbdm !=null or mbdm!='') and (map.pks != null and map.pks != '')">
+                and (MBDM) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectEmrMbk" resultMap="emrMbkResult" parameterType="com.winning.hic.model.EmrMbk">
+        SELECT * FROM EMR_MBK t
+        <where>
+            <include refid="sql-emrMbk" />
+        </where>
+    </select>
+
+    <select id="selectEmrMbkList" resultMap="emrMbkResultForList" parameterType="com.winning.hic.model.EmrMbk">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM EMR_MBK t
+        <where>
+            <include refid="sql-emrMbk" />
+        </where>
+        ORDER BY t.MBDM DESC
+    </select>
+
+    <select id="selectEmrMbkCount" resultType="int" parameterType="com.winning.hic.model.EmrMbk">
+        select count(1) from  EMR_MBK t
+        <where>
+            <include refid="sql-emrMbk" />
+        </where>
+    </select>
+
+    <select id="selectEmrMbkPageList" resultMap="emrMbkResult" parameterType="com.winning.hic.model.EmrMbk">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY t.MBDM DESC ) AS _RN
+        FROM EMR_MBK t
+        <where>
+            <include refid="sql-emrMbk" />
+        </where>
+        <!-- order by t.MBDM asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>

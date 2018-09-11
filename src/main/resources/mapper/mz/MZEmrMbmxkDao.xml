@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.mz.MZEmrMbmxkDao">
+
+    <resultMap id="emrMbmxkResultForList" type="com.winning.hic.model.EmrMbmxk">
+         <result column="MBDM" property="mbdm" jdbcType="VARCHAR" />
+         <result column="JDREFID" property="jdrefid" jdbcType="INTEGER" />
+         <result column="JDDM" property="jddm" jdbcType="VARCHAR" />
+         <result column="JDLX" property="jdlx" jdbcType="VARCHAR" />
+         <result column="JDNR" property="jdnr" jdbcType="NVARCHAR" />
+         <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="emrMbmxkResult" type="com.winning.hic.model.EmrMbmxk" extends="emrMbmxkResultForList">
+
+    </resultMap>
+
+    <sql id="sql-emrMbmxk">
+        <if test="(mbdm != null and mbdm != '')"> and t.MBDM = #{mbdm} </if>
+        <if test="(jdrefid != null and jdrefid != '')"> and t.JDREFID = #{jdrefid} </if>
+        <if test="(jddm != null and jddm != '')"> and t.JDDM = #{jddm} </if>
+        <if test="(jdlx != null and jdlx != '')"> and t.JDLX = #{jdlx} </if>
+        <if test="(jdnr != null and jdnr != '')"> and t.JDNR = #{jdnr} </if>
+        <if test="(memo != null and memo != '')"> and t.MEMO = #{memo} </if>
+    </sql>
+
+    <insert id="insertEmrMbmxk" parameterType="com.winning.hic.model.EmrMbmxk">
+        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+        INSERT INTO EMR_MBMXK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(mbdm != null and mbdm != '')"> MBDM , </if>
+            <if test="(jdrefid != null and jdrefid != '')"> JDREFID , </if>
+            <if test="(jddm != null and jddm != '')"> JDDM , </if>
+            <if test="(jdlx != null and jdlx != '')"> JDLX , </if>
+            <if test="(jdnr != null and jdnr != '')"> JDNR , </if>
+            <if test="(memo != null and memo != '')"> MEMO , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(mbdm != null and mbdm != '')"> #{mbdm , jdbcType= VARCHAR },  </if>
+            <if test="(jdrefid != null and jdrefid != '')"> #{jdrefid , jdbcType= INTEGER },  </if>
+            <if test="(jddm != null and jddm != '')"> #{jddm , jdbcType= VARCHAR },  </if>
+            <if test="(jdlx != null and jdlx != '')"> #{jdlx , jdbcType= VARCHAR },  </if>
+            <if test="(jdnr != null and jdnr != '')"> #{jdnr , jdbcType= NVARCHAR },  </if>
+            <if test="(memo != null and memo != '')"> #{memo , jdbcType= VARCHAR },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateEmrMbmxk" parameterType="com.winning.hic.model.EmrMbmxk">
+        UPDATE EMR_MBMXK
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(mbdm != null and mbdm != '')"> MBDM = #{mbdm , jdbcType= VARCHAR }, </if>
+                <if test="(jdrefid != null and jdrefid != '')"> JDREFID = #{jdrefid , jdbcType= INTEGER }, </if>
+                <if test="(jddm != null and jddm != '')"> JDDM = #{jddm , jdbcType= VARCHAR }, </if>
+                <if test="(jdlx != null and jdlx != '')"> JDLX = #{jdlx , jdbcType= VARCHAR }, </if>
+                <if test="(jdnr != null and jdnr != '')"> JDNR = #{jdnr , jdbcType= NVARCHAR }, </if>
+                <if test="(memo != null and memo != '')"> MEMO = #{memo , jdbcType= VARCHAR }, </if>
+            </trim>
+        </set>
+        <where>
+            <if test="(mbdm != null and mbdm != '')"> and MBDM = #{ mbdm, jdbcType= VARCHAR }   </if>
+            <if test="(jdrefid != null and jdrefid != '')"> and JDREFID = #{ jdrefid, jdbcType= INTEGER }   </if>
+            <if test="(mbdm !=null or mbdm!='') and (jdrefid !=null or jdrefid!='') and (map.pks != null and map.size > 0)">
+                and (MBDM,JDREFID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteEmrMbmxk" parameterType="com.winning.hic.model.EmrMbmxk">
+        delete from  EMR_MBMXK
+        <where>
+            <if test="(mbdm != null and mbdm != '')"> and MBDM = #{ mbdm }   </if>
+            <if test="(jdrefid != null and jdrefid != '')"> and JDREFID = #{ jdrefid }   </if>
+            <if test="(mbdm !=null or mbdm!='') and (jdrefid !=null or jdrefid!='') and (map.pks != null and map.size > 0)">
+                and (MBDM,JDREFID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="selectEmrMbmxk" resultMap="emrMbmxkResult" parameterType="com.winning.hic.model.EmrMbmxk">
+        SELECT * FROM EMR_MBMXK t
+        <where>
+            <include refid="sql-emrMbmxk" />
+        </where>
+    </select>
+
+    <select id="selectEmrMbmxkList" resultMap="emrMbmxkResultForList" parameterType="com.winning.hic.model.EmrMbmxk">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM EMR_MBMXK t
+        <where>
+            <include refid="sql-emrMbmxk" />
+        </where>
+        ORDER BY t.MBDM,t.JDREFID ASC
+    </select>
+
+    <select id="selectEmrMbmxkCount" resultType="int" parameterType="com.winning.hic.model.EmrMbmxk">
+        select count(1) from  EMR_MBMXK t
+        <where>
+            <include refid="sql-emrMbmxk" />
+        </where>
+    </select>
+
+    <select id="selectEmrMbmxkPageList" resultMap="emrMbmxkResult" parameterType="com.winning.hic.model.EmrMbmxk">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY t.MBDM,t.JDREFID DESC ) AS _RN
+        FROM EMR_MBMXK t
+        <where>
+            <include refid="sql-emrMbmxk" />
+        </where>
+        <!-- order by t.MBDM,t.JDREFID asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>
