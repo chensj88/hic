@@ -1,10 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.Base64Utils;
-import com.winning.hic.base.utils.HicHelper;
-import com.winning.hic.base.utils.ReflectUtil;
-import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZqgzxxSstysDao;
@@ -21,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
@@ -155,6 +153,7 @@ public class HlhtZqgzxxSstysServiceImpl implements HlhtZqgzxxSstysService {
                         mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                                 Long.parseLong(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE),
                                 emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                 obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                                 obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm()));
                         this.createHlhtZqgzxxSstys(obj);

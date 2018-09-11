@@ -1,6 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.DateUtil;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtBlgyJbjkxxDao;
 import com.winning.hic.dao.data.MbzLoadDataInfoDao;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,7 +93,7 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
             //插入日志
             mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                     Long.parseLong(Constants.WN_BLGY_JBJKXX_SOURCE_TYPE),
-                    Long.parseLong(obj.getYjlxh()),"基本健康信息表",obj.getSyxh()+"",
+                    Long.parseLong(obj.getYjlxh()),"基本健康信息表",obj.getSyxh()+"",new Timestamp(obj.getGxsj().getTime()),
                     obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                     "NA","NA","NA","NA", obj.getSfzhm()));
 

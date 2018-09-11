@@ -1,7 +1,7 @@
 package com.winning.hic.model;
 
-import java.util.Date; 
-import java.io.Serializable; 
+import java.io.Serializable;
+import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias; 
 
@@ -112,21 +112,28 @@ public class MbzLoadDataInfo extends BaseDomain implements Serializable {
      */
     private String sfzhm;
     /**
+     * 字段名：FSSJ
+     * 备注: 数据发生时间
+     * 默认值：无
+     */
+    private java.sql.Timestamp fssj;
+    /**
      * 字段名：CQRQ
      * 备注: 抽取时间
      * 默认值：(getdate())
      */
-    private Date cqrq;
+    private java.sql.Timestamp cqrq;
 
     public MbzLoadDataInfo (){
 
     }
 
-    public MbzLoadDataInfo(Long sourceType, Long sourceId, String recordName, String syxh, String patid, String zyh, String hzxm, String xbmc, String xbdm, String ksmc, String ksdm, String bqmc, String bqdm, String sfzhm) {
+    public MbzLoadDataInfo(Long sourceType, Long sourceId, String recordName, String syxh, Timestamp fssj,String patid, String zyh, String hzxm, String xbmc, String xbdm, String ksmc, String ksdm, String bqmc, String bqdm, String sfzhm) {
         this.sourceType = sourceType;
         this.sourceId = sourceId;
         this.recordName = recordName;
         this.syxh = syxh;
+        this.fssj = fssj;
         this.patid = patid;
         this.zyh = zyh;
         this.hzxm = hzxm;
@@ -409,12 +416,30 @@ public class MbzLoadDataInfo extends BaseDomain implements Serializable {
    public void setSfzhm(String sfzhm){
         this.sfzhm = sfzhm;
    }
+    /**
+     * 字段名：FSSJ
+     * get方法
+     * 备注: 数据发生时间
+     */
+    public java.sql.Timestamp getFssj(){
+
+        return fssj;
+    }
+
+    /**
+     * 字段名：FSSJ
+     * set方法
+     * 备注: 数据发生时间
+     */
+    public void setFssj(java.sql.Timestamp fssj){
+        this.fssj = fssj;
+    }
    /**
    * 字段名：CQRQ
    * get方法
    * 备注: 抽取时间
    */
-   public Date getCqrq(){
+   public java.sql.Timestamp getCqrq(){
 
         return cqrq;
    }
@@ -424,7 +449,7 @@ public class MbzLoadDataInfo extends BaseDomain implements Serializable {
    * set方法
    * 备注: 抽取时间
    */
-   public void setCqrq(Date cqrq){
+   public void setCqrq(java.sql.Timestamp cqrq){
         this.cqrq = cqrq;
    }
 
