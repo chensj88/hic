@@ -41,6 +41,12 @@
             table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
             font-size:12px;
         }
+        div.card-views > div.card-view >span.title {
+            width: 200px;
+        }
+        div.card-views div.card-view span.value {
+            width: 400px;
+        }
     </style>
 
 </head>
@@ -157,24 +163,25 @@
 </div>
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewFormModal">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="width:575px;">
+        <div class="modal-content" style="width:900px;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
                 <h4 class="modal-title" id="viewModalLabel">数据详细信息</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="overflow: auto; height: 500px;" >
                 <div class="container">
                     <div class="row">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
-                                <table id="dataTable" class="table table-hover table-align"></table>
+                                <form class="form-horizontal col-lg-10 col-md-10 col-sm-10 col-xs-10" role="form" id="viewForm">
+                                </form>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-5 text-center">
+                        <div class="col-sm-12 text-center">
                             <button class="btn btn-danger" data-dismiss="modal">关闭</button>
                         </div>
                     </div>
@@ -570,78 +577,6 @@
 
     });
 
-    /**
-     * 加载bootstrap Table 字段信息
-     */
-    function initColumnInfo(param){
-        $.ajax({
-            url:  ctx + 'dataList/initColumns',
-            data: param,
-            type: "post",
-            dataType: 'json',
-            async: false,
-            cache: false,
-            success: function (data, status) {
-                if (status == 'success') {
-                    initBootstrapInfo(data);
-                }
-            },
-            error: function (response) {
-                toastr.error(response.responseText);
-            },
-            complete: function () {
-            }
-        });
-    }
-
-    function initDataTableParams(params) {
-        var qparam = {};
-        var count,first;
-        if(params){
-            qparam['count'] = params.limit;
-            qparam['first'] = params.offset;
-        }else{
-            qparam['count']  = 10;
-            qparam['first'] = 0;
-        }
-        qparam['sourceId'] = $('#sourceId').val();
-        qparam['sourceType'] = $('#sourceType').val();
-        return qparam;
-    }
-
-    function initBootstrapInfo(data) {
-        $dataTable.bootstrapTable({
-            url: ctx + 'dataList/loadData',
-            method:'GET',
-            height: 500,
-            width: 600,
-            striped: false,
-            pagination: false,                   // 是否显示分页（*）
-            sortable: false,                     // 是否启用排序
-            sortOrder: "asc",                   // 排序方式
-            sidePagination: "server",           // 分页方式：client客户端分页，server服务端分页（*）
-            pageNumber: 1,                      // 初始化加载第一页，默认第一页,并记录
-            pageSize: 10,                     // 每页的记录行数（*）
-            pageList: [10,20,50,100],        // 可供选择的每页的行数（*）
-            showPaginationSwitch: false,			//显示 数据条数选择框
-            search: false,                      // 是否显示表格搜索
-            strictSearch: true,
-            minimumCountColumns: 2,             // 最少允许的列数
-            clickToSelect: true,                // 是否启用点击选中行
-            idField: 'yjlxh',
-            sortName: 'yjlxh',
-            uniqueId: "yjlxh",                 // 每一行的唯一标识，一般为主键列
-            cardView: true,                    // 是否显示详细视图
-            detailView: false,                  // 是否显示父子表
-            paginationPreText: '上一页',
-            paginationNextText: '下一页',
-            paginationLoop: false, //分页条无限循环的功能
-            singleSelect: true,
-            queryParams: initDataTableParams,
-            columns:data.columns
-        });
-        
-    }
 
     /**
      * 打开抽取的病历信息详情页
@@ -658,8 +593,47 @@
             sourceId:sourceId,
             sourceType:sourceType
         };
-        initColumnInfo(param);
-      /*  $dataTable.bootstrapTable('refresh');*/
+        $.ajax({
+            url:  ctx + 'dataList/initColumns',
+            data: param,
+            type: "post",
+            dataType: 'json',
+            async: false,
+            cache: false,
+            success: function (data, status) {
+                if (status == 'success') {
+                    convertToForm(data);
+                }
+            },
+            error: function (response) {
+                toastr.error(response.responseText);
+            },
+            complete: function () {
+            }
+        });
+    }
+
+
+    function convertToForm(data){
+        var obj = data.rows[0];
+        var content = "";
+        $.each(data.columns,function(index,value){
+
+            if(obj[value.field].length >= 30){
+                var rows = obj[value.field].length / 30 +1;
+                content += '<div class="form-group" id="'+value.field+'Label"> '+
+                    '<label class="col-sm-3 control-label" for="yzjddm">'+value.title+'</label> ' +
+                    '<div class="col-sm-6">'+
+                    '<textarea type="text" class="form-control" rows="'+rows+'" id="'+value.field+'" name="'+value.field+'" value="">'+obj[value.field]+'</textarea></div></div>'
+            }else{
+                content += '<div class="form-group" id="'+value.field+'Label"> '+
+                    '<label class="col-sm-3 control-label" for="yzjddm">'+value.title+'</label> ' +
+                    '<div class="col-sm-6">'+
+                    '<input type="text" class="form-control" id="'+value.field+'" name="'+value.field+'" value="'+obj[value.field]+'"></div></div>'
+            }
+
+        });
+       $('#viewForm').append(content);
         $('#viewModal').modal('show');
     }
 </script>
