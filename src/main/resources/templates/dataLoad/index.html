@@ -411,7 +411,7 @@
                 formatter:function(value,row,index){
                     var add = '<span href="#" class="btn btn-default btn-xs" title="查看数据详情" ' +
                         'onclick="openDetailWindow(\''+row.recordName+'\',\''+row.sourceId+'\',\''+row.sourceType+'\')">' +
-                        '查看</span> ';
+                        '详情</span> ';
                     return add;
                 }
             }]
@@ -639,12 +639,12 @@
                 content += '<div class="form-group" id="'+value.field+'Label"> '+
                     '<label class="col-sm-3 control-label" for="yzjddm">'+value.title+'</label> ' +
                     '<div class="col-sm-6">'+
-                    '<textarea type="text" class="form-control" rows="'+rows+'" id="'+value.field+'" name="'+value.field+'" value="">'+obj[value.field]+'</textarea></div></div>'
+                    '<textarea type="text" class="form-control" rows="'+rows+'" id="'+value.field+'" name="'+value.field+'" value="" readonly>'+obj[value.field]+'</textarea></div></div>'
             }else{
                 content += '<div class="form-group" id="'+value.field+'Label"> '+
                     '<label class="col-sm-3 control-label" for="yzjddm">'+value.title+'</label> ' +
                     '<div class="col-sm-6">'+
-                    '<input type="text" class="form-control" id="'+value.field+'" name="'+value.field+'" value="'+obj[value.field]+'"></div></div>'
+                    '<input type="text" class="form-control" id="'+value.field+'" name="'+value.field+'" value="'+obj[value.field]+'" readonly></div></div>'
             }
 
         });
