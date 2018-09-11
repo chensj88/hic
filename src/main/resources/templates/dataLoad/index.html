@@ -35,7 +35,11 @@
         .table.table-hover > tr > td{
             height: 16px;
             max-height: 20px;
+        }
 
+        .table-layout-fixed{
+            table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+            font-size:12px;
         }
     </style>
 
@@ -68,6 +72,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputName2">数据子集:</label>
                                     <select class="form-control input-sm input-length" name="dataSet" id="dataSet" style="width: 200px;">
+                                        <option value="0">-----全部-----</option>
                                         <option th:each="list:${dataSet}" th:value="${list.dictValue}"
                                                 th:text="${list.dictLabel }"></option>
                                     </select>
@@ -95,7 +100,7 @@
                             </form>
                         </div>
                         <!--表格区域  -->
-                        <table id="dataTable" class="table table-hover table-align"></table>
+                        <table id="treegrid_table" class="table table-hover table-align table-layout-fixed"></table>
                     </div>
 
                     <div id="profile" class="tab-pane">
@@ -150,7 +155,36 @@
         </div><!-- /span -->
     </div>
 </div>
-
+<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewFormModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:575px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="viewModalLabel">数据详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                                <table id="dataTable" class="table table-hover table-align"></table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 text-center">
+                            <button class="btn btn-danger" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="sourceId">
+<input type="hidden" id="sourceType">
 </body>
 <!--[if !IE]> -->
 <script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
@@ -179,7 +213,7 @@
     // alert(ctx+'modelCheck/modelCheck');
     var $table = $('#treegrid_table');
     var $simple_table = $('#simple_table');
-    var $dataTable = $('#dataTable');
+    var $dataTable = $('#dataTable'); //详情数据表格
     $(function () {
         toastr.options= {
             "closeButton":false,//显示关闭按钮
@@ -230,45 +264,6 @@
             $(this).prev().focus();
         });
 
-        $table.bootstrapTable({
-            url: ctx + 'modelCheck/list',
-            height: $(window).height(),
-            striped: true,
-            toolbar: '#treegrid_toolbar',
-            sidePagination: 'client',
-            idField: 'id',
-            columns: [
-                // {
-                //     field: 'ck',
-                //     checkbox: true
-                // },
-                {
-                    field: 'colummName',
-                    width: '40%',
-                    title: '模板名称'
-                }, {
-                    field: 'errorDesc',
-                    width: '60%',
-                    title: '结果分析'
-                }
-            ],
-            treeShowField: 'colummName',
-            parentIdField: 'pid',
-            onLoadSuccess: function (data) {
-                console.log(data);
-                // jquery.treegrid.js
-                $table.treegrid({
-                    initialState: 'collapsed',
-                    treeColumn: 0,
-                    // expanderExpandedClass: 'glyphicon glyphicon-minus',
-                    // expanderCollapsedClass: 'glyphicon glyphicon-plus',
-                    onChange: function () {
-                        $table.bootstrapTable('resetWidth');
-                    }
-                });
-            }
-        });
-
         $simple_table.bootstrapTable({
             url: ctx + 'handDataCheckTable/list',
             height: $(window).height(),
@@ -310,13 +305,97 @@
             ],
         });
 
-        var param = {
-            sourceType:1,
-            count:10,
-            first:0
-        }
-        initColumnInfo(param);
 
+        $table.bootstrapTable({
+            url: ctx + 'dataList/loadList',
+            height: 500,
+            method:'get',
+            striped: false,
+            pagination: true,                   // 是否显示分页（*）
+            sortable: false,                     // 是否启用排序
+            sortOrder: "asc",                   // 排序方式
+            sidePagination: "server",           // 分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1,                      // 初始化加载第一页，默认第一页,并记录
+            pageSize: 10,                     // 每页的记录行数（*）
+            pageList: [10,20,50,100],        // 可供选择的每页的行数（*）
+            showPaginationSwitch: false,			//显示 数据条数选择框
+            search: false,                      // 是否显示表格搜索
+            strictSearch: true,
+            minimumCountColumns: 2,             // 最少允许的列数
+            clickToSelect: true,                // 是否启用点击选中行
+            idField: 'id',
+            sortName: 'id',
+            uniqueId: "id",                 // 每一行的唯一标识，一般为主键列
+            cardView: false,                    // 是否显示详细视图
+            detailView: false,                  // 是否显示父子表
+            paginationPreText: '上一页',
+            paginationNextText: '下一页',
+            paginationLoop: false, //分页条无限循环的功能
+            singleSelect: true,
+            toolbar: '#listBar',
+            toolbarAlign: 'left',
+            queryParams: initQueryParam,
+            columns:[{
+                field: 'recordName',
+                title: '病历名称',
+                width: '250px',
+                align: 'center'
+            },{
+                field: 'syxh',
+                title: '首页序号',
+                width: '100px',
+                align: 'center'
+            },{
+                field: 'zyh',
+                title: '住院号',
+                width: '100px',
+                align: 'center'
+            },{
+                field: 'hzxm',
+                title: '姓名',
+                width: '70px',
+                align: 'center'
+            },{
+                field: 'xbmc',
+                title: '性别',
+                width: '50px',
+                align: 'center'
+            },{
+                field: 'ksmc',
+                title: '科室名称',
+                width: '150px',
+                align: 'center'
+            },{
+                field: 'bqmc',
+                title: '病区名称',
+                width: '100px',
+                align: 'center'
+            },{
+                field: 'sfzhm',
+                title: '身份证号码',
+                width: '150px',
+                align: 'center'
+            },{
+                field: 'cqrq',
+                title: '抽取日期',
+                width: '150px',
+                align: 'center',
+                formatter:function(value,row,index){
+                    return convertUTCToYYYYMMDDHHMMSS(value);
+                }
+            },{
+                field: 'id',
+                title: '操作',
+                width: '150px',
+                align: 'center',
+                formatter:function(value,row,index){
+                    var add = '<span href="#" class="btn btn-default btn-xs" title="查看数据详情" ' +
+                        'onclick="openDetailWindow(\''+row.recordName+'\',\''+row.sourceId+'\',\''+row.sourceType+'\')">' +
+                        '查看</span> ';
+                    return add;
+                }
+            }]
+        });
     });
 
 
@@ -400,10 +479,41 @@
     function countAndRealCount(){
 
     }
-
+    /**
+     * 将UTC时间转换为YYYY-MM-DD HH:mm:SS格式
+     * @param value
+     */
+    function convertUTCToYYYYMMDDHHMMSS(value){
+        var date = new Date(value);
+        var time = '';
+        var year = date.getFullYear();
+        time += year+"-";
+        var mouth = date.getMonth()+1;
+        time += addSymbolForDate(mouth,"-");
+        var day = date.getDate();
+        time += addSymbolForDate(day," ");
+        var hour = date.getHours();
+        time += addSymbolForDate(hour,":");
+        var minutes = date.getMinutes();
+        time += addSymbolForDate(minutes,":");
+        var seconds = date.getSeconds();
+        time += addSymbolForDate(seconds,"");
+        return time;
+    }
+    /**
+     *@param value 时间的值
+     *@param symbol 添加的符号
+     */
+    function addSymbolForDate(value,symbol){
+        if(value >= 10){
+            return value+symbol;
+        }else{
+            return "0"+value+symbol;
+        }
+    }
 
     //===============================数据查看=============================================
-    var $dataTable = $('#dataTable');
+
 
     //初始化参数
     function initQueryParam(params){
@@ -453,18 +563,13 @@
 
         return queryParam;
     }
-
+    /* 查询数据*/
     $('#loadData').on('click',function(e){
         e.preventDefault();
-        $dataTable.bootstrapTable('destroy');
-        initColumnInfo();
+        $table.bootstrapTable('refresh', {pageNumber: 1});
 
     });
 
-    $('#dataSet').on('change',function(){
-        $dataTable.bootstrapTable('destroy');
-        initColumnInfo();
-    });
     /**
      * 加载bootstrap Table 字段信息
      */
@@ -477,7 +582,6 @@
             async: false,
             cache: false,
             success: function (data, status) {
-                console.log(data);
                 if (status == 'success') {
                     initBootstrapInfo(data);
                 }
@@ -489,13 +593,30 @@
             }
         });
     }
-    
+
+    function initDataTableParams(params) {
+        var qparam = {};
+        var count,first;
+        if(params){
+            qparam['count'] = params.limit;
+            qparam['first'] = params.offset;
+        }else{
+            qparam['count']  = 10;
+            qparam['first'] = 0;
+        }
+        qparam['sourceId'] = $('#sourceId').val();
+        qparam['sourceType'] = $('#sourceType').val();
+        return qparam;
+    }
+
     function initBootstrapInfo(data) {
         $dataTable.bootstrapTable({
             url: ctx + 'dataList/loadData',
+            method:'GET',
             height: 500,
+            width: 600,
             striped: false,
-            pagination: true,                   // 是否显示分页（*）
+            pagination: false,                   // 是否显示分页（*）
             sortable: false,                     // 是否启用排序
             sortOrder: "asc",                   // 排序方式
             sidePagination: "server",           // 分页方式：client客户端分页，server服务端分页（*）
@@ -510,20 +631,37 @@
             idField: 'yjlxh',
             sortName: 'yjlxh',
             uniqueId: "yjlxh",                 // 每一行的唯一标识，一般为主键列
-            cardView: false,                    // 是否显示详细视图
+            cardView: true,                    // 是否显示详细视图
             detailView: false,                  // 是否显示父子表
-            toolbar: '#listBar',
-            toolbarAlign: 'left',
             paginationPreText: '上一页',
             paginationNextText: '下一页',
             paginationLoop: false, //分页条无限循环的功能
             singleSelect: true,
-            queryParams: initQueryParam,
+            queryParams: initDataTableParams,
             columns:data.columns
         });
         
     }
 
+    /**
+     * 打开抽取的病历信息详情页
+     * @param recordName
+     * @param sourceId
+     * @param sourceType
+     */
+    function openDetailWindow(recordName,sourceId,sourceType){
+        $('#viewModalLabel').text(recordName+"详细信息");
+        $dataTable.bootstrapTable('destroy');
+        $('#sourceType').val(sourceType);
+        $('#sourceId').val(sourceId);
+        var param = {
+            sourceId:sourceId,
+            sourceType:sourceType
+        };
+        initColumnInfo(param);
+      /*  $dataTable.bootstrapTable('refresh');*/
+        $('#viewModal').modal('show');
+    }
 </script>
 
 </html>
