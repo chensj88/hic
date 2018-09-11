@@ -83,6 +83,19 @@
                                                 th:text="${list.dictLabel }"></option>
                                     </select>
                                 </div>
+                                <!--<div class="form-group">
+                                    <label >搜索条件</label>
+                                    <select class="form-control input-sm input-length" name="ssType" id="ssType" style="width: 100px;">
+                                        <option value="0">&#45;&#45;无&#45;&#45;</option>
+                                        <option value="1">病历号</option>
+                                        <option value="2">性别</option>
+                                        <option value="3">姓名</option>
+                                        <option value="4">PATID</option>
+                                    </select>
+                                    <input type="text" id="ssContent" name="ssContent" class="form-control input-sm input-length"
+                                           placeholder="请输入条件" style="width: 100px;"/>
+                                </div>-->
+
                                 <div class="form-group">
                                     <label >开始日期</label>
                                     <div class="input-group input-group-sm">
@@ -574,9 +587,11 @@
     $('#loadData').on('click',function(e){
         e.preventDefault();
         $table.bootstrapTable('refresh', {pageNumber: 1});
-
     });
 
+    $('#dataSet').on('change',function(){
+        $table.bootstrapTable('refresh', {pageNumber: 1,sourceType:$(this).val()});
+    });
 
     /**
      * 打开抽取的病历信息详情页
