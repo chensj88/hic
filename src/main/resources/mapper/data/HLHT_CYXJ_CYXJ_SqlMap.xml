@@ -539,7 +539,7 @@
         ),
         ''''
         ) AS nls,
-        SUBSTRING (replace(b.CSRQ, '-', ''), 0, 9) AS nly,
+        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         b.HYZK AS hyzkdm,
         CASE b.HYZK
         WHEN '0' THEN
@@ -586,6 +586,7 @@
         b.RYRQ as ryrq,
         CASE WHEN b.CYRQ ='' THEN GETDATE() ELSE  b.CYRQ END as cyrq,
         DATEDIFF( day ,  CONVERT(varchar(100), b.RYRQ, 23),  CONVERT(varchar(100), GETDATE(), 23))  AS sjzyts,
+        t.FSSJ AS qmrq,
         ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
         t.YXJL AS yxjl,
         t.QTBLJLXH AS syxh,
