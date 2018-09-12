@@ -31,10 +31,50 @@
             margin-left: 190px;
             /*box-shadow:0px 0px 3px rgba(179,179,179,.75);*/
         }
+
+        .bg-color{
+            background: #323841;
+        }
+        .nav-list>li{
+            border-bottom:0px;
+        }
+        .nav-list>li.active:after{
+            border: 0px;
+        }
+        .nav-list>li>a{
+            background: #323841;
+            color: #FFF;
+        }
+        .nav-list>li>a.active{
+            background: #09b1b9;
+        }
+        .nav-list>li>a.active>span{
+            color: white;
+        }
+        .nav-list>li.active>a,
+
+        .nav-list>li.active>a:active{
+            background: #09b1b9;
+            color: #000;
+        }
+        .nav-list li.active>a:after{
+            border-right-color:#fff;
+        }
+        .nav-list>li.active>a,
+        .nav-list>li.active>a:hover,
+        .nav-list>li.active>a:focus,
+        .nav-list>li.active>a:active{
+            color: #000;
+        }
+        .nav-list>li>a:hover,
+        .nav-list>li>a:focus{
+            background: #ffb174;
+            color:#000;
+        }
     </style>
 </head>
 <body>
-<div class="navbar navbar-default" id="navbar">
+<div class="navbar navbar-default bg-color" id="navbar">
     <script type="text/javascript">
         try {
             ace.settings.check('navbar', 'fixed')
@@ -69,14 +109,14 @@
         <a class="menu-toggler" id="menu-toggler" href="#">
             <span class="menu-text"></span>
         </a>
-        <div class="sidebar" id="sidebar">
+        <div class="sidebar" id="sidebar" >
             <script type="text/javascript">
                 try {
                     ace.settings.check('sidebar', 'fixed')
                 } catch (e) {
                 }
             </script>
-            <ul class="nav nav-list" id="navList">
+            <ul class="nav nav-list" id="navList" >
                 <li class="active">
                     <a th:href="@{init/initData}" >
                         <i class="icon-dashboard"></i>
@@ -99,14 +139,14 @@
                 </li>
 
                 <li>
-                    <a th:href="@{dataLoad/check}">
+                    <a th:href="@{dataLoad/check}" >
                         <i class="icon-list"></i>
                         <span class="menu-text"> 数 据 校 验 </span>
                     </a>
                 </li>
 
                 <li>
-                    <a th:href="@{logger/index}">
+                    <a th:href="@{logger/index}" >
                         <i class="icon-edit"></i>
                         <span class="menu-text"> 日 志 查 看 </span>
                     </a>
@@ -114,7 +154,7 @@
                 </li>
 
                 <li>
-                    <a th:href="@{config/index}">
+                    <a th:href="@{config/index}" >
                         <i class="icon-cog"></i>
                         <span class="menu-text"> 工 具 配 置 </span>
                     </a>
