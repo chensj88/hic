@@ -1,14 +1,12 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.Base64Utils;
-import com.winning.hic.base.utils.HicHelper;
-import com.winning.hic.base.utils.ReflectUtil;
-import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlZkjlDao;
 import com.winning.hic.dao.data.HlhtZybcjlZkjlDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlZkjlService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -17,6 +15,7 @@ import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +46,9 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
 
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtZybcjlZkjl(HlhtZybcjlZkjl hlhtZybcjlZkjl){
         return this.hlhtZybcjlZkjlDao.insertHlhtZybcjlZkjl(hlhtZybcjlZkjl);
@@ -168,6 +170,13 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
+                            //插入日志
+                            mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                    Long.parseLong(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE),
+                                    emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                    new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
+                                    zkjl.getPatid(),zkjl.getZyh(),zkjl.getHzxm(),zkjl.getXbmc(),zkjl.getXbdm(),
+                                    zkjl.getKsmc(),zkjl.getKsdm(), zkjl.getBqmc(),zkjl.getBqdm(), zkjl.getSfzhm()));
                             this.modifyHlhtZybcjlZkjl(zkjl);
                         }
                         real_count++;
