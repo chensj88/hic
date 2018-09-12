@@ -404,12 +404,12 @@
                 c.PATID                                   AS patid,
                 ISNULL(b.ZYHM, 'NA')                       AS zyh,
                 ISNULL(
-                CONVERT (VARCHAR,(o.GHXH)),
+                CONVERT (VARCHAR,(c.MZH)),
                 'NA'
                 ) AS mjzh,
                 ISNULL(
                 CONVERT (VARCHAR,(o.GHLB)),
-                'NA'
+                '2'
                 ) AS jzlb,
                 ISNULL(c.BQDM, 'NA')                       AS bqdm,
                 ISNULL(c.BQMC, 'NA')                       AS bqmc,
@@ -444,7 +444,8 @@
                 )                                         AS nls,
                 DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
                 '0'                                      AS tz,
-                'NA'                                       AS dzsqdbh,
+                'NA'                                     AS dzsqdbh,
+                q.FSSJ                                    AS qmrq,
                 q.QTBLJLXH                                AS syxh,
                 q.TJZT                                    AS tjzt,
                 q.YXJL                                    AS yxjl,
