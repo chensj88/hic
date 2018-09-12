@@ -125,7 +125,7 @@ public class HlhtZlczjlMzsqfsjlServiceImpl implements HlhtZlczjlMzsqfsjlService 
                     //清除日志
                     Map<String,Object> param = new HashMap<>();
                     param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
-                    param.put("SOURCE_TYPE",Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE);
+                    param.put("SOURCE_TYPE",Constants.WN_ZLCZJL_MZSQFSJL_SOURCE_TYPE);
                     mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                     //3.xml文件解析 获取病历信息
                     Document document = null;
@@ -141,7 +141,7 @@ public class HlhtZlczjlMzsqfsjlServiceImpl implements HlhtZlczjlMzsqfsjlService 
                         this.hlhtZlczjlMzsqfsjlDao.insertHlhtZlczjlMzsqfsjl(hlhtZlczjlMzsqfsjl);
                         //插入日志
                         mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                Long.parseLong(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE),
+                                Long.parseLong(Constants.WN_ZLCZJL_MZSQFSJL_SOURCE_TYPE),
                                 emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
                                 new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                 hlhtZlczjlMzsqfsjl.getPatid(),hlhtZlczjlMzsqfsjl.getZyh(),hlhtZlczjlMzsqfsjl.getHzxm(),hlhtZlczjlMzsqfsjl.getXbmc(),hlhtZlczjlMzsqfsjl.getXbdm(),
