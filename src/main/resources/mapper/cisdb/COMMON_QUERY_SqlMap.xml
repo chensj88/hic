@@ -690,7 +690,10 @@
     </resultMap>
     <!--#####################resultMap end #############################-->
 
-    <!--chensj  获取入院记录/24小时入出院记录病人基础公共信息 2018-8-6 -->
+    <!--chensj  获取入院记录/24小时入出院记录病人基础公共信息 2018-8-6
+      b.RYRQ as ryrq,
+        CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
+    -->
     <select id="selectInitHlhtRyjlRcyjlData" parameterType="com.winning.hic.model.HlhtRyjlRcyjl"
             resultMap="hlhtRyjlRcyjlResult">
         SELECT
@@ -740,8 +743,6 @@
         'NA' as dzmphm,
         b.ZYDM as zylbdm,
         i.NAME as zylbmc,
-        b.RYRQ as ryrq,
-        CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         GETDATE() as gxsj,
         t.SYXH as syxh,
         t.TJZT as tjzt,
@@ -750,14 +751,16 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN PUB_ZYDMK i on b.ZYDM=i.ID
+        LEFT JOIN EMR_SYS_ZDFLMXK i on b.ZYDM=i.MXDM and LBDM = 41
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
     </select>
-    <!--chensj  生成入院记录/24小时死亡记录病人基础公共信息 2018-8-8 -->
+    <!--chensj  生成入院记录/24小时死亡记录病人基础公共信息 2018-8-8
+      b.RYRQ as ryrq,
+     -->
     <select id="selectInitHlhtRyjlRyswjl" parameterType="com.winning.hic.model.HlhtRyjlRyswjl"
             resultMap="hlhtRyjlRyswjlResult">
         SELECT
@@ -807,7 +810,7 @@
         'NA' as dzmphm,
         b.ZYDM as zylbdm,
         i.NAME as zylbmc,
-        b.RYRQ as ryrq,
+
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         t.SYXH as syxh,
         t.TJZT as tjzt,
@@ -817,7 +820,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN PUB_ZYDMK i on b.ZYDM=i.ID
+        LEFT JOIN EMR_SYS_ZDFLMXK i on b.ZYDM=i.MXDM and LBDM = 41
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
