@@ -322,7 +322,7 @@
     <select id="selectHlhtZybcjlCyjlCount" resultType="int" parameterType="com.winning.hic.model.HlhtZybcjlCyjl">
         select count(1) from HLHT_ZYBCJL_CYJL t
         <where>
-            <include refid="sql-hlhtZybcjlCyjl"/>`````````````````````````
+            <include refid="sql-hlhtZybcjlCyjl"/>
         </where>
     </select>
 
