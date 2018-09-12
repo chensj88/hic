@@ -326,7 +326,7 @@
         b.CSRQ AS csrq,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,b.RYRQ as ryrq,
-        ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
+        GETDATE() AS gxsj,
         t.FSSJ AS xjrq,
         t.FSSJ AS qmrq,
         t.YXJL AS yxjl,

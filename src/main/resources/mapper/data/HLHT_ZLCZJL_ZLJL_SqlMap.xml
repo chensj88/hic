@@ -449,10 +449,7 @@
                 q.QTBLJLXH                                AS syxh,
                 q.TJZT                                    AS tjzt,
                 q.YXJL                                    AS yxjl,
-                ISNULL(
-                q.GXRQ,
-                q.CJSJ
-                )                                         AS gxsj
+                GETDATE()                                 AS gxsj
         FROM
         CISDB.dbo.EMR_QTBLJLK q
         LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH

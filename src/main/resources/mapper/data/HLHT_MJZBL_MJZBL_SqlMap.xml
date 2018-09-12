@@ -443,7 +443,7 @@
         '复诊'
         END
         )  AS czbzmc,
-        ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
+        GETDATE() AS gxsj,
         t.YXJL AS yxjl, t.QTBLJLXH as syxh, t.TJZT as tjzt FROM CISDB.dbo.EMR_QTBLJLK t
         LEFT JOIN CISDB.dbo.OUTP_JZJLK c ON t.SYXH = c.EMRXH
         LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'

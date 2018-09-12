@@ -620,7 +620,7 @@
         c.BQMC AS bqmc,
         ISNULL(a.fjh, 'NA') AS bfh,
         c.CWDM AS bch,
-        ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
+        GETDATE() AS gxsj,
         t.YXJL AS yxjl,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt

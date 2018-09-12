@@ -172,7 +172,7 @@
                 --治疗结果名称
                 t.YSDM AS zrysbm,
                 t.YSMC AS zrys,
-                tt.gxsj AS gxsj,
+                GETDATE() AS gxsj,
                 tt.syxh AS syxh
                 --剩下的不知道从哪里取了
             FROM

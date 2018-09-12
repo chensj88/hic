@@ -587,7 +587,7 @@
         CASE WHEN b.CYRQ ='' THEN GETDATE() ELSE  b.CYRQ END as cyrq,
         DATEDIFF( day ,  CONVERT(varchar(100), b.RYRQ, 23),  CONVERT(varchar(100), GETDATE(), 23))  AS sjzyts,
         t.FSSJ AS qmrq,
-        ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
+        GETDATE() AS gxsj,
         t.YXJL AS yxjl,
         t.QTBLJLXH AS syxh,
         t.TJZT AS tjzt

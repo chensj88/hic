@@ -149,6 +149,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             try {
                                 entity = (HlhtZybcjlZkjl) HicHelper.initModelValue(cDataSetList, document, entity, paramTypeMap);
+                                entity.setZkjllxmc("转入记录");
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
