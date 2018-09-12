@@ -402,7 +402,7 @@
         ii.DICT_LABEL AS hzyljgdm,
         i.DICT_LABEL AS hzszyljgmc,
         ii.DICT_LABEL AS hzszyljgdm,
-        ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
+        GETDATE() AS gxsj,
         t.YXJL AS yxjl,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt

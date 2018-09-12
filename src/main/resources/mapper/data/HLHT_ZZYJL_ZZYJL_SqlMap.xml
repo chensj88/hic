@@ -325,7 +325,7 @@
         b.BRXB AS xbdm,
         c.SEX AS xbmc,
         c.BIRTH AS csrq,
-        ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
+        GETDATE() AS gxsj,
         t.YXJL AS yxjl,
         t.QTBLJLXH as syxh,
         t.TJZT as tjzt

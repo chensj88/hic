@@ -1,5 +1,6 @@
 package com.winning.hic.base.utils;
 
+import com.winning.hic.base.Constants;
 import com.winning.hic.model.HlhtRyjlRyswjl;
 import com.winning.hic.model.MbzDataSet;
 import org.dom4j.Document;
@@ -205,16 +206,30 @@ public class HicHelper {
                             bltd = bltd + " " + value;
                             ReflectUtil.setParamKind(obj, methodName, bltd);
                         }
-                    } /*else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdbm"))){
-                        shzdbm = shzdbm + " " + value;
-                        ReflectUtil.setParamKind(obj, methodName, shzdbm);
-                    }else if((dataSet.getSourceType().equals("11") && pyCode.equals("shzdmc"))){
-                        shzdmc = shzdmc + " " + value;
-                        ReflectUtil.setParamKind(obj, methodName, shzdmc);
-                    }*/else{
-                        ReflectUtil.setParam(obj, methodName, value);
-
                     }
+                    if (dataSet.getSourceType().equals(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE)) {
+                        //出院记录字段拼接
+//                        if (pyCode.equals("ryqk")) {
+//                            if (!"NA".equals(value)) {
+//                                String method = "getRyqk";
+//                                value = ReflectUtil.getParam(obj, method) + " " + value;
+//                                ReflectUtil.setParamKind(obj, methodName, value);
+//                                continue;
+//                            }
+//                        }
+                        if (pyCode.equals("cyqk")) {
+                            String method = "getCyqk";
+                            String exValue = (String) ReflectUtil.getParam(obj, method);
+                            if (exValue != null && !"NA".equals(value)) {
+                                value = exValue + " " + value;
+                                ReflectUtil.setParamKind(obj, methodName, value);
+                                continue;
+                            }
+                        }
+                    }
+                    ReflectUtil.setParam(obj, methodName, value);
+
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();

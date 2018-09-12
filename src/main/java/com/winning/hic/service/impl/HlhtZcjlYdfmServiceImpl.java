@@ -1,14 +1,12 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.Base64Utils;
-import com.winning.hic.base.utils.HicHelper;
-import com.winning.hic.base.utils.ReflectUtil;
-import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZcjlYdfmDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZcjlYdfmService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -20,7 +18,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +48,9 @@ public class HlhtZcjlYdfmServiceImpl implements HlhtZcjlYdfmService {
     private HlhtZcjlYdfmDao hlhtZcjlYdfmDao;
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtZcjlYdfm(HlhtZcjlYdfm hlhtZcjlYdfm) {
         return this.hlhtZcjlYdfmDao.insertHlhtZcjlYdfm(hlhtZcjlYdfm);
@@ -91,8 +94,8 @@ public class HlhtZcjlYdfmServiceImpl implements HlhtZcjlYdfmService {
     public List<MbzDataCheck> interfaceHlhtZcjlYdfm(MbzDataCheck t) {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
-        int emr_count =0;//病历数量
-        int real_count=0;//实际数量
+        int emr_count = 0;//病历数量
+        int real_count = 0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZCJL_YDFM_SOURCE_TYPE);
@@ -106,11 +109,11 @@ public class HlhtZcjlYdfmServiceImpl implements HlhtZcjlYdfmService {
             EmrQtbljlk qtbljlk = new EmrQtbljlk();
             qtbljlk.setBldm(dataListSet.getModelCode());
             qtbljlk.setYxjl(1);
-            qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
-            qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
+            qtbljlk.getMap().put("startDate", t.getMap().get("startDate"));
+            qtbljlk.getMap().put("endDate", t.getMap().get("endDate"));
             //2.根据模板代码去找到对应的病人病历
             List<HlhtZcjlYdfm> hlhtZcjlYdfmListFromBaseData = this.hlhtZcjlYdfmDao.getHlhtZcjlYdfmListFromBaseData(qtbljlk);
-            emr_count = emr_count+hlhtZcjlYdfmListFromBaseData.size();
+            emr_count = emr_count + hlhtZcjlYdfmListFromBaseData.size();
 
             if (hlhtZcjlYdfmListFromBaseData != null) {
                 for (HlhtZcjlYdfm hlhtZcjlYdfm : hlhtZcjlYdfmListFromBaseData) {
@@ -121,6 +124,11 @@ public class HlhtZcjlYdfmServiceImpl implements HlhtZcjlYdfmService {
                     HlhtZcjlYdfm temp = new HlhtZcjlYdfm();
                     temp.setYjlxh(hlhtZcjlYdfm.getYjlxh());
                     this.hlhtZcjlYdfmDao.deleteHlhtZcjlYdfmByYjlxh(temp);
+                    //清除日志
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("SOURCE_ID", emrQtbljlk.getQtbljlxh());
+                    param.put("SOURCE_TYPE", Constants.WN_ZCJL_YDFM_SOURCE_TYPE);
+                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                     //3.xml文件解析 获取病历信息
                     Document document = null;
                     try {
@@ -131,11 +139,17 @@ public class HlhtZcjlYdfmServiceImpl implements HlhtZcjlYdfmService {
                     Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZlczjlSxjl.class);
                     try {
                         hlhtZcjlYdfm = (HlhtZcjlYdfm) HicHelper.initModelValue(mbzDataSetList, document, hlhtZcjlYdfm, paramTypeMap);
+                        logger.info("Model:{}", hlhtZcjlYdfm);
+                        this.hlhtZcjlYdfmDao.insertHlhtZcjlYdfm(hlhtZcjlYdfm);
+                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                Long.parseLong(Constants.WN_ZCJL_YDFM_SOURCE_TYPE),
+                                emrQtbljlk.getQtbljlxh(), emrQtbljlk.getBlmc(), emrQtbljlk.getSyxh() + "",
+                                new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(), DateUtil.PATTERN_19).getTime()),
+                                hlhtZcjlYdfm.getPatid(), hlhtZcjlYdfm.getZyh(), hlhtZcjlYdfm.getCfxm(), "女", "2",
+                                hlhtZcjlYdfm.getKsmc(), hlhtZcjlYdfm.getKsdm(), hlhtZcjlYdfm.getBqmc(), hlhtZcjlYdfm.getBqdm(), hlhtZcjlYdfm.getSfzhm()));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    logger.info("Model:{}", hlhtZcjlYdfm);
-                    this.hlhtZcjlYdfmDao.insertHlhtZcjlYdfm(hlhtZcjlYdfm);
                     real_count++;
 
                 }
@@ -143,7 +157,7 @@ public class HlhtZcjlYdfmServiceImpl implements HlhtZcjlYdfmService {
         }
 
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZCJL_YDFM_SOURCE_TYPE));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count, real_count, Integer.parseInt(Constants.WN_ZCJL_YDFM_SOURCE_TYPE));
 
         return mbzDataChecks;
     }

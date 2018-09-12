@@ -78,6 +78,19 @@ public class ReflectUtil {
         setMethod.invoke(object, param);
     }
 
+    /**
+     *
+     * @param object
+     * @param methodName
+     * @throws Exception
+     */
+    public static Object getParam(Object object, String methodName) throws Exception {
+        Class<?> objectClass = object.getClass();
+        Method getMethod = objectClass.getDeclaredMethod(methodName);
+        Object value = getMethod.invoke(object);
+        return value;
+    }
+
     public static Map<String, String> getParamTypeMap(Class<?> objectClass) {
         Map<String, String> map = new HashMap();
         // 获取实体类的所有属性信息，返回Field数组

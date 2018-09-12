@@ -742,7 +742,7 @@
         i.NAME as zylbmc,
         b.RYRQ as ryrq,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        GETDATE() as gxsj,
         t.SYXH as syxh,
         t.TJZT as tjzt,
         t.YXJL as yxjl
@@ -811,7 +811,7 @@
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         t.SYXH as syxh,
         t.TJZT as tjzt,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        GETDATE() as gxsj,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
@@ -887,7 +887,7 @@
         t.TJZT as tjzt,
         t.CJSJ as jlrq,
         t.FSSJ as qmrq,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        GETDATE() as gxsj,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
@@ -924,7 +924,7 @@
         t.SYXH as syxh,
         t.TJZT as tjzt,
         t.CJSJ as xjrq,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        GETDATE() as gxsj,
         t.FSSJ as qmrq,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
@@ -963,7 +963,7 @@
         t.FSSJ as qmrq,
         t.SYXH as syxh,
         t.TJZT as tjzt,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        GETDATE() as gxsj,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
@@ -1000,7 +1000,7 @@
         b.RYRQ as ryrq,
         t.SYXH as syxh,
         t.TJZT as tjzt,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        GETDATE() as gxsj,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
@@ -1040,7 +1040,7 @@
         t.SYXH as syxh,
         t.TJZT as tjzt,
         t.FSSJ as qmrq,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        GETDATE() as gxsj,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
@@ -1082,7 +1082,7 @@
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         t.SYXH as syxh,
         t.TJZT as tjzt,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj,
+        GETDATE() as gxsj,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
@@ -1118,7 +1118,7 @@
         (SELECT CASE b.BRXB WHEN '2' THEN '女' WHEN '1' THEN '男'ELSE '其它' END) AS xbmc,
         ISNULL(convert(varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,c.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
-        ISNULL(t.GXRQ,t.CJSJ) as gxsj
+        GETDATE() as gxsj
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
@@ -1155,7 +1155,7 @@
         case when b.CFZBZ = '0' then 1 else 2 end                                         as czbzdm,
         case when b.CFZBZ = '0' then '初诊' else '复诊' end                                as czbzmc,
         a.FSSJ                                                                            as jlrqsj,
-        ISNULL(a.GXRQ,a.CJSJ)                                                             as gxsj
+        GETDATE()                                                             as gxsj
         from EMR_QTBLJLK a
         left join OUTP_JZJLK b on a.SYXH = b.EMRXH
         left join CPOE_BRSYK c on a.SYXH = c.EMRXH
