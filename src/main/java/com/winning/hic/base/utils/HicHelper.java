@@ -205,20 +205,59 @@ public class HicHelper {
                         if (!"NA".equals(value)) {
                             bltd = bltd + " " + value;
                             ReflectUtil.setParamKind(obj, methodName, bltd);
+                            continue;
                         }
                     }
                     if (dataSet.getSourceType().equals(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE)) {
-                        //出院记录字段拼接
-//                        if (pyCode.equals("ryqk")) {
-//                            if (!"NA".equals(value)) {
-//                                String method = "getRyqk";
-//                                value = ReflectUtil.getParam(obj, method) + " " + value;
-//                                ReflectUtil.setParamKind(obj, methodName, value);
-//                                continue;
-//                            }
-//                        }
                         if (pyCode.equals("cyqk")) {
                             String method = "getCyqk";
+                            String exValue = (String) ReflectUtil.getParam(obj, method);
+                            if (exValue != null && !"NA".equals(value)) {
+                                value = exValue + " " + value;
+                                ReflectUtil.setParamKind(obj, methodName, value);
+                                continue;
+                            }
+                        }
+                    }
+                    if (dataSet.getSourceType().equals(Constants.WN_RYJL_JBXX_SOURCE_TYPE)) {
+                        if (pyCode.equals("tjtw")) {
+                            String method = "getTjtw";
+                            String exValue = (String) ReflectUtil.getParam(obj, method);
+                            if (exValue != null && !"NA".equals(value)) {
+                                value = exValue + " " + value;
+                                ReflectUtil.setParamKind(obj, methodName, value);
+                                continue;
+                            }
+                        }
+                        if (pyCode.equals("tjhxpl")) {
+                            String method = "getTjhxpl";
+                            String exValue = (String) ReflectUtil.getParam(obj, method);
+                            if (exValue != null && !"NA".equals(value)) {
+                                value = exValue + " " + value;
+                                ReflectUtil.setParamKind(obj, methodName, value);
+                                continue;
+                            }
+                        }
+                        if (pyCode.equals("tjml")) {
+                            String method = "getTjml";
+                            String exValue = (String) ReflectUtil.getParam(obj, method);
+                            if (exValue != null && !"NA".equals(value)) {
+                                value = exValue + " " + value;
+                                ReflectUtil.setParamKind(obj, methodName, value);
+                                continue;
+                            }
+                        }
+                        if (pyCode.equals("tjsg")) {
+                            String method = "getTjsg";
+                            String exValue = (String) ReflectUtil.getParam(obj, method);
+                            if (exValue != null && !"NA".equals(value)) {
+                                value = exValue + " " + value;
+                                ReflectUtil.setParamKind(obj, methodName, value);
+                                continue;
+                            }
+                        }
+                        if (pyCode.equals("tjybjg")) {
+                            String method = "getTjybjg";
                             String exValue = (String) ReflectUtil.getParam(obj, method);
                             if (exValue != null && !"NA".equals(value)) {
                                 value = exValue + " " + value;
