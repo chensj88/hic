@@ -14,6 +14,7 @@ import com.winning.hic.service.MbzDataSetService;
 import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -131,6 +132,106 @@ public class HlhtCyxjCyxjServiceImpl implements  HlhtCyxjCyxjService {
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         try {
                             entity = (HlhtCyxjCyxj) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
+                            //初步诊断-中医病名代码、名称处理
+                            if(!"NA".equals(entity.getRzzybmdm())){
+                                String bmdm="";
+                                String bm="";
+                                String[] str=entity.getRzzybmdm().split("  ");
+                                String[] str2=entity.getRzzybm().split("  ");
+                                Character o=new Character('B');
+                                for (int i=0;str.length>i;i++){
+                                    if(o.equals(str[i].charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
+                                }
+                                if(StringUtils.isEmpty(bmdm)){
+                                    entity.setRzzybmdm("NA");
+                                }else{
+                                    entity.setRzzybmdm(bmdm);
+                                }
+                                if(StringUtils.isEmpty(bm)){
+                                    entity.setRzzybm("NA");
+                                }else{
+                                    entity.setRzzybm(bm);
+                                }
+                            }
+                            //初步诊断-中医证候代码
+                            if(!"NA".equals(entity.getRzzyzhdm())){
+                                String bmdm="";
+                                String bm="";
+                                String[] str=entity.getRzzyzhdm().split("  ");
+                                String[] str2=entity.getRzzyzh().split("  ");
+                                Character o=new Character('B');
+                                for (int i=0;str.length>i;i++){
+                                    if(!o.equals(str[i].charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
+                                }
+                                if(StringUtils.isEmpty(bmdm)){
+                                    entity.setRzzyzhdm("NA");
+                                }else{
+                                    entity.setRzzyzhdm(bmdm);
+                                }
+                                if(StringUtils.isEmpty(bm)){
+                                    entity.setRzzyzh("NA");
+                                }else{
+                                    entity.setRzzyzh(bm);
+                                }
+                            }
+
+                            //出院诊断-中医病名代码、名称处理
+                            if(!"NA".equals(entity.getCzzybmdm())){
+                                String bmdm="";
+                                String bm="";
+                                String[] str=entity.getCzzybmdm().split("  ");
+                                String[] str2=entity.getCzzybm().split("  ");
+                                Character o=new Character('B');
+                                for (int i=0;str.length>i;i++){
+                                    if(o.equals(str[i].charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
+                                }
+                                if(StringUtils.isEmpty(bmdm)){
+                                    entity.setCzzybmdm("NA");
+                                }else{
+                                    entity.setCzzybmdm(bmdm);
+                                }
+                                if(StringUtils.isEmpty(bm)){
+                                    entity.setCzzybm("NA");
+                                }else{
+                                    entity.setCzzybm(bm);
+                                }
+                            }
+                            //出院诊断-中医证候代码
+                            if(!"NA".equals(entity.getCzzyzhdm())){
+                                String bmdm="";
+                                String bm="";
+                                String[] str=entity.getCzzyzhdm().split("  ");
+                                String[] str2=entity.getCzzyzh().split("  ");
+                                Character o=new Character('B');
+                                for (int i=0;str.length>i;i++){
+                                    if(!o.equals(str[i].charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
+                                }
+                                if(StringUtils.isEmpty(bmdm)){
+                                    entity.setCzzyzhdm("NA");
+                                }else{
+                                    entity.setCzzyzhdm(bmdm);
+                                }
+                                if(StringUtils.isEmpty(bm)){
+                                    entity.setCzzyzh("NA");
+                                }else{
+                                    entity.setCzzyzh(bm);
+                                }
+                            }
+
+
+
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
