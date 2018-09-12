@@ -429,6 +429,20 @@
         ii.DICT_LABEL AS zzjgdm,
         c.KSDM AS ksdm,
         c.KSMC AS ksmc ,
+        c.GHRQ AS jzrqsj,
+        c.CFZBZ AS czbzdm,
+        (
+        SELECT CASE c.CFZBZ
+        WHEN '0'
+        THEN
+        '初诊'
+        WHEN '1'
+        THEN
+        '复诊'
+        ELSE
+        '复诊'
+        END
+        )  AS czbzmc,
         ISNULL(t.GXRQ, t.CJSJ) AS gxsj,
         t.YXJL AS yxjl, t.QTBLJLXH as syxh, t.TJZT as tjzt FROM CISDB.dbo.EMR_QTBLJLK t
         LEFT JOIN CISDB.dbo.OUTP_JZJLK c ON t.SYXH = c.EMRXH

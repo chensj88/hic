@@ -152,6 +152,13 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
+                            //插入日志
+                            mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                    Long.parseLong(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE),
+                                    emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                    new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
+                                    zkjl.getPatid(),zkjl.getZyh(),zkjl.getHzxm(),zkjl.getXbmc(),zkjl.getXbdm(),
+                                    zkjl.getKsmc(),zkjl.getKsdm(), zkjl.getBqmc(),zkjl.getBqdm(), zkjl.getSfzhm()));
                             this.createHlhtZybcjlZkjl(entity);
 
                         }else{ //转入记录
@@ -170,13 +177,6 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                            //插入日志
-                            mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                    Long.parseLong(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE),
-                                    emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
-                                    new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
-                                    zkjl.getPatid(),zkjl.getZyh(),zkjl.getHzxm(),zkjl.getXbmc(),zkjl.getXbdm(),
-                                    zkjl.getKsmc(),zkjl.getKsdm(), zkjl.getBqmc(),zkjl.getBqdm(), zkjl.getSfzhm()));
                             this.modifyHlhtZybcjlZkjl(zkjl);
                         }
                         real_count++;
