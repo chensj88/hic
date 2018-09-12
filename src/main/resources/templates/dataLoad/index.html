@@ -641,10 +641,19 @@
                     '<div class="col-sm-6">'+
                     '<textarea type="text" class="form-control" rows="'+rows+'" id="'+value.field+'" name="'+value.field+'" value="" readonly>'+obj[value.field]+'</textarea></div></div>'
             }else{
-                content += '<div class="form-group" id="'+value.field+'Label"> '+
-                    '<label class="col-sm-3 control-label" for="yzjddm">'+value.title+'</label> ' +
-                    '<div class="col-sm-6">'+
-                    '<input type="text" class="form-control" id="'+value.field+'" name="'+value.field+'" value="'+obj[value.field]+'" readonly></div></div>'
+                var reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T+(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d/;
+                var regExp = new RegExp(reg);
+                if(regExp.test(obj[value.field])){
+                    content += '<div class="form-group" id="'+value.field+'Label"> '+
+                        '<label class="col-sm-3 control-label" for="yzjddm">'+value.title+'</label> ' +
+                        '<div class="col-sm-6">'+
+                        '<input type="text" class="form-control" id="'+value.field+'" name="'+value.field+'" value="'+convertUTCToYYYYMMDDHHMMSS(obj[value.field])+'" readonly></div></div>'
+                }else{
+                    content += '<div class="form-group" id="'+value.field+'Label"> '+
+                        '<label class="col-sm-3 control-label" for="yzjddm">'+value.title+'</label> ' +
+                        '<div class="col-sm-6">'+
+                        '<input type="text" class="form-control" id="'+value.field+'" name="'+value.field+'" value="'+obj[value.field]+'" readonly></div></div>'
+                }
             }
 
         });

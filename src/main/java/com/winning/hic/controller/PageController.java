@@ -66,4 +66,11 @@ public class PageController extends BaseController {
         model.addAllAttributes(resultMap);
         return "init/index";
     }
+    @ApiOperation(value = "页面跳转",notes = "跳转到配置页面")
+    @GetMapping(value = "/config/index")
+    public String goToConfigPage(){
+        return "config/index";
+    }
+
+
 }
