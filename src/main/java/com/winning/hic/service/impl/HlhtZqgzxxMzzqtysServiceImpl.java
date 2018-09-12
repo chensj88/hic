@@ -1,14 +1,12 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.Base64Utils;
-import com.winning.hic.base.utils.HicHelper;
-import com.winning.hic.base.utils.ReflectUtil;
-import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZqgzxxMzzqtysDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZqgzxxMzzqtysService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -20,7 +18,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +48,9 @@ public class HlhtZqgzxxMzzqtysServiceImpl implements HlhtZqgzxxMzzqtysService {
 
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtZqgzxxMzzqtys(HlhtZqgzxxMzzqtys hlhtZqgzxxMzzqtys) {
         return this.hlhtZqgzxxMzzqtysDao.insertHlhtZqgzxxMzzqtys(hlhtZqgzxxMzzqtys);
@@ -121,6 +124,11 @@ public class HlhtZqgzxxMzzqtysServiceImpl implements HlhtZqgzxxMzzqtysService {
                     HlhtZqgzxxMzzqtys temp = new HlhtZqgzxxMzzqtys();
                     temp.setYjlxh(hlhtZqgzxxMzzqtys.getYjlxh());
                     this.hlhtZqgzxxMzzqtysDao.deleteHlhtZqgzxxMzzqtysByYjlxh(temp);
+                    //清除日志
+                    Map<String,Object> param = new HashMap<>();
+                    param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                    param.put("SOURCE_TYPE",Constants.WN_ZQGZXX_MZZQTYS_SOURCE_TYPE);
+                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                     //3.xml文件解析 获取病历信息
                     Document document = null;
                     try {
@@ -133,6 +141,12 @@ public class HlhtZqgzxxMzzqtysServiceImpl implements HlhtZqgzxxMzzqtysService {
                         hlhtZqgzxxMzzqtys = (HlhtZqgzxxMzzqtys) HicHelper.initModelValue(mbzDataSetList, document, hlhtZqgzxxMzzqtys, paramTypeMap);
                         logger.info("Model:{}", hlhtZqgzxxMzzqtys);
                         this.hlhtZqgzxxMzzqtysDao.insertHlhtZqgzxxMzzqtys(hlhtZqgzxxMzzqtys);
+                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                Long.parseLong(Constants.WN_ZQGZXX_MZZQTYS_SOURCE_TYPE),
+                                emrQtbljlk.getQtbljlxh(), emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
+                                hlhtZqgzxxMzzqtys.getPatid(),hlhtZqgzxxMzzqtys.getZyh(),hlhtZqgzxxMzzqtys.getHzxm(),hlhtZqgzxxMzzqtys.getXbmc(),hlhtZqgzxxMzzqtys.getXbdm(),
+                                hlhtZqgzxxMzzqtys.getKsmc(), hlhtZqgzxxMzzqtys.getKsdm(),   hlhtZqgzxxMzzqtys.getBqmc(),hlhtZqgzxxMzzqtys.getBqdm(), hlhtZqgzxxMzzqtys.getSfzhm()));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
