@@ -145,7 +145,7 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
                     logger.info("Model:{}", hlhtZybcjlRcbcjl);
                     this.hlhtZybcjlRcbcjlDao.insertHlhtZybcjlRcbcjl(hlhtZybcjlRcbcjl);
                     mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                            Long.parseLong(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE),
+                            Long.parseLong(Constants.WN_ZYBCJL_RCBCJL_SOURCE_TYPE),
                             emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
                             new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                             hlhtZybcjlRcbcjl.getPatid(),hlhtZybcjlRcbcjl.getZyh(),hlhtZybcjlRcbcjl.getHzxm(),hlhtZybcjlRcbcjl.getXbmc(),hlhtZybcjlRcbcjl.getXbdm(),

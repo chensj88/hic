@@ -184,7 +184,7 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
                         }
                         this.hlhtZybcjlCyjlDao.insertHlhtZybcjlCyjl(hlhtZybcjlCyjl);
                         mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                Long.parseLong(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE),
+                                Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
                                 emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
                                 new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                 hlhtZybcjlCyjl.getPatid(),hlhtZybcjlCyjl.getZyh(),hlhtZybcjlCyjl.getHzxm(),hlhtZybcjlCyjl.getXbmc(),hlhtZybcjlCyjl.getXbdm(),
