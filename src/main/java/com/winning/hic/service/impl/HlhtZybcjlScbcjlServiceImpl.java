@@ -7,6 +7,7 @@ import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlScbcjlDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlScbcjlService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +51,8 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
 
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtZybcjlScbcjl(HlhtZybcjlScbcjl hlhtZybcjlScbcjl){
         return this.hlhtZybcjlScbcjlDao.insertHlhtZybcjlScbcjl(hlhtZybcjlScbcjl);
@@ -289,10 +293,17 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 //                                }
 //                            }
 
-
+                            //插入日志
+                            mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                    Long.parseLong(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE),
+                                    emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                    new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
+                                    entity.getPatid(),entity.getZyh(),entity.getHzxm(),entity.getXbmc(),entity.getXbdm(),
+                                    entity.getKsmc(),entity.getKsdm(), entity.getBqmc(),entity.getBqdm(), entity.getSfzhm()));
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
+
                         this.createHlhtZybcjlScbcjl(entity);
                         real_count++;
                     }

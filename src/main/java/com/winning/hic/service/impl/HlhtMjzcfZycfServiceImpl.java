@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,7 +107,7 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
                 //插入日志
                 mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                         Long.parseLong(Constants.WN_MJZCF_ZYCF_SOURCE_TYPE),
-                        Long.parseLong(obj.getYjlxh()),"中药处方","NA",
+                        Long.parseLong(obj.getYjlxh()),"中药处方","NA",new Timestamp(obj.getCfklrq().getTime()),
                         obj.getPatid(),obj.getMjzh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                         "NA","NA", "NA","NA", obj.getSfzhm()));
             }

@@ -372,7 +372,7 @@
         <where>
             <include refid="sql-hlhtZlczjlZljl"/>
         </where>
-        ORDER BY ASC
+        ORDER BY t.yjlxh ASC
     </select>
 
     <select id="selectHlhtZlczjlZljlCount" resultType="int" parameterType="com.winning.hic.model.HlhtZlczjlZljl">

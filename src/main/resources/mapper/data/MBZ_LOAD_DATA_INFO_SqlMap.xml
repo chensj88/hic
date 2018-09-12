@@ -19,6 +19,7 @@
          <result column="BQMC" property="bqmc" jdbcType="VARCHAR" />
          <result column="BQDM" property="bqdm" jdbcType="VARCHAR" />
          <result column="SFZHM" property="sfzhm" jdbcType="VARCHAR" />
+         <result column="FSSJ" property="fssj" jdbcType="TIMESTAMP" />
          <result column="CQRQ" property="cqrq" jdbcType="TIMESTAMP" />
     </resultMap>
 
@@ -42,6 +43,7 @@
         <if test="(bqmc != null and bqmc != '')"> and t.BQMC = #{bqmc} </if>
         <if test="(bqdm != null and bqdm != '')"> and t.BQDM = #{bqdm} </if>
         <if test="(sfzhm != null and sfzhm != '')"> and t.SFZHM = #{sfzhm} </if>
+        <if test="(fssj != null )"> and t.FSSJ = #{fssj} </if>
         <if test="(cqrq != null )"> and t.CQRQ = #{cqrq} </if>
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[t.CQRQ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[t.CQRQ <= #{map.endDate}]]>  </if>
@@ -65,6 +67,7 @@
             <if test="(bqmc != null and bqmc != '')"> BQMC , </if>
             <if test="(bqdm != null and bqdm != '')"> BQDM , </if>
             <if test="(sfzhm != null and sfzhm != '')"> SFZHM , </if>
+            <if test="(fssj != null )"> FSSJ , </if>
             <if test="(cqrq != null )"> CQRQ , </if>
         </trim>
         VALUES
@@ -84,6 +87,7 @@
             <if test="(bqmc != null and bqmc != '')"> #{bqmc , jdbcType= VARCHAR },  </if>
             <if test="(bqdm != null and bqdm != '')"> #{bqdm , jdbcType= VARCHAR },  </if>
             <if test="(sfzhm != null and sfzhm != '')"> #{sfzhm , jdbcType= VARCHAR },  </if>
+            <if test="(fssj != null )">#{fssj , jdbcType= TIMESTAMP },  </if>
             <if test="(cqrq != null )">#{cqrq , jdbcType= TIMESTAMP },  </if>
         </trim>
     </insert>
@@ -107,6 +111,7 @@
                 <if test="(bqmc != null and bqmc != '')"> BQMC = #{bqmc , jdbcType= VARCHAR }, </if>
                 <if test="(bqdm != null and bqdm != '')"> BQDM = #{bqdm , jdbcType= VARCHAR }, </if>
                 <if test="(sfzhm != null and sfzhm != '')"> SFZHM = #{sfzhm , jdbcType= VARCHAR }, </if>
+                <if test="(fssj != null )"> FSSJ = #{fssj , jdbcType= TIMESTAMP }, </if>
                 <if test="(cqrq != null )"> CQRQ = #{cqrq , jdbcType= TIMESTAMP }, </if>
             </trim>
         </set>

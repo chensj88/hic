@@ -1,13 +1,17 @@
 package com.winning.hic.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.winning.hic.base.Constants;
 import com.winning.hic.model.MbzDataSet;
+import com.winning.hic.model.MbzLog;
 import com.winning.hic.model.support.Row;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,7 +72,17 @@ public class MbzDataSetController extends BaseController {
                 result.put("msg", "当前字段配置数据已经存在，请修改!");
                 return result;
             }else {
+                MbzLog log = new MbzLog();
+                oldDataSet = new MbzDataSet();
+                oldDataSet.setId(dataSet.getId());
+                oldDataSet = getFacade().getMbzDataSetService().getMbzDataSet(oldDataSet);
+                log.setContent("元数据类型:"+oldDataSet.getSourceType()+" 字段："+oldDataSet.getPyCode()+" 修改前："+JSON.toJSONString(oldDataSet));
+                log.setOperatorTime(new Timestamp(new Date().getTime()));
+                getFacade().getMbzLogService().createMbzLog(log);
                 getFacade().getMbzDataSetService().modifyMbzDataSet(dataSet);
+                log.setContent("元数据类型:"+dataSet.getSourceType()+" 字段："+dataSet.getPyCode()+" 修改后："+JSON.toJSONString(dataSet));
+                log.setOperatorTime(new Timestamp(new Date().getTime()));
+                getFacade().getMbzLogService().createMbzLog(log);
             }
         }else{
             dataSet.setId(null);
@@ -100,6 +114,10 @@ public class MbzDataSetController extends BaseController {
                 return result;
             }else{
                 getFacade().getMbzDataSetService().createMbzDataSet(dataSet);
+                MbzLog log = new MbzLog();
+                log.setContent("元数据类型:"+dataSet.getSourceType()+" 字段："+dataSet.getPyCode()+" 新增："+JSON.toJSONString(dataSet));
+                log.setOperatorTime(new Timestamp(new Date().getTime()));
+                getFacade().getMbzLogService().createMbzLog(log);
             }
         }
         result.put("status", Constants.SUCCESS);
@@ -168,6 +186,11 @@ public class MbzDataSetController extends BaseController {
     )
     @PostMapping("/basic/delete")
     public Map<String, Object> removeMbzDataSetData(MbzDataSet dataSet){
+        MbzDataSet old = super.getFacade().getMbzDataSetService().getMbzDataSet(dataSet);
+        MbzLog log = new MbzLog();
+        log.setContent("元数据类型:"+old.getSourceType()+" 字段："+old.getPyCode()+"删除："+JSON.toJSONString(old));
+        log.setOperatorTime(new Timestamp(new Date().getTime()));
+        getFacade().getMbzLogService().createMbzLog(log);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("data", getFacade().getMbzDataSetService().removeMbzDataSet(dataSet));

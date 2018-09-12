@@ -6,6 +6,7 @@ import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlRcbcjlDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlRcbcjlService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -22,6 +23,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +50,8 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
 
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtZybcjlRcbcjl(HlhtZybcjlRcbcjl hlhtZybcjlRcbcjl) {
         return this.hlhtZybcjlRcbcjlDao.insertHlhtZybcjlRcbcjl(hlhtZybcjlRcbcjl);
@@ -88,7 +92,7 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl(MbzDataCheck t) {
+    public List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl(MbzDataCheck t) throws ParseException {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
         int emr_count =0;//病历数量
@@ -120,6 +124,11 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
                     HlhtZybcjlRcbcjl temp = new HlhtZybcjlRcbcjl();
                     temp.setYjlxh(hlhtZybcjlRcbcjl.getYjlxh());
                     this.hlhtZybcjlRcbcjlDao.deleteHlhtZybcjlRcbcjlByYjlxh(temp);
+                    //清除日志
+                    Map<String,Object> param = new HashMap<>();
+                    param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_RCBCJL_SOURCE_TYPE);
+                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                     //3.xml文件解析 获取病历信息
                     Document document = null;
                     try {
@@ -135,6 +144,12 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
                     }
                     logger.info("Model:{}", hlhtZybcjlRcbcjl);
                     this.hlhtZybcjlRcbcjlDao.insertHlhtZybcjlRcbcjl(hlhtZybcjlRcbcjl);
+                    mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                            Long.parseLong(Constants.WN_ZQGZXX_SSTYS_SOURCE_TYPE),
+                            emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                            new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
+                            hlhtZybcjlRcbcjl.getPatid(),hlhtZybcjlRcbcjl.getZyh(),hlhtZybcjlRcbcjl.getHzxm(),hlhtZybcjlRcbcjl.getXbmc(),hlhtZybcjlRcbcjl.getXbdm(),
+                            hlhtZybcjlRcbcjl.getKsmc(),hlhtZybcjlRcbcjl.getKsdm(), hlhtZybcjlRcbcjl.getBqmc(),hlhtZybcjlRcbcjl.getBqdm(), hlhtZybcjlRcbcjl.getSfzhm()));
                     real_count++;
 
                 }

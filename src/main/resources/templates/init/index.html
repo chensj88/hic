@@ -790,7 +790,12 @@
                         formatter:function(value,row,index){
                             let content = '';
                             let status = row.status;
-                            content = `<span>${value}</span>`;
+                            if(row.mustMatch == 0){
+                                content = `<span style="color:#787886;">${value}</span>`;
+                            }else{
+                                content = `<span>${value}</span>`;
+                            }
+
                             return content;
                         }
                     },

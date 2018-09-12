@@ -1,10 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.Base64Utils;
-import com.winning.hic.base.utils.HicHelper;
-import com.winning.hic.base.utils.ReflectUtil;
-import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlSwbltljlDao;
@@ -20,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -141,6 +139,7 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
                             mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                                     Long.parseLong(Constants.WN_ZYBCJL_SWBLTLJL_SOURCE_TYPE),
                                     emrQtbljlk.getQtbljlxh(), emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                    new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                     obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                                     obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm()));
                             real_count++;

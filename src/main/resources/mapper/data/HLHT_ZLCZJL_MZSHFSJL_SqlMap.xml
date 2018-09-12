@@ -306,7 +306,7 @@
         <where>
             <include refid="sql-hlhtZlczjlMzshfsjl"/>
         </where>
-        ORDER BY ASC
+        ORDER BY t.yjlxh ASC
     </select>
 
     <select id="selectHlhtZlczjlMzshfsjlCount" resultType="int"

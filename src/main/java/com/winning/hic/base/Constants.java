@@ -33,6 +33,14 @@ public class Constants {
      * CISDB mapper.xml文件的位置
      */
     public static final String CISDB_MAPPER_LOCATION = "classpath:mapper/cisdb/*.xml";
+    /**
+     * CISDB 接口包名
+     */
+    public static final String MZ_CISDB_PACKAGE = "com.winning.hic.dao.mz";
+    /**
+     * CISDB mapper.xml文件的位置
+     */
+    public static final String MZ_CISDB_MAPPER_LOCATION = "classpath:mapper/mz/*.xml";
 
     /**
      * this4 接口包名

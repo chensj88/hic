@@ -85,7 +85,7 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
             //插入日志
             mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                     Long.parseLong(Constants.WN_MJZCF_XYCF_SOURCE_TYPE),
-                    Long.parseLong(obj.getYjlxh()),"西药处方","NA",
+                    Long.parseLong(obj.getYjlxh()),"西药处方","NA",obj.getCfklrq(),
                     obj.getPatid(),obj.getMjzh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                     "NA","NA", "NA","NA", obj.getSfzhm()));
         }

@@ -6,6 +6,7 @@ import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtRyjlJbxxDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtRyjlJbxxService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +48,8 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
 
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtRyjlJbxx(HlhtRyjlJbxx hlhtRyjlJbxx) {
         return this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
@@ -169,6 +174,14 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                     HlhtRyjlJbxx temp = new HlhtRyjlJbxx();
                     temp.setYjlxh(hlhtRyjlJbxx.getYjlxh());
                     this.hlhtRyjlJbxxDao.deleteHlhtRyjlJbxxByYjlxh(temp);
+
+                    //清除日志
+                    Map<String,Object> param = new HashMap<>();
+                    param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                    param.put("SOURCE_TYPE",Constants.WN_RYJL_JBXX_SOURCE_TYPE);
+                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+
+
                     //3.xml文件解析 获取病历信息
                     Document document = null;
                     Document xzDocument = null;
@@ -383,6 +396,13 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                         }
 
                         this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
+
+                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE),
+                                emrQtbljlk.getQtbljlxh(), emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
+                                hlhtRyjlJbxx.getPatid(),hlhtRyjlJbxx.getZyh(),hlhtRyjlJbxx.getHzxm(),hlhtRyjlJbxx.getXbmc(),hlhtRyjlJbxx.getXbdm(),
+                                hlhtRyjlJbxx.getKsmc(), hlhtRyjlJbxx.getKsdm(),   hlhtRyjlJbxx.getBqmc(),hlhtRyjlJbxx.getBqdm(), hlhtRyjlJbxx.getSfzhm()));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

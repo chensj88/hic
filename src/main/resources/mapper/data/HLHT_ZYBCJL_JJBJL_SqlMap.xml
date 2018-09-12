@@ -315,7 +315,7 @@
         c.BQMC as bqmc ,a.fjh as bfh ,NULL as bfmc ,c.CWDM as bch ,b.HZXM as hzxm,
         b.SFZH as sfzhm,b.BRXB as xbdm,c.SEX as xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
-        SUBSTRING(replace(b.CSRQ,'-',''),0,9) as nly,c.RYRQ as ryrq
+        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,c.RYRQ as ryrq
         FROM CISDB.dbo.EMR_QTBLJLK t
         LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH
@@ -343,7 +343,7 @@
         <where>
             <include refid="sql-hlhtZybcjlJjbjl"/>
         </where>
-        ORDER BY ASC
+        ORDER BY t.yjlxh ASC
     </select>
 
     <select id="selectHlhtZybcjlJjbjlCount" resultType="int" parameterType="com.winning.hic.model.HlhtZybcjlJjbjl">

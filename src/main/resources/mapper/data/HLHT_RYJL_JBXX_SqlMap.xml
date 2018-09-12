@@ -609,11 +609,11 @@
         <where>
             <include refid="sql-hlhtRyjlJbxx"/>
         </where>
-        ORDER BY ASC
+        ORDER BY t.yjlxh ASC
     </select>
 
     <select id="selectHlhtRyjlJbxxCount" resultType="int" parameterType="com.winning.hic.model.HlhtRyjlJbxx">
-        select count1 from HLHT_RYJL_JBXX t
+        select count(1) from HLHT_RYJL_JBXX t
         <where>
             <include refid="sql-hlhtRyjlJbxx"/>
         </where>
