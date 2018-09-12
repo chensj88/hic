@@ -632,6 +632,7 @@
     function convertToForm(data){
         var obj = data.rows[0];
         var content = "";
+        $('#viewForm').empty();
         $.each(data.columns,function(index,value){
 
             if(obj[value.field].length >= 30){
