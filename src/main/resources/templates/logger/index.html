@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width,initial-scale=1.0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>日志查看</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-table.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/jquery.treegrid.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
+    <!--<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>-->
+    <!--<link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>-->
+    <!--<link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>-->
+    <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
+</head>
+
+<body>
+<div class="main-container" style="margin: 10px 0px;">
+
+    <div class="row" style="margin:0px;">
+        <div class="col-sm-12">
+            日志查看
+        </div>
+    </div>
+</div>
+</body>
+<!--[if !IE]> -->
+<script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
+<!-- <![endif]-->
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap-table-treegrid.min.js}"></script>
+<script th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
+<!--ace-->
+<script th:src="@{/assets/js/ace-elements.min.js}"></script>
+<script th:src="@{/assets/js/ace.min.js}"></script>
+<script th:src="@{/assets/js/ace-extra.min.js}"></script>
+
+<script th:inline="javascript" type="text/javascript">
+    var ctx = /*[[@{/}]]*/'';
+</script>
+
+</html>

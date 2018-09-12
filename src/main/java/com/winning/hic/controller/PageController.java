@@ -71,6 +71,16 @@ public class PageController extends BaseController {
     public String goToConfigPage(){
         return "config/index";
     }
+    @ApiOperation(value = "页面跳转",notes = "跳转到数据校验")
+    @GetMapping(value = "/dataCheck/index")
+    public String goToDataCheckPage(){
+        return "dataCheck/index";
+    }
+    @ApiOperation(value = "页面跳转",notes = "跳转到日志查看")
+    @GetMapping(value = "/logger/index")
+    public String goToLoggerPage(){
+        return "logger/index";
+    }
 
 
 }
