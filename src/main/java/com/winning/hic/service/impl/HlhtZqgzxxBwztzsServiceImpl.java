@@ -3,10 +3,7 @@ package com.winning.hic.service.impl;
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
-import com.winning.hic.dao.data.HlhtRyjlJbxxDao;
-import com.winning.hic.dao.data.HlhtZqgzxxBwztzsDao;
-import com.winning.hic.dao.data.MbzDataListSetDao;
-import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.*;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZqgzxxBwztzsService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -22,6 +19,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +48,8 @@ public class HlhtZqgzxxBwztzsServiceImpl implements HlhtZqgzxxBwztzsService {
 
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+    @Autowired
+    private MbzLoadDataInfoDao mbzLoadDataInfoDao;
 
     public int createHlhtZqgzxxBwztzs(HlhtZqgzxxBwztzs hlhtZqgzxxBwztzs) {
         return this.hlhtZqgzxxBwztzsDao.insertHlhtZqgzxxBwztzs(hlhtZqgzxxBwztzs);
@@ -116,6 +116,12 @@ public class HlhtZqgzxxBwztzsServiceImpl implements HlhtZqgzxxBwztzsService {
                     HlhtZqgzxxBwztzs temp = new HlhtZqgzxxBwztzs();
                     temp.setYjlxh(hlhtZqgzxxBwztzs.getYjlxh());
                     this.hlhtZqgzxxBwztzsDao.deleteHlhtZqgzxxBwztzsByYjlxh(temp);
+
+                    //清除日志
+                    Map<String,Object> param = new HashMap<>();
+                    param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                    param.put("SOURCE_TYPE",Constants.WN_ZQGZXX_BWZTZS_SOURCE_TYPE);
+                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                     //3.xml文件解析 获取病历信息
                     Document document = null;
                     try {
@@ -128,6 +134,13 @@ public class HlhtZqgzxxBwztzsServiceImpl implements HlhtZqgzxxBwztzsService {
                         hlhtZqgzxxBwztzs = (HlhtZqgzxxBwztzs) HicHelper.initModelValue(mbzDataSetList, document, hlhtZqgzxxBwztzs, paramTypeMap);
                         logger.info("Model:{}", hlhtZqgzxxBwztzs);
                         this.hlhtZqgzxxBwztzsDao.insertHlhtZqgzxxBwztzs(hlhtZqgzxxBwztzs);
+                        //插入日志
+                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                Long.parseLong(Constants.WN_ZQGZXX_BWZTZS_SOURCE_TYPE),
+                                emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
+                                new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
+                                hlhtZqgzxxBwztzs.getPatid(),hlhtZqgzxxBwztzs.getZyh(),hlhtZqgzxxBwztzs.getHzxm(),hlhtZqgzxxBwztzs.getXbmc(),hlhtZqgzxxBwztzs.getXbdm(),
+                                hlhtZqgzxxBwztzs.getKsmc(),hlhtZqgzxxBwztzs.getKsdm(), hlhtZqgzxxBwztzs.getBqmc(),hlhtZqgzxxBwztzs.getBqdm(), hlhtZqgzxxBwztzs.getSfzhm()));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
