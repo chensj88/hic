@@ -1,5 +1,6 @@
 package com.winning.hic.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.winning.hic.model.EmrQtbljlk;
@@ -36,5 +37,5 @@ public interface HlhtZybcjlRcbcjlService {
 
     public void deleteHlhtRyjlJbxxByYjlxh(HlhtZybcjlRcbcjl hlhtZybcjlRcbcjl);
 
-    List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl(MbzDataCheck entity);
+    List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl(MbzDataCheck entity) throws ParseException;
 }
