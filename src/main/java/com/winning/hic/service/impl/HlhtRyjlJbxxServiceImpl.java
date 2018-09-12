@@ -398,7 +398,7 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                         this.hlhtRyjlJbxxDao.insertHlhtRyjlJbxx(hlhtRyjlJbxx);
 
                         mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                Long.parseLong(Constants.WN_RYJL_RCYJL_SOURCE_TYPE),
+                                Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE),
                                 emrQtbljlk.getQtbljlxh(), emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
                                 new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                 hlhtRyjlJbxx.getPatid(),hlhtRyjlJbxx.getZyh(),hlhtRyjlJbxx.getHzxm(),hlhtRyjlJbxx.getXbmc(),hlhtRyjlJbxx.getXbdm(),
