@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -124,6 +125,11 @@ public class HlhtZybcjlJdxjServiceImpl implements  HlhtZybcjlJdxjService {
                                     HlhtZybcjlJdxj oldRcyjl = new HlhtZybcjlJdxj();
                                     oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                                     this.removeHlhtZybcjlJdxj(oldRcyjl);
+                                    //清除日志
+                                    Map<String,Object> param = new HashMap<>();
+                                    param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_JDXJ_SOURCE_TYPE);
+                                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                                 }
                                 HlhtZybcjlJdxj entity = new HlhtZybcjlJdxj();
                                 entity.getMap().put("QTBLJLXH", emrQtbljlk.getQtbljlxh());

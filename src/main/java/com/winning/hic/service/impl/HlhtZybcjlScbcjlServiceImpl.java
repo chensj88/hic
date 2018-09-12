@@ -19,6 +19,7 @@ import org.thymeleaf.util.StringUtils;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -124,6 +125,11 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                             HlhtZybcjlScbcjl oldRcyjl  = new HlhtZybcjlScbcjl();
                             oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             this.removeHlhtZybcjlScbcjl(oldRcyjl);
+                            //清除日志
+                            Map<String,Object> param = new HashMap<>();
+                            param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                            param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
+                            mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                         }
                         HlhtZybcjlScbcjl entity = new HlhtZybcjlScbcjl();
                         entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());

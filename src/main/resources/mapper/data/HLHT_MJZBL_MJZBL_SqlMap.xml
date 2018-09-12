@@ -424,12 +424,13 @@
         c.SEX AS xbmc,
         CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'''') AS nls,
-        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
+        DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         i.DICT_LABEL AS zzjgmc,
         ii.DICT_LABEL AS zzjgdm,
         c.KSDM AS ksdm,
         c.KSMC AS ksmc ,
-        c.GHRQ AS jzrqsj,
+        CONVERT(datetime,substring(c.GHRQ,1,4)+'-'+substring(c.GHRQ,5,2)+'-'+substring(c.GHRQ,7,2)+' '+substring(c.GHRQ,9,8))
+        AS jzrqsj,
         c.CFZBZ AS czbzdm,
         (
         SELECT CASE c.CFZBZ

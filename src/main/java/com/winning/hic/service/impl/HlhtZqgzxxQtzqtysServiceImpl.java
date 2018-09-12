@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -120,6 +121,11 @@ public class HlhtZqgzxxQtzqtysServiceImpl implements  HlhtZqgzxxQtzqtysService {
                             HlhtZqgzxxQtzqtys oldRcyjl  = new HlhtZqgzxxQtzqtys();
                             oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             this.removeHlhtZqgzxxQtzqtys(oldRcyjl);
+                            //清除日志
+                            Map<String,Object> param = new HashMap<>();
+                            param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                            param.put("SOURCE_TYPE",Constants.WN_ZQGZXX_QTZQTYS_SOURCE_TYPE);
+                            mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                         }
                         HlhtZqgzxxQtzqtys entity = new HlhtZqgzxxQtzqtys();
                         entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());

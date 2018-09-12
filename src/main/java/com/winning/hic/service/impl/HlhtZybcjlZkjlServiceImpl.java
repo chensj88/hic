@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -142,6 +143,11 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                                 HlhtZybcjlZkjl oldRcyjl  = new HlhtZybcjlZkjl();
                                 oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                                 this.removeHlhtZybcjlZkjl(oldRcyjl);
+                                //清除日志
+                                Map<String,Object> param = new HashMap<>();
+                                param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
+                                param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE);
+                                mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                             }
                             HlhtZybcjlZkjl entity = new HlhtZybcjlZkjl();
                             entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
@@ -153,6 +159,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
+                            this.createHlhtZybcjlZkjl(entity);
                             //插入日志
                             mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                                     Long.parseLong(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE),
@@ -160,7 +167,6 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                                     new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                     zkjl.getPatid(),zkjl.getZyh(),zkjl.getHzxm(),zkjl.getXbmc(),zkjl.getXbdm(),
                                     zkjl.getKsmc(),zkjl.getKsdm(), zkjl.getBqmc(),zkjl.getBqdm(), zkjl.getSfzhm()));
-                            this.createHlhtZybcjlZkjl(entity);
 
                         }else{ //转入记录
                             //找出对应的转出记录，update它的值
