@@ -143,6 +143,7 @@ public class HlhtZqgzxxTsjczltysServiceImpl implements  HlhtZqgzxxTsjczltysServi
                         obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                         obj = this.commonQueryDao.selectInitHlhtZqgzxxTsjczltys(obj);
                         obj = (HlhtZqgzxxTsjczltys) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                        obj.setJczlxmmc(emrQtbljlk.getBlmc().replace("知情同意书",""));
                         this.createHlhtZqgzxxTsjczltys(obj);
 
                         //插入日志
