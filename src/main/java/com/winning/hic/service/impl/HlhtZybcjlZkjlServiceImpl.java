@@ -155,6 +155,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             try {
                                 entity = (HlhtZybcjlZkjl) HicHelper.initModelValue(cDataSetList, document, entity, paramTypeMap);
+                                entity.setZkjllx("1");
                                 entity.setZkjllxmc("转入记录");
                             } catch (ParseException e) {
                                 e.printStackTrace();
@@ -165,8 +166,8 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                                     Long.parseLong(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE),
                                     emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
                                     new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
-                                    zkjl.getPatid(),zkjl.getZyh(),zkjl.getHzxm(),zkjl.getXbmc(),zkjl.getXbdm(),
-                                    zkjl.getKsmc(),zkjl.getKsdm(), zkjl.getBqmc(),zkjl.getBqdm(), zkjl.getSfzhm()));
+                                    entity.getPatid(),entity.getZyh(),entity.getHzxm(),entity.getXbmc(),entity.getXbdm(),
+                                    entity.getKsmc(),entity.getKsdm(), entity.getBqmc(),entity.getBqdm(), entity.getSfzhm()));
 
                         }else{ //转入记录
                             //找出对应的转出记录，update它的值

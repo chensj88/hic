@@ -207,3 +207,28 @@ UPDATE CISDB_DATA..HLHT_ZYBCJL_HZJL SET hzyy =ISNULL(hzmd, 'NA') WHERE hzyy='NA'
 
 
 
+--门急诊病历记录
+--过敏史
+UPDATE CISDB_DATA..HLHT_MJZBL_MJZBL SET gmsbz ='F';
+UPDATE CISDB_DATA..HLHT_MJZBL_MJZBL SET gmsbz ='T' WHERE CONVERT(varchar,gms) ='有';
+--医嘱项目类型代码、名称
+UPDATE CISDB_DATA..HLHT_MJZBL_MJZBL SET yzxmlx ='01',yzxmlxmc ='药品类医嘱' WHERE CONVERT(varchar,yzxmlx) ='NA';
+--医嘱备注信息
+UPDATE A SET A.yzbzxx =
+CASE WHEN C.MEMO IS NULL THEN 'NA' WHEN C.MEMO ='' THEN 'NA' ELSE C.MEMO END
+FROM CISDB_DATA..HLHT_MJZBL_MJZBL A,CISDB.dbo.OUTP_ORDER C WHERE A.jzlsh=C.GHXH and A.yzbzxx ='NA';
+--医嘱开立科室代码、名称
+UPDATE A SET A.yzklksdm =C.KSDM,A.yzklks=C.KSMC
+FROM CISDB_DATA..HLHT_MJZBL_MJZBL A,CISDB.dbo.OUTP_ORDER C
+WHERE A.jzlsh=C.GHXH and A.yzklksdm ='NA' OR A.yzklks ='NA';
+
+--医嘱开立者工号、姓名
+UPDATE A SET A.yzklzdm =C.YSDM,A.yzklzqm=C.YSMC
+FROM CISDB_DATA..HLHT_MJZBL_MJZBL A,CISDB.dbo.OUTP_ORDER C
+WHERE A.jzlsh=C.GHXH and A.yzklzdm ='NA' OR A.yzklzqm ='NA';
+
+--医嘱开立日期时间
+UPDATE A SET A.yzklrq = CONVERT(datetime,substring(C.LRRQ,1,4)+'-'+substring(C.LRRQ,5,2)+'-'+substring(C.LRRQ,7,2)+' '+substring(C.LRRQ,9,8))
+FROM CISDB_DATA..HLHT_MJZBL_MJZBL A,CISDB.dbo.OUTP_ORDER C
+WHERE A.jzlsh=C.GHXH ;
+
