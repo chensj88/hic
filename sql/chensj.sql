@@ -224,10 +224,15 @@ UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM
 
 --特殊检查及特殊治疗同意书
     --疾病诊断
-  UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
-  FROM CISDB_DATA..HLHT_ZQGZXX_TSJCZLTYS A LEFT JOIN CISDB..EMR_BRSYK B ON A.jzlsh =B.HISSYXH
-    LEFT JOIN CISDB..EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1
-  WHERE  ( CONVERT(varchar,A.jbzd) ='NA' OR CONVERT(varchar,A.jbzdbm) ='NA' )
+  UPDATE QT SET QT.jbzd = CT.MC, QT.jbzdbm = CT.DM FROM CISDB_DATA..HLHT_ZQGZXX_TSJCZLTYS QT
+    LEFT JOIN (
+                SELECT
+                  stuff((SELECT ','+C.ZDDM  FROM  CISDB..EMR_BRSYK B
+                    LEFT JOIN CISDB..EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1 WHERE B.HISSYXH = A.jzlsh FOR XML PATH('')),1,1,'') DM,
+                  stuff((SELECT ','+C.ZDMC  FROM  CISDB..EMR_BRSYK B
+                    LEFT JOIN CISDB..EMR_BRZDQK C ON B.SYXH = C.SYXH AND C.ZDLB = 1 WHERE B.HISSYXH = A.jzlsh FOR XML PATH('')),1,1,'') MC,
+                  A.yjlxh
+                FROM CISDB_DATA..HLHT_ZQGZXX_TSJCZLTYS A) CT ON QT.yjlxh = CT.yjlxh WHERE  ( CONVERT(varchar,QT.jbzd) ='NA' OR CONVERT(varchar,QT.jbzdbm) ='NA' )
   --医生信息
   UPDATE A SET A.ysbm = ISNULL(B.YSDM,'NA'),A.ysqm = ISNULL(B.YSXM,'NA')
   FROM CISDB_DATA..HLHT_ZQGZXX_TSJCZLTYS A LEFT JOIN CISDB..CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.ysbm ='NA' or A.ysqm = 'NA')
