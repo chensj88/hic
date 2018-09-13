@@ -446,7 +446,7 @@
                 '0'                                      AS tz,
                 'NA'                                     AS dzsqdbh,
                 q.FSSJ                                    AS qmrq,
-                q.QTBLJLXH                                AS syxh,
+                q.SYXH                                AS syxh,
                 q.TJZT                                    AS tjzt,
                 q.YXJL                                    AS yxjl,
                 GETDATE()                                 AS gxsj

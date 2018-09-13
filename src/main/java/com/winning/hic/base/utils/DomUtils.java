@@ -133,7 +133,7 @@ public class DomUtils {
             if (StringUtil.isEmptyOrNull(info.getQrmbdm())) {
 
                 if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) { //文本节点
-                    builder.append(" " + resolveString(element.attribute(textAttrName).getValue()).trim());
+                    builder.append(" " + resolveTextString(element.attribute(textAttrName).getValue()).trim());
                 } else if (nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())) { //引入节点
                     builder.append(" " + resolveRefNode(rootElement, element.attribute(refidAttrName).getValue(), info).trim());
                 }
@@ -195,7 +195,7 @@ public class DomUtils {
                 if (StringUtil.isEmptyOrNull(info.getQrmbdm()) || (!StringUtil.isEmptyOrNull(info.getQrmbdm()) && StringUtil.isEmptyOrNull(info.getQrdxdm()))) {
                     if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) {
                         builder.append(
-                                element.attribute(textAttrName) == null ? "" : resolveString(element.attribute(textAttrName).getValue()));
+                                element.attribute(textAttrName) == null ? "" : resolveTextString(element.attribute(textAttrName).getValue()));
                     } else if (nodeTypeAttr != null && objectNodeType.equals(nodeTypeAttr.getValue())) {
                         builder.append(resolveObjectNode(element, info));
                     }
@@ -238,7 +238,7 @@ public class DomUtils {
             Attribute idAttr = element.attribute(idAttrName);
             if (StringUtil.isEmptyOrNull(info.getYzjddm())) {
                 if (nodeTypeAttr != null && textNodeType.equals(nodeTypeAttr.getValue())) {
-                    builder.append(element.attribute(textAttrName) == null ? "" : resolveString(element.attribute(textAttrName).getValue()));
+                    builder.append(element.attribute(textAttrName) == null ? "" : resolveTextString(element.attribute(textAttrName).getValue()));
                 } else if (nodeTypeAttr != null && atomNodeType.equals(nodeTypeAttr.getValue())) {
                     builder.append(resolveAtomNode(element, info));
                 }
@@ -315,7 +315,7 @@ public class DomUtils {
         str = str.trim();
         str = str.replaceAll(" ", "");
         str = str.replaceAll("　+", "");
-        str = str.replaceAll("&#xA;", "");
+        str = str.replaceAll("&xA#;", "");
         /**
          * <MonitorData>
          *  <rows>
@@ -340,6 +340,14 @@ public class DomUtils {
             }
             return stringBuilder.toString();
         }
+        return str;
+    }
+
+
+    public static String resolveTextString(String str) {
+//        str = str.trim();
+        str = str.replaceAll("　+", "");
+        str = str.replaceAll("&xA#;", "");
         return str;
     }
 

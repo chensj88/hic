@@ -738,7 +738,7 @@
             ISNULL(b.ZYDM, 'NA')                       AS zylbdm,
             ISNULL(p.NAME, 'NA')                       AS zylbmc,
             b.RYRQ                                    AS ryrq,
-            q.QTBLJLXH                                AS syxh,
+            q.SYXH                                AS syxh,
             q.TJZT                                    AS tjzt,
             q.YXJL                                    AS yxjl,
             GETDATE()                                 AS gxsj
