@@ -15,6 +15,7 @@
     <link rel="stylesheet" th:href="@{/bootstrap/css/jquery.treegrid.css}">
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/google-font/google.fonts.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap-timepicker.css}"/>
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>-->
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>-->
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>-->
@@ -28,25 +29,14 @@
         <div class="col-sm-12">
             <form class="form-inline">
                 <div class="form-group">
-                    <label class="sr-only" for="model">模板类别</label>
-                    <div class="input-group">
-                        <span class="input-group-addon">模板类别</span>
-                        <select class="form-control" name="product_line" id="model">
-                            <option value="">-----全部-----</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="msgType">全院模板总数</label>
-                    <div class="input-group">
-                        <span class="input-group-addon">全院模板总数</span>
-                        <span class="form-control" name="msg_type" id="msgType">
-                            4396
+                    <label for="timepicker1">Time Picker</label>
+                    <div class="input-group bootstrap-timepicker">
+                        <input id="timepicker1" type="text" class="form-control" />
+                        <span class="input-group-addon">
+							<i class="icon-time bigger-110"></i>
                         </span>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary">批量验证</button>
-                <button type="button" class="btn btn-primary">生成报告</button>
             </form>
         </div>
     </div>
@@ -63,9 +53,16 @@
 <script th:src="@{/assets/js/ace-elements.min.js}"></script>
 <script th:src="@{/assets/js/ace.min.js}"></script>
 <script th:src="@{/assets/js/ace-extra.min.js}"></script>
-
+<script th:src="@{/assets/js/date-time/bootstrap-timepicker.min.js}"></script>
 <script th:inline="javascript" type="text/javascript">
     var ctx = /*[[@{/}]]*/'';
+    $('#timepicker1').timepicker({
+        minuteStep: 1,
+        showSeconds: true,
+        showMeridian: false
+    }).next().on(ace.click_event, function(){
+        $(this).prev().focus();
+    });
 </script>
 
 </html>

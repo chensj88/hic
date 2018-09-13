@@ -9,11 +9,11 @@ import com.winning.hic.model.BaseDomain;
 
 
 /**
- * @author MBZ
- * @title 
+ * @author HLHT
+ * @title 【自动抽取配置】
  * @email Winning Health
  * @package com.winning.hic.model
- * @date 2018-23-25 12:23:48
+ * @date 2018-08-13 13:08:52
  */
 @Alias("mbzAutomateSet")
 public class MbzAutomateSet extends BaseDomain implements Serializable {
@@ -21,249 +21,153 @@ public class MbzAutomateSet extends BaseDomain implements Serializable {
     private static final long serialVersionUID = -1L;
 
     /**
-     * 字段名：EXCEUTE
+     * 字段名：ID
      * 备注: 
      * 默认值：无
      */
-    private String exceute;
+    private String id;
     /**
-     * 字段名：EXCEUTE_DAY
-     * 备注: 
-     * 默认值：无
+     * 字段名：JOB_NAME
+     * 备注: 任务名称 默认值  HLHT-DATA-EXTRA
+     * 默认值：('HLHT-DATA-EXTRA')
      */
-    private Integer exceuteDay;
+    private String jobName;
     /**
-     * 字段名：DAY_START_TIME
-     * 备注: 
-     * 默认值：无
+     * 字段名：GROUP_NAME
+     * 备注: 组名称 默认值  HLHT
+     * 默认值：('HLHT')
      */
-    private String dayStartTime;
+    private String groupName;
     /**
-     * 字段名：EXCEUTE_TIME
-     * 备注: 
-     * 默认值：无
+     * 字段名：TRIGGER_NAME
+     * 备注: 触发器名称 默认值 HLHT-TRIGGER
+     * 默认值：('HLHT-TRIGGER')
      */
-    private Integer exceuteTime;
+    private String triggerName;
     /**
-     * 字段名：START_TIME
-     * 备注: 
+     * 字段名：BATCH_DATE
+     * 备注: 跑批时间
      * 默认值：无
      */
-    private String startTime;
+    private String batchDate;
     /**
-     * 字段名：END_TIME
-     * 备注: 
+     * 字段名：CRON
+     * 备注: 定时表达式
      * 默认值：无
      */
-    private String endTime;
-    /**
-     * 字段名：PROJECT_START_TIME
-     * 备注: 
-     * 默认值：无
-     */
-    private String projectStartTime;
-    /**
-     * 字段名：PROJECT_END_TIME
-     * 备注: 
-     * 默认值：无
-     */
-    private String projectEndTime;
-    /**
-     * 字段名：REMARK
-     * 备注: 
-     * 默认值：无
-     */
-    private String remark;
-    /**
-     * 字段名：PROJECT_STATUS
-     * 备注: 
-     * 默认值：无
-     */
-    private Integer projectStatus;
+    private String cron;
 
     public MbzAutomateSet (){
 
     }
 
    /**
-   * 字段名：EXCEUTE
+   * 字段名：ID
    * get方法
    * 备注: 
    */
-   public String getExceute(){
+   public String getId(){
 
-        return exceute;
+        return id;
    }
 
    /**
-   * 字段名：EXCEUTE
+   * 字段名：ID
    * set方法
    * 备注: 
    */
-   public void setExceute(String exceute){
-        this.exceute = exceute;
+   public void setId(String id){
+        this.id = id;
    }
    /**
-   * 字段名：EXCEUTE_DAY
+   * 字段名：JOB_NAME
    * get方法
-   * 备注: 
+   * 备注: 任务名称 默认值  HLHT-DATA-EXTRA
    */
-   public Integer getExceuteDay(){
+   public String getJobName(){
 
-        return exceuteDay;
+        return jobName;
    }
 
    /**
-   * 字段名：EXCEUTE_DAY
+   * 字段名：JOB_NAME
    * set方法
-   * 备注: 
+   * 备注: 任务名称 默认值  HLHT-DATA-EXTRA
    */
-   public void setExceuteDay(Integer exceuteDay){
-        this.exceuteDay = exceuteDay;
+   public void setJobName(String jobName){
+        this.jobName = jobName;
    }
    /**
-   * 字段名：DAY_START_TIME
+   * 字段名：GROUP_NAME
    * get方法
-   * 备注: 
+   * 备注: 组名称 默认值  HLHT
    */
-   public String getDayStartTime(){
+   public String getGroupName(){
 
-        return dayStartTime;
+        return groupName;
    }
 
    /**
-   * 字段名：DAY_START_TIME
+   * 字段名：GROUP_NAME
    * set方法
-   * 备注: 
+   * 备注: 组名称 默认值  HLHT
    */
-   public void setDayStartTime(String dayStartTime){
-        this.dayStartTime = dayStartTime;
+   public void setGroupName(String groupName){
+        this.groupName = groupName;
    }
    /**
-   * 字段名：EXCEUTE_TIME
+   * 字段名：TRIGGER_NAME
    * get方法
-   * 备注: 
+   * 备注: 触发器名称 默认值 HLHT-TRIGGER
    */
-   public Integer getExceuteTime(){
+   public String getTriggerName(){
 
-        return exceuteTime;
+        return triggerName;
    }
 
    /**
-   * 字段名：EXCEUTE_TIME
+   * 字段名：TRIGGER_NAME
    * set方法
-   * 备注: 
+   * 备注: 触发器名称 默认值 HLHT-TRIGGER
    */
-   public void setExceuteTime(Integer exceuteTime){
-        this.exceuteTime = exceuteTime;
+   public void setTriggerName(String triggerName){
+        this.triggerName = triggerName;
    }
    /**
-   * 字段名：START_TIME
+   * 字段名：BATCH_DATE
    * get方法
-   * 备注: 
+   * 备注: 跑批时间
    */
-   public String getStartTime(){
+   public String getBatchDate(){
 
-        return startTime;
+        return batchDate;
    }
 
    /**
-   * 字段名：START_TIME
+   * 字段名：BATCH_DATE
    * set方法
-   * 备注: 
+   * 备注: 跑批时间
    */
-   public void setStartTime(String startTime){
-        this.startTime = startTime;
+   public void setBatchDate(String batchDate){
+        this.batchDate = batchDate;
    }
    /**
-   * 字段名：END_TIME
+   * 字段名：CRON
    * get方法
-   * 备注: 
+   * 备注: 定时表达式
    */
-   public String getEndTime(){
+   public String getCron(){
 
-        return endTime;
+        return cron;
    }
 
    /**
-   * 字段名：END_TIME
+   * 字段名：CRON
    * set方法
-   * 备注: 
+   * 备注: 定时表达式
    */
-   public void setEndTime(String endTime){
-        this.endTime = endTime;
-   }
-   /**
-   * 字段名：PROJECT_START_TIME
-   * get方法
-   * 备注: 
-   */
-   public String getProjectStartTime(){
-
-        return projectStartTime;
-   }
-
-   /**
-   * 字段名：PROJECT_START_TIME
-   * set方法
-   * 备注: 
-   */
-   public void setProjectStartTime(String projectStartTime){
-        this.projectStartTime = projectStartTime;
-   }
-   /**
-   * 字段名：PROJECT_END_TIME
-   * get方法
-   * 备注: 
-   */
-   public String getProjectEndTime(){
-
-        return projectEndTime;
-   }
-
-   /**
-   * 字段名：PROJECT_END_TIME
-   * set方法
-   * 备注: 
-   */
-   public void setProjectEndTime(String projectEndTime){
-        this.projectEndTime = projectEndTime;
-   }
-   /**
-   * 字段名：REMARK
-   * get方法
-   * 备注: 
-   */
-   public String getRemark(){
-
-        return remark;
-   }
-
-   /**
-   * 字段名：REMARK
-   * set方法
-   * 备注: 
-   */
-   public void setRemark(String remark){
-        this.remark = remark;
-   }
-   /**
-   * 字段名：PROJECT_STATUS
-   * get方法
-   * 备注: 
-   */
-   public Integer getProjectStatus(){
-
-        return projectStatus;
-   }
-
-   /**
-   * 字段名：PROJECT_STATUS
-   * set方法
-   * 备注: 
-   */
-   public void setProjectStatus(Integer projectStatus){
-        this.projectStatus = projectStatus;
+   public void setCron(String cron){
+        this.cron = cron;
    }
 
 }

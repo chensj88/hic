@@ -9,6 +9,7 @@ import com.winning.hic.model.HlhtMjzcfZycf;
 import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.model.MbzLoadDataInfo;
 import com.winning.hic.service.HlhtMjzcfXycfService;
+import com.winning.hic.service.MbzDataCheckService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
     private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzLoadDataInfoDao mbzLoadDataInfoDao;
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtMjzcfXycf(HlhtMjzcfXycf hlhtMjzcfXycf){
         return this.hlhtMjzcfXycfDao.insertHlhtMjzcfXycf(hlhtMjzcfXycf);
@@ -66,11 +69,14 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
 
     @Override
     public List<MbzDataCheck> interfaceHlhtMjzcfXycf(MbzDataCheck entity) {
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
         List<MbzDataCheck> dataChecks = null;
         HlhtMjzcfXycf xycf = new HlhtMjzcfXycf();
         xycf.getMap().put("startDate",entity.getMap().get("startDate"));
         xycf.getMap().put("endDate",entity.getMap().get("endDate"));
         List<HlhtMjzcfXycf> mjzcfXycfList = this.commonQueryDao.selectInitHlhtMjzcfXycf(xycf);
+        emr_count = mjzcfXycfList.size();
         for (HlhtMjzcfXycf obj : mjzcfXycfList) {
             HlhtMjzcfXycf tempXycf = new HlhtMjzcfXycf();
             tempXycf.setYjlxh(obj.getYjlxh());
@@ -88,7 +94,10 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
                     Long.parseLong(obj.getYjlxh()),"西药处方","NA",obj.getCfklrq(),
                     obj.getPatid(),obj.getMjzh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                     "NA","NA", "NA","NA", obj.getSfzhm()));
+            real_count++;
         }
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_MJZCF_XYCF_SOURCE_TYPE));
         return dataChecks;
     }
 }

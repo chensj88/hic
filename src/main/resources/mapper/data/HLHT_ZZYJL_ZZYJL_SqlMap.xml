@@ -327,7 +327,7 @@
         c.BIRTH AS csrq,
         GETDATE() AS gxsj,
         t.YXJL AS yxjl,
-        t.QTBLJLXH as syxh,
+        t.SYXH AS syxh,
         t.TJZT as tjzt
 
         FROM CISDB.dbo.EMR_QTBLJLK t
