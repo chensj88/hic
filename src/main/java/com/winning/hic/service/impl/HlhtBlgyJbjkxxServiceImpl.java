@@ -10,6 +10,7 @@ import com.winning.hic.model.HlhtBlgyJbjkxx;
 import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.model.MbzLoadDataInfo;
 import com.winning.hic.service.HlhtBlgyJbjkxxService;
+import com.winning.hic.service.MbzDataCheckService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
     private MZCommonQueryDao mzCommonQueryDao;
     @Autowired
     private MbzLoadDataInfoDao mbzLoadDataInfoDao;
+    @Autowired
+    private MbzDataCheckService mbzDataCheckService;
 
     public int createHlhtBlgyJbjkxx(HlhtBlgyJbjkxx hlhtBlgyJbjkxx){
         return this.hlhtBlgyJbjkxxDao.insertHlhtBlgyJbjkxx(hlhtBlgyJbjkxx);
@@ -72,12 +75,16 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
     @Override
     public List<MbzDataCheck> interfaceHlhtBlgyJbjkxx(MbzDataCheck entity) {
         List<MbzDataCheck> dataCheckList = null;
+        int emr_count =0;//病历数量
+        int real_count=0;//实际数量
+
         HlhtBlgyJbjkxx jbjkxx = new HlhtBlgyJbjkxx();
         jbjkxx.getMap().put("startDate",entity.getMap().get("startDate"));
         jbjkxx.getMap().put("endDate",entity.getMap().get("endDate"));
         List<HlhtBlgyJbjkxx> jbjkxxList = commonQueryDao.selectInitHlhtBlgyJbjkxx(jbjkxx);
         List<HlhtBlgyJbjkxx> jbjkxxListMZ = commonQueryDao.selectInitHlhtBlgyJbjkxxForMz(jbjkxx);
         jbjkxxList.addAll(jbjkxxListMZ);
+        emr_count = jbjkxxList.size();
         for (HlhtBlgyJbjkxx obj : jbjkxxList) {
             //清除历史数据
             HlhtBlgyJbjkxx tempJbxx = new HlhtBlgyJbjkxx();
@@ -99,8 +106,10 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
                     Long.parseLong(obj.getYjlxh()),"基本健康信息表",obj.getSyxh()+"",new Timestamp(obj.getGxsj().getTime()),
                     obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                     "NA","NA","NA","NA", obj.getSfzhm()));
-
+            real_count++;
         }
+        //1.病历总数 2.抽取的病历数量 3.子集类型
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_BLGY_JBJKXX_SOURCE_TYPE));
         return dataCheckList;
     }
 }
