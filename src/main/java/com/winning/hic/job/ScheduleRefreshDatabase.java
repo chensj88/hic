@@ -30,9 +30,9 @@ import java.util.Date;
  * @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注
  * 当加入这个注解的好处是可以直接使用Spring的依赖注入
  */
-/*@Configuration
+@Configuration
 @EnableScheduling// 必加
-@Component// 必加*/
+@Component// 必加
 public class ScheduleRefreshDatabase {
 
     private Logger logger = LoggerFactory.getLogger(ScheduleRefreshDatabase.class);
@@ -53,6 +53,7 @@ public class ScheduleRefreshDatabase {
     @Autowired
     @Qualifier("scheduler")
     private Scheduler scheduler;
+
     @Scheduled(fixedRate = 1000 * 60) // 每隔1min查库，并根据查询结果决定是否重新设置定时任务
     public void scheduleUpdateCronTrigger() throws SchedulerException {
         logger.info("刷新定时任务信息开始：[{}]",new Date());
@@ -60,7 +61,19 @@ public class ScheduleRefreshDatabase {
         String currentCron = trigger.getCronExpression();// 当前Trigger使用的
         MbzAutomateSet automateSet = mbzAutomateSetService.getMbzAutomateSet(null);
         if(automateSet == null ){ //表示未配置时间
-            logger.info("刷新定时任务信息结束，未配置调度规则，将采用默认规则：[{}]",new Date());
+            automateSet = new MbzAutomateSet();
+            automateSet.setBatchDate("2:00:00");
+            automateSet.setCron("* * 2 * * ?");
+            mbzAutomateSetService.createMbzAutomateSet(automateSet);
+            // 表达式调度构建器
+            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("* * 2 * * ?");
+            // 按新的cronExpression表达式重新构建trigger
+            trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());
+            trigger = trigger.getTriggerBuilder().withIdentity(cronTrigger.getKey())
+                    .withSchedule(scheduleBuilder).build();
+            // 按新的trigger重新设置job执行
+            scheduler.rescheduleJob(cronTrigger.getKey(), trigger);
+            logger.info("刷新定时任务信息结束，未配置调度规则，将采用默认规则：[{}]，设置时间是：[{}]","* * 2 * * ?",new Date());
             return;
         }
         String searchCron = automateSet.getCron(); // 从数据库查询出来的
