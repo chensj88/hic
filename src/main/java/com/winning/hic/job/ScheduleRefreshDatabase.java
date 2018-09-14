@@ -54,7 +54,7 @@ public class ScheduleRefreshDatabase {
     @Qualifier("scheduler")
     private Scheduler scheduler;
 
-    @Scheduled(fixedRate = 1000 * 60) // 每隔1min查库，并根据查询结果决定是否重新设置定时任务
+    @Scheduled(fixedRate = 1000 * 60 * 30 ) // 每隔30min查库，并根据查询结果决定是否重新设置定时任务
     public void scheduleUpdateCronTrigger() throws SchedulerException {
         logger.info("刷新定时任务信息开始：[{}]",new Date());
         CronTrigger trigger = (CronTrigger) scheduler.getTrigger(cronTrigger.getKey());
