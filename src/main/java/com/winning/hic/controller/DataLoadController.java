@@ -335,7 +335,7 @@ public class DataLoadController extends BaseController {
             //39.中药处方记录表* --陈枫
             List<MbzDataCheck> mbzDataChecks39 = getFacade().getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf(entity);
             //37.卫生事件摘要表* --陈蒯
-            MbzDataCheck mbzDataCheck37 = super.getFacade().getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
+            //MbzDataCheck mbzDataCheck37 = super.getFacade().getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
             }
             //执行特殊处理的脚本
             super.getFacade().getHlhtZybcjlScbcjlService().selectAllHandleQuery();
