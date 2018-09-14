@@ -42,7 +42,7 @@ public class DataExtraJob {
         System.out.println(beforeToday);
         String startDate = beforeToday + " 00:00:00";
         String endDate = beforeToday + " 23:59:59";
- //       dataLoad(startDate,endDate);
+        dataLoad(startDate,endDate);
     }
 
 
