@@ -38,6 +38,10 @@ public final class DateUtil {
      * 19位日期格式。
      */
     public static final String PATTERN_19 = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * 时间格式
+     */
+    public static final String TIME_8 = "HH:mm:ss";
 
     private static ThreadLocal<Map<String, DateFormat>> formats = new ThreadLocal<Map<String, DateFormat>>();
 

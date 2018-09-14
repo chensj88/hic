@@ -19,7 +19,7 @@ import java.util.List;
  * @package com.winning.hic.job
  * @date: 2018-09-13 11:13
  */
-/*@Configuration*/
+@Configuration
 public class QuatrzConfig {
 
     private Logger logger = LoggerFactory.getLogger(QuatrzConfig.class);
@@ -32,8 +32,8 @@ public class QuatrzConfig {
     public MethodInvokingJobDetailFactoryBean detailFactoryBean(DataExtraJob extraJob){
         MethodInvokingJobDetailFactoryBean jobDetail = new MethodInvokingJobDetailFactoryBean();
         jobDetail.setConcurrent(false); //是否并发执行
-        jobDetail.setName("data-extra-hlht");// 设置任务的名字
-        jobDetail.setGroup("hlht");// 设置任务的分组，这些属性
+        jobDetail.setName("HLHT-DATA-EXTRA");// 设置任务的名字
+        jobDetail.setGroup("HLHT");// 设置任务的分组，这些属性
         jobDetail.setTargetObject(extraJob); //为需要执行的实体类对应的对象
         jobDetail.setTargetMethod("extraData");//需要执行的方法
         // 通过这几个配置，告诉JobDetailFactoryBean我们需要执行定时执行DataExtraJob类中的extraData方法
@@ -51,7 +51,7 @@ public class QuatrzConfig {
         CronTriggerFactoryBean tigger = new CronTriggerFactoryBean();
         tigger.setJobDetail(jobDetail.getObject());
         tigger.setCronExpression("40-50 * * * * ?");// 初始时的cron表达式
-        tigger.setName("hlht-trigger");// trigger的name
+        tigger.setName("HLHT-TRIGGER");// trigger的name
         logger.info("定时触发器【数据抽取】配置完成");
         return tigger;
     }

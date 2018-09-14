@@ -282,6 +282,13 @@ public class HlhtZqgzxxSxzltys extends BaseDomain implements Serializable {
      */
     private Integer yxjl;
 
+    /**
+     * 字段名：modelCode
+     * 备注:
+     * 默认值：无
+     */
+    private String modelCode;
+
     public HlhtZqgzxxSxzltys (){
 
     }
@@ -1061,4 +1068,11 @@ public class HlhtZqgzxxSxzltys extends BaseDomain implements Serializable {
         this.yxjl = yxjl;
    }
 
+    public String getModelCode() {
+        return modelCode;
+    }
+
+    public void setModelCode(String modelCode) {
+        this.modelCode = modelCode;
+    }
 }

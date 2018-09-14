@@ -47,6 +47,7 @@
         <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
         <result column="tjzt" property="tjzt" jdbcType="VARCHAR"/>
         <result column="yxjl" property="yxjl" jdbcType="INTEGER"/>
+        <result column="model_code" property="modelCode" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="hlhtZqgzxxSxzltysResult" type="com.winning.hic.model.HlhtZqgzxxSxzltys"
@@ -98,6 +99,7 @@
         <if test="(syxh != null )">and t.syxh = #{syxh}</if>
         <if test="(tjzt != null )">and t.tjzt = #{tjzt}</if>
         <if test="(yxjl != null )">and t.yxjl = #{yxjl}</if>
+        <if test="(modelCode != null )">and t.model_code = #{modelCode}</if>
     </sql>
 
     <insert id="insertHlhtZqgzxxSxzltys" parameterType="com.winning.hic.model.HlhtZqgzxxSxzltys">
@@ -147,6 +149,7 @@
             <if test="(syxh != null )">syxh ,</if>
             <if test="(tjzt != null )">tjzt ,</if>
             <if test="(yxjl != null )">yxjl ,</if>
+            <if test="(modelCode != null )">model_code ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -193,6 +196,7 @@
             <if test="(syxh != null )">#{syxh , jdbcType= VARCHAR },</if>
             <if test="(tjzt != null )">#{tjzt , jdbcType= VARCHAR },</if>
             <if test="(yxjl != null )">#{yxjl , jdbcType= INTEGER },</if>
+            <if test="(modelCode != null )">#{modelCode , jdbcType= VARCHAR },</if>
         </trim>
     </insert>
 
@@ -243,6 +247,7 @@
                 <if test="(syxh != null )">syxh = #{syxh , jdbcType= VARCHAR },</if>
                 <if test="(tjzt != null )">tjzt = #{tjzt , jdbcType= VARCHAR },</if>
                 <if test="(yxjl != null )">yxjl = #{yxjl , jdbcType= INTEGER },</if>
+                <if test="(modelCode != null )">model_code = #{modelCode , jdbcType= VARCHAR },</if>
             </trim>
         </set>
         <where>
@@ -300,7 +305,7 @@
             parameterType="com.winning.hic.model.HlhtZqgzxxSxzltys">
         SELECT * FROM (
         SELECT t.* ,
-       ROW_NUMBER() OVER ( ORDER BY t.yjlxh DESC ) AS _RN
+        ROW_NUMBER() OVER ( ORDER BY t.yjlxh DESC ) AS _RN
         FROM HLHT_ZQGZXX_SXZLTYS t
         <where>
             <include refid="sql-hlhtZqgzxxSxzltys"/>
@@ -313,55 +318,56 @@
     <select id="getHlhtZqgzxxSxzltysListFromBaseData" resultMap="hlhtZqgzxxSxzltysResult"
             parameterType="com.winning.hic.model.EmrQtbljlk">
         SELECT
-            ISNULL(q.QTBLJLXH, 'NA')                   AS yjlxh,
-            c.SYXH                                    AS jzlsh,
-            c.PATID                                   AS patid,
-            ISNULL(b.ZYHM, 'NA')                       AS zyh,
-            ISNULL(
-                    CONVERT (VARCHAR,(c.MZH)),
-                    'NA'
-                ) AS mjzh,
-            ISNULL(
-                    CONVERT (VARCHAR,(o.GHLB)),
-                    '2'
-                ) AS jzlb,
-            ISNULL(q.QTBLJLXH, 'NA')                   AS tysbh,
-            ISNULL(c.BQDM, 'NA')                       AS bqdm,
-            ISNULL(c.BQMC, 'NA')                       AS bqmc,
-            ISNULL(c.KSDM, 'NA')                       AS ksdm,
-            ISNULL(c.KSMC, 'NA')                       AS ksmc,
-            ISNULL(m.fjh, 'NA')                        AS bfh,
-            ISNULL(b.RYCW, 'NA')                       AS bch,
-            ISNULL(b.HZXM, 'NA')                       AS hzxm,
-            ISNULL(b.SFZH, 'NA')                       AS sfzhm,
-            ISNULL(b.BRXB, 'NA')                       AS xbdm,
-            (
-            SELECT CASE b.BRXB
-            WHEN '2'
-            THEN
-            '女'
-            WHEN '1'
-            THEN
-            '男'
-            ELSE
-            '其它'
-            END
-            )                                         AS xbmc,
-            ISNULL(
-            CONVERT(
-            VARCHAR,
-            (
-            YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
-            )
-            ),
+        ISNULL(q.QTBLJLXH, 'NA') AS yjlxh,
+        c.SYXH AS jzlsh,
+        c.PATID AS patid,
+        ISNULL(b.ZYHM, 'NA') AS zyh,
+        ISNULL(
+        CONVERT (VARCHAR,(c.MZH)),
+        'NA'
+        ) AS mjzh,
+        ISNULL(
+        CONVERT (VARCHAR,(o.GHLB)),
+        '2'
+        ) AS jzlb,
+        ISNULL(q.QTBLJLXH, 'NA') AS tysbh,
+        ISNULL(c.BQDM, 'NA') AS bqdm,
+        ISNULL(c.BQMC, 'NA') AS bqmc,
+        ISNULL(c.KSDM, 'NA') AS ksdm,
+        ISNULL(c.KSMC, 'NA') AS ksmc,
+        ISNULL(m.fjh, 'NA') AS bfh,
+        ISNULL(b.RYCW, 'NA') AS bch,
+        ISNULL(b.HZXM, 'NA') AS hzxm,
+        ISNULL(b.SFZH, 'NA') AS sfzhm,
+        ISNULL(b.BRXB, 'NA') AS xbdm,
+        (
+        SELECT CASE b.BRXB
+        WHEN '2'
+        THEN
+        '女'
+        WHEN '1'
+        THEN
+        '男'
+        ELSE
+        '其它'
+        END
+        ) AS xbmc,
+        ISNULL(
+        CONVERT(
+        VARCHAR,
+        (
+        YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
+        )
+        ),
 
-            'NA'
-            )                                         AS nls,
-            DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
-            q.QTBLJLXH                                AS syxh,
-            q.TJZT                                    AS tjzt,
-            q.YXJL                                    AS yxjl,
-            GETDATE()                                 AS gxsj
+        'NA'
+        ) AS nls,
+        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
+        q.BLDM AS model_code,
+        q.SYXH AS syxh,
+        q.TJZT AS tjzt,
+        q.YXJL AS yxjl,
+        GETDATE() AS gxsj
         FROM
         CISDB.dbo.EMR_QTBLJLK q
         LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
@@ -375,8 +381,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
 
     </select>
 

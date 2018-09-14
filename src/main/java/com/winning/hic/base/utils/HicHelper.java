@@ -220,8 +220,9 @@ public class HicHelper {
                         }
                     }
                     if (dataSet.getSourceType().equals(Constants.WN_RYJL_JBXX_SOURCE_TYPE)) {
-                        if (pyCode.equals("tjtw")) {
-                            String method = "getTjtw";
+                        //过敏史
+                        if (pyCode.equals("gms")) {
+                            String method = "getGms";
                             String exValue = (String) ReflectUtil.getParam(obj, method);
                             if (exValue != null && !"NA".equals(value)) {
                                 value = exValue + " " + value;
@@ -229,35 +230,29 @@ public class HicHelper {
                                 continue;
                             }
                         }
-                        if (pyCode.equals("tjhxpl")) {
-                            String method = "getTjhxpl";
-                            String exValue = (String) ReflectUtil.getParam(obj, method);
-                            if (exValue != null && !"NA".equals(value)) {
-                                value = exValue + " " + value;
-                                ReflectUtil.setParamKind(obj, methodName, value);
-                                continue;
-                            }
-                        }
-                        if (pyCode.equals("tjml")) {
-                            String method = "getTjml";
-                            String exValue = (String) ReflectUtil.getParam(obj, method);
-                            if (exValue != null && !"NA".equals(value)) {
-                                value = exValue + " " + value;
-                                ReflectUtil.setParamKind(obj, methodName, value);
-                                continue;
-                            }
-                        }
-                        if (pyCode.equals("tjsg")) {
-                            String method = "getTjsg";
-                            String exValue = (String) ReflectUtil.getParam(obj, method);
-                            if (exValue != null && !"NA".equals(value)) {
-                                value = exValue + " " + value;
-                                ReflectUtil.setParamKind(obj, methodName, value);
-                                continue;
-                            }
-                        }
+                        //一般状况检查结果
                         if (pyCode.equals("tjybjg")) {
                             String method = "getTjybjg";
+                            String exValue = (String) ReflectUtil.getParam(obj, method);
+                            if (exValue != null && !"NA".equals(value)) {
+                                value = exValue + " " + value;
+                                ReflectUtil.setParamKind(obj, methodName, value);
+                                continue;
+                            }
+                        }
+                        //头部及其器官检查结果
+                        if (pyCode.equals("tjtbqgjg")) {
+                            String method = "getTjtbqgjg";
+                            String exValue = (String) ReflectUtil.getParam(obj, method);
+                            if (exValue != null && !"NA".equals(value)) {
+                                value = exValue + " " + value;
+                                ReflectUtil.setParamKind(obj, methodName, value);
+                                continue;
+                            }
+                        }
+                        //腹部检查结果
+                        if (pyCode.equals("tjfbjg")) {
+                            String method = "getTjfbjg";
                             String exValue = (String) ReflectUtil.getParam(obj, method);
                             if (exValue != null && !"NA".equals(value)) {
                                 value = exValue + " " + value;
