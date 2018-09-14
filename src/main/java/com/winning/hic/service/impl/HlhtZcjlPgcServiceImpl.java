@@ -137,6 +137,8 @@ public class HlhtZcjlPgcServiceImpl implements  HlhtZcjlPgcService {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
+
+                        this.createHlhtZcjlPgc(entity);
                         //插入日志
                         mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                                 Long.parseLong(Constants.WN_ZCJL_PGC_SOURCE_TYPE),
@@ -144,7 +146,6 @@ public class HlhtZcjlPgcServiceImpl implements  HlhtZcjlPgcService {
                                 new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                 entity.getPatid(),entity.getZyh(),"NA","NA","NA",
                                 entity.getKsmc(),entity.getKsdm(), entity.getBqmc(),entity.getBqdm(), entity.getSfzhm()));
-                        this.createHlhtZcjlPgc(entity);
                         real_count++;
 
                     }

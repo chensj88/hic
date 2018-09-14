@@ -241,6 +241,7 @@ public class HlhtCyxjCyxjServiceImpl implements  HlhtCyxjCyxjService {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
+                        this.createHlhtCyxjCyxj(entity);
                         //插入日志
                         mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                                 Long.parseLong(Constants.WN_CYXJ_CYXJ_SOURCE_TYPE),
@@ -248,7 +249,7 @@ public class HlhtCyxjCyxjServiceImpl implements  HlhtCyxjCyxjService {
                                 new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                 entity.getPatid(),entity.getZyh(),entity.getHzxm(),entity.getXbmc(),entity.getXbdm(),
                                 entity.getKsmc(),entity.getKsdm(), entity.getBqmc(),entity.getBqdm(), entity.getSfzhm()));
-                        this.createHlhtCyxjCyxj(entity);
+
                         real_count++;
 
                     }
