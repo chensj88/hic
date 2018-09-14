@@ -293,6 +293,7 @@ public class DomUtils {
         }
         String[] split_display = nodeDisplay.split("`");
         //if (StringUtils.isEmpty(info.getQrmbdm())) {
+        if(split_display.length > 0 && split_display != null){
             for (int i = 0; i < split_display[0].length(); i++) {
                 Character s = split_display[0].charAt(i);
                 Character o = new Character('0');
@@ -305,6 +306,7 @@ public class DomUtils {
                     }
                 }
             }
+        }
         //}
 
         return value;
