@@ -16,7 +16,7 @@
          <result column="QRDXDM" property="qrdxdm" jdbcType="VARCHAR" />
          <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
          <result column="BT" property="bt" jdbcType="INTEGER" />
-         <result column="DATA_LENGTH" property="dataLength" jdbcType="BIGINT" />
+         <result column="VALUE_FLAG" property="valueFlag" jdbcType="BIGINT" />
         <result column="MUST_MATCH" property="mustMatch" jdbcType="INTEGER" />
     </resultMap>
 
@@ -37,7 +37,7 @@
         <if test="(qrdxdm != null )"> and t.QRDXDM = #{qrdxdm} </if>
         <if test="(yzjddm != null )"> and t.YZJDDM = #{yzjddm} </if>
         <if test="(bt != null )"> and t.BT = #{bt} </if>
-        <if test="(dataLength != null and dataLength != '')"> and t.DATA_LENGTH = #{dataLength} </if>
+        <if test="(valueFlag != null )"> and t.VALUE_FLAG = #{valueFlag} </if>
         <if test="(mustMatch != null )"> and t.MUST_MATCH = #{mustMatch} </if>
     </sql>
 
@@ -56,7 +56,7 @@
             <if test="(qrdxdm != null )"> QRDXDM , </if>
             <if test="(yzjddm != null )"> YZJDDM , </if>
             <if test="(bt != null )"> BT , </if>
-            <if test="(dataLength != null and dataLength != '')"> DATA_LENGTH , </if>
+            <if test="(valueFlag != null )"> VALUE_FLAG , </if>
             <if test="(mustMatch != null )"> MUST_MATCH , </if>
         </trim>
         VALUES
@@ -73,7 +73,7 @@
             <if test="(qrdxdm != null )"> #{qrdxdm , jdbcType= VARCHAR },  </if>
             <if test="(yzjddm != null )"> #{yzjddm , jdbcType= VARCHAR },  </if>
             <if test="(bt != null )"> #{bt , jdbcType= INTEGER },  </if>
-            <if test="(dataLength != null and dataLength != '')"> #{dataLength , jdbcType= BIGINT },  </if>
+            <if test="(valueFlag != null )"> #{valueFlag , jdbcType= INTEGER },  </if>
             <if test="(mustMatch != null )"> #{mustMatch , jdbcType= INTEGER },  </if>
         </trim>
     </insert>
@@ -93,7 +93,7 @@
                 <if test="(qrdxdm != null)"> QRDXDM = #{qrdxdm , jdbcType= VARCHAR }, </if>
                 <if test="(yzjddm != null)"> YZJDDM = #{yzjddm , jdbcType= VARCHAR }, </if>
                 <if test="(bt != null )"> BT = #{bt , jdbcType= INTEGER }, </if>
-                <if test="(dataLength != null and dataLength != '')"> DATA_LENGTH = #{dataLength , jdbcType= BIGINT }, </if>
+                <if test="(valueFlag != null )"> VALUE_FLAG = #{valueFlag , jdbcType= INTEGER }, </if>
                 <if test="(mustMatch != null )"> MUST_MATCH = #{mustMatch , jdbcType= INTEGER }, </if>
             </trim>
         </set>

@@ -93,10 +93,10 @@ public class MbzDataSet extends BaseDomain implements Serializable {
      */
     private Integer bt;
     /**
-     * 数据字段长度
-     * 0不限制长度 时间、text字段
+     * 是否需要前缀或者后缀
+     * 0不需要 1 需要 暂定
      */
-    private Long dataLength;
+    private Long valueFlag;
 
     /**
      * 字段是否需要配置
@@ -326,12 +326,13 @@ public class MbzDataSet extends BaseDomain implements Serializable {
         this.bt = bt;
    }
 
-    public Long getDataLength() {
-        return dataLength;
+
+    public Long getValueFlag() {
+        return valueFlag;
     }
 
-    public void setDataLength(Long dataLength) {
-        this.dataLength = dataLength;
+    public void setValueFlag(Long valueFlag) {
+        this.valueFlag = valueFlag;
     }
 
     public Integer getMustMatch() {
