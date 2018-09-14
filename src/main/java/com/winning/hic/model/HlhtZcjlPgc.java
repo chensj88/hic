@@ -1,13 +1,13 @@
 package com.winning.hic.model;
 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
+import java.sql.Timestamp;
+import java.sql.Timestamp;
+import java.sql.Timestamp;
+import java.sql.Timestamp;
+import java.sql.Timestamp;
 import java.math.BigDecimal; 
 import java.math.BigDecimal; 
-import java.util.Date; 
+import java.sql.Timestamp;
 import java.io.Serializable; 
 
 import org.apache.ibatis.type.Alias; 
@@ -21,7 +21,7 @@ import com.winning.hic.model.BaseDomain;
  * @title 
  * @email Winning Health
  * @package com.winning.hic.model
- * @date 2018-30-31 16:30:59
+ * @Timestamp 2018-30-31 16:30:59
  */
 @Alias("hlhtZcjlPgc")
 public class HlhtZcjlPgc extends BaseDomain implements Serializable {
@@ -69,7 +69,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Short nls;
+    private BigDecimal nls;
     /**
      * 字段名：ksdm
      * 备注: 
@@ -111,7 +111,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date dcrqsj;
+    private Timestamp dcrqsj;
     /**
      * 字段名：cqzdmc
      * 备注: 
@@ -141,7 +141,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date ssksrqsj;
+    private Timestamp ssksrqsj;
     /**
      * 字段名：mzffdm
      * 备注: 
@@ -207,7 +207,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date tpwcrqsj;
+    private Timestamp tpwcrqsj;
     /**
      * 字段名：tpmcqk
      * 备注: 
@@ -225,7 +225,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Short rjsz;
+    private BigDecimal rjsz;
     /**
      * 字段名：qdcdcm
      * 备注: 
@@ -357,7 +357,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Short sxlml;
+    private BigDecimal sxlml;
     /**
      * 字段名：sylml
      * 备注: 
@@ -369,7 +369,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Short gysjmin;
+    private BigDecimal gysjmin;
     /**
      * 字段名：qtyy
      * 备注: 
@@ -387,13 +387,13 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date ssjsrqsj;
+    private Timestamp ssjsrqsj;
     /**
      * 字段名：ssqcsjmin
      * 备注: 
      * 默认值：无
      */
-    private Short ssqcsjmin;
+    private BigDecimal ssqcsjmin;
     /**
      * 字段名：shzdmc
      * 备注: 
@@ -405,37 +405,37 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date shgcrqsj;
+    private Timestamp shgcrqsj;
     /**
      * 字段名：shjcmin
      * 备注: 
      * 默认值：无
      */
-    private Short shjcmin;
+    private BigDecimal shjcmin;
     /**
      * 字段名：chssymmhg
      * 备注: 
      * 默认值：无
      */
-    private Short chssymmhg;
+    private BigDecimal chssymmhg;
     /**
      * 字段名：chszymmhg
      * 备注: 
      * 默认值：无
      */
-    private Short chszymmhg;
+    private BigDecimal chszymmhg;
     /**
      * 字段名：chmbc
      * 备注: 
      * 默认值：无
      */
-    private Short chmbc;
+    private BigDecimal chmbc;
     /**
      * 字段名：chxlc
      * 备注: 
      * 默认值：无
      */
-    private Short chxlc;
+    private BigDecimal chxlc;
     /**
      * 字段名：chcxlml
      * 备注: 
@@ -477,7 +477,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Short xsecstzg;
+    private BigDecimal xsecstzg;
     /**
      * 字段名：xsecssccm
      * 备注: 
@@ -519,7 +519,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Short apgarpfz;
+    private BigDecimal apgarpfz;
     /**
      * 字段名：fmjjdm
      * 备注: 
@@ -645,7 +645,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date gxsj;
+    private Timestamp gxsj;
 
     public HlhtZcjlPgc (){
 
@@ -764,7 +764,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getNls(){
+   public BigDecimal getNls(){
 
         return nls;
    }
@@ -774,7 +774,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setNls(Short nls){
+   public void setNls(BigDecimal nls){
         this.nls = nls;
    }
    /**
@@ -890,7 +890,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getDcrqsj(){
+   public Timestamp getDcrqsj(){
 
         return dcrqsj;
    }
@@ -900,7 +900,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setDcrqsj(Date dcrqsj){
+   public void setDcrqsj(Timestamp dcrqsj){
         this.dcrqsj = dcrqsj;
    }
    /**
@@ -980,7 +980,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getSsksrqsj(){
+   public Timestamp getSsksrqsj(){
 
         return ssksrqsj;
    }
@@ -990,7 +990,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setSsksrqsj(Date ssksrqsj){
+   public void setSsksrqsj(Timestamp ssksrqsj){
         this.ssksrqsj = ssksrqsj;
    }
    /**
@@ -1178,7 +1178,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getTpwcrqsj(){
+   public Timestamp getTpwcrqsj(){
 
         return tpwcrqsj;
    }
@@ -1188,7 +1188,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setTpwcrqsj(Date tpwcrqsj){
+   public void setTpwcrqsj(Timestamp tpwcrqsj){
         this.tpwcrqsj = tpwcrqsj;
    }
    /**
@@ -1232,7 +1232,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getRjsz(){
+   public BigDecimal getRjsz(){
 
         return rjsz;
    }
@@ -1242,7 +1242,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setRjsz(Short rjsz){
+   public void setRjsz(BigDecimal rjsz){
         this.rjsz = rjsz;
    }
    /**
@@ -1628,7 +1628,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getSxlml(){
+   public BigDecimal getSxlml(){
 
         return sxlml;
    }
@@ -1638,7 +1638,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setSxlml(Short sxlml){
+   public void setSxlml(BigDecimal sxlml){
         this.sxlml = sxlml;
    }
    /**
@@ -1664,7 +1664,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getGysjmin(){
+   public BigDecimal getGysjmin(){
 
         return gysjmin;
    }
@@ -1674,7 +1674,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setGysjmin(Short gysjmin){
+   public void setGysjmin(BigDecimal gysjmin){
         this.gysjmin = gysjmin;
    }
    /**
@@ -1718,7 +1718,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getSsjsrqsj(){
+   public Timestamp getSsjsrqsj(){
 
         return ssjsrqsj;
    }
@@ -1728,7 +1728,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setSsjsrqsj(Date ssjsrqsj){
+   public void setSsjsrqsj(Timestamp ssjsrqsj){
         this.ssjsrqsj = ssjsrqsj;
    }
    /**
@@ -1736,7 +1736,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getSsqcsjmin(){
+   public BigDecimal getSsqcsjmin(){
 
         return ssqcsjmin;
    }
@@ -1746,7 +1746,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setSsqcsjmin(Short ssqcsjmin){
+   public void setSsqcsjmin(BigDecimal ssqcsjmin){
         this.ssqcsjmin = ssqcsjmin;
    }
    /**
@@ -1772,7 +1772,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getShgcrqsj(){
+   public Timestamp getShgcrqsj(){
 
         return shgcrqsj;
    }
@@ -1782,7 +1782,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setShgcrqsj(Date shgcrqsj){
+   public void setShgcrqsj(Timestamp shgcrqsj){
         this.shgcrqsj = shgcrqsj;
    }
    /**
@@ -1790,7 +1790,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getShjcmin(){
+   public BigDecimal getShjcmin(){
 
         return shjcmin;
    }
@@ -1800,7 +1800,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setShjcmin(Short shjcmin){
+   public void setShjcmin(BigDecimal shjcmin){
         this.shjcmin = shjcmin;
    }
    /**
@@ -1808,7 +1808,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getChssymmhg(){
+   public BigDecimal getChssymmhg(){
 
         return chssymmhg;
    }
@@ -1818,7 +1818,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setChssymmhg(Short chssymmhg){
+   public void setChssymmhg(BigDecimal chssymmhg){
         this.chssymmhg = chssymmhg;
    }
    /**
@@ -1826,7 +1826,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getChszymmhg(){
+   public BigDecimal getChszymmhg(){
 
         return chszymmhg;
    }
@@ -1836,7 +1836,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setChszymmhg(Short chszymmhg){
+   public void setChszymmhg(BigDecimal chszymmhg){
         this.chszymmhg = chszymmhg;
    }
    /**
@@ -1844,7 +1844,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getChmbc(){
+   public BigDecimal getChmbc(){
 
         return chmbc;
    }
@@ -1854,7 +1854,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setChmbc(Short chmbc){
+   public void setChmbc(BigDecimal chmbc){
         this.chmbc = chmbc;
    }
    /**
@@ -1862,7 +1862,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getChxlc(){
+   public BigDecimal getChxlc(){
 
         return chxlc;
    }
@@ -1872,7 +1872,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setChxlc(Short chxlc){
+   public void setChxlc(BigDecimal chxlc){
         this.chxlc = chxlc;
    }
    /**
@@ -1988,7 +1988,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getXsecstzg(){
+   public BigDecimal getXsecstzg(){
 
         return xsecstzg;
    }
@@ -1998,7 +1998,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setXsecstzg(Short xsecstzg){
+   public void setXsecstzg(BigDecimal xsecstzg){
         this.xsecstzg = xsecstzg;
    }
    /**
@@ -2114,7 +2114,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getApgarpfz(){
+   public BigDecimal getApgarpfz(){
 
         return apgarpfz;
    }
@@ -2124,7 +2124,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setApgarpfz(Short apgarpfz){
+   public void setApgarpfz(BigDecimal apgarpfz){
         this.apgarpfz = apgarpfz;
    }
    /**
@@ -2492,7 +2492,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getGxsj(){
+   public Timestamp getGxsj(){
 
         return gxsj;
    }
@@ -2502,7 +2502,7 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setGxsj(Date gxsj){
+   public void setGxsj(Timestamp gxsj){
         this.gxsj = gxsj;
    }
 
