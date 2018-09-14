@@ -264,4 +264,7 @@ UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM
  --专业技术职务类别
   UPDATE A SET A.zyjszwlb = ISNULL(B.ZCDM,'NA'),A.zyjszwlbmc = ISNULL(B.ZCMC,'NA') FROM CISDB_DATA..HLHT_MJZBL_JZLGBL A LEFT JOIN CISDB..SYS_ZGDMK B ON B.ID = A.ysbm WHERE (A.zyjszwlb = 'NA' OR A.zyjszwlbmc ='NA')
 
-
+--特殊处理
+  --特殊检查及特殊治疗同意书 疾病诊断数据处理
+  UPDATE A SET A.jbzd = substring(A.jbzd,len('【初步诊断】 ')+1,len(A.jbzd) -len('【初步诊断】 ')) FROM CISDB_DATA..HLHT_ZQGZXX_TSJCZLTYS A WHERE CHARINDEX('【初步诊断】 ',convert(varchar,A.jbzd)) > 0
+  UPDATE A SET A.jbzdbm = substring(A.jbzdbm,len('【初步诊断】 ')+1,len(A.jbzdbm) -len('【初步诊断】 ')) FROM CISDB_DATA..HLHT_ZQGZXX_TSJCZLTYS A WHERE CHARINDEX('【初步诊断】 ',convert(varchar,A.jbzdbm)) > 0

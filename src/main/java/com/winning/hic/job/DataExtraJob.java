@@ -36,14 +36,9 @@ public class DataExtraJob {
 
     public void extraData() {
         logger.info("数据抽取开始时间为：[{}]", new Date());
-        Date date = new Date();
-
-        String dateString = DateUtil.format(date);
         Calendar c = Calendar.getInstance();
-        date.setTime(date.getTime());
-        c.set(Calendar.DATE, c.get(Calendar.DATE) - 1);
+        c.set(Calendar.DATE, c.get(Calendar.DATE) - 1); //抽取前一天数据 注释则抽取当前数据
         String beforeToday = DateUtil.format(c.getTime());
-        System.out.println(dateString);
         System.out.println(beforeToday);
         String startDate = beforeToday + " 00:00:00";
         String endDate = beforeToday + " 23:59:59";

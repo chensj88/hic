@@ -297,7 +297,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlYnbltljlService().getHlhtZybcjlYnbltljl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlYnbltljlService().getHlhtZybcjlYnbltljlList(obj));
             result.put("total", getFacade().getHlhtZybcjlYnbltljlService().getHlhtZybcjlYnbltljlCount(obj));
 
         } else if (sourceType == 27) {
