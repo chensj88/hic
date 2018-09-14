@@ -1,5 +1,7 @@
 package com.winning.hic.controller;
 
+import com.winning.hic.base.utils.DateUtil;
+import com.winning.hic.model.MbzAutomateSet;
 import com.winning.hic.model.MbzDictInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,7 +71,15 @@ public class PageController extends BaseController {
     }
     @ApiOperation(value = "页面跳转",notes = "跳转到配置页面")
     @GetMapping(value = "/config/index")
-    public String goToConfigPage(){
+    public String goToConfigPage(Model model){
+        MbzAutomateSet automateSet = getFacade().getMbzAutomateSetService().getMbzAutomateSet(null);
+
+        if(automateSet == null){
+            resultMap.put("batchDate", DateUtil.format(new Date(),DateUtil.TIME_8));
+        }else{
+            resultMap.put("batchDate", automateSet.getBatchDate());
+        }
+        model.addAllAttributes(resultMap);
         return "config/index";
     }
     @ApiOperation(value = "页面跳转",notes = "跳转到数据校验")
