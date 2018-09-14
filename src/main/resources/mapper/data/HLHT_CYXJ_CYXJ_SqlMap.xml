@@ -554,7 +554,7 @@
         '未知 '
         END AS hyzkmc,
         b.ZYDM AS zylbdm,
-        k.NAME AS zylbmc,
+        m.NAME AS zylbmc,
         (CASE b.LXDH WHEN '' THEN 'NA' ELSE b.LXDH END)AS hzdhhm,
         ISNULL(
         (SELECT TOP 1 e.SSDQDM FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,
@@ -595,6 +595,7 @@
         CISDB.dbo.EMR_QTBLJLK t
         LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH
+        LEFT JOIN EMR_SYS_ZDFLMXK m on b.ZYDM=m.MXDM and LBDM = 41
         LEFT JOIN THIS4.dbo.ZY_BCDMK a ON a.id = b.RYCW
         AND a.bqdm = b.RYBQ
         LEFT JOIN CISDB.dbo.OUTP_JZJLK o ON t.SYXH = o.EMRXH

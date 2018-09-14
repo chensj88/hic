@@ -736,7 +736,7 @@
         'NA' AS dzc,
         'NA' AS dzmphm,
         ISNULL(b.ZYDM, 'NA') AS zylbdm,
-        ISNULL(p.NAME, 'NA') AS zylbmc,
+        ISNULL(i.NAME, 'NA') AS zylbmc,
         b.RYRQ AS ryrq,
         q.SYXH AS syxh,
         q.TJZT AS tjzt,
@@ -745,6 +745,7 @@
         FROM
         CISDB.dbo.EMR_QTBLJLK q
         LEFT JOIN CISDB.dbo.EMR_BRSYK b ON q.SYXH = b.SYXH
+        LEFT JOIN EMR_SYS_ZDFLMXK i on b.ZYDM=i.MXDM and LBDM = 41
         LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON b.SYXH = c.EMRXH
         LEFT JOIN CISDB.dbo.EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN CISDB.dbo.PUB_ZYDMK p ON b.ZYDM = p.ID
