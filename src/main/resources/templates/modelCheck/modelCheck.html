@@ -65,8 +65,8 @@
                                         </span>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary">批量验证</button>
-                                <button type="button" class="btn btn-primary">生成报告</button>
+                                <button type="button" class="btn btn-primary" onclick="doCheck(0)">批量验证</button>
+                                <!--<button type="button" class="btn btn-primary">生成报告</button>-->
                             </form>
 
                         </div>
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-primary" onclick="doCheck(1)">开始校验</button>
-                                <button type="button" class="btn btn-primary">生成报告</button>
+                                <!--<button type="button" class="btn btn-primary">生成报告</button>-->
                             </form>
 
                         </div>
@@ -344,19 +344,23 @@
     function doCheck(type) {
         //type:0/1;0:批量校验  1：单个校验
         let sourceType = '';
+        let modelCode = '';
         if (type == 1) {
             //获取当前选中的模板类型
             sourceType = $("#modelList").children("option:selected").attr("sourceType");
+            modelCode = $("#modelList").children("option:selected").val();
+        } else if (type == 0) {
+            sourceType = $("#data_set").children("option:selected").val();
         }
         $.ajax({
             url: ctx + 'modelCheck/doCheck',
             type: 'POST', // 请求方法
-            data: {sourceType: sourceType},
+            data: {sourceType: sourceType, modelCode: modelCode},
             success: function (data) {
-                if(data.msg=="success"){
-                    if(type==1){
+                if (data.msg == "SUCCESS") {
+                    if (type == 1) {
                         $simple_table.bootstrapTable('refresh');
-                    }else if(type==0){
+                    } else if (type == 0) {
                         $table.bootstrapTable('refresh');
                     }
                 }

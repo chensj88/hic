@@ -102,6 +102,13 @@ public class ModelCheckUtil {
         mbzDataSet.setPyCode(info.getPyCode());
         List<MbzDataSet> mbzDataSetList = modelCheckUtil.mbzDataSetService.getMbzDataSetList(mbzDataSet);
         for (MbzDataSet temp : mbzDataSetList) {
+            //判断字段是否需要校验 0:不需要  1：需要
+            Integer mustMatch = temp.getMustMatch();
+            if (mustMatch.intValue() == 0) {
+                info.setStatus(0);
+                info.setErrorDesc("字段不需校验");
+                return;
+            }
 
             //模板代码
             String mbdm = info.getModelCode();

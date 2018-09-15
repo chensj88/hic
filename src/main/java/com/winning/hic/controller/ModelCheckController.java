@@ -92,11 +92,16 @@ public class ModelCheckController extends BaseController {
     public Map doCheck(MbzModelCheck mbzModelCheck) {
         //获取待校验模板sourceType
         String sourceType = mbzModelCheck.getSourceType();
+        String modelCode = mbzModelCheck.getModelCode();
         if (StringUtil.isEmptyOrNull(sourceType)) {
             return null;
         }
         MbzModelCheck temp = new MbzModelCheck();
         temp.setSourceType(sourceType);
+        if (!StringUtil.isEmptyOrNull(modelCode)) {
+            temp.setModelCode(modelCode);
+        }
+
         // 获取待check数据集合
         List<MbzModelCheck> mbzModelChecks = getFacade().getMbzModelCheckService().getMbzModelCheckList(temp);
         for (MbzModelCheck modelCheck : mbzModelChecks) {
