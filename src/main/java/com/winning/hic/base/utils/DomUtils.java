@@ -292,7 +292,7 @@ public class DomUtils {
             value = split[0];
         }
         String[] split_display = nodeDisplay.split("`");
-        if (StringUtils.isEmpty(info.getQrmbdm())) {
+        if (StringUtils.isEmpty(info.getQrmbdm())||info.getValueFlag()==1) {
         //if(split_display.length > 0 && split_display != null){
             for (int i = 0; i < split_display[0].length(); i++) {
                 Character s = split_display[0].charAt(i);

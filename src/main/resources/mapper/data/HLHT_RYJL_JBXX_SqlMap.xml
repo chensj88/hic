@@ -112,6 +112,7 @@
         <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
         <result column="tjzt" property="tjzt" jdbcType="VARCHAR"/>
         <result column="yxjl" property="yxjl" jdbcType="INTEGER"/>
+        <result column="bzfx" property="bzfx" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="hlhtRyjlJbxxResult" type="com.winning.hic.model.HlhtRyjlJbxx" extends="hlhtRyjlJbxxResultForList">
@@ -227,6 +228,7 @@
         <if test="syxh != null ">and t.syxh = #{syxh}</if>
         <if test="tjzt != null">and t.tjzt = #{tjzt}</if>
         <if test="yxjl != null ">and t.yxjl = #{yxjl}</if>
+        <if test="bzfx != null ">and t.bzfx = #{bzfx}</if>
     </sql>
 
     <insert id="insertHlhtRyjlJbxx" parameterType="com.winning.hic.model.HlhtRyjlJbxx">
@@ -340,6 +342,7 @@
             <if test="syxh != null ">syxh ,</if>
             <if test="tjzt != null ">tjzt ,</if>
             <if test="yxjl != null ">yxjl ,</if>
+            <if test="bzfx != null ">bzfx ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -451,6 +454,7 @@
             <if test="syxh != null ">#{syxh , jdbcType= VARCHAR },</if>
             <if test="tjzt != null">#{tjzt , jdbcType= VARCHAR },</if>
             <if test="yxjl != null ">#{yxjl , jdbcType= INTEGER },</if>
+            <if test="bzfx != null">#{bzfx , jdbcType= VARCHAR },</if>
         </trim>
     </insert>
 
@@ -566,6 +570,7 @@
                 <if test="syxh != null ">syxh = #{syxh , jdbcType= VARCHAR },</if>
                 <if test="tjzt != null">tjzt = #{tjzt , jdbcType= VARCHAR },</if>
                 <if test="yxjl != null ">yxjl = #{yxjl , jdbcType= INTEGER },</if>
+                <if test="bzfx != null">bzfx = #{bzfx , jdbcType= VARCHAR },</if>
             </trim>
         </set>
         <where>

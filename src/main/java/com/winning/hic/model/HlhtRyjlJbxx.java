@@ -667,6 +667,13 @@ public class HlhtRyjlJbxx extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
+    private String bzfx;
+
+    /**
+     * 字段名：yxjl
+     * 备注:
+     * 默认值：无
+     */
     private Integer yxjl;
 
     public HlhtRyjlJbxx (){
@@ -2617,6 +2624,14 @@ public class HlhtRyjlJbxx extends BaseDomain implements Serializable {
    public void setYxjl(Integer yxjl){
         this.yxjl = yxjl;
    }
+
+    public String getBzfx() {
+        return bzfx;
+    }
+
+    public void setBzfx(String bzfx) {
+        this.bzfx = bzfx;
+    }
 
     @Override
     public String toString() {
