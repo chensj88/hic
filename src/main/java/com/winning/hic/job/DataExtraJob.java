@@ -35,7 +35,7 @@ public class DataExtraJob {
     private static final Logger logger = LoggerFactory.getLogger(DataExtraJob.class);
 
     public void extraData() {
-        logger.info("数据抽取开始时间为：[{}]", new Date());
+        logger.info("数据抽取开始时间为：[{}]", DateUtil.format(new Date(),DateUtil.PATTERN_19));
         Calendar c = Calendar.getInstance();
         c.set(Calendar.DATE, c.get(Calendar.DATE) - 1); //抽取前一天数据 注释则抽取当前数据
         String beforeToday = DateUtil.format(c.getTime());
@@ -43,6 +43,7 @@ public class DataExtraJob {
         String startDate = beforeToday + " 00:00:00";
         String endDate = beforeToday + " 23:59:59";
         dataLoad(startDate,endDate);
+        logger.info("数据抽取结束时间为：[{}]", DateUtil.format(new Date(),DateUtil.PATTERN_19));
     }
 
 
