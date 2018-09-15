@@ -1,5 +1,6 @@
 package com.winning.hic.job;
 
+import com.winning.hic.base.utils.DateUtil;
 import org.quartz.Trigger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,7 +39,7 @@ public class QuatrzConfig {
         jobDetail.setTargetObject(extraJob); //为需要执行的实体类对应的对象
         jobDetail.setTargetMethod("extraData");//需要执行的方法
         // 通过这几个配置，告诉JobDetailFactoryBean我们需要执行定时执行DataExtraJob类中的extraData方法
-        logger.info("定时任务【数据抽取】配置完成");
+        logger.info("定时任务【数据抽取】配置完成@[{}]",DateUtil.format(new Date(),DateUtil.PATTERN_19));
         return jobDetail;
     }
 
@@ -52,7 +54,7 @@ public class QuatrzConfig {
         tigger.setJobDetail(jobDetail.getObject());
         tigger.setCronExpression("40-50 * * * * ?");// 初始时的cron表达式
         tigger.setName("HLHT-TRIGGER");// trigger的name
-        logger.info("定时触发器【数据抽取】配置完成");
+        logger.info("定时触发器【数据抽取】配置完成@[{}]",DateUtil.format(new Date(),DateUtil.PATTERN_19));
         return tigger;
     }
     //=========================测试代码===================
@@ -93,7 +95,7 @@ public class QuatrzConfig {
         bean.setStartupDelay(1);
         // 注册触发器
         bean.setTriggers(triggers);
-        logger.info("调度工厂配置完成,Quartz在应用启动1秒后启动");
+        logger.info("调度工厂配置完成,Quartz在应用启动1秒后启动@[{}]",DateUtil.format(new Date(),DateUtil.PATTERN_19));
         return bean;
     }
 }
