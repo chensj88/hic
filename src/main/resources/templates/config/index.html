@@ -136,6 +136,9 @@
                 success: function (data,status) {
                     console.log(data);
                     console.log(status);
+                    if(status === 'success'){
+                        toastr.info('数据抽取时间更新成功!');
+                    }
                 },
                 error: function (response) {
                     result = true;
