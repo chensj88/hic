@@ -29,5 +29,5 @@ public interface HlhtBlgyWssjzyService {
 
     public List<HlhtBlgyWssjzy> getHlhtBlgyWssjzyPageList(HlhtBlgyWssjzy hlhtBlgyWssjzy);
 
-    public MbzDataCheck interfaceHlhtBlgyWssjzy();
+    public MbzDataCheck interfaceHlhtBlgyWssjzy(MbzDataCheck entity);
 }

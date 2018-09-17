@@ -62,13 +62,17 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
     }
 
     @Override
-    public MbzDataCheck interfaceHlhtBlgyWssjzy() {
-        this.hlhtBlgyWssjzyDao.insertHlhtBlgyWssjzyAll();
+    public MbzDataCheck interfaceHlhtBlgyWssjzy(MbzDataCheck entity) {
+        HlhtBlgyWssjzy wssjzy = new HlhtBlgyWssjzy();
+        this.hlhtBlgyWssjzyDao.deleteHlhtBlgyWssjzy(wssjzy);
+        wssjzy.getMap().put("startDate",entity.getMap().get("startDate"));
+        wssjzy.getMap().put("endDate",entity.getMap().get("endDate"));
+        this.hlhtBlgyWssjzyDao.insertHlhtBlgyWssjzyAll(wssjzy);
         //插入数据集中
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
-        HlhtBlgyWssjzy entity = new HlhtBlgyWssjzy();
-        List<HlhtBlgyWssjzy> hlhtBlgyWssjzyList = this.hlhtBlgyWssjzyDao.selectHlhtBlgyWssjzyList(entity);
+        HlhtBlgyWssjzy entity2 = new HlhtBlgyWssjzy();
+        List<HlhtBlgyWssjzy> hlhtBlgyWssjzyList = this.hlhtBlgyWssjzyDao.selectHlhtBlgyWssjzyList(entity2);
         emr_count = hlhtBlgyWssjzyList.size();
         real_count = hlhtBlgyWssjzyList.size();
         //1.病历总数 2.抽取的病历数量 3.子集类型
