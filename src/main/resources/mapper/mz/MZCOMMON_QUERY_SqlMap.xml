@@ -256,7 +256,7 @@
         LEFT JOIN EMR_SYS_ZDFLMXK E ON B.XXDM = E.MXDM AND E.LBDM = '96'
         LEFT JOIN EMR_SYS_ZDFLMXK F ON B.RHJY = F.MXDM AND F.LBDM = '97'
         LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B+9868%' AND G.YXJL = 1
-        LEFT JOIN CISDB_DATA.dbo.HLHT_MJZBL_JZLGBL H ON  G.QTBLJLXH = H.yjlxh
+        LEFT JOIN CIS_HLHT.dbo.HLHT_MJZBL_JZLGBL H ON  G.QTBLJLXH = H.yjlxh
         <!--<where>
             <if test="map.startDate != null and map.startDate != ''">
                 and <![CDATA[CONVERT(date,substring(A.GHRQ,1,4)+'-'+substring(A.GHRQ,5,2)+'-'+substring(A.GHRQ,7,2))  >= #{map.startDate}]]>
@@ -283,9 +283,9 @@
         ISNULL(CONVERT (VARCHAR,(YEAR(GETDATE())-YEAR(CONVERT(DATETIME, T3.BIRTH)))) ,'')                              AS nls,
         DATEDIFF(MONTH,T3.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12                                     AS nly,
         ISNULL(T1.CFXH, 'NA')                                                                                           AS cfxh,
-        ( SELECT t.DICT_LABEL FROM CISDB_DATA..MBZ_DICT_INFO t
+        ( SELECT t.DICT_LABEL FROM CIS_HLHT..MBZ_DICT_INFO t
         WHERE t.DICT_CODE = 'hospitalInfoNo' AND t.DICT_VALUE = 1)                                                     AS zzjgdm,
-        ( SELECT t.DICT_LABEL FROM CISDB_DATA..MBZ_DICT_INFO t
+        ( SELECT t.DICT_LABEL FROM CIS_HLHT..MBZ_DICT_INFO t
         WHERE t.DICT_CODE = 'hospitalInfoName' AND t.DICT_VALUE = 1)                                                   AS zzjgmc,
         CONVERT(date,substring(T2.LRRQ,1,4)+'-'+substring(T2.LRRQ,5,2)+'-'+substring(T2.LRRQ,7,2))                     AS cfklrq,
         T1.TS                                                                                                          AS cfyxts,
@@ -330,7 +330,7 @@
         FROM OUTP_ORDERITEM T1
         LEFT JOIN OUTP_ORDER T2 ON T1.CFXH = T2.XH
         LEFT JOIN OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
-        LEFT JOIN [THIS4]..YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
+        LEFT JOIN ${map.hisName}.dbo.YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
         WHERE
         T6.yplh='01' AND
         T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
