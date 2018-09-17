@@ -1757,7 +1757,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1795,7 +1795,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1833,7 +1833,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1870,7 +1870,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1911,7 +1911,7 @@
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
         LEFT JOIN  CISDB_DATA.dbo.HLHT_ZYBCJL_SCBCJL f ON f.jzlsh = b.HISSYXH
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1952,7 +1952,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
@@ -1987,7 +1987,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
         <where>
             <if test="yjlxh != null and yjlxh != '' ">

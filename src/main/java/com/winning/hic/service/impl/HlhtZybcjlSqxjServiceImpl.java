@@ -134,6 +134,7 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
                             }
                             obj = new HlhtZybcjlSqxj();
                             obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            obj.getMap().put("hisName",ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                             obj = this.commonQueryDao.selectInitHlhtZybcjlSqxj(obj);
                             obj = (HlhtZybcjlSqxj) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
                             this.createHlhtZybcjlSqxj(obj);
