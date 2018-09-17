@@ -21,14 +21,14 @@ public class Environment {
     private String cisdbDataUsername;
     private String cisdbDataPassword;
 
-    private String hisDBUrl;
-    private String hisDBName;
-    private String hisDBUsername;
-    private String hisDBPassword;
-    private String platformDBUrl;
+    private String hisdbZyLinkserverName;
+    private String hisdbZyLinkserverDbName;
+    private String hisdbMzLinkserverName;
+    private String hisdbMzLinkserverDbName;
+   /* private String platformDBUrl;
     private String platformDBName;
     private String platformDBUsername;
-    private String platformDBPassword;
+    private String platformDBPassword;*/
 
     public String getCisdbUrl() {
         return cisdbUrl;
@@ -94,71 +94,103 @@ public class Environment {
         this.cisdbDataPassword = cisdbDataPassword;
     }
 
-    public String getHisDBUrl() {
-        return hisDBUrl;
+    public String getHisdbZyLinkserverName() {
+        return hisdbZyLinkserverName;
     }
 
-    public void setHisDBUrl(String hisDBUrl) {
-        this.hisDBUrl = hisDBUrl;
+    public void setHisdbZyLinkserverName(String hisdbZyLinkserverName) {
+        this.hisdbZyLinkserverName = hisdbZyLinkserverName;
     }
 
-    public String getHisDBName() {
-        return hisDBName;
+    public String getHisdbZyLinkserverDbName() {
+        return hisdbZyLinkserverDbName;
     }
 
-    public void setHisDBName(String hisDBName) {
-        this.hisDBName = hisDBName;
+    public void setHisdbZyLinkserverDbName(String hisdbZyLinkserverDbName) {
+        this.hisdbZyLinkserverDbName = hisdbZyLinkserverDbName;
     }
 
-    public String getHisDBUsername() {
-        return hisDBUsername;
+    public String getHisdbMzLinkserverName() {
+        return hisdbMzLinkserverName;
     }
 
-    public void setHisDBUsername(String hisDBUsername) {
-        this.hisDBUsername = hisDBUsername;
+    public void setHisdbMzLinkserverName(String hisdbMzLinkserverName) {
+        this.hisdbMzLinkserverName = hisdbMzLinkserverName;
     }
 
-    public String getHisDBPassword() {
-        return hisDBPassword;
+    public String getHisdbMzLinkserverDbName() {
+        return hisdbMzLinkserverDbName;
     }
 
-    public void setHisDBPassword(String hisPassword) {
-        this.hisDBPassword = hisPassword;
+    public void setHisdbMzLinkserverDbName(String hisdbMzLinkserverDbName) {
+        this.hisdbMzLinkserverDbName = hisdbMzLinkserverDbName;
     }
 
-    public String getPlatformDBUrl() {
-        return platformDBUrl;
-    }
-
-    public void setPlatformDBUrl(String platformDBUrl) {
-        this.platformDBUrl = platformDBUrl;
-    }
-
-    public String getPlatformDBName() {
-        return platformDBName;
-    }
-
-    public void setPlatformDBName(String platformDBName) {
-        this.platformDBName = platformDBName;
-    }
-
-    public String getPlatformDBUsername() {
-        return platformDBUsername;
-    }
-
-    public void setPlatformDBUsername(String platformDBUsername) {
-        this.platformDBUsername = platformDBUsername;
-    }
-
-    public String getPlatformDBPassword() {
-        return platformDBPassword;
-    }
-
-    public void setPlatformDBPassword(String platformDBPassword) {
-        this.platformDBPassword = platformDBPassword;
-    }
-
-
+    //    public String getHisDBUrl() {
+//        return hisDBUrl;
+//    }
+//
+//    public void setHisDBUrl(String hisDBUrl) {
+//        this.hisDBUrl = hisDBUrl;
+//    }
+//
+//    public String getHisDBName() {
+//        return hisDBName;
+//    }
+//
+//    public void setHisDBName(String hisDBName) {
+//        this.hisDBName = hisDBName;
+//    }
+//
+//    public String getHisDBUsername() {
+//        return hisDBUsername;
+//    }
+//
+//    public void setHisDBUsername(String hisDBUsername) {
+//        this.hisDBUsername = hisDBUsername;
+//    }
+//
+//    public String getHisDBPassword() {
+//        return hisDBPassword;
+//    }
+//
+//    public void setHisDBPassword(String hisPassword) {
+//        this.hisDBPassword = hisPassword;
+//    }
+//
+//    public String getPlatformDBUrl() {
+//        return platformDBUrl;
+//    }
+//
+//    public void setPlatformDBUrl(String platformDBUrl) {
+//        this.platformDBUrl = platformDBUrl;
+//    }
+//
+//    public String getPlatformDBName() {
+//        return platformDBName;
+//    }
+//
+//    public void setPlatformDBName(String platformDBName) {
+//        this.platformDBName = platformDBName;
+//    }
+//
+//    public String getPlatformDBUsername() {
+//        return platformDBUsername;
+//    }
+//
+//    public void setPlatformDBUsername(String platformDBUsername) {
+//        this.platformDBUsername = platformDBUsername;
+//    }
+//
+//    public String getPlatformDBPassword() {
+//        return platformDBPassword;
+//    }
+//
+//    public void setPlatformDBPassword(String platformDBPassword) {
+//        this.platformDBPassword = platformDBPassword;
+//    }
+//
+//
     public String getCISDBURL(){
         return Constants.URL_PREFIX +cisdbUrl+";"+Constants.DATABASE_PREFIX+"="+cisdbName;
     }
@@ -167,13 +199,13 @@ public class Environment {
         return Constants.URL_PREFIX+cisdbDataUrl+";"+Constants.DATABASE_PREFIX+"="+cisdbDataName;
     }
 
-    public String getTHIS4URL(){
-        return Constants.URL_PREFIX+hisDBUrl+";"+Constants.DATABASE_PREFIX+"="+hisDBName;
+    public String getMZHISLinkServerFullPathURL(){
+        return  hisdbMzLinkserverName+"."+hisdbMzLinkserverDbName;
+    }
+    public String getZYHISLinkServerFullPathURL(){
+        return hisdbZyLinkserverName+"."+hisdbZyLinkserverDbName;
     }
 
-    public String getPlatformURL(){
-        return Constants.URL_PREFIX+platformDBUrl+";"+Constants.DATABASE_PREFIX+"="+platformDBName;
-    }
 
     /**
      * 门诊医生站数据库

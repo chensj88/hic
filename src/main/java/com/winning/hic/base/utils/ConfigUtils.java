@@ -35,16 +35,17 @@ public class ConfigUtils {
         environment.setCisdbDataName(properties.getProperty("cisdb.data.dbName"));
         environment.setCisdbDataPassword(properties.getProperty("cisdb.data.password"));
         environment.setCisdbDataUsername(properties.getProperty("cisdb.data.username"));
-        //HIS库
-        environment.setHisDBUrl(properties.getProperty("hisdb.url"));
-        environment.setHisDBName(properties.getProperty("hisdb.dbName"));
-        environment.setHisDBUsername(properties.getProperty("hisdb.username"));
-        environment.setHisDBPassword(properties.getProperty("hisdb.password"));
-        //平台
+        //HIS库  配置链接服务器 住院
+        environment.setHisdbZyLinkserverName(properties.getProperty("hisdb.zy.linkserver.name"));
+        environment.setHisdbZyLinkserverDbName(properties.getProperty("hisdb.zy.linkserver.dbname"));
+        //HIS库  配置链接服务器 门诊
+        environment.setHisdbMzLinkserverName(properties.getProperty("hisdb.mz.linkserver.name"));
+        environment.setHisdbMzLinkserverDbName(properties.getProperty("hisdb.mz.linkserver.dbname"));
+       /* //平台
         environment.setPlatformDBUrl(properties.getProperty("platformdb.url"));
         environment.setPlatformDBName(properties.getProperty("platformdb.dbName"));
         environment.setPlatformDBUsername(properties.getProperty("platformdb.username"));
-        environment.setPlatformDBPassword(properties.getProperty("platformdb.password"));
+        environment.setPlatformDBPassword(properties.getProperty("platformdb.password"));*/
         //门诊医生站
         environment.setMzCisdbUrl(properties.getProperty("cisdb.mz.url"));
         environment.setMzCisdbName(properties.getProperty("cisdb.mz.dbName"));
