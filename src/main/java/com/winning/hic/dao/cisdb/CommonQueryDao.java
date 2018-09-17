@@ -1,6 +1,7 @@
 package com.winning.hic.dao.cisdb;
 
 import com.winning.hic.model.*;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -105,4 +106,121 @@ public interface CommonQueryDao {
      * @return
      */
     List<HlhtMjzcfXycf> selectInitHlhtMjzcfXycf(HlhtMjzcfXycf obj);
+
+
+    /**
+     * 门(急)诊处方/中药处方
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    List<HlhtMjzcfZycf> getHlhtMjzcfZycfListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+
+    /**
+     * 入院记录
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    List<HlhtRyjlJbxx> getHlhtRyjlJbxxListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+
+    /**
+     * 阴道分娩
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    List<HlhtZcjlYdfm> getHlhtZcjlYdfmListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    /**
+     * 麻醉术后访视记录
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    List<HlhtZlczjlMzshfsjl> getHlhtZlczjlMzshfsjlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    /**
+     * 麻醉术前访视记录
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    List<HlhtZlczjlMzsqfsjl> getHlhtZlczjlMzsqfsjlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    /**
+     * 输血记录
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtZlczjlSxjl> getHlhtZlczjlSxjlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    /**
+     * 治疗记录
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtZlczjlZljl> getHlhtZlczjlZljlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+
+    /**
+     * 病危重通知书
+     * @param emrQtbljlk
+     * @return
+     */
+    public List<HlhtZqgzxxBwztzs> getHlhtZqgzxxBwztzsListFromBaseData(EmrQtbljlk emrQtbljlk);
+
+    /**
+     * 麻醉知情同意书
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtZqgzxxMzzqtys> getHlhtZqgzxxMzzqtysListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    /**
+     * 输血治疗同意书
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtZqgzxxSxzltys> getHlhtZqgzxxSxzltysListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+    /**
+     * 出院记录
+     * @param emrQtbljlk
+     * @return
+     */
+    public List<HlhtZybcjlCyjl> getHlhtZybcjlCyjlListFromBaseData(EmrQtbljlk emrQtbljlk);
+
+    /**
+     * 日常病程记录
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtZybcjlRcbcjl> getHlhtZybcjlRcbcjlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+
+    /**
+     * 死亡记录
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtZybcjlSwjl> getHlhtZybcjlSwjlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
+
+    /**
+     * 疑难病例讨论记录
+     * @param emrQtbljlk
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtZybcjlYnbltljl> getHlhtZybcjlYnbltljlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
+
 }

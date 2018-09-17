@@ -1,6 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtMjzcfZycfDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
@@ -35,6 +36,8 @@ import java.util.Map;
 public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
     private final Logger logger = LoggerFactory.getLogger(HlhtMjzcfZycfServiceImpl.class);
 
+    @Autowired
+    private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
@@ -78,7 +81,7 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
 
     @Override
     public List<HlhtMjzcfZycf> getHlhtMjzcfZycfListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException {
-        return this.hlhtMjzcfZycfDao.getHlhtMjzcfZycfListFromBaseData(emrQtbljlk);
+        return this.commonQueryDao.getHlhtMjzcfZycfListFromBaseData(emrQtbljlk);
     }
 
     @Override
@@ -95,7 +98,7 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
         EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
         emrQtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
         emrQtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
-        List<HlhtMjzcfZycf> hlhtMjzcfZycfListFromBaseData = this.hlhtMjzcfZycfDao.getHlhtMjzcfZycfListFromBaseData(emrQtbljlk);
+        List<HlhtMjzcfZycf> hlhtMjzcfZycfListFromBaseData = this.commonQueryDao.getHlhtMjzcfZycfListFromBaseData(emrQtbljlk);
         emr_count = hlhtMjzcfZycfListFromBaseData.size();
         if (hlhtMjzcfZycfListFromBaseData != null) {
             for (HlhtMjzcfZycf obj : hlhtMjzcfZycfListFromBaseData) {

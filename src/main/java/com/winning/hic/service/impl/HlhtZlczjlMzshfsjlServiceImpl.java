@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.*;
 import com.winning.hic.model.*;
@@ -32,7 +33,8 @@ import java.util.Map;
 @Service
 public class HlhtZlczjlMzshfsjlServiceImpl implements HlhtZlczjlMzshfsjlService {
     private static final Logger logger = LoggerFactory.getLogger(HlhtZlczjlMzshfsjlServiceImpl.class);
-
+    @Autowired
+    private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzLoadDataInfoDao mbzLoadDataInfoDao;
     @Autowired
@@ -88,7 +90,7 @@ public class HlhtZlczjlMzshfsjlServiceImpl implements HlhtZlczjlMzshfsjlService 
         codeTemp = this.mbzDictInfoDao.selectMbzDictInfo(codeTemp);
         emrQtbljlk.getMap().put("zzjgdm", codeTemp.getDictLabel());
         emrQtbljlk.getMap().put("zzjgmc", nameTemp.getDictLabel());
-        return this.hlhtZlczjlMzshfsjlDao.getHlhtZlczjlMzshfsjlListFromBaseData(emrQtbljlk);
+        return this.commonQueryDao.getHlhtZlczjlMzshfsjlListFromBaseData(emrQtbljlk);
     }
 
     @Override

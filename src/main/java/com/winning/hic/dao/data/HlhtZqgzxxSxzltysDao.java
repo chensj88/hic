@@ -36,7 +36,5 @@ public interface HlhtZqgzxxSxzltysDao {
 
     public List<HlhtZqgzxxSxzltys> selectHlhtZqgzxxSxzltysPageList(HlhtZqgzxxSxzltys hlhtZqgzxxSxzltys) throws DataAccessException;
 
-    public List<HlhtZqgzxxSxzltys> getHlhtZqgzxxSxzltysListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
-
     public void deleteHlhtZqgzxxSxzltysByYjlxh(HlhtZqgzxxSxzltys hlhtZqgzxxSxzltys);
 }
