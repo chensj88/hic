@@ -1,6 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtBlgyWssjzyDao;
 import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.HlhtBlgyWssjzy;
@@ -29,6 +30,9 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
 
     @Autowired
     private MbzDataCheckService mbzDataCheckService;
+
+    @Autowired
+    private CommonQueryDao commonQueryDao;
 
     @Autowired
     private MbzLoadDataInfoDao mbzLoadDataInfoDao;
@@ -67,7 +71,7 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
         this.hlhtBlgyWssjzyDao.deleteHlhtBlgyWssjzy(wssjzy);
         wssjzy.getMap().put("startDate",entity.getMap().get("startDate"));
         wssjzy.getMap().put("endDate",entity.getMap().get("endDate"));
-        this.hlhtBlgyWssjzyDao.insertHlhtBlgyWssjzyAll(wssjzy);
+        this.commonQueryDao.insertHlhtBlgyWssjzyAll(wssjzy);
         //插入数据集中
         int emr_count =0;//病历数量
         int real_count=0;//实际数量

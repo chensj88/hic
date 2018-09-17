@@ -62,8 +62,6 @@ public class DataLoadController extends BaseController {
         entity.getMap().put("endDate", endDate);
         entity.setSourceType(data_set);
         try {
-
-
             if(data_set ==1){
                 super.getFacade().getMbzDataCheckService().removeMbzDataCheck(entity);
                 //1. 24h内入出院记录  --陈世杰

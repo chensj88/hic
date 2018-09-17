@@ -289,50 +289,50 @@
         </where>
     </delete>
 
-    <!-- Chen,Kuai 2018-8-7 批量初始化CIS,HIS数据 -->
-    <select id="selectInitialHlhtZybcjlQjjl" resultMap="hlhtZybcjlQjjlResult"
-            parameterType="com.winning.hic.model.HlhtZybcjlQjjl">
-        SELECT t.QTBLJLXH as yjlxh,
-        b.HISSYXH as jzlsh,
-        c.PATID as patid,
-        b.ZYHM as zyh,
-        c.KSDM as ksdm,
-        c.KSMC as ksmc,
-        c.BQDM as bqdm,
-        c.BQMC as bqmc ,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
-        c.CWDM as bch,
-        b.HZXM as hzxm,
-        b.SFZH as sfzhm,b.BRXB as xbdm,
-        (
-        SELECT CASE b.BRXB
-        WHEN '2'
-        THEN
-        '女'
-        WHEN '1'
-        THEN
-        '男'
-        ELSE
-        '其它'
-        END
-        ) AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,
-        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
-        GETDATE() AS gxsj,
-        t.YXJL AS yxjl,
-        t.SYXH AS syxh,
-        t.TJZT as tjzt
-        FROM CISDB.dbo.EMR_QTBLJLK t
-        LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
-        LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH
-        LEFT JOIN THIS4.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm=b.RYBQ
-        WHERE 1=1
-        <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH =
-            (#{map.QTBLJLXH})
-        </if>
+    <!--&lt;!&ndash; Chen,Kuai 2018-8-7 批量初始化CIS,HIS数据 &ndash;&gt;-->
+    <!--<select id="selectInitialHlhtZybcjlQjjl" resultMap="hlhtZybcjlQjjlResult"-->
+            <!--parameterType="com.winning.hic.model.HlhtZybcjlQjjl">-->
+        <!--SELECT t.QTBLJLXH as yjlxh,-->
+        <!--b.HISSYXH as jzlsh,-->
+        <!--c.PATID as patid,-->
+        <!--b.ZYHM as zyh,-->
+        <!--c.KSDM as ksdm,-->
+        <!--c.KSMC as ksmc,-->
+        <!--c.BQDM as bqdm,-->
+        <!--c.BQMC as bqmc ,-->
+        <!--ISNULL(a.fjh, 'NA') AS bfh,-->
+        <!--ISNULL(a.fjh, 'NA')+'病房' AS bfmc,-->
+        <!--c.CWDM as bch,-->
+        <!--b.HZXM as hzxm,-->
+        <!--b.SFZH as sfzhm,b.BRXB as xbdm,-->
+        <!--(-->
+        <!--SELECT CASE b.BRXB-->
+        <!--WHEN '2'-->
+        <!--THEN-->
+        <!--'女'-->
+        <!--WHEN '1'-->
+        <!--THEN-->
+        <!--'男'-->
+        <!--ELSE-->
+        <!--'其它'-->
+        <!--END-->
+        <!--) AS xbmc,-->
+        <!--ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') as nls,-->
+        <!--DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,-->
+        <!--GETDATE() AS gxsj,-->
+        <!--t.YXJL AS yxjl,-->
+        <!--t.SYXH AS syxh,-->
+        <!--t.TJZT as tjzt-->
+        <!--FROM CISDB.dbo.EMR_QTBLJLK t-->
+        <!--LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH-->
+        <!--LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH-->
+        <!--LEFT JOIN THIS4.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm=b.RYBQ-->
+        <!--WHERE 1=1-->
+        <!--<if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH =-->
+            <!--(#{map.QTBLJLXH})-->
+        <!--</if>-->
 
-    </select>
+    <!--</select>-->
 
 
     <select id="selectHlhtZybcjlQjjl" resultMap="hlhtZybcjlQjjlResult"

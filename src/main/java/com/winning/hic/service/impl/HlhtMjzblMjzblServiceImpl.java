@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.*;
 import com.winning.hic.dao.data.HlhtMjzblMjzblDao;
@@ -40,6 +41,9 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
 
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
+
+    @Autowired
+    private CommonQueryDao commonQueryDao;
 
     @Autowired
     private MbzDataSetService mbzDataSetService;
@@ -128,7 +132,7 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
                         }
                         HlhtMjzblMjzbl entity = new HlhtMjzblMjzbl();
                         entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                        entity = this.getInitialHlhtMjzblMjzbl(entity);
+                        entity = this.commonQueryDao.selectInitialHlhtMjzblMjzbl(entity);
                         System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         try {

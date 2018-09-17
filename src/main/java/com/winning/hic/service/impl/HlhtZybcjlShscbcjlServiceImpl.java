@@ -88,7 +88,6 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
         List<MbzDataListSet> mbzDataListSetList = mbzDataListSetService.getMbzDataListSetList(mbzDataListSet);
         //加载接口对象字段集合信息
         Map<String,String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlShscbcjl.class);
-
         //获取模板病历关系集合，遍历
         for(MbzDataListSet dataListSet : mbzDataListSetList){
             //查询病历数据 数据来源
@@ -124,6 +123,7 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
                     }
                     obj  = new HlhtZybcjlShscbcjl();
                     obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                    obj.getMap().put("hisName",ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                     obj = this.commonQueryDao.selectInitHlhtZybcjlShscbcjl(obj);
                     obj = (HlhtZybcjlShscbcjl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
                     this.createHlhtZybcjlShscbcjl(obj);
