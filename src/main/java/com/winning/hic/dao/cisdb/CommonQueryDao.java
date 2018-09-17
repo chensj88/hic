@@ -223,4 +223,78 @@ public interface CommonQueryDao {
      */
     public List<HlhtZybcjlYnbltljl> getHlhtZybcjlYnbltljlListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException;
 
+    /**
+     * 首次病程记录表
+     * @param obj
+     * @return
+     */
+    HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl entity);
+
+    /**
+     * 阶段小结数据集表
+     * @param obj
+     * @return
+     */
+    HlhtZybcjlJdxj selectInitialHlhtZybcjlJdxj(HlhtZybcjlJdxj entity);
+
+    /**
+     * 抢救记录数据集表
+     * @param obj
+     * @return
+     */
+    HlhtZybcjlQjjl selectInitialHlhtZybcjlQjjl(HlhtZybcjlQjjl entity);
+
+    /**
+     * 其他知情告知同意书
+     * @param obj
+     * @return
+     */
+    HlhtZqgzxxQtzqtys selectInitialHlhtZqgzxxQtzqtys(HlhtZqgzxxQtzqtys entity);
+
+    /**
+     * 一般手术记录表(待定）
+     * @param obj
+     * @return
+     */
+    HlhtZlczjlYbssjl selectInitialHlhtZlczjlYbssjl(HlhtZlczjlYbssjl entity);
+    /**
+     * 会诊记录数据集表
+     * @param obj
+     * @return
+     */
+    HlhtZybcjlHzjl selectInitialHlhtZybcjlHzjl(HlhtZybcjlHzjl entity);
+    /**
+     * 出院小结数据集表
+     * @param obj
+     * @return
+     */
+    HlhtCyxjCyxj selectInitialHlhtCyxjCyxj(HlhtCyxjCyxj entity);
+    /**
+     * 转科记录数据集表
+     * @param obj
+     * @return
+     */
+    HlhtZybcjlZkjl selectInitialHlhtZybcjlZkjl(HlhtZybcjlZkjl entity);
+
+    /**
+     * 转诊(院)记录数据集表
+     * @param obj
+     * @return
+     */
+    HlhtZzyjlZzyjl selectInitialHlhtZzyjlZzyjl(HlhtZzyjlZzyjl entity);
+    /**
+     * 门急诊病历记录表
+     * @param obj
+     * @return
+     */
+    HlhtMjzblMjzbl selectInitialHlhtMjzblMjzbl(HlhtMjzblMjzbl entity);
+
+    /**
+     * 剖宫产记录表
+     * @param obj
+     * @return
+     */
+    HlhtZcjlPgc selectInitialHlhtZcjlPgc(HlhtZcjlPgc entity);
+
+    void insertHlhtBlgyWssjzyAll(HlhtBlgyWssjzy wssjzy);
 }
