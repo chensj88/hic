@@ -1757,7 +1757,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1795,7 +1795,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1833,7 +1833,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1870,7 +1870,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1911,7 +1911,7 @@
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
         LEFT JOIN  CISDB_DATA.dbo.HLHT_ZYBCJL_SCBCJL f ON f.jzlsh = b.HISSYXH
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
@@ -1952,7 +1952,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
@@ -1987,7 +1987,7 @@
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
-        LEFT JOIN THIS4..ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
         <where>
             <if test="yjlxh != null and yjlxh != '' ">
@@ -2185,7 +2185,7 @@
         FROM OUTP_ORDERITEM T1
         LEFT JOIN OUTP_ORDER T2 ON T1.CFXH = T2.XH
         LEFT JOIN OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
-        LEFT JOIN [THIS4]..YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
+        LEFT JOIN ${map.hisName}.dbo.YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
         WHERE
         T6.yplh='01' AND
         T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
@@ -2467,7 +2467,7 @@
         OUTP_ORDERITEM T1
         LEFT JOIN OUTP_ORDER T2 ON T1.CFXH = T2.XH
         LEFT JOIN OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
-        LEFT JOIN [THIS4].dbo.YK_YPCDMLK T6 ON T1.CD_IDM = T6.idm
+        LEFT JOIN ${map.hisName}.dbo.YK_YPCDMLK T6 ON T1.CD_IDM = T6.idm
         WHERE
         T6.yplh IN ('02', '03')
         AND (
@@ -2712,7 +2712,7 @@
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
         LEFT JOIN PUB_MZDMK z ON z.ID = b.MZDM
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -2880,7 +2880,7 @@
         LEFT JOIN CPOE_BRSYK c ON b.SYXH = c.EMRXH
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -3020,7 +3020,7 @@
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
         LEFT JOIN OUTP_JZJLK o ON q.SYXH = o.EMRXH
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -3159,7 +3159,7 @@
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
         LEFT JOIN OUTP_JZJLK o ON q.SYXH = o.EMRXH
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -3286,7 +3286,7 @@
         SELECT
         sqdmbid
         FROM
-        THIS4.dbo.CL_Template
+        ${map.hisName}.dbo.CL_Template
         WHERE
         isBloodBanks = 1
         )
@@ -3305,7 +3305,7 @@
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
         LEFT JOIN OUTP_JZJLK o ON q.SYXH = o.EMRXH
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -3441,7 +3441,7 @@
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
         LEFT JOIN OUTP_JZJLK o ON q.SYXH = o.EMRXH
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -3549,7 +3549,7 @@
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
         LEFT JOIN OUTP_JZJLK o ON q.SYXH = o.EMRXH
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -3670,7 +3670,7 @@
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
         LEFT JOIN OUTP_JZJLK o ON q.SYXH = o.EMRXH
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -3790,7 +3790,7 @@
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
         LEFT JOIN OUTP_JZJLK o ON q.SYXH = o.EMRXH
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -3904,7 +3904,7 @@
         LEFT JOIN CPOE_BRSYK c ON b.SYXH = c.EMRXH
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -4006,7 +4006,7 @@
         LEFT JOIN CPOE_BRSYK c ON b.SYXH = c.EMRXH
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -4132,7 +4132,7 @@
         LEFT JOIN CPOE_BRSYK c ON b.SYXH = c.EMRXH
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
@@ -4235,7 +4235,7 @@
         LEFT JOIN CPOE_BRSYK c ON b.SYXH = c.EMRXH
         LEFT JOIN EMR_SYS_DQDMK d ON b.SSDM = d.DQDM
         LEFT JOIN PUB_ZYDMK p ON b.ZYDM = p.ID
-        LEFT JOIN THIS4.dbo.ZY_BCDMK m ON (
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK m ON (
         m.id = b.RYCW
         AND m.bqdm = b.RYBQ
         )
