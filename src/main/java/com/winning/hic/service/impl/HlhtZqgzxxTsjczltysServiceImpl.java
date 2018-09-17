@@ -141,6 +141,7 @@ public class HlhtZqgzxxTsjczltysServiceImpl implements  HlhtZqgzxxTsjczltysServi
                         }
                         obj = new HlhtZqgzxxTsjczltys();
                         obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                        obj.getMap().put("hisName",ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                         obj = this.commonQueryDao.selectInitHlhtZqgzxxTsjczltys(obj);
                         obj = (HlhtZqgzxxTsjczltys) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
                         obj.setJczlxmmc(emrQtbljlk.getBlmc().replace("知情同意书",""));

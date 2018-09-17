@@ -131,6 +131,7 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
                             }
                             obj = new HlhtZybcjlSqtl();
                             obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
+                            obj.getMap().put("hisName",ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                             obj = this.commonQueryDao.selectInitHlhtZybcjlSqtl(obj);
                             obj = (HlhtZybcjlSqtl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
                             this.createHlhtZybcjlSqtl(obj);
