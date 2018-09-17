@@ -1,177 +1,138 @@
-<Model id="83f91fa5-c79d-466e-8a59-9f5b34a5327f" name="疑难病例讨论记录(疑难病例讨论记录)" description="适用于浙江省中医院" text="疑难病例讨论记录"
-       nodetype="Model" canprint="False" printInOddPages="False" display="01```0`1" Version="192" titledisplay="1`1`1"
-       hospitalcoderange="10266" catalogcode="B-6210" illnesstypecode="FFFF" scalemodelxml="" modellogiccontent=""
-       indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass="" maxrefid="44"
+<Model id="488f0351-4c96-47fb-bb94-67fc885790cd" name="血浆置换同意书" description="适用于浙江省中医院" text="血 浆 置 换 同 意 书"
+       nodetype="Model" canprint="True" printInOddPages="False" display="11```0`1" Version="119" titledisplay="1`1`1"
+       hospitalcoderange="10266" catalogcode="B-A519" illnesstypecode="FF19" scalemodelxml="" modellogiccontent=""
+       indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass="" maxrefid="6"
        RelateInstanceId="0">
-    <Ref id="42">
-        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+    <Ref id="4">
+        <node identity="52" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
               illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
-              id="00000000-0000-0000-0002-000000000001" nodetype="Embeded" nodelogiccontent="" name="病程日期" text="病程日期"
-              description="病程日期" display="11```0`1">
-            <node embededId="0" id="00000000-0000-0000-0003-000000000001" nodetype="Object" nodelogiccontent=""
-                  name="病程日期" text="病程日期" description="病程日期" display="11```0`1">
-                <node id="00000000-0000-0000-0004-000000000001" nodetype="AtomNode" nodelogiccontent="" name="病程日期"
-                      text="病程日期" description="病程日期" atomtype="Time" value="636719122200000000`2018-09-07 10:17"
-                      defaultvalue="632761381637031250`2006-2-21 17:02:43"
-                      display="1111111`````yyyy-MM-dd HH:mm+Minute+-+(DTS: )``0" embededId="1" autoeditnext="True"
+              id="235372ac-6455-4ba2-8728-c2c2a9628bc0" nodetype="Embeded" nodelogiccontent="" name="身份信息(一般信息)"
+              text="身份信息(一般信息)" description="用于病程中对病例特点的描述，包括姓名、性别、年龄等信息。" otherid="D-1001" display="11```0`1">
+            <node embededId="18" id="c9a9b2ab-81ca-4d9a-8da7-7308e7cb90f6" nodetype="Object" nodelogiccontent=""
+                  name="病人姓名" text="病人姓名" description="0.101" otherid="E-01101" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="病人姓名"
+                      text="病人姓名" description="0.000" otherid="F-01000" atomtype="String" value="陈敏尔`陈敏尔`陈敏尔"
+                      defaultvalue="#patname`当前病人姓名`" display="1111111```````0" embededId="19" autoeditnext="True"
                       spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
             </node>
-        </node>
-    </Ref>
-    <node id="00000000-0000-0000-0001-000000000001" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(病程日期)"
-          visiable="False" text="病程日期" description="病程日期" otherid="C-B1" display="11```0`1" permitobjs="" defaultobjs=""
-          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
-          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
-        <node refid="42" nodetype="Embeded"/>
-    </node>
-    <Ref id="13">
-        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
-              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
-              id="0e04cc70-d1c0-4507-bf46-00c9aaab8452" nodetype="Embeded" nodelogiccontent="" name="日期(讨论日期)"
-              text="讨论日期" description="各项讨论记录的日期，可具体至秒。" display="11```0`1">
-            <node embededId="0" id="714cb062-b631-4ce6-9f8d-131db12ef039" nodetype="Object" nodelogiccontent=""
-                  name="讨论日期" text="讨论日期" description="1.543" display="11```0`1">
-                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="讨论日期"
-                      text="讨论时间" description="8.001" atomtype="Time" minrequired="1"
-                      value="636719160000000000`2018年09月07日11时20分"
-                      display="1111011`````yyyy年MM月dd日HH时mm分+Minute++(DTS: )``0" embededId="3" autoeditnext="True"
-                      spaceholder="0" forbidDel="True" isComplexShowlist="False"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="性别" rtf="\'d0\'d4\'b1\'f0" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="20" id="40ba47b2-acd3-47cb-acb6-68cd40e95df6" nodetype="Object" nodelogiccontent=""
+                  name="病人性别" text="病人性别" description="0.102" otherid="E-01102" display="11```0`1">
+                <node id="620ab5a7-82a5-412d-ab12-26fa5204b86d" nodetype="AtomNode" nodelogiccontent="" name="病人性别"
+                      text="性别" description="1.1103" otherid="F-11030" atomtype="String" value="3`其它`3"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//3"
+                      inputdirect="False" defaultvalue="#brxb`当前病人性别`" display="1111111```````0" embededId="21"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="年龄" rtf="\'c4\'ea\'c1\'e4" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="22" id="2e001711-f319-4095-9878-c4214d40a486" nodetype="Object" nodelogiccontent=""
+                  name="病人年龄" text="病人年龄" description="0.103(有后缀：岁)" otherid="E-01103" display="11```0`1">
+                <node id="4a9c797d-6a49-402c-b79f-4f7646cf26b9" nodetype="AtomNode" nodelogiccontent="" name="病人年龄"
+                      text="年龄" description="7.201" otherid="F-72010" atomtype="String" value="16岁`16岁`16岁"
+                      defaultvalue="#DisplayAge`显示年龄（入院时）`" display="1111111````岁```0" embededId="23"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
             </node>
         </node>
     </Ref>
-    <node id="0b5ad94f-bdd6-4832-8bc8-d257d2a7fb4d" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(讨论日期)"
-          signid="讨论日期时间|771" text="日期(讨论日期)" description="5.305" otherid="C-B1"
-          display="20`&#xD;&#xA;讨论时间：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
-          canNotInputText="False" isnewPage="False" canNull="False" canNullSubmit="False" permittedDoctorGradeRange=""
-          useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
-        <node refid="13" nodetype="Embeded"/>
-    </node>
-    <node id="ed319f46-5fc5-460b-90a4-18878c537d85" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论地点"
-          signid="讨论地点|769" text="讨论地点" otherid="C-1158" display="20`讨论地点：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
-          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="False" canNullSubmit="False"
-          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
-        <node text="大" rtf="\'b4\'f3" nodetype="Text"/>
-        <node text="会" rtf="\'bb\'e1" nodetype="Text"/>
-        <node text="议" rtf="\'d2\'e9" nodetype="Text"/>
-        <node text="室" rtf="\'ca\'d2" nodetype="Text"/>
-    </node>
-    <Ref id="15">
-        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+    <Ref id="5">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
               illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
-              id="b89d0396-9dc8-4da6-a546-e7ba091639a0" nodetype="Embeded" nodelogiccontent="" name="其他住院信息(参与病史讨论人员)"
-              text="其他住院信息(参与病史讨论人员)" description="包括主任、主治、住院医师及进修医师。" display="11```0`1">
-            <node embededId="0" id="eb6acfa2-1b48-41ad-8090-1c9df6b9f721" nodetype="Object" nodelogiccontent=""
-                  name="医师姓名" signid="主持人姓名|45" text="医师姓名" display="11```0`1">
-                <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="职工代码库"
-                      text="主持人" description="院内职工表。" atomtype="String" maxrequired="5" value="00166`沈佳佳`00166"
-                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook//////" inputdirect="False"
+              id="d8046ad6-5340-4502-b74d-20e0f7a7304a" nodetype="Embeded" nodelogiccontent="" name="其他诊断(目前诊断)"
+              text="其他诊断(目前诊断)" description="患者在交接班、转科等时候的诊断。" otherid="D-5421" display="11```0`1">
+            <node embededId="0" id="05576bb4-3ec2-491d-a939-48be84bc2f6d" nodetype="Object" nodelogiccontent=""
+                  name="目前诊断" text="目前诊断" description="6.244" otherid="E-62411" display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="目前诊断"
+                      text="目前诊断" description="6.001" otherid="F-60010" atomtype="String" maxrequired="8" value="``"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False"
                       display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0" forbidDel="False"
                       isComplexShowlist="False"/>
             </node>
         </node>
     </Ref>
-    <node id="58e85f19-4337-4870-adba-4999a2682a37" nodetype="DynamicMoleNode" nodelogiccontent="" name="主持人" text="主持人"
-          description="3.561" display="20`讨论主持人：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
-          canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
-          useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
-        <node refid="15" nodetype="Embeded"/>
-    </node>
-    <Ref id="40">
-        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+    <Ref id="6">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
               illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
-              id="b89d0396-9dc8-4da6-a546-e7ba091639a0" nodetype="Embeded" nodelogiccontent="" name="其他住院信息(参与病史讨论人员)"
-              text="其他住院信息(参与病史讨论人员)" description="包括主任、主治、住院医师及进修医师。" display="11```0`1">
-            <node embededId="0" id="eb6acfa2-1b48-41ad-8090-1c9df6b9f721" nodetype="Object" nodelogiccontent=""
-                  name="医师姓名" signid="参加讨论人员名单|273" text="医师姓名" display="11```0`1">
-                <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="职工代码库"
-                      text="参加讨论人员及职称" description="院内职工表。" atomtype="String" maxrequired="30"
-                      value="00166,00187,00188,00203`沈佳佳实习医师、余小艳实习医师、沈勇伟实习医师、胡伟东主治医师`00166,00187,00188,00203"
-                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1///ysjbmc//"
-                      inputdirect="False" display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0"
-                      forbidDel="False" isComplexShowlist="False"/>
+              id="235372ac-6455-4ba2-8728-c2c2a9628bc0" nodetype="Embeded" nodelogiccontent="" name="身份信息(一般信息)"
+              text="身份信息(一般信息)" description="用于病程中对病例特点的描述，包括姓名、性别、年龄等信息。" display="11```0`1">
+            <node embededId="0" id="9c9cce1c-d074-401f-a941-99fdc7f8cead" nodetype="Object" nodelogiccontent=""
+                  name="入院科室" text="入院科室" description="0.212" display="11```0`1">
+                <node id="5e39b306-e2b9-450e-ba78-3b6971652a38" nodetype="AtomNode" nodelogiccontent="" name="入院科室"
+                      text="当前科室" description="3.001" atomtype="String" value="2431`广瑞路口腔科`2431" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="院内科室///DepartmentBook///记录状态//1" inputdirect="False"
+                      defaultvalue="#CurrentDeptName`当前科室名称`" display="1111111```````0" embededId="45"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="病区" rtf="\'b2\'a1\'c7\'f8" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="98eecdc9-8a47-4730-bef2-2d14cb835c78" nodetype="Object" nodelogiccontent=""
+                  name="当前病区" text="当前病区" description="当前病区" otherid="E-1011" display="11```0`1">
+                <node id="dd5a78a1-030d-4f83-9ca5-ccdac332ca7d" nodetype="AtomNode" nodelogiccontent="" name="当前病区"
+                      text="当前病区" description="3.002" otherid="F-30020" atomtype="String" value="1905`五病区`1905"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="病区///WardBook///记录状态//1" inputdirect="False"
+                      defaultvalue="#CurrentWardName`当前病区名称`" display="1111111```````0" embededId="1"
+                      autoeditnext="True" spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="床号" rtf="\'b4\'b2\'ba\'c5" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="c7436237-af35-4400-9f63-72eefd504afd" nodetype="Object" nodelogiccontent=""
+                  name="病人床号" text="病人床号" description="病人床号" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="病人床号"
+                      text="病人床号" description="输入自由文本的原子类型。" atomtype="String" value="522`522`522"
+                      defaultvalue="#OutBedInfo`出院床位`" display="1111111```````0" embededId="47" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="住院号" rtf="\'d7\'a1\'d4\'ba\'ba\'c5" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="bbfd37c0-c81e-47a7-9748-cfc65d39edb2" nodetype="Object" nodelogiccontent=""
+                  name="住院号" text="住院号" description="0.207" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="住院号"
+                      text="住院号" description="0.000" atomtype="String" value="00000057`00000057`00000057"
+                      defaultvalue="#zyhm`住院号`" display="1111111```````0" embededId="51" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
             </node>
         </node>
     </Ref>
-    <node id="bb20f2db-5f98-4b2f-9ff8-dd28a48a11b0" nodetype="DynamicMoleNode" nodelogiccontent="" name="参加讨论人员"
-          text="参加讨论人员" description="3.564" display="20`参加人员（姓名及职称）：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
-          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="False" canNullSubmit="False"
-          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
-        <node refid="40" nodetype="Embeded"/>
-    </node>
-    <node id="a09c89e2-f409-4736-b97b-2c52c3124bfb" nodetype="DynamicMoleNode" nodelogiccontent="" name="病史概要"
-          text="病史概要" description="3.101" otherid="C-1151" display="20`病史摘要：`&#xD;&#xA;`0`1" permitobjs=""
-          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+    <node id="da9f1e3d-87b3-4b29-b006-d39cc3e0f7a7" nodetype="DynamicMoleNode" nodelogiccontent="" name="同意书与委托书(同意书内容)"
+          text="同意书与委托书(同意书内容)" description="各类用药、检查、手术等同意书的内容。" otherid="C-1192" display="10``&#xD;&#xA;`0`1"
+          permitobjs="" defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
           canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
           indentLength="0">
-        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
-        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
-        <node text="病" rtf="\'b2\'a1" nodetype="Text"/>
-        <node text="史" rtf="\'ca\'b7" nodetype="Text"/>
-        <node text="摘" rtf="\'d5\'aa" nodetype="Text"/>
-        <node text="要" rtf="\'d2\'aa" nodetype="Text"/>
-    </node>
-    <node id="425e6862-b583-42bd-ae50-524d12c6f6c7" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论意见"
-          signid="讨论意见|768" text="讨论意见" description="3.101" otherid="C-1151" display="20`讨论意见：`&#xD;&#xA;`0`1"
-          permitobjs="" defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="False"
-          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
-          indentLength="0">
-        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
-        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
-        <node text="讨论" rtf="\'cc\'d6\'c2\'db" nodetype="Text"/>
-        <node text="意" rtf="\'d2\'e2" nodetype="Text"/>
-        <node text="见" rtf="\'bc\'fb" nodetype="Text"/>
-    </node>
-    <node id="1bfe69a3-bb80-4185-a4fa-5ff2a4550ff1" nodetype="DynamicMoleNode" nodelogiccontent="" name="主持人总结"
-          signid="主持人总结意见|44" text="主持人总结" otherid="C-1158" display="20`主持人总结：`&#xD;&#xA;`0`1" permitobjs=""
-          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="False"
-          canNullSubmit="False" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
-          indentLength="0">
-        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
-        <node text="啦" rtf="\'c0\'b2" nodetype="Text"/>
-        <node text="主" rtf="\'d6\'f7" nodetype="Text"/>
-        <node text="持" rtf="\'b3\'d6" nodetype="Text"/>
-        <node text="人" rtf="\'c8\'cb" nodetype="Text"/>
-        <node text="总" rtf="\'d7\'dc" nodetype="Text"/>
-        <node text="结" rtf="\'bd\'e1" nodetype="Text"/>
-    </node>
-    <Ref id="43">
-        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
-              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
-              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
-              description="病史记录者签名" display="11```0`1">
-            <node embededId="0" id="a6d9fe14-c345-471f-8eb4-2cc0a642e6bf" nodetype="Object" nodelogiccontent=""
-                  name="审核医师" signid="主任医师签名|51" text="审核医师" description="0.230" display="11```0`1">
-                <node id="f98b67e3-e5ca-43d0-a9f3-8a958758f010" nodetype="AtomNode" nodelogiccontent="" name="审核医师"
-                      readonly="True" text="主持人" description="院内职工表。" atomtype="String" value="``" ischoiceatom="True"
-                      ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1" inputdirect="False"
-                      display="1110111````/```0" embededId="12" autoeditnext="True" spaceholder="0" forbidDel="True"
-                      isComplexShowlist="False"/>
-            </node>
-        </node>
-    </Ref>
-    <Ref id="44">
-        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
-              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
-              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
-              description="病史记录者签名" display="11```0`1">
-            <node embededId="0" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
-                  name="医师签名" signid="医师签名|240" text="医师签名" display="11```0`1">
-                <node id="769ca781-6e6c-4eba-8e8e-2e17d78001d7" nodetype="AtomNode" nodelogiccontent="" name="普通医师"
-                      readonly="True" text="记录者" description="院内职工表。" atomtype="String" value="00``00"
-                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///科室代码//@当前科室///"
-                      inputdirect="False" display="1111111```````0" embededId="6" autoeditnext="True" spaceholder="0"
-                      forbidDel="True" isComplexShowlist="False"/>
-            </node>
-        </node>
-    </Ref>
-    <node id="581f3027-3a60-4e0b-9a82-c2d2dee31b73" nodetype="DynamicMoleNode" nodelogiccontent="" name="医师签名"
-          text="医师签名" description="3.571"
-          display="20`                                                    主持人/记录者：`&#xD;&#xA;`0`1" permitobjs=""
-          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
-          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
-          indentLength="0">
-        <node refid="43" nodetype="Embeded"/>
-        <node refid="44" nodetype="Embeded"/>
-        <node text="  " rtf="  " nodetype="Text"/>
+        <node text="姓名" rtf="\'d0\'d5\'c3\'fb" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="4" nodetype="Embeded"/>
+        <node text="    诊断" rtf="    \'d5\'ef\'b6\'cf" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="5" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="科室" rtf="\'bf\'c6\'ca\'d2" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="6" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="&#xA;    " rtf="\par&#xD;&#xA;    " nodetype="Text"/>
+        <node text="今为病情需要，拟行一次或多次血浆置换。使用血细胞分离机进行血浆置换，所用管路均为一次性消耗品，对患者没有发生血液性传播疾病的危险。但在采集过程中可能出现以下情况：&#xA;    1.穿刺失败，穿刺部位出血、肿胀，甚至二次穿刺可能、颈外静脉穿刺可能。&#xA;    2.静脉压力过低，必要时可能需要中心静脉置管。&#xA;    3.抗凝剂反应，出现缺钙症状如口唇、面部、手脚麻木感；畏寒；心动过速等症状。&#xA;    4.血容量变化所致的暂时性低血压、头晕、恶心、心律失常，甚至急性肺水肿。&#xA;    5.其他不可预知的反应，如猝死等。&#xA;    其他情况：&#xA;    替代方案：&#xA;    ①以上情况告知患者及其家属，您授权并同意多次行血浆置换，签名为本人或被授权人；             &#xA;    签名：　　陈家　　　　谈话医生：　沈佳佳　　　　　日期/时间    2018 年  09月 08 日 10   时&#xA;    ②您授权每次血浆置换前以前必须单独告知。&#xA;    签名：　　陈家　　　　谈话医生：　　沈佳佳　　　　日期/时间     2018年   09月 08日10   时&#xA;"
+              rtf="\'bd\'f1\'ce\'aa\'b2\'a1\'c7\'e9\'d0\'e8\'d2\'aa\'a3\'ac\'c4\'e2\'d0\'d0\'d2\'bb\'b4\'ce\'bb\'f2\'b6\'e0\'b4\'ce\'d1\'aa\'bd\'ac\'d6\'c3\'bb\'bb\'a1\'a3\'ca\'b9\'d3\'c3\'d1\'aa\'cf\'b8\'b0\'fb\'b7\'d6\'c0\'eb\'bb\'fa\'bd\'f8\'d0\'d0\'d1\'aa\'bd\'ac\'d6\'c3\'bb\'bb\'a3\'ac\'cb\'f9\'d3\'c3\'b9\'dc\'c2\'b7\'be\'f9\'ce\'aa\'d2\'bb\'b4\'ce\'d0\'d4\'cf\'fb\'ba\'c4\'c6\'b7\'a3\'ac\'b6\'d4\'bb\'bc\'d5\'df\'c3\'bb\'d3\'d0\'b7\'a2\'c9\'fa\'d1\'aa\'d2\'ba\'d0\'d4\'b4\'ab\'b2\'a5\'bc\'b2\'b2\'a1\'b5\'c4\'ce\'a3\'cf\'d5\'a1\'a3\'b5\'ab\'d4\'da\'b2\'c9\'bc\'af\'b9\'fd\'b3\'cc\'d6\'d0\'bf\'c9\'c4\'dc\'b3\'f6\'cf\'d6\'d2\'d4\'cf\'c2\'c7\'e9\'bf\'f6\'a3\'ba\par&#xD;&#xA;    1.\'b4\'a9\'b4\'cc\'ca\'a7\'b0\'dc\'a3\'ac\'b4\'a9\'b4\'cc\'b2\'bf\'ce\'bb\'b3\'f6\'d1\'aa\'a1\'a2\'d6\'d7\'d5\'cd\'a3\'ac\'c9\'f5\'d6\'c1\'b6\'fe\'b4\'ce\'b4\'a9\'b4\'cc\'bf\'c9\'c4\'dc\'a1\'a2\'be\'b1\'cd\'e2\'be\'b2\'c2\'f6\'b4\'a9\'b4\'cc\'bf\'c9\'c4\'dc\'a1\'a3\par&#xD;&#xA;    2.\'be\'b2\'c2\'f6\'d1\'b9\'c1\'a6\'b9\'fd\'b5\'cd\'a3\'ac\'b1\'d8\'d2\'aa\'ca\'b1\'bf\'c9\'c4\'dc\'d0\'e8\'d2\'aa\'d6\'d0\'d0\'c4\'be\'b2\'c2\'f6\'d6\'c3\'b9\'dc\'a1\'a3\par&#xD;&#xA;    3.\'bf\'b9\'c4\'fd\'bc\'c1\'b7\'b4\'d3\'a6\'a3\'ac\'b3\'f6\'cf\'d6\'c8\'b1\'b8\'c6\'d6\'a2\'d7\'b4\'c8\'e7\'bf\'da\'b4\'bd\'a1\'a2\'c3\'e6\'b2\'bf\'a1\'a2\'ca\'d6\'bd\'c5\'c2\'e9\'c4\'be\'b8\'d0\'a3\'bb\'ce\'b7\'ba\'ae\'a3\'bb\'d0\'c4\'b6\'af\'b9\'fd\'cb\'d9\'b5\'c8\'d6\'a2\'d7\'b4\'a1\'a3\par&#xD;&#xA;    4.\'d1\'aa\'c8\'dd\'c1\'bf\'b1\'e4\'bb\'af\'cb\'f9\'d6\'c2\'b5\'c4\'d4\'dd\'ca\'b1\'d0\'d4\'b5\'cd\'d1\'aa\'d1\'b9\'a1\'a2\'cd\'b7\'d4\'ce\'a1\'a2\'b6\'f1\'d0\'c4\'a1\'a2\'d0\'c4\'c2\'c9\'ca\'a7\'b3\'a3\'a3\'ac\'c9\'f5\'d6\'c1\'bc\'b1\'d0\'d4\'b7\'ce\'cb\'ae\'d6\'d7\'a1\'a3\par&#xD;&#xA;    5.\'c6\'e4\'cb\'fb\'b2\'bb\'bf\'c9\'d4\'a4\'d6\'aa\'b5\'c4\'b7\'b4\'d3\'a6\'a3\'ac\'c8\'e7\'e2\'a7\'cb\'c0\'b5\'c8\'a1\'a3\par&#xD;&#xA;    \'c6\'e4\'cb\'fb\'c7\'e9\'bf\'f6\'a3\'ba\par&#xD;&#xA;    \'cc\'e6\'b4\'fa\'b7\'bd\'b0\'b8\'a3\'ba\par&#xD;&#xA;    \'a2\'d9\'d2\'d4\'c9\'cf\'c7\'e9\'bf\'f6\'b8\'e6\'d6\'aa\'bb\'bc\'d5\'df\'bc\'b0\'c6\'e4\'bc\'d2\'ca\'f4\'a3\'ac\'c4\'fa\'ca\'da\'c8\'a8\'b2\'a2\'cd\'ac\'d2\'e2\'b6\'e0\'b4\'ce\'d0\'d0\'d1\'aa\'bd\'ac\'d6\'c3\'bb\'bb\'a3\'ac\'c7\'a9\'c3\'fb\'ce\'aa\'b1\'be\'c8\'cb\'bb\'f2\'b1\'bb\'ca\'da\'c8\'a8\'c8\'cb\'a3\'bb             \par&#xD;&#xA;    \'c7\'a9\'c3\'fb\'a3\'ba\ul\'a1\'a1\'a1\'a1\'b3\'c2\'bc\'d2\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\ulnone\'cc\'b8\'bb\'b0\'d2\'bd\'c9\'fa\'a3\'ba\ul\'a1\'a1\'c9\'f2\'bc\'d1\'bc\'d1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\ulnone\'c8\'d5\'c6\'da/\'ca\'b1\'bc\'e4    2018 \'c4\'ea  09\'d4\'c2 08 \'c8\'d5 10   \'ca\'b1\par&#xD;&#xA;    \'a2\'da\'c4\'fa\'ca\'da\'c8\'a8\'c3\'bf\'b4\'ce\'d1\'aa\'bd\'ac\'d6\'c3\'bb\'bb\'c7\'b0\'d2\'d4\'c7\'b0\'b1\'d8\'d0\'eb\'b5\'a5\'b6\'c0\'b8\'e6\'d6\'aa\'a1\'a3\par&#xD;&#xA;    \'c7\'a9\'c3\'fb\'a3\'ba\ul\'a1\'a1\'a1\'a1\'b3\'c2\'bc\'d2\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\ulnone\'cc\'b8\'bb\'b0\'d2\'bd\'c9\'fa\'a3\'ba\ul\'a1\'a1\'a1\'a1\'c9\'f2\'bc\'d1\'bc\'d1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\'a1\ulnone\'c8\'d5\'c6\'da/\'ca\'b1\'bc\'e4     2018\'c4\'ea   09\'d4\'c2 08\'c8\'d510   \'ca\'b1\par&#xD;&#xA;"
+              nodetype="Text"/>
     </node>
 </Model>

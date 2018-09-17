@@ -1,6 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.ConfigUtils;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtMjzcfZycfDao;
@@ -98,6 +99,7 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
         EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
         emrQtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
         emrQtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
+        emrQtbljlk.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
         List<HlhtMjzcfZycf> hlhtMjzcfZycfListFromBaseData = this.commonQueryDao.getHlhtMjzcfZycfListFromBaseData(emrQtbljlk);
         emr_count = hlhtMjzcfZycfListFromBaseData.size();
         if (hlhtMjzcfZycfListFromBaseData != null) {

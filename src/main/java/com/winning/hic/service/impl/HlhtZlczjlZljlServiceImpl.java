@@ -115,6 +115,8 @@ public class HlhtZlczjlZljlServiceImpl implements HlhtZlczjlZljlService {
             qtbljlk.setYxjl(1);
             qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
             qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
+            qtbljlk.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
+
             //2.根据模板代码去找到对应的病人病历
             List<HlhtZlczjlZljl> hlhtZlczjlZljlListFromBaseData = this.commonQueryDao.getHlhtZlczjlZljlListFromBaseData(qtbljlk);
             emr_count = emr_count+hlhtZlczjlZljlListFromBaseData.size();
