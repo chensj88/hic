@@ -3,6 +3,7 @@ package com.winning.hic.service.impl;
 import com.alibaba.druid.sql.visitor.functions.Char;
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlScbcjlDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
@@ -43,6 +44,9 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
     private MbzDataSetDao mbzDataSetDao;
+
+    @Autowired
+    private CommonQueryDao commonQueryDao;
 
     @Autowired
     private EmrQtbljlkDao emrQtbljlkDao;
@@ -133,7 +137,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                         }
                         HlhtZybcjlScbcjl entity = new HlhtZybcjlScbcjl();
                         entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                        entity = this.selectInitialHlhtZybcjlScbcjl(entity);
+                        entity = this.commonQueryDao.selectInitialHlhtZybcjlScbcjl(entity);
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         try {
                             entity = (HlhtZybcjlScbcjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);

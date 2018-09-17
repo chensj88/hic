@@ -498,114 +498,114 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
-    <!-- Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据-->
-    <select id="selectInitialHlhtCyxjCyxj" resultMap="hlhtCyxjCyxjResult" parameterType="com.winning.hic.model.HlhtCyxjCyxj">
-        SELECT
-        t.QTBLJLXH AS yjlxh,
-        b.HISSYXH AS jzlsh,
-        c.PATID AS patid,
-        b.ZYHM AS zyh,
-        i.DICT_LABEL AS zzjgmc,
-        ii.DICT_LABEL AS zzjgdm,
-        'NA' AS jkkh,
-        c.KSDM AS ksdm,
-        c.KSMC AS ksmc,
-        c.BQDM AS bqdm,
-        c.BQMC AS bqmc,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
-        c.CWDM AS bch,
-        b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
-        b.BRXB AS xbdm,
-        (
-        SELECT CASE b.BRXB
-        WHEN '2'
-        THEN
-        '女'
-        WHEN '1'
-        THEN
-        '男'
-        ELSE
-        '其它'
-        END
-        )                                               AS xbmc,
-        ISNULL(
-        CONVERT (
-        VARCHAR,
-        (
-        YEAR (GETDATE()) - YEAR (CONVERT(datetime, b.CSRQ))
-        )
-        ),
-        ''''
-        ) AS nls,
-        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
-        b.HYZK AS hyzkdm,
-        CASE b.HYZK
-        WHEN '0' THEN
-        '未婚'
-        WHEN '1' THEN
-        '已婚'
-        WHEN '2' THEN
-        '离独'
-        WHEN '3' THEN
-        '丧偶'
-        ELSE
-        '未知 '
-        END AS hyzkmc,
-        b.ZYDM AS zylbdm,
-        m.NAME AS zylbmc,
-        (CASE b.LXDH WHEN '' THEN 'NA' ELSE b.LXDH END)AS hzdhhm,
-        ISNULL(
-        (SELECT TOP 1 e.SSDQDM FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,
-        ISNULL(
-        (SELECT TOP 1 e.SSDQMC FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbmc,
-        ISNULL(
-        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'NA') AS dzsf,
-        ISNULL(
-        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'NA') AS dzsq,
-        ISNULL(
-        (SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'NA') AS dzx,
-        ISNULL(
-        (
-        SELECT
-        e.NAME
-        FROM
-        CISDB.dbo.EMR_SYS_DQDMK e
-        WHERE
-        b.QXDM = e.DQDM
-        ),
-        'NA'
-        ) AS dzxz,
+    <!--&lt;!&ndash; Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据&ndash;&gt;-->
+    <!--<select id="selectInitialHlhtCyxjCyxj" resultMap="hlhtCyxjCyxjResult" parameterType="com.winning.hic.model.HlhtCyxjCyxj">-->
+        <!--SELECT-->
+        <!--t.QTBLJLXH AS yjlxh,-->
+        <!--b.HISSYXH AS jzlsh,-->
+        <!--c.PATID AS patid,-->
+        <!--b.ZYHM AS zyh,-->
+        <!--i.DICT_LABEL AS zzjgmc,-->
+        <!--ii.DICT_LABEL AS zzjgdm,-->
+        <!--'NA' AS jkkh,-->
+        <!--c.KSDM AS ksdm,-->
+        <!--c.KSMC AS ksmc,-->
+        <!--c.BQDM AS bqdm,-->
+        <!--c.BQMC AS bqmc,-->
+        <!--ISNULL(a.fjh, 'NA') AS bfh,-->
+        <!--ISNULL(a.fjh, 'NA')+'病房' AS bfmc,-->
+        <!--c.CWDM AS bch,-->
+        <!--b.HZXM AS hzxm,-->
+        <!--b.SFZH AS sfzhm,-->
+        <!--b.BRXB AS xbdm,-->
+        <!--(-->
+        <!--SELECT CASE b.BRXB-->
+        <!--WHEN '2'-->
+        <!--THEN-->
+        <!--'女'-->
+        <!--WHEN '1'-->
+        <!--THEN-->
+        <!--'男'-->
+        <!--ELSE-->
+        <!--'其它'-->
+        <!--END-->
+        <!--)                                               AS xbmc,-->
+        <!--ISNULL(-->
+        <!--CONVERT (-->
+        <!--VARCHAR,-->
+        <!--(-->
+        <!--YEAR (GETDATE()) - YEAR (CONVERT(datetime, b.CSRQ))-->
+        <!--)-->
+        <!--),-->
+        <!--''''-->
+        <!--) AS nls,-->
+        <!--DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,-->
+        <!--b.HYZK AS hyzkdm,-->
+        <!--CASE b.HYZK-->
+        <!--WHEN '0' THEN-->
+        <!--'未婚'-->
+        <!--WHEN '1' THEN-->
+        <!--'已婚'-->
+        <!--WHEN '2' THEN-->
+        <!--'离独'-->
+        <!--WHEN '3' THEN-->
+        <!--'丧偶'-->
+        <!--ELSE-->
+        <!--'未知 '-->
+        <!--END AS hyzkmc,-->
+        <!--b.ZYDM AS zylbdm,-->
+        <!--m.NAME AS zylbmc,-->
+        <!--(CASE b.LXDH WHEN '' THEN 'NA' ELSE b.LXDH END)AS hzdhhm,-->
+        <!--ISNULL(-->
+        <!--(SELECT TOP 1 e.SSDQDM FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,-->
+        <!--ISNULL(-->
+        <!--(SELECT TOP 1 e.SSDQMC FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbmc,-->
+        <!--ISNULL(-->
+        <!--(SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'NA') AS dzsf,-->
+        <!--ISNULL(-->
+        <!--(SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'NA') AS dzsq,-->
+        <!--ISNULL(-->
+        <!--(SELECT e.NAME FROM CISDB.dbo.EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'NA') AS dzx,-->
+        <!--ISNULL(-->
+        <!--(-->
+        <!--SELECT-->
+        <!--e.NAME-->
+        <!--FROM-->
+        <!--CISDB.dbo.EMR_SYS_DQDMK e-->
+        <!--WHERE-->
+        <!--b.QXDM = e.DQDM-->
+        <!--),-->
+        <!--'NA'-->
+        <!--) AS dzxz,-->
 
-        'NA' AS dzc,
-        'NA' AS dzmphm,
-        'NA' AS yzbm,
-        CASE WHEN c.LXR ='' THEN 'NA' ELSE  c.LXR END as lxrxm,
-        CASE WHEN c.LXRDH ='' THEN 'NA' ELSE  c.LXRDH END as lxrdhhm,
-        b.RYRQ as ryrq,
-        CASE WHEN b.CYRQ ='' THEN GETDATE() ELSE  b.CYRQ END as cyrq,
-        DATEDIFF( day ,  CONVERT(varchar(100), b.RYRQ, 23),  CONVERT(varchar(100), GETDATE(), 23))  AS sjzyts,
-        t.FSSJ AS qmrq,
-        GETDATE() AS gxsj,
-        t.YXJL AS yxjl,
-        t.QTBLJLXH AS syxh,
-        t.TJZT AS tjzt
-        FROM
-        CISDB.dbo.EMR_QTBLJLK t
-        LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH
-        LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH
-        LEFT JOIN CISDB.dbo.EMR_SYS_ZDFLMXK m on b.ZYDM=m.MXDM and LBDM = 41
-        LEFT JOIN THIS4.dbo.ZY_BCDMK a ON a.id = b.RYCW
-        AND a.bqdm = b.RYBQ
-        LEFT JOIN CISDB.dbo.OUTP_JZJLK o ON t.SYXH = o.EMRXH
-        LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
-        LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
-        LEFT JOIN CISDB.dbo.PUB_ZYDMK k ON b.ZYDM = k.ID
-        WHERE 1 = 1
-        <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>
+        <!--'NA' AS dzc,-->
+        <!--'NA' AS dzmphm,-->
+        <!--'NA' AS yzbm,-->
+        <!--CASE WHEN c.LXR ='' THEN 'NA' ELSE  c.LXR END as lxrxm,-->
+        <!--CASE WHEN c.LXRDH ='' THEN 'NA' ELSE  c.LXRDH END as lxrdhhm,-->
+        <!--b.RYRQ as ryrq,-->
+        <!--CASE WHEN b.CYRQ ='' THEN GETDATE() ELSE  b.CYRQ END as cyrq,-->
+        <!--DATEDIFF( day ,  CONVERT(varchar(100), b.RYRQ, 23),  CONVERT(varchar(100), GETDATE(), 23))  AS sjzyts,-->
+        <!--t.FSSJ AS qmrq,-->
+        <!--GETDATE() AS gxsj,-->
+        <!--t.YXJL AS yxjl,-->
+        <!--t.QTBLJLXH AS syxh,-->
+        <!--t.TJZT AS tjzt-->
+        <!--FROM-->
+        <!--CISDB.dbo.EMR_QTBLJLK t-->
+        <!--LEFT JOIN CISDB.dbo.CPOE_BRSYK c ON t.SYXH = c.EMRXH-->
+        <!--LEFT JOIN CISDB.dbo.EMR_BRSYK b ON b.SYXH = t.SYXH-->
+        <!--LEFT JOIN CISDB.dbo.EMR_SYS_ZDFLMXK m on b.ZYDM=m.MXDM and LBDM = 41-->
+        <!--LEFT JOIN THIS4.dbo.ZY_BCDMK a ON a.id = b.RYCW-->
+        <!--AND a.bqdm = b.RYBQ-->
+        <!--LEFT JOIN CISDB.dbo.OUTP_JZJLK o ON t.SYXH = o.EMRXH-->
+        <!--LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'-->
+        <!--LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'-->
+        <!--LEFT JOIN CISDB.dbo.PUB_ZYDMK k ON b.ZYDM = k.ID-->
+        <!--WHERE 1 = 1-->
+        <!--<if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>-->
 
-    </select>
+    <!--</select>-->
 
 
 </mapper>

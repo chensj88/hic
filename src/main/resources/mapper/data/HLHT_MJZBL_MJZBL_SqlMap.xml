@@ -400,59 +400,59 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
-    <!-- Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据-->
-    <select id="selectInitialHlhtMjzblMjzbl" resultMap="hlhtMjzblMjzblResult" parameterType="com.winning.hic.model.HlhtMjzblMjzbl">
-        SELECT t.QTBLJLXH AS yjlxh,
-        c.GHXH AS jzlsh,
-        c.PATID AS patid,
-        c.HZXM AS hzxm,
-        c.GHXH AS mjzh,
-        c.BLH AS zyh,
-        c.SFZH AS sfzhm,
-        (
-        SELECT CASE c.SEX
-        WHEN '女'
-        THEN
-        '2'
-        WHEN '男'
-        THEN
-        '1'
-        ELSE
-        '3'
-        END
-        )  AS xbdm,
-        c.SEX AS xbmc,
-        CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'''') AS nls,
-        DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
-        i.DICT_LABEL AS zzjgmc,
-        ii.DICT_LABEL AS zzjgdm,
-        c.KSDM AS ksdm,
-        c.KSMC AS ksmc ,
-        CONVERT(datetime,substring(c.GHRQ,1,4)+'-'+substring(c.GHRQ,5,2)+'-'+substring(c.GHRQ,7,2)+' '+substring(c.GHRQ,9,8))
-        AS jzrqsj,
-        c.CFZBZ AS czbzdm,
-        (
-        SELECT CASE c.CFZBZ
-        WHEN '0'
-        THEN
-        '初诊'
-        WHEN '1'
-        THEN
-        '复诊'
-        ELSE
-        '复诊'
-        END
-        )  AS czbzmc,
-        GETDATE() AS gxsj,
-        t.YXJL AS yxjl, t.SYXH AS syxh, t.TJZT as tjzt FROM CISDB.dbo.EMR_QTBLJLK t
-        LEFT JOIN CISDB.dbo.OUTP_JZJLK c ON t.SYXH = c.EMRXH
-        LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
-        LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
-        WHERE  1=1
-        <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>
+    <!--&lt;!&ndash; Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据&ndash;&gt;-->
+    <!--<select id="selectInitialHlhtMjzblMjzbl" resultMap="hlhtMjzblMjzblResult" parameterType="com.winning.hic.model.HlhtMjzblMjzbl">-->
+        <!--SELECT t.QTBLJLXH AS yjlxh,-->
+        <!--c.GHXH AS jzlsh,-->
+        <!--c.PATID AS patid,-->
+        <!--c.HZXM AS hzxm,-->
+        <!--c.GHXH AS mjzh,-->
+        <!--c.BLH AS zyh,-->
+        <!--c.SFZH AS sfzhm,-->
+        <!--(-->
+        <!--SELECT CASE c.SEX-->
+        <!--WHEN '女'-->
+        <!--THEN-->
+        <!--'2'-->
+        <!--WHEN '男'-->
+        <!--THEN-->
+        <!--'1'-->
+        <!--ELSE-->
+        <!--'3'-->
+        <!--END-->
+        <!--)  AS xbdm,-->
+        <!--c.SEX AS xbmc,-->
+        <!--CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,-->
+        <!--ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'''') AS nls,-->
+        <!--DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,-->
+        <!--i.DICT_LABEL AS zzjgmc,-->
+        <!--ii.DICT_LABEL AS zzjgdm,-->
+        <!--c.KSDM AS ksdm,-->
+        <!--c.KSMC AS ksmc ,-->
+        <!--CONVERT(datetime,substring(c.GHRQ,1,4)+'-'+substring(c.GHRQ,5,2)+'-'+substring(c.GHRQ,7,2)+' '+substring(c.GHRQ,9,8))-->
+        <!--AS jzrqsj,-->
+        <!--c.CFZBZ AS czbzdm,-->
+        <!--(-->
+        <!--SELECT CASE c.CFZBZ-->
+        <!--WHEN '0'-->
+        <!--THEN-->
+        <!--'初诊'-->
+        <!--WHEN '1'-->
+        <!--THEN-->
+        <!--'复诊'-->
+        <!--ELSE-->
+        <!--'复诊'-->
+        <!--END-->
+        <!--)  AS czbzmc,-->
+        <!--GETDATE() AS gxsj,-->
+        <!--t.YXJL AS yxjl, t.SYXH AS syxh, t.TJZT as tjzt FROM CISDB.dbo.EMR_QTBLJLK t-->
+        <!--LEFT JOIN CISDB.dbo.OUTP_JZJLK c ON t.SYXH = c.EMRXH-->
+        <!--LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'-->
+        <!--LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'-->
+        <!--WHERE  1=1-->
+        <!--<if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>-->
 
-    </select>
+    <!--</select>-->
 
 
 
