@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZybcjlCyjlDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
@@ -39,6 +40,9 @@ import java.util.Map;
 public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
 
     private final Logger logger = LoggerFactory.getLogger(HlhtZybcjlCyjlServiceImpl.class);
+
+    @Autowired
+    private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
@@ -106,7 +110,7 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
             qtbljlk.getMap().put("startDate", t.getMap().get("startDate"));
             qtbljlk.getMap().put("endDate", t.getMap().get("endDate"));
             //2.根据模板代码去找到对应的病人病历
-            List<HlhtZybcjlCyjl> hlhtRyjlJbxxListFromBaseData = this.hlhtZybcjlCyjlDao.getHlhtZybcjlCyjlListFromBaseData(qtbljlk);
+            List<HlhtZybcjlCyjl> hlhtRyjlJbxxListFromBaseData = this.commonQueryDao.getHlhtZybcjlCyjlListFromBaseData(qtbljlk);
             emr_count = emr_count + hlhtRyjlJbxxListFromBaseData.size();
             if (hlhtRyjlJbxxListFromBaseData != null) {
                 for (HlhtZybcjlCyjl hlhtZybcjlCyjl : hlhtRyjlJbxxListFromBaseData) {
@@ -210,6 +214,6 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
 
     @Override
     public List<HlhtZybcjlCyjl> getHlhtZybcjlCyjlListFromBaseData(EmrQtbljlk emrQtbljlk) {
-        return this.hlhtZybcjlCyjlDao.getHlhtZybcjlCyjlListFromBaseData(emrQtbljlk);
+        return this.commonQueryDao.getHlhtZybcjlCyjlListFromBaseData(emrQtbljlk);
     }
 }

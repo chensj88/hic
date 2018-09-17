@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtZqgzxxSxzltysDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
@@ -35,6 +36,8 @@ import java.util.Map;
 @Service
 public class HlhtZqgzxxSxzltysServiceImpl implements HlhtZqgzxxSxzltysService {
     private final Logger logger = LoggerFactory.getLogger(HlhtZqgzxxSxzltysServiceImpl.class);
+    @Autowired
+    private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
@@ -80,7 +83,7 @@ public class HlhtZqgzxxSxzltysServiceImpl implements HlhtZqgzxxSxzltysService {
 
     @Override
     public List<HlhtZqgzxxSxzltys> getHlhtZqgzxxSxzltysListFromBaseData(EmrQtbljlk emrQtbljlk) throws DataAccessException {
-        return this.hlhtZqgzxxSxzltysDao.getHlhtZqgzxxSxzltysListFromBaseData(emrQtbljlk);
+        return this.commonQueryDao.getHlhtZqgzxxSxzltysListFromBaseData(emrQtbljlk);
     }
 
     @Override
@@ -110,7 +113,7 @@ public class HlhtZqgzxxSxzltysServiceImpl implements HlhtZqgzxxSxzltysService {
             qtbljlk.getMap().put("startDate", t.getMap().get("startDate"));
             qtbljlk.getMap().put("endDate", t.getMap().get("endDate"));
             //2.根据模板代码去找到对应的病人病历
-            List<HlhtZqgzxxSxzltys> hlhtZqgzxxSxzltysListFromBaseData = this.hlhtZqgzxxSxzltysDao.getHlhtZqgzxxSxzltysListFromBaseData(qtbljlk);
+            List<HlhtZqgzxxSxzltys> hlhtZqgzxxSxzltysListFromBaseData = this.commonQueryDao.getHlhtZqgzxxSxzltysListFromBaseData(qtbljlk);
             emr_count = emr_count + hlhtZqgzxxSxzltysListFromBaseData.size();
 
             if (hlhtZqgzxxSxzltysListFromBaseData != null) {

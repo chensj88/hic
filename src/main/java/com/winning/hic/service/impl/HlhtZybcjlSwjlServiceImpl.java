@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
+import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.*;
 import com.winning.hic.model.*;
@@ -33,6 +34,8 @@ import java.util.Map;
 public class HlhtZybcjlSwjlServiceImpl implements HlhtZybcjlSwjlService {
     private static final Logger logger = LoggerFactory.getLogger(HlhtZybcjlSwjlServiceImpl.class);
 
+    @Autowired
+    private CommonQueryDao commonQueryDao;
     @Autowired
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
@@ -88,7 +91,7 @@ public class HlhtZybcjlSwjlServiceImpl implements HlhtZybcjlSwjlService {
         codeTemp = this.mbzDictInfoDao.selectMbzDictInfo(codeTemp);
         emrQtbljlk.getMap().put("zzjgdm", codeTemp.getDictLabel());
         emrQtbljlk.getMap().put("zzjgmc", nameTemp.getDictLabel());
-        return this.hlhtZybcjlSwjlDao.getHlhtZybcjlSwjlListFromBaseData(emrQtbljlk);
+        return this.commonQueryDao.getHlhtZybcjlSwjlListFromBaseData(emrQtbljlk);
     }
 
     @Override
