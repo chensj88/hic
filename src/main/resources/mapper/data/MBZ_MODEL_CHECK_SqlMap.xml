@@ -223,8 +223,8 @@
            m.MUST_MATCH AS MUST_MATCH,
            m.PY_CODE AS PY_CODE
         FROM
-            CISDB_DATA.dbo.MBZ_DATA_LIST_SET t,
-            CISDB_DATA.dbo.MBZ_DATA_SET m
+            MBZ_DATA_LIST_SET t,
+            MBZ_DATA_SET m
         WHERE
         t.SOURCE_TYPE = m.SOURCE_TYPE
         AND m.RECORD_NAME!=''
@@ -232,7 +232,7 @@
         AND m.P_ID != 0
         AND NOT EXISTS
         ( SELECT 1
-          FROM CISDB_DATA.dbo.MBZ_MODEL_CHECK c
+          FROM MBZ_MODEL_CHECK c
           where
           t.MODEL_CODE=c.MODEL_CODE
           AND

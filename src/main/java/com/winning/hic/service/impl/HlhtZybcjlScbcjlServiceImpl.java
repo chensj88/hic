@@ -361,6 +361,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
     @Override
     public void selectAllHandleQuery() {
-        this.hlhtZybcjlScbcjlDao.selectAllHandleQuery();
+        this.hlhtZybcjlScbcjlDao.selectAllHandleQueryMZ();
+        this.hlhtZybcjlScbcjlDao.selectAllHandleQueryZY();
     }
 }
