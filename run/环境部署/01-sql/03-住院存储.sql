@@ -672,6 +672,7 @@ WHERE  A.zljgdm ='1';
   UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM CIS_HLHT..HLHT_RYJL_RCYJL A
    LEFT JOIN (
     SELECT CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '2'
+           WHEN A.cszhzgxdm IN ('本人','户主') THEN '0'
            WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
            WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
            WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
@@ -679,6 +680,7 @@ WHERE  A.zljgdm ='1';
            WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
            else '8' end cszhzgxdm,
            CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
+           WHEN A.cszhzgxdm IN ('本人','户主') THEN '本人或户主'
            WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
            WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
            WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
@@ -716,19 +718,21 @@ WHERE  A.zljgdm ='1';
   UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM CIS_HLHT..HLHT_RYJL_RYSWJL A
     LEFT JOIN (
                 SELECT CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '2'
-                       WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
-                       WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
-                       WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
-                       WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '6'
-                       WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
-                       else '8' end cszhzgxdm,
-                       CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
-                       WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
-                       WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
-                       WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
-                       WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
-                       WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
-                       else '其他' end cszhzgxmc,A.jzlsh
+                 WHEN A.cszhzgxdm IN ('本人','户主') THEN '0'
+                 WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
+                 WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
+                 WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
+                 WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '6'
+                 WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
+                 else '8' end cszhzgxdm,
+                 CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
+                 WHEN A.cszhzgxdm IN ('本人','户主') THEN '本人或户主'
+                 WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
+                 WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
+                 WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
+                 WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
+                 WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
+                 else '其他' end cszhzgxmc,A.jzlsh
                 FROM CIS_HLHT..HLHT_RYJL_RYSWJL A) T ON A.jzlsh =T.jzlsh
   --中医“四诊”观察结果
   UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM CIS_HLHT..HLHT_RYJL_RYSWJL A,CIS_HLHT.dbo.HLHT_RYJL_JBXX C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
