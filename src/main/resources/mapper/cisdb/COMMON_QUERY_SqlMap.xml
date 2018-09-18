@@ -4130,7 +4130,7 @@
         c.PATID AS patid,
         b.HZXM AS hzxm,
         b.ZYHM AS zyh,
-        b.SFZH AS sfzhm,
+        (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
         c.KSDM AS ksdm,
         c.KSMC AS ksmc ,
         c.BQDM AS bqdm,
@@ -4152,7 +4152,7 @@
         '其它'
         END
         )                                               AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') AS nls,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'0') AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
         GETDATE() AS gxsj,
         t.YXJL AS yxjl,
@@ -4162,7 +4162,7 @@
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
         LEFT JOIN EMR_BRSYK b ON b.SYXH = t.SYXH
-        LEFT JOIN ${map.hisName}.dboZY_BCDMK a ON a.id = b.RYCW and a.bqdm=b.RYBQ
+        LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm=b.RYBQ
         WHERE 1=1
         <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH =
             (#{map.QTBLJLXH})

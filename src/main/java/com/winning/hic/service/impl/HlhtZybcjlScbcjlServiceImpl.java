@@ -139,6 +139,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                         entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
                         entity.getMap().put("hisName",ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                         entity = this.commonQueryDao.selectInitialHlhtZybcjlScbcjl(entity);
+                        System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         try {
                             entity = (HlhtZybcjlScbcjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
@@ -149,11 +150,14 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                 String[] str=entity.getCzzybmdm().split("  ");
                                 String[] str2=entity.getCzzybm().split("  ");
                                 Character o=new Character('B');
-                                for (int i=0;str.length>i;i++){
-                                    if(o.equals(str[i].charAt(0))){
-                                        bmdm = bmdm+str[i]+" ";
-                                        bm = bm+str2[i]+" ";
-                                    }
+                                    for (int i=0;str.length>i;i++){
+                                        if(!"".equals(str[i].toString())){
+                                                if(o.equals(str[i].charAt(0))){
+                                                bmdm = bmdm+str[i]+" ";
+                                                bm = bm+str2[i]+" ";
+                                            }
+                                        }
+
                                 }
                                 if(StringUtils.isEmpty(bmdm)){
                                     entity.setCzzybmdm("NA");
@@ -173,12 +177,16 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                 String[] str=entity.getCzzyzhdm().split("  ");
                                 String[] str2=entity.getCzzyzh().split("  ");
                                 Character o=new Character('B');
-                                for (int i=0;str.length>i;i++){
-                                    if(!o.equals(str[i].charAt(0))){
-                                        bmdm = bmdm+str[i]+" ";
-                                        bm = bm+str2[i]+" ";
+                                    for (int i = 0; str.length > i; i++) {
+                                        if(!"".equals(str[i].toString())){
+                                            if (!o.equals(str[i].charAt(0))) {
+                                                bmdm = bmdm + str[i] + " ";
+                                                bm = bm + str2[i] + " ";
+                                            }
+                                        }
+
                                     }
-                                }
+
                                 if(StringUtils.isEmpty(bmdm)){
                                     entity.setCzzyzhdm("NA");
                                 }else{
@@ -201,21 +209,26 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                 String[] str=entity.getJzzybmdm().split(",");
                                 String[] str2=entity.getJzzybmmc().split("、");
                                 //区分西医、中医
-                                for (int i=0;str.length>i;i++){
-                                    if(str[i].contains(".")){ //西医
-                                        xybmdm= xybmdm + str[i]+" ";
-                                        xybm = xybm + str2[i]+" ";
-                                    }else{
-                                        Character o=new Character('B');//病
-                                        if(o.equals(str[i].charAt(0))){
-                                            zybmdm =zybmdm +str[i] +" ";             //存入病
-                                            zybm =zybm + str2[i]+" ";                //存入病
+                                if(str.length>0){
+                                    for (int i=0;str.length>i;i++){
+                                        if(str[i].contains(".")){ //西医
+                                            xybmdm= xybmdm + str[i]+" ";
+                                            xybm = xybm + str2[i]+" ";
                                         }else{
-                                            zhbmdm = zhbmdm +str[i]+" ";             //症候
-                                            zhbm =zhbm + str2[i]+" ";
+                                            Character o=new Character('B');//病
+                                            if(!"".equals(str[i].toString())) {
+                                                if (o.equals(str[i].charAt(0))) {
+                                                    zybmdm = zybmdm + str[i] + " ";             //存入病
+                                                    zybm = zybm + str2[i] + " ";                //存入病
+                                                } else {
+                                                    zhbmdm = zhbmdm + str[i] + " ";             //症候
+                                                    zhbm = zhbm + str2[i] + " ";
+                                                }
+                                            }
                                         }
                                     }
                                 }
+
                                 //鉴别诊断-西医病名编码、名称
                                 if(StringUtils.isEmpty(xybmdm)){
                                     entity.setJzxyzdbm("NA");
