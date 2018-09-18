@@ -1608,7 +1608,17 @@
         'NA' as gzdwdz,
         'NA' as gzdwdh,
         'NA' as jgd,
-        b.SFZH as sfzhm,
+        (
+        SELECT
+        CASE b.SFZH
+        WHEN NULL THEN
+        'NA'
+        WHEN '' THEN
+        'NA'
+        ELSE
+        b.SFZH
+        END
+        ) as sfzhm,
         b.BRXB as xbdm,
         (
         SELECT
