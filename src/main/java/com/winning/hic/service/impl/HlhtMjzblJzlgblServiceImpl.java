@@ -5,6 +5,8 @@ import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.*;
+import com.winning.hic.dao.mz.MZCommonQueryDao;
+import com.winning.hic.dao.mz.MZEmrQtbljlkDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtMjzblJzlgblService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -37,13 +39,13 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
     @Autowired
     private HlhtMjzblJzlgblDao hlhtMjzblJzlgblDao;
     @Autowired
-    private CommonQueryDao commonQueryDao;
+    private MZCommonQueryDao commonQueryDao;
     @Autowired
     private MbzDataSetDao mbzDataSetDao;
     @Autowired
     private MbzDataListSetDao mbzDataListSetDao;
     @Autowired
-    private EmrQtbljlkDao emrQtbljlkDao;
+    private MZEmrQtbljlkDao emrQtbljlkDao;
     @Autowired
     private MbzDictInfoDao mbzDictInfoDao;
 

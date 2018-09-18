@@ -82,7 +82,7 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
         jbjkxx.getMap().put("startDate",entity.getMap().get("startDate"));
         jbjkxx.getMap().put("endDate",entity.getMap().get("endDate"));
         List<HlhtBlgyJbjkxx> jbjkxxList = commonQueryDao.selectInitHlhtBlgyJbjkxx(jbjkxx);
-        List<HlhtBlgyJbjkxx> jbjkxxListMZ = commonQueryDao.selectInitHlhtBlgyJbjkxxForMz(jbjkxx);
+        List<HlhtBlgyJbjkxx> jbjkxxListMZ = mzCommonQueryDao.selectInitHlhtBlgyJbjkxxForMz(jbjkxx);
         jbjkxxList.addAll(jbjkxxListMZ);
         emr_count = jbjkxxList.size();
         for (HlhtBlgyJbjkxx obj : jbjkxxList) {
