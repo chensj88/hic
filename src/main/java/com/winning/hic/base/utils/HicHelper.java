@@ -89,7 +89,12 @@ public class HicHelper {
                 } else if (paramType.contains("Short")) {
                     //格式：50`50`50
                     String shortStr = StringUtil.isEmptyOrNull(strValue.trim()) ? null : strValue.trim();
-                    value = StringUtil.isEmptyOrNull(shortStr) ? 0 : Short.parseShort(shortStr);
+                    if (StringUtil.isEmptyOrNull(shortStr)) {
+                        value = (short) 0;
+                    } else {
+                        BigDecimal dec = new BigDecimal(shortStr);
+                        value = dec.setScale(0, BigDecimal.ROUND_HALF_UP).shortValue();
+                    }
                 } else if (paramType.contains("Timestamp")) {
                     String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue.trim();
                     String pattern = "yyyy-MM-dd HH:mm:ss";
@@ -213,7 +218,9 @@ public class HicHelper {
                             String method = "getCyqk";
                             String exValue = (String) ReflectUtil.getParam(obj, method);
                             if (exValue != null && !"NA".equals(value)) {
-                                value = exValue + " " + value;
+                                if (!"NA".equals(exValue)) {
+                                    value = exValue + " " + value;
+                                }
                                 ReflectUtil.setParamKind(obj, methodName, value);
                                 continue;
                             }
@@ -225,7 +232,9 @@ public class HicHelper {
                             String method = "getGms";
                             String exValue = (String) ReflectUtil.getParam(obj, method);
                             if (exValue != null && !"NA".equals(value)) {
-                                value = exValue + " " + value;
+                                if (!"NA".equals(exValue)) {
+                                    value = exValue + " " + value;
+                                }
                                 ReflectUtil.setParamKind(obj, methodName, value);
                                 continue;
                             }
@@ -235,7 +244,9 @@ public class HicHelper {
                             String method = "getTjybjg";
                             String exValue = (String) ReflectUtil.getParam(obj, method);
                             if (exValue != null && !"NA".equals(value)) {
-                                value = exValue + " " + value;
+                                if (!"NA".equals(exValue)) {
+                                    value = exValue + " " + value;
+                                }
                                 ReflectUtil.setParamKind(obj, methodName, value);
                                 continue;
                             }
@@ -245,7 +256,9 @@ public class HicHelper {
                             String method = "getTjtbqgjg";
                             String exValue = (String) ReflectUtil.getParam(obj, method);
                             if (exValue != null && !"NA".equals(value)) {
-                                value = exValue + " " + value;
+                                if (!"NA".equals(exValue)) {
+                                    value = exValue + " " + value;
+                                }
                                 ReflectUtil.setParamKind(obj, methodName, value);
                                 continue;
                             }
@@ -255,7 +268,9 @@ public class HicHelper {
                             String method = "getTjfbjg";
                             String exValue = (String) ReflectUtil.getParam(obj, method);
                             if (exValue != null && !"NA".equals(value)) {
-                                value = exValue + " " + value;
+                                if (!"NA".equals(exValue)) {
+                                    value = exValue + " " + value;
+                                }
                                 ReflectUtil.setParamKind(obj, methodName, value);
                                 continue;
                             }
