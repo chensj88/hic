@@ -73,7 +73,7 @@
         <if test="(bfmc != null and bfmc != '')">and t.bfmc = #{bfmc}</if>
         <if test="(bch != null and bch != '')">and t.bch = #{bch}</if>
         <if test="(hzxm != null and hzxm != '')">and t.hzxm = #{hzxm}</if>
-        <if test="(sfzhm != null and sfzhm != '')">and t.sfzhm = #{sfzhm}</if>
+        <if test="(sfzhm != null )">and t.sfzhm = #{sfzhm}</if>
         <if test="(xbdm != null and xbdm != '')">and t.xbdm = #{xbdm}</if>
         <if test="(xbmc != null and xbmc != '')">and t.xbmc = #{xbmc}</if>
         <if test="(nls != null and nls != '')">and t.nls = #{nls}</if>
@@ -128,7 +128,7 @@
             <if test="(bfmc != null and bfmc != '')">bfmc ,</if>
             <if test="(bch != null and bch != '')">bch ,</if>
             <if test="(hzxm != null and hzxm != '')">hzxm ,</if>
-            <if test="(sfzhm != null and sfzhm != '')">sfzhm ,</if>
+            <if test="(sfzhm != null )">sfzhm ,</if>
             <if test="(xbdm != null and xbdm != '')">xbdm ,</if>
             <if test="(xbmc != null and xbmc != '')">xbmc ,</if>
             <if test="(nls != null and nls != '')">nls ,</if>
@@ -180,7 +180,7 @@
             <if test="(bfmc != null and bfmc != '')">#{bfmc , jdbcType= VARCHAR },</if>
             <if test="(bch != null and bch != '')">#{bch , jdbcType= VARCHAR },</if>
             <if test="(hzxm != null and hzxm != '')">#{hzxm , jdbcType= VARCHAR },</if>
-            <if test="(sfzhm != null and sfzhm != '')">#{sfzhm , jdbcType= VARCHAR },</if>
+            <if test="(sfzhm != null )">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
             <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
             <if test="(nls != null and nls != '')">#{nls , jdbcType= NUMERIC },</if>
@@ -236,7 +236,7 @@
                 <if test="(bfmc != null and bfmc != '')">bfmc = #{bfmc , jdbcType= VARCHAR },</if>
                 <if test="(bch != null and bch != '')">bch = #{bch , jdbcType= VARCHAR },</if>
                 <if test="(hzxm != null and hzxm != '')">hzxm = #{hzxm , jdbcType= VARCHAR },</if>
-                <if test="(sfzhm != null and sfzhm != '')">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
+                <if test="(sfzhm != null )">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(xbdm != null and xbdm != '')">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
                 <if test="(xbmc != null and xbmc != '')">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
                 <if test="(nls != null and nls != '')">nls = #{nls , jdbcType= NUMERIC },</if>

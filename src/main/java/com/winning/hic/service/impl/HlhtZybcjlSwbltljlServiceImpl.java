@@ -118,7 +118,7 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
                             obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
                             obj = this.getHlhtZybcjlSwbltljl(obj);
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-
+                            System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             if(obj != null){ //删除历史数据
                                 HlhtZybcjlSwbltljl oldSwbltl  = new HlhtZybcjlSwbltljl();
                                 oldSwbltl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
@@ -135,6 +135,18 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
                             obj.getMap().put("hisName",ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                             obj = this.commonQueryDao.selectInitHlhtZybcjlSwbltljl(obj);
                             obj = (HlhtZybcjlSwbltljl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
+                            String zcrxm = obj.getZcrxm();
+                            zcrxm = zcrxm.replace(" ","");
+                            zcrxm = zcrxm.replace("主任医师","");
+                            zcrxm = zcrxm.replace("主治医师","");
+                            obj.setZcrxm(zcrxm);
+                            obj.setZcrbm(zcrxm);
+                            String cjtlmd = obj.getCjtlmd();
+                            cjtlmd = cjtlmd.replace(" ","");
+                            cjtlmd = cjtlmd.replace("主任医师","");
+                            cjtlmd = cjtlmd.replace("主治医师","");
+                            obj.setCjtlmd(cjtlmd);
+                            obj.setTlrybm(cjtlmd);
                             this.createHlhtZybcjlSwbltljl(obj);
                             //插入日志
                             mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(

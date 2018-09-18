@@ -1,0 +1,328 @@
+<Model id="d99a4739-6f9f-4f59-aa81-d9b9b4c45442" name="死亡病例讨论记录(死亡病例讨论记录)" description="适用于浙江省中医院" text="死亡病例讨论记录"
+       nodetype="Model" canprint="True" printInOddPages="False" display="11```0`1" Version="233" titledisplay="1`0`1"
+       hospitalcoderange="10266" catalogcode="B-F240" illnesstypecode="FFFF" scalemodelxml="" modellogiccontent=""
+       indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass="" maxrefid="57"
+       RelateInstanceId="0">
+    <Ref id="55">
+        <node identity="4" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="0e04cc70-d1c0-4507-bf46-00c9aaab8452" nodetype="Embeded" nodelogiccontent="" name="日期(讨论日期)"
+              text="讨论日期" description="各项讨论记录的日期，可具体至秒。" otherid="D-82" display="11```0`1">
+            <node embededId="2" id="714cb062-b631-4ce6-9f8d-131db12ef039" nodetype="Object" nodelogiccontent=""
+                  name="讨论日期" text="讨论日期" description="1.543" otherid="E-15431" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="讨论日期"
+                      text="讨论时间" description="8.001" otherid="F-80010" atomtype="Time"
+                      value="636679008000000000`2018年07月23日0时00分"
+                      display="1111011`````yyyy年MM月dd日HH时mm分+Minute++(DTS: )``0" embededId="3" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="0b5ad94f-bdd6-4832-8bc8-d257d2a7fb4d" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(讨论日期)"
+          text="日期(讨论日期)" description="5.305" otherid="C-B1" display="20`讨论时间：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="55" nodetype="Embeded"/>
+    </node>
+    <node id="ed319f46-5fc5-460b-90a4-18878c537d85" nodetype="DynamicMoleNode" nodelogiccontent="" name="讨论地点"
+          text="讨论地点" otherid="C-1158" display="20`讨论地点：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="1" rtf="1" nodetype="Text"/>
+        <node text="7" rtf="7" nodetype="Text"/>
+        <node text="病区" rtf="\'b2\'a1\'c7\'f8" nodetype="Text"/>
+        <node text="示教室" rtf="\'ca\'be\'bd\'cc\'ca\'d2" nodetype="Text"/>
+    </node>
+    <Ref id="39">
+        <node identity="0" isfixed="False" spaceholder="30" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="b89d0396-9dc8-4da6-a546-e7ba091639a0" nodetype="Embeded" nodelogiccontent="" name="其他住院信息(参与病史讨论人员)"
+              text="其他住院信息(参与病史讨论人员)" description="包括主任、主治、住院医师及进修医师。" display="11```0`1">
+            <node embededId="0" id="eb6acfa2-1b48-41ad-8090-1c9df6b9f721" nodetype="Object" nodelogiccontent=""
+                  name="医师姓名" text="医师姓名" display="11```0`1">
+                <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="职工代码库"
+                      text="主持人" description="院内职工表。" atomtype="String" maxrequired="5" value="``" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="职工表///EmployeeBook//////" inputdirect="False"
+                      display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0" forbidDel="False"
+                      isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="58e85f19-4337-4870-adba-4999a2682a37" nodetype="DynamicMoleNode" nodelogiccontent="" name="主持人" text="主持人"
+          description="3.561" display="20`讨论主持人：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs="" allowUserDefine="False"
+          canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True" permittedDoctorGradeRange=""
+          useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="39" nodetype="Embeded"/>
+        <node text="陈申杰" rtf="\'b3\'c2\'c9\'ea\'bd\'dc" nodetype="Text"/>
+        <node text="主任" rtf="\'d6\'f7\'c8\'ce" nodetype="Text"/>
+        <node text="医师" rtf="\'d2\'bd\'ca\'a6" nodetype="Text"/>
+    </node>
+    <Ref id="25">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="b89d0396-9dc8-4da6-a546-e7ba091639a0" nodetype="Embeded" nodelogiccontent="" name="其他住院信息(参与病史讨论人员)"
+              text="其他住院信息(参与病史讨论人员)" description="包括主任、主治、住院医师及进修医师。" display="11```0`1">
+            <node embededId="0" id="eb6acfa2-1b48-41ad-8090-1c9df6b9f721" nodetype="Object" nodelogiccontent=""
+                  name="医师姓名" text="医师姓名" display="11```0`1">
+                <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="职工代码库"
+                      text="参加讨论人员及职称" description="院内职工表。" atomtype="String" maxrequired="10" value="``"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1///ysjbmc//"
+                      inputdirect="False" display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0"
+                      forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="bb20f2db-5f98-4b2f-9ff8-dd28a48a11b0" nodetype="DynamicMoleNode" nodelogiccontent="" name="参加讨论人员"
+          text="参加讨论人员" description="3.564" display="20`参加人员（姓名及职称）：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="25" nodetype="Embeded"/>
+        <node text="华军益主任医师、许逸飞"
+              rtf="\'bb\'aa\'be\'fc\'d2\'e6\'d6\'f7\'c8\'ce\'d2\'bd\'ca\'a6\'a1\'a2\'d0\'ed\'d2\'dd\'b7\'c9"
+              nodetype="Text"/>
+        <node text="主治" rtf="\'d6\'f7\'d6\'ce" nodetype="Text"/>
+        <node text="医师" rtf="\'d2\'bd\'ca\'a6" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="杨锦秀" rtf="\'d1\'ee\'bd\'f5\'d0\'e3" nodetype="Text"/>
+        <node text="主治" rtf="\'d6\'f7\'d6\'ce" nodetype="Text"/>
+        <node text="医师" rtf="\'d2\'bd\'ca\'a6" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="潘艳云" rtf="\'c5\'cb\'d1\'de\'d4\'c6" nodetype="Text"/>
+        <node text="主治" rtf="\'d6\'f7\'d6\'ce" nodetype="Text"/>
+        <node text="医师" rtf="\'d2\'bd\'ca\'a6" nodetype="Text"/>
+    </node>
+    <node id="a09c89e2-f409-4736-b97b-2c52c3124bfb" nodetype="DynamicMoleNode" nodelogiccontent="" name="病史概要"
+          text="病史概要" description="3.101" otherid="C-1151" display="20`病史摘要：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="患者" rtf="\'bb\'bc\'d5\'df" nodetype="Text"/>
+        <node text="因胸闷" rtf="\'d2\'f2\'d0\'d8\'c3\'c6" nodetype="Text"/>
+        <node text="气急" rtf="\'c6\'f8\'bc\'b1" nodetype="Text"/>
+        <node text="，年纪" rtf="\'a3\'ac\'c4\'ea\'bc\'cd" nodetype="Text"/>
+        <node text="较大" rtf="\'bd\'cf\'b4\'f3" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="心脏" rtf="\'d0\'c4\'d4\'e0" nodetype="Text"/>
+        <node text="基础" rtf="\'bb\'f9\'b4\'a1" nodetype="Text"/>
+        <node text="疾病" rtf="\'bc\'b2\'b2\'a1" nodetype="Text"/>
+        <node text="多" rtf="\'b6\'e0" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="转入" rtf="\'d7\'aa\'c8\'eb" nodetype="Text"/>
+        <node text="I" rtf="I" nodetype="Text"/>
+        <node text="C" rtf="C" nodetype="Text"/>
+        <node text="U" rtf="U" nodetype="Text"/>
+        <node text="。入" rtf="\'a1\'a3\'c8\'eb" nodetype="Text"/>
+        <node text="科后" rtf="\'bf\'c6\'ba\'f3" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="完善" rtf="\'cd\'ea\'c9\'c6" nodetype="Text"/>
+        <node text="相关" rtf="\'cf\'e0\'b9\'d8" nodetype="Text"/>
+        <node text="检查" rtf="\'bc\'ec\'b2\'e9" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="2018-07-16血常规+CRP检验报告：白细胞计数4.8*10^9/L，红细胞计数3.73*10^12/L↓，血红蛋白121g/L，血小板计数315*10^9/L，超敏C反应蛋白57mg/L↑。 "
+              rtf="2018-07-16\'D1\'AA\'B3\'A3\'B9\'E6+CRP\'BC\'EC\'D1\'E9\'B1\'A8\'B8\'E6\'A3\'BA\'B0\'D7\'CF\'B8\'B0\'FB\'BC\'C6\'CA\'FD4.8*10^9/L\'A3\'AC\'BA\'EC\'CF\'B8\'B0\'FB\'BC\'C6\'CA\'FD3.73*10^12/L\'A1\'FD\'A3\'AC\'D1\'AA\'BA\'EC\'B5\'B0\'B0\'D7121g/L\'A3\'AC\'D1\'AA\'D0\'A1\'B0\'E5\'BC\'C6\'CA\'FD315*10^9/L\'A3\'AC\'B3\'AC\'C3\'F4C\'B7\'B4\'D3\'A6\'B5\'B0\'B0\'D757mg/L\'A1\'FC\'A1\'A3 "
+              nodetype="Text"/>
+        <node text="血气分析检验报告：血液pH7.43，二氧化碳分压46.00mmHg，钠137.0mmol/L，钾3.70mmol/L，离子钙1.11mmol/L↓，全血乳酸1.20mmol/L，碳酸氢根离子30.50mmHg↑，剩余碱5.40mmHg↑。 "
+              rtf="\'d1\'aa\'c6\'f8\'b7\'d6\'ce\'f6\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'ba\'d1\'aa\'d2\'bapH7.43\'a3\'ac\'b6\'fe\'d1\'f5\'bb\'af\'cc\'bc\'b7\'d6\'d1\'b946.00mmHg\'a3\'ac\'c4\'c6137.0mmol/L\'a3\'ac\'bc\'d83.70mmol/L\'a3\'ac\'c0\'eb\'d7\'d3\'b8\'c61.11mmol/L\'a1\'fd\'a3\'ac\'c8\'ab\'d1\'aa\'c8\'e9\'cb\'e11.20mmol/L\'a3\'ac\'cc\'bc\'cb\'e1\'c7\'e2\'b8\'f9\'c0\'eb\'d7\'d330.50mmHg\'a1\'fc\'a3\'ac\'ca\'a3\'d3\'e0\'bc\'ee5.40mmHg\'a1\'fc\'a1\'a3 "
+              nodetype="Text"/>
+        <node text="凝血类检验报告：凝血酶原时间13.7秒，国际标准化比率1.10，纤维蛋白原3.6g/L，活化部分凝血活酶时间31.3秒，凝血酶时间17.4秒，D-二聚体7.91mg/L FEU↑。"
+              rtf="\'c4\'fd\'d1\'aa\'c0\'e0\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'ba\'c4\'fd\'d1\'aa\'c3\'b8\'d4\'ad\'ca\'b1\'bc\'e413.7\'c3\'eb\'a3\'ac\'b9\'fa\'bc\'ca\'b1\'ea\'d7\'bc\'bb\'af\'b1\'c8\'c2\'ca1.10\'a3\'ac\'cf\'cb\'ce\'ac\'b5\'b0\'b0\'d7\'d4\'ad3.6g/L\'a3\'ac\'bb\'ee\'bb\'af\'b2\'bf\'b7\'d6\'c4\'fd\'d1\'aa\'bb\'ee\'c3\'b8\'ca\'b1\'bc\'e431.3\'c3\'eb\'a3\'ac\'c4\'fd\'d1\'aa\'c3\'b8\'ca\'b1\'bc\'e417.4\'c3\'eb\'a3\'acD-\'b6\'fe\'be\'db\'cc\'e57.91mg/L FEU\'a1\'fc\'a1\'a3"
+              nodetype="Text"/>
+        <node text="B型利钠肽（BNP）检验报告：B型利钠肽（BNP）378.00Pg/ml↑。 "
+              rtf="B\'d0\'cd\'c0\'fb\'c4\'c6\'eb\'c4\'a3\'a8BNP\'a3\'a9\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'baB\'d0\'cd\'c0\'fb\'c4\'c6\'eb\'c4\'a3\'a8BNP\'a3\'a9378.00Pg/ml\'a1\'fc\'a1\'a3 "
+              nodetype="Text"/>
+        <node text="2018-07-16肌钙蛋白检验报告：肌钙蛋白-I0.08μg/L↑。"
+              rtf="2018-07-16\'bc\'a1\'b8\'c6\'b5\'b0\'b0\'d7\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'ba\'bc\'a1\'b8\'c6\'b5\'b0\'b0\'d7-I0.08\'a6\'ccg/L\'a1\'fc\'a1\'a3"
+              nodetype="Text"/>
+        <node text="心电图回报：1.心房颤动2.ST段改变3.T波改变"
+              rtf="\'d0\'c4\'b5\'e7\'cd\'bc\'bb\'d8\'b1\'a8\'a3\'ba1.\'d0\'c4\'b7\'bf\'b2\'fc\'b6\'af2.ST\'b6\'ce\'b8\'c4\'b1\'e43.T\'b2\'a8\'b8\'c4\'b1\'e4"
+              nodetype="Text"/>
+        <node text="。2018-07-18血常规+CRP检验报告：白细胞计数4.9*10^9/L，红细胞计数3.69*10^12/L↓，血红蛋白119g/L，血小板计数257*10^9/L，超敏C反应蛋白108mg/L↑。 2018-07-18肌钙蛋白检验报告：肌钙蛋白-I0.10μg/L↑。 2018-07-18生化(急诊)检验报告：葡萄糖5.96mmol/L，总蛋白51.3g/L↓，白蛋白32.3g/L↓，总胆红素31.2μmol/L↑，直接胆红素21.4μmol/L↑，乳酸脱氢酶275U/L↑，胆碱脂酶3964U/L↓。 2018-07-18B型利钠肽（BNP）检验报告：B型利钠肽（BNP）381.00Pg/ml↑。 2018-07-18血气分析检验报告：血液pH7.40，离子钙1.09mmol/L↓，全血乳酸1.80mmol/L，碳酸氢根离子29.70mmHg↑，剩余碱4.30mmHg↑。 2018-07-18凝血类检验报告：凝血酶原时间13.9秒，国际标准化比率1.11，纤维蛋白原4.0g/L，活化部分凝血活酶时间35.3秒，凝血酶时间17.1秒，D-二聚体2.95mg/L FEU↑。"
+              rtf="\'a1\'a32018-07-18\'d1\'aa\'b3\'a3\'b9\'e6+CRP\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'ba\'b0\'d7\'cf\'b8\'b0\'fb\'bc\'c6\'ca\'fd4.9*10^9/L\'a3\'ac\'ba\'ec\'cf\'b8\'b0\'fb\'bc\'c6\'ca\'fd3.69*10^12/L\'a1\'fd\'a3\'ac\'d1\'aa\'ba\'ec\'b5\'b0\'b0\'d7119g/L\'a3\'ac\'d1\'aa\'d0\'a1\'b0\'e5\'bc\'c6\'ca\'fd257*10^9/L\'a3\'ac\'b3\'ac\'c3\'f4C\'b7\'b4\'d3\'a6\'b5\'b0\'b0\'d7108mg/L\'a1\'fc\'a1\'a3 2018-07-18\'bc\'a1\'b8\'c6\'b5\'b0\'b0\'d7\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'ba\'bc\'a1\'b8\'c6\'b5\'b0\'b0\'d7-I0.10\'a6\'ccg/L\'a1\'fc\'a1\'a3 2018-07-18\'c9\'fa\'bb\'af(\'bc\'b1\'d5\'ef)\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'ba\'c6\'cf\'cc\'d1\'cc\'c75.96mmol/L\'a3\'ac\'d7\'dc\'b5\'b0\'b0\'d751.3g/L\'a1\'fd\'a3\'ac\'b0\'d7\'b5\'b0\'b0\'d732.3g/L\'a1\'fd\'a3\'ac\'d7\'dc\'b5\'a8\'ba\'ec\'cb\'d831.2\'a6\'ccmol/L\'a1\'fc\'a3\'ac\'d6\'b1\'bd\'d3\'b5\'a8\'ba\'ec\'cb\'d821.4\'a6\'ccmol/L\'a1\'fc\'a3\'ac\'c8\'e9\'cb\'e1\'cd\'d1\'c7\'e2\'c3\'b8275U/L\'a1\'fc\'a3\'ac\'b5\'a8\'bc\'ee\'d6\'ac\'c3\'b83964U/L\'a1\'fd\'a1\'a3 2018-07-18B\'d0\'cd\'c0\'fb\'c4\'c6\'eb\'c4\'a3\'a8BNP\'a3\'a9\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'baB\'d0\'cd\'c0\'fb\'c4\'c6\'eb\'c4\'a3\'a8BNP\'a3\'a9381.00Pg/ml\'a1\'fc\'a1\'a3 2018-07-18\'d1\'aa\'c6\'f8\'b7\'d6\'ce\'f6\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'ba\'d1\'aa\'d2\'bapH7.40\'a3\'ac\'c0\'eb\'d7\'d3\'b8\'c61.09mmol/L\'a1\'fd\'a3\'ac\'c8\'ab\'d1\'aa\'c8\'e9\'cb\'e11.80mmol/L\'a3\'ac\'cc\'bc\'cb\'e1\'c7\'e2\'b8\'f9\'c0\'eb\'d7\'d329.70mmHg\'a1\'fc\'a3\'ac\'ca\'a3\'d3\'e0\'bc\'ee4.30mmHg\'a1\'fc\'a1\'a3 2018-07-18\'c4\'fd\'d1\'aa\'c0\'e0\'bc\'ec\'d1\'e9\'b1\'a8\'b8\'e6\'a3\'ba\'c4\'fd\'d1\'aa\'c3\'b8\'d4\'ad\'ca\'b1\'bc\'e413.9\'c3\'eb\'a3\'ac\'b9\'fa\'bc\'ca\'b1\'ea\'d7\'bc\'bb\'af\'b1\'c8\'c2\'ca1.11\'a3\'ac\'cf\'cb\'ce\'ac\'b5\'b0\'b0\'d7\'d4\'ad4.0g/L\'a3\'ac\'bb\'ee\'bb\'af\'b2\'bf\'b7\'d6\'c4\'fd\'d1\'aa\'bb\'ee\'c3\'b8\'ca\'b1\'bc\'e435.3\'c3\'eb\'a3\'ac\'c4\'fd\'d1\'aa\'c3\'b8\'ca\'b1\'bc\'e417.1\'c3\'eb\'a3\'acD-\'b6\'fe\'be\'db\'cc\'e52.95mg/L FEU\'a1\'fc\'a1\'a3"
+              nodetype="Text"/>
+        <node text="治疗上" rtf="\'d6\'ce\'c1\'c6\'c9\'cf" nodetype="Text"/>
+        <node text="予头孢唑肟钠(益保世灵)针2.25g静滴 q12h 抗感染 ，(申捷)单唾液酸四己糖神经节苷脂针60mg静滴"
+              rtf="\'d3\'e8\'cd\'b7\'e6\'df\'df\'f2\'eb\'bf\'c4\'c6(\'d2\'e6\'b1\'a3\'ca\'c0\'c1\'e9)\'d5\'eb2.25g\'be\'b2\'b5\'ce q12h \'bf\'b9\'b8\'d0\'c8\'be \'a3\'ac(\'c9\'ea\'bd\'dd)\'b5\'a5\'cd\'d9\'d2\'ba\'cb\'e1\'cb\'c4\'bc\'ba\'cc\'c7\'c9\'f1\'be\'ad\'bd\'da\'dc\'d5\'d6\'ac\'d5\'eb60mg\'be\'b2\'b5\'ce"
+              nodetype="Text"/>
+        <node text=" qd 营养神经，溴己新(伏枝)冻干粉针8mg静滴 q12h 促排痰，"
+              rtf=" qd \'d3\'aa\'d1\'f8\'c9\'f1\'be\'ad\'a3\'ac\'e4\'e5\'bc\'ba\'d0\'c2(\'b7\'fc\'d6\'a6)\'b6\'b3\'b8\'c9\'b7\'db\'d5\'eb8mg\'be\'b2\'b5\'ce q12h \'b4\'d9\'c5\'c5\'cc\'b5\'a3\'ac"
+              nodetype="Text"/>
+        <node text="地高辛片0.125mg口服 强心，培哚普利(雅施达)片4mg口服 降压，呋塞米(速尿)片20mg口服，"
+              rtf="\'b5\'d8\'b8\'df\'d0\'c1\'c6\'ac0.125mg\'bf\'da\'b7\'fe \'c7\'bf\'d0\'c4\'a3\'ac\'c5\'e0\'df\'e1\'c6\'d5\'c0\'fb(\'d1\'c5\'ca\'a9\'b4\'ef)\'c6\'ac4mg\'bf\'da\'b7\'fe \'bd\'b5\'d1\'b9\'a3\'ac\'df\'bb\'c8\'fb\'c3\'d7(\'cb\'d9\'c4\'f2)\'c6\'ac20mg\'bf\'da\'b7\'fe\'a3\'ac"
+              nodetype="Text"/>
+        <node text="螺内酯(安体舒通)片20mg口服"
+              rtf="\'c2\'dd\'c4\'da\'f5\'a5(\'b0\'b2\'cc\'e5\'ca\'e6\'cd\'a8)\'c6\'ac20mg\'bf\'da\'b7\'fe"
+              nodetype="Text"/>
+        <node text=" 利尿等对症治疗。" rtf=" \'c0\'fb\'c4\'f2\'b5\'c8\'b6\'d4\'d6\'a2\'d6\'ce\'c1\'c6\'a1\'a3" nodetype="Text"/>
+        <node text="今8时左右患者出现神志不清，呼吸急促，四肢发冷，心电监护示：P 116次/分，R 46次/分，BP 127/73次/分，SaO2 71%。告知家属，家属表示拒绝心肺复苏、有创抢救及静脉用药。患者心率、呼吸、血压、血氧饱和度进行性下降，至8：24患者血压测不出，血氧饱和度测不出。08:28患者心跳、呼吸停止，瞳孔散大至边缘，心电图呈一直线，宣告临床死亡。"
+              rtf="\'bd\'f18\'ca\'b1\'d7\'f3\'d3\'d2\'bb\'bc\'d5\'df\'b3\'f6\'cf\'d6\'c9\'f1\'d6\'be\'b2\'bb\'c7\'e5\'a3\'ac\'ba\'f4\'ce\'fc\'bc\'b1\'b4\'d9\'a3\'ac\'cb\'c4\'d6\'ab\'b7\'a2\'c0\'e4\'a3\'ac\'d0\'c4\'b5\'e7\'bc\'e0\'bb\'a4\'ca\'be\'a3\'baP 116\'b4\'ce/\'b7\'d6\'a3\'acR 46\'b4\'ce/\'b7\'d6\'a3\'acBP 127/73\'b4\'ce/\'b7\'d6\'a3\'acSaO2 71%\'a1\'a3\'b8\'e6\'d6\'aa\'bc\'d2\'ca\'f4\'a3\'ac\'bc\'d2\'ca\'f4\'b1\'ed\'ca\'be\'be\'dc\'be\'f8\'d0\'c4\'b7\'ce\'b8\'b4\'cb\'d5\'a1\'a2\'d3\'d0\'b4\'b4\'c7\'c0\'be\'c8\'bc\'b0\'be\'b2\'c2\'f6\'d3\'c3\'d2\'a9\'a1\'a3\'bb\'bc\'d5\'df\'d0\'c4\'c2\'ca\'a1\'a2\'ba\'f4\'ce\'fc\'a1\'a2\'d1\'aa\'d1\'b9\'a1\'a2\'d1\'aa\'d1\'f5\'b1\'a5\'ba\'cd\'b6\'c8\'bd\'f8\'d0\'d0\'d0\'d4\'cf\'c2\'bd\'b5\'a3\'ac\'d6\'c18\'a3\'ba24\'bb\'bc\'d5\'df\'d1\'aa\'d1\'b9\'b2\'e2\'b2\'bb\'b3\'f6\'a3\'ac\'d1\'aa\'d1\'f5\'b1\'a5\'ba\'cd\'b6\'c8\'b2\'e2\'b2\'bb\'b3\'f6\'a1\'a308:28\'bb\'bc\'d5\'df\'d0\'c4\'cc\'f8\'a1\'a2\'ba\'f4\'ce\'fc\'cd\'a3\'d6\'b9\'a3\'ac\'cd\'ab\'bf\'d7\'c9\'a2\'b4\'f3\'d6\'c1\'b1\'df\'d4\'b5\'a3\'ac\'d0\'c4\'b5\'e7\'cd\'bc\'b3\'ca\'d2\'bb\'d6\'b1\'cf\'df\'a3\'ac\'d0\'fb\'b8\'e6\'c1\'d9\'b4\'b2\'cb\'c0\'cd\'f6\'a1\'a3"
+              nodetype="Text"/>
+    </node>
+    <node id="224d01b1-4fb2-4723-aba6-2b80e3f4c2ea" nodetype="DynamicMoleNode" nodelogiccontent="" name="病例讨论记录(讨论内容)"
+          text="病例讨论记录(讨论内容)" description="5.311" otherid="C-1158" display="20`讨论意见：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="潘艳云" rtf="\'c5\'cb\'d1\'de\'d4\'c6" nodetype="Text"/>
+        <node text="主治" rtf="\'d6\'f7\'d6\'ce" nodetype="Text"/>
+        <node text="医师" rtf="\'d2\'bd\'ca\'a6" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node text="患者" rtf="\'bb\'bc\'d5\'df" nodetype="Text"/>
+        <node text="有" rtf="\'d3\'d0" nodetype="Text"/>
+        <node text="心衰" rtf="\'d0\'c4\'cb\'a5" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="慢性" rtf="\'c2\'fd\'d0\'d4" nodetype="Text"/>
+        <node text="硬膜下" rtf="\'d3\'b2\'c4\'a4\'cf\'c2" nodetype="Text"/>
+        <node text="血肿" rtf="\'d1\'aa\'d6\'d7" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="脑梗死" rtf="\'c4\'d4\'b9\'a3\'cb\'c0" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="冠心病" rtf="\'b9\'da\'d0\'c4\'b2\'a1" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="房颤" rtf="\'b7\'bf\'b2\'fc" nodetype="Text"/>
+        <node text="、" rtf="\'a1\'a2" nodetype="Text"/>
+        <node text="高血压" rtf="\'b8\'df\'d1\'aa\'d1\'b9" nodetype="Text"/>
+        <node text="病史" rtf="\'b2\'a1\'ca\'b7" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="入院" rtf="\'c8\'eb\'d4\'ba" nodetype="Text"/>
+        <node text="时" rtf="\'ca\'b1" nodetype="Text"/>
+        <node text="一般" rtf="\'d2\'bb\'b0\'e3" nodetype="Text"/>
+        <node text="情况" rtf="\'c7\'e9\'bf\'f6" nodetype="Text"/>
+        <node text="较差" rtf="\'bd\'cf\'b2\'ee" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="脑外科" rtf="\'c4\'d4\'cd\'e2\'bf\'c6" nodetype="Text"/>
+        <node text="全麻下行左" rtf="\'c8\'ab\'c2\'e9\'cf\'c2\'d0\'d0\'d7\'f3" nodetype="Text"/>
+        <node text="颞额" rtf="\'f2\'a8\'b6\'ee" nodetype="Text"/>
+        <node text="枕" rtf="\'d5\'ed" nodetype="Text"/>
+        <node text="钻孔" rtf="\'d7\'ea\'bf\'d7" nodetype="Text"/>
+        <node text="外引流术" rtf="\'cd\'e2\'d2\'fd\'c1\'f7\'ca\'f5" nodetype="Text"/>
+        <node text="，术后转" rtf="\'a3\'ac\'ca\'f5\'ba\'f3\'d7\'aa" nodetype="Text"/>
+        <node text="ICU，" rtf="ICU\'a3\'ac" nodetype="Text"/>
+        <node text="曾" rtf="\'d4\'f8" nodetype="Text"/>
+        <node text="于" rtf="\'d3\'da" nodetype="Text"/>
+        <node text="I" rtf="I" nodetype="Text"/>
+        <node text="C" rtf="C" nodetype="Text"/>
+        <node text="U" rtf="U" nodetype="Text"/>
+        <node text="转出" rtf="\'d7\'aa\'b3\'f6" nodetype="Text"/>
+        <node text="至" rtf="\'d6\'c1" nodetype="Text"/>
+        <node text="脑" rtf="\'c4\'d4" nodetype="Text"/>
+        <node text="外科" rtf="\'cd\'e2\'bf\'c6" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="因" rtf="\'d2\'f2" nodetype="Text"/>
+        <node text="一般情况较差，合并肺部感染，导致心衰"
+              rtf="\'d2\'bb\'b0\'e3\'c7\'e9\'bf\'f6\'bd\'cf\'b2\'ee\'a3\'ac\'ba\'cf\'b2\'a2\'b7\'ce\'b2\'bf\'b8\'d0\'c8\'be\'a3\'ac\'b5\'bc\'d6\'c2\'d0\'c4\'cb\'a5"
+              nodetype="Text"/>
+        <node text="频发" rtf="\'c6\'b5\'b7\'a2" nodetype="Text"/>
+        <node text="，胸闷" rtf="\'a3\'ac\'d0\'d8\'c3\'c6" nodetype="Text"/>
+        <node text="气急" rtf="\'c6\'f8\'bc\'b1" nodetype="Text"/>
+        <node text="明显转" rtf="\'c3\'f7\'cf\'d4\'d7\'aa" nodetype="Text"/>
+        <node text="回" rtf="\'bb\'d8" nodetype="Text"/>
+        <node text="I" rtf="I" nodetype="Text"/>
+        <node text="C" rtf="C" nodetype="Text"/>
+        <node text="U" rtf="U" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="查肺部CT：肺炎，两侧胸腔积液伴两肺下叶膨胀不良，心包积液。本次"
+              rtf="\'b2\'e9\'b7\'ce\'b2\'bfCT\'a3\'ba\'b7\'ce\'d1\'d7\'a3\'ac\'c1\'bd\'b2\'e0\'d0\'d8\'c7\'bb\'bb\'fd\'d2\'ba\'b0\'e9\'c1\'bd\'b7\'ce\'cf\'c2\'d2\'b6\'c5\'f2\'d5\'cd\'b2\'bb\'c1\'bc\'a3\'ac\'d0\'c4\'b0\'fc\'bb\'fd\'d2\'ba\'a1\'a3\'b1\'be\'b4\'ce"
+              nodetype="Text"/>
+        <node text="死亡" rtf="\'cb\'c0\'cd\'f6" nodetype="Text"/>
+        <node text="原因" rtf="\'d4\'ad\'d2\'f2" nodetype="Text"/>
+        <node text="需" rtf="\'d0\'e8" nodetype="Text"/>
+        <node text="主要考虑" rtf="\'d6\'f7\'d2\'aa\'bf\'bc\'c2\'c7" nodetype="Text"/>
+        <node text="心衰" rtf="\'d0\'c4\'cb\'a5" nodetype="Text"/>
+        <node text="。" rtf="\'a1\'a3" nodetype="Text"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="华军益" rtf="\'bb\'aa\'be\'fc\'d2\'e6" nodetype="Text"/>
+        <node text="主任" rtf="\'d6\'f7\'c8\'ce" nodetype="Text"/>
+        <node text="医师" rtf="\'d2\'bd\'ca\'a6" nodetype="Text"/>
+        <node text="示" rtf="\'ca\'be" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node text="患者" rtf="\'bb\'bc\'d5\'df" nodetype="Text"/>
+        <node text="年纪" rtf="\'c4\'ea\'bc\'cd" nodetype="Text"/>
+        <node text="较大" rtf="\'bd\'cf\'b4\'f3" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="一般情况较差。此次" rtf="\'d2\'bb\'b0\'e3\'c7\'e9\'bf\'f6\'bd\'cf\'b2\'ee\'a1\'a3\'b4\'cb\'b4\'ce"
+              nodetype="Text"/>
+        <node text="入科" rtf="\'c8\'eb\'bf\'c6" nodetype="Text"/>
+        <node text="仍有" rtf="\'c8\'d4\'d3\'d0" nodetype="Text"/>
+        <node text="间断发作咳嗽咳痰" rtf="\'bc\'e4\'b6\'cf\'b7\'a2\'d7\'f7\'bf\'c8\'cb\'d4\'bf\'c8\'cc\'b5" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="肺部感染未完全控制。胸闷"
+              rtf="\'b7\'ce\'b2\'bf\'b8\'d0\'c8\'be\'ce\'b4\'cd\'ea\'c8\'ab\'bf\'d8\'d6\'c6\'a1\'a3\'d0\'d8\'c3\'c6"
+              nodetype="Text"/>
+        <node text="气急" rtf="\'c6\'f8\'bc\'b1" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="夜间" rtf="\'d2\'b9\'bc\'e4" nodetype="Text"/>
+        <node text="不能" rtf="\'b2\'bb\'c4\'dc" nodetype="Text"/>
+        <node text="平卧" rtf="\'c6\'bd\'ce\'d4" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="BNP升高，合并房颤，心率持续偏快，心功能较差。双下肢"
+              rtf="BNP\'c9\'fd\'b8\'df\'a3\'ac\'ba\'cf\'b2\'a2\'b7\'bf\'b2\'fc\'a3\'ac\'d0\'c4\'c2\'ca\'b3\'d6\'d0\'f8\'c6\'ab\'bf\'ec\'a3\'ac\'d0\'c4\'b9\'a6\'c4\'dc\'bd\'cf\'b2\'ee\'a1\'a3\'cb\'ab\'cf\'c2\'d6\'ab"
+              nodetype="Text"/>
+        <node text="肿胀" rtf="\'d6\'d7\'d5\'cd" nodetype="Text"/>
+        <node text="，" rtf="\'a3\'ac" nodetype="Text"/>
+        <node text="D-D偏高，血栓" rtf="D-D\'c6\'ab\'b8\'df\'a3\'ac\'d1\'aa\'cb\'a8" nodetype="Text"/>
+        <node text="不能" rtf="\'b2\'bb\'c4\'dc" nodetype="Text"/>
+        <node text="排除" rtf="\'c5\'c5\'b3\'fd" nodetype="Text"/>
+        <node text="。" rtf="\'a1\'a3" nodetype="Text"/>
+        <node text="头皮" rtf="\'cd\'b7\'c6\'a4" nodetype="Text"/>
+        <node text="血肿" rtf="\'d1\'aa\'d6\'d7" nodetype="Text"/>
+        <node text="尚未" rtf="\'c9\'d0\'ce\'b4" nodetype="Text"/>
+        <node text="完全" rtf="\'cd\'ea\'c8\'ab" nodetype="Text"/>
+        <node text="吸收" rtf="\'ce\'fc\'ca\'d5" nodetype="Text"/>
+        <node text="。" rtf="\'a1\'a3" nodetype="Text"/>
+        <node text="心衰急性发作，患者" rtf="\'d0\'c4\'cb\'a5\'bc\'b1\'d0\'d4\'b7\'a2\'d7\'f7\'a3\'ac\'bb\'bc\'d5\'df"
+              nodetype="Text"/>
+        <node text="家属" rtf="\'bc\'d2\'ca\'f4" nodetype="Text"/>
+        <node text="放弃" rtf="\'b7\'c5\'c6\'fa" nodetype="Text"/>
+        <node text="抢救" rtf="\'c7\'c0\'be\'c8" nodetype="Text"/>
+        <node text="。" rtf="\'a1\'a3" nodetype="Text"/>
+    </node>
+    <node id="1bfe69a3-bb80-4185-a4fa-5ff2a4550ff1" nodetype="DynamicMoleNode" nodelogiccontent="" name="主持人总结"
+          text="主持人总结" otherid="C-1158" display="20`主持人总结：`&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="患者年事已高，一般情况较差，合并多脏器功能衰竭，治疗过程中方案正确，家属放弃抢救，最终死亡原因是心跳、呼吸骤停。&#xA;"
+              rtf="\'bb\'bc\'d5\'df\'c4\'ea\'ca\'c2\'d2\'d1\'b8\'df\'a3\'ac\'d2\'bb\'b0\'e3\'c7\'e9\'bf\'f6\'bd\'cf\'b2\'ee\'a3\'ac\'ba\'cf\'b2\'a2\'b6\'e0\'d4\'e0\'c6\'f7\'b9\'a6\'c4\'dc\'cb\'a5\'bd\'df\'a3\'ac\'d6\'ce\'c1\'c6\'b9\'fd\'b3\'cc\'d6\'d0\'b7\'bd\'b0\'b8\'d5\'fd\'c8\'b7\'a3\'ac\'bc\'d2\'ca\'f4\'b7\'c5\'c6\'fa\'c7\'c0\'be\'c8\'a3\'ac\'d7\'ee\'d6\'d5\'cb\'c0\'cd\'f6\'d4\'ad\'d2\'f2\'ca\'c7\'d0\'c4\'cc\'f8\'a1\'a2\'ba\'f4\'ce\'fc\'d6\'e8\'cd\'a3\'a1\'a3\par&#xD;&#xA;"
+              nodetype="Text"/>
+    </node>
+    <Ref id="56">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
+              description="病史记录者签名" display="11```0`1">
+            <node embededId="0" id="a6d9fe14-c345-471f-8eb4-2cc0a642e6bf" nodetype="Object" nodelogiccontent=""
+                  name="审核医师" text="审核医师" description="0.230" display="11```0`1">
+                <node id="f98b67e3-e5ca-43d0-a9f3-8a958758f010" nodetype="AtomNode" nodelogiccontent="" name="审核医师"
+                      readonly="True" text="主持人" description="院内职工表。" atomtype="String" value="``" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1" inputdirect="False"
+                      display="1110111````/```0" embededId="12" autoeditnext="True" spaceholder="0" forbidDel="True"
+                      isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="57">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
+              description="病史记录者签名" display="11```0`1">
+            <node embededId="0" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
+                  name="医师签名" text="医师签名" display="11```0`1">
+                <node id="769ca781-6e6c-4eba-8e8e-2e17d78001d7" nodetype="AtomNode" nodelogiccontent="" name="普通医师"
+                      readonly="True" text="记录者" description="院内职工表。" atomtype="String" value="5182`许逸飞`5182"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///科室代码//@当前科室///"
+                      inputdirect="False" display="1111111```````0" embededId="6" autoeditnext="True" spaceholder="0"
+                      forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="581f3027-3a60-4e0b-9a82-c2d2dee31b73" nodetype="DynamicMoleNode" nodelogiccontent="" name="医师签名"
+          text="医师签名" description="3.571" otherid="C-D6"
+          display="20`                                                    主持人/记录者：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="56" nodetype="Embeded"/>
+        <node refid="57" nodetype="Embeded"/>
+        <node text="  " rtf="  " nodetype="Text"/>
+    </node>
+</Model>

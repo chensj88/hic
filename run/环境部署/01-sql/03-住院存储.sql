@@ -672,6 +672,7 @@ WHERE  A.zljgdm ='1';
   UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM CIS_HLHT..HLHT_RYJL_RCYJL A
    LEFT JOIN (
     SELECT CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '2'
+           WHEN A.cszhzgxdm IN ('本人','户主') THEN '0'
            WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
            WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
            WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
@@ -679,6 +680,7 @@ WHERE  A.zljgdm ='1';
            WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
            else '8' end cszhzgxdm,
            CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
+           WHEN A.cszhzgxdm IN ('本人','户主') THEN '本人或户主'
            WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
            WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
            WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
@@ -692,6 +694,23 @@ WHERE  A.zljgdm ='1';
   UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM CIS_HLHT..HLHT_RYJL_RCYJL A,CIS_HLHT.dbo.HLHT_RYJL_JBXX C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA'
   --症状描述
    UPDATE A SET A.zzms =A.xbs   FROM CIS_HLHT..HLHT_RYJL_RCYJL A where CONVERT(varchar,A.zzms) = 'NA'
+
+   --主任医师工号
+   UPDATE A SET A.zrysbm =
+    CASE WHEN B.ZRYSDM IS NULL or B.ZRYSDM  = '' THEN C.ZRYS WHEN B.ZRYSDM IS NOT NULL or B.ZRYSDM  != '' THEN B.ZRYSDM ELSE 'NA' END
+    FROM CIS_HLHT..HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH
+    LEFT JOIN CISDB.dbo.EMR_BASYK C on B.EMRXH = C.SYXH
+    LEFT JOIN CISDB.dbo.SYS_ZGDMK D ON C.ZRYS =D.ID
+    WHERE A.zrysbm ='NA';
+   --主任医师签名
+     UPDATE A SET A.zrysqm = CASE WHEN B.ZRYSXM IS NULL or B.ZRYSXM  = '' THEN D.NAME WHEN B.ZRYSXM IS NOT NULL or B.ZRYSXM  != '' THEN B.ZRYSXM ELSE 'NA' END
+     FROM CIS_HLHT..HLHT_RYJL_RCYJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH
+     LEFT JOIN CISDB.dbo.EMR_BASYK C on B.EMRXH = C.SYXH
+     LEFT JOIN CISDB.dbo.SYS_ZGDMK D ON C.ZRYS =D.ID
+     WHERE A.zrysqm ='NA' or  A.zrysqm = ''
+   --职业类别
+   UPDATE A SET A.zylbdm =  '90' FROM CIS_HLHT..HLHT_RYJL_RCYJL A  WHERE A.zylbdm IS NULL
+   UPDATE A SET A.zylbmc = '其他' FROM CIS_HLHT..HLHT_RYJL_RCYJL A  WHERE A.zylbmc IS NULL
 --24小时内入院死亡记录
   --陈述内容可靠标志
   UPDATE A SET A.csnrbz = 'T'   FROM CIS_HLHT..HLHT_RYJL_RYSWJL A
@@ -699,19 +718,21 @@ WHERE  A.zljgdm ='1';
   UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM CIS_HLHT..HLHT_RYJL_RYSWJL A
     LEFT JOIN (
                 SELECT CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '2'
-                       WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
-                       WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
-                       WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
-                       WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '6'
-                       WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
-                       else '8' end cszhzgxdm,
-                       CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
-                       WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
-                       WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
-                       WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
-                       WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
-                       WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
-                       else '其他' end cszhzgxmc,A.jzlsh
+                 WHEN A.cszhzgxdm IN ('本人','户主') THEN '0'
+                 WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
+                 WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
+                 WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
+                 WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '6'
+                 WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
+                 else '8' end cszhzgxdm,
+                 CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
+                 WHEN A.cszhzgxdm IN ('本人','户主') THEN '本人或户主'
+                 WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
+                 WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
+                 WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
+                 WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
+                 WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
+                 else '其他' end cszhzgxmc,A.jzlsh
                 FROM CIS_HLHT..HLHT_RYJL_RYSWJL A) T ON A.jzlsh =T.jzlsh
   --中医“四诊”观察结果
   UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM CIS_HLHT..HLHT_RYJL_RYSWJL A,CIS_HLHT.dbo.HLHT_RYJL_JBXX C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
