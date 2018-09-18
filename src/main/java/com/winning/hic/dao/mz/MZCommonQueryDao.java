@@ -35,4 +35,18 @@ public interface MZCommonQueryDao {
      * @return
      */
     List<HlhtMjzcfXycf> selectInitHlhtMjzcfXycf(HlhtMjzcfXycf obj);
+
+    /**
+     * 卫生事件
+     * @param obj
+     * @return
+     */
+    void insertHlhtBlgyWssjzyAll(HlhtBlgyWssjzy wssjzy);
+
+    /**
+     * 门急诊病历记录表
+     * @param obj
+     * @return
+     */
+    HlhtMjzblMjzbl selectInitialHlhtMjzblMjzbl(HlhtMjzblMjzbl entity);
 }

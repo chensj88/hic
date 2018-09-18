@@ -4,7 +4,6 @@ import com.winning.hic.model.*;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -282,12 +281,6 @@ public interface CommonQueryDao {
      * @return
      */
     HlhtZzyjlZzyjl selectInitialHlhtZzyjlZzyjl(HlhtZzyjlZzyjl entity);
-    /**
-     * 门急诊病历记录表
-     * @param obj
-     * @return
-     */
-    HlhtMjzblMjzbl selectInitialHlhtMjzblMjzbl(HlhtMjzblMjzbl entity);
 
     /**
      * 剖宫产记录表
@@ -296,5 +289,4 @@ public interface CommonQueryDao {
      */
     HlhtZcjlPgc selectInitialHlhtZcjlPgc(HlhtZcjlPgc entity);
 
-    void insertHlhtBlgyWssjzyAll(HlhtBlgyWssjzy wssjzy);
 }

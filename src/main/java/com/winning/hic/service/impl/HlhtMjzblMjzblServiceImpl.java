@@ -2,10 +2,12 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
-import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
-import com.winning.hic.dao.data.*;
 import com.winning.hic.dao.data.HlhtMjzblMjzblDao;
+import com.winning.hic.dao.data.MbzDataListSetDao;
+import com.winning.hic.dao.data.MbzDataSetDao;
+import com.winning.hic.dao.data.MbzLoadDataInfoDao;
+import com.winning.hic.dao.mz.MZCommonQueryDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtMjzblMjzblService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -43,7 +45,7 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
     private EmrQtbljlkDao emrQtbljlkDao;
 
     @Autowired
-    private CommonQueryDao commonQueryDao;
+    private MZCommonQueryDao mzCommonQueryDao;
 
     @Autowired
     private MbzDataSetService mbzDataSetService;
@@ -132,8 +134,7 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
                         }
                         HlhtMjzblMjzbl entity = new HlhtMjzblMjzbl();
                         entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                        entity = this.commonQueryDao.selectInitialHlhtMjzblMjzbl(entity);
-                        System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                        entity = this.mzCommonQueryDao.selectInitialHlhtMjzblMjzbl(entity);
                         Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                         try {
                             entity = (HlhtMjzblMjzbl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);

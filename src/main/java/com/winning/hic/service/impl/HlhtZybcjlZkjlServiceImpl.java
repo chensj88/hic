@@ -155,6 +155,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             }
                             HlhtZybcjlZkjl entity = new HlhtZybcjlZkjl();
                             entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
+                            entity.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                             entity = this.commonQueryDao.selectInitialHlhtZybcjlZkjl(entity);
                             Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                             try {
