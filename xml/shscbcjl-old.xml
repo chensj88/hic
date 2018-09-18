@@ -1,0 +1,88 @@
+<Model id="7ce3c1ce-af96-4052-8238-09e507024573" name="术后首次病程记录" description="适用于浙江省中医院" text="术后首次病程记录"
+       nodetype="Model" canprint="True" printInOddPages="False"
+       display="01`                                      首次病程记录`&#xD;&#xA;`0`1" Version="503" titledisplay="1`0`1"
+       hospitalcoderange="10266" catalogcode="B-76" illnesstypecode="FFFF" scalemodelxml="" modellogiccontent=""
+       indentEnabled="False" indentLength="0" isReview="False" isform="False" formclass="" maxrefid="211"
+       RelateInstanceId="0">
+    <Ref id="198">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="00000000-0000-0000-0002-000000000001" nodetype="Embeded" nodelogiccontent="" name="病程日期" text="病程日期"
+              description="病程日期" display="11```0`1">
+            <node embededId="0" id="00000000-0000-0000-0003-000000000001" nodetype="Object" nodelogiccontent=""
+                  name="病程日期" text="病程日期" description="病程日期" display="11```0`1">
+                <node id="00000000-0000-0000-0004-000000000001" nodetype="AtomNode" nodelogiccontent="" name="病程日期"
+                      visiable="False" text="病程日期" description="病程日期" atomtype="Time"
+                      value="636687527400000000`2018-08-01 20:39" defaultvalue="632761381637031250`2006-2-21 17:02:43"
+                      display="1111111`````yyyy-MM-dd HH:mm+Minute+-+(DTS: )``0" embededId="1" autoeditnext="True"
+                      spaceholder="0" forbidDel="False" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="00000000-0000-0000-0001-000000000001" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(病程日期)"
+          visiable="False" text="病程日期" description="病程日期" otherid="C-B1" display="21``&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="198" nodetype="Embeded"/>
+    </node>
+    <node id="e12b3485-d630-4879-a75a-46145a9404e2" nodetype="DynamicMoleNode" nodelogiccontent="" name="术后病程记录"
+          text="术后病程记录" description="5.705" otherid="C-1151" display="20`&#xD;&#xA;`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="False" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node text="    患者，男性，37岁，今日在腰麻下行"
+              rtf="    \'bb\'bc\'d5\'df\'a3\'ac\'c4\'d0\'d0\'d4\'a3\'ac37\'cb\'ea\'a3\'ac\'bd\'f1\'c8\'d5\'d4\'da\'d1\'fc\'c2\'e9\'cf\'c2\'d0\'d0"
+              nodetype="Text"/>
+        <node text="肛瘘切除术+内括约肌" rtf="\'b8\'d8\'f0\'fc\'c7\'d0\'b3\'fd\'ca\'f5+\'c4\'da\'c0\'a8\'d4\'bc\'bc\'a1"
+              nodetype="Text"/>
+        <node text="后正中部分切开术+袋形缝合术，术中检查：肛门两侧及会阴部可见陈旧性手术瘢痕，肛门后位距肛缘约3cm可见一溃口，挤压溢出少量白粘脓液，皮下可及条状肿物通向肛内，肛内未及其它肿块，退出指套无染血，肛门镜检查未见肿块及出血。术中"
+              rtf="\'ba\'f3\'d5\'fd\'d6\'d0\'b2\'bf\'b7\'d6\'c7\'d0\'bf\'aa\'ca\'f5+\'b4\'fc\'d0\'ce\'b7\'ec\'ba\'cf\'ca\'f5\'a3\'ac\'ca\'f5\'d6\'d0\'bc\'ec\'b2\'e9\'a3\'ba\'b8\'d8\'c3\'c5\'c1\'bd\'b2\'e0\'bc\'b0\'bb\'e1\'d2\'f5\'b2\'bf\'bf\'c9\'bc\'fb\'b3\'c2\'be\'c9\'d0\'d4\'ca\'d6\'ca\'f5\'f1\'a3\'ba\'db\'a3\'ac\'b8\'d8\'c3\'c5\'ba\'f3\'ce\'bb\'be\'e0\'b8\'d8\'d4\'b5\'d4\'bc3cm\'bf\'c9\'bc\'fb\'d2\'bb\'c0\'a3\'bf\'da\'a3\'ac\'bc\'b7\'d1\'b9\'d2\'e7\'b3\'f6\'c9\'d9\'c1\'bf\'b0\'d7\'d5\'b3\'c5\'a7\'d2\'ba\'a3\'ac\'c6\'a4\'cf\'c2\'bf\'c9\'bc\'b0\'cc\'f5\'d7\'b4\'d6\'d7\'ce\'ef\'cd\'a8\'cf\'f2\'b8\'d8\'c4\'da\'a3\'ac\'b8\'d8\'c4\'da\'ce\'b4\'bc\'b0\'c6\'e4\'cb\'fc\'d6\'d7\'bf\'e9\'a3\'ac\'cd\'cb\'b3\'f6\'d6\'b8\'cc\'d7\'ce\'de\'c8\'be\'d1\'aa\'a3\'ac\'b8\'d8\'c3\'c5\'be\'b5\'bc\'ec\'b2\'e9\'ce\'b4\'bc\'fb\'d6\'d7\'bf\'e9\'bc\'b0\'b3\'f6\'d1\'aa\'a1\'a3\'ca\'f5\'d6\'d0"
+              nodetype="Text"/>
+        <node text="在探针引导下切除后位瘘管并切断部分内括约肌，然后将创面袋形缝合"
+              rtf="\'d4\'da\'cc\'bd\'d5\'eb\'d2\'fd\'b5\'bc\'cf\'c2\'c7\'d0\'b3\'fd\'ba\'f3\'ce\'bb\'f0\'fc\'b9\'dc\'b2\'a2\'c7\'d0\'b6\'cf\'b2\'bf\'b7\'d6\'c4\'da\'c0\'a8\'d4\'bc\'bc\'a1\'a3\'ac\'c8\'bb\'ba\'f3\'bd\'ab\'b4\'b4\'c3\'e6\'b4\'fc\'d0\'ce\'b7\'ec\'ba\'cf"
+              nodetype="Text"/>
+        <node text="，手术过程顺利，术后诊断同术前。术毕安返病房，患者生命体征平稳，T 36.7℃，HR 76次/分，R 19次/分，BP 126/69mmHg。术后使用安可欣针3.0g bid抗感染，葛泰预防切口水肿，苏灵针止血，金康及凯纷止痛，穴位贴敷促进排尿，中药加康复新液坐浴促进创面愈合等治疗。患者为术后，故予祛毒汤清热燥湿，收敛止血，方剂如下：五倍子15g 蒲公英15g 侧柏炭12g 花椒6g 苦参15g 芒硝30g 苍术15g 地榆炭20g 防风12g 黄柏12g 赤芍12g 甘草12g。术后注意切口渗血，术后注意生命体征变化。患者为肛门部手术，需注意饮食卫生和肛门卫生，便后及时清洁肛门，中药清创化腐换药治疗，以利肛门切口愈合。术后次日正常进食，忌辛辣、质硬食物，忌烟酒及鸽子肉等，清淡饮食。以上情况已与患者说明，取得理解，详见《术后谈话记录》。"
+              rtf="\'a3\'ac\'ca\'d6\'ca\'f5\'b9\'fd\'b3\'cc\'cb\'b3\'c0\'fb\'a3\'ac\'ca\'f5\'ba\'f3\'d5\'ef\'b6\'cf\'cd\'ac\'ca\'f5\'c7\'b0\'a1\'a3\'ca\'f5\'b1\'cf\'b0\'b2\'b7\'b5\'b2\'a1\'b7\'bf\'a3\'ac\'bb\'bc\'d5\'df\'c9\'fa\'c3\'fc\'cc\'e5\'d5\'f7\'c6\'bd\'ce\'c8\'a3\'acT 36.7\'a1\'e6\'a3\'acHR 76\'b4\'ce/\'b7\'d6\'a3\'acR 19\'b4\'ce/\'b7\'d6\'a3\'acBP 126/69mmHg\'a1\'a3\'ca\'f5\'ba\'f3\'ca\'b9\'d3\'c3\'b0\'b2\'bf\'c9\'d0\'c0\'d5\'eb3.0g bid\'bf\'b9\'b8\'d0\'c8\'be\'a3\'ac\'b8\'f0\'cc\'a9\'d4\'a4\'b7\'c0\'c7\'d0\'bf\'da\'cb\'ae\'d6\'d7\'a3\'ac\'cb\'d5\'c1\'e9\'d5\'eb\'d6\'b9\'d1\'aa\'a3\'ac\'bd\'f0\'bf\'b5\'bc\'b0\'bf\'ad\'b7\'d7\'d6\'b9\'cd\'b4\'a3\'ac\'d1\'a8\'ce\'bb\'cc\'f9\'b7\'f3\'b4\'d9\'bd\'f8\'c5\'c5\'c4\'f2\'a3\'ac\'d6\'d0\'d2\'a9\'bc\'d3\'bf\'b5\'b8\'b4\'d0\'c2\'d2\'ba\'d7\'f8\'d4\'a1\'b4\'d9\'bd\'f8\'b4\'b4\'c3\'e6\'d3\'fa\'ba\'cf\'b5\'c8\'d6\'ce\'c1\'c6\'a1\'a3\'bb\'bc\'d5\'df\'ce\'aa\'ca\'f5\'ba\'f3\'a3\'ac\'b9\'ca\'d3\'e8\'ec\'ee\'b6\'be\'cc\'c0\'c7\'e5\'c8\'c8\'d4\'ef\'ca\'aa\'a3\'ac\'ca\'d5\'c1\'b2\'d6\'b9\'d1\'aa\'a3\'ac\'b7\'bd\'bc\'c1\'c8\'e7\'cf\'c2\'a3\'ba\'ce\'e5\'b1\'b6\'d7\'d315g \'c6\'d1\'b9\'ab\'d3\'a215g \'b2\'e0\'b0\'d8\'cc\'bf12g \'bb\'a8\'bd\'b76g \'bf\'e0\'b2\'ce15g \'c3\'a2\'cf\'f530g \'b2\'d4\'ca\'f515g \'b5\'d8\'d3\'dc\'cc\'bf20g \'b7\'c0\'b7\'e712g \'bb\'c6\'b0\'d812g \'b3\'e0\'c9\'d612g \'b8\'ca\'b2\'dd12g\'a1\'a3\'ca\'f5\'ba\'f3\'d7\'a2\'d2\'e2\'c7\'d0\'bf\'da\'c9\'f8\'d1\'aa\'a3\'ac\'ca\'f5\'ba\'f3\'d7\'a2\'d2\'e2\'c9\'fa\'c3\'fc\'cc\'e5\'d5\'f7\'b1\'e4\'bb\'af\'a1\'a3\'bb\'bc\'d5\'df\'ce\'aa\'b8\'d8\'c3\'c5\'b2\'bf\'ca\'d6\'ca\'f5\'a3\'ac\'d0\'e8\'d7\'a2\'d2\'e2\'d2\'fb\'ca\'b3\'ce\'c0\'c9\'fa\'ba\'cd\'b8\'d8\'c3\'c5\'ce\'c0\'c9\'fa\'a3\'ac\'b1\'e3\'ba\'f3\'bc\'b0\'ca\'b1\'c7\'e5\'bd\'e0\'b8\'d8\'c3\'c5\'a3\'ac\'d6\'d0\'d2\'a9\'c7\'e5\'b4\'b4\'bb\'af\'b8\'af\'bb\'bb\'d2\'a9\'d6\'ce\'c1\'c6\'a3\'ac\'d2\'d4\'c0\'fb\'b8\'d8\'c3\'c5\'c7\'d0\'bf\'da\'d3\'fa\'ba\'cf\'a1\'a3\'ca\'f5\'ba\'f3\'b4\'ce\'c8\'d5\'d5\'fd\'b3\'a3\'bd\'f8\'ca\'b3\'a3\'ac\'bc\'c9\'d0\'c1\'c0\'b1\'a1\'a2\'d6\'ca\'d3\'b2\'ca\'b3\'ce\'ef\'a3\'ac\'bc\'c9\'d1\'cc\'be\'c6\'bc\'b0\'b8\'eb\'d7\'d3\'c8\'e2\'b5\'c8\'a3\'ac\'c7\'e5\'b5\'ad\'d2\'fb\'ca\'b3\'a1\'a3\'d2\'d4\'c9\'cf\'c7\'e9\'bf\'f6\'d2\'d1\'d3\'eb\'bb\'bc\'d5\'df\'cb\'b5\'c3\'f7\'a3\'ac\'c8\'a1\'b5\'c3\'c0\'ed\'bd\'e2\'a3\'ac\'cf\'ea\'bc\'fb\'a1\'b6\'ca\'f5\'ba\'f3\'cc\'b8\'bb\'b0\'bc\'c7\'c2\'bc\'a1\'b7\'a1\'a3"
+              nodetype="Text"/>
+    </node>
+    <Ref id="211">
+        <node identity="32" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
+              description="病史记录者签名" otherid="D-101189" display="11```0`1">
+            <node embededId="26" id="a6d9fe14-c345-471f-8eb4-2cc0a642e6bf" nodetype="Object" nodelogiccontent=""
+                  name="审核医师" text="审核医师" description="0.230" otherid="E-1011" display="11```0`1">
+                <node id="f98b67e3-e5ca-43d0-a9f3-8a958758f010" nodetype="AtomNode" nodelogiccontent="" name="审核医师"
+                      readonly="True" text="审核医师" description="院内职工表。" otherid="F-2010" atomtype="String" value="``"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1"
+                      inputdirect="False" display="1110111````/```0" embededId="12" autoeditnext="True" spaceholder="0"
+                      forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="210">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" diagnosisInsertstype="-1" FirstCharOfDiagnosisInsertVertical="0"
+              id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded" nodelogiccontent="" name="医师签名" text="医师签名"
+              description="病史记录者签名" display="11```0`1">
+            <node embededId="0" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
+                  name="医师签名" text="医师签名" display="11```0`1">
+                <node id="769ca781-6e6c-4eba-8e8e-2e17d78001d7" nodetype="AtomNode" nodelogiccontent="" name="普通医师"
+                      readonly="True" text="医师签名" description="院内职工表。" atomtype="String" value="5374`何孝康`5374"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///科室代码//@当前科室///"
+                      inputdirect="False" display="1111111```````0" embededId="6" autoeditnext="True" spaceholder="0"
+                      forbidDel="True" isComplexShowlist="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="581f3027-3a60-4e0b-9a82-c2d2dee31b73" nodetype="DynamicMoleNode" nodelogiccontent="" name="医师签名"
+          text="医师签名" description="3.571"
+          display="20`                                                    医师签名：`&#xD;&#xA;`0`1" permitobjs=""
+          defaultobjs="" allowUserDefine="False" canNotInputText="True" isnewPage="False" canNull="True"
+          canNullSubmit="True" permittedDoctorGradeRanage="" useDiagContinuedPrint="False" nodePrintArea="None"
+          indentLength="0">
+        <node refid="211" nodetype="Embeded"/>
+        <node refid="210" nodetype="Embeded"/>
+    </node>
+</Model>

@@ -77,7 +77,7 @@
         <if test="(bch != null and bch != '')">and t.bch = #{bch}</if>
         <if test="(hzxm != null and hzxm != '')">and t.hzxm = #{hzxm}</if>
         <if test="(birth != null )">and t.birth = #{birth}</if>
-        <if test="(lxdh != null and lxdh != '')">and t.lxdh = #{lxdh}</if>
+        <if test="(lxdh != null )">and t.lxdh = #{lxdh}</if>
         <if test="(hyzkdm != null and hyzkdm != '')">and t.hyzkdm = #{hyzkdm}</if>
         <if test="(hyzk != null and hyzk != '')">and t.hyzk = #{hyzk}</if>
         <if test="(mzdm != null and mzdm != '')">and t.mzdm = #{mzdm}</if>
@@ -135,7 +135,7 @@
             <if test="(bch != null and bch != '')">bch ,</if>
             <if test="(hzxm != null and hzxm != '')">hzxm ,</if>
             <if test="(birth != null )">birth ,</if>
-            <if test="(lxdh != null and lxdh != '')">lxdh ,</if>
+            <if test="(lxdh != null )">lxdh ,</if>
             <if test="(hyzkdm != null and hyzkdm != '')">hyzkdm ,</if>
             <if test="(hyzk != null and hyzk != '')">hyzk ,</if>
             <if test="(mzdm != null and mzdm != '')">mzdm ,</if>
@@ -190,7 +190,7 @@
             <if test="(bch != null and bch != '')">#{bch , jdbcType= VARCHAR },</if>
             <if test="(hzxm != null and hzxm != '')">#{hzxm , jdbcType= VARCHAR },</if>
             <if test="(birth != null )">#{birth , jdbcType= TIMESTAMP },</if>
-            <if test="(lxdh != null and lxdh != '')">#{lxdh , jdbcType= VARCHAR },</if>
+            <if test="(lxdh != null )">#{lxdh , jdbcType= VARCHAR },</if>
             <if test="(hyzkdm != null and hyzkdm != '')">#{hyzkdm , jdbcType= VARCHAR },</if>
             <if test="(hyzk != null and hyzk != '')">#{hyzk , jdbcType= VARCHAR },</if>
             <if test="(mzdm != null and mzdm != '')">#{mzdm , jdbcType= VARCHAR },</if>
@@ -249,7 +249,7 @@
                 <if test="(bch != null and bch != '')">bch = #{bch , jdbcType= VARCHAR },</if>
                 <if test="(hzxm != null and hzxm != '')">hzxm = #{hzxm , jdbcType= VARCHAR },</if>
                 <if test="(birth != null )">birth = #{birth , jdbcType= TIMESTAMP },</if>
-                <if test="(lxdh != null and lxdh != '')">lxdh = #{lxdh , jdbcType= VARCHAR },</if>
+                <if test="(lxdh != null )">lxdh = #{lxdh , jdbcType= VARCHAR },</if>
                 <if test="(hyzkdm != null and hyzkdm != '')">hyzkdm = #{hyzkdm , jdbcType= VARCHAR },</if>
                 <if test="(hyzk != null and hyzk != '')">hyzk = #{hyzk , jdbcType= VARCHAR },</if>
                 <if test="(mzdm != null and mzdm != '')">mzdm = #{mzdm , jdbcType= VARCHAR },</if>

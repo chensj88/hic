@@ -1581,9 +1581,7 @@
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.HZXM as hzxm,
         convert(datetime,rtrim(ltrim(b.CSRQ))) AS birth,
-        CASE WHEN b.LXDH is null then 'NA'
-        WHEN b.LXDH = '' then 'NA'
-        else b.LXDH end as lxdh,
+        b.LXDH  as lxdh,
         ISNULL(b.HYZK,'0') as hyzkdm,
         (
         SELECT
@@ -1608,17 +1606,7 @@
         'NA' as gzdwdz,
         'NA' as gzdwdh,
         'NA' as jgd,
-        (
-        SELECT
-        CASE b.SFZH
-        WHEN NULL THEN
-        'NA'
-        WHEN '' THEN
-        'NA'
-        ELSE
-        b.SFZH
-        END
-        ) as sfzhm,
+         b.SFZH as sfzhm,
         b.BRXB as xbdm,
         (
         SELECT
