@@ -400,7 +400,7 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
-    <!--&lt;!&ndash; Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据&ndash;&gt;-->
+    <!-- Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据-->
     <!--<select id="selectInitialHlhtMjzblMjzbl" resultMap="hlhtMjzblMjzblResult" parameterType="com.winning.hic.model.HlhtMjzblMjzbl">-->
         <!--SELECT t.QTBLJLXH AS yjlxh,-->
         <!--c.GHXH AS jzlsh,-->

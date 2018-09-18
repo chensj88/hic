@@ -138,8 +138,8 @@ public class HlhtZybcjlJdxjServiceImpl implements  HlhtZybcjlJdxjService {
                                 }
                                 HlhtZybcjlJdxj entity = new HlhtZybcjlJdxj();
                                 entity.getMap().put("QTBLJLXH", emrQtbljlk.getQtbljlxh());
+                                entity.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                                 entity = this.commonQueryDao.selectInitialHlhtZybcjlJdxj(entity);
-                                System.out.println("EMR="+Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                                 Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
                                 try {
                                     entity = (HlhtZybcjlJdxj) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
