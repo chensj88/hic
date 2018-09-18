@@ -1577,7 +1577,7 @@
         c.BQMC as bqmc,
         ISNULL(a.fjh,'NA') as bfh,
         ISNULL(a.fjh,'NA') +'病房' as bfmc,
-        ISNULL(b.RYCW,'NA') as bch,  ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
+        ISNULL(b.RYCW,'NA') as bch,  ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'0') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.HZXM as hzxm,
         b.CSRQ AS birth,
