@@ -1580,7 +1580,7 @@
         ISNULL(b.RYCW,'NA') as bch,  ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.HZXM as hzxm,
-        b.CSRQ AS birth,
+        convert(datetime,rtrim(ltrim(b.CSRQ))) AS birth,
         CASE WHEN b.LXDH is null then 'NA'
         WHEN b.LXDH = '' then 'NA'
         else b.LXDH end as lxdh,
@@ -1740,6 +1740,7 @@
         t.SYXH as syxh,
         t.TJZT as tjzt,
         GETDATE() as gxsj,
+        t.FSSJ as qmrq,
         t.YXJL as yxjl
         FROM EMR_QTBLJLK t
         LEFT JOIN CPOE_BRSYK c ON t.SYXH = c.EMRXH
