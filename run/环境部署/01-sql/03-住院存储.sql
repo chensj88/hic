@@ -616,7 +616,7 @@ WHERE  A.zljgdm ='1';
 
 -- 死亡病例讨论记录
  --参加讨论人员工号
- UPDATE A SET A.tlrybm=T.dm FROM CIS_HLHT.dbo.HLHT_ZYBCJL_SWBLTLJL A LEFT JOIN (
+ UPDATE A SET A.tlrybm=isnull(T.dm,'NA') FROM CIS_HLHT.dbo.HLHT_ZYBCJL_SWBLTLJL A LEFT JOIN (
  SELECT  stuff((select ',' + rtrim(A.ID) from CISDB.dbo.SYS_ZGDMK A where A.NAME in (select * from CIS_HLHT.dbo.f_splitSTR(C.cjtlmd,'、')) for xml path('')),1,1,'') as dm,
     C.yjlxh    from CIS_HLHT.dbo.HLHT_ZYBCJL_SWBLTLJL C) T ON A.yjlxh = T.yjlxh WHERE A.tlrybm != 'NA'
   --专业技术职务类别代码/名称
@@ -772,7 +772,20 @@ WHERE  A.zljgdm ='1';
   UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM CIS_HLHT.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
   --住院医师
   UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM CIS_HLHT.dbo.HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='NA' OR A.zyysqm='NA')
-  
+
+   --主任医师工号
+   UPDATE A SET A.zrysbm =
+    CASE WHEN B.ZRYSDM IS NULL or B.ZRYSDM  = '' THEN C.ZRYS WHEN B.ZRYSDM IS NOT NULL or B.ZRYSDM  != '' THEN B.ZRYSDM ELSE 'NA' END
+    FROM CIS_HLHT..HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH
+    LEFT JOIN CISDB.dbo.EMR_BASYK C on B.EMRXH = C.SYXH
+    LEFT JOIN CISDB.dbo.SYS_ZGDMK D ON C.ZRYS =D.ID
+    WHERE A.zrysbm ='NA';
+   --主任医师签名
+     UPDATE A SET A.zrysqm = CASE WHEN B.ZRYSXM IS NULL or B.ZRYSXM  = '' THEN D.NAME WHEN B.ZRYSXM IS NOT NULL or B.ZRYSXM  != '' THEN B.ZRYSXM ELSE 'NA' END
+     FROM CIS_HLHT..HLHT_RYJL_RYSWJL A LEFT JOIN CISDB.dbo.CPOE_BRSYK B ON A.jzlsh =B.SYXH
+     LEFT JOIN CISDB.dbo.EMR_BASYK C on B.EMRXH = C.SYXH
+     LEFT JOIN CISDB.dbo.SYS_ZGDMK D ON C.ZRYS =D.ID
+     WHERE A.zrysqm ='NA' or  A.zrysqm = ''
 
 --术后首次病程记录
   --接诊开始日期
