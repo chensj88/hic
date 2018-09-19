@@ -14,6 +14,7 @@ import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -199,7 +200,7 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                         if (syEmrQtbljlks.size() >= 1) {
                             mbzDataSetList.removeAll(syDataSetList);
                             syDocument = XmlUtil.getDocument(Base64Utils.unzipEmrXml(syEmrQtbljlks.get(0).getBlnr()));
-                            System.out.println(Base64Utils.unzipEmrXml(syEmrQtbljlks.get(0).getBlnr()));
+                           // System.out.println(Base64Utils.unzipEmrXml(syEmrQtbljlks.get(0).getBlnr()));
                         }
                         obj = new HlhtMjzblJzlgbl();
                         obj.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
@@ -229,19 +230,24 @@ public class HlhtMjzblJzlgblServiceImpl implements  HlhtMjzblJzlgblService {
                         }
                         String hzqx = obj.getHzqxmc();
                         if(!"NA".equals(hzqx)){
-                            hzqx = hzqx.substring("出观去向： ".length());
+                            if(hzqx.startsWith("出观去向： ")){
+                                hzqx = hzqx.substring("出观去向： ".length());
+                            }
                             hzqx = hzqx.replaceAll(" +","");
                             Map<String,String> hzqxMap = StringUtil.resolveStringToMap(hzqx);
-                            StringBuilder code = new StringBuilder();
-                            StringBuilder value = new StringBuilder();
-                            for (String s : hzqxMap.keySet()) {
-                                if(s.startsWith("1")){
-                                    code.append(s.substring(1)+",");
-                                    value.append(hzqxMap.get(s)+",");
+                            if(hzqxMap.size() > 0){
+                                StringBuilder code = new StringBuilder();
+                                StringBuilder value = new StringBuilder();
+                                for (String s : hzqxMap.keySet()) {
+                                    if(s.startsWith("1")){
+                                        code.append(s.substring(1)+",");
+                                        value.append(hzqxMap.get(s)+",");
+                                    }
                                 }
+                                obj.setHzqxmc(value.toString().substring(0,value.length()-1));
+                                obj.setHzqxdm(code.toString().substring(0,code.length()-1));
                             }
-                            obj.setHzqxmc(value.toString().substring(0,value.length()-1));
-                            obj.setHzqxdm(code.toString().substring(0,code.length()-1));
+
                         }
                         this.createHlhtMjzblJzlgbl(obj);
 

@@ -180,17 +180,20 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
                             zkjl.setYjlxh(yjlxh);
                             zkjl =this.getHlhtZybcjlZkjl(zkjl);
-                            zkjl.setZrrq(null);
-                            zkjl.setZrysbm(null);
-                            zkjl.setZrysqm(null);
-                            Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                            try {
-                                zkjl = (HlhtZybcjlZkjl) HicHelper.initModelValue(rDataSetList, document, zkjl, paramTypeMap);
+                            if(zkjl !=null){
+                                zkjl.setZrrq(null);
+                                zkjl.setZrysbm(null);
+                                zkjl.setZrysqm(null);
+                                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                                try {
+                                    zkjl = (HlhtZybcjlZkjl) HicHelper.initModelValue(rDataSetList, document, zkjl, paramTypeMap);
 
-                            } catch (ParseException e) {
-                                e.printStackTrace();
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                this.modifyHlhtZybcjlZkjl(zkjl);
                             }
-                            this.modifyHlhtZybcjlZkjl(zkjl);
+
                         }
                         real_count++;
 
