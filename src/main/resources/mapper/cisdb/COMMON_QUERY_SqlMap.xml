@@ -1598,8 +1598,8 @@
         '未知 '
         END
         ) AS hyzk,
-        b.MZDM as mzdm,
-        d.NAME as mz,
+        isnull(b.MZDM,'NA') as mzdm,
+        isnull(d.NAME,'NA') as mz,
         'NA' as hkszd,
         'NA' as csdz,
         'NA' as gzdw,

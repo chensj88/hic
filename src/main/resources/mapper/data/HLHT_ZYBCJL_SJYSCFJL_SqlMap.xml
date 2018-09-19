@@ -62,7 +62,7 @@
         <if test="(bch != null and bch != '')">and t.bch = #{bch}</if>
         <if test="(cfrq != null)">and t.cfrq = #{cfrq}</if>
         <if test="(hzxm != null and hzxm != '')">and t.hzxm = #{hzxm}</if>
-        <if test="(sfzhm != null and sfzhm != '')">and t.sfzhm = #{sfzhm}</if>
+        <if test="(sfzhm != null )">and t.sfzhm = #{sfzhm}</if>
         <if test="(csrq != null)">and t.csrq = #{csrq}</if>
         <if test="(xbdm != null and xbdm != '')">and t.xbdm = #{xbdm}</if>
         <if test="(xbmc != null and xbmc != '')">and t.xbmc = #{xbmc}</if>
@@ -105,7 +105,7 @@
             <if test="(bch != null and bch != '')">bch ,</if>
             <if test="(cfrq != null)">cfrq ,</if>
             <if test="(hzxm != null and hzxm != '')">hzxm ,</if>
-            <if test="(sfzhm != null and sfzhm != '')">sfzhm ,</if>
+            <if test="(sfzhm != null )">sfzhm ,</if>
             <if test="(csrq != null)">csrq ,</if>
             <if test="(xbdm != null and xbdm != '')">xbdm ,</if>
             <if test="(xbmc != null and xbmc != '')">xbmc ,</if>
@@ -145,7 +145,7 @@
             <if test="(bch != null and bch != '')">#{bch , jdbcType= VARCHAR },</if>
             <if test="(cfrq != null)">#{cfrq , jdbcType= TIMESTAMP },</if>
             <if test="(hzxm != null and hzxm != '')">#{hzxm , jdbcType= VARCHAR },</if>
-            <if test="(sfzhm != null and sfzhm != '')">#{sfzhm , jdbcType= VARCHAR },</if>
+            <if test="(sfzhm != null )">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(csrq != null )">#{csrq , jdbcType= TIMESTAMP },</if>
             <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
             <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
@@ -189,7 +189,7 @@
                 <if test="(bch != null and bch != '')">bch = #{bch , jdbcType= VARCHAR },</if>
                 <if test="(cfrq != null)">cfrq = #{cfrq , jdbcType= TIMESTAMP },</if>
                 <if test="(hzxm != null and hzxm != '')">hzxm = #{hzxm , jdbcType= VARCHAR },</if>
-                <if test="(sfzhm != null and sfzhm != '')">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
+                <if test="(sfzhm != null )">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(csrq != null )">csrq = #{csrq , jdbcType= TIMESTAMP },</if>
                 <if test="(xbdm != null and xbdm != '')">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
                 <if test="(xbmc != null and xbmc != '')">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
