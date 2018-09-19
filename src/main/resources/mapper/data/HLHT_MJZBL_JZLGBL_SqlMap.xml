@@ -104,7 +104,7 @@
         <if test="(hzxm != null and hzxm != '')">and t.hzxm = #{hzxm}</if>
         <if test="(mjzh != null and mjzh != '')">and t.mjzh = #{mjzh}</if>
         <if test="(zyh != null and zyh != '')">and t.zyh = #{zyh}</if>
-        <if test="(sfzhm != null and sfzhm != '')">and t.sfzhm = #{sfzhm}</if>
+        <if test="(sfzhm != null )">and t.sfzhm = #{sfzhm}</if>
         <if test="(zzjgdm != null and zzjgdm != '')">and t.zzjgdm = #{zzjgdm}</if>
         <if test="(zzjgmc != null and zzjgmc != '')">and t.zzjgmc = #{zzjgmc}</if>
         <if test="(ksdm != null and ksdm != '')">and t.ksdm = #{ksdm}</if>
@@ -196,7 +196,7 @@
             <if test="(hzxm != null and hzxm != '')">hzxm ,</if>
             <if test="(mjzh != null and mjzh != '')">mjzh ,</if>
             <if test="(zyh != null and zyh != '')">zyh ,</if>
-            <if test="(sfzhm != null and sfzhm != '')">sfzhm ,</if>
+            <if test="(sfzhm != null )">sfzhm ,</if>
             <if test="(zzjgdm != null and zzjgdm != '')">zzjgdm ,</if>
             <if test="(zzjgmc != null and zzjgmc != '')">zzjgmc ,</if>
             <if test="(ksdm != null and ksdm != '')">ksdm ,</if>
@@ -285,7 +285,7 @@
             <if test="(hzxm != null and hzxm != '')">#{hzxm , jdbcType= VARCHAR },</if>
             <if test="(mjzh != null and mjzh != '')">#{mjzh , jdbcType= VARCHAR },</if>
             <if test="(zyh != null and zyh != '')">#{zyh , jdbcType= VARCHAR },</if>
-            <if test="(sfzhm != null and sfzhm != '')">#{sfzhm , jdbcType= VARCHAR },</if>
+            <if test="(sfzhm != null )">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(zzjgdm != null and zzjgdm != '')">#{zzjgdm , jdbcType= VARCHAR },</if>
             <if test="(zzjgmc != null and zzjgmc != '')">#{zzjgmc , jdbcType= VARCHAR },</if>
             <if test="(ksdm != null and ksdm != '')">#{ksdm , jdbcType= VARCHAR },</if>
@@ -378,7 +378,7 @@
                 <if test="(hzxm != null and hzxm != '')">hzxm = #{hzxm , jdbcType= VARCHAR },</if>
                 <if test="(mjzh != null and mjzh != '')">mjzh = #{mjzh , jdbcType= VARCHAR },</if>
                 <if test="(zyh != null and zyh != '')">zyh = #{zyh , jdbcType= VARCHAR },</if>
-                <if test="(sfzhm != null and sfzhm != '')">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
+                <if test="(sfzhm != null )">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(zzjgdm != null and zzjgdm != '')">zzjgdm = #{zzjgdm , jdbcType= VARCHAR },</if>
                 <if test="(zzjgmc != null and zzjgmc != '')">zzjgmc = #{zzjgmc , jdbcType= VARCHAR },</if>
                 <if test="(ksdm != null and ksdm != '')">ksdm = #{ksdm , jdbcType= VARCHAR },</if>
