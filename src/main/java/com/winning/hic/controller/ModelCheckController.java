@@ -102,11 +102,10 @@ public class ModelCheckController extends BaseController {
         //获取待校验模板sourceType
         String sourceType = mbzModelCheck.getSourceType();
         String modelCode = mbzModelCheck.getModelCode();
-        if (StringUtil.isEmptyOrNull(sourceType)) {
-            return null;
-        }
         MbzModelCheck temp = new MbzModelCheck();
-        temp.setSourceType(sourceType);
+        if (!StringUtil.isEmptyOrNull(sourceType)) {
+            temp.setSourceType(sourceType);
+        }
         if (!StringUtil.isEmptyOrNull(modelCode)) {
             temp.setModelCode(modelCode);
         }
@@ -118,6 +117,9 @@ public class ModelCheckController extends BaseController {
             EmrMbk emrMbkTemp = new EmrMbk();
             emrMbkTemp.setMbdm(modelCheck.getModelCode());
             emrMbkTemp = getFacade().getEmrMbkService().getEmrMbk(emrMbkTemp);
+            if (emrMbkTemp == null) {
+                continue;
+            }
             //获取模板xml并装换成document文件
             Document document = XmlUtil.getDocument(emrMbkTemp.getMbnr());
             //获取根节点

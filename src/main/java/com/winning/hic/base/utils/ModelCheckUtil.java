@@ -106,7 +106,7 @@ public class ModelCheckUtil {
             Integer mustMatch = temp.getMustMatch();
             if (mustMatch.intValue() == 0) {
                 info.setStatus(0);
-                info.setErrorDesc("字段不需校验");
+                info.setErrorDesc("");
                 return;
             }
 
