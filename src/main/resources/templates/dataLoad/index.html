@@ -205,6 +205,16 @@
 </div>
 <input type="hidden" id="sourceId">
 <input type="hidden" id="sourceType">
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+
+        <img alt="" th:src="@{/bootstrap/img/loading-sm.gif}" />
+
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 </body>
 <!--[if !IE]> -->
 <script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
@@ -418,7 +428,14 @@
         });
     });
 
+    function hideModal(){
+        $('#myModal').modal('hide');
+    }
 
+    function showModal(){
+        alert("123");
+        $('#myModal').modal({backdrop:'static',keyboard:false});
+    }
     //手动抽取数据
     $("#handDataLoad").click(function(){
         var startDate =$("#startDate").val();
@@ -456,9 +473,13 @@
             cache : false,
             dataType:"json",
             async: false,
+            beforeSend:function (){
+                showModal();
+            },
             error: function(request) {
             },
             success: function(data) {
+                hideModal();
                 if(data.success=='1'){
                     $simple_table.bootstrapTable('refresh');
                 }else{

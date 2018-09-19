@@ -88,7 +88,7 @@
         <if test="(jrwdm != null and jrwdm != '')">and t.jrwdm = #{jrwdm}</if>
         <if test="(jrwmc != null and jrwmc != '')">and t.jrwmc = #{jrwmc}</if>
         <if test="(czff != null and czff != '')">and t.czff = #{czff}</if>
-        <if test="(czcs != null and czcs != '')">and t.czcs = #{czcs}</if>
+        <if test="(czcs != null )">and t.czcs = #{czcs}</if>
         <if test="(qjksrq != null )">and t.qjksrq = #{qjksrq}</if>
         <if test="(qjjsrq != null )">and t.qjjsrq = #{qjjsrq}</if>
         <if test="(jcjyxmmc != null and jcjyxmmc != '')">and t.jcjyxmmc = #{jcjyxmmc}</if>
@@ -141,7 +141,7 @@
             <if test="(jrwdm != null and jrwdm != '')">jrwdm ,</if>
             <if test="(jrwmc != null and jrwmc != '')">jrwmc ,</if>
             <if test="(czff != null and czff != '')">czff ,</if>
-            <if test="(czcs != null and czcs != '')">czcs ,</if>
+            <if test="(czcs != null )">czcs ,</if>
             <if test="(qjksrq != null )">qjksrq ,</if>
             <if test="(qjjsrq != null )">qjjsrq ,</if>
             <if test="(jcjyxmmc != null and jcjyxmmc != '')">jcjyxmmc ,</if>
@@ -192,7 +192,7 @@
             <if test="(jrwdm != null and jrwdm != '')">#{jrwdm , jdbcType= VARCHAR },</if>
             <if test="(jrwmc != null and jrwmc != '')">#{jrwmc , jdbcType= VARCHAR },</if>
             <if test="(czff != null and czff != '')">#{czff , jdbcType= VARCHAR },</if>
-            <if test="(czcs != null and czcs != '')">#{czcs , jdbcType= NUMERIC },</if>
+            <if test="(czcs != null )">#{czcs , jdbcType= NUMERIC },</if>
             <if test="(qjksrq != null )">#{qjksrq , jdbcType= TIMESTAMP },</if>
             <if test="(qjjsrq != null )">#{qjjsrq , jdbcType= TIMESTAMP },</if>
             <if test="(jcjyxmmc != null and jcjyxmmc != '')">#{jcjyxmmc , jdbcType= VARCHAR },</if>
@@ -247,7 +247,7 @@
                 <if test="(jrwdm != null and jrwdm != '')">jrwdm = #{jrwdm , jdbcType= VARCHAR },</if>
                 <if test="(jrwmc != null and jrwmc != '')">jrwmc = #{jrwmc , jdbcType= VARCHAR },</if>
                 <if test="(czff != null and czff != '')">czff = #{czff , jdbcType= VARCHAR },</if>
-                <if test="(czcs != null and czcs != '')">czcs = #{czcs , jdbcType= NUMERIC },</if>
+                <if test="(czcs != null )">czcs = #{czcs , jdbcType= NUMERIC },</if>
                 <if test="(qjksrq != null )">qjksrq = #{qjksrq , jdbcType= TIMESTAMP },</if>
                 <if test="(qjjsrq != null )">qjjsrq = #{qjjsrq , jdbcType= TIMESTAMP },</if>
                 <if test="(jcjyxmmc != null and jcjyxmmc != '')">jcjyxmmc = #{jcjyxmmc , jdbcType= VARCHAR },</if>

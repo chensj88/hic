@@ -148,9 +148,11 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
                             String[] str2=hlhtZybcjlCyjl.getCzzybmmc().split("  ");
                             Character o=new Character('B');
                             for (int i=0;str.length>i;i++){
-                                if(o.equals(str[i].trim().charAt(0))){
-                                    bmdm = bmdm+str[i]+" ";
-                                    bm = bm+str2[i]+" ";
+                                if(!"".equals(str[i].toString())){
+                                    if(o.equals(str[i].trim().charAt(0))){
+                                        bmdm = bmdm+str[i]+" ";
+                                        bm = bm+str2[i]+" ";
+                                    }
                                 }
                             }
                             if(StringUtils.isEmpty(bmdm)){
@@ -172,9 +174,11 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
                             String[] str2=hlhtZybcjlCyjl.getCzzyzhmc().split("  ");
                             Character o=new Character('B');
                             for (int i=0;str.length>i;i++){
-                                if(!o.equals(str[i].trim().charAt(0))){
-                                    bmdm = bmdm+str[i]+" ";
-                                    bm = bm+str2[i]+" ";
+                                if(!"".equals(str[i].toString())) {
+                                    if (!o.equals(str[i].trim().charAt(0))) {
+                                        bmdm = bmdm + str[i] + " ";
+                                        bm = bm + str2[i] + " ";
+                                    }
                                 }
                             }
                             if(StringUtils.isEmpty(bmdm)){

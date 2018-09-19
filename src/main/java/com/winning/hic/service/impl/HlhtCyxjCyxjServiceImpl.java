@@ -150,9 +150,11 @@ public class HlhtCyxjCyxjServiceImpl implements  HlhtCyxjCyxjService {
                                 String[] str2=entity.getRzzybm().split("  ");
                                 Character o=new Character('B');
                                 for (int i=0;str.length>i;i++){
-                                    if(o.equals(str[i].charAt(0))){
+                                    if(!"".equals(str[i].toString())){
+                                        if(o.equals(str[i].trim().charAt(0))){
                                         bmdm = bmdm+str[i]+" ";
                                         bm = bm+str2[i]+" ";
+                                        }
                                     }
                                 }
                                 if(StringUtils.isEmpty(bmdm)){
@@ -174,9 +176,11 @@ public class HlhtCyxjCyxjServiceImpl implements  HlhtCyxjCyxjService {
                                 String[] str2=entity.getRzzyzh().split("  ");
                                 Character o=new Character('B');
                                 for (int i=0;str.length>i;i++){
-                                    if(!o.equals(str[i].charAt(0))){
-                                        bmdm = bmdm+str[i]+" ";
-                                        bm = bm+str2[i]+" ";
+                                    if(!"".equals(str[i].toString())){
+                                        if(!o.equals(str[i].trim().charAt(0))){
+                                            bmdm = bmdm+str[i]+" ";
+                                            bm = bm+str2[i]+" ";
+                                        }
                                     }
                                 }
                                 if(StringUtils.isEmpty(bmdm)){
@@ -199,9 +203,11 @@ public class HlhtCyxjCyxjServiceImpl implements  HlhtCyxjCyxjService {
                                 String[] str2=entity.getCzzybm().split("  ");
                                 Character o=new Character('B');
                                 for (int i=0;str.length>i;i++){
-                                    if(o.equals(str[i].charAt(0))){
-                                        bmdm = bmdm+str[i]+" ";
-                                        bm = bm+str2[i]+" ";
+                                    if(!"".equals(str[i].toString())) {
+                                        if (o.equals(str[i].trim().charAt(0))) {
+                                            bmdm = bmdm + str[i] + " ";
+                                            bm = bm + str2[i] + " ";
+                                        }
                                     }
                                 }
                                 if(StringUtils.isEmpty(bmdm)){
@@ -223,9 +229,11 @@ public class HlhtCyxjCyxjServiceImpl implements  HlhtCyxjCyxjService {
                                 String[] str2=entity.getCzzyzh().split("  ");
                                 Character o=new Character('B');
                                 for (int i=0;str.length>i;i++){
-                                    if(!o.equals(str[i].charAt(0))){
-                                        bmdm = bmdm+str[i]+" ";
-                                        bm = bm+str2[i]+" ";
+                                    if(!"".equals(str[i].toString())) {
+                                        if (!o.equals(str[i].charAt(0))) {
+                                            bmdm = bmdm + str[i] + " ";
+                                            bm = bm + str2[i] + " ";
+                                        }
                                     }
                                 }
                                 if(StringUtils.isEmpty(bmdm)){
