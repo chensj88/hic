@@ -1,9 +1,11 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.ConfigUtils;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtMjzcfXycfDao;
 import com.winning.hic.dao.data.MbzLoadDataInfoDao;
+import com.winning.hic.dao.mz.MZCommonQueryDao;
 import com.winning.hic.model.HlhtMjzcfXycf;
 import com.winning.hic.model.HlhtMjzcfZycf;
 import com.winning.hic.model.MbzDataCheck;
@@ -33,7 +35,7 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
     @Autowired
     private HlhtMjzcfXycfDao hlhtMjzcfXycfDao;
     @Autowired
-    private CommonQueryDao commonQueryDao;
+    private MZCommonQueryDao commonQueryDao;
     @Autowired
     private MbzLoadDataInfoDao mbzLoadDataInfoDao;
     @Autowired
@@ -75,6 +77,7 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
         HlhtMjzcfXycf xycf = new HlhtMjzcfXycf();
         xycf.getMap().put("startDate",entity.getMap().get("startDate"));
         xycf.getMap().put("endDate",entity.getMap().get("endDate"));
+        xycf.getMap().put("hisName",ConfigUtils.getEnvironment().getMZHISLinkServerFullPathURL());
         List<HlhtMjzcfXycf> mjzcfXycfList = this.commonQueryDao.selectInitHlhtMjzcfXycf(xycf);
         emr_count = mjzcfXycfList.size();
         for (HlhtMjzcfXycf obj : mjzcfXycfList) {
