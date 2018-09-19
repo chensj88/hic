@@ -220,15 +220,14 @@ public class ModelCheckUtil {
                     info.setStatus(1);
                     info.setErrorDesc("缺少节点");
                     continue;
+                } else if (bt == 1 && type == 4) {
+                    String minrequired = XmlUtil.getValueByAttrName(atomNode, "minrequired");
+                    if (minrequired == null || !"1".equals(minrequired)) {
+                        info.setStatus(1);
+                        info.setErrorDesc("未控制必填");
+                        continue;
+                    }
                 }
-//                else if (bt == 1 && type == 4) {
-//                    String minrequired = XmlUtil.getValueByAttrName(atomNode, "minrequired");
-//                    if (minrequired == null || !"1".equals(minrequired)) {
-//                        info.setStatus(1);
-//                        info.setErrorDesc("未控制必填");
-//                        continue;
-//                    }
-//                }
             }
             info.setStatus(0);
             info.setErrorDesc("");

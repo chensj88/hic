@@ -357,7 +357,7 @@
 
     // 格式化状态
     function errorDescFormatter(value, row, index) {
-        if (value == "" || value == null) {
+        if (value == "" || value == null&&row.status == 0) {
             return '<i class="fa fa-check" style="color: #00B83F"></i>';
         } else if (row.status == 1) {
             return '<span  style="color: red">' + value + '</span>';
