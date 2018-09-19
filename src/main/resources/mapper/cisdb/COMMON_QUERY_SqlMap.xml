@@ -1606,7 +1606,7 @@
         'NA' as gzdwdz,
         'NA' as gzdwdh,
         'NA' as jgd,
-         b.SFZH as sfzhm,
+        CONVERT(VARCHAR,CASE WHEN b.SFZH = '' THEN 'NA' ELSE b.SFZH END)                AS sfzhm,
         b.BRXB as xbdm,
         (
         SELECT
@@ -2505,7 +2505,7 @@
         )
         ),
 
-        'NA'
+        '0'
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         ISNULL(b.MZDM, 'NA') AS mz,
@@ -2592,8 +2592,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
 
     </select>
@@ -2760,8 +2760,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -2900,8 +2900,8 @@
         )
         WHERE q.BLDM=#{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -3039,8 +3039,8 @@
         )
         WHERE q.BLDM=#{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -3185,8 +3185,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -3321,8 +3321,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -3429,8 +3429,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -3550,8 +3550,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -3670,8 +3670,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
 
     </select>
 
@@ -3784,8 +3784,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -3886,8 +3886,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -4012,8 +4012,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -4115,8 +4115,8 @@
         )
         WHERE q.BLDM = #{bldm}
         AND q.YXJL = #{yxjl}
-        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.CJSJ  >= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.CJSJ <= #{map.endDate}]]>  </if>
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
     </select>
 
@@ -4274,7 +4274,7 @@
         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch ,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
+        (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
         t.CJSJ AS jlrq,
         b.BRXB AS xbdm,
         (
@@ -4290,7 +4290,8 @@
         END
         ) AS xbmc,
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'''') AS nls,
-        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,            GETDATE() AS gxsj,
+        DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
+        GETDATE() AS gxsj,
         t.YXJL AS yxjl,
         t.SYXH AS syxh,
         t.TJZT as tjzt
