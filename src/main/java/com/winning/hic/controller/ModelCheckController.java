@@ -37,8 +37,8 @@ public class ModelCheckController extends BaseController {
         //getFacade().getMbzModelCheckService().removeMbzModelCheck(new MbzModelCheck());
         //数据初始化
         getFacade().getMbzModelCheckService().innitModelCheckData();
-        //获取去模板总数
-        Integer emrMbkCount = getFacade().getEmrMbkService().getEmrMbkCount(new EmrMbk());
+        //获取配置模板总数
+        Integer emrMbkCount = getFacade().getMbzDataListSetService().getMbzDataListSetCount(new MbzDataListSet());
         //从字典表获取数据集
         MbzDictInfo mbzDictInfo = new MbzDictInfo();
         mbzDictInfo.setDictCode("platformTableName");
@@ -49,6 +49,15 @@ public class ModelCheckController extends BaseController {
         resultMap.put("modelList", modelList);
         model.addAllAttributes(resultMap);
         return "modelCheck/modelCheck";
+    }
+
+    @RequestMapping("/modelCheck/modelNum")
+    @ResponseBody
+    public Map modelNum(MbzDataListSet dataListSet) {
+        //获取去模板总数
+        Integer emrMbkCount = getFacade().getMbzDataListSetService().getMbzDataListSetCount(dataListSet);
+        resultMap.put("num", emrMbkCount == null ? 0 : emrMbkCount);
+        return resultMap;
     }
 
     /**
