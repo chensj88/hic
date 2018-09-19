@@ -98,7 +98,7 @@
 	</select>
 
 	<select id="selectEmrQtbljlkId" resultType ="String" parameterType="String">
-		SELECT TOP 1 QTBLJLXH FROM CISDB..EMR_QTBLJLK WHERE CJSJ &lt; #{cjsj} AND MXFLDM='B-8405'  ORDER BY CJSJ DESC;
+		SELECT TOP 1 QTBLJLXH FROM EMR_QTBLJLK WHERE CJSJ &lt; #{cjsj} AND MXFLDM='B-8405'  ORDER BY CJSJ DESC;
 	</select>
 
 	<insert id="insertEmrQtbljlk" parameterType="com.winning.hic.model.EmrQtbljlk">
