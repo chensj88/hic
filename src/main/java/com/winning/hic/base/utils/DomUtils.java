@@ -40,7 +40,7 @@ public class DomUtils {
     public static final String ATOM_TYPE_CHECK = "Check";
 
     public static void main(String[] args) {
-        InputStream in = DomUtils.class.getClassLoader().getResourceAsStream("24hcryjl.xml");
+        InputStream in = DomUtils.class.getClassLoader().getResourceAsStream("xml/24hcryjl.xml");
         System.out.println(in);
         SAXReader reader = new SAXReader();
         Document document = null;
