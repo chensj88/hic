@@ -1,7 +1,7 @@
- --·½·¨1£ºÑ­»·½ØÈ¡·¨
+ --æ–¹æ³•1ï¼šå¾ªçŽ¯æˆªå–æ³•
   CREATE FUNCTION f_splitSTR(
-    @s   varchar(8000),   --´ý·Ö²ðµÄ×Ö·û´®
-    @split varchar(10)     --Êý¾Ý·Ö¸ô·û
+    @s   varchar(8000),   --å¾…åˆ†æ‹†çš„å­—ç¬¦ä¸²
+    @split varchar(10)     --æ•°æ®åˆ†éš”ç¬¦
   )RETURNS @re TABLE(col varchar(100))
   AS
     BEGIN
