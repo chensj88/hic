@@ -321,7 +321,7 @@
         b.HZXM                                                                            as hzxm,
         b.GHXH                                                                            as mjzh,
         ISNULL(b.BLH,'NA')                                                                 as zyh,
-        b.SFZH                                                                            as sfzhm,
+        isnull(b.SFZH,'NA')                                                                as sfzhm,
         b.KSDM                                                                            as ksdm,
         b.KSMC                                                                            as ksmc,
         ISNULL(c.BQDM,'NA')                                                                as bqdm,

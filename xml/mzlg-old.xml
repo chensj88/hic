@@ -1,0 +1,378 @@
+<Model id="be935ddb-9139-427a-8e3f-500e2c065072" name="（急诊留观病历首页(湖滨版））" description="" text="急诊留观病历首页" nodetype="Model"
+       canprint="True" printInOddPages="False" display="11```0`1" Version="800" titledisplay="1`1`1"
+       hospitalcoderange="10266" catalogcode="B+9868" illnesstypecode="FFFF" scalemodelxml="" modellogiccontent=""
+       indentEnabled="False" isReview="False" NodeLogicContent="" maxrefid="641" RelateInstanceId="0">
+    <Ref id="616">
+        <node identity="66" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="235372ac-6455-4ba2-8728-c2c2a9628bc0" nodetype="Embeded"
+              nodelogiccontent="" name="身份信息(一般信息)" text="身份信息(一般信息)" description="用于病程中对病例特点的描述，包括姓名、性别、年龄等信息。"
+              otherid="D-1001" display="11```0`1">
+            <node text="姓名" rtf="\'d0\'d5\'c3\'fb" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="18" id="c9a9b2ab-81ca-4d9a-8da7-7308e7cb90f6" nodetype="Object" nodelogiccontent=""
+                  name="病人姓名" text="病人姓名" description="0.101" otherid="E-01101" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="病人姓名"
+                      text="病人姓名" description="0.000" otherid="F-01000" atomtype="String" value="刘青华`刘青华`刘青华"
+                      defaultvalue="#patname`当前病人姓名`" display="1111111```````13" embededId="19" autoeditnext="True"
+                      spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="性别" rtf="\'d0\'d4\'b1\'f0" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="20" id="40ba47b2-acd3-47cb-acb6-68cd40e95df6" nodetype="Object" nodelogiccontent=""
+                  name="病人性别" text="病人性别" description="0.102" otherid="E-01102" display="11```0`1">
+                <node id="620ab5a7-82a5-412d-ab12-26fa5204b86d" nodetype="AtomNode" nodelogiccontent="" name="病人性别"
+                      text="性别" description="1.1103" otherid="F-11030" atomtype="String" value="1`男`1"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//3"
+                      inputdirect="False" defaultvalue="#brxb`当前病人性别`" display="1111111```````13" embededId="21"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="年龄" rtf="\'c4\'ea\'c1\'e4" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="22" id="2e001711-f319-4095-9878-c4214d40a486" nodetype="Object" nodelogiccontent=""
+                  name="病人年龄" text="病人年龄" description="0.103(有后缀：岁)" otherid="E-01103" display="11```0`1">
+                <node id="4a9c797d-6a49-402c-b79f-4f7646cf26b9" nodetype="AtomNode" nodelogiccontent="" name="病人年龄"
+                      text="年龄" description="7.201" otherid="F-72010" atomtype="String" value="45岁`45岁`45岁"
+                      defaultvalue="#DisplayAge`显示年龄（入院时）`" display="1111111````岁```13" embededId="23"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="出生日期" rtf="\'b3\'f6\'c9\'fa\'c8\'d5\'c6\'da" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="26" id="ffc0a364-4cfa-42ab-8dd9-c0d987785403" nodetype="Object" nodelogiccontent=""
+                  name="出生日期" text="出生日期" description="0.104" otherid="E-01104" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="出生日期"
+                      text="出生日期" description="8.001" otherid="F-80010" atomtype="Time"
+                      value="622223424000000000`1972-10-01 00:00:00" defaultvalue="3155378112000000000`当前病人出生日期"
+                      display="1111011`````yyyy年MM月dd日+Day``13" embededId="27" autoeditnext="True" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="国籍" rtf="\'b9\'fa\'bc\'ae" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="28" id="3028c8b9-4098-4c67-ac90-117883f4cf17" nodetype="Object" nodelogiccontent=""
+                  name="籍贯" text="籍贯" description="0.142" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="籍贯"
+                      text="籍贯" description="0.000" otherid="F-01000" atomtype="String" value="``"
+                      defaultvalue="#PatientHomeplaceCountry`出生地(国家)`" display="1111111```````13" embededId="29"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="&#xA;身份证" rtf="\par&#xD;&#xA;\pard\'c9\'ed\'b7\'dd\'d6\'a4" nodetype="Text"/>
+            <node text="号" rtf="\'ba\'c5" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="40" id="d83ad350-fd1c-4700-882f-5737b0419c49" nodetype="Object" nodelogiccontent=""
+                  name="身份证号码" text="身份证号码" description="0.112" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="身份证号码"
+                      text="身份证号码" description="0.000" otherid="F-01000" atomtype="String" value="``"
+                      display="1111111```````13" embededId="41" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="职业" rtf="\'d6\'b0\'d2\'b5" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="36" id="0eab0ca9-ab6f-44df-abfc-5183bb74bc84" nodetype="Object" nodelogiccontent=""
+                  name="职业" text="职业" description="0.107" otherid="E-1001" display="11```0`1">
+                <node id="5c2cd00b-78f0-4998-9af6-25cade5343bf" nodetype="AtomNode" nodelogiccontent="" name="职业"
+                      text="职业" description="1.1107" otherid="F-11070" atomtype="String" value="``" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//41" inputdirect="False"
+                      defaultvalue="#PatientOccupation`职业`" display="1111111```````13" embededId="37"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="婚况" rtf="\'bb\'e9\'bf\'f6" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="30" id="901a1997-e1b0-45e4-bdc3-4fb4961ae7d1" nodetype="Object" nodelogiccontent=""
+                  name="婚姻状况" text="婚姻状况" description="0.105" otherid="E-1001" display="11```0`1">
+                <node id="cfa25103-a641-4a7a-a125-0a2ca114a2c2" nodetype="AtomNode" nodelogiccontent="" name="婚姻状况"
+                      text="婚姻状况" description="1.1104" otherid="F-11040" atomtype="String" value="``"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//4"
+                      inputdirect="False" defaultvalue="#PatientMarriageCondition`婚姻状况`" display="1111111```````13"
+                      embededId="31" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="民族" rtf="\'c3\'f1\'d7\'e5" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="56" id="be8c3dd1-1ea9-47bb-a331-18e4cdfa8529" nodetype="Object" nodelogiccontent=""
+                  name="民族" text="民族" description="民族" otherid="E-1001" display="11```0`1">
+                <node id="18a2351f-a41a-4543-aa55-2a917e795353" nodetype="AtomNode" nodelogiccontent="" name="民族"
+                      text="民族" description="1.1102" otherid="F-11020" atomtype="String" value="``" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//42" inputdirect="False"
+                      defaultvalue="#PatientNation`民族`" display="1111111```````13" embededId="57" autoeditnext="True"
+                      spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="&#xA;家庭住址" rtf="\par&#xD;&#xA;\pard\'bc\'d2\'cd\'a5\'d7\'a1\'d6\'b7" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="38" id="baa81413-4e3b-436c-8212-64c4a3f866ed" nodetype="Object" nodelogiccontent=""
+                  name="居住地址" text="居住地址" description="0.138" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="居住地址"
+                      text="居住地址" description="0.000" otherid="F-01000" atomtype="String"
+                      value="江西省南昌市西湖区金盘路91号4`江西省南昌市西湖区金盘路91号4`江西省南昌市西湖区金盘路91号4" defaultvalue="#CurrentAddress`目前住址`"
+                      display="1111111```````13" embededId="39" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="电话" rtf="\'b5\'e7\'bb\'b0" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="58" id="6f9190c2-d77d-4390-900e-a981d4f741c3" nodetype="Object" nodelogiccontent=""
+                  name="联系人电话" text="联系人电话" description="联系人电话" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="联系人电话"
+                      text="电话" description="0.000" otherid="F-01000" atomtype="String" value="``"
+                      defaultvalue="`Custom`" display="1111111```````13" embededId="59" autoeditnext="True"
+                      spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text="&#xA;工作" rtf="\par&#xD;&#xA;\pard\'b9\'a4\'d7\'f7" nodetype="Text"/>
+            <node text="单位" rtf="\'b5\'a5\'ce\'bb" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="62" id="b21442bc-61f4-429e-b0b9-629db56f9e85" nodetype="Object" nodelogiccontent=""
+                  name="工作单位" text="工作单位" description="工作单位" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="工作单位"
+                      text="工作单位" description="0.000" otherid="F-01000" atomtype="String" value="阿斯蒂芬`阿斯蒂芬`阿斯蒂芬"
+                      defaultvalue="#PatientCompanyName`单位名称`" display="1111111```````13" embededId="63"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="电话" rtf="\'b5\'e7\'bb\'b0" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="64" id="388d2128-afd5-49d9-a1e0-387c24103235" nodetype="Object" nodelogiccontent=""
+                  name="单位电话" text="单位电话" description="工作单位电话号码" otherid="E-1001" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="单位电话"
+                      text="单位电话" description="工作单位电话号码" otherid="F-10" atomtype="String" value="``"
+                      defaultvalue="#PatientCompanyPhoneNo`单位电话`" display="1111111```````13" embededId="65"
+                      autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="9a6ff28e-a294-44ba-8077-abe075b4dae4" nodetype="DynamicMoleNode" nodelogiccontent="" name="基本信息"
+          text="基本信息" description="0.121" otherid="C-11D1" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="616" nodetype="Embeded"/>
+    </node>
+    <Ref id="622">
+        <node identity="0" isfixed="False" spaceholder="12" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="94f78699-0772-496a-baa1-2d554664b735" nodetype="Embeded"
+              nodelogiccontent="" name="一般信息(出入院日期)" text="一般信息(出入院日期)" description="用于出院记录，包括出院日期和入院日期。"
+              display="11```0`1">
+            <node embededId="0" id="e1f0471c-d08d-47ea-a853-36e52119c09e" nodetype="Object" nodelogiccontent=""
+                  name="入院日期" signid="收入观察室日期时间|486" text="入院日期" description="0.211" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="入观日期"
+                      text="入观日期" description="8.001" atomtype="Time" minrequired="1"
+                      value="636559239600000000`2018年03月06日09时06分" defaultvalue="90`入区日期"
+                      display="1111011`入院日期：` ```yyyy年MM月dd日HH时mm分+Minute++(DTS: )``13" embededId="5"
+                      autoeditnext="True" spaceholder="24" forbidDel="True"/>
+            </node>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text=" " rtf=" " nodetype="Text"/>
+            <node text="出观日期" rtf="\'b3\'f6\'b9\'db\'c8\'d5\'c6\'da" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="9fa99fd0-0cde-4a64-9cc9-3d45b838ea14" nodetype="Object" nodelogiccontent=""
+                  name="出院日期" text="出院日期" description="0.221" display="11```0`1">
+                <node id="c8499f95-5517-4342-bcc4-6822448c911e" nodetype="AtomNode" nodelogiccontent="" name="出观日期"
+                      text="出观日期" description="8.001" atomtype="Time" value="" defaultvalue="111`出区日期"
+                      display="1111011`出院日期：` ```yyyy年MM月dd日HH时mm分+Minute++(DTS: )``13" embededId="7"
+                      autoeditnext="True" spaceholder="24" forbidDel="False"/>
+            </node>
+            <node text="&#xA;留观天数" rtf="\par&#xD;&#xA;\pard\'c1\'f4\'b9\'db\'cc\'ec\'ca\'fd" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="463ee5a5-2564-43e4-81fa-598a6d2d91e0" nodetype="Object" nodelogiccontent=""
+                  name="住院天数" text="住院天数" description="0.225(后缀：天)" display="11```0`1">
+                <node id="4a9c797d-6a49-402c-b79f-4f7646cf26b9" nodetype="AtomNode" nodelogiccontent="" name="住留观天数"
+                      text="留观天数" description="7.201" atomtype="String" value="``" display="1111111`住院天数：```天```13"
+                      embededId="0" autoeditnext="True" spaceholder="2" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="b7ead7b9-7aac-418f-a130-ca488922be8f" nodetype="DynamicMoleNode" nodelogiccontent="" name="日期(入观日期)"
+          text="日期(入观日期)" description="急诊离观的日期" otherid="C-B1" display="11```0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="入观日期" rtf="\'c8\'eb\'b9\'db\'c8\'d5\'c6\'da" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="622" nodetype="Embeded"/>
+        <node text="天" rtf="\'cc\'ec" nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+    </node>
+    <Ref id="625">
+        <node identity="2" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="3391efe0-db65-4eda-a02f-c71d6b666c77" nodetype="Embeded"
+              nodelogiccontent="" name="过敏史(过敏药物描述)" text="过敏史(过敏药物描述)" description="描述过敏药物名称。" otherid="D-2419"
+              display="11```0`1">
+            <node text="过敏物" rtf="\'b9\'fd\'c3\'f4\'ce\'ef" nodetype="Text"/>
+            <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+            <node embededId="0" id="fe54639c-5066-4a8e-aa95-2cd4c70ec71a" nodetype="Object" nodelogiccontent=""
+                  name="过敏药物" signid="过敏史|837" text="过敏药物" description="5.308" otherid="E-54201" display="11```0`1">
+                <node id="e71e6760-533d-47d7-b1ad-53f70419e2e4" nodetype="AtomNode" nodelogiccontent="" name="过敏药物"
+                      text="过敏药物" description="1.1110" otherid="F-11100" atomtype="String" minrequired="1"
+                      maxrequired="8" value="10`三磷酸腺苷`10" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//10" inputdirect="False"
+                      display="1111111```````0" embededId="1" autoeditnext="True" spaceholder="0" forbidDel="True"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="ded71f26-9a70-4a7d-b5af-870da17cb34f" nodetype="DynamicMoleNode" nodelogiccontent="" name="过敏史" text="过敏史"
+          description="描述对药品及食物等的过敏情况。" otherid="C-1111" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node refid="625" nodetype="Embeded"/>
+    </node>
+    <Ref id="639">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="1e4a2ae9-dc8f-437e-b028-7f1e234477b7" nodetype="Embeded"
+              nodelogiccontent="" name="门诊系统诊断" text="门诊系统诊断" description="门诊系统诊断" display="11```0`1">
+            <node embededId="0" id="5d01d7b8-a9b2-4cf8-af25-85628824bcf3" nodetype="Object" nodelogiccontent=""
+                  name="门诊系统诊断" signid="初步诊断-西医诊断编码|231" text="门诊系统诊断" description="门诊系统诊断" display="11```0`1">
+                <node id="6fa963d2-ab46-493e-9cf6-ff87addccf52" nodetype="AtomNode" nodelogiccontent="" name="门诊系统诊断"
+                      text="入观诊断" description="输入自由文本的原子类型。" atomtype="Dynamic"
+                      value="头痛 邪注经络证(证型)  `头痛 邪注经络证(证型)  `头痛 邪注经络证(证型)  "
+                      defaultvalue="17101297-d6fc-46e8-935b-d19f7d74ad9e|[序号][Zdmc]  `17101297-d6fc-46e8-935b-d19f7d74ad9e|[序号][Zdmc]  `"
+                      display="1111111```````0" embededId="13" autoeditnext="False" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="bf6bd21c-1228-4797-bb7b-cf9a87d94f86" nodetype="DynamicMoleNode" nodelogiccontent="" name="入院诊断"
+          text="入院诊断" description="0.221" otherid="C-81" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="False" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="入观诊断" rtf="\'c8\'eb\'b9\'db\'d5\'ef\'b6\'cf" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="639" nodetype="Embeded"/>
+    </node>
+    <Ref id="641">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="4c6d02d5-9d24-4b05-8019-f47725eabbf0" nodetype="Embeded"
+              nodelogiccontent="" name="出院诊断(出院诊断)" text="出院诊断(出院诊断)" description="用于描述出院诊断，诊断控件选择" display="11```0`1">
+            <node embededId="0" id="b1ea8c6d-967b-4c32-ae83-1b2177bcede1" nodetype="Object" nodelogiccontent=""
+                  name="出院诊断" signid="出院诊断-西医诊断名称|218" text="出院诊断" description="6.203" display="11```0`1">
+                <node id="1222d85e-4a28-445a-8dad-70434002ac85" nodetype="AtomNode" nodelogiccontent="" name="出院诊断"
+                      text="出观诊断" description="6.001" atomtype="String" maxrequired="10" value="00510`伤寒性脑膜炎`A01.002+"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="ICD-10///ICD10///记录状态//1" inputdirect="False"
+                      display="1111111```````0" embededId="9" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="b4c8514b-7c09-44b6-aee2-d49622956ef6" nodetype="DynamicMoleNode" nodelogiccontent="" name="出院诊断"
+          text="出院诊断" description="0.225" otherid="C-81" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="出观" rtf="\'b3\'f6\'b9\'db" nodetype="Text"/>
+        <node text="诊断" rtf="\'d5\'ef\'b6\'cf" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="641" nodetype="Embeded"/>
+    </node>
+    <Ref id="628">
+        <node identity="34" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="FFFF" hospitalcoderange="" id="462e3b85-2a05-4b87-b70d-10fd8bc2569c" nodetype="Embeded"
+              nodelogiccontent="" name="勾选框(勾选框)" text="勾选框(勾选框)" display="11```0`1">
+            <node embededId="32" id="f9bdd956-488d-4082-83d7-a0cc5f7df3fe" nodetype="Object" nodelogiccontent=""
+                  name="离院方式(新)" signid="患者去向代码|396" text="离院方式(新)" description="包括转院、转社区、非医嘱离院等。" otherid="E-1018"
+                  display="11```0`1">
+                <node id="101554fa-0f1b-4fbc-9e46-72331ff58b23" nodetype="AtomNode" nodelogiccontent="" name="离院方式(新)"
+                      text="离院方式(新)" description="包括转院、非医嘱离院、转社区等。" otherid="F-2030" atomtype="String" minrequired="1"
+                      value="2`医嘱转院`2" ischoiceatom="True" ChoiceType="ShowList"
+                      sqlstr="通用字典（字典分类明细）///CommonBook///记录状态//1//类别代码//98///" inputdirect="False"
+                      display="1111111```````0" embededId="33" autoeditnext="True" spaceholder="0" forbidDel="True"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="1c9619a6-0d6b-4375-8fcf-6a4b0ca89893" nodetype="DynamicMoleNode" nodelogiccontent="" name="去向" text="去向"
+          description="7.511" otherid="C-11B1" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="出观去向：" rtf="\'b3\'f6\'b9\'db\'c8\'a5\'cf\'f2\'a3\'ba" nodetype="Text"/>
+        <node refid="628" nodetype="Embeded"/>
+    </node>
+    <Ref id="634">
+        <node identity="32" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded"
+              nodelogiccontent="" name="医师签名" text="医师签名" description="病史记录者签名" otherid="D-101189" display="11```0`1">
+            <node embededId="7" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
+                  name="医师签名" text="医师签名" otherid="E-1011" display="11```0`1">
+                <node id="240d0ef4-ba27-4c11-b735-7d62c1f744c3" nodetype="AtomNode" nodelogiccontent="" name="主任医师"
+                      text="主任医师" description="院内职工表。" otherid="F-2010" atomtype="String" value="8888`8888`8888"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1"
+                      inputdirect="False" display="1110111````　```13" embededId="3" autoeditnext="True" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="635">
+        <node identity="0" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="1f1ca474-f968-4cf0-a493-abd4fac072fe" nodetype="Embeded"
+              nodelogiccontent="" name="医师签名" text="医师签名" description="病史记录者签名" display="11```0`1">
+            <node embededId="0" id="bbe61f62-72dd-411e-8174-68946693addb" nodetype="Object" nodelogiccontent=""
+                  name="医师签名" text="医师签名" display="11```0`1">
+                <node id="8a9a439e-0b1a-49ff-9ecf-23a1ce6192e1" nodetype="AtomNode" nodelogiccontent="" name="主治医师"
+                      text="主治医师" description="院内职工表。" atomtype="String" value="2458`艾丽娟`2458" ischoiceatom="True"
+                      ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1" inputdirect="False"
+                      display="1110111````　```13" embededId="4" autoeditnext="True" spaceholder="0" forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="637">
+        <node identity="8" isfixed="False" spaceholder="0" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="" hospitalcoderange="" id="af93e224-ab45-43e6-b95c-c1b5d28df79e" nodetype="Embeded"
+              nodelogiccontent="" name="医师签名（单个医师签名）" text="医师签名（单个医师签名）" description="病史记录者签名" otherid="D-101189"
+              display="11```0`1">
+            <node embededId="6" id="395af5e6-1851-4acb-8bf7-05b73aa7ffc2" nodetype="Object" nodelogiccontent=""
+                  name="医师签名（单个医师签名）" signid="医师签名|240" text="医师签名（单个医师签名）" otherid="E-1011" display="11```0`1">
+                <node id="240d0ef4-ba27-4c11-b735-7d62c1f744c3" nodetype="AtomNode" nodelogiccontent="" name="医师签名"
+                      text="经治医师" description="院内职工表。" otherid="F-2010" atomtype="String" value="00`supervisor`00"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1"
+                      inputdirect="False" display="1110111````　```0" embededId="7" autoeditnext="True" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <Ref id="638">
+        <node identity="4" isfixed="False" spaceholder="4" atomvisibleenabled="False" atomvisible="" diagnosistype="-1"
+              illnesstypecode="FFFF" hospitalcoderange="" id="25907f79-52de-43fd-8693-1f9b8aa4f239" nodetype="Embeded"
+              nodelogiccontent="" name="手术信息(巡回护士)" text="手术信息(巡回护士)" otherid="D-101529" display="11```0`1">
+            <node embededId="0" id="f7fa4b0f-a65e-4de5-8826-6ca267047277" nodetype="Object" nodelogiccontent=""
+                  name="手术护士" text="手术护士" description="0.233" otherid="E-02804" display="11```0`1">
+                <node id="6d779fe3-733a-4f0d-9c86-a040241deeb6" nodetype="AtomNode" nodelogiccontent="" name="手术护士"
+                      text="责任护士" description="3.003" otherid="F-30030" atomtype="String" value="3910`安建勋`3910"
+                      ischoiceatom="True" ChoiceType="ShowList" sqlstr="职工表///EmployeeBook///记录状态//1"
+                      inputdirect="False" display="1111111`` `````0" embededId="1" autoeditnext="True" spaceholder="0"
+                      forbidDel="False"/>
+            </node>
+        </node>
+    </Ref>
+    <node id="581f3027-3a60-4e0b-9a82-c2d2dee31b73" nodetype="DynamicMoleNode" nodelogiccontent="" name="医师签名"
+          text="医师签名" description="3.571" otherid="C-D6" display="10``&#xD;&#xA;`0`1" permitobjs="" defaultobjs=""
+          allowUserDefine="True" canNotInputText="False" canNull="True" canNullSubmit="True"
+          permittedDoctorGradeRange="" useDiagContinuedPrint="False" nodePrintArea="None" indentLength="0">
+        <node text="科主任" rtf="\'bf\'c6\'d6\'f7\'c8\'ce" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="634" nodetype="Embeded"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text="             " rtf="             " nodetype="Text"/>
+        <node text="主治医师" rtf="\'d6\'f7\'d6\'ce\'d2\'bd\'ca\'a6" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="635" nodetype="Embeded"/>
+        <node text=" " rtf=" " nodetype="Text"/>
+        <node text="             " rtf="             " nodetype="Text"/>
+        <node text="经" rtf="\'be\'ad" nodetype="Text"/>
+        <node text="治" rtf="\'d6\'ce" nodetype="Text"/>
+        <node text="医师" rtf="\'d2\'bd\'ca\'a6" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="637" nodetype="Embeded"/>
+        <node text="&#xA;" rtf="\par&#xD;&#xA;" nodetype="Text"/>
+        <node text="责任" rtf="\'d4\'f0\'c8\'ce" nodetype="Text"/>
+        <node text="护士" rtf="\'bb\'a4\'ca\'bf" nodetype="Text"/>
+        <node text="：" rtf="\'a3\'ba" nodetype="Text"/>
+        <node refid="638" nodetype="Embeded"/>
+    </node>
+</Model>

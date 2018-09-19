@@ -106,7 +106,7 @@ public class ModelCheckUtil {
             Integer mustMatch = temp.getMustMatch();
             if (mustMatch.intValue() == 0) {
                 info.setStatus(0);
-                info.setErrorDesc("字段不需校验");
+                info.setErrorDesc("");
                 return;
             }
 
@@ -161,7 +161,7 @@ public class ModelCheckUtil {
                 info.setStatus(1);
                 info.setErrorDesc("缺少节点");
                 continue;
-            } else if (bt == 1) {
+            } else if (bt == 1 && type == 1) {
                 //文件结构必填
                 String canNull = XmlUtil.getValueByAttrName(dynamicModelNode, "canNull");
                 if (canNull == null || !"False".equals(canNull)) {
@@ -198,7 +198,7 @@ public class ModelCheckUtil {
                     info.setStatus(1);
                     info.setErrorDesc("缺少节点");
                     continue;
-                } else if (bt == 1) {
+                } else if (bt == 1 && type == 3) {
                     //获取当前元数据下原子节点
                     Element currentAtomNode = objectNode.element("node");
                     String minrequired = XmlUtil.getValueByAttrName(currentAtomNode, "minrequired");
@@ -220,7 +220,7 @@ public class ModelCheckUtil {
                     info.setStatus(1);
                     info.setErrorDesc("缺少节点");
                     continue;
-                } else if (type == 1) {
+                } else if (bt == 1 && type == 4) {
                     String minrequired = XmlUtil.getValueByAttrName(atomNode, "minrequired");
                     if (minrequired == null || !"1".equals(minrequired)) {
                         info.setStatus(1);

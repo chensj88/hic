@@ -37,8 +37,8 @@ public class ModelCheckController extends BaseController {
         //getFacade().getMbzModelCheckService().removeMbzModelCheck(new MbzModelCheck());
         //数据初始化
         getFacade().getMbzModelCheckService().innitModelCheckData();
-        //获取去模板总数
-        Integer emrMbkCount = getFacade().getEmrMbkService().getEmrMbkCount(new EmrMbk());
+        //获取配置模板总数
+        Integer emrMbkCount = getFacade().getMbzDataListSetService().getMbzDataListSetCount(new MbzDataListSet());
         //从字典表获取数据集
         MbzDictInfo mbzDictInfo = new MbzDictInfo();
         mbzDictInfo.setDictCode("platformTableName");
@@ -49,6 +49,15 @@ public class ModelCheckController extends BaseController {
         resultMap.put("modelList", modelList);
         model.addAllAttributes(resultMap);
         return "modelCheck/modelCheck";
+    }
+
+    @RequestMapping("/modelCheck/modelNum")
+    @ResponseBody
+    public Map modelNum(MbzDataListSet dataListSet) {
+        //获取去模板总数
+        Integer emrMbkCount = getFacade().getMbzDataListSetService().getMbzDataListSetCount(dataListSet);
+        resultMap.put("num", emrMbkCount == null ? 0 : emrMbkCount);
+        return resultMap;
     }
 
     /**
@@ -93,11 +102,10 @@ public class ModelCheckController extends BaseController {
         //获取待校验模板sourceType
         String sourceType = mbzModelCheck.getSourceType();
         String modelCode = mbzModelCheck.getModelCode();
-        if (StringUtil.isEmptyOrNull(sourceType)) {
-            return null;
-        }
         MbzModelCheck temp = new MbzModelCheck();
-        temp.setSourceType(sourceType);
+        if (!StringUtil.isEmptyOrNull(sourceType)) {
+            temp.setSourceType(sourceType);
+        }
         if (!StringUtil.isEmptyOrNull(modelCode)) {
             temp.setModelCode(modelCode);
         }
@@ -109,6 +117,9 @@ public class ModelCheckController extends BaseController {
             EmrMbk emrMbkTemp = new EmrMbk();
             emrMbkTemp.setMbdm(modelCheck.getModelCode());
             emrMbkTemp = getFacade().getEmrMbkService().getEmrMbk(emrMbkTemp);
+            if (emrMbkTemp == null) {
+                continue;
+            }
             //获取模板xml并装换成document文件
             Document document = XmlUtil.getDocument(emrMbkTemp.getMbnr());
             //获取根节点
