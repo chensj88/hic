@@ -2742,7 +2742,7 @@
         )
         ),
 
-        'NA'
+        '0'
         )                                         AS nls,
         q.SYXH                                AS syxh,
         q.TJZT                                    AS tjzt,
@@ -2880,7 +2880,7 @@
         )
         ),
 
-        'NA'
+        '0'
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         q.SYXH AS syxh,
@@ -3019,7 +3019,7 @@
         )
         ),
 
-        'NA'
+        '0'
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         q.SYXH AS syxh,
@@ -3143,7 +3143,7 @@
         )
         ),
 
-        'NA'
+        '0'
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         ISNULL(
@@ -3298,7 +3298,7 @@
         )
         ),
 
-        'NA'
+        '0'
         )                                         AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         '0'                                      AS tz,
@@ -3409,7 +3409,7 @@
         YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
         )
         ),
-        'NA'
+        '0'
         )                                         AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         q.SYXH                                AS syxh,
@@ -3530,7 +3530,7 @@
         )
         ),
 
-        'NA'
+        '0'
         )                                         AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         q.SYXH                                AS syxh,
@@ -3649,7 +3649,7 @@
         )
         ),
 
-        'NA'
+        '0'
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         q.BLDM AS model_code,
@@ -3764,7 +3764,7 @@
         YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
         )
         ),
-        'NA'
+        '0'
         )                                         AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         b.RYRQ                                    AS ryrq,
@@ -3866,7 +3866,7 @@
         YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
         )
         ),
-        'NA'
+        '0'
         )                                               AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
         q.FSSJ                                          AS qmrq,
@@ -3992,7 +3992,7 @@
         )
         ),
 
-        'NA'
+        '0'
         )                                         AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         b.RYRQ                                    AS ryrq,
@@ -4096,7 +4096,7 @@
         YEAR(GETDATE()) - YEAR(CONVERT(datetime, b.CSRQ))
         )
         ),
-        'NA'
+        '0'
         )                                                 AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         q.SYXH                                AS syxh,
