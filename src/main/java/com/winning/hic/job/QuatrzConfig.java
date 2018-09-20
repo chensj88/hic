@@ -52,7 +52,7 @@ public class QuatrzConfig {
     public CronTriggerFactoryBean cronJobTrigger(@Qualifier("jobDetail") MethodInvokingJobDetailFactoryBean jobDetail){
         CronTriggerFactoryBean tigger = new CronTriggerFactoryBean();
         tigger.setJobDetail(jobDetail.getObject());
-        tigger.setCronExpression("40-50 * * * * ?");// 初始时的cron表达式
+        tigger.setCronExpression("* * 2 * * ?");// 初始时的cron表达式
         tigger.setName("HLHT-TRIGGER");// trigger的name
         logger.info("定时触发器【数据抽取】配置完成@[{}]",DateUtil.format(new Date(),DateUtil.PATTERN_19));
         return tigger;

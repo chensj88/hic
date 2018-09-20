@@ -21,18 +21,34 @@
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <!--设置日志文件编码-->
+            <charset>UTF-8</charset>
         </encoder>
         <!--日志文件最大的大小-->
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <MaxFileSize>10MB</MaxFileSize>
         </triggeringPolicy>
     </appender>
-    <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
-    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>
-    <logger name="org.hibernate.SQL" level="DEBUG"/>
-    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
-    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
+
+    <logger name="com.winning.hic" level="DEBUG"></logger>
+    <!-- 3rdparty Loggers -->
+    <logger name="org.springframework.core" level="INFO"></logger>
+    <logger name="org.springframework.beans" level="INFO"></logger>
+    <logger name="org.springframework.context" level="INFO"></logger>
+    <logger name="org.springframework.web" level="INFO"></logger>
+    <logger name="org.apache.ibatis" level="DEBUG"></logger>
+    <logger name="org.apache.ibatis.common.jdbc.SimpleDataSource" level="DEBUG"></logger>
+    <logger name="org.apache.ibatis.common.jdbc.ScriptRunner" level="DEBUG"></logger>
+    <logger name="org.apache.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG"></logger>
+    <logger name="org.mybatis.spring" level="DEBUG"> </logger>
+    <logger name="java.sql.Connection" level="DEBUG"></logger>
+    <logger name="java.sql.Statement" level="DEBUG"></logger>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"></logger>
+    <logger name="druid.sql" additivity="false" level="debug"></logger>
+    <logger name="druid.sql.DataSource" additivity="false" level="error"></logger>
+    <logger name="druid.sql.Connection" additivity="false" level="debug"></logger>
+    <logger name="druid.sql.Statement" additivity="false" level="debug"></logger>
+    <logger name="druid.sql.ResultSet" additivity="false" level="debug"></logger>
     <!-- 日志输出级别 -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
