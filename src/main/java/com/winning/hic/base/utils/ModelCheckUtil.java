@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -174,15 +175,20 @@ public class ModelCheckUtil {
             List<Element> dynamicChildNodeList = dynamicModelNode.elements(nodeTagName);
             //基础模板节点
             Element embededNode = null;
+            List<Element> embededNodeList = new ArrayList<>();
             if (!StringUtil.isEmptyOrNull(qrmbdm)) {
                 //当模板id存在时，校验基础模板节点
                 for (Element element : dynamicChildNodeList) {
                     Attribute nodeTypeAttr = element.attribute(nodetypeAttrName);
                     if (nodeTypeAttr != null && refNodeType.equals(nodeTypeAttr.getValue())) {
-                        embededNode = getEmbededNodeByRefid(mbdm, element.attribute(refidAttrName).getValue(), qrmbdm);
+                        Element embededNodeTemp = getEmbededNodeByRefid(mbdm, element.attribute(refidAttrName).getValue(), qrmbdm);
+                        if (embededNodeTemp != null) {
+                            //当取到节点时，跳出循环，否则遍历文件结构下所有ref节点查找模板节点
+                            embededNodeList.add(embededNodeTemp);
+                        }
                     }
                 }
-                if (embededNode == null) {
+                if (embededNodeList.size() == 0) {
                     //基础模板不存在
                     info.setStatus(1);
                     info.setErrorDesc("缺少节点");
@@ -191,41 +197,62 @@ public class ModelCheckUtil {
             }
             //元数据节点
             Element objectNode = null;
+            List<Element> objectNodeList = new ArrayList<>();
+            //循环遍历基础模板
             if (!StringUtil.isEmptyOrNull(qrdxdm)) {
-                objectNode = XmlUtil.getElementByAttr(embededNode, idAttrName, qrdxdm);
-                if (objectNode == null) {
+                for (Element embededTemp : embededNodeList) {
+                    Element objectNodeTemp = XmlUtil.getElementByAttr(embededTemp, idAttrName, qrdxdm);
+                    if (objectNodeTemp != null) {
+                        objectNodeList.add(objectNodeTemp);
+                    }
+                }
+
+                if (objectNodeList.size() == 0) {
                     //元数据不存在
                     info.setStatus(1);
                     info.setErrorDesc("缺少节点");
                     continue;
                 } else if (bt == 1 && type == 3) {
-                    //获取当前元数据下原子节点
-                    Element currentAtomNode = objectNode.element("node");
-                    String minrequired = XmlUtil.getValueByAttrName(currentAtomNode, "minrequired");
-                    if (minrequired == null || !"1".equals(minrequired)) {
-                        info.setStatus(1);
-                        info.setErrorDesc("未控制必填");
+                    Boolean flag = true;
+                    for (Element objectTemp : objectNodeList) {
+                        //遍历元数据获取当前元数据下原子节点
+                        Element currentAtomNode = objectTemp.element("node");
+                        if (currentAtomNode == null) {
+                            continue;
+                        }
+                        String minrequired = XmlUtil.getValueByAttrName(currentAtomNode, "minrequired");
+                        if (minrequired == null || !"1".equals(minrequired)) {
+                            info.setStatus(1);
+                            info.setErrorDesc("未控制必填");
+                            flag = false;
+                        } else if (minrequired != null && "1".equals(minrequired)) {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (!flag) {
+                        //未控制必填则继续校验
                         continue;
                     }
                 }
             }
 
-
-            //原子节点
-            Element atomNode = null;
             if (!StringUtil.isEmptyOrNull(yzjddm)) {
-                atomNode = XmlUtil.getElementByAttr(objectNode, idAttrName, yzjddm);
-                if (atomNode == null) {
-                    //原子节点不存在
-                    info.setStatus(1);
-                    info.setErrorDesc("缺少节点");
-                    continue;
-                } else if (bt == 1 && type == 4) {
-                    String minrequired = XmlUtil.getValueByAttrName(atomNode, "minrequired");
-                    if (minrequired == null || !"1".equals(minrequired)) {
+                //循环元数据
+                for (Element objectNodeTemp : objectNodeList) {
+                    Element atomNode = XmlUtil.getElementById(objectNodeTemp,yzjddm);
+                    if (atomNode == null) {
+                        //原子节点不存在
                         info.setStatus(1);
-                        info.setErrorDesc("未控制必填");
+                        info.setErrorDesc("缺少节点");
                         continue;
+                    } else if (bt == 1 && type == 4) {
+                        String minrequired = XmlUtil.getValueByAttrName(atomNode, "minrequired");
+                        if (minrequired == null || !"1".equals(minrequired)) {
+                            info.setStatus(1);
+                            info.setErrorDesc("未控制必填");
+                            continue;
+                        }
                     }
                 }
             }

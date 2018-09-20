@@ -143,7 +143,7 @@
         <where>
             <include refid="sql-mbzModelCheck"/>
         </where>
-        ORDER BY ID DESC
+        ORDER BY t.COLUMM_NAME ASC
     </select>
 
     <select id="selectMbzModelCheckCount" resultType="int" parameterType="com.winning.hic.model.MbzModelCheck">
@@ -167,26 +167,28 @@
     </select>
 
     <select id="selectDataSet" resultMap="mbzModelCheckResult">
-        SELECT
+        SELECT * FROM (SELECT
         t.DICT_VALUE AS SOURCE_TYPE,
         t.DICT_LABEL AS COLUMM_NAME
         FROM
         MBZ_DICT_INFO t
         WHERE
         t.DICT_CODE='platformTableName'
-        <if test="(sourceType != null and sourceType != '')">AND t.DICT_VALUE =#{sourceType}</if>
+        <if test="(sourceType != null and sourceType != '')">AND t.DICT_VALUE =#{sourceType}</if>) s
+        ORDER BY s.COLUMM_NAME ASC
     </select>
 
     <select id="selectModelListBySourceType" resultMap="mbzModelCheckResult"
             parameterType="com.winning.hic.model.MbzModelCheck">
-        SELECT
+        SELECT * FROM
+        (SELECT
             t.SOURCE_TYPE AS SOURCE_TYPE,
             t.MODEL_CODE AS MODEL_CODE,
             t.MODEL_NAME AS COLUMM_NAME
         FROM
             MBZ_DATA_LIST_SET t
         WHERE
-            t.SOURCE_TYPE = #{sourceType}
+            t.SOURCE_TYPE = #{sourceType}) s
     </select>
 
     <insert id="innitModelCheckData">
