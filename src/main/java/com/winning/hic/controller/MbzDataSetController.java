@@ -66,7 +66,7 @@ public class MbzDataSetController extends BaseController {
             oldDataSet.setQrdxdm(dataSet.getQrdxdm());
             oldDataSet.setYzjddm(dataSet.getYzjddm());
             int count = super.getFacade().getMbzDataSetService().getMbzDataSetCount(oldDataSet);
-            convertToNull(dataSet);
+            //convertToNull(dataSet);
             if(count > 1){
                 result.put("status", Constants.ERROR);
                 result.put("msg", "当前字段配置数据已经存在，请修改!");
@@ -107,7 +107,7 @@ public class MbzDataSetController extends BaseController {
             oldDataSet.setQrdxdm(dataSet.getQrdxdm());
             oldDataSet.setYzjddm(dataSet.getYzjddm());
             int count = super.getFacade().getMbzDataSetService().getMbzDataSetCount(oldDataSet);
-            convertToNull(dataSet);
+            //convertToNull(dataSet);
             if(count >= 1){
                 result.put("status", Constants.ERROR);
                 result.put("msg", "当前字段配置数据已经存在，请修改!");
