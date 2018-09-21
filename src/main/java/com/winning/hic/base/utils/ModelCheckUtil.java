@@ -162,7 +162,7 @@ public class ModelCheckUtil {
                 info.setStatus(1);
                 info.setErrorDesc("缺少节点");
                 continue;
-            } else if (bt == 1 && type == 1) {
+            } else if (bt == 1 && type == 1&&StringUtil.isEmptyOrNull(qrdxdm)) {
                 //文件结构必填
                 String canNull = XmlUtil.getValueByAttrName(dynamicModelNode, "canNull");
                 if (canNull == null || !"False".equals(canNull)) {
@@ -212,7 +212,7 @@ public class ModelCheckUtil {
                     info.setStatus(1);
                     info.setErrorDesc("缺少节点");
                     continue;
-                } else if (bt == 1 && type == 3) {
+                } else if (bt == 1 && (type == 3||!StringUtil.isEmptyOrNull(qrdxdm))) {
                     Boolean flag = true;
                     for (Element objectTemp : objectNodeList) {
                         //遍历元数据获取当前元数据下原子节点
