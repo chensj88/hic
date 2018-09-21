@@ -89,6 +89,16 @@ public class DomUtils {
      * @return
      */
     public static String getAttrValueByDataSet(Document document, MbzDataSet info) {
+        if(info.getDataType() == 1){
+            info.setQrmbdm(null);
+            info.setQrdxdm(null);
+            info.setYzjddm(null);
+        }else if(info.getDataType() == 2){
+            info.setQrdxdm(null);
+            info.setYzjddm(null);
+        }else if(info.getDataType() == 3){
+            info.setYzjddm(null);
+        }
         Element rootElement = document.getRootElement();
         return resolveNodeInfo(rootElement, info);
     }
