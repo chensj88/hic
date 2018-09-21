@@ -471,6 +471,69 @@
 
     </select>
 
+    <!-- Chen,Kuai 2018年9月21日16:56:13  门诊-卫生事件摘要 -->
+    <select id="selectBlgyWssjzyMzList" parameterType="com.winning.hic.model.HlhtBlgyWssjzy" resultMap="hlhtBlgyWssjzyResult">
+        SELECT
+        T.XH as yjlxh,
+        T.GHXH as jzlsh,
+        T.PATID as patid,
+        T.HZXM as hzxm,
+        CONVERT(varchar,T.GHXH) as mjzh,
+        '0' as zyh,
+        1 as jzlb,
+        (SELECT CASE T.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE T.SFZH END) as sfzhm,
+        (SELECT CASE T.SEX WHEN '男' THEN '1' WHEN '女' THEN '2' ELSE '3' END) as xbdm,
+        T.SEX as xbmc,
+        'NA' as jmjkkh,
+        ii.DICT_LABEL AS zzjgdm,
+        i.DICT_LABEL AS zzjgmc,
+        T.KSDM as ksdm,
+        T.KSMC as ksmc,
+        1 as hzlxdm,
+        '门诊' as hzlxmc,
+        ISNULL(CONVERT(datetime,substring(T.CZRQ,1,4)+'-'+substring(T.CZRQ,5,2)+'-'+substring(T.CZRQ,7,2)+' '+substring(T.CZRQ,9,8)),'1990-01-01 00:00:00.000') as jzrqsj,
+        ISNULL(CONVERT(datetime,substring(T.GHRQ,1,4)+'-'+substring(T.GHRQ,5,2)+'-'+substring(T.GHRQ,7,2)+' '+substring(T.GHRQ,9,8)),'1990-01-01 00:00:00.000') as ryrqsj,
+        ISNULL(CONVERT(datetime,substring(T.JZRQ,1,4)+'-'+substring(T.JZRQ,5,2)+'-'+substring(T.JZRQ,7,2)+' '+substring(T.JZRQ,9,8)),'1990-01-01 00:00:00.000') as cyrqsj,
+        ISNULL(CONVERT(datetime,substring(T.LRRQ,1,4)+'-'+substring(T.LRRQ,5,2)+'-'+substring(T.LRRQ,7,2)),'1990-01-01 00:00:00.000') as fbrqsj,
+        (SELECT CASE T.ZDMC WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE T.ZDMC END) as jzyy,
+        T.ZDDM as xyzd,
+        T.ZDMC as xyzdmc,
+        'NA' as zybm,
+        'NA' as zybmmc,
+        'NA' as zyzh,
+        'NA' as zyzhmc,
+        ISNULL(T.DBZDDM,'NA') as qtxyzd,
+        ISNULL(T.DBZDMC, 'NA') as qtxyzdmc,
+        'NA' as ssjcz,
+        'NA' as ssjczmc,
+        'NA' AS gjywdm,
+        'NA' AS gjywmc,
+        'NA' AS gjywyf,
+        '无不良反应' as ywblfy,
+        ISNULL(zycf.cflb, '1') AS zysylb,
+        (SELECT CASE zycf.cflb WHEN '1' THEN '未使用' WHEN '2' THEN '中成药' WHEN '3' THEN '中草药' WHEN '9' THEN '其他中药' ELSE '未使用' END ) as zysylbmc,
+        '无' as qtyxcz,
+        'NA' as gbsy,
+        'NA' as gbsymc,
+        1 as zljg,
+        '治愈' as zljgmc,
+        ISNULL(T.YSDM, 'NA') as zrysbm,
+        (SELECT CASE T.YSMC WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE T.YSMC END) as zrys,
+        GETDATE() AS gxsj,T.GHXH as syxh
+        FROM  OUTP_JZJLK T
+        LEFT JOIN CIS_HLHT.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
+        LEFT JOIN CIS_HLHT.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
+        LEFT JOIN CIS_HLHT.dbo.HLHT_MJZCF_ZYCF zycf ON zycf.jzlsh = T.GHXH
+        WHERE T.JLZT='1' AND T.FZBZ >1
+        <if test="map.startDate != null and map.startDate != ''">and <![CDATA[CONVERT(datetime,substring(T.GHRQ,1,4)+'-'+substring(T.GHRQ,5,2)+'-'+substring(T.GHRQ,7,2)+' '+substring(T.GHRQ,9,8)) >= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[CONVERT(datetime,substring(T.GHRQ,1,4)+'-'+substring(T.GHRQ,5,2)+'-'+substring(T.GHRQ,7,2)+' '+substring(T.GHRQ,9,8)) <= #{map.endDate}]]>  </if>
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[T.EMRXH = #{map.syxh}]]>  </if>
+
+    </select>
+
+
+
+
     <!-- Chen,Kuai 2018年8月21日15:58:09  插入全部的数据 -->
     <insert id="insertHlhtBlgyWssjzyAll" parameterType="com.winning.hic.model.HlhtBlgyWssjzy">
         INSERT INTO HLHT_BLGY_WSSJZY

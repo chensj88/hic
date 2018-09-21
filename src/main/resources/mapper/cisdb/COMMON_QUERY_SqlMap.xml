@@ -3484,6 +3484,63 @@
         <result column="tjzt" property="tjzt" jdbcType="VARCHAR"/>
         <result column="yxjl" property="yxjl" jdbcType="INTEGER"/>
     </resultMap>
+
+
+    <resultMap id="hlhtBlgyWssjzyResultForList" type="com.winning.hic.model.HlhtBlgyWssjzy">
+        <result column="yjlxh" property="yjlxh" jdbcType="VARCHAR"/>
+        <result column="jzlsh" property="jzlsh" jdbcType="VARCHAR"/>
+        <result column="patid" property="patid" jdbcType="VARCHAR"/>
+        <result column="hzxm" property="hzxm" jdbcType="VARCHAR"/>
+        <result column="mjzh" property="mjzh" jdbcType="VARCHAR"/>
+        <result column="zyh" property="zyh" jdbcType="VARCHAR"/>
+        <result column="jzlb" property="jzlb" jdbcType="VARCHAR"/>
+        <result column="sfzhm" property="sfzhm" jdbcType="VARCHAR"/>
+        <result column="xbdm" property="xbdm" jdbcType="VARCHAR"/>
+        <result column="xbmc" property="xbmc" jdbcType="VARCHAR"/>
+        <result column="jmjkkh" property="jmjkkh" jdbcType="VARCHAR"/>
+        <result column="zzjgdm" property="zzjgdm" jdbcType="VARCHAR"/>
+        <result column="zzjgmc" property="zzjgmc" jdbcType="VARCHAR"/>
+        <result column="ksdm" property="ksdm" jdbcType="VARCHAR"/>
+        <result column="ksmc" property="ksmc" jdbcType="VARCHAR"/>
+        <result column="hzlxdm" property="hzlxdm" jdbcType="VARCHAR"/>
+        <result column="hzlxmc" property="hzlxmc" jdbcType="VARCHAR"/>
+        <result column="jzrqsj" property="jzrqsj" jdbcType="TIMESTAMP"/>
+        <result column="ryrqsj" property="ryrqsj" jdbcType="TIMESTAMP"/>
+        <result column="cyrqsj" property="cyrqsj" jdbcType="TIMESTAMP"/>
+        <result column="fbrqsj" property="fbrqsj" jdbcType="TIMESTAMP"/>
+        <result column="jzyy" property="jzyy" jdbcType="VARCHAR"/>
+        <result column="xyzd" property="xyzd" jdbcType="VARCHAR"/>
+        <result column="xyzdmc" property="xyzdmc" jdbcType="VARCHAR"/>
+        <result column="zybm" property="zybm" jdbcType="VARCHAR"/>
+        <result column="zybmmc" property="zybmmc" jdbcType="VARCHAR"/>
+        <result column="zyzh" property="zyzh" jdbcType="VARCHAR"/>
+        <result column="zyzhmc" property="zyzhmc" jdbcType="VARCHAR"/>
+        <result column="qtxyzd" property="qtxyzd" jdbcType="VARCHAR"/>
+        <result column="qtxyzdmc" property="qtxyzdmc" jdbcType="VARCHAR"/>
+        <result column="ssjcz" property="ssjcz" jdbcType="VARCHAR"/>
+        <result column="ssjczmc" property="ssjczmc" jdbcType="VARCHAR"/>
+        <result column="gjywdm" property="gjywdm" jdbcType="VARCHAR"/>
+        <result column="gjywmc" property="gjywmc" jdbcType="VARCHAR"/>
+        <result column="gjywyf" property="gjywyf" jdbcType="VARCHAR"/>
+        <result column="ywblfy" property="ywblfy" jdbcType="VARCHAR"/>
+        <result column="zysylb" property="zysylb" jdbcType="VARCHAR"/>
+        <result column="zysylbmc" property="zysylbmc" jdbcType="VARCHAR"/>
+        <result column="qtyxcz" property="qtyxcz" jdbcType="VARCHAR"/>
+        <result column="gbsy" property="gbsy" jdbcType="VARCHAR"/>
+        <result column="gbsymc" property="gbsymc" jdbcType="VARCHAR"/>
+        <result column="zljg" property="zljg" jdbcType="VARCHAR"/>
+        <result column="zljgmc" property="zljgmc" jdbcType="VARCHAR"/>
+        <result column="zrysbm" property="zrysbm" jdbcType="VARCHAR"/>
+        <result column="zrys" property="zrys" jdbcType="VARCHAR"/>
+        <result column="gxsj" property="gxsj" jdbcType="TIMESTAMP"/>
+        <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="hlhtBlgyWssjzyResult" type="com.winning.hic.model.HlhtBlgyWssjzy"
+        extends="hlhtBlgyWssjzyResultForList">
+
+    </resultMap>
+
     <!--Evol 2018年8月14日16:45:45 在数据库中抽取所有麻醉知情同意书数据-->
     <select id="getHlhtZqgzxxMzzqtysListFromBaseData" resultMap="hlhtZqgzxxMzzqtysResultForList"
             parameterType="com.winning.hic.model.EmrQtbljlk">
@@ -4573,6 +4630,69 @@
         LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm=b.RYBQ
         WHERE  1=1
         <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>
+
+    </select>
+
+    <!--Chen,Kuai 2018年9月21日17:01:43 住院-卫生事件摘要 -->
+    <select id="selectBlgyWssjzyZyList" parameterType="com.winning.hic.model.HlhtBlgyWssjzy" resultMap="hlhtBlgyWssjzyResult">
+        SELECT
+        B.EMRXH as yjlxh,
+        B.SYXH as jzlsh,
+        B.PATID as patid,
+        B.HZXM as hzxm,
+        B.MZH as mjzh,
+        B.BLH as zyh,
+        2 as jzlb,
+        (SELECT CASE B.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE B.SFZH END) as sfzhm,
+        (SELECT CASE B.SEX WHEN '男' THEN '1' WHEN '女' THEN '2' ELSE '3' END) as xbdm,
+        B.SEX as xbmc,
+        'NA' as jmjkkh,
+        ii.DICT_LABEL AS zzjgdm,
+        i.DICT_LABEL AS zzjgmc,
+        B.KSDM as ksdm,
+        B.KSMC as ksmc,
+        3 as hzlxdm,
+        '住院' as hzlxmc,
+        ISNULL(CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)),'1990-01-01 00:00:00.000') as jzrqsj,
+        ISNULL(CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,8)),'1990-01-01 00:00:00.000') as ryrqsj,
+        ISNULL(CONVERT(datetime,substring(B.CYRQ,1,4)+'-'+substring(B.CYRQ,5,2)+'-'+substring(B.CYRQ,7,2)+' '+substring(B.CYRQ,9,8)),'1990-01-01 00:00:00.000') as cyrqsj,
+        '1990-01-01 00:00:00.000' as fbrqsj,
+        (SELECT CASE B.ZDMC WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE B.ZDMC END) as jzyy,
+        ISNULL(tt.czxyzdbm,'NA') AS xyzd,
+        ISNULL(tt.czxyzdmc,'NA') AS xyzdmc,
+        ISNULL(tt.czzybmdm,'NA') AS zybm,
+        ISNULL(tt.czzybmmc,'NA') AS zybmmc,
+        ISNULL(tt.czzyzhdm,'NA') AS zyzh,
+        ISNULL(tt.czzyzhmc,'NA') AS zyzhmc,
+        ISNULL(B.CYZDDM, 'NA') as qtxyzd,
+        ISNULL(B.CYZDMC , 'NA') as qtxyzdmc,
+        'NA' as ssjcz,
+        'NA' as ssjczmc,
+        'NA' AS gjywdm,
+        'NA' AS gjywmc,
+        'NA' AS gjywyf,
+        '无不良反应' as ywblfy,
+        1 as zysylb,
+        '未使用' as zysylbmc,
+        '无' as qtyxcz,
+        'NA' as gbsy,
+        'NA' as gbsymc,
+        ISNULL(cyxj.zljgdm,'1') AS zljg,
+        ISNULL(cyxj.zljgmc,'治愈') AS zljgmc,
+        ISNULL(B.YSDM, 'NA') as zrysbm,
+        (SELECT CASE B.YSXM WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE B.YSXM END) as zrys,
+        GETDATE() AS gxsj,
+        B.SYXH as syxh
+        FROM CPOE_BRSYK B
+        LEFT JOIN CIS_HLHT.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
+        LEFT JOIN CIS_HLHT.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
+        LEFT JOIN CIS_HLHT.dbo.HLHT_RYJL_JBXX tt ON tt.jzlsh = B.SYXH
+        LEFT JOIN CIS_HLHT.dbo.HLHT_CYXJ_CYXJ cyxj ON cyxj.jzlsh = B.SYXH
+        WHERE B.BRZT !=9
+        <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,8))>= #{map.startDate}]]>  </if>
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,8))  <= #{map.endDate}]]>  </if>
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[T.EMRXH = #{map.syxh}]]>  </if>
+
 
     </select>
 
