@@ -41,4 +41,6 @@ public interface MbzModelCheckDao {
     public List<MbzModelCheck> selectModelListBySourceType(MbzModelCheck mbzModelCheck);
 
     public void innitModelCheckData();
+
+    public List<MbzModelCheck> getMbzModelCheckListNotFalse(MbzModelCheck mbzModelCheck);
 }

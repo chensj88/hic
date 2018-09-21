@@ -143,6 +143,7 @@
         FROM dbo.EMR_MXMCMLK a WHERE LEFT(a.MLDM,len(a.MLDM)-2) = #{mldm}
         UNION
         SELECT a.MBDM MLDM,a.MBMC+'{'+a.MBMS+'}',a.MXFLDM SJDM, 0 NUM FROM dbo.EMR_MBK a
-        WHERE  a.MXFLDM=#{mldm}
+        LEFT JOIN EMR_KSMBDY B ON a.MBDM = B.MBDM
+        WHERE  a.MXFLDM=#{mldm} AND a.GRMBBZ = 0 AND B.KSDM = 'A'
     </select>
 </mapper>
