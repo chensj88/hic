@@ -77,6 +77,7 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
         HlhtMjzcfXycf xycf = new HlhtMjzcfXycf();
         xycf.getMap().put("startDate",entity.getMap().get("startDate"));
         xycf.getMap().put("endDate",entity.getMap().get("endDate"));
+        xycf.getMap().put("syxh",entity.getMap().get("syxh"));
         xycf.getMap().put("hisName",ConfigUtils.getEnvironment().getMZHISLinkServerFullPathURL());
         List<HlhtMjzcfXycf> mjzcfXycfList = this.commonQueryDao.selectInitHlhtMjzcfXycf(xycf);
         emr_count = mjzcfXycfList.size();

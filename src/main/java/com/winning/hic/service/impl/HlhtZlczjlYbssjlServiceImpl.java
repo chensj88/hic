@@ -111,6 +111,7 @@ public class HlhtZlczjlYbssjlServiceImpl implements  HlhtZlczjlYbssjlService {
                 qtbljlk.setYxjl(1);
                 qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
                 qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
+                qtbljlk.getMap().put("syxh",t.getMap().get("syxh"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
                 emr_count = emr_count+qtbljlkList.size();
 

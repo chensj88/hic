@@ -70,6 +70,7 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
         this.hlhtBlgyWssjzyDao.deleteHlhtBlgyWssjzy(wssjzy);
         wssjzy.getMap().put("startDate",entity.getMap().get("startDate"));
         wssjzy.getMap().put("endDate",entity.getMap().get("endDate"));
+        wssjzy.getMap().put("syxh",entity.getMap().get("syxh"));
         this.mzCommonQueryDao.insertHlhtBlgyWssjzyAll(wssjzy);
         //插入数据集中
         int emr_count =0;//病历数量
