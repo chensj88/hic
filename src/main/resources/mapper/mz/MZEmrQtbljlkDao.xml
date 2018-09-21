@@ -67,6 +67,7 @@
 	   <if test="cjksmc != null and cjksmc != ''"> and t.CJKSMC = #{cjksmc} </if>
 		<if test="map.startDate != null and map.startDate != ''"> and <![CDATA[t.CJSJ  >= #{map.startDate}]]>  </if>
 		<if test="map.endDate != null and map.endDate != ''"> and <![CDATA[t.CJSJ <= #{map.endDate}]]>  </if>
+		<if test="map.syxh != null and map.syxh != ''"> and <![CDATA[t.SYXH = #{map.syxh}]]>  </if>
 	</sql>
 
 	<select id="selectEmrQtbljlk" resultMap="emrQtbljlkResult" parameterType="com.winning.hic.model.EmrQtbljlk">

@@ -81,6 +81,7 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
         HlhtBlgyJbjkxx jbjkxx = new HlhtBlgyJbjkxx();
         jbjkxx.getMap().put("startDate",entity.getMap().get("startDate"));
         jbjkxx.getMap().put("endDate",entity.getMap().get("endDate"));
+        jbjkxx.getMap().put("syxh",entity.getMap().get("syxh"));
         List<HlhtBlgyJbjkxx> jbjkxxList = commonQueryDao.selectInitHlhtBlgyJbjkxx(jbjkxx);
         List<HlhtBlgyJbjkxx> jbjkxxListMZ = mzCommonQueryDao.selectInitHlhtBlgyJbjkxxForMz(jbjkxx);
         jbjkxxList.addAll(jbjkxxListMZ);

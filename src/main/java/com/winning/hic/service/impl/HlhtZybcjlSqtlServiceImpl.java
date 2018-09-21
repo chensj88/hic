@@ -109,6 +109,7 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
                     qtbljlk.setYxjl(1);
                     qtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
                     qtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
+                    qtbljlk.getMap().put("syxh",entity.getMap().get("syxh"));
                     List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
                     emr_count = emr_count+qtbljlkList.size();
                     if(qtbljlkList != null && qtbljlkList.size() > 0 ){

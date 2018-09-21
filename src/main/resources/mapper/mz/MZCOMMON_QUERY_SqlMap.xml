@@ -391,6 +391,8 @@
             </if>
         </where>-->
         where H.jzlsh is not null
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[t.SYXH = #{map.syxh}]]>  </if>
+
     </select>
 
     <!--chensj 门(急)诊处方/西药处方 2018-8-16 16:21:45 HLHT_MJZCF_XYCF -->
@@ -465,6 +467,7 @@
         <if test="map.endDate != null and map.endDate != ''">
             and <![CDATA[CONVERT(date,substring(T1.CJRQ,1,4)+'-'+substring(T1.CJRQ,5,2)+'-'+substring(T1.CJRQ,7,2)) <= #{map.endDate}]]>
         </if>
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[T3.EMRXH = #{map.syxh}]]>  </if>
 
     </select>
 
@@ -575,6 +578,7 @@
         WHERE T.JLZT='1' AND T.FZBZ >1
         <if test="map.startDate != null and map.startDate != ''">and <![CDATA[CONVERT(datetime,substring(T.GHRQ,1,4)+'-'+substring(T.GHRQ,5,2)+'-'+substring(T.GHRQ,7,2)+' '+substring(T.GHRQ,9,8)) >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[CONVERT(datetime,substring(T.GHRQ,1,4)+'-'+substring(T.GHRQ,5,2)+'-'+substring(T.GHRQ,7,2)+' '+substring(T.GHRQ,9,8)) <= #{map.endDate}]]>  </if>
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[T.EMRXH = #{map.syxh}]]>  </if>
         UNION ALL
         SELECT
         B.EMRXH as yjlxh,
@@ -631,7 +635,9 @@
         LEFT JOIN CIS_HLHT.dbo.HLHT_CYXJ_CYXJ cyxj ON cyxj.jzlsh = B.SYXH
         WHERE B.BRZT !=9
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,8))>= #{map.startDate}]]>  </if>
-        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,8))  <= #{map.endDate}]]>  </if> ) a;
+        <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,8))  <= #{map.endDate}]]>  </if>
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[T.EMRXH = #{map.syxh}]]>  </if>
+        ) a;
     </insert>
 
 

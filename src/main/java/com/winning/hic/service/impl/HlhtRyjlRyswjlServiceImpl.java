@@ -119,6 +119,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                 emrQtbljlk.setYxjl(1);
                 emrQtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
                 emrQtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
+                emrQtbljlk.getMap().put("syxh",entity.getMap().get("syxh"));
                 List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(emrQtbljlk);
                 emr_count = emr_count+qtbljlkList.size();
                 if(qtbljlkList != null && qtbljlkList.size() > 0){
