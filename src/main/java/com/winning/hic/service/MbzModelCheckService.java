@@ -34,4 +34,6 @@ public interface MbzModelCheckService {
 
     public void innitModelCheckData();
 
+    public List<MbzModelCheck> getMbzModelCheckListNotFalse(MbzModelCheck mbzModelCheck);
+
 }
