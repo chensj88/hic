@@ -135,6 +135,16 @@
         </where>
     </select>
 
+    <select id="getMbzModelCheckListNotFalse" resultMap="mbzModelCheckResult"
+            parameterType="com.winning.hic.model.MbzModelCheck">
+        SELECT * FROM MBZ_MODEL_CHECK t
+        <where>
+            <include refid="sql-mbzModelCheck"/>
+        </where>
+        AND t.STATUS !=0
+    </select>
+
+
     <select id="selectMbzModelCheckList" resultMap="mbzModelCheckResultForList"
             parameterType="com.winning.hic.model.MbzModelCheck">
         SELECT

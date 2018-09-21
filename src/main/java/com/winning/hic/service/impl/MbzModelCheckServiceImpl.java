@@ -67,4 +67,9 @@ public class MbzModelCheckServiceImpl implements MbzModelCheckService {
     public void innitModelCheckData() {
         this.mbzModelCheckDao.innitModelCheckData();
     }
+
+    @Override
+    public List<MbzModelCheck> getMbzModelCheckListNotFalse(MbzModelCheck mbzModelCheck) {
+        return this.mbzModelCheckDao.getMbzModelCheckListNotFalse(mbzModelCheck);
+    }
 }

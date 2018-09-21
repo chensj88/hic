@@ -91,8 +91,8 @@ public class ModelCheckController extends BaseController {
         if (StringUtil.isEmptyOrNull(mbzModelCheck.getSourceType())) {
             return null;
         }
-        //获取数据集目录
-        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.getMbzModelCheckList(mbzModelCheck);
+        //获取数据集目录 影藏错误数据
+        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.getMbzModelCheckListNotFalse(mbzModelCheck);
         return mbzModelCheckList;
     }
 
