@@ -139,7 +139,8 @@
     <select id="selectEmrMxmcmlkFirstChildList" resultMap="emrMxmcmlkResult" parameterType="com.winning.hic.model.EmrMxmcmlk">
         SELECT
          a.MLDM,a.MLMC,LEFT(a.MLDM,len(a.MLDM)-2) SJDM,
-          (select count(1) from EMR_MBK where MXFLDM =a.MLDM ) NUM
+          (select count(1) FROM dbo.EMR_MBK c
+        LEFT JOIN EMR_KSMBDY B ON c.MBDM = B.MBDM where c.MXFLDM =a.MLDM AND (c.GRMBBZ = 0 or c.GRMBBZ is null) AND B.KSDM is not null ) NUM
         FROM dbo.EMR_MXMCMLK a WHERE LEFT(a.MLDM,len(a.MLDM)-2) = #{mldm}
         UNION
         SELECT a.MBDM MLDM,a.MBMC+'{'+a.MBMS+'}',a.MXFLDM SJDM, 0 NUM FROM dbo.EMR_MBK a

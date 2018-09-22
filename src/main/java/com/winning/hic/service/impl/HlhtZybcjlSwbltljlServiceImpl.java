@@ -111,6 +111,7 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
                     qtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
                     qtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
                     qtbljlk.getMap().put("syxh",entity.getMap().get("syxh"));
+                    qtbljlk.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
                     List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
                     emr_count = emr_count+qtbljlkList.size();
                     if(qtbljlkList != null && qtbljlkList.size() > 0 ){
