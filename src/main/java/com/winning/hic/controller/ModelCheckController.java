@@ -31,6 +31,12 @@ public class ModelCheckController extends BaseController {
     @Autowired
     private MbzModelCheckService mbzModelCheckService;
 
+    /**
+     * 跳转模板校验页面
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping("/modelCheck/index")
     public String index(Model model) {
         //清库
@@ -51,6 +57,12 @@ public class ModelCheckController extends BaseController {
         return "modelCheck/modelCheck";
     }
 
+    /**
+     * 对应数据集模板总数
+     *
+     * @param dataListSet
+     * @return
+     */
     @RequestMapping("/modelCheck/modelNum")
     @ResponseBody
     public Map modelNum(MbzDataListSet dataListSet) {
@@ -61,7 +73,7 @@ public class ModelCheckController extends BaseController {
     }
 
     /**
-     * 数据集
+     * 数据集目录
      *
      * @param mbzModelCheck
      * @return
@@ -74,6 +86,12 @@ public class ModelCheckController extends BaseController {
         return mbzModelCheckList;
     }
 
+    /**
+     * 获取批量校验数据集模板集合
+     *
+     * @param mbzModelCheck
+     * @return
+     */
     @RequestMapping("/modelCheck/modelList")
     @ResponseBody
     public List<MbzModelCheck> modelList(MbzModelCheck mbzModelCheck) {
@@ -85,6 +103,12 @@ public class ModelCheckController extends BaseController {
         return mbzModelCheckList;
     }
 
+    /**
+     * 获取批量校验模板配置集合
+     *
+     * @param mbzModelCheck
+     * @return
+     */
     @RequestMapping("/modelCheck/modelCheckList")
     @ResponseBody
     public List<MbzModelCheck> modelCheckList(MbzModelCheck mbzModelCheck) {
@@ -96,6 +120,47 @@ public class ModelCheckController extends BaseController {
         return mbzModelCheckList;
     }
 
+    /**
+     * 单份校验模板配置集合
+     *
+     * @param mbzModelCheck
+     * @return
+     */
+    @RequestMapping("/modelCheck/singleModelCheckList")
+    @ResponseBody
+    public List<MbzModelCheck> singleModelCheckList(MbzModelCheck mbzModelCheck) {
+        if (StringUtil.isEmptyOrNull(mbzModelCheck.getSourceType())) {
+            return null;
+        }
+        //获取数据集目录 影藏错误数据
+        List<MbzModelCheck> mbzModelCheckList = mbzModelCheckService.getMbzModelCheckList(mbzModelCheck);
+        return mbzModelCheckList;
+    }
+
+    /**
+     * 二级联动
+     *
+     * @param mbzDataListSet
+     * @return
+     */
+    @RequestMapping("/modelCheck/checkList")
+    @ResponseBody
+    public Map checkList(MbzDataListSet mbzDataListSet) {
+        if (StringUtil.isEmptyOrNull(mbzDataListSet.getSourceType())) {
+            return null;
+        }
+        //获取数据集目录 影藏错误数据
+        List<MbzDataListSet> modelList = getFacade().getMbzDataListSetService().getMbzDataListSetList(mbzDataListSet);
+        resultMap.put("currentModelList", modelList);
+        return resultMap;
+    }
+
+    /**
+     * 模板校验
+     *
+     * @param mbzModelCheck
+     * @return
+     */
     @RequestMapping("/modelCheck/doCheck")
     @ResponseBody
     public Map doCheck(MbzModelCheck mbzModelCheck) {
