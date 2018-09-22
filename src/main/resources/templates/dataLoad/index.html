@@ -22,6 +22,7 @@
     <link rel="stylesheet" th:href="@{/assets/css/datepicker.css}"/>
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/toastr/css/toastr.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/layer/mobile/need/layer.css}"/>
 
 
     <style>
@@ -224,9 +225,6 @@
 <!--[if !IE]> -->
 <script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
 <!-- <![endif]-->
-<!--[if IE]>
-<script type="text/javascript" th:src="@{/bootstrap/js/jquery-1.12.4.min.js}"></script>
-<![endif]-->
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table-zh-CN.min.js}"></script>
@@ -240,6 +238,8 @@
 <script th:src="@{/assets/js/ace.min.js}"></script>
 <script th:src="@{/assets/js/ace-extra.min.js}"></script>
 <script th:src="@{/assets/js/chosen.jquery.min.js}"></script>
+<!--layer-->
+<script th:src="@{/assets/layer/layer.js}"></script>
 
 <script th:inline="javascript" type="text/javascript">
 
@@ -433,15 +433,9 @@
         });
     });
 
-    function hideModal(){
-        $('#myModal').modal('hide');
-    }
-
-    function showModal(){
-        $('#myModal').modal({backdrop:'static',keyboard:false});
-    }
     //手动抽取数据
     $("#handDataLoad").click(function(){
+
         var startDate =$("#startDate").val();
         var endDate =$("#endDate").val();
         var orgCode =$("#orgCode").val();
@@ -471,25 +465,27 @@
             toastr.warning("开始时间不能大于结束时间");
             return false;
         }
+        //loading层
+        var index = layer.load(1, {
+            shade: [0.5, '#E0E0E0'] //0.1透明度的白色背景
+        });
+
         $.ajax({
             type: "POST",
             url:"startLoad",
             data:{startDate:startDate,endDate:endDate,data_set:data_set,syxh:syxh},
             cache : false,
             dataType:"json",
-            async: false,
-            beforeSend:function (){
-                showModal();
-            },
+            async: true,
             error: function(request) {
             },
             success: function(data) {
-                hideModal();
                 if(data.success=='1'){
                     $simple_table.bootstrapTable('refresh');
                 }else{
                     toastr.warning("抽取失败");
                 }
+                layer.close(index);
             }
         });
     });

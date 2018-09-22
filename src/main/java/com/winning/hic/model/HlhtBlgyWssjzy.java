@@ -1,10 +1,6 @@
 package com.winning.hic.model;
 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
-import java.util.Date; 
+import java.sql.Timestamp;
 import java.io.Serializable; 
 
 import org.apache.ibatis.type.Alias; 
@@ -18,7 +14,7 @@ import com.winning.hic.model.BaseDomain;
  * @title 
  * @email Winning Health
  * @package com.winning.hic.model
- * @date 2018-29-31 16:29:04
+ * @Timestamp 2018-29-31 16:29:04
  */
 @Alias("hlhtBlgyWssjzy")
 public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
@@ -132,25 +128,25 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date jzrqsj;
+    private Timestamp jzrqsj;
     /**
      * 字段名：ryrqsj
      * 备注: 
      * 默认值：无
      */
-    private Date ryrqsj;
+    private Timestamp ryrqsj;
     /**
      * 字段名：cyrqsj
      * 备注: 
      * 默认值：无
      */
-    private Date cyrqsj;
+    private Timestamp cyrqsj;
     /**
      * 字段名：fbrqsj
      * 备注: 
      * 默认值：无
      */
-    private Date fbrqsj;
+    private Timestamp fbrqsj;
     /**
      * 字段名：jzyy
      * 备注: 
@@ -300,7 +296,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date gxsj;
+    private Timestamp gxsj;
     /**
      * 字段名：syxh
      * 备注: 
@@ -623,7 +619,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getJzrqsj(){
+   public Timestamp getJzrqsj(){
 
         return jzrqsj;
    }
@@ -633,7 +629,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setJzrqsj(Date jzrqsj){
+   public void setJzrqsj(Timestamp jzrqsj){
         this.jzrqsj = jzrqsj;
    }
    /**
@@ -641,7 +637,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getRyrqsj(){
+   public Timestamp getRyrqsj(){
 
         return ryrqsj;
    }
@@ -651,7 +647,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setRyrqsj(Date ryrqsj){
+   public void setRyrqsj(Timestamp ryrqsj){
         this.ryrqsj = ryrqsj;
    }
    /**
@@ -659,7 +655,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getCyrqsj(){
+   public Timestamp getCyrqsj(){
 
         return cyrqsj;
    }
@@ -669,7 +665,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setCyrqsj(Date cyrqsj){
+   public void setCyrqsj(Timestamp cyrqsj){
         this.cyrqsj = cyrqsj;
    }
    /**
@@ -677,7 +673,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getFbrqsj(){
+   public Timestamp getFbrqsj(){
 
         return fbrqsj;
    }
@@ -687,7 +683,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setFbrqsj(Date fbrqsj){
+   public void setFbrqsj(Timestamp fbrqsj){
         this.fbrqsj = fbrqsj;
    }
    /**
@@ -1127,7 +1123,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getGxsj(){
+   public Timestamp getGxsj(){
 
         return gxsj;
    }
@@ -1137,7 +1133,7 @@ public class HlhtBlgyWssjzy extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setGxsj(Date gxsj){
+   public void setGxsj(Timestamp gxsj){
         this.gxsj = gxsj;
    }
    /**

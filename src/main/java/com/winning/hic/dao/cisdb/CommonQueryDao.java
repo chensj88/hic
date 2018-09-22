@@ -289,4 +289,10 @@ public interface CommonQueryDao {
      */
     HlhtZcjlPgc selectInitialHlhtZcjlPgc(HlhtZcjlPgc entity);
 
+    /**
+     * 卫生事件摘要表
+     * @param obj
+     * @return
+     */
+    List<HlhtBlgyWssjzy> selectBlgyWssjzyZyList(HlhtBlgyWssjzy wssjzy);
 }

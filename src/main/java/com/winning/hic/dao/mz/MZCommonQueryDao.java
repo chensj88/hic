@@ -49,4 +49,11 @@ public interface MZCommonQueryDao {
      * @return
      */
     HlhtMjzblMjzbl selectInitialHlhtMjzblMjzbl(HlhtMjzblMjzbl entity);
+
+    /**
+     * 卫生事件摘要表
+     * @param obj
+     * @return
+     */
+    List<HlhtBlgyWssjzy> selectBlgyWssjzyMzList(HlhtBlgyWssjzy wssjzy);
 }
