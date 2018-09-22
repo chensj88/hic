@@ -144,6 +144,6 @@
         UNION
         SELECT a.MBDM MLDM,a.MBMC+'{'+a.MBMS+'}',a.MXFLDM SJDM, 0 NUM FROM dbo.EMR_MBK a
         LEFT JOIN EMR_KSMBDY B ON a.MBDM = B.MBDM
-        WHERE  a.MXFLDM=#{mldm} AND a.GRMBBZ = 0 AND B.KSDM = 'A'
+        WHERE  a.MXFLDM=#{mldm} AND (a.GRMBBZ = 0 or a.GRMBBZ is null) AND B.KSDM is not null
     </select>
 </mapper>
