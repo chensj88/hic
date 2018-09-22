@@ -361,8 +361,8 @@
             chkboxType: { "Y" : "ps", "N" : "ps" }
         },
         callback: {
-            onClick: zTreeOnOnClick
-            //onExpand:zTreeOnOnClick
+            onClick: zTreeOnOnClick,
+            onExpand:zTreeOnOnClick
         }
     };
 
@@ -1127,7 +1127,7 @@
      */
     function zTreeOnOnClick(event, treeId, treeNode) {
         let treeObj = $.fn.zTree.getZTreeObj(treeId);
-        treeObj.expandAll(false);
+        //treeObj.expandAll(false);
         let node = treeObj.getNodeByTId(treeNode.tId);
         treeObj.expandNode(node, true, true, true);
         //没有子节点才去查询
@@ -1164,6 +1164,7 @@
         let treeObj = $.fn.zTree.getZTreeObj(treeId);
         let node = treeObj.getNodeByTId(treeNode.tId);
         let pyCode = node.pyCode;
+        templateTree.expandAll(false);
         let tnode1 = templateTree.getNodeByParam("nodeId",pyCode,null);
         $("#"+tnode1.tId+"_a").click();
         if(pyCode.length > 2){
@@ -1177,6 +1178,7 @@
         dictTree.checkAllNodes(false);
         dictTree.checkNode(node, true, true);
         templateTree.checkAllNodes(false);
+
         $.ajax({
             type: "POST",
             async: false,
