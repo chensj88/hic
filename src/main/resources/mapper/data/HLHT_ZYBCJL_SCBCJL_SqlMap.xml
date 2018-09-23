@@ -371,8 +371,7 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
-    <select id="selectHlhtZybcjlScbcjlListByProc" resultMap="hlhtZybcjlScbcjlResult" statementType="CALLABLE"
-        parameterType="com.winning.hic.model.HlhtZybcjlScbcjl">
+    <select id="selectHlhtZybcjlScbcjlListByProc" resultMap="hlhtZybcjlScbcjlResult" statementType="CALLABLE">
         exec USP_HLHT_ZYBCJL_SCBCJL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
     </select>
 
