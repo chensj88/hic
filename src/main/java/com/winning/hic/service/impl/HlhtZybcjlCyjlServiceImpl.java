@@ -102,110 +102,100 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
         //1.获取对应的模板ID集合
         MbzDataListSet mbzDataListSet = new MbzDataListSet();
         mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE);
-        List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
-        for (MbzDataListSet dataListSet : dataListSets) {
-            EmrQtbljlk qtbljlk = new EmrQtbljlk();
-            qtbljlk.setBldm(dataListSet.getModelCode());
-            qtbljlk.setYxjl(1);
-            qtbljlk.getMap().put("startDate", t.getMap().get("startDate"));
-            qtbljlk.getMap().put("endDate", t.getMap().get("endDate"));
-            qtbljlk.getMap().put("syxh",t.getMap().get("syxh"));
-            qtbljlk.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
-
-            //2.根据模板代码去找到对应的病人病历
-            List<HlhtZybcjlCyjl> hlhtRyjlJbxxListFromBaseData = this.commonQueryDao.getHlhtZybcjlCyjlListFromBaseData(qtbljlk);
-            emr_count = emr_count + hlhtRyjlJbxxListFromBaseData.size();
-            if (hlhtRyjlJbxxListFromBaseData != null) {
-                for (HlhtZybcjlCyjl hlhtZybcjlCyjl : hlhtRyjlJbxxListFromBaseData) {
-                    EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
-                    emrQtbljlk.setQtbljlxh(Long.parseLong(hlhtZybcjlCyjl.getYjlxh()));
-                    emrQtbljlk = this.emrQtbljlkDao.selectEmrQtbljlk(emrQtbljlk);
-                    //清库
-                    HlhtZybcjlCyjl temp = new HlhtZybcjlCyjl();
-                    temp.setYjlxh(hlhtZybcjlCyjl.getYjlxh());
-                    this.hlhtZybcjlCyjlDao.deleteHlhtZybcjlCyjlByYjlxh(temp);
-
-                    //清除日志
-                    Map<String,Object> param = new HashMap<>();
-                    param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
-                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE);
-                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
-                    //3.xml文件解析 获取病历信息
-                    Document document = null;
-                    try {
-                        document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlCyjl.class);
-                    try {
-                        hlhtZybcjlCyjl = (HlhtZybcjlCyjl) HicHelper.initModelValue(mbzDataSetList, document, hlhtZybcjlCyjl, paramTypeMap);
-                        logger.info("Model:{}", hlhtZybcjlCyjl);
-                        //初步诊断-中医病名代码、名称处理
-                        if(!"NA".equals(hlhtZybcjlCyjl.getCzzybmdm())){
-                            String bmdm="";
-                            String bm="";
-                            String[] str=hlhtZybcjlCyjl.getCzzybmdm().split("  ");
-                            String[] str2=hlhtZybcjlCyjl.getCzzybmmc().split("  ");
-                            Character o=new Character('B');
-                            for (int i=0;str.length>i;i++){
-                                if(!"".equals(str[i].toString())){
-                                    if(o.equals(str[i].trim().charAt(0))){
-                                        bmdm = bmdm+str[i]+" ";
-                                        bm = bm+str2[i]+" ";
-                                    }
-                                }
-                            }
-                            if(StringUtils.isEmpty(bmdm)){
-                                hlhtZybcjlCyjl.setCzzybmdm("NA");
-                            }else{
-                                hlhtZybcjlCyjl.setCzzybmdm(bmdm);
-                            }
-                            if(StringUtils.isEmpty(bm)){
-                                hlhtZybcjlCyjl.setCzzybmmc("NA");
-                            }else{
-                                hlhtZybcjlCyjl.setCzzybmmc(bm);
-                            }
-                        }
-                        //初步诊断-中医证候代码
-                        if(!"NA".equals(hlhtZybcjlCyjl.getCzzyzhdm())){
-                            String bmdm="";
-                            String bm="";
-                            String[] str=hlhtZybcjlCyjl.getCzzyzhdm().split("  ");
-                            String[] str2=hlhtZybcjlCyjl.getCzzyzhmc().split("  ");
-                            Character o=new Character('B');
-                            for (int i=0;str.length>i;i++){
-                                if(!"".equals(str[i].toString())) {
-                                    if (!o.equals(str[i].trim().charAt(0))) {
-                                        bmdm = bmdm + str[i] + " ";
-                                        bm = bm + str2[i] + " ";
-                                    }
-                                }
-                            }
-                            if(StringUtils.isEmpty(bmdm)){
-                                hlhtZybcjlCyjl.setCzzyzhdm("NA");
-                            }else{
-                                hlhtZybcjlCyjl.setCzzyzhdm(bmdm);
-                            }
-                            if(StringUtils.isEmpty(bm)){
-                                hlhtZybcjlCyjl.setCzzyzhmc("NA");
-                            }else{
-                                hlhtZybcjlCyjl.setCzzyzhmc(bm);
-                            }
-                        }
-                        this.hlhtZybcjlCyjlDao.insertHlhtZybcjlCyjl(hlhtZybcjlCyjl);
-                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
-                                emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
-                                new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
-                                hlhtZybcjlCyjl.getPatid(),hlhtZybcjlCyjl.getZyh(),hlhtZybcjlCyjl.getHzxm(),hlhtZybcjlCyjl.getXbmc(),hlhtZybcjlCyjl.getXbdm(),
-                                hlhtZybcjlCyjl.getKsmc(),hlhtZybcjlCyjl.getKsdm(), hlhtZybcjlCyjl.getBqmc(),hlhtZybcjlCyjl.getBqdm(), hlhtZybcjlCyjl.getSfzhm()));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    real_count++;
+//        List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
+        HlhtZybcjlCyjl hlhtZybcjlCyjlTemp = new HlhtZybcjlCyjl();
+        hlhtZybcjlCyjlTemp.getMap().put("sourceType", Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE);
+        hlhtZybcjlCyjlTemp.getMap().put("startDate", t.getMap().get("startDate"));
+        hlhtZybcjlCyjlTemp.getMap().put("endDate", t.getMap().get("endDate"));
+        hlhtZybcjlCyjlTemp.getMap().put("syxh", t.getMap().get("syxh"));
+        List<HlhtZybcjlCyjl> hlhtZybcjlCyjls = this.hlhtZybcjlCyjlDao.selectHlhtZybcjlCyjlPageListByProc(hlhtZybcjlCyjlTemp);
+        if (hlhtZybcjlCyjls != null) {
+            emr_count = emr_count + hlhtZybcjlCyjls.size();
+            for (HlhtZybcjlCyjl obj : hlhtZybcjlCyjls) {
+                //清库
+                HlhtZybcjlCyjl temp = new HlhtZybcjlCyjl();
+                temp.setYjlxh(obj.getYjlxh());
+                this.hlhtZybcjlCyjlDao.deleteHlhtZybcjlCyjlByYjlxh(temp);
+                //清除日志
+                Map<String, Object> param = new HashMap<>();
+                param.put("SOURCE_ID", obj.getYjlxh());
+                param.put("SOURCE_TYPE", Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE);
+                mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+                //3.xml文件解析 获取病历信息
+                Document document = null;
+                try {
+                    document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+                Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlCyjl.class);
+                try {
+                    obj = (HlhtZybcjlCyjl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                    logger.info("Model:{}", obj);
+                    //初步诊断-中医病名代码、名称处理
+                    if (!"NA".equals(obj.getCzzybmdm())) {
+                        String bmdm = "";
+                        String bm = "";
+                        String[] str = obj.getCzzybmdm().split("  ");
+                        String[] str2 = obj.getCzzybmmc().split("  ");
+                        Character o = new Character('B');
+                        for (int i = 0; str.length > i; i++) {
+                            if (!"".equals(str[i].toString())) {
+                                if (o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i] + " ";
+                                    bm = bm + str2[i] + " ";
+                                }
+                            }
+                        }
+                        if (StringUtils.isEmpty(bmdm)) {
+                            obj.setCzzybmdm("NA");
+                        } else {
+                            obj.setCzzybmdm(bmdm);
+                        }
+                        if (StringUtils.isEmpty(bm)) {
+                            obj.setCzzybmmc("NA");
+                        } else {
+                            obj.setCzzybmmc(bm);
+                        }
+                    }
+                    //初步诊断-中医证候代码
+                    if (!"NA".equals(obj.getCzzyzhdm())) {
+                        String bmdm = "";
+                        String bm = "";
+                        String[] str = obj.getCzzyzhdm().split("  ");
+                        String[] str2 = obj.getCzzyzhmc().split("  ");
+                        Character o = new Character('B');
+                        for (int i = 0; str.length > i; i++) {
+                            if (!"".equals(str[i].toString())) {
+                                if (!o.equals(str[i].trim().charAt(0))) {
+                                    bmdm = bmdm + str[i] + " ";
+                                    bm = bm + str2[i] + " ";
+                                }
+                            }
+                        }
+                        if (StringUtils.isEmpty(bmdm)) {
+                            obj.setCzzyzhdm("NA");
+                        } else {
+                            obj.setCzzyzhdm(bmdm);
+                        }
+                        if (StringUtils.isEmpty(bm)) {
+                            obj.setCzzyzhmc("NA");
+                        } else {
+                            obj.setCzzyzhmc(bm);
+                        }
+                    }
+                    this.hlhtZybcjlCyjlDao.insertHlhtZybcjlCyjl(obj);
+                    mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                            Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
+                            Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
+                            obj.getFssj(),
+                            obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
+                            obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                real_count++;
             }
         }
         //1.病历总数 2.抽取的病历数量 3.子集类型
@@ -223,4 +213,11 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
     public List<HlhtZybcjlCyjl> getHlhtZybcjlCyjlListFromBaseData(EmrQtbljlk emrQtbljlk) {
         return this.commonQueryDao.getHlhtZybcjlCyjlListFromBaseData(emrQtbljlk);
     }
+
+    @Override
+    public List<HlhtZybcjlCyjl> selectHlhtZybcjlCyjlPageListByProc(HlhtZybcjlCyjl hlhtZybcjlCyjl) {
+        return this.hlhtZybcjlCyjlDao.selectHlhtZybcjlCyjlPageListByProc(hlhtZybcjlCyjl);
+    }
+
+
 }

@@ -35,4 +35,6 @@ public interface HlhtZybcjlCyjlService {
     public void deleteHlhtZybcjlCyjlByYjlxh(HlhtZybcjlCyjl hlhtZybcjlCyjl);
 
     public List<HlhtZybcjlCyjl> getHlhtZybcjlCyjlListFromBaseData(EmrQtbljlk emrQtbljlk);
+
+    public List<HlhtZybcjlCyjl> selectHlhtZybcjlCyjlPageListByProc(HlhtZybcjlCyjl hlhtZybcjlCyjl);
 }
