@@ -1,4 +1,4 @@
-alter PROCEDURE [dbo].[template]
+CREATE PROCEDURE [dbo].[template]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
