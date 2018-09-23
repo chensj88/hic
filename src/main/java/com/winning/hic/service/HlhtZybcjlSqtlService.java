@@ -1,6 +1,8 @@
 package com.winning.hic.service;
 
-import java.util.List;  
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
 
 import com.winning.hic.model.HlhtZybcjlSqtl;
 import com.winning.hic.model.MbzDataCheck;
@@ -29,5 +31,5 @@ public interface HlhtZybcjlSqtlService {
 
     public List<HlhtZybcjlSqtl> getHlhtZybcjlSqtlPageList(HlhtZybcjlSqtl hlhtZybcjlSqtl);
 
-    List<MbzDataCheck> interfaceHlhtZybcjlSqtl(MbzDataCheck entity);
+    List<MbzDataCheck> interfaceHlhtZybcjlSqtl(MbzDataCheck entity) throws IOException, ParseException;
 }

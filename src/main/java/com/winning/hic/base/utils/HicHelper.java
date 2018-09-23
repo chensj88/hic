@@ -115,6 +115,11 @@ public class HicHelper {
                             dateStr = dateStr.replace("分", ":00");
                         }
                     }
+                    //處理特殊數據
+                    dateStr = dateStr.replaceAll(" ","");
+                    if(dateStr.contains(".")){
+                        dateStr = dateStr.replace(".", "-");
+                    }
                     dateStr = dateStr.trim();
                     if (dateStr.length() <= 10) {
                         pattern = "yyyy-MM-dd";
