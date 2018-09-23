@@ -76,4 +76,13 @@ public abstract class BaseDomain implements Serializable {
         this.newLog = newLog;
     }
 
+    private String blnr;
+
+    public String getBlnr() {
+        return blnr;
+    }
+
+    public void setBlnr(String blnr) {
+        this.blnr = blnr;
+    }
 }
