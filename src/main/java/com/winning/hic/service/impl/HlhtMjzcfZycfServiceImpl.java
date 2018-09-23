@@ -1,17 +1,13 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.ConfigUtils;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtMjzcfZycfDao;
 import com.winning.hic.dao.data.MbzDataListSetDao;
 import com.winning.hic.dao.data.MbzDataSetDao;
 import com.winning.hic.dao.data.MbzLoadDataInfoDao;
-import com.winning.hic.model.EmrQtbljlk;
-import com.winning.hic.model.HlhtMjzcfZycf;
-import com.winning.hic.model.MbzDataCheck;
-import com.winning.hic.model.MbzLoadDataInfo;
+import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtMjzcfZycfService;
 import com.winning.hic.service.MbzDataCheckService;
 import org.slf4j.Logger;
@@ -96,15 +92,27 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
         List<MbzDataCheck> mbzDataChecks = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
-        EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
-        emrQtbljlk.getMap().put("startDate",entity.getMap().get("startDate"));
-        emrQtbljlk.getMap().put("endDate",entity.getMap().get("endDate"));
-        emrQtbljlk.getMap().put("syxh",entity.getMap().get("syxh"));
-        emrQtbljlk.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
-        List<HlhtMjzcfZycf> hlhtMjzcfZycfListFromBaseData = this.commonQueryDao.getHlhtMjzcfZycfListFromBaseData(emrQtbljlk);
-        emr_count = hlhtMjzcfZycfListFromBaseData.size();
-        if (hlhtMjzcfZycfListFromBaseData != null) {
-            for (HlhtMjzcfZycf obj : hlhtMjzcfZycfListFromBaseData) {
+        String startDate = (String) entity.getMap().get("startDate");
+        startDate = startDate.replaceAll("-","");
+        startDate = startDate.replaceAll(" ","");
+        String endDate = (String) entity.getMap().get("endDate");
+        endDate = endDate.replaceAll("-","");
+        endDate = endDate.replaceAll(" ","");
+
+        HlhtMjzcfZycf zycf = new HlhtMjzcfZycf();
+        zycf.getMap().put("startDate",startDate);
+        zycf.getMap().put("endDate",endDate);
+        zycf.getMap().put("syxh",entity.getMap().get("syxh"));
+
+        //日库
+        List<HlhtMjzcfZycf> mjzcfZycfList = this.hlhtMjzcfZycfDao.selectHlhtMjzcfZycfListByProc(zycf);
+        //年库
+        List<HlhtMjzcfZycf> lsmjzcfZycfList = this.hlhtMjzcfZycfDao.selectHlhtMjzcfZycfListProcForYear(zycf);
+
+        mjzcfZycfList.addAll(lsmjzcfZycfList);
+        emr_count = mjzcfZycfList.size();
+        if (mjzcfZycfList != null) {
+            for (HlhtMjzcfZycf obj : mjzcfZycfList) {
                 //清库
                 HlhtMjzcfZycf temp = new HlhtMjzcfZycf();
                 temp.setYjlxh(obj.getYjlxh());
