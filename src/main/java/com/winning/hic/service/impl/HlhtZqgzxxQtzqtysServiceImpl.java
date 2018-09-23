@@ -125,7 +125,7 @@ public class HlhtZqgzxxQtzqtysServiceImpl implements  HlhtZqgzxxQtzqtysService {
                         //清除日志
                         Map<String, Object> param = new HashMap<>();
                         param.put("SOURCE_ID", obj.getYjlxh());
-                        param.put("SOURCE_TYPE", Constants.WN_ZYBCJL_JDXJ_SOURCE_TYPE);
+                        param.put("SOURCE_TYPE", Constants.WN_ZQGZXX_QTZQTYS_SOURCE_TYPE);
                         mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
 
                         //3.xml文件解析 获取病历信息
@@ -142,7 +142,7 @@ public class HlhtZqgzxxQtzqtysServiceImpl implements  HlhtZqgzxxQtzqtysService {
                         this.createHlhtZqgzxxQtzqtys(obj);
                         //插入日志
                         mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
+                                Long.parseLong(Constants.WN_ZQGZXX_QTZQTYS_SOURCE_TYPE),
                                 Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
                                 obj.getFssj(),
                                 obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),

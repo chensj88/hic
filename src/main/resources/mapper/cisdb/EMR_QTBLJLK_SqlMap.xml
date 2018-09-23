@@ -98,7 +98,7 @@
 		) temp_table where _rn between #{row.first} + 1 and #{row.first} + #{row.count}
 	</select>
 
-	<select id="selectEmrQtbljlkId" resultType ="String" parameterType="Timestamp">
+	<select id="selectEmrQtbljlkId" resultType ="String" parameterType="java.util.Date">
 		SELECT TOP 1 QTBLJLXH FROM EMR_QTBLJLK WHERE CJSJ &lt; #{cjsj} AND MXFLDM='B-8405'  ORDER BY CJSJ DESC;
 	</select>
 

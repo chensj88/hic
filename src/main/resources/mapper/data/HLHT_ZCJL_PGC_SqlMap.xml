@@ -607,6 +607,12 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
+    <select id="selectHlhtZcjlPgcListByProc" resultMap="hlhtZcjlPgcResult"
+        parameterType="com.winning.hic.model.HlhtZcjlPgc">
+        exec USP_HLHT_ZCJL_PGC_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+
+       </select>
+
 
     <!-- Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据-->
     <select id="selectInitialHlhtZcjlPgc" resultMap="hlhtZcjlPgcResult" parameterType="com.winning.hic.model.HlhtZcjlPgc">
