@@ -8,13 +8,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 /**
-* @author HLHT
-* @title DAO接口
-* @email Winning Health
-* @package com.winning.hic.dao
-* @date 2018-30-31 16:30:02
-*/
+ * @author HLHT
+ * @title DAO接口
+ * @email Winning Health
+ * @package com.winning.hic.dao
+ * @date 2018-30-31 16:30:02
+ */
 @Repository
 public interface HlhtMjzcfZycfDao {
 
@@ -33,4 +34,9 @@ public interface HlhtMjzcfZycfDao {
     public List<HlhtMjzcfZycf> selectHlhtMjzcfZycfPageList(HlhtMjzcfZycf hlhtMjzcfZycf) throws DataAccessException;
 
     public void deleteHlhtMjzcfZycfByYjlxh(HlhtMjzcfZycf hlhtMjzcfZycf);
+
+    public List<HlhtMjzcfZycf> selectHlhtMjzcfZycfListByProc(HlhtMjzcfZycf hlhtMjzcfZycf) throws DataAccessException;
+
+    public List<HlhtMjzcfZycf> selectHlhtMjzcfZycfListProcForYear(HlhtMjzcfZycf hlhtMjzcfZycf) throws DataAccessException;
+
 }
