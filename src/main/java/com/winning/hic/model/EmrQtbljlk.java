@@ -11,7 +11,7 @@ import org.apache.ibatis.type.Alias;
  */
  
 @Alias("emrQtbljlk")
-public class EmrQtbljlk extends BaseDomain implements Serializable {
+public class EmrQtbljlk extends EmrBaseDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 

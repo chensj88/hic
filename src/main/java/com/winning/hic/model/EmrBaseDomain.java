@@ -1,13 +1,13 @@
 package com.winning.hic.model;
 
+import com.winning.hic.model.support.Row;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.winning.hic.model.support.Row;
-
-public abstract class BaseDomain implements Serializable {
+public abstract class EmrBaseDomain implements Serializable {
     private String queryString;
     private Row row = new Row();
 
@@ -77,32 +77,4 @@ public abstract class BaseDomain implements Serializable {
         this.newLog = newLog;
     }
 
-    private String blnr;
-
-    public String getBlnr() {
-        return blnr;
-    }
-
-    public void setBlnr(String blnr) {
-        this.blnr = blnr;
-    }
-    private String blmc;
-
-    public String getBlmc() {
-        return blmc;
-    }
-
-    public void setBlmc(String blmc) {
-        this.blmc = blmc;
-    }
-
-    private java.sql.Timestamp fssj;
-
-    public Timestamp getFssj() {
-        return fssj;
-    }
-
-    public void setFssj(Timestamp fssj) {
-        this.fssj = fssj;
-    }
 }

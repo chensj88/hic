@@ -18,7 +18,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +82,7 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(MbzDataCheck entity) {
+    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(MbzDataCheck entity) throws IOException, ParseException {
         List<MbzDataCheck> dataChecks = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
@@ -95,7 +97,56 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
         dataSet.setPId(0L);
         dataSet.setSourceType(Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE);
         dataSet = mbzDataSetDao.selectMbzDataSet(dataSet);
-        //加载已经配置的模板病历映射关系
+
+        Map<String,String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlSqxj.class);
+
+        HlhtZybcjlSqxj hlht = new HlhtZybcjlSqxj();
+        hlht.getMap().put("sourceType",Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE);
+        hlht.getMap().put("startDate",entity.getMap().get("startDate"));
+        hlht.getMap().put("endDate",entity.getMap().get("endDate"));
+        hlht.getMap().put("syxh",entity.getMap().get("syxh"));
+
+        List<HlhtZybcjlSqxj> list = this.hlhtZybcjlSqxjDao.selectHlhtZybcjlSqxjListByProc(hlht);
+        if(list != null && list.size() > 0){
+            emr_count = emr_count+list.size();
+            for(HlhtZybcjlSqxj obj:list){
+                //获取接口数据
+                HlhtZybcjlSqxj oldObj = new HlhtZybcjlSqxj();
+                oldObj.setYjlxh(String.valueOf(obj.getYjlxh()));
+                oldObj = getHlhtZybcjlSqxj(oldObj);
+                //解析病历xml
+                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+                //System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                //判断是否存在重复,存在则删除，重新新增
+                if(oldObj != null ){
+                    //初始化数据
+                    HlhtZybcjlSqxj oldRcyjl  = new HlhtZybcjlSqxj();
+                    oldRcyjl.setYjlxh(String.valueOf(obj.getYjlxh()));
+                    this.removeHlhtZybcjlSqxj(oldRcyjl);
+                    //清除日志
+                    Map<String,Object> param = new HashMap<>();
+                    param.put("SOURCE_ID",obj.getYjlxh());
+                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE);
+                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+                }
+                obj = (HlhtZybcjlSqxj) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
+
+                this.createHlhtZybcjlSqxj(obj);
+                //插入日志
+                mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                        Long.parseLong(Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE),
+                        Long.parseLong(obj.getYjlxh()), obj.getBlmc(),obj.getSyxh()+"",
+                        obj.getFssj(),
+                        obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                        "NA","NA",  "NA","NA", obj.getSfzhm()));
+                real_count++;
+            }
+        }else{
+            logger.info("接口数据集:{}无相关的病历信息或者未配置结果集，请先书写病历信息或配置结果集",dataSet.getRecordName());
+        }
+
+
+        /*//加载已经配置的模板病历映射关系
         MbzDataListSet dataListSet = new MbzDataListSet();
         dataListSet.setSourceType(Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE);
         List<MbzDataListSet> mbzDataListSetList = mbzDataListSetDao.selectMbzDataListSetList(dataListSet);
@@ -158,7 +209,7 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
             }
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
         //1.病历总数 2.抽取的病历数量 3.子集类型
         this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE));
 
