@@ -11,6 +11,8 @@ import com.winning.hic.service.HlhtZcjlPgcService;
 import com.winning.hic.service.MbzDataCheckService;
 import com.winning.hic.service.MbzDataSetService;
 import org.dom4j.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,7 @@ import java.util.Map;
 */
 @Service
 public class HlhtZcjlPgcServiceImpl implements  HlhtZcjlPgcService {
+    private final Logger logger = LoggerFactory.getLogger(HlhtZcjlPgcServiceImpl.class);
 
     @Autowired
     private HlhtZcjlPgcDao hlhtZcjlPgcDao;
@@ -104,60 +107,50 @@ public class HlhtZcjlPgcServiceImpl implements  HlhtZcjlPgcService {
         try{
             //获取首次病程的对象集合
             Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZcjlPgc.class);
-            for(MbzDataListSet dataListSet :dataListSets){
+            //for(MbzDataListSet dataListSet :dataListSets){
                 //2.根据首次病程去找到对应的病人病历
-                EmrQtbljlk qtbljlk = new EmrQtbljlk();
-                qtbljlk.setBldm(dataListSet.getModelCode());
-                qtbljlk.setYxjl(1);
-                qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
-                qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
-                qtbljlk.getMap().put("syxh",t.getMap().get("syxh"));
-                List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
-                emr_count = emr_count+qtbljlkList.size();
+                HlhtZcjlPgc onePgc = new HlhtZcjlPgc();
+                onePgc.getMap().put("sourceType", Constants.WN_ZCJL_PGC_SOURCE_TYPE);
+                onePgc.getMap().put("startDate",t.getMap().get("startDate"));
+                onePgc.getMap().put("endDate",t.getMap().get("endDate"));
+                onePgc.getMap().put("syxh",t.getMap().get("syxh"));
+                List<HlhtZcjlPgc> hlhtZcjlPgcs = this.hlhtZcjlPgcDao.selectHlhtZcjlPgcListByProc(onePgc);
+                if(hlhtZcjlPgcs != null){
+                    for(HlhtZcjlPgc obj:hlhtZcjlPgcs){
+                        //清库
+                        HlhtZcjlPgc temp = new HlhtZcjlPgc();
+                        temp.setYjlxh(obj.getYjlxh());
+                        this.removeHlhtZcjlPgc(temp);
+                        //清除日志
+                        Map<String, Object> param = new HashMap<>();
+                        param.put("SOURCE_ID", obj.getYjlxh());
+                        param.put("SOURCE_TYPE", Constants.WN_ZCJL_PGC_SOURCE_TYPE);
+                        mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
 
-                if(qtbljlkList != null){
-                    for(EmrQtbljlk emrQtbljlk:qtbljlkList){
-                        HlhtZcjlPgc scbcjl = new HlhtZcjlPgc();
-                        scbcjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                        scbcjl = this.getHlhtZcjlPgc(scbcjl);
-
-                        if(scbcjl != null ){
-                            //初始化数据
-                            HlhtZcjlPgc oldRcyjl  = new HlhtZcjlPgc();
-                            oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                            this.removeHlhtZcjlPgc(oldRcyjl);
-                            //清除日志
-                            Map<String,Object> param = new HashMap<>();
-                            param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
-                            param.put("SOURCE_TYPE",Constants.WN_ZCJL_PGC_SOURCE_TYPE);
-                            mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
-                        }
-                        HlhtZcjlPgc entity = new HlhtZcjlPgc();
-                        entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                        entity.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
-                        entity = this.commonQueryDao.selectInitialHlhtZcjlPgc(entity);
-                        Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                        //3.xml文件解析 获取病历信息
+                        Document document = null;
                         try {
-                            entity = (HlhtZcjlPgc) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
-                        } catch (ParseException e) {
+                            document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+                            obj = (HlhtZcjlPgc) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
-                        this.createHlhtZcjlPgc(entity);
+                        logger.info("Model:{}", obj);
+
+                        this.createHlhtZcjlPgc(obj);
                         //插入日志
                         mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                                 Long.parseLong(Constants.WN_ZCJL_PGC_SOURCE_TYPE),
-                                emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
-                                new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
-                                entity.getPatid(),entity.getZyh(),"NA","NA","NA",
-                                entity.getKsmc(),entity.getKsdm(), entity.getBqmc(),entity.getBqdm(), entity.getSfzhm()));
+                                Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
+                                obj.getFssj(),
+                                obj.getPatid(), obj.getZyh(), "NA","NA","NA",
+                                obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm()));
                         real_count++;
 
                     }
+
                 }
-
-            }
-
 
         }catch (Exception e){
             e.printStackTrace();
