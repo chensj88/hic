@@ -37,6 +37,10 @@
         <result column="ysqm" property="ysqm" jdbcType="VARCHAR"/>
         <result column="ysqmrq" property="ysqmrq" jdbcType="TIMESTAMP"/>
         <result column="gxsj" property="gxsj" jdbcType="TIMESTAMP"/>
+        <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
+        <result column="blmc" property="blmc" jdbcType="VARCHAR"/>
+        <result column="blnr" property="blnr" jdbcType="VARCHAR"/>
+        <result column="fssj" property="fssj" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="hlhtZqgzxxTsjczltysResult" type="com.winning.hic.model.HlhtZqgzxxTsjczltys"
@@ -255,6 +259,9 @@
         <!-- order by  asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
-
+    <!--存储过程-->
+    <select id="selectHlhtZqgzxxTsjczltysListByProc" resultMap="hlhtZqgzxxTsjczltysResult" statementType="CALLABLE">
+       exec USP_HLHT_ZQGZXX_TSJCZLTYS_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
 
 </mapper>

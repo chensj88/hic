@@ -817,5 +817,18 @@ public class HlhtZqgzxxTsjczltys extends BaseDomain implements Serializable {
    public void setGxsj(java.sql.Timestamp gxsj){
         this.gxsj = gxsj;
    }
+    /**
+     * 字段名：syxh
+     * 备注:
+     * 默认值：无
+     */
+    private String syxh;
 
+    public String getSyxh() {
+        return syxh;
+    }
+
+    public void setSyxh(String syxh) {
+        this.syxh = syxh;
+    }
 }
