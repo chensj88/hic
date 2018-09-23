@@ -171,6 +171,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                     entity.setCzzybm(bm);
                                 }
                                 }
+
                             //初步诊断-中医证候代码
                             if(!"NA".equals(entity.getCzzyzhdm())){
                                 String bmdm="";

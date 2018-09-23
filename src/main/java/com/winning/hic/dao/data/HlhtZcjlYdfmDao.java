@@ -1,7 +1,6 @@
 package com.winning.hic.dao.data;
 
 
-import com.winning.hic.model.EmrQtbljlk;
 import com.winning.hic.model.HlhtZcjlYdfm;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -33,4 +32,6 @@ public interface HlhtZcjlYdfmDao {
     public List<HlhtZcjlYdfm> selectHlhtZcjlYdfmPageList(HlhtZcjlYdfm hlhtZcjlYdfm) throws DataAccessException;
 
     public void deleteHlhtZcjlYdfmByYjlxh(HlhtZcjlYdfm hlhtZcjlYdfm);
+
+    public List<HlhtZcjlYdfm> selectHlhtZcjlYdfmListByProc(HlhtZcjlYdfm hlhtZcjlYdfm);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.winning.hic.model.EmrQtbljlk;
 import com.winning.hic.model.HlhtZcjlYdfm;
+import com.winning.hic.model.HlhtZybcjlCyjl;
 import com.winning.hic.model.MbzDataCheck;
 import org.springframework.dao.DataAccessException;
 
@@ -36,5 +37,8 @@ public interface HlhtZcjlYdfmService {
     public void deleteHlhtZcjlYdfmByYjlxh(HlhtZcjlYdfm hlhtZcjlYdfm);
 
     List<MbzDataCheck> interfaceHlhtZcjlYdfm(MbzDataCheck entity);
+
+    public List<HlhtZcjlYdfm> selectHlhtZybcjlCyjlPageListByProc(HlhtZcjlYdfm hlhtZcjlYdfm);
+
 
 }

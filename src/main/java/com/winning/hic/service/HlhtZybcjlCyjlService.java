@@ -36,5 +36,5 @@ public interface HlhtZybcjlCyjlService {
 
     public List<HlhtZybcjlCyjl> getHlhtZybcjlCyjlListFromBaseData(EmrQtbljlk emrQtbljlk);
 
-    public List<HlhtZybcjlCyjl> selectHlhtZybcjlCyjlPageListByProc(HlhtZybcjlCyjl hlhtZybcjlCyjl);
+    public List<HlhtZybcjlCyjl> selectHlhtZybcjlCyjlListByProc(HlhtZybcjlCyjl hlhtZybcjlCyjl);
 }
