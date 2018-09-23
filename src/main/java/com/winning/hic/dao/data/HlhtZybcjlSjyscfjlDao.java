@@ -2,8 +2,9 @@ package com.winning.hic.dao.data;
 
 
 
-import java.util.List;  
+import java.util.List;
 
+import com.winning.hic.model.EmrQtbljlk;
 import org.springframework.dao.DataAccessException;  
 
 import com.winning.hic.model.HlhtZybcjlSjyscfjl;  
@@ -34,4 +35,8 @@ public interface HlhtZybcjlSjyscfjlDao {
     public List<HlhtZybcjlSjyscfjl> selectHlhtZybcjlSjyscfjlList(HlhtZybcjlSjyscfjl hlhtZybcjlSjyscfjl) throws DataAccessException;
 
     public List<HlhtZybcjlSjyscfjl> selectHlhtZybcjlSjyscfjlPageList(HlhtZybcjlSjyscfjl hlhtZybcjlSjyscfjl) throws DataAccessException;
+
+    public List<HlhtZybcjlSjyscfjl> selectHlhtZybcjlSjyscfjlListByProc(HlhtZybcjlSjyscfjl hlhtZybcjlSjyscfjl) throws DataAccessException;
+
+    List<EmrQtbljlk> selectEmrQtbljlkListByProc(HlhtZybcjlSjyscfjl obj);
 }

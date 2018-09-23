@@ -41,13 +41,48 @@
         <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
         <result column="tjzt" property="tjzt" jdbcType="VARCHAR"/>
         <result column="yxjl" property="yxjl" jdbcType="INTEGER"/>
+        <result column="blmc" property="blmc" jdbcType="VARCHAR"/>
+        <result column="blnr" property="blnr" jdbcType="VARCHAR"/>
+        <result column="fssj" property="fssj" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="hlhtZybcjlSjyscfjlResult" type="com.winning.hic.model.HlhtZybcjlSjyscfjl"
                extends="hlhtZybcjlSjyscfjlResultForList">
 
     </resultMap>
+    <resultMap id="emrQtbljlkResultForList" type="com.winning.hic.model.EmrQtbljlk">
+        <result column="QTBLJLXH" property="qtbljlxh" jdbcType="DECIMAL" />
+        <result column="SYXH" property="syxh" jdbcType="INTEGER" />
+        <result column="BLDM" property="bldm" jdbcType="VARCHAR" />
+        <result column="BLMC" property="blmc" jdbcType="VARCHAR" />
+        <result column="BLXSMC" property="blxsmc" jdbcType="VARCHAR" />
+        <result column="BLMS" property="blms" jdbcType="VARCHAR" />
+        <result column="BLNR" property="blnr" jdbcType="NVARCHAR" />
+        <result column="MXFLDM" property="mxfldm" jdbcType="VARCHAR" />
+        <result column="CJYS" property="cjys" jdbcType="VARCHAR" />
+        <result column="TJYS" property="tjys" jdbcType="VARCHAR" />
+        <result column="SHYS" property="shys" jdbcType="VARCHAR" />
+        <result column="CJSJ" property="cjsj" jdbcType="CHAR" />
+        <result column="TJSJ" property="tjsj" jdbcType="CHAR" />
+        <result column="SHSJ" property="shsj" jdbcType="CHAR" />
+        <result column="YXJL" property="yxjl" jdbcType="SMALLINT" />
+        <result column="TJZT" property="tjzt" jdbcType="SMALLINT" />
+        <result column="DYZT" property="dyzt" jdbcType="SMALLINT" />
+        <result column="DZQMBZ" property="dzqmbz" jdbcType="SMALLINT" />
+        <result column="CONTAINERID" property="containerid" jdbcType="VARCHAR" />
+        <result column="FSSJ" property="fssj" jdbcType="CHAR" />
+        <result column="INSTANCEVERSION" property="instanceversion" jdbcType="INTEGER" />
+        <result column="DCZT" property="dczt" jdbcType="SMALLINT" />
+        <result column="DCCZSJ" property="dcczsj" jdbcType="CHAR" />
+        <result column="GXRQ" property="gxrq" jdbcType="CHAR" />
+        <result column="YSHYSDM" property="yshysdm" jdbcType="CHAR" />
+        <result column="YSHYSXM" property="yshysxm" jdbcType="VARCHAR" />
+        <result column="CJKSDM" property="cjksdm" jdbcType="VARCHAR" />
+        <result column="CJKSMC" property="cjksmc" jdbcType="VARCHAR" />
+    </resultMap>
 
+    <resultMap id="emrQtbljlkResult" type="com.winning.hic.model.EmrQtbljlk" extends="emrQtbljlkResultForList">
+    </resultMap>
     <sql id="sql-hlhtZybcjlSjyscfjl">
         <if test="(yjlxh != null and yjlxh != '')">and t.yjlxh = #{yjlxh}</if>
         <if test="(jzlsh != null and jzlsh != '')">and t.jzlsh = #{jzlsh}</if>
@@ -276,5 +311,13 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
+    <!--存储过程-->
+    <select id="selectHlhtZybcjlSjyscfjlListByProc" resultMap="hlhtZybcjlSjyscfjlResult" statementType="CALLABLE">
+       exec USP_HLHT_ZYBCJL_SJYSCFJL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
 
+    <!--存储过程-->
+    <select id="selectEmrQtbljlkListByProc" resultMap="emrQtbljlkResult" statementType="CALLABLE">
+       exec USP_HLHT_QUERY_EMR_QTBLJLK_LIST #{map.keyWord},#{map.syxh}
+    </select>
 </mapper>

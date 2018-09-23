@@ -97,14 +97,9 @@ public class HlhtZybcjlSjyscfjlServiceImpl implements  HlhtZybcjlSjyscfjlService
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_SJYSCFJL_SOURCE_TYPE);
         mbzDataSet = mbzDataSetDao.selectMbzDataSet(mbzDataSet);
 
-        //配置并加载对应的出入院模板集合
-        MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_SJYSCFJL_SOURCE_TYPE);
-        List<MbzDataListSet> dataListSets = mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
 
         //获取接口对象字段集合信息
         Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlSjyscfjl.class);
-
 
         String[] bcCode = {"bzlzms"};
         List<MbzDataSet> bzlzmsDataSetList = new ArrayList<>();
@@ -115,6 +110,73 @@ public class HlhtZybcjlSjyscfjlServiceImpl implements  HlhtZybcjlSjyscfjlService
                 }
             }
         }
+        HlhtZybcjlSjyscfjl hlht = new HlhtZybcjlSjyscfjl();
+        hlht.getMap().put("sourceType",Constants.WN_ZYBCJL_SJYSCFJL_SOURCE_TYPE);
+        hlht.getMap().put("startDate",entity.getMap().get("startDate"));
+        hlht.getMap().put("endDate",entity.getMap().get("endDate"));
+        hlht.getMap().put("syxh",entity.getMap().get("syxh"));
+
+
+        List<HlhtZybcjlSjyscfjl> list = this.hlhtZybcjlSjyscfjlDao.selectHlhtZybcjlSjyscfjlListByProc(hlht);
+        if(list != null && list.size() > 0) {
+            emr_count = emr_count + list.size();
+            for(HlhtZybcjlSjyscfjl obj:list){
+                //获取接口数据
+                HlhtZybcjlSjyscfjl oldObj = new HlhtZybcjlSjyscfjl();
+                oldObj.setYjlxh(String.valueOf(obj.getYjlxh()));
+                oldObj = getHlhtZybcjlSjyscfjl(oldObj);
+                //解析病历xml
+                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+                //System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                //判断是否存在重复,存在则删除，重新新增
+                if(oldObj != null ){
+                    //初始化数据
+                    HlhtZybcjlSjyscfjl oldRcyjl  = new HlhtZybcjlSjyscfjl();
+                    oldRcyjl.setYjlxh(String.valueOf(obj.getYjlxh()));
+                    this.removeHlhtZybcjlSjyscfjl(oldRcyjl);
+                    //清除日志
+                    Map<String,Object> param = new HashMap<>();
+                    param.put("SOURCE_ID",obj.getYjlxh());
+                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_SJYSCFJL_SOURCE_TYPE);
+                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+                }
+                obj = (HlhtZybcjlSjyscfjl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
+                Map<String,Object> param = obj.getMap();
+                param.put("syxh",obj.getSyxh());
+                param.put("keyWord","入院记录(中医入院记录)");
+                List<EmrQtbljlk> qtbljlkList1 = this.hlhtZybcjlSjyscfjlDao.selectEmrQtbljlkListByProc(obj);
+                Document bzlzmsDocument = null;
+                //辨证论治详细描述
+                if (qtbljlkList1.size() >= 1) {
+                    mbzDataSetList.removeAll(bzlzmsDataSetList);
+                    bzlzmsDocument = XmlUtil.getDocument(Base64Utils.unzipEmrXml(qtbljlkList1.get(0).getBlnr()));
+                }
+                //辨证论治详细描述
+                if (bzlzmsDataSetList != null) {
+                    obj = (HlhtZybcjlSjyscfjl) HicHelper.initModelValue(bzlzmsDataSetList, bzlzmsDocument, obj, paramTypeMap);
+                }
+
+                this.createHlhtZybcjlSjyscfjl(obj);
+                //插入日志
+                mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                        Long.parseLong(Constants.WN_ZYBCJL_SJYSCFJL_SOURCE_TYPE),
+                        Long.parseLong(obj.getYjlxh()), obj.getBlmc(),obj.getSyxh()+"",
+                        obj.getFssj(),
+                        obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                        obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm()));
+                real_count++;
+            }
+
+        }else{
+            logger.info("接口数据集:{}无相关的病历信息或者未配置结果集，请先书写病历信息或配置结果集",mbzDataSet.getRecordName());
+        }
+
+        /*//配置并加载对应的出入院模板集合
+        MbzDataListSet mbzDataListSet = new MbzDataListSet();
+        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_SJYSCFJL_SOURCE_TYPE);
+        List<MbzDataListSet> dataListSets = mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
+
+
         if(dataListSets != null && dataListSets.size() > 0){
             //获取模板集合，遍历
             for(MbzDataListSet dataListSet :dataListSets){
@@ -194,7 +256,7 @@ public class HlhtZybcjlSjyscfjlServiceImpl implements  HlhtZybcjlSjyscfjlService
             }
         }else{
             logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板",mbzDataSet.getRecordName());
-        }
+        }*/
         //1.病历总数 2.抽取的病历数量 3.子集类型
         this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SJYSCFJL_SOURCE_TYPE));
 
