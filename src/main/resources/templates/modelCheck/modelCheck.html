@@ -42,6 +42,12 @@
                             单份校验
                         </a>
                     </li>
+
+                    <!--<li>-->
+                        <!--<a data-toggle="tab" href="#idfile">-->
+                            <!--字段配置-->
+                        <!--</a>-->
+                    <!--</li>-->
                 </ul>
 
                 <div class="tab-content">
@@ -112,6 +118,44 @@
                         </div>
                         <table id="simple_table"></table>
                     </div>
+
+                    <div id="idfile" class="tab-pane">
+                        <div id="simple_toolbar_id">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="modelListType">模板类别</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">模板类别</span>
+                                        <select class="form-control" name="modelListType" id="modelListType_id"
+                                                style="width:200px">
+                                            <option value="">请选择
+                                            </option>
+                                            <option th:each="list:${dataSet}" th:value="${list.dictValue}"
+                                                    th:text="${list.dictLabel }"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="modelList">病例模板</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">病例模板</span>
+                                        <select class="form-control" name="modelList" id="modelList_id"
+                                                style="width:200px">
+                                            <option value="">请选择
+                                            </option>
+                                            <!--<option th:each="list:${modelList}" th:value="${list.modelCode}"-->
+                                            <!--th:text="${list.modelName }"-->
+                                            <!--th:attr="sourceType=${list.sourceType}"></option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="doCheck_id(1)">开始校验</button>
+                                <!--<button type="button" class="btn btn-primary">生成报告</button>-->
+                            </form>
+                        </div>
+                        <table id="simple_table_id"></table>
+                    </div>
+
                 </div>
             </div>
         </div><!-- /span -->
@@ -137,6 +181,7 @@
     // alert(ctx+'modelCheck/modelCheck');
     let $table = $('#treegrid_table');
     let $simple_table = $('#simple_table');
+    let $simple_table_id = $('#simple_table_id');
     $(function () {
         $table.bootstrapTable({
             url: ctx + 'modelCheck/list',
@@ -320,6 +365,42 @@
         });
 
 
+        /**字段ID映射单数据集查询
+         */
+        $simple_table_id.bootstrapTable({
+            url: ctx + 'modelCheck/mbzDataSetIdList',
+            height: $(window).height(),
+            queryParams: queryModelParams_Id,
+            striped: true,
+            toolbar: '#simple_toolbar_id',
+            sidePagination: 'client',
+            idField: 'id',
+            columns: [
+                // {
+                //     field: 'ck',
+                //     checkbox: true
+                // },
+                {
+                    field: 'colummName',
+                    width: '30%',
+                    title: '互联互通字段',
+                    formatter: 'colFormatter'
+                },
+                {
+                    field: 'status',
+                    title: '是否为空',
+                    align: 'center',
+                    formatter: 'statusFormatter'
+                },
+                {
+                    field: 'errorDesc',
+                    width: '40%',
+                    title: '选择配置项'
+                }
+            ],
+        });
+
+
         function queryParams(params) {
             let sourceType = $("#data_set").children("option:selected").val();
             var param = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
@@ -331,6 +412,16 @@
         function queryModelParams(params) {
             let sourceType = $("#modelList").children("option:selected").attr("sourceType");
             let modelCode = $("#modelList").children("option:selected").val();
+            var param = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                sourceType: sourceType,
+                modelCode: modelCode,
+            };
+            return param;
+        };
+
+        function queryModelParams_Id(params) {
+            let sourceType = $("#modelList_id").children("option:selected").attr("sourceType");
+            let modelCode = $("#modelList_id").children("option:selected").val();
             var param = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 sourceType: sourceType,
                 modelCode: modelCode,
@@ -384,6 +475,37 @@
                 }
             });
         });
+
+        //    病例模板选择
+        $("#modelList_id").change(function () {
+            $simple_table_id.bootstrapTable('refresh');
+        });
+        // 陈蒯 二级联动
+        $("#modelListType_id").change(function () {
+            let sourceType = $("#modelListType_id").children("option:selected").val();
+            alert("123");
+            console.info("sourceType:" + sourceType);
+            $.ajax({
+                url: ctx + 'modelCheck/checkList',
+                type: 'POST', // 请求方法
+                data: {sourceType: sourceType},
+                success: function (data) {
+                    let checkList = data.currentModelList;
+                    console.info(checkList);
+                    $("#modelList_id").empty();
+                    let contain = '<option>请选择</option>';
+                    if (checkList != null) {
+                        for (let i = 0; i < checkList.length; i++) {
+                            contain += '<option  value="' + checkList[i].modelCode + '" sourceType="' + checkList[i].sourceType + '">' + checkList[i].modelName + '</option>';
+                        }
+                    }
+                    console.info("contain", contain);
+                    $("#modelList_id").html(contain);
+                }
+            });
+        });
+
+
     });
 
     // 格式化状态
@@ -450,6 +572,53 @@
                 if (data.msg == "SUCCESS") {
                     if (type == 1) {
                         $simple_table.bootstrapTable('refresh');
+                    } else if (type == 0) {
+                        $table.bootstrapTable('refresh');
+                    }
+                }
+                layer.close(index);
+
+            }
+        });
+
+
+    }
+
+
+    //字段ID模板校验
+
+    function doCheck_id(type) {
+        //type:0/1;0:批量校验  1：单个校验
+        let sourceType = '';
+        let modelCode = '';
+        if (type == 1) {
+            //获取当前选中的模板类型
+            sourceType = $("#modelList_id").children("option:selected").attr("sourceType");
+            modelCode = $("#modelList_id").children("option:selected").val();
+            if (sourceType == '' || sourceType == null) {
+                //单数据集校验未选择模板类型
+                layer.alert('未选择校验模板！', {
+                    skin: 'layui-layer-lan',
+                    closeBtn: 1,
+                    anim: 4 //动画类型
+                });
+                return;
+            }
+        } else if (type == 0) {
+            sourceType = $("#data_set").children("option:selected").val();
+        }
+        //loading层
+        var index = layer.load(1, {
+            shade: [0.5, '#E0E0E0'] //0.1透明度的白色背景
+        });
+        $.ajax({
+            url: ctx + 'modelCheck/doCheck',
+            type: 'POST', // 请求方法
+            data: {sourceType: sourceType, modelCode: modelCode},
+            success: function (data) {
+                if (data.msg == "SUCCESS") {
+                    if (type == 1) {
+                        $simple_table_id.bootstrapTable('refresh');
                     } else if (type == 0) {
                         $table.bootstrapTable('refresh');
                     }
