@@ -103,9 +103,6 @@ public class HlhtZcjlYdfmServiceImpl implements HlhtZcjlYdfmService {
         mbzDataSet.setSourceType(Constants.WN_ZCJL_YDFM_SOURCE_TYPE);
         mbzDataSet.setPId(Long.parseLong(Constants.WN_ZCJL_YDFM_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = this.mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
-        //1.获取对应的模板ID集合
-        MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constants.WN_ZCJL_YDFM_SOURCE_TYPE);
         HlhtZcjlYdfm hlhtZcjlYdfmTemp = new HlhtZcjlYdfm();
         hlhtZcjlYdfmTemp.getMap().put("sourceType", Constants.WN_ZCJL_YDFM_SOURCE_TYPE);
         hlhtZcjlYdfmTemp.getMap().put("startDate", t.getMap().get("startDate"));

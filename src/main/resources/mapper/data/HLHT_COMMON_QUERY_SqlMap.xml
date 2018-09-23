@@ -39,4 +39,9 @@
     <select id="selectEmrQtbljlkListByProc" resultMap="emrQtbljlkResult" statementType="CALLABLE">
        exec USP_HLHT_QUERY_EMR_QTBLJLK_LIST #{keyWord},#{syxh}
     </select>
+
+    <!--存储过程-->
+    <select id="selectEmrQtbljlkListByProcForMZ" resultMap="emrQtbljlkResult" statementType="CALLABLE">
+       exec USP_HLHT_QUERY_EMR_QTBLJLK_MZ_LIST #{keyWord},#{syxh}
+    </select>
 </mapper>

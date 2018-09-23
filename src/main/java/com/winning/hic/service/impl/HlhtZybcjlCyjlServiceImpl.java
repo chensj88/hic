@@ -99,10 +99,6 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE);
         mbzDataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = this.mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
-        //1.获取对应的模板ID集合
-        MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE);
-//        List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
         HlhtZybcjlCyjl hlhtZybcjlCyjlTemp = new HlhtZybcjlCyjl();
         hlhtZybcjlCyjlTemp.getMap().put("sourceType", Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE);
         hlhtZybcjlCyjlTemp.getMap().put("startDate", t.getMap().get("startDate"));

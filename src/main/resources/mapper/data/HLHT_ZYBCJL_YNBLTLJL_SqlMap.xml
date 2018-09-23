@@ -41,6 +41,10 @@
         <result column="zrysbm" property="zrysbm" jdbcType="VARCHAR"/>
         <result column="zrysqm" property="zrysqm" jdbcType="VARCHAR"/>
         <result column="gxsj" property="gxsj" jdbcType="TIMESTAMP"/>
+        <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
+        <result column="blmc" property="blmc" jdbcType="VARCHAR"/>
+        <result column="blnr" property="blnr" jdbcType="VARCHAR"/>
+        <result column="fssj" property="fssj" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="hlhtZybcjlYnbltljlResult" type="com.winning.hic.model.HlhtZybcjlYnbltljl"
@@ -281,7 +285,10 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
-
+    <select id="selectHlhtZybcjlYnbltljlListByProc" resultMap="hlhtZybcjlYnbltljlResult" statementType="CALLABLE"
+            parameterType="com.winning.hic.model.HlhtZybcjlYnbltljl">
+        exec USP_HLHT_ZYBCJL_YNBLTLJL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
 
 
 </mapper>

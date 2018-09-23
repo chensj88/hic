@@ -113,6 +113,9 @@
         <result column="tjzt" property="tjzt" jdbcType="VARCHAR"/>
         <result column="yxjl" property="yxjl" jdbcType="INTEGER"/>
         <result column="bzfx" property="bzfx" jdbcType="VARCHAR"/>
+        <result column="blmc" property="blmc" jdbcType="VARCHAR"/>
+        <result column="blnr" property="blnr" jdbcType="VARCHAR"/>
+        <result column="fssj" property="fssj" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="hlhtRyjlJbxxResult" type="com.winning.hic.model.HlhtRyjlJbxx" extends="hlhtRyjlJbxxResultForList">
@@ -635,6 +638,11 @@
         </where>
         <!-- order by  asc -->
         TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+    <select id="selectHlhtRyjlJbxxListByProc" resultMap="hlhtRyjlJbxxResult" statementType="CALLABLE"
+            parameterType="com.winning.hic.model.HlhtRyjlJbxx">
+        exec USP_HLHT_RYJL_JBXX_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
     </select>
 
 </mapper>

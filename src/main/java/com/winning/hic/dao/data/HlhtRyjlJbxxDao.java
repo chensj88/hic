@@ -36,4 +36,6 @@ public interface HlhtRyjlJbxxDao {
     public List<HlhtRyjlJbxx> selectHlhtRyjlJbxxPageList(HlhtRyjlJbxx hlhtRyjlJbxx) throws DataAccessException;
 
     public void deleteHlhtRyjlJbxxByYjlxh(HlhtRyjlJbxx hlhtRyjlJbxx);
+
+    public List<HlhtRyjlJbxx> selectHlhtRyjlJbxxListByProc(HlhtRyjlJbxx hlhtRyjlJbxx) throws DataAccessException;
 }

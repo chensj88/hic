@@ -1,24 +1,23 @@
 package com.winning.hic.dao.data;
 
 
-
 import java.util.List;
 
 import com.winning.hic.model.EmrQtbljlk;
 import org.springframework.dao.DataAccessException;
 
-import com.winning.hic.model.HlhtZqgzxxSxzltys;  
-
+import com.winning.hic.model.HlhtZqgzxxSxzltys;
 
 
 import org.springframework.stereotype.Repository;
+
 /**
-* @author HLHT
-* @title DAO接口
-* @email Winning Health
-* @package com.winning.hic.dao
-* @date 2018-32-31 16:32:49
-*/
+ * @author HLHT
+ * @title DAO接口
+ * @email Winning Health
+ * @package com.winning.hic.dao
+ * @date 2018-32-31 16:32:49
+ */
 @Repository
 public interface HlhtZqgzxxSxzltysDao {
 
@@ -37,4 +36,7 @@ public interface HlhtZqgzxxSxzltysDao {
     public List<HlhtZqgzxxSxzltys> selectHlhtZqgzxxSxzltysPageList(HlhtZqgzxxSxzltys hlhtZqgzxxSxzltys) throws DataAccessException;
 
     public void deleteHlhtZqgzxxSxzltysByYjlxh(HlhtZqgzxxSxzltys hlhtZqgzxxSxzltys);
+
+    public List<HlhtZqgzxxSxzltys> selectHlhtZqgzxxSxzltysListByProc(HlhtZqgzxxSxzltys hlhtZqgzxxSxzltys) throws DataAccessException;
+
 }

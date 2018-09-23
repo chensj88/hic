@@ -320,6 +320,14 @@ public class HlhtZlczjlSxjl extends BaseDomain implements Serializable {
      */
     private Timestamp gxsj;
 
+    /**
+     * 字段名：syxh
+     * 备注:
+     * 默认值：无
+     */
+    private String syxh;
+
+
     public HlhtZlczjlSxjl (){
 
     }
@@ -1225,4 +1233,11 @@ public class HlhtZlczjlSxjl extends BaseDomain implements Serializable {
         this.gxsj = gxsj;
    }
 
+    public String getSyxh() {
+        return syxh;
+    }
+
+    public void setSyxh(String syxh) {
+        this.syxh = syxh;
+    }
 }

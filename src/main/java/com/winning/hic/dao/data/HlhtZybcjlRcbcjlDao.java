@@ -33,4 +33,7 @@ public interface HlhtZybcjlRcbcjlDao {
 
     public void deleteHlhtZybcjlRcbcjlByYjlxh(HlhtZybcjlRcbcjl hlhtZybcjlRcbcjl);
 
+    public List<HlhtZybcjlRcbcjl> selectHlhtZybcjlRcbcjlByProc(HlhtZybcjlRcbcjl hlhtZybcjlRcbcjl) throws DataAccessException;
+
+
 }
