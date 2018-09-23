@@ -2595,6 +2595,7 @@
         <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
 
     </select>
 
@@ -2763,6 +2764,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
     <!--麻醉术后访视记录-->
@@ -2903,6 +2905,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
     <!--麻醉术前访视记录-->
@@ -3042,6 +3045,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
     <!--输血记录-->
@@ -3188,6 +3192,7 @@
         <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
     <!--治疗记录-->
@@ -3324,6 +3329,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
     <!--病危重通知书-->
@@ -3432,6 +3438,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
 
@@ -3610,6 +3617,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
 
@@ -3729,7 +3737,8 @@
         AND q.YXJL = #{yxjl}
         <if test="map.startDate != null and map.startDate != ''">and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''">and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
-
+        AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
     <!--出院记录-->
@@ -3844,6 +3853,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
 
@@ -3946,6 +3956,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
     <!--死亡记录-->
@@ -4072,6 +4083,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
 
@@ -4175,6 +4187,7 @@
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[q.TJSJ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[q.TJSJ <= #{map.endDate}]]>  </if>
         AND q.TJSJ IS NOT NULL AND q.TJSJ !=''
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[q.SYXH = #{map.syxh}]]>  </if>
     </select>
 
 
