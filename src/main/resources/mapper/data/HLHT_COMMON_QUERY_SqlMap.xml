@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.data.HlhtCommonQueryDao">
+
+    <resultMap id="emrQtbljlkResultForList" type="com.winning.hic.model.EmrQtbljlk">
+        <result column="QTBLJLXH" property="qtbljlxh" jdbcType="DECIMAL" />
+        <result column="SYXH" property="syxh" jdbcType="INTEGER" />
+        <result column="BLDM" property="bldm" jdbcType="VARCHAR" />
+        <result column="BLMC" property="blmc" jdbcType="VARCHAR" />
+        <result column="BLXSMC" property="blxsmc" jdbcType="VARCHAR" />
+        <result column="BLMS" property="blms" jdbcType="VARCHAR" />
+        <result column="BLNR" property="blnr" jdbcType="NVARCHAR" />
+        <result column="MXFLDM" property="mxfldm" jdbcType="VARCHAR" />
+        <result column="CJYS" property="cjys" jdbcType="VARCHAR" />
+        <result column="TJYS" property="tjys" jdbcType="VARCHAR" />
+        <result column="SHYS" property="shys" jdbcType="VARCHAR" />
+        <result column="CJSJ" property="cjsj" jdbcType="CHAR" />
+        <result column="TJSJ" property="tjsj" jdbcType="CHAR" />
+        <result column="SHSJ" property="shsj" jdbcType="CHAR" />
+        <result column="YXJL" property="yxjl" jdbcType="SMALLINT" />
+        <result column="TJZT" property="tjzt" jdbcType="SMALLINT" />
+        <result column="DYZT" property="dyzt" jdbcType="SMALLINT" />
+        <result column="DZQMBZ" property="dzqmbz" jdbcType="SMALLINT" />
+        <result column="CONTAINERID" property="containerid" jdbcType="VARCHAR" />
+        <result column="FSSJ" property="fssj" jdbcType="CHAR" />
+        <result column="INSTANCEVERSION" property="instanceversion" jdbcType="INTEGER" />
+        <result column="DCZT" property="dczt" jdbcType="SMALLINT" />
+        <result column="DCCZSJ" property="dcczsj" jdbcType="CHAR" />
+        <result column="GXRQ" property="gxrq" jdbcType="CHAR" />
+        <result column="YSHYSDM" property="yshysdm" jdbcType="CHAR" />
+        <result column="YSHYSXM" property="yshysxm" jdbcType="VARCHAR" />
+        <result column="CJKSDM" property="cjksdm" jdbcType="VARCHAR" />
+        <result column="CJKSMC" property="cjksmc" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="emrQtbljlkResult" type="com.winning.hic.model.EmrQtbljlk" extends="emrQtbljlkResultForList">
+    </resultMap>
+    <!--存储过程-->
+    <select id="selectEmrQtbljlkListByProc" resultMap="emrQtbljlkResult" statementType="CALLABLE">
+       exec USP_HLHT_QUERY_EMR_QTBLJLK_LIST #{keyWord},#{syxh}
+    </select>
+</mapper>

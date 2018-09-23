@@ -4,10 +4,7 @@ import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.*;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
-import com.winning.hic.dao.data.HlhtZybcjlSjyscfjlDao;
-import com.winning.hic.dao.data.MbzDataListSetDao;
-import com.winning.hic.dao.data.MbzDataSetDao;
-import com.winning.hic.dao.data.MbzLoadDataInfoDao;
+import com.winning.hic.dao.data.*;
 import com.winning.hic.model.*;
 import com.winning.hic.service.HlhtZybcjlSjyscfjlService;
 import com.winning.hic.service.MbzDataCheckService;
@@ -40,7 +37,7 @@ public class HlhtZybcjlSjyscfjlServiceImpl implements  HlhtZybcjlSjyscfjlService
     @Autowired
     private HlhtZybcjlSjyscfjlDao hlhtZybcjlSjyscfjlDao;
     @Autowired
-    private CommonQueryDao commonQueryDao;
+    private HlhtCommonQueryDao hlhtCommonQueryDao;
     @Autowired
     private MbzDataSetDao mbzDataSetDao;
     @Autowired
@@ -141,10 +138,10 @@ public class HlhtZybcjlSjyscfjlServiceImpl implements  HlhtZybcjlSjyscfjlService
                     mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                 }
                 obj = (HlhtZybcjlSjyscfjl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
-                Map<String,Object> param = obj.getMap();
+                Map<String,Object> param = new HashMap<>();
                 param.put("syxh",obj.getSyxh());
                 param.put("keyWord","入院记录(中医入院记录)");
-                List<EmrQtbljlk> qtbljlkList1 = this.hlhtZybcjlSjyscfjlDao.selectEmrQtbljlkListByProc(obj);
+                List<EmrQtbljlk> qtbljlkList1 = this.hlhtCommonQueryDao.selectEmrQtbljlkListByProc(param);
                 Document bzlzmsDocument = null;
                 //辨证论治详细描述
                 if (qtbljlkList1.size() >= 1) {
