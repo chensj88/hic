@@ -608,7 +608,7 @@
     </select>
 
     <select id="selectHlhtZcjlPgcListByProc" resultMap="hlhtZcjlPgcResult"
-        parameterType="com.winning.hic.model.HlhtZcjlPgc">
+        statementType="CALLABLE">
         exec USP_HLHT_ZCJL_PGC_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
 
        </select>

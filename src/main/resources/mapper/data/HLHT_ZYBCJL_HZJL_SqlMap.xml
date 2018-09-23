@@ -369,7 +369,7 @@
     </select>
 
     <select id="selecthlhtZybcjlHzjlListByProc" resultMap="hlhtZybcjlHzjlResult"
-        parameterType="com.winning.hic.model.HlhtZybcjlHzjl">
+        statementType="CALLABLE">
         exec USP_HLHT_ZYBCJL_HZJL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
 
     </select>
