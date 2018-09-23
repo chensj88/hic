@@ -96,7 +96,7 @@ public class ReflectUtil {
         // 获取实体类的所有属性信息，返回Field数组
         Field[] fields = objectClass.getDeclaredFields();
         for (Field field : fields) {
-            System.out.println(field.getName() + ":" + field.getGenericType().toString());
+            //System.out.println(field.getName() + ":" + field.getGenericType().toString());
             map.put(field.getName(), field.getGenericType().toString());
         }
         return map;

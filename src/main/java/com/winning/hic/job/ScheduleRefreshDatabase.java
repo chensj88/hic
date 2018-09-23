@@ -78,8 +78,8 @@ public class ScheduleRefreshDatabase {
             return;
         }
         String searchCron = automateSet.getCron(); // 从数据库查询出来的
-        System.out.println(currentCron);
-        System.out.println(searchCron);
+        //System.out.println(currentCron);
+       // System.out.println(searchCron);
         if (currentCron.equals(searchCron)) {
             // 如果当前使用的cron表达式和从数据库中查询出来的cron表达式一致，则不刷新任务
         } else {
