@@ -105,4 +105,24 @@ public abstract class BaseDomain implements Serializable {
     public void setFssj(Timestamp fssj) {
         this.fssj = fssj;
     }
+
+    private String mxfldm;
+
+    public String getMxfldm() {
+        return mxfldm;
+    }
+
+    public void setMxfldm(String mxfldm) {
+        this.mxfldm = mxfldm;
+    }
+
+    public Timestamp cjsj;
+
+    public Timestamp getCjsj() {
+        return cjsj;
+    }
+
+    public void setCjsj(Timestamp cjsj) {
+        this.cjsj = cjsj;
+    }
 }

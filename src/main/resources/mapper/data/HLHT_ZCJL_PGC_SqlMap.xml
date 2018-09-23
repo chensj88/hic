@@ -107,6 +107,9 @@
         <result column="jlrdm" property="jlrdm" jdbcType="VARCHAR"/>
         <result column="jlrqm" property="jlrqm" jdbcType="VARCHAR"/>
         <result column="gxsj" property="gxsj" jdbcType="TIMESTAMP"/>
+        <result column="blmc" property="blmc" jdbcType="VARCHAR"/>
+        <result column="blnr" property="blnr" jdbcType="VARCHAR"/>
+        <result column="fssj" property="fssj" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="hlhtZcjlPgcResult" type="com.winning.hic.model.HlhtZcjlPgc" extends="hlhtZcjlPgcResultForList">

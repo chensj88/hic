@@ -31,7 +31,10 @@ if @syxh  is null or @syxh = ''
         c.BQMC AS bqmc,
         ISNULL(a.fjh, 'NA') AS bfh,
         c.CWDM AS bch,
-        GETDATE() AS gxsj
+        GETDATE() AS gxsj,
+        t.BLMC as blmc,
+        t.FSSJ as fssj,
+        t.BLNR as blnr
         FROM #EMR_QTBLJLK t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
@@ -65,7 +68,10 @@ else
         c.BQMC AS bqmc,
         ISNULL(a.fjh, 'NA') AS bfh,
         c.CWDM AS bch,
-        GETDATE() AS gxsj
+        GETDATE() AS gxsj,
+        t.BLMC as blmc,
+        t.FSSJ as fssj,
+        t.BLNR as blnr
         FROM #EMR_QTBLJLK_TEMP t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH

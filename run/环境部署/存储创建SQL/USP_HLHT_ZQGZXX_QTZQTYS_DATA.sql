@@ -54,7 +54,10 @@ if @syxh  is null or @syxh = ''
             GETDATE() AS gxsj,
             t.YXJL AS yxjl,
             t.SYXH AS syxh,
-            t.TJZT as tjzt
+            t.TJZT as tjzt,
+            t.BLMC as blmc,
+            t.FSSJ as fssj,
+            t.BLNR as blnr
 
             FROM #EMR_QTBLJLK t
             LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
