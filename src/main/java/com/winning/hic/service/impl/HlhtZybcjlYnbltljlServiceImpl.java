@@ -95,72 +95,61 @@ public class HlhtZybcjlYnbltljlServiceImpl implements HlhtZybcjlYnbltljlService 
     public List<MbzDataCheck> interfaceHlhtZybcjlYnbltljl(MbzDataCheck t) {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
-        int emr_count =0;//病历数量
-        int real_count=0;//实际数量
+        int emr_count = 0;//病历数量
+        int real_count = 0;//实际数量
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE);
         mbzDataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = this.mbzDataSetDao.selectMbzDataSetList(mbzDataSet);
-        //1.获取对应的模板ID集合
-        MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE);
-        List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
-        for (MbzDataListSet dataListSet : dataListSets) {
-            EmrQtbljlk qtbljlk = new EmrQtbljlk();
-            qtbljlk.setBldm(dataListSet.getModelCode());
-            qtbljlk.setYxjl(1);
-            qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
-            qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
-            qtbljlk.getMap().put("syxh",t.getMap().get("syxh"));
-            qtbljlk.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
+        HlhtZybcjlYnbltljl hlhtZybcjlYnbltljlTemp = new HlhtZybcjlYnbltljl();
+        hlhtZybcjlYnbltljlTemp.getMap().put("sourceType",Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE);
+        hlhtZybcjlYnbltljlTemp.getMap().put("startDate", t.getMap().get("startDate"));
+        hlhtZybcjlYnbltljlTemp.getMap().put("endDate", t.getMap().get("endDate"));
+        hlhtZybcjlYnbltljlTemp.getMap().put("syxh", t.getMap().get("syxh"));
 
-            //2.根据模板代码去找到对应的病人病历
-            List<HlhtZybcjlYnbltljl> hlhtZybcjlYnbltljlListFromBaseData = this.commonQueryDao.getHlhtZybcjlYnbltljlListFromBaseData(qtbljlk);
-            emr_count = emr_count+hlhtZybcjlYnbltljlListFromBaseData.size();
+        //2.根据模板代码去找到对应的病人病历
+        List<HlhtZybcjlYnbltljl> hlhtZybcjlYnbltljlList = this.hlhtZybcjlYnbltljlDao.selectHlhtZybcjlYnbltljlListByProc(hlhtZybcjlYnbltljlTemp);
 
-            if (hlhtZybcjlYnbltljlListFromBaseData != null) {
-                for (HlhtZybcjlYnbltljl hlhtZybcjlYnbltljl : hlhtZybcjlYnbltljlListFromBaseData) {
-                    EmrQtbljlk emrQtbljlk = new EmrQtbljlk();
-                    emrQtbljlk.setQtbljlxh(Long.parseLong(hlhtZybcjlYnbltljl.getYjlxh()));
-                    emrQtbljlk = this.emrQtbljlkDao.selectEmrQtbljlk(emrQtbljlk);
-                    //清库
-                    HlhtZybcjlYnbltljl temp = new HlhtZybcjlYnbltljl();
-                    temp.setYjlxh(hlhtZybcjlYnbltljl.getYjlxh());
-                    this.hlhtZybcjlYnbltljlDao.deleteHlhtZybcjlYnbltljlByYjlxh(temp);
-                    //清除日志
-                    Map<String,Object> param = new HashMap<>();
-                    param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
-                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE);
-                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
-                    //3.xml文件解析 获取病历信息
-                    Document document = null;
-                    try {
-                        document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlYnbltljl.class);
-                    try {
-                        hlhtZybcjlYnbltljl = (HlhtZybcjlYnbltljl) HicHelper.initModelValue(mbzDataSetList, document, hlhtZybcjlYnbltljl, paramTypeMap);
-                        logger.info("Model:{}", hlhtZybcjlYnbltljl);
-                        this.hlhtZybcjlYnbltljlDao.insertHlhtZybcjlYnbltljl(hlhtZybcjlYnbltljl);
-                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                Long.parseLong(Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE),
-                                emrQtbljlk.getQtbljlxh(), emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
-                                new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
-                                hlhtZybcjlYnbltljl.getPatid(),hlhtZybcjlYnbltljl.getZyh(),hlhtZybcjlYnbltljl.getHzxm(),hlhtZybcjlYnbltljl.getXbmc(),hlhtZybcjlYnbltljl.getXbdm(),
-                                hlhtZybcjlYnbltljl.getKsmc(), hlhtZybcjlYnbltljl.getKsdm(),   hlhtZybcjlYnbltljl.getBqmc(),hlhtZybcjlYnbltljl.getBqdm(), hlhtZybcjlYnbltljl.getSfzhm()));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    real_count++;
-
+        if (hlhtZybcjlYnbltljlList != null) {
+            emr_count = emr_count + hlhtZybcjlYnbltljlList.size();
+            for (HlhtZybcjlYnbltljl obj : hlhtZybcjlYnbltljlList) {
+                //清库
+                HlhtZybcjlYnbltljl temp = new HlhtZybcjlYnbltljl();
+                temp.setYjlxh(obj.getYjlxh());
+                this.hlhtZybcjlYnbltljlDao.deleteHlhtZybcjlYnbltljlByYjlxh(temp);
+                //清除日志
+                Map<String, Object> param = new HashMap<>();
+                param.put("SOURCE_ID", obj.getYjlxh());
+                param.put("SOURCE_TYPE", Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE);
+                mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+                //3.xml文件解析 获取病历信息
+                Document document = null;
+                try {
+                    document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+                Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlYnbltljl.class);
+                try {
+                    obj = (HlhtZybcjlYnbltljl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                    logger.info("Model:{}", obj);
+                    this.hlhtZybcjlYnbltljlDao.insertHlhtZybcjlYnbltljl(obj);
+                    mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                            Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
+                            Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
+                            obj.getFssj(),
+                            obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
+                            obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                real_count++;
+
             }
         }
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count, real_count, Integer.parseInt(Constants.WN_ZYBCJL_YNBLTLJL_SOURCE_TYPE));
 
         return mbzDataChecks;
     }

@@ -64,6 +64,10 @@
         <result column="yzzxzqm" property="yzzxzqm" jdbcType="VARCHAR"/>
         <result column="qmrq" property="qmrq" jdbcType="TIMESTAMP"/>
         <result column="gxsj" property="gxsj" jdbcType="TIMESTAMP"/>
+        <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
+        <result column="blmc" property="blmc" jdbcType="VARCHAR"/>
+        <result column="blnr" property="blnr" jdbcType="VARCHAR"/>
+        <result column="fssj" property="fssj" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="hlhtZlczjlZljlResult" type="com.winning.hic.model.HlhtZlczjlZljl"
@@ -386,7 +390,7 @@
             parameterType="com.winning.hic.model.HlhtZlczjlZljl">
         SELECT * FROM (
         SELECT t.* ,
-       ROW_NUMBER() OVER ( ORDER BY t.yjlxh DESC ) AS _RN
+        ROW_NUMBER() OVER ( ORDER BY t.yjlxh DESC ) AS _RN
         FROM HLHT_ZLCZJL_ZLJL t
         <where>
             <include refid="sql-hlhtZlczjlZljl"/>
@@ -395,4 +399,8 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
+    <select id="selectHlhtZlczjlZljlListByProc" resultMap="hlhtZlczjlZljlResult" statementType="CALLABLE"
+            parameterType="com.winning.hic.model.HlhtZlczjlZljl">
+        exec USP_HLHT_ZLCZJL_ZLJL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
 </mapper>
