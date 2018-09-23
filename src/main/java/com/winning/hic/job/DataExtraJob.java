@@ -39,7 +39,7 @@ public class DataExtraJob {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.DATE, c.get(Calendar.DATE) - 1); //抽取前一天数据 注释则抽取当前数据
         String beforeToday = DateUtil.format(c.getTime());
-        System.out.println(beforeToday);
+        //System.out.println(beforeToday);
         String startDate = beforeToday + " 00:00:00";
         String endDate = beforeToday + " 23:59:59";
         dataLoad(startDate,endDate);
