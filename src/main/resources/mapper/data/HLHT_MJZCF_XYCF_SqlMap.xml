@@ -333,6 +333,16 @@
         <!-- order by  asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
+    <!--存储过程-->
+    <select id="selectHlhtMjzcfXycfListByProc" resultMap="hlhtMjzcfXycfResult" statementType="CALLABLE">
+       exec USP_HLHT_MJZCF_XYCF_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
+    <!--存储过程-->
+    <select id="selectHlhtMjzcfXycfListByProcForYear" resultMap="hlhtMjzcfXycfResult" statementType="CALLABLE">
+       exec USP_HLHT_MJZCF_XYCF_YEAR_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
+
+
 
 
 </mapper>

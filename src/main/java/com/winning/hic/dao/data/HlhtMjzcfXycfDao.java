@@ -34,4 +34,20 @@ public interface HlhtMjzcfXycfDao {
     public List<HlhtMjzcfXycf> selectHlhtMjzcfXycfList(HlhtMjzcfXycf hlhtMjzcfXycf) throws DataAccessException;
 
     public List<HlhtMjzcfXycf> selectHlhtMjzcfXycfPageList(HlhtMjzcfXycf hlhtMjzcfXycf) throws DataAccessException;
+
+    /**
+     * 查询日库
+     * @param hlhtMjzcfXycf
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtMjzcfXycf> selectHlhtMjzcfXycfListByProc(HlhtMjzcfXycf hlhtMjzcfXycf) throws DataAccessException;
+
+    /**
+     * 查询年库
+     * @param hlhtMjzcfXycf
+     * @return
+     * @throws DataAccessException
+     */
+    public List<HlhtMjzcfXycf> selectHlhtMjzcfXycfListByProcForYear(HlhtMjzcfXycf hlhtMjzcfXycf) throws DataAccessException;
 }
