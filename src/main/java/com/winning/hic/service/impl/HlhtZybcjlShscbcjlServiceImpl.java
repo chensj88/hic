@@ -8,6 +8,8 @@ import com.winning.hic.dao.data.MbzLoadDataInfoDao;
 import com.winning.hic.model.*;
 import com.winning.hic.service.*;
 import org.dom4j.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,7 @@ import java.util.Map;
 @Service
 public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService {
 
+    private static final Logger logger = LoggerFactory.getLogger(HlhtZybcjlShscbcjlServiceImpl.class);
     @Autowired
     private HlhtZybcjlShscbcjlDao hlhtZybcjlShscbcjlDao;
     @Autowired
@@ -82,12 +85,60 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE);
         mbzDataSet.setPId(Long.parseLong(Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE));
         List<MbzDataSet> mbzDataSetList = mbzDataSetService.getMbzDataSetList(mbzDataSet);
-        //加载模板病历关系信息
-        MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE);
-        List<MbzDataListSet> mbzDataListSetList = mbzDataListSetService.getMbzDataListSetList(mbzDataListSet);
         //加载接口对象字段集合信息
         Map<String,String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlShscbcjl.class);
+
+        HlhtZybcjlShscbcjl hlht = new HlhtZybcjlShscbcjl();
+        hlht.getMap().put("sourceType",Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE);
+        hlht.getMap().put("startDate",entity.getMap().get("startDate"));
+        hlht.getMap().put("endDate",entity.getMap().get("endDate"));
+        hlht.getMap().put("syxh",entity.getMap().get("syxh"));
+
+        List<HlhtZybcjlShscbcjl> list = this.hlhtZybcjlShscbcjlDao.selectHlhtZybcjlShscbcjlListByProc(hlht);
+        if(list != null && list.size() > 0) {
+            emr_count = emr_count + list.size();
+            for(HlhtZybcjlShscbcjl obj:list){
+                //获取接口数据
+                HlhtZybcjlShscbcjl oldObj = new HlhtZybcjlShscbcjl();
+                oldObj.setYjlxh(String.valueOf(obj.getYjlxh()));
+                oldObj = getHlhtZybcjlShscbcjl(oldObj);
+                //解析病历xml
+                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+                //System.out.println(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                //判断是否存在重复,存在则删除，重新新增
+                if(oldObj != null ){
+                    //初始化数据
+                    HlhtZybcjlShscbcjl oldRcyjl  = new HlhtZybcjlShscbcjl();
+                    oldRcyjl.setYjlxh(String.valueOf(obj.getYjlxh()));
+                    this.removeHlhtZybcjlShscbcjl(oldRcyjl);
+                    //清除日志
+                    Map<String,Object> param = new HashMap<>();
+                    param.put("SOURCE_ID",obj.getYjlxh());
+                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE);
+                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+                }
+                obj = (HlhtZybcjlShscbcjl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
+                this.createHlhtZybcjlShscbcjl(obj);
+                //插入日志
+                mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                        Long.parseLong(Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE),
+                        Long.parseLong(obj.getYjlxh()),obj.getBlmc(),obj.getSyxh()+"",
+                        obj.getFssj(),
+                        obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                        obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm()));
+                real_count++;
+            }
+        }else{
+            logger.info("接口数据集:{}无相关的病历信息或者未配置结果集，请先书写病历信息或配置结果集",mbzDataSet.getRecordName());
+        }
+
+
+
+
+        //加载模板病历关系信息
+       /* MbzDataListSet mbzDataListSet = new MbzDataListSet();
+        mbzDataListSet.setSourceType(Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE);
+        List<MbzDataListSet> mbzDataListSetList = mbzDataListSetService.getMbzDataListSetList(mbzDataListSet);
         //获取模板病历关系集合，遍历
         for(MbzDataListSet dataListSet : mbzDataListSetList){
             //查询病历数据 数据来源
@@ -138,7 +189,7 @@ public class HlhtZybcjlShscbcjlServiceImpl implements  HlhtZybcjlShscbcjlService
                     real_count++;
                 }
             }
-        }
+        }*/
         //1.病历总数 2.抽取的病历数量 3.子集类型
         this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SHSCBCJL_SOURCE_TYPE));
         return dataCheckList;
