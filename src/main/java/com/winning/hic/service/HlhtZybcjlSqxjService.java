@@ -1,6 +1,8 @@
 package com.winning.hic.service;
 
-import java.util.List;  
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
 
 import com.winning.hic.model.HlhtZybcjlSqxj;
 import com.winning.hic.model.MbzDataCheck;
@@ -31,8 +33,8 @@ public interface HlhtZybcjlSqxjService {
 
     /**
      * 提取住院病程记录中术前小结数据
-     * @param hlhtZybcjlSqxj
+     * @param entity
      * @return
      */
-    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(MbzDataCheck entity);
+    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(MbzDataCheck entity) throws IOException, ParseException;
 }
