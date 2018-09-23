@@ -92,9 +92,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
         MbzDataCheck mbzDataCheck = new MbzDataCheck();
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
-        MbzDataListSet mbzDataListSet = new MbzDataListSet();
-        mbzDataListSet.setSourceType(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE);
-        List<MbzDataListSet> dataListSets = mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
+
 
         //加载模板字段库
         MbzDataSet  mbzDataSet = new MbzDataSet();
@@ -110,6 +108,16 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
         //获取model对象自定义参数信息
         Map<String,String> paramType = ReflectUtil.getParamTypeMap(HlhtRyjlRyswjl.class);
 
+        HlhtRyjlRyswjl ryswjl = new HlhtRyjlRyswjl();
+        ryswjl.getMap().put("sourceType",Constants.WN_RYJL_RCYJL_SOURCE_TYPE);
+        ryswjl.getMap().put("startDate",entity.getMap().get("startDate"));
+        ryswjl.getMap().put("endDate",entity.getMap().get("endDate"));
+        ryswjl.getMap().put("syxh",entity.getMap().get("syxh"));
+
+
+        /*MbzDataListSet mbzDataListSet = new MbzDataListSet();
+        mbzDataListSet.setSourceType(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE);
+        List<MbzDataListSet> dataListSets = mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
         if(dataListSets != null && dataListSets.size() > 0){
             //循环配置模板信息
             for (MbzDataListSet dataListSet : dataListSets) {
@@ -290,7 +298,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
             }
         }else {
             logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板",mbzDataSet.getRecordName());
-        }
+        }*/
         //1.病历总数 2.抽取的病历数量 3.子集类型
         this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE));
 
