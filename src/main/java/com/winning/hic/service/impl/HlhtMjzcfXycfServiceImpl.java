@@ -74,12 +74,22 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
         List<MbzDataCheck> dataChecks = null;
+        String startDate = (String) entity.getMap().get("startDate");
+        startDate = startDate.replaceAll("-","");
+        startDate = startDate.replaceAll(" ","");
+        String endDate = (String) entity.getMap().get("endDate");
+        endDate = endDate.replaceAll("-","");
+        endDate = endDate.replaceAll(" ","");
+
         HlhtMjzcfXycf xycf = new HlhtMjzcfXycf();
-        xycf.getMap().put("startDate",entity.getMap().get("startDate"));
-        xycf.getMap().put("endDate",entity.getMap().get("endDate"));
+        xycf.getMap().put("startDate",startDate);
+        xycf.getMap().put("endDate",endDate);
         xycf.getMap().put("syxh",entity.getMap().get("syxh"));
-        xycf.getMap().put("hisName",ConfigUtils.getEnvironment().getMZHISLinkServerFullPathURL());
-        List<HlhtMjzcfXycf> mjzcfXycfList = this.commonQueryDao.selectInitHlhtMjzcfXycf(xycf);
+        //日库
+        List<HlhtMjzcfXycf> mjzcfXycfList = this.hlhtMjzcfXycfDao.selectHlhtMjzcfXycfListByProc(xycf);
+        //年库
+        List<HlhtMjzcfXycf> lsmjzcfXycfList = this.hlhtMjzcfXycfDao.selectHlhtMjzcfXycfListByProcForYear(xycf);
+        mjzcfXycfList.addAll(lsmjzcfXycfList);
         emr_count = mjzcfXycfList.size();
         for (HlhtMjzcfXycf obj : mjzcfXycfList) {
             HlhtMjzcfXycf tempXycf = new HlhtMjzcfXycf();
@@ -95,7 +105,7 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
             //插入日志
             mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                     Long.parseLong(Constants.WN_MJZCF_XYCF_SOURCE_TYPE),
-                    Long.parseLong(obj.getYjlxh()),"西药处方","NA",obj.getCfklrq(),
+                    Long.parseLong(obj.getYjlxh()),"西药处方",obj.getMjzh(),obj.getCfklrq(),
                     obj.getPatid(),obj.getMjzh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                     "NA","NA", "NA","NA", obj.getSfzhm()));
             real_count++;

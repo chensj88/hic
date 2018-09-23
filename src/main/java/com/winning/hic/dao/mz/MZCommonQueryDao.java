@@ -35,6 +35,12 @@ public interface MZCommonQueryDao {
      * @return
      */
     List<HlhtMjzcfXycf> selectInitHlhtMjzcfXycf(HlhtMjzcfXycf obj);
+    /**
+     * 门(急)诊处方/西药处方 历史
+     * @param obj
+     * @return
+     */
+    List<HlhtMjzcfXycf> selectInitHlhtMjzcfXycfForLS(HlhtMjzcfXycf obj);
 
     /**
      * 卫生事件

@@ -349,50 +349,48 @@
     <!--chensj 病历概要/基本健康信息 门诊  2018-9-6 11:06:29-->
     <select id="selectInitHlhtBlgyJbjkxxForMz" parameterType="com.winning.hic.model.HlhtBlgyJbjkxx" resultMap="hlhtBlgyJbjkxxResult">
         SELECT
-        CONVERT(VARCHAR,A.GHXH )                                                                     AS yjlxh,
-        CONVERT(VARCHAR,A.GHXH )                                                                     AS jzlsh,
-        CONVERT(VARCHAR,A.PATID)                                                                     AS patid,
-        CONVERT(VARCHAR,A.HZXM )                                                                     AS hzxm,
-        CONVERT(VARCHAR,A.GHXH )                                                                     AS mjzh,
-        CONVERT(VARCHAR,'NA'   )                                                                     AS zyh,
-        CONVERT(VARCHAR,'1'    )                                                                     AS jzlb,
-        CONVERT(VARCHAR,A.SEX  )                                                                     AS xbmc,
-        CONVERT(VARCHAR,CASE A.SEX WHEN '男' THEN '1' WHEN '女' THEN '2' ELSE '3' END)               AS xbdm,
-        CONVERT(VARCHAR,CASE WHEN A.SFZH = '' THEN 'NA' ELSE A.SFZH END)                             AS sfzhm,
-        CONVERT(VARCHAR,A.YBDM)                                                                      AS jkkh,
-        CONVERT(VARCHAR,ISNULL(B.XXDM,'NA'))                                                         AS aboxxdm,
-        CONVERT(VARCHAR,ISNULL(E.NAME,'NA'))                                                         AS aboxxmc,
-        CONVERT(VARCHAR,ISNULL(B.RHJY,'NA'))                                                         AS rhxxdm,
-        CONVERT(VARCHAR,ISNULL(F.NAME,'NA'))                                                         AS rhxxmc,
-        CONVERT(VARCHAR,ISNULL(H.xbs,'NA') )                                                         AS jbs,
-        CONVERT(VARCHAR,'NA' )                                                                       AS crbs,
-        CONVERT(VARCHAR,'NA' )                                                                       AS yfjzs,
-        CONVERT(VARCHAR,'NA' )                                                                       AS sss,
-        CONVERT(VARCHAR,'NA' )                                                                       AS sxs,
-        CONVERT(VARCHAR,ISNULL(H.gms,'NA'))                                                          AS gms,
-        CONVERT(VARCHAR,'NA'                  )                                                      AS grs,
-        CONVERT(VARCHAR,'NA'                  )                                                      AS hys,
-        CONVERT(VARCHAR,'NA'                  )                                                      AS yjs,
-        CONVERT(VARCHAR,'NA'                  )                                                      AS jzs,
+        A.GHXH                                                                      AS yjlxh,
+        A.GHXH                                                                      AS jzlsh,
+        A.PATID                                                                     AS patid,
+        A.HZXM                                                                      AS hzxm,
+        A.GHXH                                                                      AS mjzh,
+        'NA'                                                                        AS zyh,
+        '1'                                                                         AS jzlb,
+        A.SEX                                                                       AS xbmc,
+        CASE A.SEX WHEN '男' THEN '1' WHEN '女' THEN '2' ELSE '3' END               AS xbdm,
+        CASE WHEN A.SFZH = '' THEN 'NA' ELSE A.SFZH END                             AS sfzhm,
+        A.YBDM                                                                      AS jkkh,
+        ISNULL(B.XXDM,'NA')                                                         AS aboxxdm,
+        ISNULL(E.NAME,'NA')                                                         AS aboxxmc,
+        ISNULL(B.RHJY,'NA')                                                         AS rhxxdm,
+        ISNULL(F.NAME,'NA')                                                         AS rhxxmc,
+        ISNULL(H.xbs,'NA' )                                                         AS jbs,
+        'NA'                                                                        AS crbs,
+        'NA'                                                                        AS yfjzs,
+        'NA'                                                                        AS sss,
+        'NA'                                                                        AS sxs,
+        ISNULL(H.gms,'NA')                                                          AS gms,
+        'NA'                                                                        AS grs,
+        'NA'                                                                        AS hys,
+        'NA'                                                                        AS yjs,
+        'NA'                                                                        AS jzs,
         GETDATE()                                                                                    AS gxsj,
-        CONVERT(VARCHAR,ISNULL(A.EMRXH,'0'))                                                        AS syxh
+        ISNULL(A.EMRXH,'0')                                                        AS syxh
         FROM OUTP_JZJLK A
         LEFT JOIN EMR_BASYK B ON A.EMRXH  = B.SYXH
         LEFT JOIN EMR_SYS_ZDFLMXK E ON B.XXDM = E.MXDM AND E.LBDM = '96'
         LEFT JOIN EMR_SYS_ZDFLMXK F ON B.RHJY = F.MXDM AND F.LBDM = '97'
         LEFT JOIN EMR_QTBLJLK G ON  G.SYXH = A.EMRXH AND G.MXFLDM LIKE 'B+9868%' AND G.YXJL = 1
         LEFT JOIN CIS_HLHT.dbo.HLHT_MJZBL_JZLGBL H ON  G.QTBLJLXH = H.yjlxh
-        <!--<where>
+        <where>
             <if test="map.startDate != null and map.startDate != ''">
                 and <![CDATA[CONVERT(date,substring(A.GHRQ,1,4)+'-'+substring(A.GHRQ,5,2)+'-'+substring(A.GHRQ,7,2))  >= #{map.startDate}]]>
             </if>
             <if test="map.startDate != null and map.startDate != ''">
                 and <![CDATA[CONVERT(date,substring(A.GHRQ,1,4)+'-'+substring(A.GHRQ,5,2)+'-'+substring(A.GHRQ,7,2))  <= #{map.endDate}]]>
             </if>
-        </where>-->
-        where H.jzlsh is not null
-        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[t.SYXH = #{map.syxh}]]>  </if>
-
+            <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[t.SYXH = #{map.syxh}]]>  </if>
+        </where>
     </select>
 
     <!--chensj 门(急)诊处方/西药处方 2018-8-16 16:21:45 HLHT_MJZCF_XYCF -->
@@ -455,17 +453,86 @@
         CONVERT(DECIMAL(18,2),(T1.YPSL*T1.YLSJ)/T1.YKXS)                                                               AS cfypje,
         GETDATE()                                                                                                      AS gxsj
         FROM OUTP_ORDERITEM T1
-        LEFT JOIN OUTP_ORDER T2 ON T1.CFXH = T2.XH
-        LEFT JOIN OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
-        LEFT JOIN ${map.hisName}.dbo.YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
+        INNER JOIN OUTP_ORDER T2 ON T1.CFXH = T2.XH
+        INNER JOIN OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
+        INNER JOIN ${map.hisName}.dbo.YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
+        WHERE
+        T6.yplh='01' AND
+        T3.ZDDM IS NOT NULL
+        <if test="map.startDate != null and map.startDate != '' and map.endDate != null and map.endDate != ''">
+            and T1.CJRQ between #{map.startDate}  and #{map.endDate}
+        </if>
+        <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[T3.EMRXH = #{map.syxh}]]>  </if>
+
+    </select>
+
+    <select id="selectInitHlhtMjzcfXycfForLS" parameterType="com.winning.hic.model.HlhtMjzcfXycf" resultMap="hlhtMjzcfXycfResult">
+        SELECT
+        ISNULL(CONVERT(VARCHAR,T1.XH),'NA')                                                                             AS yjlxh,
+        ISNULL(CONVERT(VARCHAR,T2.GHXH),'NA')                                                                           AS jzlsh,
+        ISNULL(CONVERT(VARCHAR,T2.PATID),'NA')                                                                          AS patid,
+        ISNULL(CONVERT(VARCHAR,T2.HZXM ),'NA')                                                                          AS hzxm,
+        ISNULL(CONVERT(VARCHAR,T2.GHXH ),'NA')                                                                          AS mjzh,
+        CASE WHEN RTRIM(LTRIM(T3.SFZH)) = '' THEN 'NA'
+        ELSE ISNULL(CONVERT(VARCHAR,T3.SFZH ),'NA') END                                                            AS sfzhm,
+        CASE T3.SEX WHEN '女' THEN '2' WHEN '男' THEN '1' ELSE '3'  END                                                AS xbdm,
+        ISNULL(T3.SEX, 'NA')                                                                                            AS xbmc,
+        ISNULL(CONVERT (VARCHAR,(YEAR(GETDATE())-YEAR(CONVERT(DATETIME, T3.BIRTH)))) ,'')                              AS nls,
+        DATEDIFF(MONTH,T3.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12                                     AS nly,
+        ISNULL(T1.CFXH, 'NA')                                                                                           AS cfxh,
+        ( SELECT t.DICT_LABEL FROM CIS_HLHT..MBZ_DICT_INFO t
+        WHERE t.DICT_CODE = 'hospitalInfoNo' AND t.DICT_VALUE = 1)                                                     AS zzjgdm,
+        ( SELECT t.DICT_LABEL FROM CIS_HLHT..MBZ_DICT_INFO t
+        WHERE t.DICT_CODE = 'hospitalInfoName' AND t.DICT_VALUE = 1)                                                   AS zzjgmc,
+        CONVERT(date,substring(T2.LRRQ,1,4)+'-'+substring(T2.LRRQ,5,2)+'-'+substring(T2.LRRQ,7,2))                     AS cfklrq,
+        T1.TS                                                                                                          AS cfyxts,
+        T2.KSDM                                                                                                        AS cfklskdm,
+        T2.KSMC                                                                                                        AS cfklks,
+        (SELECT T7.ZDDM FROM OUTP_MZBLZDK T7
+        WHERE T2.GHXH = T7.GHXH AND T7.ZDLB = 0
+        AND T7.ZDLX = 0 )                                                                                              AS jbzdbm,
+        (SELECT T8.ZDMC FROM OUTP_MZBLZDK T8
+        WHERE T2.GHXH = T8.GHXH AND T8.ZDLB = 0
+        AND T8.ZDLX = 0 )                                                                                              AS jbzd,
+        T1.YPDM                                                                                                        AS ywdm,
+        T1.YPMC                                                                                                        AS ywmc,
+        T1.YPGG                                                                                                        AS ywgg,
+        T1.JXDM                                                                                                        AS ywjxdm,
+        T1.JXMC                                                                                                        AS ywjx,
+        T1.YPJL                                                                                                        AS ywsycjl,
+        T1.JLDW                                                                                                        AS ywsyjldw,
+        T1.PCDM                                                                                                        AS ywsypcdm,
+        T1.PCMC                                                                                                        AS ywsypc,
+        T1.YPYF                                                                                                        AS ywsytj,
+        T1.YPYFMC                                                                                                      AS ywsytjmc,
+        T1.YPSL*T1.YPJL                                                                                                AS ywsyzjl,
+        T1.FZXH                                                                                                        AS cfypzh,
+        T2.YSMC                                                                                                        AS klysqm,
+        T2.YSMC                                                                                                        AS ysbm,
+        'NA'                                                                                                            AS shyjsbm,
+        'NA'                                                                                                            AS shyjsqm,
+        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS shyjsqmsj,
+        'NA'                                                                                                            AS tpyjsbm,
+        'NA'                                                                                                            AS tpyjsqm,
+        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cftpsj,
+        'NA'                                                                                                            AS hdyjsbm,
+        'NA'                                                                                                            AS hdyjsqm,
+        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cfhdsj,
+        'NA'                                                                                                            AS fyyjsbm,
+        'NA'                                                                                                            AS fyyjsqm,
+        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cffysj,
+        ISNULL(T2.MEMO, 'NA')                                                                                           AS cfbzxx,
+        CONVERT(DECIMAL(18,2),(T1.YPSL*T1.YLSJ)/T1.YKXS)                                                               AS cfypje,
+        GETDATE()                                                                                                      AS gxsj
+        FROM OUTP_NORDERITEM T1
+        INNER JOIN OUTP_NORDER T2 ON T1.CFXH = T2.XH
+        INNER JOIN OUTP_JZJLK T3 ON T2.GHXH = T3.GHXH
+        INNER JOIN ${map.hisName}.dbo.YK_YPCDMLK T6  on T1.CD_IDM = T6.idm
         WHERE
         T6.yplh='01' AND
         T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
-        <if test="map.startDate != null and map.startDate != ''">
-            and <![CDATA[CONVERT(date,substring(T1.CJRQ,1,4)+'-'+substring(T1.CJRQ,5,2)+'-'+substring(T1.CJRQ,7,2))  >= #{map.startDate}]]>
-        </if>
-        <if test="map.endDate != null and map.endDate != ''">
-            and <![CDATA[CONVERT(date,substring(T1.CJRQ,1,4)+'-'+substring(T1.CJRQ,5,2)+'-'+substring(T1.CJRQ,7,2)) <= #{map.endDate}]]>
+        <if test="map.startDate != null and map.startDate != '' and map.endDate != null and map.endDate != ''">
+            and T1.CJRQ between #{map.startDate}  and #{map.endDate}
         </if>
         <if test="map.syxh != null and map.syxh != ''"> and <![CDATA[T3.EMRXH = #{map.syxh}]]>  </if>
 
