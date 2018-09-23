@@ -365,6 +365,13 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
+    <select id="selecthlhtZybcjlHzjlListByProc" resultMap="hlhtZybcjlHzjlResult"
+        parameterType="com.winning.hic.model.HlhtZybcjlHzjl">
+        exec USP_HLHT_ZYBCJL_HZJL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+
+    </select>
+
+
     <!--&lt;!&ndash; Chen,Kuai 2018-8-14 会诊记录&ndash;&gt;-->
     <!--<select id="selectInitialHlhtZybcjlHzjl" resultMap="hlhtZybcjlHzjlResult" parameterType="com.winning.hic.model.HlhtZybcjlHzjl">-->
         <!--SELECT t.QTBLJLXH AS yjlxh,-->

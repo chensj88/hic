@@ -324,5 +324,10 @@
 
     <!--</select>-->
 
+    <select id="selectHlhtZqgzxxQtzqtysListByProc" resultMap="hlhtZqgzxxQtzqtysResult"
+        parameterType="com.winning.hic.model.HlhtZqgzxxQtzqtys">
+        exec USP_HLHT_ZQGZXX_QTZQTYS_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
+
 
 </mapper>

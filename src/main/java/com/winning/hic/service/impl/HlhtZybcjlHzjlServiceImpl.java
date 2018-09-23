@@ -108,79 +108,70 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
         try{
             //获取首次病程的对象集合
             Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlHzjl.class);
-            for(MbzDataListSet dataListSet :dataListSets){
+            //for(MbzDataListSet dataListSet :dataListSets){
                 //2.根据首次病程去找到对应的病人病历
-                EmrQtbljlk qtbljlk = new EmrQtbljlk();
-                qtbljlk.setBldm(dataListSet.getModelCode());
-                qtbljlk.setYxjl(1);
-                qtbljlk.getMap().put("startDate",t.getMap().get("startDate"));
-                qtbljlk.getMap().put("endDate",t.getMap().get("endDate"));
-                qtbljlk.getMap().put("syxh",t.getMap().get("syxh"));
-                List<EmrQtbljlk> qtbljlkList = emrQtbljlkDao.selectEmrQtbljlkList(qtbljlk);
-                emr_count = emr_count+qtbljlkList.size();
-                if(qtbljlkList != null){
-                    for(EmrQtbljlk emrQtbljlk:qtbljlkList){
-                        //判断属于哪一种单据（1.申请单 2.答复单）
-                        EmrHzsqdjlk s_hzsqdjlk = new EmrHzsqdjlk();
-                        s_hzsqdjlk.getMap().put("entity_param",emrQtbljlk.getQtbljlxh());
-                        List<EmrHzsqdjlk> hzsqdjlk_list=emrHzsqdjlkDao.selectEmrHzsqdjlkList2(s_hzsqdjlk);
-                        if(hzsqdjlk_list.size()>0 && hzsqdjlk_list !=null){
-                            if(hzsqdjlk_list.get(0).getQtbljlxh().equals(emrQtbljlk.getQtbljlxh())){ //会诊申请单 insert
-                                HlhtZybcjlHzjl scbcjl = new HlhtZybcjlHzjl();
-                                scbcjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                                scbcjl = this.getHlhtZybcjlHzjl(scbcjl);
+            HlhtZybcjlHzjl oneHzjl = new HlhtZybcjlHzjl();
+            oneHzjl.getMap().put("sourceType", Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE);
+            oneHzjl.getMap().put("startDate",t.getMap().get("startDate"));
+            oneHzjl.getMap().put("endDate",t.getMap().get("endDate"));
+            oneHzjl.getMap().put("syxh",t.getMap().get("syxh"));
+            List<HlhtZybcjlHzjl> hlhtZybcjlHzjls = this.hlhtZybcjlHzjlDao.selecthlhtZybcjlHzjlListByProc(oneHzjl);
+            if(hlhtZybcjlHzjls != null){
+                for(HlhtZybcjlHzjl obj:hlhtZybcjlHzjls){
+                    //判断属于哪一种单据（1.申请单 2.答复单）
+                    EmrHzsqdjlk s_hzsqdjlk = new EmrHzsqdjlk();
+                    s_hzsqdjlk.getMap().put("entity_param",obj.getYjlxh());
+                    List<EmrHzsqdjlk> hzsqdjlk_list=emrHzsqdjlkDao.selectEmrHzsqdjlkList2(s_hzsqdjlk);
+                    if(hzsqdjlk_list.size()>0 && hzsqdjlk_list !=null) {
+                        if (hzsqdjlk_list.get(0).getQtbljlxh().equals(obj.getYjlxh())) { //会诊申请单 insert
+                            HlhtZybcjlHzjl scbcjl = new HlhtZybcjlHzjl();
+                            scbcjl.setYjlxh(obj.getYjlxh());
+                            scbcjl = this.getHlhtZybcjlHzjl(scbcjl);
 
-                                if(scbcjl != null ){
-                                    //初始化数据
-                                    HlhtZybcjlHzjl oldRcyjl  = new HlhtZybcjlHzjl();
-                                    oldRcyjl.setYjlxh(String.valueOf(emrQtbljlk.getQtbljlxh()));
-                                    this.removeHlhtZybcjlHzjl(oldRcyjl);
-                                    //清除日志
-                                    Map<String,Object> param = new HashMap<>();
-                                    param.put("SOURCE_ID",emrQtbljlk.getQtbljlxh());
-                                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE);
-                                    mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
-                                }
-                                HlhtZybcjlHzjl entity = new HlhtZybcjlHzjl();
-                                entity.getMap().put("QTBLJLXH",emrQtbljlk.getQtbljlxh());
-                                entity.getMap().put("hisName", ConfigUtils.getEnvironment().getZYHISLinkServerFullPathURL());
-                                entity = this.commonQueryDao.selectInitialHlhtZybcjlHzjl(entity);
-                                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
-                                try {
-                                    entity = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                this.createHlhtZybcjlHzjl(entity);
+                            if (scbcjl != null) {
+                                //初始化数据
+                                HlhtZybcjlHzjl oldRcyjl = new HlhtZybcjlHzjl();
+                                oldRcyjl.setYjlxh(obj.getYjlxh());
+                                this.removeHlhtZybcjlHzjl(oldRcyjl);
+                                //清除日志
+                                Map<String, Object> param = new HashMap<>();
+                                param.put("SOURCE_ID", obj.getYjlxh());
+                                param.put("SOURCE_TYPE", Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE);
+                                mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+                            }
 
-                            }else{ //会诊答复单 update
-                                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(emrQtbljlk.getBlnr()));
+                            try {
+                                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+                                obj = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            this.createHlhtZybcjlHzjl(obj);
+                        } else { //会诊答复单 update
+                            try {
+                                Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
                                 HlhtZybcjlHzjl entity = new HlhtZybcjlHzjl();
                                 entity.setYjlxh(String.valueOf(hzsqdjlk_list.get(0).getQtbljlxh()));
-                                entity =this.getHlhtZybcjlHzjl(entity);
-                                try {
-                                    entity = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-
+                                entity = this.getHlhtZybcjlHzjl(entity);
+                                entity = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
                                 this.modifyHlhtZybcjlHzjl(entity);
-                                //插入日志
-                                mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                        Long.parseLong(Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE),
-                                        emrQtbljlk.getQtbljlxh(),emrQtbljlk.getBlmc(),emrQtbljlk.getSyxh()+"",
-                                        new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
-                                        entity.getPatid(),entity.getZyh(),entity.getHzxm(),entity.getXbmc(),entity.getXbdm(),
-                                        entity.getKsmc(),entity.getKsdm(), entity.getBqmc(),entity.getBqdm(), entity.getSfzhm()));
-
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
+                            mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                    Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
+                                    Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
+                                    obj.getFssj(),
+                                    obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
+                                    obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm()));
                             real_count++;
+
                         }
+
+
                     }
                 }
-
             }
-
 
         }catch (Exception e){
             e.printStackTrace();
