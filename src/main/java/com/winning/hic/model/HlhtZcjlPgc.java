@@ -647,6 +647,8 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
      */
     private Timestamp gxsj;
 
+    private String syxh;
+
     public HlhtZcjlPgc (){
 
     }
@@ -2505,5 +2507,13 @@ public class HlhtZcjlPgc extends BaseDomain implements Serializable {
    public void setGxsj(Timestamp gxsj){
         this.gxsj = gxsj;
    }
+
+    public String getSyxh() {
+        return syxh;
+    }
+
+    public void setSyxh(String syxh) {
+        this.syxh = syxh;
+    }
 
 }

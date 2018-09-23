@@ -86,6 +86,9 @@
         <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
         <result column="tjzt" property="tjzt" jdbcType="VARCHAR"/>
         <result column="yxjl" property="yxjl" jdbcType="INTEGER"/>
+        <result column="blmc" property="blmc" jdbcType="VARCHAR"/>
+        <result column="blnr" property="blnr" jdbcType="VARCHAR"/>
+        <result column="fssj" property="fssj" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="hlhtCyxjCyxjResult" type="com.winning.hic.model.HlhtCyxjCyxj" extends="hlhtCyxjCyxjResultForList">
@@ -497,6 +500,13 @@
         <!-- order by  asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
+    
+    <select id="selectHlhtCyxjCyxjListByProc" resultMap="hlhtCyxjCyxjResult"
+        parameterType="com.winning.hic.model.HlhtCyxjCyxj">
+        exec USP_HLHT_CYXJ_CYXJ_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+
+    </select>
+    
 
     <!--&lt;!&ndash; Chen,Kuai 2018-8-14 批量初始化CIS,HIS数据&ndash;&gt;-->
     <!--<select id="selectInitialHlhtCyxjCyxj" resultMap="hlhtCyxjCyxjResult" parameterType="com.winning.hic.model.HlhtCyxjCyxj">-->

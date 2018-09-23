@@ -37,5 +37,5 @@ public interface HlhtCyxjCyxjDao {
 
     public HlhtCyxjCyxj selectInitialHlhtCyxjCyxj(HlhtCyxjCyxj hlhtCyxjCyxj) throws DataAccessException;
 
-
+    List<HlhtCyxjCyxj> selectHlhtCyxjCyxjListByProc(HlhtCyxjCyxj oneCyxj)throws DataAccessException;
 }

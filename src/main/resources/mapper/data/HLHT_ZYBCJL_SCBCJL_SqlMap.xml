@@ -50,6 +50,9 @@
         <result column="syxh" property="syxh" jdbcType="VARCHAR"/>
         <result column="tjzt" property="tjzt" jdbcType="VARCHAR"/>
         <result column="yxjl" property="yxjl" jdbcType="INTEGER"/>
+        <result column="blmc" property="blmc" jdbcType="VARCHAR"/>
+        <result column="blnr" property="blnr" jdbcType="VARCHAR"/>
+        <result column="fssj" property="fssj" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="hlhtZybcjlScbcjlResult" type="com.winning.hic.model.HlhtZybcjlScbcjl"
@@ -366,6 +369,11 @@
         </where>
         <!-- order by  asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+    <select id="selectHlhtZybcjlScbcjlListByProc" resultMap="hlhtZybcjlScbcjlResult" statementType="CALLABLE"
+        parameterType="com.winning.hic.model.HlhtZybcjlScbcjl">
+        exec USP_HLHT_ZYBCJL_SCBCJL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
     </select>
 
     <!--十分重要 陈蒯 2018年8月30日10:03:39 子集的存储过程 -->

@@ -364,6 +364,25 @@ public class HlhtZybcjlZkjl extends BaseDomain implements Serializable {
      */
     private Timestamp gxsj;
 
+    /**
+     * 字段名：syxh
+     * 备注:
+     * 默认值：无
+     */
+    private String syxh;
+    /**
+     * 字段名：tjzt
+     * 备注:
+     * 默认值：无
+     */
+    private String tjzt;
+    /**
+     * 字段名：yxjl
+     * 备注:
+     * 默认值：无
+     */
+    private Integer yxjl;
+
     public HlhtZybcjlZkjl (){
 
     }
@@ -1394,5 +1413,61 @@ public class HlhtZybcjlZkjl extends BaseDomain implements Serializable {
    public void setGxsj(Timestamp gxsj){
         this.gxsj = gxsj;
    }
+
+    /**
+     * 字段名：syxh
+     * get方法
+     * 备注:
+     */
+    public String getSyxh(){
+
+        return syxh;
+    }
+
+    /**
+     * 字段名：syxh
+     * set方法
+     * 备注:
+     */
+    public void setSyxh(String syxh){
+        this.syxh = syxh;
+    }
+    /**
+     * 字段名：tjzt
+     * get方法
+     * 备注:
+     */
+    public String getTjzt(){
+
+        return tjzt;
+    }
+
+    /**
+     * 字段名：tjzt
+     * set方法
+     * 备注:
+     */
+    public void setTjzt(String tjzt){
+        this.tjzt = tjzt;
+    }
+    /**
+     * 字段名：yxjl
+     * get方法
+     * 备注:
+     */
+    public Integer getYxjl(){
+
+        return yxjl;
+    }
+
+    /**
+     * 字段名：yxjl
+     * set方法
+     * 备注:
+     */
+    public void setYxjl(Integer yxjl){
+        this.yxjl = yxjl;
+    }
+
 
 }
