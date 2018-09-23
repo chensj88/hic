@@ -34,6 +34,6 @@ public interface HlhtZybcjlCyjlDao {
 
     public void deleteHlhtZybcjlCyjlByYjlxh(HlhtZybcjlCyjl hlhtZybcjlCyjl);
 
-    public List<HlhtZybcjlCyjl> selectHlhtZybcjlCyjlPageListByProc(HlhtZybcjlCyjl hlhtZybcjlCyjl);
+    public List<HlhtZybcjlCyjl> selectHlhtZybcjlCyjlListByProc(HlhtZybcjlCyjl hlhtZybcjlCyjl);
 
 }

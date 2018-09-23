@@ -108,7 +108,7 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
         hlhtZybcjlCyjlTemp.getMap().put("startDate", t.getMap().get("startDate"));
         hlhtZybcjlCyjlTemp.getMap().put("endDate", t.getMap().get("endDate"));
         hlhtZybcjlCyjlTemp.getMap().put("syxh", t.getMap().get("syxh"));
-        List<HlhtZybcjlCyjl> hlhtZybcjlCyjls = this.hlhtZybcjlCyjlDao.selectHlhtZybcjlCyjlPageListByProc(hlhtZybcjlCyjlTemp);
+        List<HlhtZybcjlCyjl> hlhtZybcjlCyjls = this.hlhtZybcjlCyjlDao.selectHlhtZybcjlCyjlListByProc(hlhtZybcjlCyjlTemp);
         if (hlhtZybcjlCyjls != null) {
             emr_count = emr_count + hlhtZybcjlCyjls.size();
             for (HlhtZybcjlCyjl obj : hlhtZybcjlCyjls) {
@@ -215,8 +215,8 @@ public class HlhtZybcjlCyjlServiceImpl implements HlhtZybcjlCyjlService {
     }
 
     @Override
-    public List<HlhtZybcjlCyjl> selectHlhtZybcjlCyjlPageListByProc(HlhtZybcjlCyjl hlhtZybcjlCyjl) {
-        return this.hlhtZybcjlCyjlDao.selectHlhtZybcjlCyjlPageListByProc(hlhtZybcjlCyjl);
+    public List<HlhtZybcjlCyjl> selectHlhtZybcjlCyjlListByProc(HlhtZybcjlCyjl hlhtZybcjlCyjl) {
+        return this.hlhtZybcjlCyjlDao.selectHlhtZybcjlCyjlListByProc(hlhtZybcjlCyjl);
     }
 
 
