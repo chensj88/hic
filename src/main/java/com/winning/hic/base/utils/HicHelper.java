@@ -116,10 +116,10 @@ public class HicHelper {
                         }
                     }
                     //處理特殊數據
-                    dateStr = dateStr.replaceAll(" ","");
-                    if(dateStr.contains(".")){
-                        dateStr = dateStr.replace(".", "-");
-                    }
+//                    dateStr = dateStr.replaceAll(" ","");
+//                    if(dateStr.contains(".")){
+//                        dateStr = dateStr.replace(".", "-");
+//                    }
                     dateStr = dateStr.trim();
                     if (dateStr.length() <= 10) {
                         pattern = "yyyy-MM-dd";
