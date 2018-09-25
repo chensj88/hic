@@ -58,11 +58,11 @@
             <if test="(dtjddm != null and dtjddm != '')">DTJDDM ,</if>
             <if test="(qrdxdm != null and qrdxdm != '')">QRDXDM ,</if>
             <if test="(yzjddm != null and yzjddm != '')">YZJDDM ,</if>
-            <if test="(errorDesc != null)">ERROR_DESC ,</if>
-            <if test="(status != null and status != '')">STATUS ,</if>
             <if test="(bt != null and bt != '')">BT ,</if>
             <if test="(mustMatch != null and mustMatch != '')">MUST_MATCH ,</if>
             <if test="(pyCode != null and pyCode != '')">PY_CODE ,</if>
+            ERROR_DESC ,
+            STATUS
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -77,11 +77,11 @@
             <if test="(dtjddm != null and dtjddm != '')">#{dtjddm , jdbcType= VARCHAR },</if>
             <if test="(qrdxdm != null and qrdxdm != '')">#{qrdxdm , jdbcType= VARCHAR },</if>
             <if test="(yzjddm != null and yzjddm != '')">#{yzjddm , jdbcType= VARCHAR },</if>
-            <if test="(errorDesc != null)">#{errorDesc , jdbcType= VARCHAR },</if>
-            <if test="(status != null and status != '')">#{status , jdbcType= INTEGER },</if>
             <if test="(bt != null and bt != '')">#{bt , jdbcType= INTEGER },</if>
-            <if test="(mustMatch != null and mustMatch != '')">#{mustMatch , jdbcType= INTEGER },</if>
+            <if test="(mustMatch != null)">#{mustMatch , jdbcType= INTEGER },</if>
             <if test="(pyCode != null and pyCode != '')">#{pyCode , jdbcType= VARCHAR },</if>
+            #{errorDesc , jdbcType= VARCHAR },
+            #{status , jdbcType= INTEGER }
         </trim>
     </insert>
 
@@ -99,11 +99,11 @@
                 <if test="(dtjddm != null and dtjddm != '')">DTJDDM =#{dtjddm},</if>
                 <if test="(qrdxdm != null and qrdxdm != '')">QRDXDM=#{qrdxdm} ,</if>
                 <if test="(yzjddm != null and yzjddm != '')">YZJDDM=#{yzjddm} ,</if>
-                <if test="(errorDesc != null)">ERROR_DESC=#{errorDesc} ,</if>
-                <if test="(status != null)">STATUS=#{status} ,</if>
                 <if test="(bt != null and bt != '')">BT =#{bt},</if>
-                <if test="(mustMatch != null and mustMatch != '')">MUST_MATCH =#{mustMatch},</if>
+                <if test="(mustMatch != null)">MUST_MATCH =#{mustMatch},</if>
                 <if test="(pyCode != null and pyCode != '')">PY_CODE =#{pyCode},</if>
+                ERROR_DESC=#{errorDesc} ,
+                STATUS=#{status}
             </trim>
         </set>
         <where>
