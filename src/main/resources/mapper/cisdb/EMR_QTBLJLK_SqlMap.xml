@@ -105,9 +105,9 @@
 	<!-- Chen,Kuai 用于查找病人症断编码 -->
 	<select id="selectEmrBrzdqk" resultType ="String" parameterType="com.winning.hic.model.EmrQtbljlk">
 				 select    STUFF(
-					  (SELECT ZDDM+'，'
+					  (SELECT ZDDM+'  '
 						 FROM EMR_BRZDQK t
-						 WHERE 	<if test="(syxh != null and syxh != '') or syxh == 0">  t.SYXH = #{syxh}
+						 WHERE  t.ZDLB ='2'	<if test="(syxh != null and syxh != '') or syxh == 0"> and t.SYXH = #{syxh}
 									</if>
                        FOR xml path('')),1,1,'' );
      </select>

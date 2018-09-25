@@ -145,9 +145,12 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    //汉字编码转正常
+                    obj.setCzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getCzxyzdbm(),obj.getSyxh()));
+                    obj.setJzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getJzxyzdbm(),obj.getSyxh()));
 
                     //初步诊断-中医病名代码、名称处理
-                    if(!"NA".equals(obj.getCzzybmdm())){
+                    if(!"NA".equals(obj.getCzzybmdm())&& StringUtil.isChineseTo(obj.getCzzyzhdm())){
                         String bmdm="";
                         String bm="";
                         String[] str=obj.getCzzybmdm().split("  ");
@@ -220,7 +223,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                                     xybm = xybm + str2[i]+" ";
                                 }else{
                                     Character o=new Character('B');//病
-                                    if(!"".equals(str[i].toString())) {
+                                    if(str[i].trim().length() > 0) {
                                         if (o.equals(str[i].trim().charAt(0))) {
                                             zybmdm = zybmdm + str[i] + " ";             //存入病
                                             zybm = zybm + str2[i] + " ";                //存入病
@@ -270,9 +273,6 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
 
                     }
-                    //汉字编码转正常
-                    obj.setCzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getCzxyzdbm(),obj.getSyxh()));
-                    obj.setJzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getJzxyzdbm(),obj.getSyxh()));
 
 
 //                            //鉴别诊断-中医病名编码、名称
@@ -338,7 +338,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
             }
             //1.病历总数 2.抽取的病历数量 3.子集类型
-            this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE));
+            this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE),t.getMap().get("startDate")+" 至 "+t.getMap().get("endDate"));
         }catch (Exception e){
             e.printStackTrace();
         }

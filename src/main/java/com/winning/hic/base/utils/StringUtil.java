@@ -342,12 +342,12 @@ public class StringUtil {
      * @return
      */
     public static boolean isChinese(String str){
-
+        if (str.isEmpty()) return true;
         return str.length() == str.getBytes().length ? false : true;
     }
 
     public static boolean isChineseTo(String str){
-
+        if (str.isEmpty()) return false;
         return str.length() == str.getBytes().length ? true : false;
     }
 
