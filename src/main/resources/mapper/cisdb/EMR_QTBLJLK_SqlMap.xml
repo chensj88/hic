@@ -107,7 +107,8 @@
 				 select    STUFF(
 					  (SELECT ZDDM+'，'
 						 FROM EMR_BRZDQK t
-						 WHERE 		<if test="(syxh != null and syxh != '') or syxh == 0">  t.SYXH = #{syxh} </if>
+						 WHERE 	<if test="(syxh != null and syxh != '') or syxh == 0">  t.SYXH = #{syxh}
+									</if>
                        FOR xml path('')),1,1,'' );
      </select>
 

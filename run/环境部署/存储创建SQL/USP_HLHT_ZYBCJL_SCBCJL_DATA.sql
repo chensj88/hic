@@ -1,4 +1,12 @@
-CREATE PROCEDURE [dbo].[USP_HLHT_ZYBCJL_SCBCJL_DATA]
+USE [CIS_HLHT]
+GO
+/****** Object:  StoredProcedure [dbo].[USP_HLHT_ZYBCJL_SCBCJL_DATA]    Script Date: 09/25/2018 23:49:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[USP_HLHT_ZYBCJL_SCBCJL_DATA]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
@@ -26,13 +34,19 @@ begin
 --创建临时表
 if @syxh  is null or @syxh = ''
 	begin
-		SELECT * INTO #EMR_QTBLJLK FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
-		WHERE EXISTS (SELECT 1 FROM MBZ_DATA_LIST_SET A(nolock) WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM)
-		 AND T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
-		 AND T.TJSJ IS NOT NULL  AND T.TJSJ !=''
-		 AND T.YXJL=1;
-		 --在临时表上增加索引
-		 CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (BLDM, YXJL, TJSJ);
+
+	    SELECT * INTO #EMR_QTBLJLK_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
+		AND T.TJSJ IS NOT NULL  AND T.TJSJ !='' AND T.YXJL=1
+         --在临时表上增加索引
+		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_LS (BLDM);
+
+		SELECT * INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
+		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
+		WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM
+
+		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (SYXH);
+
      --查询表数据
 		 SELECT t.QTBLJLXH AS yjlxh,
         b.HISSYXH AS jzlsh,
@@ -77,18 +91,23 @@ if @syxh  is null or @syxh = ''
         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm=b.RYBQ
       		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
+		DROP TABLE #EMR_QTBLJLK_LS
 	end
 else
 	begin
 
-  SELECT * INTO #EMR_QTBLJLK_TEMP FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
-		WHERE EXISTS (SELECT 1 FROM dbo.MBZ_DATA_LIST_SET A(nolock) WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM)
-		 AND T.TJSJ BETWEEN CONVERT (DATE, @startDate) AND CONVERT (DATE, @endDate)
-		 AND T.TJSJ IS NOT NULL  AND T.TJSJ !=''
-		 AND T.YXJL=1
-		 AND T.SYXH=@syxh;
-		 --在临时表上增加索引
-		 CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (BLDM, YXJL, TJSJ);
+
+       SELECT * INTO #EMR_QTBLJLK_TEMP_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
+		AND T.TJSJ IS NOT NULL  AND T.TJSJ !='' AND T.YXJL=1 AND T.SYXH=@syxh;
+         --在临时表上增加索引
+		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_TEMP_LS (BLDM);
+
+		SELECT * INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
+		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
+		WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM
+		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (SYXH);
+
 		 --查询表数据
    SELECT t.QTBLJLXH AS yjlxh,
           b.HISSYXH AS jzlsh,
@@ -133,9 +152,11 @@ else
           LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm=b.RYBQ
             --删除临时表
       DROP TABLE #EMR_QTBLJLK_TEMP
+      DROP TABLE #EMR_QTBLJLK_TEMP_LS
     end
 
 	END
+
 
 
 
