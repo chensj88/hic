@@ -159,7 +159,7 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
                                 e.printStackTrace();
                             }
                             mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                                    Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
+                                    Long.parseLong(Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE),
                                     Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
                                     obj.getFssj(),
                                     obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
