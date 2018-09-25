@@ -26,11 +26,16 @@ begin
 if @syxh  is null or @syxh = ''
   --不存在首页序号
 	begin
-    --创建临时表
-		SELECT * INTO #EMR_QTBLJLK FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+	--创建临时表
+   	SELECT * INTO #EMR_QTBLJLK_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
 		WHERE EXISTS (SELECT 1 FROM MBZ_DATA_LIST_SET A(nolock) WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM)
 		 AND T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
 		 AND T.TJSJ IS NOT NULL  AND T.TJSJ !='' AND T.YXJL = 1
+		 --在临时表上增加索引
+		 CREATE INDEX QUERY_INDEX_BLDM ON #EMR_QTBLJLK_LS (BLDM);
+		 --创建临时表
+		 SELECT * INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
+		  WHERE EXISTS (SELECT 1 FROM MBZ_DATA_LIST_SET A(nolock) WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM)
 		--在临时表上增加索引
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (BLDM, YXJL, TJSJ);
 		--查询业务数据
@@ -96,15 +101,20 @@ if @syxh  is null or @syxh = ''
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and LBDM = 41
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
+		DROP TABLE #EMR_QTBLJLK_LS
 	 end
 else
   --存在@syxh
 	begin
-	 --创建临时表
-		SELECT * INTO #EMR_QTBLJLK_TEMP FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
-		WHERE EXISTS (SELECT 1 FROM dbo.MBZ_DATA_LIST_SET A(nolock) WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM)
-		 AND T.TJSJ BETWEEN CONVERT (DATE, @startDate) AND CONVERT (DATE, @endDate)
+	--创建临时表
+		SELECT * INTO #EMR_QTBLJLK_TEMP_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+		WHERE T.TJSJ BETWEEN CONVERT (DATE, @startDate) AND CONVERT (DATE, @endDate)
 		 AND T.TJSJ IS NOT NULL  AND T.TJSJ !='' AND T.YXJL = 1 AND T.SYXH=@syxh
+		 --在临时表上增加索引
+		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_TEMP_LS (BLDM);
+		 --创建临时表
+		SELECT * INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
+		WHERE EXISTS (SELECT 1 FROM dbo.MBZ_DATA_LIST_SET A(nolock) WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM)
 		 --在临时表上增加索引
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (BLDM, YXJL, TJSJ);
 		--查询业务数据
@@ -170,5 +180,6 @@ else
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and LBDM = 41
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
+		DROP TABLE #EMR_QTBLJLK_TEMP_LS
 	end
 end
