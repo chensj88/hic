@@ -5,7 +5,7 @@ CREATE PROCEDURE [dbo].[USP_HLHT_MJZCF_ZYCF_DATA]
   @syxh       int            --首页序号
   as
   /*
-  [创建者] chensj
+  [创建者] chenfeng
   [公司]上海金仕达卫宁软件股份有限公司@2015-2018
   [时间]2018-09-23
   [功能]导出互联互通中药处方信息日数据 ---USP_HLHT_MJZCF_ZYCF_DATA
@@ -415,7 +415,7 @@ CREATE PROCEDURE [dbo].[USP_HLHT_MJZCF_ZYCF_DATA]
           DECIMAL (18, 2),
           (T1.YPSL * T1.YLSJ) / T1.YKXS
           ) AS cfypje,
-          GETDATE() AS gxsj                                                             AS gxsj
+          GETDATE() AS gxsj
           FROM #OUTP_ORDER_TEMP T2
           INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDERITEM] T1(nolock) ON T1.CFXH = T2.XH
           INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
