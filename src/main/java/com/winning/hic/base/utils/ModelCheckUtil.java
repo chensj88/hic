@@ -56,7 +56,7 @@ public class ModelCheckUtil {
 
     public static void main(String[] args) {
         InputStream in = com.winning.hic.base.utils.DomUtils.class.getClassLoader().getResourceAsStream("swjl.xml");
-        System.out.println(in);
+        //System.out.println(in);
         SAXReader reader = new SAXReader();
         Document document = null;
         try {
