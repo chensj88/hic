@@ -97,6 +97,9 @@ public class ModelCheckUtil {
     }
 
     public static void checkNode(Element rootElement, MbzModelCheck info) {
+        //清空上次校验结果
+        info.setStatus(null);
+        info.setErrorDesc(null);
         //根据sourceType，pyCode获取字段配置
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(info.getSourceType());
@@ -106,6 +109,8 @@ public class ModelCheckUtil {
         for (int i = 0; i < mbzDataSetList.size(); i++) {
             //判断字段是否需要校验 0:不需要  1：需要
             Integer mustMatch = mbzDataSetList.get(i).getMustMatch();
+            info.setMustMatch(mustMatch);
+            info.setBt(mbzDataSetList.get(i).getBt());
             if (mustMatch.intValue() == 0) {
                 info.setStatus(0);
                 info.setErrorDesc("");
@@ -174,7 +179,7 @@ public class ModelCheckUtil {
                     info.setErrorDesc("缺少节点");
                 }
                 continue;
-            } else if (bt == 1 && type == 1 && StringUtil.isEmptyOrNull(qrdxdm)) {
+            } else if (mustMatch == 1 && type == 1 && StringUtil.isEmptyOrNull(qrdxdm)) {
                 //文件结构必填
                 String canNull = XmlUtil.getValueByAttrName(dynamicModelNode, "canNull");
                 if (canNull == null || !"False".equals(canNull)) {
@@ -230,7 +235,7 @@ public class ModelCheckUtil {
                         info.setErrorDesc("缺少节点");
                     }
                     continue;
-                } else if (bt == 1 && (type == 3 || !StringUtil.isEmptyOrNull(qrdxdm))) {
+                } else if (mustMatch == 1 && (type == 3 || !StringUtil.isEmptyOrNull(qrdxdm))) {
                     Boolean flag = true;
                     for (Element objectTemp : objectNodeList) {
                         //遍历元数据获取当前元数据下原子节点
@@ -267,7 +272,7 @@ public class ModelCheckUtil {
                             info.setErrorDesc("缺少节点");
                         }
                         continue;
-                    } else if (bt == 1 && type == 4) {
+                    } else if (mustMatch == 1 && type == 4) {
                         String minrequired = XmlUtil.getValueByAttrName(atomNode, "minrequired");
                         if (minrequired == null || !"1".equals(minrequired)) {
                             info.setStatus(1);

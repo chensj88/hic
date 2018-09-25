@@ -360,5 +360,9 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
+    <!--存储过程-->
+    <select id="selectHlhtZqgzxxSstysListByProc" resultMap="hlhtZqgzxxSstysResult" statementType="CALLABLE">
+       exec USP_HLHT_ZQGZXX_SSTYS_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
 
 </mapper>
