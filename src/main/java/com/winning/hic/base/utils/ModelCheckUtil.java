@@ -97,14 +97,20 @@ public class ModelCheckUtil {
     }
 
     public static void checkNode(Element rootElement, MbzModelCheck info) {
+        //清空上次校验结果
+        info.setStatus(null);
+        info.setErrorDesc(null);
         //根据sourceType，pyCode获取字段配置
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(info.getSourceType());
         mbzDataSet.setPyCode(info.getPyCode());
         List<MbzDataSet> mbzDataSetList = modelCheckUtil.mbzDataSetService.getMbzDataSetList(mbzDataSet);
-        for (MbzDataSet temp : mbzDataSetList) {
+        //记录是否为当前校验的操作
+        for (int i = 0; i < mbzDataSetList.size(); i++) {
             //判断字段是否需要校验 0:不需要  1：需要
-            Integer mustMatch = temp.getMustMatch();
+            Integer mustMatch = mbzDataSetList.get(i).getMustMatch();
+            info.setMustMatch(mustMatch);
+            info.setBt(mbzDataSetList.get(i).getBt());
             if (mustMatch.intValue() == 0) {
                 info.setStatus(0);
                 info.setErrorDesc("");
@@ -114,42 +120,50 @@ public class ModelCheckUtil {
             //模板代码
             String mbdm = info.getModelCode();
             //文件结构id
-            String dtjddm = temp.getDtjddm();
+            String dtjddm = mbzDataSetList.get(i).getDtjddm();
             //基础模板id
-            String qrmbdm = temp.getQrmbdm();
+            String qrmbdm = mbzDataSetList.get(i).getQrmbdm();
             //元数据id
-            String qrdxdm = temp.getQrdxdm();
+            String qrdxdm = mbzDataSetList.get(i).getQrdxdm();
             //原子节点id
-            String yzjddm = temp.getYzjddm();
+            String yzjddm = mbzDataSetList.get(i).getYzjddm();
             //节点类型
-            Integer type = temp.getDataType();
+            Integer type = mbzDataSetList.get(i).getDataType();
             //必填标志
-            Integer bt = temp.getBt();
+            Integer bt = mbzDataSetList.get(i).getBt();
             //字段是否配置校验
             if (StringUtil.isEmptyOrNull(dtjddm)) {
                 //缺失文件结构id或字段未配置
-                info.setStatus(1);
-                info.setErrorDesc("文件结构ID未配置");
+                if (i == 0) {
+                    info.setStatus(1);
+                    info.setErrorDesc("文件结构ID未配置");
+                }
                 continue;
             }
             if (type == 2) {
                 if (StringUtil.isEmptyOrNull(qrmbdm)) {
-                    info.setStatus(1);
-                    info.setErrorDesc("基础模板ID未配置");
+                    if (i == 0) {
+                        info.setStatus(1);
+                        info.setErrorDesc("基础模板ID未配置");
+                    }
                     continue;
                 }
 
             } else if (type == 3) {
                 if (StringUtil.isEmptyOrNull(qrdxdm)) {
-                    info.setStatus(1);
-                    info.setErrorDesc("元数据ID未配置");
+                    if (i == 0) {
+                        info.setStatus(1);
+                        info.setErrorDesc("元数据ID未配置");
+                    }
                     continue;
                 }
 
             } else if (type == 4) {
                 if (StringUtil.isEmptyOrNull(yzjddm)) {
-                    info.setStatus(1);
-                    info.setErrorDesc("原子节点ID未配置");
+                    if (i == 0) {
+                        info.setStatus(1);
+                        info.setErrorDesc("原子节点ID未配置");
+                    }
                     continue;
                 }
 
@@ -159,10 +173,13 @@ public class ModelCheckUtil {
             Element dynamicModelNode = XmlUtil.getElementByAttr(rootElement, idAttrName, dtjddm);
             if (dynamicModelNode == null) {
                 //文件结构不存在
-                info.setStatus(1);
-                info.setErrorDesc("缺少节点");
+                if (i == 0 || (i != 0 && !"未控制必填".equals(info.getErrorDesc()))) {
+                    //当第一次校验或者不是第一次校验且校验结果不为“为控制必填”
+                    info.setStatus(1);
+                    info.setErrorDesc("缺少节点");
+                }
                 continue;
-            } else if (bt == 1 && type == 1 && StringUtil.isEmptyOrNull(qrdxdm)) {
+            } else if (mustMatch == 1 && type == 1 && StringUtil.isEmptyOrNull(qrdxdm)) {
                 //文件结构必填
                 String canNull = XmlUtil.getValueByAttrName(dynamicModelNode, "canNull");
                 if (canNull == null || !"False".equals(canNull)) {
@@ -190,8 +207,11 @@ public class ModelCheckUtil {
                 }
                 if (embededNodeList.size() == 0) {
                     //基础模板不存在
-                    info.setStatus(1);
-                    info.setErrorDesc("缺少节点");
+                    if (i == 0 || (i != 0 && !"未控制必填".equals(info.getErrorDesc()))) {
+                        //当第一次校验或者不是第一次校验且校验结果不为“为控制必填”
+                        info.setStatus(1);
+                        info.setErrorDesc("缺少节点");
+                    }
                     continue;
                 }
             }
@@ -209,10 +229,13 @@ public class ModelCheckUtil {
 
                 if (objectNodeList.size() == 0) {
                     //元数据不存在
-                    info.setStatus(1);
-                    info.setErrorDesc("缺少节点");
+                    if (i == 0 || (i != 0 && !"未控制必填".equals(info.getErrorDesc()))) {
+                        //当第一次校验或者不是第一次校验且校验结果不为“为控制必填”
+                        info.setStatus(1);
+                        info.setErrorDesc("缺少节点");
+                    }
                     continue;
-                } else if (bt == 1 && (type == 3 || !StringUtil.isEmptyOrNull(qrdxdm))) {
+                } else if (mustMatch == 1 && (type == 3 || !StringUtil.isEmptyOrNull(qrdxdm))) {
                     Boolean flag = true;
                     for (Element objectTemp : objectNodeList) {
                         //遍历元数据获取当前元数据下原子节点
@@ -243,10 +266,13 @@ public class ModelCheckUtil {
                     Element atomNode = XmlUtil.getElementById(objectNodeTemp, yzjddm);
                     if (atomNode == null) {
                         //原子节点不存在
-                        info.setStatus(1);
-                        info.setErrorDesc("缺少节点");
+                        if (i == 0 || (i != 0 && !"未控制必填".equals(info.getErrorDesc()))) {
+                            //当第一次校验或者不是第一次校验且校验结果不为“为控制必填”
+                            info.setStatus(1);
+                            info.setErrorDesc("缺少节点");
+                        }
                         continue;
-                    } else if (bt == 1 && type == 4) {
+                    } else if (mustMatch == 1 && type == 4) {
                         String minrequired = XmlUtil.getValueByAttrName(atomNode, "minrequired");
                         if (minrequired == null || !"1".equals(minrequired)) {
                             info.setStatus(1);
