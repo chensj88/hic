@@ -54,11 +54,11 @@ public class MbzDataCheckServiceImpl implements  MbzDataCheckService {
     /**
      * 获取抽取的数量信息
      */
-    public void createMbzDataCheckNum(int count,int emr_count,int sourceType){
+    public void createMbzDataCheckNum(int count,int emr_count,int sourceType,String str_date){
         MbzDataCheck mbzDataCheck = new MbzDataCheck();
         mbzDataCheck.setDataCount(count);
         mbzDataCheck.setRealCount(emr_count);
-        mbzDataCheck.setErrorDesc("错误分析");
+        mbzDataCheck.setErrorDesc(str_date);
         mbzDataCheck.setSourceType(sourceType);
         this.mbzDataCheckDao.insertMbzDataCheck(mbzDataCheck);
 

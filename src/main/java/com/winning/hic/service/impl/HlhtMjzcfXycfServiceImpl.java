@@ -111,7 +111,7 @@ public class HlhtMjzcfXycfServiceImpl implements  HlhtMjzcfXycfService {
             real_count++;
         }
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_MJZCF_XYCF_SOURCE_TYPE));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_MJZCF_XYCF_SOURCE_TYPE),entity.getMap().get("startDate")+" 至 "+entity.getMap().get("endDate"));
         return dataChecks;
     }
 }

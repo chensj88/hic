@@ -1,6 +1,6 @@
 USE [CIS_HLHT]
 GO
-/****** Object:  StoredProcedure [dbo].[USP_HLHT_ZYBCJL_SCBCJL_DATA]    Script Date: 09/25/2018 23:49:54 ******/
+/****** Object:  StoredProcedure [dbo].[USP_HLHT_ZYBCJL_SCBCJL_DATA]    Script Date: 09/25/2018 23:56:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -43,7 +43,7 @@ if @syxh  is null or @syxh = ''
 
 		SELECT * INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
-		WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM
+		WHERE A.SOURCE_TYPE=@sourceType
 
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (SYXH);
 
@@ -105,7 +105,7 @@ else
 
 		SELECT * INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
-		WHERE A.SOURCE_TYPE=@sourceType and A.MODEL_CODE = T.BLDM
+		WHERE A.SOURCE_TYPE=@sourceType
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (SYXH);
 
 		 --查询表数据
