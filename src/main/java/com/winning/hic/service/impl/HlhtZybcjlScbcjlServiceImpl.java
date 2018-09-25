@@ -112,12 +112,12 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
         List<MbzDataListSet> dataListSets = this.mbzDataListSetDao.selectMbzDataListSetList(mbzDataListSet);
         try{
             //获取首次病程的对象集合
-            HlhtZybcjlScbcjl scbcjl = new HlhtZybcjlScbcjl();
-            scbcjl.getMap().put("sourceType", Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
-            scbcjl.getMap().put("startDate",t.getMap().get("startDate"));
-            scbcjl.getMap().put("endDate",t.getMap().get("endDate"));
-            scbcjl.getMap().put("syxh",t.getMap().get("syxh"));
-            List<HlhtZybcjlScbcjl> hlhtZybcjlScbcjls = this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjlListByProc(scbcjl);
+            HlhtZybcjlScbcjl oneScbcjl = new HlhtZybcjlScbcjl();
+            oneScbcjl.getMap().put("sourceType", Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE);
+            oneScbcjl.getMap().put("startDate",t.getMap().get("startDate"));
+            oneScbcjl.getMap().put("endDate",t.getMap().get("endDate"));
+            oneScbcjl.getMap().put("syxh",t.getMap().get("syxh"));
+            List<HlhtZybcjlScbcjl> hlhtZybcjlScbcjls = this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjlListByProc(oneScbcjl);
 
             if (hlhtZybcjlScbcjls != null) {
                 emr_count = emr_count + hlhtZybcjlScbcjls.size();
@@ -136,13 +136,16 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                     Document document = null;
                     try {
                         document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
 
                     Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZybcjlScbcjl.class);
                     obj = (HlhtZybcjlScbcjl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
                     logger.info("Model:{}", obj);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     //初步诊断-中医病名代码、名称处理
                     if(!"NA".equals(obj.getCzzybmdm())){
                         String bmdm="";
@@ -267,6 +270,9 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
 
                     }
+                    //汉字编码转正常
+                    obj.setCzzybmdm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getCzxyzdbm(),obj.getSyxh()));
+                    obj.setJzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getJzxyzdbm(),obj.getSyxh()));
 
 
 //                            //鉴别诊断-中医病名编码、名称
@@ -339,6 +345,12 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
 
         return mbzDataCheck;
+    }
+
+    public String setBmAll(String a,String b){
+
+        return null;
+
     }
 
     public static void main(String[] args) {

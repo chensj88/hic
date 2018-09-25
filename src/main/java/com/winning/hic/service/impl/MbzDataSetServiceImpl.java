@@ -1,5 +1,8 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.base.utils.StringUtil;
+import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
+import com.winning.hic.model.EmrQtbljlk;
 import com.winning.hic.model.NodeTree;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ public class MbzDataSetServiceImpl implements  MbzDataSetService {
 
     @Autowired
     private MbzDataSetDao mbzDataSetDao;
+
+    @Autowired
+    private EmrQtbljlkDao emrQtbljlkDao;
 
     public int createMbzDataSet(MbzDataSet mbzDataSet){
         return this.mbzDataSetDao.insertMbzDataSet(mbzDataSet);
@@ -58,4 +64,19 @@ public class MbzDataSetServiceImpl implements  MbzDataSetService {
     public List<NodeTree> getNodeTreeFromMbzDataSet(MbzDataSet dataSet) {
         return this.mbzDataSetDao.selectNodeTreeFromMbzDataSet(dataSet);
     }
+
+    public String getEmrBrzdqkCtoE(String zddm,String syxh){
+        String isHanZi_str =null;
+        boolean isHanZi_jz = StringUtil.isChinese(zddm);
+        if(isHanZi_jz){ //将存在的汉字全部改成由EMR_BRZDQK获取值
+            EmrQtbljlk changeCToE = new EmrQtbljlk();
+            changeCToE.setSyxh(Integer.valueOf(syxh));
+            isHanZi_str = emrQtbljlkDao.selectEmrBrzdqk(changeCToE);
+        }else{
+            isHanZi_str=zddm;
+        }
+
+        return isHanZi_str;
+    }
+
 }

@@ -342,12 +342,12 @@
         data: {
             keep:{
                 parent:true,
-
             },
             key:{
                 name:'nodeName',
                 isParent: "parent",
-                isHidden: "hidden"
+                isHidden: "hidden",
+                checked: "checked"
             },
             simpleData: {
                 enable: true,
@@ -1188,15 +1188,26 @@
             success: function (data) {
                 if(data.status == 'SUCCESS'){
                     let result = data.data;
-                    console.log(result);
+                    //  console.log(result);
                     if(result.length > 0){
                         $.each(result,function(index,value){
                             var node1 = templateTree.getNodeByParam("nodeId",value.modelCode,null);
                             if(node1 == null || node1 == undefined){
-                                var pnode = templateTree.getNodeByParam("nodeId",value.sourcePcode,null);
-                                console.log(pnode);
+                                var sourceCode = value.sourcePcode;
+                                var pnode = templateTree.getNodeByParam("nodeId",sourceCode,null);
+                                //console.log(pnode);
+                                if(pnode == null || pnode == undefined){
+                                    sourceCode = sourceCode.substring(0,sourceCode.length-2);
+                                    pnode = templateTree.getNodeByParam("nodeId",sourceCode,null);
+                                    if(pnode == null || pnode == undefined){
+                                        sourceCode = sourceCode.substring(0,sourceCode.length-2);
+                                        pnode = templateTree.getNodeByParam("nodeId",sourceCode,null);
+                                    }
+                                }
+
                                 $('#'+pnode.tId+'_a').click();
                             }
+                            console.log(value.modelCode);
                             node1 = templateTree.getNodeByParam("nodeId",value.modelCode,null);
                             templateTree.checkNode(node1, true, true);
                             templateTree.selectNode(node1);

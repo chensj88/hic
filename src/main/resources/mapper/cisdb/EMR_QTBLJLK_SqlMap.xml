@@ -102,6 +102,17 @@
 		SELECT TOP 1 QTBLJLXH FROM EMR_QTBLJLK WHERE CJSJ &lt; #{cjsj} AND MXFLDM='B-8405'  ORDER BY CJSJ DESC;
 	</select>
 
+	<!-- Chen,Kuai 用于查找病人症断编码 -->
+	<select id="selectEmrBrzdqk" resultType ="String" parameterType="com.winning.hic.model.EmrQtbljlk">
+				 select    STUFF(
+					  (SELECT ZDDM+'，'
+						 FROM EMR_BRZDQK
+						 WHERE SYXH = '4'
+						 FOR xml path('')),1,1,'' );
+     </select>
+
+
+
 	<insert id="insertEmrQtbljlk" parameterType="com.winning.hic.model.EmrQtbljlk">
 		insert into EMR_QTBLJLK 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
