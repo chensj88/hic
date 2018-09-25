@@ -50,9 +50,9 @@ public class HicHelper {
             //判断是否可以取值到，不能则提供默认值
             try {
                 strValue = DomUtils.getAttrValueByDataSet(document, dataSet);
-                logger.info("pyCode:{};methodName:{};strValue:{};", pyCode, methodName, strValue);
+                //logger.info("pyCode:{};methodName:{};strValue:{};", pyCode, methodName, strValue);
             } catch (NullPointerException e) {
-                logger.info("pyCode:{};methodName:{};strValue:{};using default value", pyCode, methodName, strValue);
+                //logger.info("pyCode:{};methodName:{};strValue:{};using default value", pyCode, methodName, strValue);
             }
             Object value = null;
             if (strValue == null) {
@@ -211,7 +211,7 @@ public class HicHelper {
                         logger.info("pyCode:{};methodName:{};strValue:{};info:{}", pyCode, methodName, value,info);
                     }
                     logger.info("pyCode:{};methodName:{};strValue:{};info:{}", pyCode, methodName, value,info);*/
-                    logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, value);
+                    //logger.info("pyCode:{};methodName:{};strValue:{}", pyCode, methodName, value);
                     if (dataSet.getSourceType().equals("6") && pyCode.equals("bltd")) {
                         if (!"NA".equals(value)) {
                             bltd = bltd + " " + value;

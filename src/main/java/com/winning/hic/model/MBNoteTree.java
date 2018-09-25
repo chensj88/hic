@@ -22,6 +22,8 @@ public class MBNoteTree {
 
     private boolean isParent;
     private boolean isHidden;
+    private boolean isChecked;
+    private boolean chkDisabled;
     private String icon;
     private String iconClose;
     private String iconOpen;
@@ -110,5 +112,13 @@ public class MBNoteTree {
 
     public void setHidden(boolean hidden) {
         isHidden = hidden;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }

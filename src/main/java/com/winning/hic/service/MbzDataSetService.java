@@ -30,4 +30,6 @@ public interface MbzDataSetService {
     public List<MbzDataSet> getMbzDataSetPageList(MbzDataSet mbzDataSet);
 
     public List<NodeTree> getNodeTreeFromMbzDataSet(MbzDataSet dataSet);
+
+    public String getEmrBrzdqkCtoE(String zddm,String syxh);
 }

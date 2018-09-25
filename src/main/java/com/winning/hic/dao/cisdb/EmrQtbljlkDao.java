@@ -32,4 +32,6 @@ public interface EmrQtbljlkDao {
 
     //获取匹配的ID
     String selectEmrQtbljlkId(Timestamp cjsj);
+
+    String selectEmrBrzdqk(EmrQtbljlk changeCToE);
 }

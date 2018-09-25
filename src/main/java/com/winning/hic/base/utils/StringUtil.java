@@ -336,6 +336,22 @@ public class StringUtil {
         return strMap;
     }
 
+    /**
+     * 判断字符串是否存在汉字
+     * @param str
+     * @return
+     */
+    public static boolean isChinese(String str){
+
+        return str.length() == str.getBytes().length ? false : true;
+    }
+
+    public static boolean isChineseTo(String str){
+
+        return str.length() == str.getBytes().length ? true : false;
+    }
+
+
     public static void main(String[] args) {
         String idList = "156,1;156,2";
         List<String> idsList = new ArrayList<String>();
