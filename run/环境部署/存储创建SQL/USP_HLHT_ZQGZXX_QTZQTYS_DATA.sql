@@ -4,6 +4,23 @@ CREATE PROCEDURE [dbo].[USP_HLHT_ZQGZXX_QTZQTYS_DATA]
 @endDate    varchar(20),   --结束日期
 @syxh       int            --首页序号
 as
+/*
+[创建者] chenkuai
+[公司]上海金仕达卫宁软件股份有限公司@2015-2018
+[时间]2018-09-23
+[功能]导出首次病程 ---USP_HLHT_ZQGZXX_QTZQTYS_DATA
+[参数]
+ @sourceType: 元数据类型
+ @startime: 开始时间戳
+ @endtime:  结束时间戳
+ @syxh：病人首页序号
+[调用实例]
+[调用]:
+      exec USP_HLHT_ZQGZXX_QTZQTYS_DATA '1','2018-01-01','2018-01-03','1' --通过首页序号提取数据
+      exec USP_HLHT_ZQGZXX_QTZQTYS_DATA '1','2018-01-01','2018-01-03',NULL --提取当天的数据
+[注意事项]
+ 在CIS_HLHT中创建
+*/
 
 begin
 --创建临时表
@@ -61,7 +78,7 @@ if @syxh  is null or @syxh = ''
 
             FROM #EMR_QTBLJLK t
             LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
-            LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK b(nolock) ON b.SYXH = t.SYXH
+            LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
             LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm=b.RYBQ
             LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] o(nolock) ON t.SYXH = o.EMRXH
 
@@ -119,7 +136,7 @@ else
 
         FROM #EMR_QTBLJLK_TEMP t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK b(nolock) ON b.SYXH = t.SYXH
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm=b.RYBQ
         LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] o(nolock) ON t.SYXH = o.EMRXH
   --删除临时表
