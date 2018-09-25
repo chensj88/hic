@@ -175,7 +175,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                     }
 
                     //初步诊断-中医证候代码
-                    if(!"NA".equals(obj.getCzzyzhdm())){
+                    if(!"NA".equals(obj.getCzzyzhdm()) && StringUtil.isChineseTo(obj.getCzzyzhdm())){
                         String bmdm="";
                         String bm="";
                         String[] str=obj.getCzzyzhdm().split("  ");
@@ -184,8 +184,8 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                         for (int i = 0; str.length > i; i++) {
                             if(!"".equals(str[i].toString())){
                                 if (!o.equals(str[i].trim().charAt(0))) {
-                                    bmdm = bmdm + str[i] + " ";
-                                    bm = bm + str2[i] + " ";
+                                    bmdm += str[i] + " ";
+                                    bm +=str2[i] + " ";
                                 }
                             }
 
@@ -203,7 +203,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                         }
                     }
                     //鉴别诊断-西医诊断编码
-                    if(!"NA".equals(obj.getJzxyzdbm())){
+                    if(!"NA".equals(obj.getJzxyzdbm()) && StringUtil.isChineseTo(obj.getJzxyzdbm())){
                         String xybmdm="";//西医编码
                         String xybm="";//西医名称
                         String zybmdm="";//中医编码
@@ -271,7 +271,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
                     }
                     //汉字编码转正常
-                    obj.setCzzybmdm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getCzxyzdbm(),obj.getSyxh()));
+                    obj.setCzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getCzxyzdbm(),obj.getSyxh()));
                     obj.setJzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getJzxyzdbm(),obj.getSyxh()));
 
 
