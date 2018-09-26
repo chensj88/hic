@@ -752,34 +752,30 @@ WHERE  A.zljgdm ='1';
     A.yzklysbm = CASE WHEN T.cqyzrq > T.lsyzrq THEN T.cqysdm ELSE T.lsysdm END ,
     A.cyyzklrqm = CASE WHEN T.cqyzrq > T.lsyzrq THEN T.cqysmc ELSE T.lsysmc END ,
     A.cyyzklrq = CASE WHEN T.cqyzrq > T.lsyzrq THEN T.cqyzrq ELSE T.lsyzrq END
-   FROM [HLHT_RYJL_RCYJL] A LEFT JOIN (
-      SELECT
+   FROM [HLHT_RYJL_RCYJL] A(nolock) LEFT JOIN (
+     SELECT
             (SELECT top 1 CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) yzrq
-            FROM  CISDB..CPOE_CQYZK B WHERE A.jzlsh = B.SYXH  order by yzrq DESC) cqyzrq,
-           (SELECT top 1 B.YSDM FROM  CISDB..CPOE_CQYZK B WHERE A.jzlsh = B.SYXH
+            FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_CQYZK] B(nolock) WHERE A.jzlsh = B.SYXH  order by yzrq DESC) cqyzrq,
+           (SELECT top 1 B.YSDM FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_CQYZK] B(nolock) WHERE A.jzlsh = B.SYXH
             order by CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) DESC) cqysdm,
-           (SELECT top 1 B.YSMC FROM  CISDB..CPOE_CQYZK B WHERE A.jzlsh = B.SYXH
+           (SELECT top 1 B.YSMC FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_CQYZK] B(nolock) WHERE A.jzlsh = B.SYXH
             order by CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) DESC) cqysmc,
-           (SELECT top 1 B.YSDM FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_LSYZK] B WHERE A.jzlsh = B.SYXH
+           (SELECT top 1 B.YSDM FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_LSYZK] B(nolock) WHERE A.jzlsh = B.SYXH
             order by CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) DESC) lsysdm,
-           (SELECT top 1 B.YSMC FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_LSYZK] B WHERE A.jzlsh = B.SYXH
+           (SELECT top 1 B.YSMC FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_LSYZK] B(nolock) WHERE A.jzlsh = B.SYXH
             order by CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) DESC) lsysmc,
            (SELECT top 1 CONVERT(datetime,substring(B.LRRQ,1,4)+'-'+substring(B.LRRQ,5,2)+'-'+substring(B.LRRQ,7,2)+' '+substring(B.LRRQ,9,8)) yzrq
-            FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_LSYZK] B WHERE A.jzlsh = B.SYXH  order by yzrq DESC) lsyzrq,A.jzlsh
-        FROM [HLHT_RYJL_RCYJL] A) T ON A.jzlsh = T.jzlsh
-  --接诊医师
-  UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM [HLHT_RYJL_RCYJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
-  --住院医师
-  UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM [HLHT_RYJL_RCYJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='NA' OR A.zyysqm='NA')
+            FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_LSYZK] B(nolock) WHERE A.jzlsh = B.SYXH  order by yzrq DESC) lsyzrq,A.jzlsh
+        FROM [HLHT_RYJL_RCYJL] A(nolock)) T ON A.jzlsh = T.jzlsh
   --陈述内容可靠标志 来源入院记录
-  UPDATE A SET A.csnrbz=isnull(B.csnrbz,'NA')  FROM [HLHT_RYJL_RCYJL] A LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh WHERE A.csnrbz ='NA'
+  UPDATE A SET A.csnrbz=isnull(B.csnrbz,'NA')  FROM [HLHT_RYJL_RCYJL] A(nolock) LEFT JOIN [HLHT_RYJL_JBXX] B(nolock) ON A.jzlsh =B.jzlsh WHERE A.csnrbz ='NA'
   --现病史 来源入院记录
-  UPDATE A SET A.xbs=isnull(B.xbs,'NA')  FROM [HLHT_RYJL_RCYJL] A LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh WHERE convert(varchar,A.xbs) ='NA'
+  UPDATE A SET A.xbs=isnull(B.xbs,'NA')  FROM [HLHT_RYJL_RCYJL] A(nolock) LEFT JOIN [HLHT_RYJL_JBXX] B(nolock) ON A.jzlsh =B.jzlsh WHERE convert(varchar,A.xbs) ='NA'
 --陈述者关系
-  UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM [HLHT_RYJL_RCYJL] A
+  UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM [HLHT_RYJL_RCYJL] A(nolock)
    LEFT JOIN (
     SELECT CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '2'
-           WHEN A.cszhzgxdm IN ('本人','户主') THEN '0'
+           WHEN A.cszhzgxdm IN ('本人','户主','本人或户主') THEN '0'
            WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
            WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
            WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
@@ -787,106 +783,143 @@ WHERE  A.zljgdm ='1';
            WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
            else '8' end cszhzgxdm,
            CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
-           WHEN A.cszhzgxdm IN ('本人','户主') THEN '本人或户主'
+           WHEN A.cszhzgxdm IN ('本人','户主','本人或户主') THEN '本人或户主'
            WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
            WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
            WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
            WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
            WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
            else '其他' end cszhzgxmc,A.jzlsh
-    FROM [HLHT_RYJL_RCYJL] A) T ON A.jzlsh =T.jzlsh
+    FROM [HLHT_RYJL_RCYJL] A(nolock)) T ON A.jzlsh =T.jzlsh
   --陈述内容可靠标志
-  UPDATE A SET A.csnrbz = 'T'   FROM [HLHT_RYJL_RCYJL] A
+  UPDATE A SET A.csnrbz = 'T'   FROM [HLHT_RYJL_RCYJL] A(nolock)
   --中医“四诊”观察结果
-  UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM [HLHT_RYJL_RCYJL] A,[HLHT_RYJL_JBXX] C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA'
+  UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM [HLHT_RYJL_RCYJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock) WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA'
   --症状描述
-   UPDATE A SET A.zzms =A.xbs   FROM [HLHT_RYJL_RCYJL] A where CONVERT(varchar,A.zzms) = 'NA'
-
-   --主任医师工号
-   UPDATE A SET A.zrysbm =
-    CASE WHEN B.ZRYSDM IS NULL or B.ZRYSDM  = '' THEN C.ZRYS WHEN B.ZRYSDM IS NOT NULL or B.ZRYSDM  != '' THEN B.ZRYSDM ELSE 'NA' END
-    FROM [HLHT_RYJL_RCYJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH
-    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BASYK] C on B.EMRXH = C.SYXH
-    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] D ON C.ZRYS =D.ID
-    WHERE A.zrysbm ='NA';
-   --主任医师签名
-     UPDATE A SET A.zrysqm = CASE WHEN B.ZRYSXM IS NULL or B.ZRYSXM  = '' THEN D.NAME WHEN B.ZRYSXM IS NOT NULL or B.ZRYSXM  != '' THEN B.ZRYSXM ELSE 'NA' END
-     FROM [HLHT_RYJL_RCYJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH
-     LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BASYK] C on B.EMRXH = C.SYXH
-     LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] D ON C.ZRYS =D.ID
+   UPDATE A SET A.zzms =A.xbs   FROM [HLHT_RYJL_RCYJL] A(nolock) where CONVERT(varchar,A.zzms) = 'NA'
      WHERE A.zrysqm ='NA' or  A.zrysqm = ''
    --职业类别
-   UPDATE A SET A.zylbdm =  '90' FROM [HLHT_RYJL_RCYJL] A  WHERE A.zylbdm IS NULL
-   UPDATE A SET A.zylbmc = '其他' FROM [HLHT_RYJL_RCYJL] A  WHERE A.zylbmc IS NULL
+   UPDATE A SET A.zylbdm =  '90' FROM [HLHT_RYJL_RCYJL] A(nolock)  WHERE A.zylbdm IS NULL
+   UPDATE A SET A.zylbmc = '其他' FROM [HLHT_RYJL_RCYJL] A(nolock)  WHERE A.zylbmc IS NULL
+    --接诊医师签名与工号
+    UPDATE A SET
+    A.jzysqm = (case when C.NAME = '' OR C.NAME IS NULL then 'NA' ELSE ISNULL(C.NAME,'NA') END),
+    A.jzysbm = (case when C.ID = '' OR C.ID IS NULL then 'NA' ELSE ISNULL(C.ID,'NA') END)
+    FROM [HLHT_RYJL_RCYJL] A(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock)  ON A.jzlsh =B.SYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.YSDM =C.ID
+    WHERE A.jzysbm ='NA' or A.jzysqm ='NA' or  A.jzysbm ='' or A.jzysqm ='';
+    --住院医师签名与工号
+    UPDATE A SET
+    A.zyysqm = (case when C.NAME = '' OR C.NAME IS NULL then 'NA' ELSE ISNULL(C.NAME,'NA') END),
+    A.zyysbm = (case when C.ID = '' OR C.ID IS NULL then 'NA' ELSE ISNULL(C.ID,'NA') END)
+    FROM [HLHT_RYJL_RCYJL] A(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock)  ON A.jzlsh =B.SYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.YSDM =C.ID
+    WHERE A.zyysqm ='NA' or A.zyysbm ='NA' or  A.zyysqm ='' or A.zyysbm ='';
+    --主治医师签名与工号
+    UPDATE A SET
+    A.zzysqm = (case when C.NAME = '' OR C.NAME IS NULL then 'NA' ELSE ISNULL(C.NAME,'NA') END),
+    A.zzysbm = (case when C.ID = '' OR C.ID IS NULL then 'NA' ELSE ISNULL(C.ID,'NA') END)
+    FROM [HLHT_RYJL_RCYJL] A(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock)  ON A.jzlsh =B.SYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.ZZYSDM =C.ID
+    WHERE A.zzysqm ='NA' or A.zzysbm ='NA' or  A.zzysqm ='' or A.zzysbm ='';
+    --主任医师签名与工号
+    UPDATE A SET
+    A.zrysqm = (case when C.NAME = '' OR C.NAME IS NULL then 'NA' ELSE ISNULL(C.NAME,'NA') END),
+    A.zrysbm = (case when C.ID = '' OR C.ID IS NULL then 'NA' ELSE ISNULL(C.ID,'NA') END)
+    FROM [HLHT_RYJL_RCYJL] A(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock)  ON A.jzlsh =B.SYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.ZRYSDM =C.ID
+    WHERE A.zrysqm ='NA' or A.zrysbm ='NA' or  A.zrysqm ='' or A.zrysbm ='';
+
 --24小时内入院死亡记录
   --陈述内容可靠标志
-  UPDATE A SET A.csnrbz = 'T'   FROM [HLHT_RYJL_RYSWJL] A
+  UPDATE A SET A.csnrbz = 'T'   FROM [HLHT_RYJL_RYSWJL] A(nolock)
   --陈述者关系
-  UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM [HLHT_RYJL_RYSWJL] A
+  UPDATE A SET A.cszhzgxdm= T.cszhzgxdm,A.cszhzgxmc = T.cszhzgxmc FROM [HLHT_RYJL_RYSWJL] A(nolock)
     LEFT JOIN (
                 SELECT CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '2'
-                 WHEN A.cszhzgxdm IN ('本人','户主') THEN '0'
-                 WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
-                 WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
-                 WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
-                 WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '6'
-                 WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
-                 else '8' end cszhzgxdm,
-                 CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
-                 WHEN A.cszhzgxdm IN ('本人','户主') THEN '本人或户主'
-                 WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
-                 WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
-                 WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
-                 WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
-                 WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
-                 else '其他' end cszhzgxmc,A.jzlsh
-                FROM [HLHT_RYJL_RYSWJL] A) T ON A.jzlsh =T.jzlsh
+                     WHEN A.cszhzgxdm IN ('本人','户主','本人或户主') THEN '0'
+                     WHEN A.cszhzgxdm IN ('父女','父女') THEN '3'
+                     WHEN A.cszhzgxdm IN ('夫妻') THEN '1'
+                     WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '5'
+                     WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '6'
+                     WHEN A.cszhzgxdm IN ('弟兄') THEN '7'
+                     else '8' end cszhzgxdm,
+                     CASE  WHEN A.cszhzgxdm IN ('父子','母子') THEN '子'
+                     WHEN A.cszhzgxdm IN ('本人','户主','本人或户主') THEN '本人或户主'
+                     WHEN A.cszhzgxdm IN ('父女','父女') THEN '女'
+                     WHEN A.cszhzgxdm IN ('夫妻') THEN '配偶'
+                     WHEN A.cszhzgxdm IN ('祖父','祖母') THEN '父母'
+                     WHEN A.cszhzgxdm IN ('外祖父','外祖母') THEN '祖父母或外祖父母'
+                     WHEN A.cszhzgxdm IN ('弟兄') THEN '兄、弟、姐、妹'
+                     else '其他' end cszhzgxmc,A.jzlsh
+                FROM [HLHT_RYJL_RYSWJL] A(nolock)) T ON A.jzlsh =T.jzlsh
   --中医“四诊”观察结果
-  UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM [HLHT_RYJL_RYSWJL] A,[HLHT_RYJL_JBXX] C WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
+  UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM [HLHT_RYJL_RYSWJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock) WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
+ --接诊医师签名与工号
+    UPDATE A SET
+    A.jzysqm = (case when C.NAME = '' OR C.NAME IS NULL then 'NA' ELSE ISNULL(C.NAME,'NA') END),
+    A.jzysbm = (case when C.ID = '' OR C.ID IS NULL then 'NA' ELSE ISNULL(C.ID,'NA') END)
+    FROM [HLHT_RYJL_RYSWJL] A(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock)  ON A.jzlsh =B.SYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.YSDM =C.ID
+    WHERE A.jzysbm ='NA' or A.jzysqm ='NA' or  A.jzysbm ='' or A.jzysqm ='';
+    --住院医师签名与工号
+    UPDATE A SET
+    A.zyysqm = (case when C.NAME = '' OR C.NAME IS NULL then 'NA' ELSE ISNULL(C.NAME,'NA') END),
+    A.zyysbm = (case when C.ID = '' OR C.ID IS NULL then 'NA' ELSE ISNULL(C.ID,'NA') END)
+    FROM [HLHT_RYJL_RYSWJL] A(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock)  ON A.jzlsh =B.SYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.YSDM =C.ID
+    WHERE A.zyysqm ='NA' or A.zyysbm ='NA' or  A.zyysqm ='' or A.zyysbm ='';
+    --主治医师签名与工号
+    UPDATE A SET
+    A.zzysqm = (case when C.NAME = '' OR C.NAME IS NULL then 'NA' ELSE ISNULL(C.NAME,'NA') END),
+    A.zzysbm = (case when C.ID = '' OR C.ID IS NULL then 'NA' ELSE ISNULL(C.ID,'NA') END)
+    FROM [HLHT_RYJL_RYSWJL] A(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock)  ON A.jzlsh =B.SYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.ZZYSDM =C.ID
+    WHERE A.zzysqm ='NA' or A.zzysbm ='NA' or  A.zzysqm ='' or A.zzysbm ='';
+    --主任医师签名与工号
+    UPDATE A SET
+    A.zrysqm = (case when C.NAME = '' OR C.NAME IS NULL then 'NA' ELSE ISNULL(C.NAME,'NA') END),
+    A.zrysbm = (case when C.ID = '' OR C.ID IS NULL then 'NA' ELSE ISNULL(C.ID,'NA') END)
+    FROM [HLHT_RYJL_RYSWJL] A(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock)  ON A.jzlsh =B.SYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.ZRYSDM =C.ID
+    WHERE A.zrysqm ='NA' or A.zrysbm ='NA' or  A.zrysqm ='' or A.zrysbm ='';
 
-  --接诊医师
-  UPDATE A SET A.jzysbm = ISNULL(B.YSDM,'NA'),A.jzysqm = ISNULL(B.YSXM,'NA')  FROM [HLHT_RYJL_RYSWJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH WHERE (A.jzysbm ='NA' or A.jzysqm = 'NA')
-  --住院医师
-  UPDATE A SET A.zyysbm = ISNULL(B.YSDM,'NA'),A.zyysqm = ISNULL(B.YSXM,'NA')  FROM [HLHT_RYJL_RYSWJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH WHERE (A.zyysbm ='NA' OR A.zyysqm='NA')
-
-   --主任医师工号
-   UPDATE A SET A.zrysbm =
-    CASE WHEN B.ZRYSDM IS NULL or B.ZRYSDM  = '' THEN C.ZRYS WHEN B.ZRYSDM IS NOT NULL or B.ZRYSDM  != '' THEN B.ZRYSDM ELSE 'NA' END
-    FROM [HLHT_RYJL_RYSWJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH
-    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BASYK] C on B.EMRXH = C.SYXH
-    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] D ON C.ZRYS =D.ID
-    WHERE A.zrysbm ='NA';
-   --主任医师签名
-     UPDATE A SET A.zrysqm = CASE WHEN B.ZRYSXM IS NULL or B.ZRYSXM  = '' THEN D.NAME WHEN B.ZRYSXM IS NOT NULL or B.ZRYSXM  != '' THEN B.ZRYSXM ELSE 'NA' END
-     FROM [HLHT_RYJL_RYSWJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH
-     LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BASYK] C on B.EMRXH = C.SYXH
-     LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] D ON C.ZRYS =D.ID
-     WHERE A.zrysqm ='NA' or  A.zrysqm = ''
 
 --术后首次病程记录
   --接诊开始日期
   UPDATE A SET A.jzkssj =
   CASE WHEN B.RYRQ IS NULL THEN CONVERT(DATE,'1990-01-01 00:00:00') ELSE
-    CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,2)+':'+substring(B.RYRQ,12,2)+':'+substring(B.RYRQ,15,2)) END  FROM [HLHT_ZYBCJL_SHSCBCJL] A LEFT JOIN  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh = B.SYXH WHERE A.jzkssj = CONVERT(DATE,'1990-01-01 00:00:00')
+    CONVERT(datetime,substring(B.RYRQ,1,4)+'-'+substring(B.RYRQ,5,2)+'-'+substring(B.RYRQ,7,2)+' '+substring(B.RYRQ,9,2)+':'+substring(B.RYRQ,12,2)+':'+substring(B.RYRQ,15,2)) END  FROM [HLHT_ZYBCJL_SHSCBCJL] A(nolock) LEFT JOIN  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock) ON A.jzlsh = B.SYXH WHERE A.jzkssj = CONVERT(DATE,'1990-01-01 00:00:00')
   --接诊结束日期
   UPDATE A SET A.jzjssj =
   CASE WHEN B.CYRQ IS NULL THEN  CONVERT(DATE,'1990-01-01 00:00:00') ELSE
-    CONVERT(datetime,substring(B.CYRQ,1,4)+'-'+substring(B.CYRQ,5,2)+'-'+substring(B.CYRQ,7,2)+' '+substring(B.CYRQ,9,2)+':'+substring(B.CYRQ,12,2)+':'+substring(B.CYRQ,15,2)) END  FROM [HLHT_ZYBCJL_SHSCBCJL] A LEFT JOIN  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh = B.SYXH WHERE A.jzjssj = CONVERT(DATE,'1990-01-01 00:00:00')
+    CONVERT(datetime,substring(B.CYRQ,1,4)+'-'+substring(B.CYRQ,5,2)+'-'+substring(B.CYRQ,7,2)+' '+substring(B.CYRQ,9,2)+':'+substring(B.CYRQ,12,2)+':'+substring(B.CYRQ,15,2)) END  FROM [HLHT_ZYBCJL_SHSCBCJL] A(nolock) LEFT JOIN  [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock) ON A.jzlsh = B.SYXH WHERE A.jzjssj = CONVERT(DATE,'1990-01-01 00:00:00')
 
 --特殊检查及特殊治疗同意书
   --疾病诊断
-   UPDATE QT SET QT.jbzd = CT.MC, QT.jbzdbm = CT.DM FROM [HLHT_ZQGZXX_TSJCZLTYS] QT
+   UPDATE QT SET QT.jbzd = CT.MC, QT.jbzdbm = CT.DM FROM [HLHT_ZQGZXX_TSJCZLTYS] QT(nolock)
    LEFT JOIN (
     SELECT
-    stuff((SELECT ','+C.ZDDM  FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B
+    stuff((SELECT ','+C.ZDDM  FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B(nolock)
     LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C ON B.SYXH = C.SYXH AND C.ZDLB = 1 WHERE B.HISSYXH = A.jzlsh FOR XML PATH('')),1,1,'') DM,
-    stuff((SELECT ','+C.ZDMC  FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B
-    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C ON B.SYXH = C.SYXH AND C.ZDLB = 1 WHERE B.HISSYXH = A.jzlsh FOR XML PATH('')),1,1,'') MC,
+    stuff((SELECT ','+C.ZDMC  FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B(nolock)
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C(nolock) ON B.SYXH = C.SYXH AND C.ZDLB = 1 WHERE B.HISSYXH = A.jzlsh FOR XML PATH('')),1,1,'') MC,
     A.yjlxh
-    FROM [HLHT_ZQGZXX_TSJCZLTYS] A) CT ON QT.yjlxh = CT.yjlxh WHERE  ( CONVERT(varchar,QT.jbzd) ='NA' OR CONVERT(varchar,QT.jbzdbm) ='NA' )
+    FROM [HLHT_ZQGZXX_TSJCZLTYS] A(nolock)) CT ON QT.yjlxh = CT.yjlxh WHERE  ( CONVERT(varchar,QT.jbzd) ='NA' OR CONVERT(varchar,QT.jbzdbm) ='NA' )
   --医生信息
-  UPDATE A SET A.ysbm = ISNULL(B.YSDM,'NA'),A.ysqm = ISNULL(B.YSXM,'NA')
-  FROM [HLHT_ZQGZXX_TSJCZLTYS] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B ON A.jzlsh =B.SYXH WHERE (A.ysbm ='NA' or A.ysqm = 'NA')
+  UPDATE A SET A.ysbm = ISNULL(C.ID,'NA'),A.ysqm = ISNULL(C.NAME,'NA')
+  FROM [HLHT_ZQGZXX_TSJCZLTYS] A(nolock)
+  LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] B(nolock) ON A.jzlsh =B.SYXH
+  LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] C(nolock)  ON B.YSDM =C.ID
+  WHERE (A.ysbm ='NA' or A.ysqm = 'NA')
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
