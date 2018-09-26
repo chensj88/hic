@@ -37,5 +37,5 @@ public interface HlhtZybcjlRcbcjlService {
 
     public void deleteHlhtRyjlJbxxByYjlxh(HlhtZybcjlRcbcjl hlhtZybcjlRcbcjl);
 
-    List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl(MbzDataCheck entity) throws ParseException;
+    List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl(MbzDataCheck entity) throws Exception;
 }

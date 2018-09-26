@@ -137,7 +137,9 @@ public class HlhtZlczjlSxjlServiceImpl implements HlhtZlczjlSxjlService {
                             Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
                             obj.getFssj(),
                             obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
-                            obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm()));
+                            obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm(),
+                            PercentUtil.getPercent(Long.parseLong(Constants.WN_ZLCZJL_SXJL_SOURCE_TYPE), obj, 1),
+                            PercentUtil.getPercent(Long.parseLong(Constants.WN_ZLCZJL_SXJL_SOURCE_TYPE), obj, 0)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

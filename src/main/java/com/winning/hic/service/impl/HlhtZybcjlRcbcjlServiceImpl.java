@@ -95,7 +95,7 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl(MbzDataCheck t) throws ParseException {
+    public List<MbzDataCheck> interfaceHlhtZybcjlRcbcjl(MbzDataCheck t) throws Exception {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
         int emr_count = 0;//病历数量
@@ -144,7 +144,9 @@ public class HlhtZybcjlRcbcjlServiceImpl implements HlhtZybcjlRcbcjlService {
                         Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
                         obj.getFssj(),
                         obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
-                        obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm()));
+                        obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm(),
+                        PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_RCBCJL_SOURCE_TYPE), obj, 1),
+                        PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_RCBCJL_SOURCE_TYPE), obj, 0)));
                 real_count++;
 
             }
