@@ -362,11 +362,15 @@
 
 
     <select id="selectHlhtMjzblMjzbl" resultMap="hlhtMjzblMjzblResult"
-            parameterType="com.winning.hic.model.HlhtMjzblMjzbl">
+            statementType="CALLABLE">
         SELECT * FROM HLHT_MJZBL_MJZBL t
         <where>
             <include refid="sql-hlhtMjzblMjzbl"/>
         </where>
+    </select>
+
+    <select id="selectHlhtMjzblMjzblListByProc" resultMap="hlhtMjzblMjzblResult">
+           exec USP_HLHT_MJZBL_MJZBL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
     </select>
 
     <select id="selectHlhtMjzblMjzblList" resultMap="hlhtMjzblMjzblResultForList"
