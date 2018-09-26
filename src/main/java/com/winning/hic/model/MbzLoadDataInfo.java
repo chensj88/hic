@@ -123,6 +123,14 @@ public class MbzLoadDataInfo extends BaseDomain implements Serializable {
      * 默认值：(getdate())
      */
     private java.sql.Timestamp cqrq;
+    /**
+     * 必填项符合率
+     */
+    private Integer percentsBt;
+    /**
+     * 所有字段符合率
+     */
+    private Integer percentsAll;
 
     public MbzLoadDataInfo (){
 
@@ -454,5 +462,19 @@ public class MbzLoadDataInfo extends BaseDomain implements Serializable {
    }
 
 
+    public Integer getPercentsBt() {
+        return percentsBt;
+    }
 
+    public void setPercentsBt(Integer percentsBt) {
+        this.percentsBt = percentsBt;
+    }
+
+    public Integer getPercentsAll() {
+        return percentsAll;
+    }
+
+    public void setPercentsAll(Integer percentsAll) {
+        this.percentsAll = percentsAll;
+    }
 }

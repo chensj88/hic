@@ -21,6 +21,8 @@
          <result column="SFZHM" property="sfzhm" jdbcType="VARCHAR" />
          <result column="FSSJ" property="fssj" jdbcType="TIMESTAMP" />
          <result column="CQRQ" property="cqrq" jdbcType="TIMESTAMP" />
+        <result column="PERCENTS_BT" property="percentsBt" jdbcType="INTEGER"/>
+        <result column="PERCENTS_ALL" property="percentsAll" jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="mbzLoadDataInfoResult" type="com.winning.hic.model.MbzLoadDataInfo" extends="mbzLoadDataInfoResultForList">
@@ -45,6 +47,8 @@
         <if test="(sfzhm != null and sfzhm != '')"> and t.SFZHM = #{sfzhm} </if>
         <if test="(fssj != null )"> and t.FSSJ = #{fssj} </if>
         <if test="(cqrq != null )"> and t.CQRQ = #{cqrq} </if>
+        <if test="(percentsBt != null )"> and t.PERCENTS_BT = #{percentsBt} </if>
+        <if test="(percentsAll != null )"> and t.PERCENTS_ALL = #{percentsAll} </if>
         <if test="map.startDate != null and map.startDate != ''"> and <![CDATA[t.CQRQ  >= #{map.startDate}]]>  </if>
         <if test="map.endDate != null and map.endDate != ''"> and <![CDATA[t.CQRQ <= #{map.endDate}]]>  </if>
     </sql>
@@ -69,6 +73,8 @@
             <if test="(sfzhm != null and sfzhm != '')"> SFZHM , </if>
             <if test="(fssj != null )"> FSSJ , </if>
             <if test="(cqrq != null )"> CQRQ , </if>
+            <if test="(percentsBt != null )"> PERCENTS_BT,</if>
+            <if test="(percentsAll != null )"> PERCENTS_ALL,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -89,6 +95,8 @@
             <if test="(sfzhm != null and sfzhm != '')"> #{sfzhm , jdbcType= VARCHAR },  </if>
             <if test="(fssj != null )">#{fssj , jdbcType= TIMESTAMP },  </if>
             <if test="(cqrq != null )">#{cqrq , jdbcType= TIMESTAMP },  </if>
+            <if test="(percentsBt != null )">  #{percentsBt , jdbcType= INTEGER }, </if>
+            <if test="(percentsAll != null )"> #{percentsAll ，jdbcType= INTEGER }， </if>
         </trim>
     </insert>
 
@@ -113,6 +121,8 @@
                 <if test="(sfzhm != null and sfzhm != '')"> SFZHM = #{sfzhm , jdbcType= VARCHAR }, </if>
                 <if test="(fssj != null )"> FSSJ = #{fssj , jdbcType= TIMESTAMP }, </if>
                 <if test="(cqrq != null )"> CQRQ = #{cqrq , jdbcType= TIMESTAMP }, </if>
+                <if test="(percentsBt != null )"> PERCENTS_BT = #{percentsBt ,jdbcType= INTEGER },</if>
+                <if test="(percentsAll != null )"> PERCENTS_ALL = #{percentsAll ,jdbcType= INTEGER },</if>
             </trim>
         </set>
         <where>
