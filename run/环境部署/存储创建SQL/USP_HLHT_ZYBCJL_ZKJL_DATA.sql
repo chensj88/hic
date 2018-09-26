@@ -72,6 +72,7 @@ if @syxh  is null or @syxh = ''
         t.BLMC as blmc,
         t.FSSJ as fssj,
         t.BLNR as blnr,
+        t.CJSJ as cjsj,
         t.MXFLDM AS mxfldm
         FROM #EMR_QTBLJLK t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
@@ -131,6 +132,7 @@ else
         t.BLMC as blmc,
         t.FSSJ as fssj,
         t.BLNR as blnr,
+        t.CJSJ as cjsj,
         t.MXFLDM AS mxfldm
         FROM #EMR_QTBLJLK_TEMP t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
