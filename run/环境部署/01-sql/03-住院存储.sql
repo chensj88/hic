@@ -551,7 +551,7 @@ select * from f_splitSTR(C.cjqjrydm,',')) for xml path('')),1,1,'') as dm,
 select * from f_splitSTR(C.cjqjrydm,',')) for xml path('')),1,1,'')  as mc,
      C.yjlxh
    from [HLHT_ZYBCJL_QJJL] C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'NA' OR D.zyzwlbmc='NA')
----------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------  chen kuai-------------------------------------------------------------------
 ----首次病程
 UPDATE A SET A.sjysbm =isnull(C.ZRYSDM,'NA'),A.sjysqm=isnull(C.ZRYSXM,'NA')
 FROM [HLHT_ZYBCJL_SCBCJL] A,[HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] C
@@ -677,7 +677,7 @@ WHERE  A.zljgdm ='1';
   UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA') FROM [HLHT_RYJL_RCYJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock) WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA'
   --症状描述
    UPDATE A SET A.zzms =A.xbs   FROM [HLHT_RYJL_RCYJL] A(nolock) where CONVERT(varchar,A.zzms) = 'NA'
-     WHERE A.zrysqm ='NA' or  A.zrysqm = ''
+
    --职业类别
    UPDATE A SET A.zylbdm =  '90' FROM [HLHT_RYJL_RCYJL] A(nolock)  WHERE A.zylbdm IS NULL
    UPDATE A SET A.zylbmc = '其他' FROM [HLHT_RYJL_RCYJL] A(nolock)  WHERE A.zylbmc IS NULL
