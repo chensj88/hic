@@ -144,7 +144,7 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
                             Long.parseLong(obj.getYjlxh()), obj.getBlmc(),  "NA",
                             obj.getFssj(),
                             obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
-                            obj.getKsmc(), obj.getKsdm(), "NA", "NA", obj.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), obj, 1),
+                            obj.getKsmc(), obj.getKsdm(), "NA", "NA", obj.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_MJZBL_MJZBL_SOURCE_TYPE), obj, 1),
                             PercentUtil.getPercent(Long.parseLong(Constants.WN_MJZBL_MJZBL_SOURCE_TYPE), obj, 0)));
                     real_count++;
                 }

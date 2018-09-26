@@ -151,7 +151,7 @@ public class HlhtZybcjlQjjlServiceImpl implements  HlhtZybcjlQjjlService {
                             Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
                             obj.getFssj(),
                             obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
-                            obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), obj, 1),
+                            obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_QJJL_SOURCE_TYPE), obj, 1),
                             PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_QJJL_SOURCE_TYPE), obj, 0)));
                     real_count++;
 
