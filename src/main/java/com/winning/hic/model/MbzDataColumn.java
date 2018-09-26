@@ -50,6 +50,12 @@ public class MbzDataColumn extends BaseDomain implements Serializable {
      * 默认值：无
      */
     private String pyCode;
+    /**
+     * 是否必填
+     *  0 否
+     *  1 是
+     */
+    private Integer bt;
 
     public MbzDataColumn (){
 
@@ -146,4 +152,11 @@ public class MbzDataColumn extends BaseDomain implements Serializable {
         this.pyCode = pyCode;
    }
 
+    public Integer getBt() {
+        return bt;
+    }
+
+    public void setBt(Integer bt) {
+        this.bt = bt;
+    }
 }
