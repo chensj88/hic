@@ -96,7 +96,7 @@ if @syxh  is null or @syxh = ''
         INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T1.CD_IDM = T6.idm
         WHERE
         T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
+        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T1.CD_IDM <> 0
 		--删除临时表
 		DROP TABLE #OUTP_NORDERITEM
 	 end
@@ -172,7 +172,7 @@ else
         INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T2.CD_IDM = T6.idm
         WHERE
         T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
+        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T2.CD_IDM <> 0
         and T2.CJRQ BETWEEN  @startDate  AND  @endDate
 		--删除临时表
 		DROP TABLE #OUTP_NORDER_TEMP

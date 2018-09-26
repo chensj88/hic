@@ -75,9 +75,10 @@ CREATE PROCEDURE [dbo].[USP_HLHT_MJZCF_XYCF_DATA]
           T1.FZXH                                                                                                        AS cfypzh,
           T2.YSMC                                                                                                        AS klysqm,
           T2.YSDM                                                                                                        AS ysbm,
-          'NA'                                                                                                            AS shyjsbm,
-          'NA'                                                                                                            AS shyjsqm,
-          CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS shyjsqmsj,
+          T2.YSMC                                                                                                        AS shyjsbm,
+          T2.YSDM                                                                                                        AS shyjsqm,
+           CONVERT(date,
+           substring(T2.LRRQ,1,4)+'-'+substring(T2.LRRQ,5,2)+'-'+substring(T2.LRRQ,7,2)+' '+substring(T2.LRRQ,9,8))      AS shyjsqmsj,
           'NA'                                                                                                            AS tpyjsbm,
           'NA'                                                                                                            AS tpyjsqm,
           CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cftpsj,
@@ -94,9 +95,11 @@ CREATE PROCEDURE [dbo].[USP_HLHT_MJZCF_XYCF_DATA]
           INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDER] T2(nolock) ON T1.CFXH = T2.XH
           INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
           INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T1.CD_IDM = T6.idm
+          INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YF_MZFYZD] T4(nolock)  on T1.PATID = T4.patid
+          INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] T5(nolock)  on T4.fyczyh = T5.id
           WHERE
           T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-          AND T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
+          AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T1.CD_IDM <> 0
       --删除临时表
       DROP TABLE #OUTP_ORDERITEM
      end
@@ -172,7 +175,7 @@ CREATE PROCEDURE [dbo].[USP_HLHT_MJZCF_XYCF_DATA]
           INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T2.CD_IDM = T6.idm
           WHERE
           T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-          AND T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
+          AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T2.CD_IDM <> 0
           and T2.CJRQ BETWEEN  @startDate  AND  @endDate
       --删除临时表
       DROP TABLE #OUTP_ORDER_TEMP
