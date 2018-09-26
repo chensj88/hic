@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[USP_HLHT_MJZCF_XYCF_YEAR_DATA]
+CREATE PROCEDURE [dbo].[USP_HLHT_MJZCF_XYCF_DATA]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
@@ -54,12 +54,16 @@ if @syxh  is null or @syxh = ''
         T4.TS                                                                                                          AS cfyxts,
         T2.KSDM                                                                                                        AS cfklskdm,
         T2.KSMC                                                                                                        AS cfklks,
-        ISNULL((SELECT T7.ZDDM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T7(nolock)
-        WHERE T2.GHXH = T7.GHXH AND T7.ZDLB = 0
-        AND T7.ZDLX = 0 ),'NA')                                                                                        AS jbzdbm,
-        ISNULL((SELECT T8.ZDMC FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T8(nolock)
-        WHERE T2.GHXH = T8.GHXH AND T8.ZDLB = 0
-        AND T8.ZDLX = 0 ),'NA')                                                                                        AS jbzd,
+        ISNULL(
+          (SELECT T7.ZDDM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T7(nolock)
+          WHERE T2.GHXH = T7.GHXH AND T7.ZDLB = 0 AND T7.ZDLX = 0),
+          (SELECT T8.ZDDM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NMZBLZDK] T8(nolock)
+          WHERE T2.GHXH = T8.GHXH AND T8.ZDLB = 0 AND T8.ZDLX = 0))        AS jbzdbm,
+        ISNULL(
+          (SELECT T9.ZDMC FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T9(nolock)
+          WHERE T2.GHXH = T9.GHXH AND T9.ZDLB = 0 AND T9.ZDLX = 0 ),
+          (SELECT T10.ZDMC FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T10(nolock)
+          WHERE T2.GHXH = T10.GHXH AND T10.ZDLB = 0 AND T10.ZDLX = 0 ))   AS jbzd,
         T4.YPDM                                                                                                        AS ywdm,
         T4.YPMC                                                                                                        AS ywmc,
         T4.YPGG                                                                                                        AS ywgg,
@@ -140,12 +144,16 @@ else
         T4.TS                                                                                                          AS cfyxts,
         T2.KSDM                                                                                                        AS cfklskdm,
         T2.KSMC                                                                                                        AS cfklks,
-        ISNULL((SELECT T7.ZDDM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T7(nolock)
-        WHERE T2.GHXH = T7.GHXH AND T7.ZDLB = 0
-        AND T7.ZDLX = 0 ),'NA')                                                                                        AS jbzdbm,
-        ISNULL((SELECT T8.ZDMC FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T8(nolock)
-        WHERE T2.GHXH = T8.GHXH AND T8.ZDLB = 0
-        AND T8.ZDLX = 0 ),'NA')                                                                                        AS jbzd,
+        ISNULL(
+          (SELECT T7.ZDDM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T7(nolock)
+          WHERE T2.GHXH = T7.GHXH AND T7.ZDLB = 0 AND T7.ZDLX = 0),
+          (SELECT T8.ZDDM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NMZBLZDK] T8(nolock)
+          WHERE T2.GHXH = T8.GHXH AND T8.ZDLB = 0 AND T8.ZDLX = 0))        AS jbzdbm,
+        ISNULL(
+          (SELECT T9.ZDMC FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T9(nolock)
+          WHERE T2.GHXH = T9.GHXH AND T9.ZDLB = 0 AND T9.ZDLX = 0 ),
+          (SELECT T10.ZDMC FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T10(nolock)
+          WHERE T2.GHXH = T10.GHXH AND T10.ZDLB = 0 AND T10.ZDLX = 0 ))   AS jbzd,
         T4.YPDM                                                                                                        AS ywdm,
         T4.YPMC                                                                                                        AS ywmc,
         T4.YPGG                                                                                                        AS ywgg,
@@ -183,17 +191,17 @@ else
        FROM #YF_MZFYZD_TEMP T1
        left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
 	   left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
-		left join [HLHT_MZ_HIS].[THIS4].[dbo].[SF_MZCFK] c(nolock) on T1.cfxh=c.xh
-		left join [HLHT_MZ_HIS].[THIS4].[dbo].[GH_GHZDK] b(nolock) on b.xh=c.ghxh
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDER] T2(nolock) ON b.xh = T2.GHXH
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
-        INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
-        WHERE
-        T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
-        AND c.fybz=1 and T2.GHXH=@syxh
+	   left join [HLHT_MZ_HIS].[THIS4].[dbo].[SF_MZCFK] c(nolock) on T1.cfxh=c.xh
+	   left join [HLHT_MZ_HIS].[THIS4].[dbo].[GH_GHZDK] b(nolock) on b.xh=c.ghxh
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDER] T2(nolock) ON b.xh = T2.GHXH
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
+       INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
+       WHERE
+       T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
+       AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
+       AND c.fybz=1 and T2.GHXH=@syxh
 		--删除临时表
-		DROP TABLE #YF_MZFYZD_TEMP
+	   DROP TABLE #YF_MZFYZD_TEMP
 	end
 end
