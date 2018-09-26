@@ -153,8 +153,11 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
                                 HlhtZybcjlHzjl entity = new HlhtZybcjlHzjl();
                                 entity.setYjlxh(String.valueOf(hzsqdjlk_list.get(0).getQtbljlxh()));
                                 entity = this.getHlhtZybcjlHzjl(entity);
-                                entity = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
-                                this.modifyHlhtZybcjlHzjl(entity);
+                                if(entity != null){
+                                    entity = (HlhtZybcjlHzjl) HicHelper.initModelValue(mbzDataSetList, document, entity, paramTypeMap);
+                                    this.modifyHlhtZybcjlHzjl(entity);
+                                }
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

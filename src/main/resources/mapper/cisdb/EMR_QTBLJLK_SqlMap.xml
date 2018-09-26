@@ -100,7 +100,7 @@
 
 	<select id="selectEmrQtbljlkId" resultType ="String" parameterType="com.winning.hic.model.EmrQtbljlk">
 		SELECT TOP 1 QTBLJLXH FROM EMR_QTBLJLK WHERE CJSJ &lt; #{cjsj} AND MXFLDM='B-8405'
-		<if test="(syxh != null and syxh != '') or syxh == 0"> and t.SYXH = #{syxh} </if>
+		<if test="(syxh != null and syxh != '') or syxh == 0"> and SYXH = #{syxh} </if>
 		ORDER BY CJSJ DESC;
 	</select>
 

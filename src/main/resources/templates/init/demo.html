@@ -29,6 +29,7 @@
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
     <script th:src="@{/assets/js/ace-extra.min.js}"></script>
     <link rel="stylesheet" th:href="@{/assets/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <link rel="stylesheet" th:href="@{/summernote/summernote.css}">
     <style>
         .tree-container{
             height: 500px;
@@ -43,34 +44,22 @@
 <body>
 <div class="main-container" style="margin: 10px 0px;">
     <div class="row" style="margin:0px;">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="tabbable">
-                <ul class="nav nav-tabs" id="myTab">
-                    <li class="active">
-                        <a data-toggle="tab" href="#config">
-                            基础模板匹配
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="tabContent">
-                    <div id="config" class="tab-pane in active">
-                        <div class="row" id="toolbar">
-                            <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon">数据集</span>
-                                    <select class="form-control" name="dataSet" id="dataSet">
-                                        <option value="">-----全部-----</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <table id="table" class="table-align"></table>
-                    </div>
-
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" >
+                <div id="summernote"></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div style="line-height: 400px;margin: 0px 100px;">
+                    <button id="parseBlnr" type="button" class="btn btn-primary" style="width: 100px;">转换</button>
                 </div>
+
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" >
+                <div id="summernote1"></div>
             </div>
         </div>
     </div>
+
 </div>
 <!--[if !IE]> -->
 <script type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
@@ -96,518 +85,175 @@
 <script th:src="@{/assets/ztree/js/jquery.ztree.exedit.min.js}"></script>
 <script th:src="@{/assets/ztree/js/jquery.ztree.excheck.min.js}"></script>
 <script th:src="@{/assets/ztree/js/jquery.ztree.exhide.min.js}"></script>
+<script th:src="@{/summernote/summernote.min.js}"></script>
+<script th:src="@{/summernote/lang/summernote-zh-CN.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     var ctx = /*[[@{/}]]*/'';
-    var resultData = [];
-    var templateTree,dictTree;
-    //页面初始化
-    function initWindow(){
-        //页面大小响应布局
-        $(window).width((window.parent.document.getElementById("coniframe").width -12)+'px');
-        $(window).height((window.parent.document.getElementById("coniframe").height -12)+'px');
-        $('#tabContent').height($(window).height() - 100+'px')
-        //行内操作初始化
-//        $.fn.editable.defaults.mode = 'inline';
-    }
-    initWindow();
-    //字典值加载
-    function initDictInfo(){
-        var $parent = $('#dataSet');
-        $.ajax({
-            url: ctx + 'common/dict',
-            async: true,
-            type: "post",
-            cache:false,
-            data: {'dictCode':'platformTableName'},
-            success: function (data, status) {
-                $parent.empty();
-                var $data = data.data;
-                resultData = data.data;
-                for (var key in $data) {
-                    $('<option value="' + $data[key].dictValue+ '">' + $data[key].dictLabel+ '</option>').appendTo($parent);
-                }
-                $('<option value="">-----------全部-----------</option>').prependTo($parent);
-                $parent.val("");
-            }
-        });
-    }
-
-    initDictInfo();
-    var $table = $('#table');
-    var $subTable ;
-
-
-
-
-    function openAddWindow(pId,recordName,index,sourceType,dataType,dtjddm) {
-        var data = {row :{
-             pid:parseInt(pId),
-             sourceType:sourceType,
-             dataType:dataType,
-             dtjddm:dtjddm,
-             recordName:recordName,
-             status:1
-         },
-            index:index+10000};
-        console.log(data);
-        $subTable.bootstrapTable('insertRow',data);
-        console.log($subTable);
-    }
-
     $(function(){
         //toastr 插件全局配置
         toastr.options.positionClass = 'toast-top-center';
         toastr.options.timeOut = 30;
         toastr.options.extendedTimeOut = 60;
 
-        $table.bootstrapTable({
-            url:ctx + 'basic/plist',
-            height: 600, //表格占高
-            striped: true,
-            method: 'GET', // 请求方法
-            cache: false,  // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-            pagination: true,                   // 是否显示分页（*）
-            sortable: true,                     // 是否启用排序
-            sortOrder: "asc",                   // 排序方式
-            sidePagination: "server",           // 分页方式：client客户端分页，server服务端分页（*）
-            pageNumber: 1,                      // 初始化加载第一页，默认第一页,并记录
-            pageSize: 10,                     // 每页的记录行数（*）
-            pageList: [10, 25, 50, 100],        // 可供选择的每页的行数（*）
-            showPaginationSwitch: false,			//显示 数据条数选择框
-            search: false,                      // 是否显示表格搜索
-            strictSearch: true,
-            minimumCountColumns: 2,             // 最少允许的列数
-            clickToSelect: true,                // 是否启用点击选中行
-            idField: 'id',
-            sortName: 'id',
-            uniqueId: "id",                 // 每一行的唯一标识，一般为主键列
-            cardView: false,                    // 是否显示详细视图
-            detailView: true,                  // 是否显示父子表
-            toolbar: '#btntoolbar',
-            toolbarAlign: 'right',
-            paginationPreText: '上一页',
-            paginationNextText: '下一页',
-            paginationLoop: false, //分页条无限循环的功能
-            singleSelect: true,
-            queryParams: queryListInfo,
-            columns: [
-                {
-                    field: 'recordName',
-                    title: '字段名称',
-                    align: 'left',
-                    width: '210px',
-                    formatter:function(value,row,index){
-                        return '<span>'+value+'</span>';
-                    }
-                },
-                {
-                    field: 'dataType',
-                    title: '类型',
-                    align: 'center',
-                    width: '100px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'select',
-                        source:[
-                            {value:"1",text:"文件结构"},
-                            {value:"2",text:"基础模板"},
-                            {value:"3",text:"元数据"},
-                            {value:"4",text:"原子节点"}]
-                    }
-                },
-                {
-                    field: 'dtjddm',
-                    align: 'center',
-                    title: '文件结构ID',
-                    width: '250px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'text',
-                        title: '文件结构ID'
-                    }
-                },
-                {
-                    field: 'qrmbdm',
-                    align: 'center',
-                    title: '基础模板ID',
-                    width: '250px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'text',
-                        title: '基础模板ID'
-                    }
-                },
-                {
-                    field: 'qrdxdm',
-                    align: 'center',
-                    title: '元数据ID',
-                    width: '250px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'text',
-                        title: '元数据ID'
-                    }
-                },
-                {
-                    field: 'yzjddm',
-                    align: 'center',
-                    title: '原子节点ID',
-                    width: '250px',
-                    editable: {
-                        emptytext:'-',
-                        type: 'text',
-                        title: '原子节点ID'
-                    }
-                },
-                {
-                    field: 'bt',
-                    align: 'center',
-                    title: '必选',
-                    width: '100px',
-                    formatter:function(value,row,index){
-                        if(row.pid === 0){
-                            return '';
-                        }
-                    },
-                    editable: {
-                        emptytext:'-',
-                        type: 'select',
-                        source:[
-                            {value:"0",text:"非必选"},
-                            {value:"1",text:"必选"}]
-                    }
-                }
-            ],
-            onExpandRow:function(index,row,$detail){
-                console.log(index);
-                console.log(row);
-                console.log($detail);
-                InitSubTable(index, row, $detail);
-            }
+        $('#summernote').summernote({
+            placeholder: '请输入需要转换的病历内容', //提示名称
+            tabsize: 2,
+            height: 800,
+            minHeight: 50,             // 编辑器最小的高度
+            maxHeight: 800,             // 编辑器最大的高度
+            focus: true,               // 初始化完成后立即获取焦点
+            lang: 'zh-CN',             //中文支持
+            //自定义参数
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']], //样式
+                ['font', ['strikethrough', 'superscript', 'subscript']], //标记 上标、下标、删除线
+                ['fontsize', ['fontsize']], //字体大小
+                ['color', ['color']], //字体颜色
+                ['para', ['ul', 'ol', 'paragraph']], //列表
+                ['height', ['height']], //设置行高
+            ]
         });
-        /**
-         * 父子表
-         */
-        function InitSubTable(index, row, $detail){
-            var parentid = row.id;
-            var sourceType = row.sourceType;
-            var cur_table = $detail.html('<table></table>').find('table');
-            function initParam(params) {
-                let queryJson = {
-                    sourceType :sourceType,
-                    pId:parentid
-                };
-                if($('#chosen').is(':checked')){
-                    queryJson['bt'] = 1;
-                }
-                if($('#configPath').is(':checked')){
-                    queryJson['config'] = 1;
-                }
-                queryJson['count'] = params.limit;    // 每页显示条数
-                queryJson['first'] = params.offset;   // 显示条数
-                queryJson['sort'] = params.sort;      // 排序列名
-                queryJson['order'] = params.order;     // 排位命令（desc，asc）
-                return queryJson;
-            }
-            $subTable = $(cur_table);
-            $subTable.bootstrapTable({
-                url:ctx + 'basic/clist',
-                striped: true,
-                method: 'GET', // 请求方法
-                queryParams: initParam,
-                cache: false,  // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-                pagination: true,                   // 是否显示分页（*）
-                sortable: true,                     // 是否启用排序
-                sortOrder: "asc",                   // 排序方式
-                sidePagination: "server",           // 分页方式：client客户端分页，server服务端分页（*）
-                pageNumber: 1,                      // 初始化加载第一页，默认第一页,并记录
-                pageSize: 10,                     // 每页的记录行数（*）
-                pageList: [10, 25, 50, 100],        // 可供选择的每页的行数（*）
-                uniqueId: "id",
-                idField: 'id',
-                sortName: 'id',
-                uniqueId: "id",                 // 每一行的唯一标识，一般为主键列
-                columns: [
-                    {
-                        field: 'recordName',
-                        title: '字段名称',
-                        align: 'left',
-                        width: '210px',
-                        formatter:function(value,row,index){
-                          return `<span>${value}</span> <span class="pull-right" onclick="openAddWindow('${row.pid}','${row.recordName}','${index}','${row.sourceType}','${row.dataType}','${row.dtjddm}')"><i class="glyphicon glyphicon-plus"></i> </span>`
-                              +'<span class="pull-right" onclick="openAddWindow(\'${row.pid}\',\'${row.recordName}\',\'${index}\',\'${row.sourceType}\',\'${row.dataType}\',\'${row.dtjddm}\')"><i class="glyphicon glyphicon-remove"></i> </span>';
-                        }
-                    },
-                    {
-                        field: 'dataType',
-                        title: '类型',
-                        align: 'center',
-                        width: '100px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'select',
-                            source:[
-                                {value:"1",text:"文件结构"},
-                                {value:"2",text:"基础模板"},
-                                {value:"3",text:"元数据"},
-                                {value:"4",text:"原子节点"}]
-                        }
-                    },
-                    {
-                        field: 'dtjddm',
-                        align: 'center',
-                        title: '文件结构ID',
-                        width: '250px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'text',
-                            title: '文件结构ID'
-                        }
-                    },
-                    {
-                        field: 'qrmbdm',
-                        align: 'center',
-                        title: '基础模板ID',
-                        width: '250px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'text',
-                            title: '基础模板ID'
-                        }
-                    },
-                    {
-                        field: 'qrdxdm',
-                        align: 'center',
-                        title: '元数据ID',
-                        width: '250px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'text',
-                            title: '元数据ID'
-                        }
-                    },
-                    {
-                        field: 'yzjddm',
-                        align: 'center',
-                        title: '原子节点ID',
-                        width: '250px',
-                        editable: {
-                            emptytext:'-',
-                            type: 'text',
-                            title: '原子节点ID'
-                        }
-                    },
-                    {
-                        field: 'bt',
-                        align: 'center',
-                        title: '必选',
-                        width: '100px',
-                        formatter:function(value,row,index){
-                            if(row.pid === 0){
-                                return '';
-                            }
-                        },
-                        editable: {
-                            emptytext:'-',
-                            type: 'select',
-                            source:[
-                                {value:"0",text:"非必选"},
-                                {value:"1",text:"必选"}]
-                        }
-                    }
-                ],
-            });
-        }
+        $('#summernote1').summernote({
+            placeholder: '', //提示名称
+            tabsize: 2,
+            height: 800,
+            minHeight: 50,             // 编辑器最小的高度
+            maxHeight: 800,             // 编辑器最大的高度
+            focus: true,               // 初始化完成后立即获取焦点
+            lang: 'zh-CN',             //中文支持
+            //自定义参数
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']], //样式
+                ['font', ['strikethrough', 'superscript', 'subscript']], //标记 上标、下标、删除线
+                ['fontsize', ['fontsize']], //字体大小
+                ['color', ['color']], //字体颜色
+                ['para', ['ul', 'ol', 'paragraph']], //列表
+                ['height', ['height']], //设置行高
+            ]
+        });
 
-        $table.on('editable-save.bs.table',function (event, field, row, $el) {
-            var param = {
-                id:row.id,
-                pId:row.pid,
-                sourceType:row.sourceType,
-                recordName:row.recordName,
-                pyCode:row.pyCode,
-                dictCode:row.dictCode,
-                dataType:row.dataType,
-                dtjddm:row.dtjddm,
-                qrmbdm:row.qrmbdm,
-                qrdxdm:row.qrdxdm,
-                yzjddm:row.yzjddm,
-                bt:row.bt,
-                status:row.status
-            };
+        $('#parseBlnr').on('click',function(){
+            var markupStr = $('#summernote').summernote('code');
+            $('#summernote1').summernote('insertText','');
+            markupStr = markupStr.replace("<p><br></p>","");
+            if(markupStr === '' || markupStr.length < 0 ){
+                toastr.info('请输入病历内容');
+                return false;
+            }
             $.ajax({
-                url: ctx + "basic/edit",
-                data: param,
+                url: ctx + 'blnr/parse',
+                async: false,
                 type: "post",
-                dataType: 'json',
-                async: false,
-                cache: false,
-                success: function (result,status) {
-                    if(status === 'success'){
-                        toastr.info('数据提交成功');
-                    }
-                },
-                error: function (response) {
-                    console.log(response.responseText);
-                    toastr.error(response.responseText);
-                },
-                complete: function () {
-                }
-            });
-        });
-
-        function queryListInfo(params){
-            let queryJson = {
-                sourceType : $('#dataSet').val()
-            };
-            if($('#chosen').is(':checked')){
-                queryJson['bt'] = 1;
-            }
-            if($('#configPath').is(':checked')){
-                queryJson['config'] = 1;
-            }
-            queryJson['count'] = params.limit;    // 每页显示条数
-            queryJson['first'] = params.offset;   // 显示条数
-            queryJson['sort'] = params.sort;      // 排序列名
-            queryJson['order'] = params.order;     // 排位命令（desc，asc）
-            return queryJson;
-        }
-
-        function searchListInfo(){
-            $table.bootstrapTable('refresh', { pageNumber: 1 });
-        }
-
-        $('#dataSet').on('change',searchListInfo);
-        $('#chosen').on('change',searchListInfo);
-        $('#configPath').on('change',searchListInfo);
-
-
-    });
-
-
-    $('#addOrModify').on('click',function () {
-        let dictArr = dictTree.getCheckedNodes(true);
-        if(dictArr == undefined || dictArr.length < 0){
-            toastr.error('请选择互利互通数据集数据');
-            return ;
-        }
-        let templateArr = templateTree.getCheckedNodes(true)
-        if(templateArr == undefined || templateArr.length < 0){
-            toastr.error('请选择病历导航树数据');
-            return ;
-        }
-
-        let mbzDataListSet =[];
-        let index = 0;
-        console.log(dictArr);
-        console.log(templateArr);
-        for(let i =0 ;i < dictArr.length ;i++){
-            for(let j =0 ;j < templateArr.length ;j++){
-                if(templateArr[j].nodeId.startsWith('B')){
-                    continue ;
-                }else{
-                    mbzDataListSet[index]={
-                        'sourceType':dictArr[i].dictValue,
-                        'modelCode':templateArr[j].nodeId,
-                        'sourceName':dictArr[i].dictLabel,
-                        'modelName':templateArr[j].nodeName,
-                    };
-                    index++;
-                }
-            }
-        }
-        $.ajax({
-            url: ctx + 'dataList/addOrModify',
-            async: false,
-            type: "post",
-            cache:false,
-            dataType: 'json',
-            contentType : 'application/json',
-            data:  JSON.stringify(mbzDataListSet),
-            success: function (data, status) {
-                toastr.info('保存成功');
-            },error:function (response) {
-                console.log(response.responseText);
-                toastr.error(response.responseText);
-            }
-        });
-
-    });
-
-    /**
-     * templateTree延迟加载
-     * @param event
-     * @param treeId
-     * @param treeNode
-     */
-    function zTreeOnOnClick(event, treeId, treeNode) {
-        let treeObj = $.fn.zTree.getZTreeObj(treeId);
-        let node = treeObj.getNodeByTId(treeNode.tId);
-        //没有子节点才去查询
-        if (node.children.length < 1 || node.children == null || node.children == "undefined") {
-            let queryJson = {
-                'mldm':treeNode.nodeId
-            };
-            $.ajax({
-                type: "POST",
-                async: false,
-                url: ctx + "mbk/childTree",
-                data:queryJson,
                 cache:false,
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    if (data.data != null && data.data != "") {
-                        //添加新节点
-                        newNode = treeObj.addNodes(node, data.data);
-                    }
-                },
-                error: function ( response) {
-                    result = true;
+                dataType: 'json',
+                data: {'blnr':markupStr},
+                success: function (data, status) {
+                    toastr.info('转换成功');
+                 //   console.log(formatXml(data.data));
+                    $('#summernote1').summernote('insertText',format(data.data));
+                },error:function (response) {
                     toastr.error(response.responseText);
                 }
             });
-        }
-    }
-
-    function dictTreeOnOnClick(event, treeId, treeNode) {
-        let treeObj = $.fn.zTree.getZTreeObj(treeId);
-        let node = treeObj.getNodeByTId(treeNode.tId);
-        let tnode1 = templateTree.getNodeByParam("nodeId",node.pyCode,null);
-        $("#"+tnode1.tId+"_a").click();
-        let queryJson = {
-            'sourceType':node.dictValue
-        };
-        dictTree.checkAllNodes(false);
-        dictTree.checkNode(node, true, true);
-        templateTree.checkAllNodes(false);
-        $.ajax({
-            type: "POST",
-            async: false,
-            url: ctx + "dataList/queryConfig",
-            data: queryJson,
-            dataType: "json",
-            success: function (data) {
-                if(data.status == 'SUCCESS'){
-                    let result = data.data;
-                    console.log(result);
-                    if(result.length > 0){
-                        $.each(result,function(index,value){
-                            console.log(value.modelCode +':'+value.modelName);
-                            var node1 = templateTree.getNodeByParam("nodeId",value.modelCode,null);
-                            console.log(node1);
-                            templateTree.checkNode(node1, true, true);
-                            templateTree.selectNode(node1);
-                        });
-                    }
-                }
-            },
-            error: function (response) {
-                result = true;
-                toastr.error(response.responseText);
-            }
         });
-    }
+    });
+
+    function format(strs){
+            //声明left变量用于存放html标签中左尖括号（‘<’）位置
+            var left=null;
+            //声明right变量用于存放html标签中右尖括号（‘<’）位置
+            var right=null;
+            //声明str变量，用于存放格式化后的代码字符串
+            var str='';
+            //存放html代码所进所用的空格
+            var blank='\t';
+            //存放若干个blank变量，用于控制代码缩进的深度
+            var fmt=[];
+            //对需要格式化的代码字符串进行遍历
+            for(var i=0;i<strs.length;i++){
+                //发现左尖括号后将其位置记录在left变量上
+                if(strs[i]=='<'){
+                    left=i;
+                }else if(strs[i]=='>'){
+                    //发现右尖括号后将其记录在right变量上
+                    right=i;
+                }
+                //当做尖括号右尖括号都记录了一个位置后，说明二者之间的内容为代码的一行
+                if(typeof left=='number'&&typeof right=='number'){
+                    //判断字符串左尖括号后是否为‘/’，如果满足，表明该行代码为双标签的闭合标签
+                    if(strs[left+1]=='/'){
+                        //对数组中的空格做出栈，确保代码缩进正确
+                        fmt.pop();
+                        //将该行代码放入str变量中
+                        str+=fmt.join('')+strs.slice(left,right+1);
+                        //判断字符串右尖括号前一位是否为‘/’，如满足，表明该标签为严格闭合的单标签
+                    }else if(strs[right-1]=='/'){
+                        str+=fmt.join('')+strs.slice(left,right+1);
+                        //判断字符串开头是否包含input/imig/hr/br/link/meta等字母，用于屏蔽非严格未闭合的单标签
+                    }else if(strs.slice(left,right).search(/\<input|\<img|\<hr|\<br|\<link|\<meta/)!=-1){
+                        str+=fmt.join('')+strs.slice(left,right+1);
+                        //对双标签的左标签进行的操作
+                    }else{
+                        str+=fmt.join('')+strs.slice(left,right+1);
+                        //向数组中堆入一个空格，确保下一行双标签的左标签的缩进正确
+                        fmt.push(blank);
+                    }
+                    //对right位置后的字符串进行遍历
+                    for(var j=right;j<strs.length;j++){
+                        //查找right位置后，第一个左尖括号的位置，二者之间的内容即为代码中的文本内容
+                        if(strs[j]=='<'){
+                            //去掉文本中多余的空格
+                            var s=strs.slice(right+1,j).replace(/\s*/g,'');
+                            if(s){
+                                //当文本中去掉空格后任然有内容，则将文本拼入str变量进行存储
+                                str+=s;
+                            }
+                            break;
+                        }
+                    }
+                    //每次获得一次左右尖括号的位置后，即得到了一行代码，为代码做换行处理
+                    str+='\n';
+                    //重置left、right的值，用于for循环的下次存储做右尖括号的位置
+                    left=null;
+                    right=null;
+                }
+
+            }
+            //返回得到的格式化完成的html代码字符串
+            return str;
+        }
+
+
+
+
+//格式化xml
+ /*   function formatXml(str){
+        //去除输入框中xmll两端的空格。 
+        str = str.replace(/^\s+|\s+$/g,"");
+        var source = new ActiveXObject("Msxml2.DOMDocument");
+        //装载数据 
+        source.async = false;
+        source.loadXML(str);     
+        // 装载样式单  
+        var stylesheet = new ActiveXObject("Msxml2.DOMDocument");  
+        stylesheet.async = false;  
+        stylesheet.resolveExternals = false;  
+        stylesheet.load(path+"/XlsTmpl/temp/format.xsl");    
+        // 创建结果对象  
+        var result = new ActiveXObject("Msxml2.DOMDocument");  
+        result.async = false;    
+        // 把解析结果放到结果对象中方法1  
+        source.transformNodeToObject(stylesheet, result);  
+        if(result.xml==''||result.xml==null){
+            toastr.error('xml报文格式错误，请检查');
+            return false; 
+        } 
+        var finalStr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n" +result.xml; 
+        return finalStr;
+    }*/
+
 </script>
 </body>
 </html>
