@@ -31,5 +31,5 @@ public interface HlhtZybcjlSwbltljlService {
 
     public List<HlhtZybcjlSwbltljl> getHlhtZybcjlSwbltljlPageList(HlhtZybcjlSwbltljl hlhtZybcjlSwbltljl);
 
-    List<MbzDataCheck> interfaceHlhtZybcjlSwbltljl(MbzDataCheck entity) throws ParseException, IOException;
+    List<MbzDataCheck> interfaceHlhtZybcjlSwbltljl(MbzDataCheck entity) throws Exception;
 }

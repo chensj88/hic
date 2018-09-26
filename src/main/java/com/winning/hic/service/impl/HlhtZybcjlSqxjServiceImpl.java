@@ -82,7 +82,7 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(MbzDataCheck entity) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtZybcjlSqxj(MbzDataCheck entity) throws Exception {
         List<MbzDataCheck> dataChecks = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
@@ -138,7 +138,9 @@ public class HlhtZybcjlSqxjServiceImpl implements  HlhtZybcjlSqxjService {
                         Long.parseLong(obj.getYjlxh()), obj.getBlmc(),obj.getSyxh()+"",
                         obj.getFssj(),
                         obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
-                        "NA","NA",  "NA","NA", obj.getSfzhm()));
+                        "NA","NA",  "NA","NA", obj.getSfzhm(),
+                        PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE), obj, 1),
+                        PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_SQXJ_SOURCE_TYPE), obj, 0)));
                 real_count++;
             }
         }else{
