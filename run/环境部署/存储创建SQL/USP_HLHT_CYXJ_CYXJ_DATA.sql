@@ -87,8 +87,8 @@ SELECT
         ELSE
         '未知 '
         END AS hyzkmc,
-        b.ZYDM AS zylbdm,
-        m.NAME AS zylbmc,
+        ISNULL(b.ZYDM,'90') AS zylbdm,
+        ISNULL(m.NAME,'其他') AS zylbmc,
         (CASE b.LXDH WHEN '' THEN 'NA' ELSE b.LXDH END)AS hzdhhm,
         ISNULL(
         (SELECT TOP 1 e.SSDQDM FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,
@@ -207,8 +207,8 @@ SELECT
         ELSE
         '未知 '
         END AS hyzkmc,
-        b.ZYDM AS zylbdm,
-        m.NAME AS zylbmc,
+        ISNULL(b.ZYDM,'90') AS zylbdm,
+        ISNULL(m.NAME,'其他') AS zylbmc,
         (CASE b.LXDH WHEN '' THEN 'NA' ELSE b.LXDH END)AS hzdhhm,
         ISNULL(
         (SELECT TOP 1 e.SSDQDM FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,
