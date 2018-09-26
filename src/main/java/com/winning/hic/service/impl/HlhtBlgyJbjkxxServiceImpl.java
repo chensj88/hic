@@ -2,6 +2,7 @@ package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.DateUtil;
+import com.winning.hic.base.utils.PercentUtil;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtBlgyJbjkxxDao;
 import com.winning.hic.dao.data.MbzLoadDataInfoDao;
@@ -73,7 +74,7 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtBlgyJbjkxx(MbzDataCheck entity) {
+    public List<MbzDataCheck> interfaceHlhtBlgyJbjkxx(MbzDataCheck entity) throws Exception {
         List<MbzDataCheck> dataCheckList = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
@@ -106,7 +107,9 @@ public class HlhtBlgyJbjkxxServiceImpl implements  HlhtBlgyJbjkxxService {
                     Long.parseLong(Constants.WN_BLGY_JBJKXX_SOURCE_TYPE),
                     Long.parseLong(obj.getYjlxh()),"基本健康信息表",obj.getSyxh()+"",new Timestamp(obj.getGxsj().getTime()),
                     obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
-                    "NA","NA","NA","NA", obj.getSfzhm()));
+                    "NA","NA","NA","NA", obj.getSfzhm(),
+                    PercentUtil.getPercent(Long.parseLong(Constants.WN_BLGY_JBJKXX_SOURCE_TYPE), obj, 1),
+                    PercentUtil.getPercent(Long.parseLong(Constants.WN_BLGY_JBJKXX_SOURCE_TYPE), obj, 0)));
             real_count++;
         }
         //1.病历总数 2.抽取的病历数量 3.子集类型
