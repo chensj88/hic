@@ -152,7 +152,7 @@ public class HlhtZzyjlZzyjlServiceImpl implements  HlhtZzyjlZzyjlService {
                                 new Timestamp(DateUtil.parse(emrQtbljlk.getFssj(),DateUtil.PATTERN_19).getTime()),
                                 entity.getPatid(),entity.getZyh(),entity.getHzxm(),entity.getXbmc(),entity.getXbdm(),
                                 "NA","NA", "NA","NA", entity.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), entity, 1),
-                                PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), entity, 0)));
+                                PercentUtil.getPercent(Long.parseLong(Constants.WN_ZZYJL_ZZYJL_SOURCE_TYPE), entity, 0)));
                         real_count++;
 
                     }
