@@ -36,4 +36,6 @@ public interface HlhtMjzblMjzblDao {
     public List<HlhtMjzblMjzbl> selectHlhtMjzblMjzblPageList(HlhtMjzblMjzbl hlhtMjzblMjzbl) throws DataAccessException;
 
     public HlhtMjzblMjzbl selectInitialHlhtMjzblMjzbl(HlhtMjzblMjzbl entity);
+
+    List<HlhtMjzblMjzbl> selectHlhtMjzblMjzblListByProc(HlhtMjzblMjzbl oneMjzbl);
 }
