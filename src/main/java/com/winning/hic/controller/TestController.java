@@ -36,7 +36,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/24ryjl")
     @ApiOperation(value="/test/24ryjl",notes = "24H出入院接口表数据抽取测试")
-    public Map<String, Object> test24RYJL() throws IOException, ParseException {
+    public Map<String, Object> test24RYJL() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -61,7 +61,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/ryswjl")
     @ApiOperation(value="/test/ryswjl",notes = "入院死亡记录表数据抽取测试")
-    public Map<String, Object> testRYSWJL() throws IOException, ParseException {
+    public Map<String, Object> testRYSWJL() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -74,7 +74,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/shscbcjl")
     @ApiOperation(value="/test/shscbcjl",notes = "取住院病程/手术术后首次病程初始化数据")
-    public Map<String, Object> testSHSCBCJL() throws IOException, ParseException {
+    public Map<String, Object> testSHSCBCJL() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -86,7 +86,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/sqxj")
     @ApiOperation(value="/test/sqxj",notes = "取住院病程/术前小结")
-    public Map<String, Object> testSQXJ() throws IOException, ParseException {
+    public Map<String, Object> testSQXJ() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -97,7 +97,7 @@ public class TestController extends BaseController {
     }
     @GetMapping(value = "/test/sqtl")
     @ApiOperation(value="/test/sqtl",notes = "取住院病程/术前讨论")
-    public Map<String, Object> testSQTL() throws IOException, ParseException {
+    public Map<String, Object> testSQTL() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -109,7 +109,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/swbltl")
     @ApiOperation(value="/test/swbltl",notes = "取住院病程/死亡病历讨论")
-    public Map<String, Object> testSWBLTL() throws IOException, ParseException {
+    public Map<String, Object> testSWBLTL() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -121,7 +121,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/sjyscfjl")
     @ApiOperation(value="/test/sjyscfjl",notes = "取住院病程/上级医生查房记录")
-    public Map<String, Object> testSJYSCFJL() throws IOException, ParseException {
+    public Map<String, Object> testSJYSCFJL() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -133,7 +133,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/sstys")
     @ApiOperation(value="/test/sstys",notes = "知情告知信息/手术同意书")
-    public Map<String, Object> testSSTYS() throws IOException, ParseException {
+    public Map<String, Object> testSSTYS() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
@@ -145,7 +145,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/jbjkxx")
     @ApiOperation(value="/test/jbjkxx",notes = "病历概要/基本健康信息")
-    public Map<String, Object> testJBJKXX() throws IOException, ParseException {
+    public Map<String, Object> testJBJKXX() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20180720");
         entity.getMap().put("endDate","20180720");
@@ -159,7 +159,7 @@ public class TestController extends BaseController {
 
     @GetMapping(value = "/test/xycf")
     @ApiOperation(value="/test/xycf",notes = "门(急)诊处方/西药处方")
-    public Map<String, Object> testXYCF() throws IOException, ParseException {
+    public Map<String, Object> testXYCF() throws Exception {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate","20170701");
         entity.getMap().put("endDate","20180824");
