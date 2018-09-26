@@ -114,7 +114,7 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
                     Long.parseLong(obj.getYjlxh()),"卫生事件摘要表",obj.getSyxh()+"",new Timestamp(obj.getGxsj().getTime()),
                     obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                     "NA","NA","NA","NA", obj.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), obj, 1),
-                    PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), obj, 0)));
+                    PercentUtil.getPercent(Long.parseLong(Constants.WN_BLGY_WSSJZY_SOURCE_TYPE), obj, 0)));
             real_count++;
             }catch (Exception e){
                 e.printStackTrace();

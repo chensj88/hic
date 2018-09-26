@@ -131,7 +131,7 @@ public class HlhtZybcjlQjjlServiceImpl implements  HlhtZybcjlQjjlService {
                     //清除日志
                     Map<String,Object> param = new HashMap<>();
                     param.put("SOURCE_ID",obj.getYjlxh());
-                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_JDXJ_SOURCE_TYPE);
+                    param.put("SOURCE_TYPE",Constants.WN_ZYBCJL_QJJL_SOURCE_TYPE);
                     mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                     //3.xml文件解析 获取病历信息
                     Document document = null;
@@ -147,12 +147,12 @@ public class HlhtZybcjlQjjlServiceImpl implements  HlhtZybcjlQjjlService {
                     this.createHlhtZybcjlQjjl(obj);
                     //插入日志
                     mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                            Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
+                            Long.parseLong(Constants.WN_ZYBCJL_QJJL_SOURCE_TYPE),
                             Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
                             obj.getFssj(),
                             obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
                             obj.getKsmc(),obj.getKsdm(), obj.getBqmc(),obj.getBqdm(), obj.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), obj, 1),
-                            PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), obj, 0)));
+                            PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_QJJL_SOURCE_TYPE), obj, 0)));
                     real_count++;
 
                 }
