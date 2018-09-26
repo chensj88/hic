@@ -105,7 +105,7 @@ SELECT
         SELECT
         e.NAME
         FROM
-        EMR_SYS_DQDMK e
+        [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e
         WHERE
         b.QXDM = e.DQDM
         ),
@@ -211,21 +211,21 @@ SELECT
         m.NAME AS zylbmc,
         (CASE b.LXDH WHEN '' THEN 'NA' ELSE b.LXDH END)AS hzdhhm,
         ISNULL(
-        (SELECT TOP 1 e.SSDQDM FROM EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,
+        (SELECT TOP 1 e.SSDQDM FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbdm,
         ISNULL(
-        (SELECT TOP 1 e.SSDQMC FROM EMR_SYS_DQDMK e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbmc,
+        (SELECT TOP 1 e.SSDQMC FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e WHERE e.SSDQDM = b.SSDM  ),'NA') AS zzlbmc,
         ISNULL(
-        (SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.SSDM = e.DQDM),'NA') AS dzsf,
+        (SELECT e.NAME FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e WHERE b.SSDM = e.DQDM),'NA') AS dzsf,
         ISNULL(
-        (SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'NA') AS dzsq,
+        (SELECT e.NAME FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e WHERE b.QXDM = e.DQDM),'NA') AS dzsq,
         ISNULL(
-        (SELECT e.NAME FROM EMR_SYS_DQDMK e WHERE b.QXDM = e.DQDM),'NA') AS dzx,
+        (SELECT e.NAME FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e WHERE b.QXDM = e.DQDM),'NA') AS dzx,
         ISNULL(
         (
         SELECT
         e.NAME
         FROM
-        EMR_SYS_DQDMK e
+        [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] e
         WHERE
         b.QXDM = e.DQDM
         ),
