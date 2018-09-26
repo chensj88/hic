@@ -1,6 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.PercentUtil;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.cisdb.EmrQtbljlkDao;
 import com.winning.hic.dao.data.HlhtMjzcfZycfDao;
@@ -87,7 +88,7 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtMjzcfZycf(MbzDataCheck entity) {
+    public List<MbzDataCheck> interfaceHlhtMjzcfZycf(MbzDataCheck entity) throws Exception {
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
         int emr_count =0;//病历数量
@@ -129,7 +130,9 @@ public class HlhtMjzcfZycfServiceImpl implements HlhtMjzcfZycfService {
                         Long.parseLong(Constants.WN_MJZCF_ZYCF_SOURCE_TYPE),
                         Long.parseLong(obj.getYjlxh()),"中药处方","NA",new Timestamp(obj.getCfklrq().getTime()),
                         obj.getPatid(),obj.getMjzh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
-                        "NA","NA", "NA","NA", obj.getSfzhm()));
+                        "NA","NA", "NA","NA", obj.getSfzhm(),
+                        PercentUtil.getPercent(Long.parseLong(Constants.WN_MJZCF_ZYCF_SOURCE_TYPE), obj, 1),
+                        PercentUtil.getPercent(Long.parseLong(Constants.WN_MJZCF_ZYCF_SOURCE_TYPE), obj, 0)));
                 real_count++;
             }
         }
