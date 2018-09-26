@@ -87,7 +87,7 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
     public HlhtRyjlRyswjl getInitHlhtRyjlRyswjl(HlhtRyjlRyswjl hlhtRyjlRyswjl){
         return this.commonQueryDao.selectInitHlhtRyjlRyswjl(hlhtRyjlRyswjl);
     }
-    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(MbzDataCheck entity) throws IOException, ParseException {
+    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(MbzDataCheck entity) throws Exception {
         //加载模板库 根据模板类型获取对应的病历模板代码
         MbzDataCheck mbzDataCheck = new MbzDataCheck();
         int emr_count =0;//病历数量
@@ -272,7 +272,9 @@ public class HlhtRyjlRyswjlServiceImpl implements  HlhtRyjlRyswjlService {
                         Long.parseLong(obj.getYjlxh()), obj.getBlmc(),obj.getSyxh()+"",
                         obj.getFssj(),
                         obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
-                        "NA","NA",  "NA","NA", obj.getSfzhm()));
+                        "NA","NA",  "NA","NA", obj.getSfzhm(),
+                        PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE), obj, 1),
+                        PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_RYSWJL_SOURCE_TYPE), obj, 0)));
                 real_count++;
             }
         }else{

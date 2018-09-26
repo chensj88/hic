@@ -45,5 +45,5 @@ public interface HlhtRyjlRyswjlService {
      * @throws IOException
      * @throws ParseException
      */
-    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(MbzDataCheck entity) throws IOException, ParseException;
+    public List<MbzDataCheck> interfaceHlhtRyjlRyswjl(MbzDataCheck entity) throws Exception;
 }

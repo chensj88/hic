@@ -36,6 +36,6 @@ public interface HlhtZybcjlShscbcjlService {
      * @param entity
      * @return
      */
-    public List<MbzDataCheck> interfaceHlhtZybcjlShscbcjl(MbzDataCheck entity) throws IOException, ParseException;
+    public List<MbzDataCheck> interfaceHlhtZybcjlShscbcjl(MbzDataCheck entity) throws Exception;
 
 }
