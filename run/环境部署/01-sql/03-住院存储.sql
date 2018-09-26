@@ -561,9 +561,9 @@ WHERE A.jzlsh=C.SYXH AND (A.sjysbm ='NA' OR A.sjysqm ='NA' )
 UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
 FROM [HLHT_ZYBCJL_SCBCJL] A,[HLHT_RYJL_JBXX] C
 WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
-UPDATE [HLHT_ZYBCJL_SCBCJL] SET jzxyzdbm =czxyzdbm, jzxyzdmc=czxyzd
-WHERE jzxyzdbm='NA' AND jzxyzdmc='NA';
 
+UPDATE [HLHT_ZYBCJL_SCBCJL] SET jzxyzdbm =czxyzdbm, jzxyzdmc=czxyzd
+WHERE CONVERT(varchar,jzxyzdbm) ='NA' AND CONVERT(varchar,jzxyzdmc）='NA';
 
 -- 其他知情告知同意书
 UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
