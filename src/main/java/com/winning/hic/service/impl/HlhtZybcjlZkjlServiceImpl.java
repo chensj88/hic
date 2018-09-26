@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -95,9 +96,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
         List<MbzDataCheck> mbzDataChecks = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
-        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //加上时间
-
-
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         MbzDataSet mbzDataSet = new MbzDataSet();
         mbzDataSet.setSourceType(Constants.WN_ZYBCJL_ZKJL_SOURCE_TYPE);
@@ -174,7 +173,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                         }else{ //转入记录
                             //找出对应的转出记录，update它的值
                             EmrQtbljlk qt = new EmrQtbljlk();
-                            qt.setCjsj( sDateFormat.format(obj.getCjsj()));
+                            qt.setCjsj( sdf.format(obj.getCjsj()));
                             qt.setSyxh(Integer.parseInt(obj.getSyxh()));
                             String yjlxh = emrQtbljlkDao.selectEmrQtbljlkId(qt);
                             HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
