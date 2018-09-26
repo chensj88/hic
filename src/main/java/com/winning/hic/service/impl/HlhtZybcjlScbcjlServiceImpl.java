@@ -147,7 +147,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
                     }
                     //汉字编码转正常
                     obj.setCzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getCzxyzdbm(),obj.getSyxh()));
-                    obj.setJzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getJzxyzdbm(),obj.getSyxh()));
+                    //obj.setJzxyzdbm(mbzDataSetService.getEmrBrzdqkCtoE(obj.getJzxyzdbm(),obj.getSyxh()));
 
                     //初步诊断-中医病名代码、名称处理
                     if(!"NA".equals(obj.getCzzybmdm())&& StringUtil.isChineseTo(obj.getCzzyzhdm())){

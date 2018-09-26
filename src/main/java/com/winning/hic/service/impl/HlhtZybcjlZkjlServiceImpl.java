@@ -184,6 +184,7 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                                 zkjl.setZrysbm(null);
                                 zkjl.setZrysqm(null);
                                 Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+
                                 try {
                                     zkjl = (HlhtZybcjlZkjl) HicHelper.initModelValue(rDataSetList, document, zkjl, paramTypeMap);
 
