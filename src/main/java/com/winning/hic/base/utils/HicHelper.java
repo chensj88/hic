@@ -148,6 +148,7 @@ public class HicHelper {
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
+                        value = new java.sql.Timestamp(sdf.parse("1990-01-01 00:00:00").getTime());
                     }
                 } else if (paramType.contains("Date")) {
                     //格式：636467930400000000`2017-11-20,16:44
