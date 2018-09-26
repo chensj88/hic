@@ -1,5 +1,7 @@
 package com.winning.hic.controller;
 
+import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.DateUtil;
 import com.winning.hic.model.MbzAutomateSet;
 import com.winning.hic.model.MbzDictInfo;
@@ -9,11 +11,15 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -91,6 +97,12 @@ public class PageController extends BaseController {
     @GetMapping(value = "/logger/index")
     public String goToLoggerPage(){
         return "logger/index";
+    }
+
+    @ApiOperation(value = "页面跳转",notes = "跳转病历解析页面")
+    @GetMapping(value = "/blnr")
+    public String goToBLJXPage(){
+        return "init/demo";
     }
 
 
