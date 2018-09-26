@@ -1,6 +1,7 @@
 package com.winning.hic.service.impl;
 
 import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.PercentUtil;
 import com.winning.hic.dao.cisdb.CommonQueryDao;
 import com.winning.hic.dao.data.HlhtBlgyWssjzyDao;
 import com.winning.hic.dao.data.MbzLoadDataInfoDao;
@@ -77,7 +78,7 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
     }
 
     @Override
-    public MbzDataCheck interfaceHlhtBlgyWssjzy(MbzDataCheck entity) {
+    public MbzDataCheck interfaceHlhtBlgyWssjzy(MbzDataCheck entity){
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
 
@@ -100,6 +101,8 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
             param.put("SOURCE_ID",obj.getYjlxh());
             param.put("SOURCE_TYPE",Constants.WN_BLGY_WSSJZY_SOURCE_TYPE);
             mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
+            try {
+
 
             logger.info("Model:{}", obj);
             //创建新的数据
@@ -110,8 +113,12 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
                     Long.parseLong(Constants.WN_BLGY_WSSJZY_SOURCE_TYPE),
                     Long.parseLong(obj.getYjlxh()),"卫生事件摘要表",obj.getSyxh()+"",new Timestamp(obj.getGxsj().getTime()),
                     obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
-                    "NA","NA","NA","NA", obj.getSfzhm()));
+                    "NA","NA","NA","NA", obj.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_RYJL_JBXX_SOURCE_TYPE), obj, 1),
+                    PercentUtil.getPercent(Long.parseLong(Constants.WN_BLGY_WSSJZY_SOURCE_TYPE), obj, 0)));
             real_count++;
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
 
