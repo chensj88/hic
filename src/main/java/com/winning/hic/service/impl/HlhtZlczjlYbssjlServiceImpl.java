@@ -135,6 +135,25 @@ public class HlhtZlczjlYbssjlServiceImpl implements  HlhtZlczjlYbssjlService {
                     try {
                         document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
                         obj = (HlhtZlczjlYbssjl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                        //手术史标志
+                        if("NA".equals(obj.getSssbz()) ||"F".equals(obj.getSssbz()) ){
+                            obj.setSssbz("F");
+                        }else{
+                            obj.setSssbz("T");
+                        }
+                        //引流标志
+                        if("NA".equals(obj.getYlbz()) || "F".equals(obj.getYlbz())){
+                            obj.setYlbz("F");
+                        }else{
+                            obj.setYlbz("T");
+                        }
+                        //输血反应标志
+                        if("NA".equals(obj.getSxfybz()) || "F".equals(obj.getSxfybz())){
+                            obj.setSxfybz("F");
+                        }else{
+                            obj.setSxfybz("T");
+                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -144,7 +163,7 @@ public class HlhtZlczjlYbssjlServiceImpl implements  HlhtZlczjlYbssjlService {
                     this.createHlhtZlczjlYbssjl(obj);
                     //插入日志
                     mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
-                            Long.parseLong(Constants.WN_ZYBCJL_CYJL_SOURCE_TYPE),
+                            Long.parseLong(Constants.WN_ZLCZJL_YBSSJL_SOURCE_TYPE),
                             Long.parseLong(obj.getYjlxh()), obj.getBlmc(), obj.getSyxh() + "",
                             obj.getFssj(),
                             obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
