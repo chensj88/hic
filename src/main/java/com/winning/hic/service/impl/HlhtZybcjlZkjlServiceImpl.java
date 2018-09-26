@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -94,6 +95,8 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
         List<MbzDataCheck> mbzDataChecks = null;
         int emr_count =0;//病历数量
         int real_count=0;//实际数量
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //加上时间
+
 
 
         MbzDataSet mbzDataSet = new MbzDataSet();
@@ -170,7 +173,10 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
 
                         }else{ //转入记录
                             //找出对应的转出记录，update它的值
-                            String yjlxh = emrQtbljlkDao.selectEmrQtbljlkId(obj.getCjsj());
+                            EmrQtbljlk qt = new EmrQtbljlk();
+                            qt.setCjsj( sDateFormat.format(obj.getCjsj()));
+                            qt.setSyxh(Integer.parseInt(obj.getSyxh()));
+                            String yjlxh = emrQtbljlkDao.selectEmrQtbljlkId(qt);
                             HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
                             zkjl.setYjlxh(yjlxh);
                             zkjl =this.getHlhtZybcjlZkjl(zkjl);
