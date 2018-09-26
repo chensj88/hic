@@ -137,7 +137,14 @@ public class HicHelper {
                             pattern = "yyyy-MM-dd";
                         }
                     } else {
-                        dateStr = dateStr.concat(":00").substring(0, 18);
+                        logger.info("dateStr:" + dateStr);
+                        dateStr = dateStr.concat(":00");
+                        if (dateStr.length() < 18) {
+                            dateStr = dateStr.substring(0, 10).trim();
+                            pattern = "yyyy-MM-dd";
+                        } else {
+                            dateStr = dateStr.substring(0, 18);
+                        }
                     }
                     SimpleDateFormat sdf = new SimpleDateFormat(pattern);
                     try {

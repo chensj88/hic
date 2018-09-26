@@ -5,6 +5,8 @@ import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.model.MbzDataCheck;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -164,6 +166,15 @@ public class TestController extends BaseController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("data", super.getFacade().getHlhtMjzcfXycfService().interfaceHlhtMjzcfXycf(entity));
+        return result;
+    }
+
+    @PostMapping(value = "/blnr/parse")
+    public Map<String, Object> parseBlnr(String blnr) throws IOException {
+        blnr = blnr.substring(3);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", Base64Utils.unzipEmrXml(blnr));
         return result;
     }
 }

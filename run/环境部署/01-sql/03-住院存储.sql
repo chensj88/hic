@@ -487,32 +487,72 @@ UPDATE A SET A.dlrhzgxdm ='8' FROM [HLHT_ZQGZXX_SXZLTYS] A WHERE A.dlrhzgxdm ='N
 UPDATE A SET A.dlrhzgxmc ='其他' FROM [HLHT_ZQGZXX_SXZLTYS] A WHERE A.dlrhzgxmc ='NA'
 --------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------  chen kuai-------------------------------------------------------------------
+----首次病程
+UPDATE A SET A.sjysbm =isnull(C.ZRYSDM,'NA'),A.sjysqm=isnull(C.ZRYSXM,'NA')
+FROM [HLHT_ZYBCJL_SCBCJL] A,[HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] C
+WHERE A.jzlsh=C.SYXH AND (A.sjysbm ='NA' OR A.sjysqm ='NA' )
+
+--中医四诊
+UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
+FROM [HLHT_ZYBCJL_SCBCJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock)
+WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
+
+UPDATE [HLHT_ZYBCJL_SCBCJL] SET jzxyzdbm =czxyzdbm, jzxyzdmc=czxyzd
+WHERE CONVERT(varchar,jzxyzdbm) ='NA' AND CONVERT(varchar,jzxyzdmc)='NA';
+
+-- 其他知情告知同意书
+UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
+  FROM [HLHT_ZQGZXX_QTZQTYS] A(nolock) LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B(nolock) ON A.jzlsh =B.HISSYXH
+    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+  WHERE  ( CONVERT(varchar,A.jbzd) ='NA' OR CONVERT(varchar,A.jbzdbm) ='NA' );
+
+  UPDATE [HLHT_ZQGZXX_QTZQTYS] SET hzqm=dlrqm WHERE CONVERT(varchar,hzqm)='NA' ;
+
+-- 出院小结
+--中医四诊
+UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
+FROM [HLHT_CYXJ_CYXJ] A(nolock),[HLHT_RYJL_JBXX] C(nolock)
+WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
+
+--入院诊断-中医病名代码 入院诊断-中医病名名称
+UPDATE A SET A.rzzybm =isnull(B.czzybmmc,'NA')  ,A.rzzybmdm=isnull(B.czzybmdm,'NA')
+FROM [HLHT_CYXJ_CYXJ] A(nolock)
+LEFT JOIN [HLHT_RYJL_JBXX] B(nolock) ON A.jzlsh =B.jzlsh
+WHERE  ( CONVERT(varchar,A.rzzybmdm) ='NA' OR CONVERT(varchar,A.rzzybm) ='NA') ;
+
+UPDATE A SET A.rzzyzh = isnull(B.czzyzhmc,'NA') ,A.rzzyzhdm=isnull(B.czzyzhdm,'NA')
+FROM [HLHT_CYXJ_CYXJ] A(nolock)
+LEFT JOIN [HLHT_RYJL_JBXX] B(nolock) ON A.jzlsh =B.jzlsh
+WHERE  ( CONVERT(varchar,A.rzzyzh) ='NA' OR CONVERT(varchar,A.rzzyzhdm) ='NA') ;
+
+
+
 ------阶段小结------------------------------------------------------------------------------------------------------
 --入院诊断-中医病名代码 入院诊断-中医病名名称
 UPDATE A SET A.rzzybm =isnull(B.czzybmmc,'NA')  ,A.rzzybmdm=isnull(B.czzybmdm,'NA')
-FROM [HLHT_ZYBCJL_JDXJ] A
-LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh
+FROM [HLHT_ZYBCJL_JDXJ] A(nolock)
+LEFT JOIN [HLHT_RYJL_JBXX] B(nolock) ON A.jzlsh =B.jzlsh
 WHERE  ( CONVERT(varchar,A.rzzybmdm) ='NA' OR CONVERT(varchar,A.rzzybm) ='NA') ;
 
 UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
-FROM [HLHT_ZYBCJL_JDXJ] A,[HLHT_RYJL_JBXX] C
+FROM [HLHT_ZYBCJL_JDXJ] A(nolock),[HLHT_RYJL_JBXX] C(nolock)
 WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
 
 UPDATE [HLHT_ZYBCJL_SCBCJL] SET jzxyzdbm =czxyzdbm, jzxyzdmc=czxyzd
 WHERE jzxyzdbm='NA' AND jzxyzdmc='NA';
 
-UPDATE A SET A.zs=isnull(B.zs,'NA')  FROM [HLHT_ZYBCJL_JDXJ] A LEFT JOIN [HLHT_ZYBCJL_SCBCJL] B ON A.jzlsh=B.jzlsh
-UPDATE [HLHT_ZYBCJL_JDXJ] SET zyszgcjg='无' WHERE CONVERT(varchar,zyszgcjg) ='N'
+UPDATE A SET A.zs=isnull(B.zs,'NA')  FROM [HLHT_ZYBCJL_JDXJ] A(nolock) LEFT JOIN [HLHT_ZYBCJL_SCBCJL] B(nolock) ON A.jzlsh=B.jzlsh
 --入院诊断-中医证候代码 入院诊断-中医证候名称
 
 UPDATE A SET A.rzzyzh = isnull(B.czzyzhmc,'NA') ,A.rzzyzhdm=isnull(B.czzyzhdm,'NA')
-FROM [HLHT_ZYBCJL_JDXJ] A
-LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh
+FROM [HLHT_ZYBCJL_JDXJ] A(nolock)
+LEFT JOIN [HLHT_RYJL_JBXX] B(nolock) ON A.jzlsh =B.jzlsh
 WHERE  ( CONVERT(varchar,A.rzzyzh) ='NA' OR CONVERT(varchar,A.rzzyzhdm) ='NA') ;
 --医嘱内容
 UPDATE A SET A.yznr = ISNULL((SELECT LEFT(t.YPMC,LEN(t.YPMC)-1) as YPMC
-FROM (SELECT (SELECT YPMC+',' FROM [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_LSYZK] B WHERE B.SYXH=A.jzlsh FOR XML PATH('') ) AS YPMC ) t),'NA')
-FROM [HLHT_ZYBCJL_JDXJ] A WHERE CONVERT(varchar,A.yznr) ='NA'
+FROM (SELECT (SELECT YPMC+',' FROM [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_LSYZK] B(nolock) WHERE B.SYXH=A.jzlsh FOR XML PATH('') ) AS YPMC ) t),'NA')
+FROM [HLHT_ZYBCJL_JDXJ] A(nolock) WHERE CONVERT(varchar,A.yznr) ='NA'
 
 --目前诊断中医、症候
 UPDATE A SET A.mqzdzybm =isnull(B.czzybmmc,'NA')  ,A.mqzdzybmdm=isnull(B.czzybmdm,'NA')
@@ -526,19 +566,12 @@ LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh
 WHERE  ( CONVERT(varchar,A.mqzdzyzhdm) ='NA' OR CONVERT(varchar,A.mqzdzyzh) ='NA') ;
 
 
----------------------------------------------------------------------------------------------------------------------
 ------抢救记录------------------------------------------------------------------------------------------------------
 UPDATE A SET A.jbzdmc = C.ZDMC,A.jbzdbm = C.ZDDM
-FROM [HLHT_ZYBCJL_QJJL] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B ON A.jzlsh =B.HISSYXH
-  LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+FROM [HLHT_ZYBCJL_QJJL] A(nolock) LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B(nolock) ON A.jzlsh =B.HISSYXH
+  LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C(nolock) ON B.SYXH = C.SYXH AND C.ZDLB = 1
 WHERE  ( CONVERT(varchar,A.jbzdmc) ='NA' OR CONVERT(varchar,A.jbzdbm) ='NA' )
 
-UPDATE [HLHT_ZYBCJL_QJJL] SET jcjyxmmc='无' WHERE CONVERT(varchar,jcjyxmmc) ='N'
-UPDATE [HLHT_ZYBCJL_QJJL] SET jrwdm=NULL
-UPDATE [HLHT_ZYBCJL_QJJL] SET jcjyjg='无' WHERE CONVERT(varchar,jcjyjg) ='N'
-UPDATE [HLHT_ZYBCJL_QJJL] SET jcjydljg='0.0000' WHERE jcjydljg ='-9.0000'
-UPDATE [HLHT_ZYBCJL_QJJL] SET jcjyjgdm='无' WHERE CONVERT(varchar,jcjyjgdm) ='N'
-UPDATE [HLHT_ZYBCJL_QJJL] SET zysx='无' WHERE CONVERT(varchar,zysx) ='N'
 
 UPDATE 	A SET A.qmrq=B.FSSJ from  [HLHT_ZYBCJL_QJJL] A
 LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] B ON A.yjlxh =B.QTBLJLXH
@@ -551,64 +584,23 @@ select * from f_splitSTR(C.cjqjrydm,',')) for xml path('')),1,1,'') as dm,
 select * from f_splitSTR(C.cjqjrydm,',')) for xml path('')),1,1,'')  as mc,
      C.yjlxh
    from [HLHT_ZYBCJL_QJJL] C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'NA' OR D.zyzwlbmc='NA')
---------------------------------------------------  chen kuai-------------------------------------------------------------------
-----首次病程
-UPDATE A SET A.sjysbm =isnull(C.ZRYSDM,'NA'),A.sjysqm=isnull(C.ZRYSXM,'NA')
-FROM [HLHT_ZYBCJL_SCBCJL] A,[HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] C
-WHERE A.jzlsh=C.SYXH AND (A.sjysbm ='NA' OR A.sjysqm ='NA' )
 
---中医四诊
-UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
-FROM [HLHT_ZYBCJL_SCBCJL] A,[HLHT_RYJL_JBXX] C
-WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
-
-UPDATE [HLHT_ZYBCJL_SCBCJL] SET jzxyzdbm =czxyzdbm, jzxyzdmc=czxyzd
-WHERE CONVERT(varchar,jzxyzdbm) ='NA' AND CONVERT(varchar,jzxyzdmc）='NA';
-
--- 其他知情告知同意书
-UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
-  FROM [HLHT_ZQGZXX_QTZQTYS] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B ON A.jzlsh =B.HISSYXH
-    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C ON B.SYXH = C.SYXH AND C.ZDLB = 1
-  WHERE  ( CONVERT(varchar,A.jbzd) ='NA' OR CONVERT(varchar,A.jbzdbm) ='NA' );
-
-UPDATE [HLHT_ZQGZXX_QTZQTYS] SET yljgyj='无' WHERE CONVERT(varchar,yljgyj)='N' ;
-UPDATE [HLHT_ZQGZXX_QTZQTYS] SET dlryj='无' WHERE CONVERT(varchar,dlryj)='N' ;
-UPDATE [HLHT_ZQGZXX_QTZQTYS] SET hzqm=dlrqm WHERE CONVERT(varchar,hzqm)='N' ;
-UPDATE [HLHT_ZQGZXX_QTZQTYS] SET dlrhzgx='无' WHERE CONVERT(varchar,dlrhzgx)='N' ;
-UPDATE [HLHT_ZQGZXX_QTZQTYS] SET dlrhzmc='无' WHERE CONVERT(varchar,dlrhzmc)='N' ;
-
--- 出院小结
---中医四诊
-UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
-FROM [HLHT_CYXJ_CYXJ] A,[HLHT_RYJL_JBXX] C
-WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
-
---入院诊断-中医病名代码 入院诊断-中医病名名称
-UPDATE A SET A.rzzybm =isnull(B.czzybmmc,'NA')  ,A.rzzybmdm=isnull(B.czzybmdm,'NA')
-FROM [HLHT_CYXJ_CYXJ] A
-LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh
-WHERE  ( CONVERT(varchar,A.rzzybmdm) ='NA' OR CONVERT(varchar,A.rzzybm) ='NA') ;
-
-UPDATE A SET A.rzzyzh = isnull(B.czzyzhmc,'NA') ,A.rzzyzhdm=isnull(B.czzyzhdm,'NA')
-FROM [HLHT_CYXJ_CYXJ] A
-LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh
-WHERE  ( CONVERT(varchar,A.rzzyzh) ='NA' OR CONVERT(varchar,A.rzzyzhdm) ='NA') ;
 
 --出院诊断-中医病名代码
 
 UPDATE A SET A.czzybm =isnull(B.czzybmmc,'NA')  ,A.czzybmdm=isnull(B.czzybmdm,'NA')
-FROM [HLHT_CYXJ_CYXJ] A
-LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh
+FROM [HLHT_CYXJ_CYXJ] A(nolock)
+LEFT JOIN [HLHT_RYJL_JBXX] B(nolock) ON A.jzlsh =B.jzlsh
 WHERE  ( CONVERT(varchar,A.czzybmdm) ='NA' OR CONVERT(varchar,A.czzybm) ='NA') ;
 
 UPDATE A SET A.czzyzh = isnull(B.czzyzhmc,'NA') ,A.czzyzhdm=isnull(B.czzyzhdm,'NA')
-FROM [HLHT_CYXJ_CYXJ] A
-LEFT JOIN [HLHT_RYJL_JBXX] B ON A.jzlsh =B.jzlsh
+FROM [HLHT_CYXJ_CYXJ] A(nolock)
+LEFT JOIN [HLHT_RYJL_JBXX] B(nolock) ON A.jzlsh =B.jzlsh
 WHERE  ( CONVERT(varchar,A.czzyzh) ='NA' OR CONVERT(varchar,A.czzyzhdm) ='NA') ;
 
 --切口愈合等级代码、名称
 UPDATE A SET A.qkyhdjdm = CASE WHEN B.SSDJ IS NULL THEN 'NA' ELSE B.SSDJ END,A.qkyhdjmc = CASE WHEN B.SSDJMC IS NULL THEN 'NA' ELSE B.SSDJMC END
-FROM [HLHT_CYXJ_CYXJ] A LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_SSYZK] B ON A.jzlsh = B.SYXH
+FROM [HLHT_CYXJ_CYXJ] A(nolock) LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_SSYZK] B(nolock) ON A.jzlsh = B.SYXH
 WHERE (A.qkyhdjmc = 'NA' OR A.qkyhdjdm ='NA');
 
 --麻醉方法代码、名称
@@ -976,20 +968,20 @@ WHERE  ( CONVERT(varchar,A.mqzdzybm) ='NA' OR CONVERT(varchar,A.mqzdzyzhdm) ='NA
 ---会诊记录
 --中医“四诊”观察结果
 UPDATE A SET A.zyszgcjg =isnull(C.zyszgcjg,'NA')
-FROM [HLHT_ZYBCJL_HZJL] A,[HLHT_RYJL_JBXX] C
+FROM [HLHT_ZYBCJL_HZJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock)
 WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyszgcjg) ='NA';
 
 
 UPDATE A SET A.xyzdmc =isnull(C.czxyzdmc,'NA'),A.xyzdbm =isnull(C.czxyzdbm,'NA')
-FROM [HLHT_ZYBCJL_HZJL] A,[HLHT_RYJL_JBXX] C
+FROM [HLHT_ZYBCJL_HZJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock)
 WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.xyzdmc) ='NA' OR CONVERT(varchar,A.xyzdbm) ='NA';
 
 UPDATE A SET A.zybmmc =isnull(C.czzybmmc,'NA'),A.zybmdm =isnull(C.czzybmdm,'NA')
-FROM [HLHT_ZYBCJL_HZJL] A,[HLHT_RYJL_JBXX] C
+FROM [HLHT_ZYBCJL_HZJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock)
 WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zybmmc) ='NA' OR CONVERT(varchar,A.zybmdm) ='NA';
 
 UPDATE A SET A.zyzhmc =isnull(C.czzyzhmc,'NA'),A.zyzhdm =isnull(C.czzyzhdm,'NA')
-FROM [HLHT_ZYBCJL_HZJL] A,[HLHT_RYJL_JBXX] C
+FROM [HLHT_ZYBCJL_HZJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock)
 WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyzhmc) ='NA' OR CONVERT(varchar,A.zyzhdm) ='NA';
 
 UPDATE [HLHT_ZYBCJL_HZJL] SET hzyy =ISNULL(hzmd, 'NA') WHERE hzyy='NA';
