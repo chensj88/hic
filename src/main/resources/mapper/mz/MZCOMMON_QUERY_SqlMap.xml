@@ -794,7 +794,7 @@
         )  AS xbdm,
         c.SEX AS xbmc,
         CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'''') AS nls,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'0') AS nls,
         DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
         i.DICT_LABEL AS zzjgmc,
         ii.DICT_LABEL AS zzjgdm,
@@ -818,8 +818,8 @@
         GETDATE() AS gxsj,
         t.YXJL AS yxjl, t.SYXH AS syxh, t.TJZT as tjzt FROM CISDB.dbo.EMR_QTBLJLK t
         LEFT JOIN CISDB.dbo.OUTP_JZJLK c ON t.SYXH = c.EMRXH
-        LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
-        LEFT JOIN CISDB_DATA.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
+        LEFT JOIN CIS_HLHT.dbo.MBZ_DICT_INFO i ON i.DICT_CODE = 'hospitalInfoName'
+        LEFT JOIN CIS_HLHT.dbo.MBZ_DICT_INFO ii ON ii.DICT_CODE = 'hospitalInfoNo'
         WHERE  1=1
         <if test="(map.QTBLJLXH != null and map.QTBLJLXH != '') or map.QTBLJLXH == 0">and t.QTBLJLXH = (#{map.QTBLJLXH})</if>
 

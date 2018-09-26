@@ -1,5 +1,6 @@
 package com.winning.hic.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.io.Serializable;
 import java.sql.Date;
@@ -87,7 +88,7 @@ public class HlhtMjzblMjzbl extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Short nls;
+    private BigDecimal nls;
     /**
      * 字段名：nly
      * 备注: 
@@ -584,7 +585,7 @@ public class HlhtMjzblMjzbl extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Short getNls(){
+   public BigDecimal getNls(){
 
         return nls;
    }
@@ -594,7 +595,7 @@ public class HlhtMjzblMjzbl extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setNls(Short nls){
+   public void setNls(BigDecimal nls){
         this.nls = nls;
    }
    /**
