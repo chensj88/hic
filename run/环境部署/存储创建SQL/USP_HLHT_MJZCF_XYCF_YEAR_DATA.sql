@@ -28,13 +28,13 @@ if @syxh  is null or @syxh = ''
   --不存在首页序号
 	begin
     --创建临时表
-		SELECT * INTO #OUTP_NORDERITEM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDERITEM] T(nolock)
-		WHERE T.CJRQ BETWEEN  @startDate  AND  @endDate
-		--在临时表上增加索引
-		CREATE INDEX CD_IDM_INDEX ON #OUTP_NORDERITEM (CD_IDM);
-		--查询业务数据
+	SELECT * INTO #YF_NMZFYZD FROM [HLHT_MZ_HIS].[THIS4].[dbo].[YF_NMZFYZD] T(nolock)
+	WHERE T.fyrq BETWEEN  @startDate  AND  @endDate
+	--在临时表上增加索引
+	CREATE INDEX IDX_YF_NMZFYZD_CFXH ON #YF_NMZFYZD (cfxh);
+	--查询业务数据
      SELECT
-        ISNULL(CONVERT(VARCHAR,T1.XH),'NA')                                                                             AS yjlxh,
+        ISNULL(CONVERT(VARCHAR,T4.XH),'NA')                                                                             AS yjlxh,
         ISNULL(CONVERT(VARCHAR,T2.GHXH),'NA')                                                                           AS jzlsh,
         ISNULL(CONVERT(VARCHAR,T2.PATID),'NA')                                                                          AS patid,
         ISNULL(CONVERT(VARCHAR,T2.HZXM ),'NA')                                                                          AS hzxm,
@@ -45,13 +45,13 @@ if @syxh  is null or @syxh = ''
         ISNULL(T3.SEX, 'NA')                                                                                            AS xbmc,
         ISNULL(CONVERT (VARCHAR,(YEAR(GETDATE())-YEAR(CONVERT(DATETIME, T3.BIRTH)))) ,'')                              AS nls,
         DATEDIFF(MONTH,T3.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12                                     AS nly,
-        ISNULL(T1.CFXH, 'NA')                                                                                           AS cfxh,
+        ISNULL(T4.CFXH, 'NA')                                                                                           AS cfxh,
         ( SELECT t.DICT_LABEL FROM MBZ_DICT_INFO t
         WHERE t.DICT_CODE = 'hospitalInfoNo' AND t.DICT_VALUE = 1)                                                     AS zzjgdm,
         ( SELECT t.DICT_LABEL FROM MBZ_DICT_INFO t
         WHERE t.DICT_CODE = 'hospitalInfoName' AND t.DICT_VALUE = 1)                                                   AS zzjgmc,
         CONVERT(date,substring(T2.LRRQ,1,4)+'-'+substring(T2.LRRQ,5,2)+'-'+substring(T2.LRRQ,7,2))                     AS cfklrq,
-        T1.TS                                                                                                          AS cfyxts,
+        T4.TS                                                                                                          AS cfyxts,
         T2.KSDM                                                                                                        AS cfklskdm,
         T2.KSMC                                                                                                        AS cfklks,
         ISNULL((SELECT T7.ZDDM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T7(nolock)
@@ -60,121 +60,140 @@ if @syxh  is null or @syxh = ''
         ISNULL((SELECT T8.ZDMC FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T8(nolock)
         WHERE T2.GHXH = T8.GHXH AND T8.ZDLB = 0
         AND T8.ZDLX = 0 ),'NA')                                                                                        AS jbzd,
-        T1.YPDM                                                                                                        AS ywdm,
-        T1.YPMC                                                                                                        AS ywmc,
-        T1.YPGG                                                                                                        AS ywgg,
-        T1.JXDM                                                                                                        AS ywjxdm,
-        T1.JXMC                                                                                                        AS ywjx,
-        T1.YPJL                                                                                                        AS ywsycjl,
-        T1.JLDW                                                                                                        AS ywsyjldw,
-        T1.PCDM                                                                                                        AS ywsypcdm,
-        T1.PCMC                                                                                                        AS ywsypc,
-        T1.YPYF                                                                                                        AS ywsytj,
-        T1.YPYFMC                                                                                                      AS ywsytjmc,
-        T1.YPSL*T1.YPJL                                                                                                AS ywsyzjl,
-        T1.FZXH                                                                                                        AS cfypzh,
+        T4.YPDM                                                                                                        AS ywdm,
+        T4.YPMC                                                                                                        AS ywmc,
+        T4.YPGG                                                                                                        AS ywgg,
+        T4.JXDM                                                                                                        AS ywjxdm,
+        T4.JXMC                                                                                                        AS ywjx,
+        T4.YPJL                                                                                                        AS ywsycjl,
+        T4.JLDW                                                                                                        AS ywsyjldw,
+        T4.PCDM                                                                                                        AS ywsypcdm,
+        T4.PCMC                                                                                                        AS ywsypc,
+        T4.YPYF                                                                                                        AS ywsytj,
+        T4.YPYFMC                                                                                                      AS ywsytjmc,
+        T4.YPSL*T4.YPJL                                                                                                AS ywsyzjl,
+        T4.FZXH                                                                                                        AS cfypzh,
         T2.YSMC                                                                                                        AS klysqm,
         T2.YSDM                                                                                                        AS ysbm,
-        'NA'                                                                                                            AS shyjsbm,
-        'NA'                                                                                                            AS shyjsqm,
-        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS shyjsqmsj,
-        'NA'                                                                                                            AS tpyjsbm,
-        'NA'                                                                                                            AS tpyjsqm,
-        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cftpsj,
-        'NA'                                                                                                            AS hdyjsbm,
-        'NA'                                                                                                            AS hdyjsqm,
-        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cfhdsj,
-        'NA'                                                                                                            AS fyyjsbm,
-        'NA'                                                                                                            AS fyyjsqm,
-        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cffysj,
-        ISNULL(T2.MEMO, 'NA')                                                                                           AS cfbzxx,
-        CONVERT(DECIMAL(18,2),(T1.YPSL*T1.YLSJ)/T1.YKXS)                                                               AS cfypje,
-        GETDATE()                                                                                                      AS gxsj
-        FROM #OUTP_NORDERITEM T1
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDER] T2(nolock) ON T1.CFXH = T2.XH
+        T2.YSMC                                                                                                        AS shyjsbm,
+        T2.YSDM                                                                                                        AS shyjsqm,
+       CONVERT(datetime,
+       substring(T2.LRRQ,1,4)+'-'+substring(T2.LRRQ,5,2)+'-'+substring(T2.LRRQ,7,2)+' '+substring(T2.LRRQ,9,8))      AS shyjsqmsj,
+       T1.pyczry                                                                                                      AS tpyjsbm,
+       e.name                                                                                                        AS tpyjsqm,
+       CONVERT(datetime,
+       substring(T1.pyrq,1,4)+'-'+substring(T1.pyrq,5,2)+'-'+substring(T1.pyrq,7,2)+' '+substring(T1.pyrq,9,8))       AS cftpsj,
+       T1.fyczyh                                                                                                        AS hdyjsbm,
+       f.name                                                                                                         AS hdyjsqm,
+       CONVERT(datetime,
+       substring(T1.fyrq,1,4)+'-'+substring(T1.fyrq,5,2)+'-'+substring(T1.fyrq,7,2)+' '+substring(T1.fyrq,9,8))       AS cfhdsj,
+       T1.fyczyh                                                                                                       AS fyyjsbm,
+       f.name                                                                                                         AS fyyjsqm,
+       CONVERT(datetime,
+       substring(T1.fyrq,1,4)+'-'+substring(T1.fyrq,5,2)+'-'+substring(T1.fyrq,7,2)+' '+substring(T1.fyrq,9,8))       AS cffysj,
+       ISNULL(T2.MEMO, 'NA')                                                                                           AS cfbzxx,
+       CONVERT(DECIMAL(18,2),(T4.YPSL*T4.YLSJ)/T4.YKXS)                                                               AS cfypje,
+       GETDATE()                                                                                                      AS gxsj
+       FROM #YF_NMZFYZD T1
+       left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
+	   left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
+		left join [HLHT_MZ_HIS].[THIS4].[dbo].[SF_NMZCFK] c(nolock) on T1.cfxh=c.xh
+		left join [HLHT_MZ_HIS].[THIS4].[dbo].[GH_NGHZDK] b(nolock) on b.xh=c.ghxh
+        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDER] T2(nolock) ON b.xh = T2.GHXH
         INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
-        INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T1.CD_IDM = T6.idm
+        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
+        INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
         WHERE
         T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
+        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
+        AND c.fybz=1
 		--删除临时表
-		DROP TABLE #OUTP_NORDERITEM
+		DROP TABLE #YF_NMZFYZD
 	 end
 else
   --存在@syxh
 	begin
 	 --创建临时表
-		SELECT * INTO #OUTP_NORDER_TEMP FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDER] T(nolock)
-		WHERE  T.GHXH=@syxh
-		 --在临时表上增加索引
-		CREATE INDEX INDEX_OUTP_NORDER_TEMP ON #OUTP_NORDER_TEMP (GHXH);
-		--查询业务数据
-    SELECT
-        ISNULL(CONVERT(VARCHAR,T2.XH),'NA')                                                                             AS yjlxh,
-        ISNULL(CONVERT(VARCHAR,T1.GHXH),'NA')                                                                           AS jzlsh,
-        ISNULL(CONVERT(VARCHAR,T1.PATID),'NA')                                                                          AS patid,
-        ISNULL(CONVERT(VARCHAR,T1.HZXM ),'NA')                                                                          AS hzxm,
-        ISNULL(CONVERT(VARCHAR,T1.GHXH ),'NA')                                                                          AS mjzh,
+	SELECT * INTO #YF_NMZFYZD_TEMP FROM [HLHT_MZ_HIS].[THIS4].[dbo].[YF_NMZFYZD] T(nolock)
+	WHERE T.fyrq BETWEEN  @startDate  AND  @endDate
+	--在临时表上增加索引
+	CREATE INDEX IDX_YF_NMZFYZD_CFXH ON #YF_NMZFYZD_TEMP (cfxh);
+	--查询业务数据
+     SELECT
+        ISNULL(CONVERT(VARCHAR,T4.XH),'NA')                                                                             AS yjlxh,
+        ISNULL(CONVERT(VARCHAR,T2.GHXH),'NA')                                                                           AS jzlsh,
+        ISNULL(CONVERT(VARCHAR,T2.PATID),'NA')                                                                          AS patid,
+        ISNULL(CONVERT(VARCHAR,T2.HZXM ),'NA')                                                                          AS hzxm,
+        ISNULL(CONVERT(VARCHAR,T2.GHXH ),'NA')                                                                          AS mjzh,
         CASE WHEN RTRIM(LTRIM(T3.SFZH)) = '' THEN 'NA'
         ELSE ISNULL(CONVERT(VARCHAR,T3.SFZH ),'NA') END                                                            AS sfzhm,
         CASE T3.SEX WHEN '女' THEN '2' WHEN '男' THEN '1' ELSE '3'  END                                                AS xbdm,
         ISNULL(T3.SEX, 'NA')                                                                                            AS xbmc,
         ISNULL(CONVERT (VARCHAR,(YEAR(GETDATE())-YEAR(CONVERT(DATETIME, T3.BIRTH)))) ,'')                              AS nls,
         DATEDIFF(MONTH,T3.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12                                     AS nly,
-        ISNULL(T2.CFXH, 'NA')                                                                                           AS cfxh,
+        ISNULL(T4.CFXH, 'NA')                                                                                           AS cfxh,
         ( SELECT t.DICT_LABEL FROM MBZ_DICT_INFO t
         WHERE t.DICT_CODE = 'hospitalInfoNo' AND t.DICT_VALUE = 1)                                                     AS zzjgdm,
         ( SELECT t.DICT_LABEL FROM MBZ_DICT_INFO t
         WHERE t.DICT_CODE = 'hospitalInfoName' AND t.DICT_VALUE = 1)                                                   AS zzjgmc,
-        CONVERT(date,substring(T1.LRRQ,1,4)+'-'+substring(T1.LRRQ,5,2)+'-'+substring(T1.LRRQ,7,2))                     AS cfklrq,
-        T2.TS                                                                                                          AS cfyxts,
-        T1.KSDM                                                                                                        AS cfklskdm,
-        T1.KSMC                                                                                                        AS cfklks,
+        CONVERT(date,substring(T2.LRRQ,1,4)+'-'+substring(T2.LRRQ,5,2)+'-'+substring(T2.LRRQ,7,2))                     AS cfklrq,
+        T4.TS                                                                                                          AS cfyxts,
+        T2.KSDM                                                                                                        AS cfklskdm,
+        T2.KSMC                                                                                                        AS cfklks,
         ISNULL((SELECT T7.ZDDM FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T7(nolock)
-        WHERE T1.GHXH = T7.GHXH AND T7.ZDLB = 0
-        AND T7.ZDLX = 0 ),'NA')                                                                                             AS jbzdbm,
-        ISNULL((SELECT T8.ZDMC FROM  [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T8(nolock)
-        WHERE T1.GHXH = T8.GHXH AND T8.ZDLB = 0
-        AND T8.ZDLX = 0 ),'NA')                                                                                                AS jbzd,
-        T2.YPDM                                                                                                        AS ywdm,
-        T2.YPMC                                                                                                        AS ywmc,
-        T2.YPGG                                                                                                        AS ywgg,
-        T2.JXDM                                                                                                        AS ywjxdm,
-        T2.JXMC                                                                                                        AS ywjx,
-        T2.YPJL                                                                                                        AS ywsycjl,
-        T2.JLDW                                                                                                        AS ywsyjldw,
-        T2.PCDM                                                                                                        AS ywsypcdm,
-        T2.PCMC                                                                                                        AS ywsypc,
-        T2.YPYF                                                                                                        AS ywsytj,
-        T2.YPYFMC                                                                                                      AS ywsytjmc,
-        T2.YPSL*T2.YPJL                                                                                                AS ywsyzjl,
-        T2.FZXH                                                                                                        AS cfypzh,
-        T1.YSMC                                                                                                        AS klysqm,
-        T1.YSDM                                                                                                        AS ysbm,
-        'NA'                                                                                                            AS shyjsbm,
-        'NA'                                                                                                            AS shyjsqm,
-        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS shyjsqmsj,
-        'NA'                                                                                                            AS tpyjsbm,
-        'NA'                                                                                                            AS tpyjsqm,
-        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cftpsj,
-        'NA'                                                                                                            AS hdyjsbm,
-        'NA'                                                                                                            AS hdyjsqm,
-        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cfhdsj,
-        'NA'                                                                                                            AS fyyjsbm,
-        'NA'                                                                                                            AS fyyjsqm,
-        CONVERT(DATE, '1990-01-01 00:00:00', 120)                                                                      AS cffysj,
-        ISNULL(T1.MEMO, 'NA')                                                                                           AS cfbzxx,
-        CONVERT(DECIMAL(18,2),(T2.YPSL*T2.YLSJ)/T2.YKXS)                                                               AS cfypje,
-        GETDATE()                                                                                                      AS gxsj
-        FROM #OUTP_NORDER_TEMP T1
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDERITEM] T2(nolock) ON T1.XH = T2.CFXH
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T3(nolock) ON T1.GHXH = T3.GHXH
-        INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T2.CD_IDM = T6.idm
+        WHERE T2.GHXH = T7.GHXH AND T7.ZDLB = 0
+        AND T7.ZDLX = 0 ),'NA')                                                                                        AS jbzdbm,
+        ISNULL((SELECT T8.ZDMC FROM [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_MZBLZDK] T8(nolock)
+        WHERE T2.GHXH = T8.GHXH AND T8.ZDLB = 0
+        AND T8.ZDLX = 0 ),'NA')                                                                                        AS jbzd,
+        T4.YPDM                                                                                                        AS ywdm,
+        T4.YPMC                                                                                                        AS ywmc,
+        T4.YPGG                                                                                                        AS ywgg,
+        T4.JXDM                                                                                                        AS ywjxdm,
+        T4.JXMC                                                                                                        AS ywjx,
+        T4.YPJL                                                                                                        AS ywsycjl,
+        T4.JLDW                                                                                                        AS ywsyjldw,
+        T4.PCDM                                                                                                        AS ywsypcdm,
+        T4.PCMC                                                                                                        AS ywsypc,
+        T4.YPYF                                                                                                        AS ywsytj,
+        T4.YPYFMC                                                                                                      AS ywsytjmc,
+        T4.YPSL*T4.YPJL                                                                                                AS ywsyzjl,
+        T4.FZXH                                                                                                        AS cfypzh,
+        T2.YSMC                                                                                                        AS klysqm,
+        T2.YSDM                                                                                                        AS ysbm,
+        T2.YSMC                                                                                                        AS shyjsbm,
+        T2.YSDM                                                                                                        AS shyjsqm,
+       CONVERT(datetime,
+       substring(T2.LRRQ,1,4)+'-'+substring(T2.LRRQ,5,2)+'-'+substring(T2.LRRQ,7,2)+' '+substring(T2.LRRQ,9,8))      AS shyjsqmsj,
+       T1.pyczry                                                                                                      AS tpyjsbm,
+       e.name                                                                                                        AS tpyjsqm,
+       CONVERT(datetime,
+       substring(T1.pyrq,1,4)+'-'+substring(T1.pyrq,5,2)+'-'+substring(T1.pyrq,7,2)+' '+substring(T1.pyrq,9,8))       AS cftpsj,
+       T1.fyczyh                                                                                                        AS hdyjsbm,
+       f.name                                                                                                         AS hdyjsqm,
+       CONVERT(datetime,
+       substring(T1.fyrq,1,4)+'-'+substring(T1.fyrq,5,2)+'-'+substring(T1.fyrq,7,2)+' '+substring(T1.fyrq,9,8))       AS cfhdsj,
+       T1.fyczyh                                                                                                       AS fyyjsbm,
+       f.name                                                                                                         AS fyyjsqm,
+       CONVERT(datetime,
+       substring(T1.fyrq,1,4)+'-'+substring(T1.fyrq,5,2)+'-'+substring(T1.fyrq,7,2)+' '+substring(T1.fyrq,9,8))       AS cffysj,
+       ISNULL(T2.MEMO, 'NA')                                                                                           AS cfbzxx,
+       CONVERT(DECIMAL(18,2),(T4.YPSL*T4.YLSJ)/T4.YKXS)                                                               AS cfypje,
+       GETDATE()                                                                                                      AS gxsj
+       FROM #YF_NMZFYZD_TEMP T1
+       left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
+	   left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
+		left join [HLHT_MZ_HIS].[THIS4].[dbo].[SF_NMZCFK] c(nolock) on T1.cfxh=c.xh
+		left join [HLHT_MZ_HIS].[THIS4].[dbo].[GH_NGHZDK] b(nolock) on b.xh=c.ghxh
+        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDER] T2(nolock) ON b.xh = T2.GHXH
+        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
+        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
+        INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
         WHERE
         T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != ''
-        and T2.CJRQ BETWEEN  @startDate  AND  @endDate
+        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
+        AND c.fybz=1 and T2.GHXH=@syxh
 		--删除临时表
-		DROP TABLE #OUTP_NORDER_TEMP
+		DROP TABLE #YF_NMZFYZD_TEMP
 	end
 end
