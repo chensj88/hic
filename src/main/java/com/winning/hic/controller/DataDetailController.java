@@ -1,6 +1,7 @@
 package com.winning.hic.controller;
 
 import com.winning.hic.base.Constants;
+import com.winning.hic.base.utils.PercentUtil;
 import com.winning.hic.model.*;
 import com.winning.hic.model.support.Row;
 import io.swagger.annotations.ApiImplicitParam;
@@ -412,6 +413,30 @@ public class DataDetailController extends BaseController {
     }
 
 
+    /**
+     * @param dataInfo
+     * @return
+     */
+    @RequestMapping(value = "/refreshPercent")
+    public Map<String, Object> refreshPercent(MbzLoadDataInfo dataInfo) throws Exception {
+        Long sourceType = dataInfo.getSourceType();
+        if (sourceType == null || sourceType == 0) {
+            return null;
+        }
+        List<MbzLoadDataInfo> mbzLoadDataInfoList = getFacade().getMbzLoadDataInfoService().getMbzLoadDataInfoList(dataInfo);
+        for (MbzLoadDataInfo mbzLoadDataInfo : mbzLoadDataInfoList) {
+            //获取数据
+            Object obj = getObjectByDataLoadInfo(mbzLoadDataInfo);
+            mbzLoadDataInfo.setPercentsBt(PercentUtil.getPercent(sourceType, obj, 1));
+            mbzLoadDataInfo.setPercentsBt(PercentUtil.getPercent(sourceType, obj, 0));
+            //循环更新百分比
+            getFacade().getMbzLoadDataInfoService().modifyMbzLoadDataInfo(mbzLoadDataInfo);
+        }
+        resultMap.put("msg", Constants.SUCCESS);
+        return resultMap;
+    }
+
+
     private Object getObjectByDataLoadInfo(MbzLoadDataInfo dataInfo) {
         Long sourceType = dataInfo.getSourceType();
         String yjlxh = dataInfo.getSourceId() + "";
@@ -651,7 +676,7 @@ public class DataDetailController extends BaseController {
             object = getFacade().getHlhtMjzcfZycfService().getHlhtMjzcfZycf(obj);
 
         }
-        return  object;
+        return object;
 
     }
 }
