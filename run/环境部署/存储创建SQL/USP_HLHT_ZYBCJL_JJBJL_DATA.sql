@@ -1,11 +1,4 @@
-USE [CIS_HLHT]
-GO
-/****** Object:  StoredProcedure [dbo].[USP_HLHT_ZYBCJL_JJBJL_DATA]    Script Date: 09/27/2018 01:46:53 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROCEDURE [dbo].[USP_HLHT_ZYBCJL_JJBJL_DATA]
+CREATE PROCEDURE [dbo].[USP_HLHT_ZYBCJL_JJBJL_DATA]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
