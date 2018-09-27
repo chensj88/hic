@@ -51,7 +51,7 @@ public class PercentUtil {
             if (bt.intValue() == 1) {
                 btNum++;
             }
-            String methodName = "get" + StringUtil.titleCase(temp.getRecordName());
+            String methodName = "get" + StringUtil.titleCase(temp.getPyCode());
             Object value = ReflectUtil.getParam(obj, methodName);
             if (value == null) {
                 continue;
