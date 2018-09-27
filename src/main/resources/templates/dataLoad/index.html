@@ -117,6 +117,8 @@
                                 </div>
 
                                 <button id="loadData" type="button" class="btn btn-primary btn-sm">查看数据</button>
+                                <button id="loadResh" type="button" class="btn btn-primary btn-sm">概率刷新</button>
+
                             </form>
                         </div>
                         <!--表格区域  -->
@@ -441,6 +443,39 @@
                 }
             }]
         });
+    });
+
+    //概率刷新
+    $("#loadResh").click(function(){
+        var dataSet_val = $("#dataSet").val();
+        if(dataSet_val == 0 ){
+            toastr.warning("请选择一个数据子集");
+            return false;
+        }
+        //loading层
+        var index = layer.load(1, {
+            shade: [0.5, '#E0E0E0'] //0.1透明度的白色背景
+        });
+        //提交数据
+        $.ajax({
+            type: "POST",
+            url:ctx + 'dataList/refreshPercent',
+            data:{sourceType:dataSet_val},
+            cache : false,
+            dataType:"json",
+            async: true,
+            error: function(request) {
+                layer.close(index);
+            },
+            success: function(data) {
+              $table.bootstrapTable('refresh');
+              layer.close(index);
+            }
+        });
+
+
+
+
     });
 
     //手动抽取数据
