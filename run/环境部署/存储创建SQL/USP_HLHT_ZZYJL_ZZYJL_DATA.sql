@@ -1,3 +1,4 @@
+GO
 CREATE PROCEDURE [dbo].[USP_HLHT_ZZYJL_ZZYJL_DATA]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期

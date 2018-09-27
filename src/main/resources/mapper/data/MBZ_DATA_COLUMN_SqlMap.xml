@@ -60,8 +60,9 @@
             </trim>
         </set>
         <where>
-            <if test=" and (map.pks != null and map.size > 0)">
-                and () in
+            <if test="(id != null and id != '')"> ID = #{id , jdbcType= BIGINT }, </if>
+            <if test=" (id == null or id == '')  and (map.pks != null and map.size > 0)">
+                and ID in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
         </where>
@@ -70,8 +71,9 @@
     <delete id="deleteMbzDataColumn" parameterType="com.winning.hic.model.MbzDataColumn">
         delete from  MBZ_DATA_COLUMN
         <where>
-            <if test=" and (map.pks != null and map.size > 0)">
-                and () in
+            <if test="(id != null and id != '')"> ID = #{id , jdbcType= BIGINT }, </if>
+            <if test=" (id == null or id == '')  and (map.pks != null and map.size > 0)">
+                and ID in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
             </if>
         </where>
@@ -92,7 +94,7 @@
         <where>
             <include refid="sql-mbzDataColumn" />
         </where>
-        ORDER BY  ASC
+        ORDER BY t.ID  ASC
     </select>
 
     <select id="selectMbzDataColumnCount" resultType="int" parameterType="com.winning.hic.model.MbzDataColumn">

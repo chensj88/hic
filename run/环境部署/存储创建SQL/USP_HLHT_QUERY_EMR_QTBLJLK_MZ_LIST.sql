@@ -1,3 +1,4 @@
+GO
 CREATE PROCEDURE [dbo].[USP_HLHT_QUERY_EMR_QTBLJLK_MZ_LIST]
 @keyWord varchar(64),   --关键字
 @syxh       int         --首页序号
