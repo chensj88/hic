@@ -459,6 +459,13 @@
         </where>
     </select>
 
+    <select id="selectInitHlhtBlgyWssjzyListByProc" resultMap="hlhtBlgyWssjzyResult"
+            statementType="CALLABLE">
+        exec USP_HLHT_BLGY_WSSJZY_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+
+    </select>
+
+
     <select id="selectHlhtBlgyWssjzyList" resultMap="hlhtBlgyWssjzyResultForList"
             parameterType="com.winning.hic.model.HlhtBlgyWssjzy">
         SELECT
