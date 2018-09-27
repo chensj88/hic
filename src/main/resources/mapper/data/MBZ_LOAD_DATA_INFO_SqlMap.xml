@@ -171,14 +171,15 @@
     </select>
 
     <select id="selectMbzLoadDataInfoPageList" resultMap="mbzLoadDataInfoResult" parameterType="com.winning.hic.model.MbzLoadDataInfo">
+
         SELECT * FROM (
-        SELECT t.* ,
-        ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
-        FROM MBZ_LOAD_DATA_INFO t
-        <where>
-            <include refid="sql-mbzLoadDataInfo" />
-        </where>
-        <!-- order by t.ID asc -->
+            SELECT t.* ,
+            ROW_NUMBER() OVER ( ORDER BY t.PERCENTS_BT DESC,t.PERCENTS_ALL DESC ) AS _RN
+            FROM MBZ_LOAD_DATA_INFO t
+            <where>
+                <include refid="sql-mbzLoadDataInfo" />
+            </where>
+            <!-- order by t.ID asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
