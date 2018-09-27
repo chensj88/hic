@@ -1901,16 +1901,8 @@ begin
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
 end
-
 GO
-USE [CIS_HLHT]
-GO
-/****** Object:  StoredProcedure [dbo].[USP_HLHT_RYJL_JBXX_DATA]    Script Date: 09/25/2018 21:36:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROCEDURE [dbo].[USP_HLHT_RYJL_JBXX_DATA]
+CREATE PROCEDURE [dbo].[USP_HLHT_RYJL_JBXX_DATA]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
@@ -5246,15 +5238,7 @@ SELECT t.QTBLJLXH as yjlxh,b.HISSYXH as jzlsh,c.PATID as patid,
 	END
 
 GO
-
-USE [CIS_HLHT]
-GO
-/****** Object:  StoredProcedure [dbo].[USP_HLHT_ZYBCJL_JJBJL_DATA]    Script Date: 09/27/2018 01:46:53 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROCEDURE [dbo].[USP_HLHT_ZYBCJL_JJBJL_DATA]
+CREATE PROCEDURE [dbo].[USP_HLHT_ZYBCJL_JJBJL_DATA]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
@@ -5708,15 +5692,7 @@ else
 end
 
 GO
-USE [CIS_HLHT]
-GO
-/****** Object:  StoredProcedure [dbo].[USP_HLHT_ZYBCJL_SCBCJL_DATA]    Script Date: 09/25/2018 23:56:29 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [dbo].[USP_HLHT_ZYBCJL_SCBCJL_DATA]
+CREATE PROCEDURE [dbo].[USP_HLHT_ZYBCJL_SCBCJL_DATA]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
