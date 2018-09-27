@@ -415,242 +415,243 @@ public class DataDetailController extends BaseController {
     private Object getObjectByDataLoadInfo(MbzLoadDataInfo dataInfo) {
         Long sourceType = dataInfo.getSourceType();
         String yjlxh = dataInfo.getSourceId() + "";
+        Object object = new Object();
         if (sourceType == 1) {
             //1. 24h内入出院记录  --陈世杰
             HlhtRyjlRcyjl obj = new HlhtRyjlRcyjl();
             obj.setYjlxh(yjlxh);
-            obj = super.getFacade().getHlhtRyjlRcyjlService().getHlhtRyjlRcyjl(obj);
-            return obj;
+            object = super.getFacade().getHlhtRyjlRcyjlService().getHlhtRyjlRcyjl(obj);
+
         } else if (sourceType == 2) {
             //2. 24h内入院死亡记录*  -- 陈世杰
             HlhtRyjlRyswjl obj = new HlhtRyjlRyswjl();
             obj.setYjlxh(yjlxh);
-            obj = super.getFacade().getHlhtRyjlRyswjlService().getHlhtRyjlRyswjl(obj);
-            return obj;
+            object = super.getFacade().getHlhtRyjlRyswjlService().getHlhtRyjlRyswjl(obj);
+
         } else if (sourceType == 3) {
             //3. 病危（重）通知书*  --陈枫
             HlhtZqgzxxBwztzs obj = new HlhtZqgzxxBwztzs();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZqgzxxBwztzsService().getHlhtZqgzxxBwztzs(obj);
-            return obj;
+            object = getFacade().getHlhtZqgzxxBwztzsService().getHlhtZqgzxxBwztzs(obj);
+
         } else if (sourceType == 4) {
             //4.出院记录数据集表* --陈枫
             HlhtZybcjlCyjl obj = new HlhtZybcjlCyjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlCyjlService().getHlhtZybcjlCyjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlCyjlService().getHlhtZybcjlCyjl(obj);
+
         } else if (sourceType == 5) {
             //5.入院记录* --陈枫
             HlhtRyjlJbxx obj = new HlhtRyjlJbxx();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtRyjlJbxxService().getHlhtRyjlJbxx(obj);
-            return obj;
+            object = getFacade().getHlhtRyjlJbxxService().getHlhtRyjlJbxx(obj);
+
         } else if (sourceType == 6) {
             //6.首次病程记录表* --陈蒯
             HlhtZybcjlScbcjl obj = new HlhtZybcjlScbcjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlScbcjlService().getHlhtZybcjlScbcjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlScbcjlService().getHlhtZybcjlScbcjl(obj);
+
         } else if (sourceType == 7) {
             //7.日常病程记录数据集表*  --陈枫
             HlhtZybcjlRcbcjl obj = new HlhtZybcjlRcbcjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlRcbcjlService().getHlhtZybcjlRcbcjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlRcbcjlService().getHlhtZybcjlRcbcjl(obj);
+
         } else if (sourceType == 8) {
             //8.交接班记录数据集表(医院一般不在病历里面写交接班记录，CIS有一个交接班的功能)*    --陈蒯（暂时不处理）
             HlhtZybcjlJjbjl obj = new HlhtZybcjlJjbjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlJjbjlService().getHlhtZybcjlJjbjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlJjbjlService().getHlhtZybcjlJjbjl(obj);
+
         } else if (sourceType == 9) {
             //9.--阶段小结数据集表*   --陈蒯
             HlhtZybcjlJdxj obj = new HlhtZybcjlJdxj();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlJdxjService().getHlhtZybcjlJdxj(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlJdxjService().getHlhtZybcjlJdxj(obj);
+
         } else if (sourceType == 10) {
             //10.抢救记录数据集表*  --陈蒯
             HlhtZybcjlQjjl obj = new HlhtZybcjlQjjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlQjjlService().getHlhtZybcjlQjjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlQjjlService().getHlhtZybcjlQjjl(obj);
+
         } else if (sourceType == 11) {
             //11.术后首次病程记录数据集表* --- 陈世杰
             HlhtZybcjlShscbcjl obj = new HlhtZybcjlShscbcjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlShscbcjlService().getHlhtZybcjlShscbcjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlShscbcjlService().getHlhtZybcjlShscbcjl(obj);
+
         } else if (sourceType == 12) {
             //12.术前小结数据集表* --- 陈世杰
             HlhtZybcjlSqxj obj = new HlhtZybcjlSqxj();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlSqxjService().getHlhtZybcjlSqxj(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlSqxjService().getHlhtZybcjlSqxj(obj);
+
         } else if (sourceType == 13) {
             //13.术前讨论数据集表*   --陈世杰
             HlhtZybcjlSqtl obj = new HlhtZybcjlSqtl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlSqtlService().getHlhtZybcjlSqtl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlSqtlService().getHlhtZybcjlSqtl(obj);
+
         } else if (sourceType == 14) {
             //14.死亡病历讨论记录数据集表* --陈世杰
             HlhtZybcjlSwbltljl obj = new HlhtZybcjlSwbltljl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlSwbltljlService().getHlhtZybcjlSwbltljl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlSwbltljlService().getHlhtZybcjlSwbltljl(obj);
+
         } else if (sourceType == 15) {
             //15.死亡记录数据集表* --陈枫
             HlhtZybcjlSwjl obj = new HlhtZybcjlSwjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlSwjlService().getHlhtZybcjlSwjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlSwjlService().getHlhtZybcjlSwjl(obj);
+
         } else if (sourceType == 16) {
             //16.麻醉术前访视记录表(由手麻系统处理）* --陈枫（暂时不处理）
             HlhtZlczjlMzsqfsjl obj = new HlhtZlczjlMzsqfsjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZlczjlMzsqfsjlService().getHlhtZlczjlMzsqfsjl(obj);
-            return obj;
+            object = getFacade().getHlhtZlczjlMzsqfsjlService().getHlhtZlczjlMzsqfsjl(obj);
+
         } else if (sourceType == 17) {
             //17.麻醉术后访视记录表(由手麻系统处理)*   --陈枫（暂时不处理）
             HlhtZlczjlMzshfsjl obj = new HlhtZlczjlMzshfsjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZlczjlMzshfsjlService().getHlhtZlczjlMzshfsjl(obj);
-            return obj;
+            object = getFacade().getHlhtZlczjlMzshfsjlService().getHlhtZlczjlMzshfsjl(obj);
+
         } else if (sourceType == 18) {
             //18.麻醉知情同意书表* --陈枫
             HlhtZqgzxxMzzqtys obj = new HlhtZqgzxxMzzqtys();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZqgzxxMzzqtysService().getHlhtZqgzxxMzzqtys(obj);
-            return obj;
+            object = getFacade().getHlhtZqgzxxMzzqtysService().getHlhtZqgzxxMzzqtys(obj);
+
         } else if (sourceType == 19) {
             //19.其他知情告知同意书*  --陈蒯
             HlhtZqgzxxQtzqtys obj = new HlhtZqgzxxQtzqtys();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZqgzxxQtzqtysService().getHlhtZqgzxxQtzqtys(obj);
-            return obj;
+            object = getFacade().getHlhtZqgzxxQtzqtysService().getHlhtZqgzxxQtzqtys(obj);
+
         } else if (sourceType == 20) {
             //20.一般手术记录表(待定）*    --陈蒯
             HlhtZlczjlYbssjl obj = new HlhtZlczjlYbssjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZlczjlYbssjlService().getHlhtZlczjlYbssjl(obj);
-            return obj;
+            object = getFacade().getHlhtZlczjlYbssjlService().getHlhtZlczjlYbssjl(obj);
+
         } else if (sourceType == 21) {
             //21.会诊记录数据集表* --陈蒯
             HlhtZybcjlHzjl obj = new HlhtZybcjlHzjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlHzjlService().getHlhtZybcjlHzjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlHzjlService().getHlhtZybcjlHzjl(obj);
+
         } else if (sourceType == 22) {
             //22.出院小结数据集表*  --陈蒯
             HlhtCyxjCyxj obj = new HlhtCyxjCyxj();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtCyxjCyxjService().getHlhtCyxjCyxj(obj);
-            return obj;
+            object = getFacade().getHlhtCyxjCyxjService().getHlhtCyxjCyxj(obj);
+
         } else if (sourceType == 23) {
             //23.上级医师查房记录数据集表*  --陈世杰
             HlhtZybcjlSjyscfjl obj = new HlhtZybcjlSjyscfjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlSjyscfjlService().getHlhtZybcjlSjyscfjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlSjyscfjlService().getHlhtZybcjlSjyscfjl(obj);
+
         } else if (sourceType == 24) {
             //24.手术知情同意书表*--陈世杰
             HlhtZqgzxxSstys obj = new HlhtZqgzxxSstys();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZqgzxxSstysService().getHlhtZqgzxxSstys(obj);
-            return obj;
+            object = getFacade().getHlhtZqgzxxSstysService().getHlhtZqgzxxSstys(obj);
+
         } else if (sourceType == 25) {
             //25.输血治疗同意书表* -- 陈枫
             HlhtZqgzxxSxzltys obj = new HlhtZqgzxxSxzltys();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZqgzxxSxzltysService().getHlhtZqgzxxSxzltys(obj);
-            return obj;
+            object = getFacade().getHlhtZqgzxxSxzltysService().getHlhtZqgzxxSxzltys(obj);
+
         } else if (sourceType == 26) {
             //26.疑难病例讨论数据集表* --陈枫
             HlhtZybcjlYnbltljl obj = new HlhtZybcjlYnbltljl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlYnbltljlService().getHlhtZybcjlYnbltljl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlYnbltljlService().getHlhtZybcjlYnbltljl(obj);
+
         } else if (sourceType == 27) {
             //27.转科记录数据集表*  --陈蒯
             HlhtZybcjlZkjl obj = new HlhtZybcjlZkjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZybcjlZkjlService().getHlhtZybcjlZkjl(obj);
-            return obj;
+            object = getFacade().getHlhtZybcjlZkjlService().getHlhtZybcjlZkjl(obj);
+
         } else if (sourceType == 28) {
             //28.转诊(院)记录数据集表* --陈蒯  (暂时不处理)
             HlhtZzyjlZzyjl obj = new HlhtZzyjlZzyjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZzyjlZzyjlService().getHlhtZzyjlZzyjl(obj);
-            return obj;
+            object = getFacade().getHlhtZzyjlZzyjlService().getHlhtZzyjlZzyjl(obj);
+
         } else if (sourceType == 29) {
             //29.特殊检查及特殊治疗同意书* --陈世杰
             HlhtZqgzxxTsjczltys obj = new HlhtZqgzxxTsjczltys();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZqgzxxTsjczltysService().getHlhtZqgzxxTsjczltys(obj);
-            return obj;
+            object = getFacade().getHlhtZqgzxxTsjczltysService().getHlhtZqgzxxTsjczltys(obj);
+
         } else if (sourceType == 30) {
             //30.输血记录表* --陈枫
             HlhtZlczjlSxjl obj = new HlhtZlczjlSxjl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZlczjlSxjlService().getHlhtZlczjlSxjl(obj);
-            return obj;
+            object = getFacade().getHlhtZlczjlSxjlService().getHlhtZlczjlSxjl(obj);
+
         } else if (sourceType == 31) {
             //31.门急诊病历记录表* --陈蒯
             HlhtMjzblMjzbl obj = new HlhtMjzblMjzbl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtMjzblMjzblService().getHlhtMjzblMjzbl(obj);
-            return obj;
+            object = getFacade().getHlhtMjzblMjzblService().getHlhtMjzblMjzbl(obj);
+
         } else if (sourceType == 32) {
             //32.急诊留观病历记录表*   --陈世杰
             HlhtMjzblJzlgbl obj = new HlhtMjzblJzlgbl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtMjzblJzlgblService().getHlhtMjzblJzlgbl(obj);
-            return obj;
+            object = getFacade().getHlhtMjzblJzlgblService().getHlhtMjzblJzlgbl(obj);
+
         } else if (sourceType == 33) {
             //33.治疗记录表* --陈枫
             HlhtZlczjlZljl obj = new HlhtZlczjlZljl();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZlczjlZljlService().getHlhtZlczjlZljl(obj);
-            return obj;
+            object = getFacade().getHlhtZlczjlZljlService().getHlhtZlczjlZljl(obj);
+
         } else if (sourceType == 34) {
             //34.阴道分娩记录表*  --陈枫（暂时不处理）
             HlhtZcjlYdfm obj = new HlhtZcjlYdfm();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtZcjlYdfmService().getHlhtZcjlYdfm(obj);
-            return obj;
+            object = getFacade().getHlhtZcjlYdfmService().getHlhtZcjlYdfm(obj);
+
         } else if (sourceType == 35) {
             //35.剖宫产记录表* --陈蒯
             HlhtZcjlPgc obj = new HlhtZcjlPgc();
             obj.setYjlxh(yjlxh);
-            obj = super.getFacade().getHlhtZcjlPgcService().getHlhtZcjlPgc(obj);
-            return obj;
+            object = super.getFacade().getHlhtZcjlPgcService().getHlhtZcjlPgc(obj);
+
         } else if (sourceType == 36) {
             //36.基本健康信息表* --陈世杰
             HlhtBlgyJbjkxx obj = new HlhtBlgyJbjkxx();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtBlgyJbjkxxService().getHlhtBlgyJbjkxx(obj);
-            return obj;
+            object = getFacade().getHlhtBlgyJbjkxxService().getHlhtBlgyJbjkxx(obj);
+
         } else if (sourceType == 37) {
             //37.卫生事件摘要表* --陈蒯
             HlhtBlgyWssjzy obj = new HlhtBlgyWssjzy();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtBlgyWssjzyService().getHlhtBlgyWssjzy(obj);
-            return obj;
+            object = getFacade().getHlhtBlgyWssjzyService().getHlhtBlgyWssjzy(obj);
+
         } else if (sourceType == 38) {
             //38.西药处方记录表* --陈世杰
             HlhtMjzcfXycf obj = new HlhtMjzcfXycf();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtMjzcfXycfService().getHlhtMjzcfXycf(obj);
-            return obj;
+            object = getFacade().getHlhtMjzcfXycfService().getHlhtMjzcfXycf(obj);
+
         } else if (sourceType == 39) {
             //39.中药处方记录表* --陈枫
             HlhtMjzcfZycf obj = new HlhtMjzcfZycf();
             obj.setYjlxh(yjlxh);
-            obj = getFacade().getHlhtMjzcfZycfService().getHlhtMjzcfZycf(obj);
-            return obj;
+            object = getFacade().getHlhtMjzcfZycfService().getHlhtMjzcfZycf(obj);
+
         }
-        return  null;
+        return  object;
 
     }
 }
