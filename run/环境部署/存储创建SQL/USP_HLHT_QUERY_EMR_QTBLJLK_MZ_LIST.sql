@@ -21,9 +21,9 @@ as
 */
 begin
     --创建临时表
-		SELECT * INTO #EMR_QTBLJLK FROM [HLHT_MZ_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+		SELECT SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK FROM [HLHT_MZ_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
 		WHERE T.SYXH=@syxh AND T.BLMC LIKE '%'+@keyWord+'%'
-		 AND T.TJSJ IS NOT NULL  AND T.TJSJ !='' AND T.YXJL = 1
+		  AND T.YXJL = 1
 		--查询业务数据
     SELECT * FROM #EMR_QTBLJLK
 		--删除临时表
