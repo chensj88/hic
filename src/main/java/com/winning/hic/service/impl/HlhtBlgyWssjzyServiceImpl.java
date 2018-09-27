@@ -90,7 +90,7 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
         List<HlhtBlgyWssjzy> hlhtBlgyWssjzyZyList= this.commonQueryDao.selectBlgyWssjzyZyList(wssjzy);
         List<HlhtBlgyWssjzy> hlhtBlgyWssjzyMzList= this.mzCommonQueryDao.selectBlgyWssjzyMzList(wssjzy);
         hlhtBlgyWssjzyZyList.addAll(hlhtBlgyWssjzyMzList);
-
+        //List<HlhtBlgyWssjzy> hlhtBlgyWssjzyZyList =hlhtBlgyWssjzyDao.selectInitHlhtBlgyWssjzyListByProc(wssjzy);
         for (HlhtBlgyWssjzy obj : hlhtBlgyWssjzyZyList) {
             //清除历史数据
             HlhtBlgyWssjzy wssjzy1_one = new HlhtBlgyWssjzy();
