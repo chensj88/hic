@@ -132,7 +132,7 @@ public class DataExtraJob {
             //39.中药处方记录表* --陈枫
             List<MbzDataCheck> mbzDataChecks39 = facade.getHlhtMjzcfZycfService().interfaceHlhtMjzcfZycf(entity);
             //37.卫生事件摘要表* --陈蒯
-            //MbzDataCheck mbzDataCheck37 = facade.getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy();
+            MbzDataCheck mbzDataCheck37 = facade.getHlhtBlgyWssjzyService().interfaceHlhtBlgyWssjzy(entity);
             facade.getHlhtZybcjlScbcjlService().selectAllHandleQuery();
         } catch (IOException e) {
             e.printStackTrace();
