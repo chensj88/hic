@@ -379,7 +379,7 @@
 
     <select id="selectHlhtZybcjlQjjlListByProc" resultMap="hlhtZybcjlQjjlResult"
         statementType="CALLABLE">
-        exec USP_HLHT_ZYBCJL_JDXJ_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+        exec USP_HLHT_ZYBCJL_QJJL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
 
     </select>
 
