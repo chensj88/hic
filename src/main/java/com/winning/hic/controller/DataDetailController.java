@@ -25,7 +25,7 @@ import java.util.Map;
  * Time: 10:14
  */
 @RestController
-@RequestMapping(value = "/data")
+@RequestMapping(value = "/dataList")
 public class DataDetailController extends BaseController {
 
     /**
@@ -46,7 +46,7 @@ public class DataDetailController extends BaseController {
                     @ApiImplicitParam(name = "endDate", value = "结束日期", required = true, dataType = "String")
             }
     )
-    @GetMapping(value = "/load")
+    @GetMapping(value = "/loadList")
     public Map<String, Object> loadMbzLoadDataInfo(MbzLoadDataInfo dataInfo, Row row, String startDate, String endDate) {
         dataInfo.setRow(row);
         Map<String, Object> params = dataInfo.getMap();
