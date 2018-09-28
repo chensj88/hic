@@ -14,7 +14,7 @@
             <!--日志文件输出的文件名-->
             <FileNamePattern>${LOG_HOME}/hic.log.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <!--单个日志文件的大小最大为100M-->
-            <maxFileSize>10MB</maxFileSize>
+            <maxFileSize>100MB</maxFileSize>
             <!--日志文件保留天数-->
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>

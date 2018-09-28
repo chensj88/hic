@@ -63,6 +63,9 @@ public class ScheduleRefreshDatabase {
         MbzAutomateSet automateSet = mbzAutomateSetService.getMbzAutomateSet(null);
         if(automateSet == null ){ //表示未配置时间
             automateSet = new MbzAutomateSet();
+            automateSet.setGroupName("HLHT");
+            automateSet.setJobName("HLHT-Job");
+            automateSet.setTriggerName("HLHT-Trigger");
             automateSet.setBatchDate("2:00:00");
             automateSet.setCron("* * 2 * * ?");
             mbzAutomateSetService.createMbzAutomateSet(automateSet);
