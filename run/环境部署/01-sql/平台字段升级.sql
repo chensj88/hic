@@ -66,7 +66,12 @@ alter table HLHT_ZYBCJL_SQTL alter column  ssfa text not null  ;
 alter table HLHT_ZYBCJL_SQTL alter column  zysx text not null  ;
 alter table HLHT_ZYBCJL_SQTL alter column  tlyj text not null  ;
 alter table HLHT_ZYBCJL_SQTL alter column  tljl text not null  ;
-alter table	HLHT_ZYBCJL_SQTL	alter column	tlrybm varchar(500)	not null 	;
+alter table HLHT_ZYBCJL_SQTL alter column zcrbm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column zcrxm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column tlrybm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column cjtlmd varchar(max) not null;
+
+
 alter table HLHT_ZYBCJL_SQXJ alter column  blzy varchar(MAX) not null  ;
 alter table HLHT_ZYBCJL_SQXJ alter column  sqzdbm varchar(MAX) not null  ;
 alter table HLHT_ZYBCJL_SQXJ alter column  sqzdmc varchar(MAX) not null  ;

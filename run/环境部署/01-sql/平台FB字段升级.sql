@@ -67,6 +67,10 @@ alter table HLHT_ZYBCJL_SQTL_FB alter column  zysx text not null  ;
 alter table HLHT_ZYBCJL_SQTL_FB alter column  tlyj text not null  ;
 alter table HLHT_ZYBCJL_SQTL_FB alter column  tljl text not null  ;
 alter table	HLHT_ZYBCJL_SQTL_FB	alter column	tlrybm varchar(500)	not null 	;
+alter table HLHT_ZYBCJL_SQTL_FB alter column zcrbm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL_FB alter column zcrxm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL_FB alter column cjtlmd varchar(max) not null;
+
 alter table HLHT_ZYBCJL_SQXJ_FB alter column  blzy varchar(MAX) not null  ;
 alter table HLHT_ZYBCJL_SQXJ_FB alter column  sqzdbm varchar(MAX) not null  ;
 alter table HLHT_ZYBCJL_SQXJ_FB alter column  sqzdmc varchar(MAX) not null  ;
@@ -245,6 +249,7 @@ alter table	HLHT_BLGY_WSSJZY_FB	alter column	qtxyzdmc		varchar(512)		;
 alter table	HLHT_BLGY_WSSJZY_FB	alter column	ssjcz		varchar(512)		;
 alter table	HLHT_BLGY_WSSJZY_FB	alter column	ssjczmc		varchar(512)		;
 alter table	HLHT_BLGY_WSSJZY_FB	alter column	qtyxcz		text	 not null 	;
+
 alter table	HLHT_ZYBCJL_SCBCJL_FB alter column	zs text	 not null 	;
 alter table	HLHT_ZYBCJL_SCBCJL_FB alter column	bltd text	 not null 	;
 alter table	HLHT_ZYBCJL_SCBCJL_FB alter column	zyszgcjg text		;
@@ -264,6 +269,7 @@ alter table HLHT_ZYBCJL_SCBCJL_FB alter column jzzyzhbm text;
 alter table HLHT_ZYBCJL_SCBCJL_FB alter column jzzyzhmc  text;
 alter table HLHT_ZYBCJL_SCBCJL_FB alter column zfbm  text;
 alter table	HLHT_ZYBCJL_SCBCJL_FB alter column	zljh text not null 	;
+
 alter table	HLHT_MJZCF_ZYCF_FB	alter column	jbzdbm	varchar(500)	not null	;
 alter table	HLHT_MJZCF_ZYCF_FB	alter column	jbzd	varchar(1000)	not null	;
 alter table	HLHT_MJZCF_ZYCF_FB	alter column	zybmdm	varchar(500)	not null	;

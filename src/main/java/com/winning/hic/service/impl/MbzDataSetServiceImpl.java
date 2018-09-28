@@ -71,7 +71,7 @@ public class MbzDataSetServiceImpl implements  MbzDataSetService {
         if(isHanZi_jz){ //将存在的汉字全部改成由EMR_BRZDQK获取值
             EmrQtbljlk changeCToE = new EmrQtbljlk();
             changeCToE.setSyxh(Integer.valueOf(syxh));
-            isHanZi_str = emrQtbljlkDao.selectEmrBrzdqk(changeCToE);
+            isHanZi_str = emrQtbljlkDao.selectEmrBrzdqk(changeCToE)==null?zddm:emrQtbljlkDao.selectEmrBrzdqk(changeCToE);
         }else{
             isHanZi_str=zddm;
         }
