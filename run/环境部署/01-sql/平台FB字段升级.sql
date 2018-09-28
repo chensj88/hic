@@ -66,6 +66,7 @@ alter table HLHT_ZYBCJL_SQTL_FB alter column  ssfa text not null  ;
 alter table HLHT_ZYBCJL_SQTL_FB alter column  zysx text not null  ;
 alter table HLHT_ZYBCJL_SQTL_FB alter column  tlyj text not null  ;
 alter table HLHT_ZYBCJL_SQTL_FB alter column  tljl text not null  ;
+alter table	HLHT_ZYBCJL_SQTL_FB	alter column	tlrybm varchar(500)	not null 	;
 alter table HLHT_ZYBCJL_SQXJ_FB alter column  blzy varchar(MAX) not null  ;
 alter table HLHT_ZYBCJL_SQXJ_FB alter column  sqzdbm varchar(MAX) not null  ;
 alter table HLHT_ZYBCJL_SQXJ_FB alter column  sqzdmc varchar(MAX) not null  ;
