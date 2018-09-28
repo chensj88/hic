@@ -32,6 +32,9 @@ public class MbzAutomateSetController extends BaseController {
             getFacade().getMbzAutomateSetService().modifyMbzAutomateSet(automateSet);
         }else{
             MbzAutomateSet automateSet = new MbzAutomateSet();
+            automateSet.setGroupName("HLHT");
+            automateSet.setJobName("HLHT-Job");
+            automateSet.setTriggerName("HLHT-Trigger");
             automateSet.setBatchDate(date);
             automateSet.setCron(cronStr);
             getFacade().getMbzAutomateSetService().createMbzAutomateSet(automateSet);
