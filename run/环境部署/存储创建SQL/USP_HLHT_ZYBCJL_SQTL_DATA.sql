@@ -9,7 +9,7 @@ as
 [创建者] chensj
 [公司]上海金仕达卫宁软件股份有限公司@2015-2018
 [时间]2018-09-23
-[功能]导出获取住院病程/术前小结病人 ---USP_HLHT_ZYBCJL_SQTL_DATA
+[功能]导出获取住院病程/术前讨论病人 ---USP_HLHT_ZYBCJL_SQTL_DATA
 [参数]
  @sourceType: 元数据类型
  @startime: 开始时间戳
