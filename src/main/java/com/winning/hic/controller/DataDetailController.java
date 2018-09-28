@@ -427,8 +427,13 @@ public class DataDetailController extends BaseController {
         for (MbzLoadDataInfo mbzLoadDataInfo : mbzLoadDataInfoList) {
             //获取数据
             Object obj = getObjectByDataLoadInfo(mbzLoadDataInfo);
+            if (obj == null) {
+                //当源数据不存在时，清除该条数据日志
+                getFacade().getMbzLoadDataInfoService().removeMbzLoadDataInfo(mbzLoadDataInfo);
+                continue;
+            }
             mbzLoadDataInfo.setPercentsBt(PercentUtil.getPercent(sourceType, obj, 1));
-            mbzLoadDataInfo.setPercentsBt(PercentUtil.getPercent(sourceType, obj, 0));
+            mbzLoadDataInfo.setPercentsAll(PercentUtil.getPercent(sourceType, obj, 0));
             //循环更新百分比
             getFacade().getMbzLoadDataInfoService().modifyMbzLoadDataInfo(mbzLoadDataInfo);
         }
