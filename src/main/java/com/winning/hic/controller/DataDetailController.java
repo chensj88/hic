@@ -85,7 +85,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", super.getFacade().getHlhtRyjlRcyjlService().getHlhtRyjlRcyjl(obj));
+            result.put("rows", super.getFacade().getHlhtRyjlRcyjlService().getHlhtRyjlRcyjlList(obj));
             result.put("total", super.getFacade().getHlhtRyjlRcyjlService().getHlhtRyjlRcyjlCount(obj));
         } else if (sourceType == 2) {
             //2. 24h内入院死亡记录*  -- 陈世杰
@@ -93,7 +93,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", super.getFacade().getHlhtRyjlRyswjlService().getHlhtRyjlRyswjl(obj));
+            result.put("rows", super.getFacade().getHlhtRyjlRyswjlService().getHlhtRyjlRyswjlList(obj));
             result.put("total", super.getFacade().getHlhtRyjlRyswjlService().getHlhtRyjlRyswjlCount(obj));
         } else if (sourceType == 3) {
             //3. 病危（重）通知书*  --陈枫
@@ -101,7 +101,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZqgzxxBwztzsService().getHlhtZqgzxxBwztzs(obj));
+            result.put("rows", getFacade().getHlhtZqgzxxBwztzsService().getHlhtZqgzxxBwztzsList(obj));
             result.put("total", getFacade().getHlhtZqgzxxBwztzsService().getHlhtZqgzxxBwztzsCount(obj));
         } else if (sourceType == 4) {
             //4.出院记录数据集表* --陈枫
@@ -109,7 +109,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlCyjlService().getHlhtZybcjlCyjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlCyjlService().getHlhtZybcjlCyjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlCyjlService().getHlhtZybcjlCyjlCount(obj));
         } else if (sourceType == 5) {
             //5.入院记录* --陈枫
@@ -117,7 +117,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtRyjlJbxxService().getHlhtRyjlJbxx(obj));
+            result.put("rows", getFacade().getHlhtRyjlJbxxService().getHlhtRyjlJbxxList(obj));
             result.put("total", getFacade().getHlhtRyjlJbxxService().getHlhtRyjlJbxxCount(obj));
         } else if (sourceType == 6) {
             //6.首次病程记录表* --陈蒯
@@ -125,7 +125,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlScbcjlService().getHlhtZybcjlScbcjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlScbcjlService().getHlhtZybcjlScbcjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlScbcjlService().getHlhtZybcjlScbcjlCount(obj));
         } else if (sourceType == 7) {
             //7.日常病程记录数据集表*  --陈枫
@@ -133,7 +133,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlRcbcjlService().getHlhtZybcjlRcbcjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlRcbcjlService().getHlhtZybcjlRcbcjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlRcbcjlService().getHlhtZybcjlRcbcjlCount(obj));
 
         } else if (sourceType == 8) {
@@ -142,7 +142,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlJjbjlService().getHlhtZybcjlJjbjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlJjbjlService().getHlhtZybcjlJjbjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlJjbjlService().getHlhtZybcjlJjbjlCount(obj));
         } else if (sourceType == 9) {
             //9.--阶段小结数据集表*   --陈蒯
@@ -150,7 +150,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlJdxjService().getHlhtZybcjlJdxj(obj));
+            result.put("rows", getFacade().getHlhtZybcjlJdxjService().getHlhtZybcjlJdxjList(obj));
             result.put("total", getFacade().getHlhtZybcjlJdxjService().getHlhtZybcjlJdxjCount(obj));
         } else if (sourceType == 10) {
             //10.抢救记录数据集表*  --陈蒯
@@ -158,7 +158,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlQjjlService().getHlhtZybcjlQjjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlQjjlService().getHlhtZybcjlQjjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlQjjlService().getHlhtZybcjlQjjlCount(obj));
         } else if (sourceType == 11) {
             //11.术后首次病程记录数据集表* --- 陈世杰
@@ -166,7 +166,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlShscbcjlService().getHlhtZybcjlShscbcjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlShscbcjlService().getHlhtZybcjlShscbcjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlShscbcjlService().getHlhtZybcjlShscbcjlCount(obj));
 
         } else if (sourceType == 12) {
@@ -175,7 +175,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlSqxjService().getHlhtZybcjlSqxj(obj));
+            result.put("rows", getFacade().getHlhtZybcjlSqxjService().getHlhtZybcjlSqxjList(obj));
             result.put("total", getFacade().getHlhtZybcjlSqxjService().getHlhtZybcjlSqxjCount(obj));
         } else if (sourceType == 13) {
             //13.术前讨论数据集表*   --陈世杰
@@ -183,7 +183,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlSqtlService().getHlhtZybcjlSqtl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlSqtlService().getHlhtZybcjlSqtlList(obj));
             result.put("total", getFacade().getHlhtZybcjlSqtlService().getHlhtZybcjlSqtlCount(obj));
 
         } else if (sourceType == 14) {
@@ -192,7 +192,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlSwbltljlService().getHlhtZybcjlSwbltljl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlSwbltljlService().getHlhtZybcjlSwbltljlList(obj));
             result.put("total", getFacade().getHlhtZybcjlSwbltljlService().getHlhtZybcjlSwbltljlCount(obj));
 
         } else if (sourceType == 15) {
@@ -201,7 +201,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlSwjlService().getHlhtZybcjlSwjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlSwjlService().getHlhtZybcjlSwjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlSwjlService().getHlhtZybcjlSwjlCount(obj));
 
         } else if (sourceType == 16) {
@@ -210,7 +210,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZlczjlMzsqfsjlService().getHlhtZlczjlMzsqfsjl(obj));
+            result.put("rows", getFacade().getHlhtZlczjlMzsqfsjlService().getHlhtZlczjlMzsqfsjlList(obj));
             result.put("total", getFacade().getHlhtZlczjlMzsqfsjlService().getHlhtZlczjlMzsqfsjlCount(obj));
 
         } else if (sourceType == 17) {
@@ -219,7 +219,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZlczjlMzshfsjlService().getHlhtZlczjlMzshfsjl(obj));
+            result.put("rows", getFacade().getHlhtZlczjlMzshfsjlService().getHlhtZlczjlMzshfsjlList(obj));
             result.put("total", getFacade().getHlhtZlczjlMzshfsjlService().getHlhtZlczjlMzshfsjlCount(obj));
         } else if (sourceType == 18) {
             //18.麻醉知情同意书表* --陈枫
@@ -227,7 +227,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZqgzxxMzzqtysService().getHlhtZqgzxxMzzqtys(obj));
+            result.put("rows", getFacade().getHlhtZqgzxxMzzqtysService().getHlhtZqgzxxMzzqtysList(obj));
             result.put("total", getFacade().getHlhtZqgzxxMzzqtysService().getHlhtZqgzxxMzzqtysCount(obj));
 
         } else if (sourceType == 19) {
@@ -236,7 +236,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZqgzxxQtzqtysService().getHlhtZqgzxxQtzqtys(obj));
+            result.put("rows", getFacade().getHlhtZqgzxxQtzqtysService().getHlhtZqgzxxQtzqtysList(obj));
             result.put("total", getFacade().getHlhtZqgzxxQtzqtysService().getHlhtZqgzxxQtzqtysCount(obj));
 
         } else if (sourceType == 20) {
@@ -245,7 +245,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZlczjlYbssjlService().getHlhtZlczjlYbssjl(obj));
+            result.put("rows", getFacade().getHlhtZlczjlYbssjlService().getHlhtZlczjlYbssjlList(obj));
             result.put("total", getFacade().getHlhtZlczjlYbssjlService().getHlhtZlczjlYbssjlCount(obj));
 
         } else if (sourceType == 21) {
@@ -254,7 +254,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlHzjlService().getHlhtZybcjlHzjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlHzjlService().getHlhtZybcjlHzjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlHzjlService().getHlhtZybcjlHzjlCount(obj));
 
         } else if (sourceType == 22) {
@@ -263,7 +263,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtCyxjCyxjService().getHlhtCyxjCyxj(obj));
+            result.put("rows", getFacade().getHlhtCyxjCyxjService().getHlhtCyxjCyxjList(obj));
             result.put("total", getFacade().getHlhtCyxjCyxjService().getHlhtCyxjCyxjCount(obj));
 
         } else if (sourceType == 23) {
@@ -272,7 +272,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlSjyscfjlService().getHlhtZybcjlSjyscfjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlSjyscfjlService().getHlhtZybcjlSjyscfjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlSjyscfjlService().getHlhtZybcjlSjyscfjlCount(obj));
 
         } else if (sourceType == 24) {
@@ -281,7 +281,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZqgzxxSstysService().getHlhtZqgzxxSstys(obj));
+            result.put("rows", getFacade().getHlhtZqgzxxSstysService().getHlhtZqgzxxSstysList(obj));
             result.put("total", getFacade().getHlhtZqgzxxSstysService().getHlhtZqgzxxSstysCount(obj));
 
         } else if (sourceType == 25) {
@@ -290,7 +290,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZqgzxxSxzltysService().getHlhtZqgzxxSxzltys(obj));
+            result.put("rows", getFacade().getHlhtZqgzxxSxzltysService().getHlhtZqgzxxSxzltysList(obj));
             result.put("total", getFacade().getHlhtZqgzxxSxzltysService().getHlhtZqgzxxSxzltysCount(obj));
 
         } else if (sourceType == 26) {
@@ -299,7 +299,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlYnbltljlService().getHlhtZybcjlYnbltljl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlYnbltljlService().getHlhtZybcjlYnbltljlList(obj));
             result.put("total", getFacade().getHlhtZybcjlYnbltljlService().getHlhtZybcjlYnbltljlCount(obj));
 
         } else if (sourceType == 27) {
@@ -308,7 +308,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZybcjlZkjlService().getHlhtZybcjlZkjl(obj));
+            result.put("rows", getFacade().getHlhtZybcjlZkjlService().getHlhtZybcjlZkjlList(obj));
             result.put("total", getFacade().getHlhtZybcjlZkjlService().getHlhtZybcjlZkjlCount(obj));
 
         } else if (sourceType == 28) {
@@ -317,7 +317,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZzyjlZzyjlService().getHlhtZzyjlZzyjl(obj));
+            result.put("rows", getFacade().getHlhtZzyjlZzyjlService().getHlhtZzyjlZzyjlList(obj));
             result.put("total", getFacade().getHlhtZzyjlZzyjlService().getHlhtZzyjlZzyjlCount(obj));
         } else if (sourceType == 29) {
             //29.特殊检查及特殊治疗同意书* --陈世杰
@@ -325,7 +325,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZqgzxxTsjczltysService().getHlhtZqgzxxTsjczltys(obj));
+            result.put("rows", getFacade().getHlhtZqgzxxTsjczltysService().getHlhtZqgzxxTsjczltysList(obj));
             result.put("total", getFacade().getHlhtZqgzxxTsjczltysService().getHlhtZqgzxxTsjczltysCount(obj));
         } else if (sourceType == 30) {
             //30.输血记录表* --陈枫
@@ -333,7 +333,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZlczjlSxjlService().getHlhtZlczjlSxjl(obj));
+            result.put("rows", getFacade().getHlhtZlczjlSxjlService().getHlhtZlczjlSxjlList(obj));
             result.put("total", getFacade().getHlhtZlczjlSxjlService().getHlhtZlczjlSxjlCount(obj));
         } else if (sourceType == 31) {
             //31.门急诊病历记录表* --陈蒯
@@ -341,7 +341,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtMjzblMjzblService().getHlhtMjzblMjzbl(obj));
+            result.put("rows", getFacade().getHlhtMjzblMjzblService().getHlhtMjzblMjzblList(obj));
             result.put("total", getFacade().getHlhtMjzblMjzblService().getHlhtMjzblMjzblCount(obj));
         } else if (sourceType == 32) {
             //32.急诊留观病历记录表*   --陈世杰
@@ -349,7 +349,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtMjzblJzlgblService().getHlhtMjzblJzlgbl(obj));
+            result.put("rows", getFacade().getHlhtMjzblJzlgblService().getHlhtMjzblJzlgblList(obj));
             result.put("total", getFacade().getHlhtMjzblJzlgblService().getHlhtMjzblJzlgblCount(obj));
         } else if (sourceType == 33) {
             //33.治疗记录表* --陈枫
@@ -357,7 +357,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZlczjlZljlService().getHlhtZlczjlZljl(obj));
+            result.put("rows", getFacade().getHlhtZlczjlZljlService().getHlhtZlczjlZljlList(obj));
             result.put("total", getFacade().getHlhtZlczjlZljlService().getHlhtZlczjlZljlCount(obj));
         } else if (sourceType == 34) {
             //34.阴道分娩记录表*  --陈枫（暂时不处理）
@@ -365,7 +365,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtZcjlYdfmService().getHlhtZcjlYdfm(obj));
+            result.put("rows", getFacade().getHlhtZcjlYdfmService().getHlhtZcjlYdfmList(obj));
             result.put("total", getFacade().getHlhtZcjlYdfmService().getHlhtZcjlYdfmCount(obj));
         } else if (sourceType == 35) {
             //35.剖宫产记录表* --陈蒯
@@ -373,7 +373,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", super.getFacade().getHlhtZcjlPgcService().getHlhtZcjlPgc(obj));
+            result.put("rows", super.getFacade().getHlhtZcjlPgcService().getHlhtZcjlPgcList(obj));
             result.put("total", super.getFacade().getHlhtZcjlPgcService().getHlhtZcjlPgcCount(obj));
         } else if (sourceType == 36) {
             //36.基本健康信息表* --陈世杰
@@ -381,7 +381,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtBlgyJbjkxxService().getHlhtBlgyJbjkxx(obj));
+            result.put("rows", getFacade().getHlhtBlgyJbjkxxService().getHlhtBlgyJbjkxxList(obj));
             result.put("total", getFacade().getHlhtBlgyJbjkxxService().getHlhtBlgyJbjkxxCount(obj));
         } else if (sourceType == 37) {
             //37.卫生事件摘要表* --陈蒯
@@ -389,7 +389,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtBlgyWssjzyService().getHlhtBlgyWssjzy(obj));
+            result.put("rows", getFacade().getHlhtBlgyWssjzyService().getHlhtBlgyWssjzyList(obj));
             result.put("total", getFacade().getHlhtBlgyWssjzyService().getHlhtBlgyWssjzyCount(obj));
         } else if (sourceType == 38) {
             //38.西药处方记录表* --陈世杰
@@ -397,7 +397,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtMjzcfXycfService().getHlhtMjzcfXycf(obj));
+            result.put("rows", getFacade().getHlhtMjzcfXycfService().getHlhtMjzcfXycfList(obj));
             result.put("total", getFacade().getHlhtMjzcfXycfService().getHlhtMjzcfXycfCount(obj));
         } else if (sourceType == 39) {
             //39.中药处方记录表* --陈枫
@@ -405,7 +405,7 @@ public class DataDetailController extends BaseController {
 
             obj.setYjlxh(yjlxh);
 
-            result.put("rows", getFacade().getHlhtMjzcfZycfService().getHlhtMjzcfZycf(obj));
+            result.put("rows", getFacade().getHlhtMjzcfZycfService().getHlhtMjzcfZycfList(obj));
             result.put("total", getFacade().getHlhtMjzcfZycfService().getHlhtMjzcfZycfCount(obj));
         }
 
