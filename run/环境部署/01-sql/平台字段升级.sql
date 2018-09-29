@@ -66,7 +66,12 @@ alter table HLHT_ZYBCJL_SQTL alter column  ssfa text not null  ;
 alter table HLHT_ZYBCJL_SQTL alter column  zysx text not null  ;
 alter table HLHT_ZYBCJL_SQTL alter column  tlyj text not null  ;
 alter table HLHT_ZYBCJL_SQTL alter column  tljl text not null  ;
-alter table	HLHT_ZYBCJL_SQTL	alter column	tlrybm varchar(500)	not null 	;
+alter table HLHT_ZYBCJL_SQTL alter column zcrbm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column zcrxm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column tlrybm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column cjtlmd varchar(max) not null;
+
+
 alter table HLHT_ZYBCJL_SQXJ alter column  blzy varchar(MAX) not null  ;
 alter table HLHT_ZYBCJL_SQXJ alter column  sqzdbm varchar(MAX) not null  ;
 alter table HLHT_ZYBCJL_SQXJ alter column  sqzdmc varchar(MAX) not null  ;
@@ -99,23 +104,25 @@ alter table HLHT_BLGY_JBJKXX alter column  hys text not null  ;
 alter table HLHT_BLGY_JBJKXX alter column  yjs text not null  ;
 alter table HLHT_BLGY_JBJKXX alter column  jzs text not null  ;
 
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	zs		text	 not null 	;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	bltd		text	 not null 	;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	zyszgcjg		text		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	zdyj		text	 not null 	;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	czxyzdbm		varchar(256)	 not null 	;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	czxyzd		varchar(256)	 not null 	;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	czzybmdm		varchar(128)		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	czzybm		varchar(256)		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	czzyzhdm		varchar(128)		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	czzyzh		varchar(256)		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	jzxyzdbm		varchar(256)	 not null 	;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	jzxyzdmc		varchar(256)	 not null 	;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	jzzybmdm		varchar(256)		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	jzzybmmc		varchar(256)		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	jzzyzhbm		varchar(128)		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	jzzyzhmc		varchar(256)		;
-alter table	HLHT_ZYBCJL_SCBCJL	alter column	zljh		text	 not null 	;
+alter table	HLHT_ZYBCJL_SCBCJL alter column	zs text	 not null 	;
+alter table	HLHT_ZYBCJL_SCBCJL alter column	bltd text	 not null 	;
+alter table	HLHT_ZYBCJL_SCBCJL alter column	zyszgcjg text		;
+alter table	HLHT_ZYBCJL_SCBCJL alter column	zdyj text	 not null 	;
+alter table HLHT_ZYBCJL_SCBCJL alter column zdyjdm text;
+alter table HLHT_ZYBCJL_SCBCJL alter column czxyzdbm text not null;
+alter table HLHT_ZYBCJL_SCBCJL alter column czxyzd text not null;
+alter table HLHT_ZYBCJL_SCBCJL alter column czzybmdm text;
+alter table HLHT_ZYBCJL_SCBCJL alter column czzybm text;
+alter table HLHT_ZYBCJL_SCBCJL alter column czzyzhdm text;
+alter table HLHT_ZYBCJL_SCBCJL alter column czzyzh text;
+alter table HLHT_ZYBCJL_SCBCJL alter column jzxyzdbm  text not null;
+alter table HLHT_ZYBCJL_SCBCJL alter column jzxyzdmc  text not null;
+alter table HLHT_ZYBCJL_SCBCJL alter column jzzybmdm text;
+alter table HLHT_ZYBCJL_SCBCJL alter column jzzybmmc  text;
+alter table HLHT_ZYBCJL_SCBCJL alter column jzzyzhbm text;
+alter table HLHT_ZYBCJL_SCBCJL alter column jzzyzhmc  text;
+alter table HLHT_ZYBCJL_SCBCJL alter column zfbm  text;
+alter table	HLHT_ZYBCJL_SCBCJL alter column	zljh text not null 	;
 alter table	HLHT_ZYBCJL_JDXJ	alter column	zs		text	 not null 	;
 alter table	HLHT_ZYBCJL_JDXJ	alter column	ryqk		text	 not null 	;
 alter table	HLHT_ZYBCJL_JDXJ	alter column	zyszgcjg		text		;
@@ -500,20 +507,7 @@ alter table	HLHT_ZYBCJL_YNBLTLJL	alter column	zcrzjyj	text		;
 
 
 --最后收集
-alter table HLHT_ZYBCJL_SCBCJL alter column zdyjdm text;
-alter table HLHT_ZYBCJL_SCBCJL alter column czxyzdbm text not null;
-alter table HLHT_ZYBCJL_SCBCJL alter column czxyzd text not null;
-alter table HLHT_ZYBCJL_SCBCJL alter column czzybmdm text;
-alter table HLHT_ZYBCJL_SCBCJL alter column czzybm text;
-alter table HLHT_ZYBCJL_SCBCJL alter column czzyzhdm text;
-alter table HLHT_ZYBCJL_SCBCJL alter column czzyzh text;
-alter table HLHT_ZYBCJL_SCBCJL alter column jzxyzdbm  text not null;
-alter table HLHT_ZYBCJL_SCBCJL alter column jzxyzdmc  text not null;
-alter table HLHT_ZYBCJL_SCBCJL alter column jzzybmdm text;
-alter table HLHT_ZYBCJL_SCBCJL alter column jzzybmmc  text;
-alter table HLHT_ZYBCJL_SCBCJL alter column jzzyzhbm text;
-alter table HLHT_ZYBCJL_SCBCJL alter column jzzyzhmc  text;
-alter table HLHT_ZYBCJL_SCBCJL alter column zfbm  text;
+
 alter table HLHT_RYJL_JBXX alter column czxyzdmc  varchar(500) not null;
 alter table HLHT_RYJL_JBXX alter column czxyzdbm  varchar(1000) not null;
 alter table HLHT_RYJL_JBXX alter column czzybmdm varchar(500) not null;
