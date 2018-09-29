@@ -534,4 +534,10 @@ alter table HLHT_ZLCZJL_YBSSJL alter column mzff varchar(10) not null;
 alter table HLHT_ZLCZJL_YBSSJL alter column sstw varchar(10) not null;
 
 
+alter table HLHT_ZYBCJL_SQTL alter column zcrbm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column zcrxm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column tlrybm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL alter column cjtlmd varchar(max) not null;
+
+
 
