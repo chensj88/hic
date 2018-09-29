@@ -73,7 +73,7 @@ if @syxh  is null or @syxh = ''
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
         LEFT JOIN [HLHT_ZYBCJL_SCBCJL] f(nolock) ON f.jzlsh = b.HISSYXH
-        LEFT JOIN [HLHT_ZY_CIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm = b.RYBQ
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
 		DROP TABLE #EMR_QTBLJLK_LS
@@ -126,7 +126,7 @@ SELECT
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
         LEFT JOIN [HLHT_ZYBCJL_SCBCJL] f(nolock) ON f.jzlsh = b.HISSYXH
-        LEFT JOIN [HLHT_ZY_CIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm = b.RYBQ
+        LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm = b.RYBQ
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
 		DROP TABLE #EMR_QTBLJLK_TEMP_LS
