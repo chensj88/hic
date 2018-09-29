@@ -1,14 +1,14 @@
 package com.winning.hic.controller;
 
 import com.winning.hic.base.Constants;
-import com.winning.hic.base.utils.ModelCheckUtil;
-import com.winning.hic.base.utils.StringUtil;
-import com.winning.hic.base.utils.XmlUtil;
+import com.winning.hic.base.utils.*;
 import com.winning.hic.model.EmrMbk;
 import com.winning.hic.model.MbzDataListSet;
 import com.winning.hic.model.MbzDictInfo;
 import com.winning.hic.model.MbzModelCheck;
 import com.winning.hic.service.MbzModelCheckService;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -196,6 +203,68 @@ public class ModelCheckController extends BaseController {
         }
         resultMap.put("msg", Constants.SUCCESS);
         return resultMap;
+    }
+
+    /**
+     * 校验结果导出
+     *
+     * @param response
+     * @param mbzModelCheck
+     * @throws IOException
+     */
+    @RequestMapping(value = "/modelCheck/exportExcel")
+    public void wiriteExcel(HttpServletResponse response, MbzModelCheck mbzModelCheck) throws IOException {
+        String sourceType = mbzModelCheck.getSourceType();
+        String modelCode = mbzModelCheck.getModelCode();
+        if (StringUtil.isEmptyOrNull(sourceType)) {
+            return;
+        }
+        MbzDictInfo mbzDictInfo = new MbzDictInfo();
+        mbzDictInfo.setDictCode("platformTableName");
+        mbzDictInfo.setDictValue(sourceType);
+        mbzDictInfo = getFacade().getMbzDictInfoService().getMbzDictInfo(mbzDictInfo);
+        List<MbzDataListSet> mbzDataListSetList = null;
+        MbzDataListSet dataListSet = new MbzDataListSet();
+        if (StringUtil.isEmptyOrNull(modelCode)) {
+            //当不存在模板代码时，为批量导出
+            dataListSet.setSourceType(sourceType);
+        } else {
+            dataListSet.setSourceType(sourceType);
+            dataListSet.setModelCode(modelCode);
+        }
+        mbzDataListSetList = getFacade().getMbzDataListSetService().getMbzDataListSetList(dataListSet);
+        Map<String, List> infoMap = new HashMap<>();
+        for (MbzDataListSet mbzDataListSet : mbzDataListSetList) {
+            MbzModelCheck temp = new MbzModelCheck();
+            temp.setSourceType(mbzDataListSet.getSourceType());
+            temp.setModelCode(mbzDataListSet.getModelCode());
+            List<MbzModelCheck> mbzModelCheckList = getFacade().getMbzModelCheckService().getMbzModelCheckList(temp);
+            infoMap.put(mbzDataListSet.getModelName(), mbzModelCheckList);
+        }
+        String filename = "";
+        if (!StringUtil.isEmptyOrNull(modelCode)) {
+            MbzDataListSet currentListSet = new MbzDataListSet();
+            currentListSet.setSourceType(sourceType);
+            currentListSet.setModelCode(modelCode);
+            currentListSet = getFacade().getMbzDataListSetService().getMbzDataListSet(currentListSet);
+            String modelName = currentListSet.getModelName();
+            if (modelName.contains("{")) {
+                modelName = modelName.substring(0, modelName.indexOf("{"));
+            }
+            filename = modelName + "校验结果" + DateUtil.format(DateUtil.PATTERN_14) + ".xls";
+        } else {
+            filename = mbzDictInfo.getDictLabel() + "校验结果" + DateUtil.format(DateUtil.PATTERN_14) + ".xls";
+        }
+        //创建工作簿
+        Workbook workbook = new HSSFWorkbook();
+        //表头
+        List<String> tableNameList = new ArrayList<>();
+        tableNameList.add("数据集名");
+        tableNameList.add("节点名");
+        tableNameList.add("节点类型");
+        tableNameList.add("校验结果");
+        tableNameList.add("错误描述");
+        ExcelUtil.exportExcelByStream(infoMap, tableNameList, response, workbook, filename);
     }
 
 

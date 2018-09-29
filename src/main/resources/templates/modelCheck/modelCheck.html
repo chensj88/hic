@@ -44,9 +44,9 @@
                     </li>
 
                     <!--<li>-->
-                        <!--<a data-toggle="tab" href="#idfile">-->
-                            <!--字段配置-->
-                        <!--</a>-->
+                    <!--<a data-toggle="tab" href="#idfile">-->
+                    <!--字段配置-->
+                    <!--</a>-->
                     <!--</li>-->
                 </ul>
 
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-primary" onclick="doCheck(0)">批量验证</button>
-                                <!--<button type="button" class="btn btn-primary">生成报告</button>-->
+                                <button type="button" class="btn btn-primary" onclick="doExport(0)">生成报告</button>
                             </form>
 
                         </div>
@@ -107,54 +107,54 @@
                                             <option value="">请选择
                                             </option>
                                             <!--<option th:each="list:${modelList}" th:value="${list.modelCode}"-->
-                                                    <!--th:text="${list.modelName }"-->
-                                                    <!--th:attr="sourceType=${list.sourceType}"></option>-->
-                                        </select>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-primary" onclick="doCheck(1)">开始校验</button>
-                                <!--<button type="button" class="btn btn-primary">生成报告</button>-->
-                            </form>
-                        </div>
-                        <table id="simple_table"></table>
-                    </div>
-
-                    <div id="idfile" class="tab-pane">
-                        <div id="simple_toolbar_id">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label class="sr-only" for="modelListType">模板类别</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">模板类别</span>
-                                        <select class="form-control" name="modelListType" id="modelListType_id"
-                                                style="width:200px">
-                                            <option value="">请选择
-                                            </option>
-                                            <option th:each="list:${dataSet}" th:value="${list.dictValue}"
-                                                    th:text="${list.dictLabel }"></option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="modelList">病例模板</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">病例模板</span>
-                                        <select class="form-control" name="modelList" id="modelList_id"
-                                                style="width:200px">
-                                            <option value="">请选择
-                                            </option>
-                                            <!--<option th:each="list:${modelList}" th:value="${list.modelCode}"-->
                                             <!--th:text="${list.modelName }"-->
                                             <!--th:attr="sourceType=${list.sourceType}"></option>-->
                                         </select>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary" onclick="doCheck_id(1)">开始校验</button>
-                                <!--<button type="button" class="btn btn-primary">生成报告</button>-->
+                                <button type="button" class="btn btn-primary" onclick="doCheck(1)">开始校验</button>
+                                <button type="button" class="btn btn-primary" onclick="doExport(1)">生成报告</button>
                             </form>
                         </div>
-                        <table id="simple_table_id"></table>
+                        <table id="simple_table"></table>
                     </div>
+
+                    <!--<div id="idfile" class="tab-pane">-->
+                    <!--<div id="simple_toolbar_id">-->
+                    <!--<form class="form-inline">-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="sr-only" for="modelListType">模板类别</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon">模板类别</span>-->
+                    <!--<select class="form-control" name="modelListType" id="modelListType_id"-->
+                    <!--style="width:200px">-->
+                    <!--<option value="">请选择-->
+                    <!--</option>-->
+                    <!--<option th:each="list:${dataSet}" th:value="${list.dictValue}"-->
+                    <!--th:text="${list.dictLabel }"></option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="sr-only" for="modelList">病例模板</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon">病例模板</span>-->
+                    <!--<select class="form-control" name="modelList" id="modelList_id"-->
+                    <!--style="width:200px">-->
+                    <!--<option value="">请选择-->
+                    <!--</option>-->
+                    <!--&lt;!&ndash;<option th:each="list:${modelList}" th:value="${list.modelCode}"&ndash;&gt;-->
+                    <!--&lt;!&ndash;th:text="${list.modelName }"&ndash;&gt;-->
+                    <!--&lt;!&ndash;th:attr="sourceType=${list.sourceType}"></option>&ndash;&gt;-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-primary" onclick="doCheck_id(1)">开始校验</button>-->
+                    <!--<button type="button" class="btn btn-primary">生成报告</button>-->
+                    <!--</form>-->
+                    <!--</div>-->
+                    <!--<table id="simple_table_id"></table>-->
+                    <!--</div>-->
 
                 </div>
             </div>
@@ -181,7 +181,7 @@
     // alert(ctx+'modelCheck/modelCheck');
     let $table = $('#treegrid_table');
     let $simple_table = $('#simple_table');
-    let $simple_table_id = $('#simple_table_id');
+    // let $simple_table_id = $('#simple_table_id');
     $(function () {
         $table.bootstrapTable({
             url: ctx + 'modelCheck/list',
@@ -365,40 +365,40 @@
         });
 
 
-        /**字段ID映射单数据集查询
-         */
-        $simple_table_id.bootstrapTable({
-            url: ctx + 'modelCheck/mbzDataSetIdList',
-            height: $(window).height(),
-            queryParams: queryModelParams_Id,
-            striped: true,
-            toolbar: '#simple_toolbar_id',
-            sidePagination: 'client',
-            idField: 'id',
-            columns: [
-                // {
-                //     field: 'ck',
-                //     checkbox: true
-                // },
-                {
-                    field: 'colummName',
-                    width: '30%',
-                    title: '互联互通字段',
-                    formatter: 'colFormatter'
-                },
-                {
-                    field: 'status',
-                    title: '是否为空',
-                    align: 'center',
-                    formatter: 'statusFormatter'
-                },
-                {
-                    field: 'errorDesc',
-                    width: '40%',
-                    title: '选择配置项'
-                }
-            ],
-        });
+        // /**字段ID映射单数据集查询
+        //  */
+        // $simple_table_id.bootstrapTable({
+        //     url: ctx + 'modelCheck/mbzDataSetIdList',
+        //     height: $(window).height(),
+        //     queryParams: queryModelParams_Id,
+        //     striped: true,
+        //     toolbar: '#simple_toolbar_id',
+        //     sidePagination: 'client',
+        //     idField: 'id',
+        //     columns: [
+        //         // {
+        //         //     field: 'ck',
+        //         //     checkbox: true
+        //         // },
+        //         {
+        //             field: 'colummName',
+        //             width: '30%',
+        //             title: '互联互通字段',
+        //             formatter: 'colFormatter'
+        //         },
+        //         {
+        //             field: 'status',
+        //             title: '是否为空',
+        //             align: 'center',
+        //             formatter: 'statusFormatter'
+        //         },
+        //         {
+        //             field: 'errorDesc',
+        //             width: '40%',
+        //             title: '选择配置项'
+        //         }
+        //     ],
+        // });
 
 
         function queryParams(params) {
@@ -580,6 +580,40 @@
 
             }
         });
+
+
+    }
+
+    //导出Excel
+    function doExport(type) {
+        let sourceType = "";
+        let modelCode = "";
+        if (type == 0) {
+            sourceType = $("#data_set").children("option:selected").val();
+            if (sourceType == null || sourceType == "") {
+                layer.alert('请选择数据集类型！', {
+                    skin: 'layui-layer-lan',
+                    closeBtn: 1,
+                    anim: 4 //动画类型
+                });
+                return;
+            }
+
+        } else if (type == 1) {
+            sourceType = $("#modelList").children("option:selected").attr("sourceType");
+            modelCode = $("#modelList").children("option:selected").val();
+            if (sourceType == null || sourceType == "") {
+                layer.alert('请选择模板类型！', {
+                    skin: 'layui-layer-lan',
+                    closeBtn: 1,
+                    anim: 4 //动画类型
+                });
+                return;
+            }
+        }
+
+
+        window.open(ctx + "modelCheck/exportExcel?sourceType=" + sourceType + "&modelCode=" + modelCode);
 
 
     }
