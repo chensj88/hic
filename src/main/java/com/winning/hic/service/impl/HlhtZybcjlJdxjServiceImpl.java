@@ -96,7 +96,8 @@ public class HlhtZybcjlJdxjServiceImpl implements  HlhtZybcjlJdxjService {
     }
 
     @Override
-    public List<MbzDataCheck> interfaceHlhtZybcjlJdxj(MbzDataCheck t) {
+    public List<MbzDataCheck>
+    interfaceHlhtZybcjlJdxj(MbzDataCheck t) {
 
         //执行过程信息记录
         List<MbzDataCheck> mbzDataChecks = null;
