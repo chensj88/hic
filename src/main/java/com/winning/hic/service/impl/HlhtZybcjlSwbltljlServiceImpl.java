@@ -145,6 +145,7 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
                 cjtlmd = cjtlmd.replace("主治医师","");
                 cjtlmd = cjtlmd.replace("规培医师","");
                 cjtlmd = cjtlmd.replace("护士长","");
+                cjtlmd = cjtlmd.replace("实习医师","");
                 obj.setCjtlmd(cjtlmd);
                 obj.setTlrybm(cjtlmd);
                 this.createHlhtZybcjlSwbltljl(obj);
