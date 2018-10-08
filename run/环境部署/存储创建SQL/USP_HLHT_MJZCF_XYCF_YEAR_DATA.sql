@@ -96,18 +96,18 @@ if @syxh  is null or @syxh = ''
        CONVERT(DECIMAL(18,2),(T4.YPSL*T4.YLSJ)/T4.YKXS)                                                               AS cfypje,
        GETDATE()                                                                                                      AS gxsj
        FROM #YF_NMZFYZD T1
-       left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
-	   left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
-		left join [HLHT_MZ_HIS].[THIS4].[dbo].[SF_NMZCFK] c(nolock) on T1.cfxh=c.xh
-		left join [HLHT_MZ_HIS].[THIS4].[dbo].[GH_NGHZDK] b(nolock) on b.xh=c.ghxh
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDER] T2(nolock) ON b.xh = T2.GHXH
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
-        INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
-        WHERE
-        T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
-        AND c.fybz=1
+       LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
+	     LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
+		   LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[SF_NMZCFK] c(nolock) on T1.cfxh=c.xh
+		   LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[GH_NGHZDK] b(nolock) on b.xh=c.ghxh
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDER] T2(nolock) ON b.xh = T2.GHXH
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
+       INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
+       WHERE
+       T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
+       AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
+       AND c.fybz=1
 		--删除临时表
 		DROP TABLE #YF_NMZFYZD
 	 end
@@ -182,18 +182,18 @@ else
        CONVERT(DECIMAL(18,2),(T4.YPSL*T4.YLSJ)/T4.YKXS)                                                               AS cfypje,
        GETDATE()                                                                                                      AS gxsj
        FROM #YF_NMZFYZD_TEMP T1
-       left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
-	   left join [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
-		left join [HLHT_MZ_HIS].[THIS4].[dbo].[SF_NMZCFK] c(nolock) on T1.cfxh=c.xh
-		left join [HLHT_MZ_HIS].[THIS4].[dbo].[GH_NGHZDK] b(nolock) on b.xh=c.ghxh
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDER] T2(nolock) ON b.xh = T2.GHXH
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
-        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
-        INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
-        WHERE
-        T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
-        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
-        AND c.fybz=1 and T2.GHXH=@syxh
+       LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
+	     LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
+		   LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[SF_NMZCFK] c(nolock) on T1.cfxh=c.xh
+		   LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[GH_NGHZDK] b(nolock) on b.xh=c.ghxh
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDER] T2(nolock) ON b.xh = T2.GHXH
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
+       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
+       INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
+       WHERE
+       T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
+       AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
+       AND c.fybz=1 and T2.GHXH=@syxh
 		--删除临时表
 		DROP TABLE #YF_NMZFYZD_TEMP
 	end
