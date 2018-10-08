@@ -532,6 +532,8 @@ alter table HLHT_ZQGZXX_TSJCZLTYS_FB alter column mjzh varchar(24) not null;
 alter table HLHT_ZYBCJL_YNBLTLJL_FB alter column tlrybm varchar(500);
 alter table HLHT_ZLCZJL_YBSSJL_FB alter column mzff varchar(30) not null;
 alter table HLHT_ZLCZJL_YBSSJL_FB alter column sstw varchar(30) not null;
+alter table HLHT_ZLCZJL_YBSSJL_FB alter column mzysbm varchar(50) not null;
+
 
 
 

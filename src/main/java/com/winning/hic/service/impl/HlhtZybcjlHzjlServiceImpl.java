@@ -123,7 +123,8 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
                     s_hzsqdjlk.getMap().put("entity_param",obj.getYjlxh());
                     List<EmrHzsqdjlk> hzsqdjlk_list=emrHzsqdjlkDao.selectEmrHzsqdjlkList2(s_hzsqdjlk);
                     if(hzsqdjlk_list.size()>0 && hzsqdjlk_list !=null) {
-                        if (hzsqdjlk_list.get(0).getQtbljlxh().equals(obj.getYjlxh())) { //会诊申请单 insert
+                        if (String.valueOf(hzsqdjlk_list.get(0).getQtbljlxh()).equals(obj.getYjlxh())) { //会诊申请单 insert
+                            emr_count++;
                             HlhtZybcjlHzjl scbcjl = new HlhtZybcjlHzjl();
                             scbcjl.setYjlxh(obj.getYjlxh());
                             scbcjl = this.getHlhtZybcjlHzjl(scbcjl);
@@ -147,6 +148,7 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
                                 e.printStackTrace();
                             }
                             this.createHlhtZybcjlHzjl(obj);
+                            real_count++;
                         } else { //会诊答复单 update
                             try {
                                 Document document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
@@ -168,16 +170,15 @@ public class HlhtZybcjlHzjlServiceImpl implements  HlhtZybcjlHzjlService {
                                     obj.getPatid(), obj.getZyh(), obj.getHzxm(), obj.getXbmc(), obj.getXbdm(),
                                     obj.getKsmc(), obj.getKsdm(), obj.getBqmc(), obj.getBqdm(), obj.getSfzhm(), PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE), obj, 1),
                                     PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE), obj, 0)));
-                            real_count++;
+
 
                         }
-
 
                     }
                 }
             }
             //1.病历总数 2.抽取的病历数量 3.子集类型
-            this.mbzDataCheckService.createMbzDataCheckNum(hlhtZybcjlHzjls.size(),real_count,Integer.parseInt(Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE),t.getMap().get("startDate")+" 至 "+t.getMap().get("endDate"),(String)t.getMap().get("isFlag"));
+            this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_HZJL_SOURCE_TYPE),t.getMap().get("startDate")+" 至 "+t.getMap().get("endDate"),(String)t.getMap().get("isFlag"));
 
         }catch (Exception e){
             e.printStackTrace();
