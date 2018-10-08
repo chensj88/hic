@@ -51,9 +51,10 @@ public class DataExtraJob {
         MbzDataCheck entity = new MbzDataCheck();
         entity.getMap().put("startDate", startDate);
         entity.getMap().put("endDate", endDate);
+        entity.getMap().put("isFlag","1");
         try {
             //删除原来的检验结果
-            facade.getMbzDataCheckService().removeMbzDataCheckList();
+            //facade.getMbzDataCheckService().removeMbzDataCheckList();
             //1. 24h内入出院记录  --陈世杰
             List<MbzDataCheck> mbzDataCheck1 = facade.getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(entity);
             //2. 24h内入院死亡记录*  -- 陈世杰

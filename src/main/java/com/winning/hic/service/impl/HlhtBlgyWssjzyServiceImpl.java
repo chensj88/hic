@@ -123,7 +123,7 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
 
 
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(hlhtBlgyWssjzyZyList.size(),real_count,Integer.parseInt(Constants.WN_BLGY_WSSJZY_SOURCE_TYPE),entity.getMap().get("startDate")+" 至 "+entity.getMap().get("endDate"));
+        this.mbzDataCheckService.createMbzDataCheckNum(hlhtBlgyWssjzyZyList.size(),real_count,Integer.parseInt(Constants.WN_BLGY_WSSJZY_SOURCE_TYPE),entity.getMap().get("startDate")+" 至 "+entity.getMap().get("endDate"),(String)entity.getMap().get("isFlag"));
         return null;
 
 //             //this.mzCommonQueryDao.insertHlhtBlgyWssjzyAll(wssjzy);

@@ -247,7 +247,7 @@ public class HlhtZybcjlSwbltljlServiceImpl implements  HlhtZybcjlSwbltljlService
             e.printStackTrace();
         }*/
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SWBLTLJL_SOURCE_TYPE),entity.getMap().get("startDate")+" 至 "+entity.getMap().get("endDate"));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SWBLTLJL_SOURCE_TYPE),entity.getMap().get("startDate")+" 至 "+entity.getMap().get("endDate"),(String)entity.getMap().get("isFlag"));
 
         return dataChecks;
     }

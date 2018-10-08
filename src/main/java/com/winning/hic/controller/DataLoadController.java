@@ -61,6 +61,7 @@ public class DataLoadController extends BaseController {
         entity.getMap().put("startDate", startDate);
         entity.getMap().put("endDate", endDate);
         entity.getMap().put("syxh", syxh);
+        entity.getMap().put("isFlag","0");
         entity.setSourceType(data_set);
         try {
             if(data_set ==1){

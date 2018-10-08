@@ -402,7 +402,7 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
             }
         }
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count, real_count, Integer.parseInt(Constants.WN_RYJL_JBXX_SOURCE_TYPE), t.getMap().get("startDate") + " 至 " + t.getMap().get("endDate"));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count, real_count, Integer.parseInt(Constants.WN_RYJL_JBXX_SOURCE_TYPE), t.getMap().get("startDate") + " 至 " + t.getMap().get("endDate"),(String)t.getMap().get("isFlag"));
 
         return mbzDataChecks;
     }
