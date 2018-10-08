@@ -592,6 +592,7 @@
             sourceType = $("#data_set").children("option:selected").val();
             if (sourceType == null || sourceType == "") {
                 layer.alert('请选择数据集类型！', {
+                    title :"提示",
                     skin: 'layui-layer-lan',
                     closeBtn: 1,
                     anim: 4 //动画类型
@@ -604,6 +605,7 @@
             modelCode = $("#modelList").children("option:selected").val();
             if (sourceType == null || sourceType == "") {
                 layer.alert('请选择模板类型！', {
+                    title :"提示",
                     skin: 'layui-layer-lan',
                     closeBtn: 1,
                     anim: 4 //动画类型
@@ -632,6 +634,7 @@
             if (sourceType == '' || sourceType == null) {
                 //单数据集校验未选择模板类型
                 layer.alert('未选择校验模板！', {
+                    title :false,
                     skin: 'layui-layer-lan',
                     closeBtn: 1,
                     anim: 4 //动画类型
