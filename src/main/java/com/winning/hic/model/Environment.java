@@ -20,12 +20,12 @@ public class Environment {
     private String cisdbDataName;
     private String cisdbDataUsername;
     private String cisdbDataPassword;
-
+   /*
     private String hisdbZyLinkserverName;
     private String hisdbZyLinkserverDbName;
     private String hisdbMzLinkserverName;
     private String hisdbMzLinkserverDbName;
-   /* private String platformDBUrl;
+    private String platformDBUrl;
     private String platformDBName;
     private String platformDBUsername;
     private String platformDBPassword;*/
@@ -94,7 +94,7 @@ public class Environment {
         this.cisdbDataPassword = cisdbDataPassword;
     }
 
-    public String getHisdbZyLinkserverName() {
+    /*public String getHisdbZyLinkserverName() {
         return hisdbZyLinkserverName;
     }
 
@@ -124,7 +124,7 @@ public class Environment {
 
     public void setHisdbMzLinkserverDbName(String hisdbMzLinkserverDbName) {
         this.hisdbMzLinkserverDbName = hisdbMzLinkserverDbName;
-    }
+    }*/
 
     //    public String getHisDBUrl() {
 //        return hisDBUrl;
@@ -199,13 +199,13 @@ public class Environment {
         return Constants.URL_PREFIX+cisdbDataUrl+";"+Constants.DATABASE_PREFIX+"="+cisdbDataName;
     }
 
-    public String getMZHISLinkServerFullPathURL(){
+    /*public String getMZHISLinkServerFullPathURL(){
         return  hisdbMzLinkserverName+"."+hisdbMzLinkserverDbName;
     }
     public String getZYHISLinkServerFullPathURL(){
         return hisdbZyLinkserverName+"."+hisdbZyLinkserverDbName;
     }
-
+*/
 
     /**
      * 门诊医生站数据库
