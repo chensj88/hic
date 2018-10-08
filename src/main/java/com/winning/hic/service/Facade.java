@@ -126,4 +126,6 @@ public interface Facade {
     MbzDataColumnService getMbzDataColumnService();
 
     MbzLoadDataInfoService getMbzLoadDataInfoService();
+
+    MbzTemplateNodeDetailInfoService getMbzTemplateNodeDetailInfoService();
 }

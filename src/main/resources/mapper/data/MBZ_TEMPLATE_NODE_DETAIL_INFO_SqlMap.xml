@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winning.hic.dao.data.MbzTemplateNodeDetailInfoDao">
+
+    <resultMap id="mbzTemplateNodeDetailInfoResultForList" type="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+         <result column="ID" property="id" jdbcType="VARCHAR" />
+         <result column="MBDM" property="mbdm" jdbcType="VARCHAR" />
+         <result column="JDMC" property="jdmc" jdbcType="VARCHAR" />
+         <result column="JDLX" property="jdlx" jdbcType="VARCHAR" />
+         <result column="DTJDDM" property="dtjddm" jdbcType="VARCHAR" />
+         <result column="QRMBDM" property="qrmbdm" jdbcType="VARCHAR" />
+         <result column="QRDXDM" property="qrdxdm" jdbcType="VARCHAR" />
+         <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="mbzTemplateNodeDetailInfoResult" type="com.winning.hic.model.MbzTemplateNodeDetailInfo" extends="mbzTemplateNodeDetailInfoResultForList">
+
+    </resultMap>
+
+    <sql id="sql-mbzTemplateNodeDetailInfo">
+        <if test="(id != null and id != '')"> and t.ID = #{id} </if>
+        <if test="(mbdm != null and mbdm != '')"> and t.MBDM = #{mbdm} </if>
+        <if test="(jdmc != null and jdmc != '')"> and t.JDMC = #{jdmc} </if>
+        <if test="(jdlx != null and jdlx != '')"> and t.JDLX = #{jdlx} </if>
+        <if test="(dtjddm != null and dtjddm != '')"> and t.DTJDDM = #{dtjddm} </if>
+        <if test="(qrmbdm != null and qrmbdm != '')"> and t.QRMBDM = #{qrmbdm} </if>
+        <if test="(qrdxdm != null and qrdxdm != '')"> and t.QRDXDM = #{qrdxdm} </if>
+        <if test="(yzjddm != null and yzjddm != '')"> and t.YZJDDM = #{yzjddm} </if>
+    </sql>
+
+    <insert id="insertMbzTemplateNodeDetailInfo" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        <selectKey resultType="String"  order="BEFORE"  keyProperty="id">SELECT CAST(NEWID() AS VARCHAR(36)) AS ID</selectKey>
+        INSERT INTO MBZ_TEMPLATE_NODE_DETAIL_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> ID , </if>
+            <if test="(mbdm != null and mbdm != '')"> MBDM , </if>
+            <if test="(jdmc != null and jdmc != '')"> JDMC , </if>
+            <if test="(jdlx != null and jdlx != '')"> JDLX , </if>
+            <if test="(dtjddm != null and dtjddm != '')"> DTJDDM , </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
+            <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="(id != null and id != '')"> #{id , jdbcType= VARCHAR },  </if>
+            <if test="(mbdm != null and mbdm != '')"> #{mbdm , jdbcType= VARCHAR },  </if>
+            <if test="(jdmc != null and jdmc != '')"> #{jdmc , jdbcType= VARCHAR },  </if>
+            <if test="(jdlx != null and jdlx != '')"> #{jdlx , jdbcType= VARCHAR },  </if>
+            <if test="(dtjddm != null and dtjddm != '')"> #{dtjddm , jdbcType= VARCHAR },  </if>
+            <if test="(qrmbdm != null and qrmbdm != '')"> #{qrmbdm , jdbcType= VARCHAR },  </if>
+            <if test="(qrdxdm != null and qrdxdm != '')"> #{qrdxdm , jdbcType= VARCHAR },  </if>
+            <if test="(yzjddm != null and yzjddm != '')"> #{yzjddm , jdbcType= VARCHAR },  </if>
+        </trim>
+    </insert>
+
+    <update id="updateMbzTemplateNodeDetailInfo" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        UPDATE MBZ_TEMPLATE_NODE_DETAIL_INFO
+        <set>
+            <trim suffixOverrides=",">
+                <if test="(id != null and id != '')"> ID = #{id , jdbcType= VARCHAR }, </if>
+                <if test="(mbdm != null and mbdm != '')"> MBDM = #{mbdm , jdbcType= VARCHAR }, </if>
+                <if test="(jdmc != null and jdmc != '')"> JDMC = #{jdmc , jdbcType= VARCHAR }, </if>
+                <if test="(jdlx != null and jdlx != '')"> JDLX = #{jdlx , jdbcType= VARCHAR }, </if>
+                <if test="(dtjddm != null and dtjddm != '')"> DTJDDM = #{dtjddm , jdbcType= VARCHAR }, </if>
+                <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM = #{qrmbdm , jdbcType= VARCHAR }, </if>
+                <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM = #{qrdxdm , jdbcType= VARCHAR }, </if>
+                <if test="(yzjddm != null and yzjddm != '')"> YZJDDM = #{yzjddm , jdbcType= VARCHAR }, </if>
+            </trim>
+        </set>
+        <where>
+            <if test="(id != null and id != '')"> and ID = #{ id, jdbcType= VARCHAR }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.size > 0)">
+                and (ID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteMbzTemplateNodeDetailInfo" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        delete from  MBZ_TEMPLATE_NODE_DETAIL_INFO
+        <where>
+            <if test="(id != null and id != '')"> and ID = #{ id }   </if>
+            <if test="(id !=null or id!='') and (map.pks != null and map.size > 0)">
+                and (ID) in
+                <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
+            </if>
+        </where>
+    </delete>
+
+    <delete id="deleteMbzTemplateNodeDetailInfoByMbdm" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        delete from  MBZ_TEMPLATE_NODE_DETAIL_INFO
+        <where>
+            <if test="(mbdm != null and mbdm != '')"> and MBDM = #{ mbdm }   </if>
+        </where>
+    </delete>
+
+
+    <select id="selectMbzTemplateNodeDetailInfo" resultMap="mbzTemplateNodeDetailInfoResult" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        SELECT * FROM MBZ_TEMPLATE_NODE_DETAIL_INFO t
+        <where>
+            <include refid="sql-mbzTemplateNodeDetailInfo" />
+        </where>
+    </select>
+
+    <select id="selectMbzTemplateNodeDetailInfoList" resultMap="mbzTemplateNodeDetailInfoResultForList" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        SELECT
+        <if test="row.count != null and row.count != ''"> top ${row.count} </if>
+        * FROM MBZ_TEMPLATE_NODE_DETAIL_INFO t
+        <where>
+            <include refid="sql-mbzTemplateNodeDetailInfo" />
+        </where>
+        ORDER BY t.ID ASC
+    </select>
+
+    <select id="selectMbzTemplateNodeDetailInfoCount" resultType="int" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        select count(1) from  MBZ_TEMPLATE_NODE_DETAIL_INFO t
+        <where>
+            <include refid="sql-mbzTemplateNodeDetailInfo" />
+        </where>
+    </select>
+
+    <select id="selectMbzTemplateNodeDetailInfoPageList" resultMap="mbzTemplateNodeDetailInfoResult" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        SELECT * FROM (
+        SELECT t.* ,
+        ROW_NUMBER() OVER ( ORDER BY t.ID DESC ) AS _RN
+        FROM MBZ_TEMPLATE_NODE_DETAIL_INFO t
+        <where>
+            <include refid="sql-mbzTemplateNodeDetailInfo" />
+        </where>
+        <!-- order by t.ID asc -->
+        ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
+    </select>
+
+
+</mapper>
