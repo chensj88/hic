@@ -9,15 +9,6 @@ spring boot + spring mvc + mybatis
 
 #### 安装教程
 
-1. 注册：`regasm Winning.Emr.Hlht.Utils.dll`
-
-   注销：`regasm /u Winning.Emr.Hlht.Utils.dll`
-2. `jacob-1.14.3-x86.dll` `jacob-1.14.3-x64.dll` 
-
-    ***根据使用JDK版本选择对应的dll放入***
-    
-    `%JAVA_HOME%/bin`
-3. xxxx
 
 #### 使用说明
 
