@@ -1,9 +1,6 @@
 package com.winning.hic.base.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -372,5 +369,20 @@ public class StringUtil {
         String s = titleCase(tile);
         System.out.println(s);
 
+    }
+
+    public static String join(List<String> participleList, String s) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < participleList.size(); i++) {
+            if(i == participleList.size() -1 ){
+                stringBuilder.append(participleList.get(i) );
+            }else{
+                stringBuilder.append(participleList.get(i)+s );
+            }
+        }
+        return stringBuilder.toString();
+    }
+    public static List<String> split(String mappingParticipleStr, String s) {
+        return Arrays.asList(mappingParticipleStr.split(s));
     }
 }
