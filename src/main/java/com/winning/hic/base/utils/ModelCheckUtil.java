@@ -179,10 +179,10 @@ public class ModelCheckUtil {
                     info.setErrorDesc("缺少节点");
                 }
                 continue;
-            } else if (mustMatch == 1 && type == 1 && StringUtil.isEmptyOrNull(qrdxdm)) {
+            } else if (mustMatch == 1 && type == 1 && StringUtil.isEmptyOrNull(qrdxdm) && bt == 1) {
                 //文件结构必填
                 String canNull = XmlUtil.getValueByAttrName(dynamicModelNode, "canNull");
-                if (canNull == null || !"False".equals(canNull)) {
+                if ((canNull == null || !"False".equals(canNull)) && bt == 1) {
                     info.setStatus(1);
                     info.setErrorDesc("未控制必填");
                     continue;
@@ -244,7 +244,7 @@ public class ModelCheckUtil {
                             continue;
                         }
                         String minrequired = XmlUtil.getValueByAttrName(currentAtomNode, "minrequired");
-                        if (minrequired == null || !"1".equals(minrequired)) {
+                        if ((minrequired == null || !"1".equals(minrequired)) && bt == 1) {
                             info.setStatus(1);
                             info.setErrorDesc("未控制必填");
                             flag = false;
@@ -274,7 +274,7 @@ public class ModelCheckUtil {
                         continue;
                     } else if (mustMatch == 1 && type == 4) {
                         String minrequired = XmlUtil.getValueByAttrName(atomNode, "minrequired");
-                        if (minrequired == null || !"1".equals(minrequired)) {
+                        if ((minrequired == null || !"1".equals(minrequired)) && bt == 1) {
                             info.setStatus(1);
                             info.setErrorDesc("未控制必填");
                             continue;
