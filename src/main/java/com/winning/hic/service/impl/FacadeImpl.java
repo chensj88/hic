@@ -431,4 +431,10 @@ public class FacadeImpl implements Facade {
         return mbzLoadDataInfoService;
     }
 
+    @Autowired
+    MbzTemplateNodeDetailInfoService mbzTemplateNodeDetailInfoService;
+
+    public MbzTemplateNodeDetailInfoService getMbzTemplateNodeDetailInfoService(){
+        return mbzTemplateNodeDetailInfoService;
+    }
 }

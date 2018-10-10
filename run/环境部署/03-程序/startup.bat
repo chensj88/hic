@@ -1,0 +1,1 @@
+java -jar hic-0.0.1.jar -configfile config.properties
