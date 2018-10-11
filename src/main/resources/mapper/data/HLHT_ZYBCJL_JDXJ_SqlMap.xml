@@ -81,8 +81,8 @@
         <if test="(xbdm != null and xbdm != '')">and t.xbdm = #{xbdm}</if>
         <if test="(xbmc != null and xbmc != '')">and t.xbmc = #{xbmc}</if>
         <if test="(csrq != null )">and t.csrq = #{csrq}</if>
-        <if test="(nls != null and nls != '')">and t.nls = #{nls}</if>
-        <if test="(nly != null and nly != '')">and t.nly = #{nly}</if>
+        <if test="(nls != null )">and t.nls = #{nls}</if>
+        <if test="(nly != null )">and t.nly = #{nly}</if>
         <if test="(ryrq != null )">and t.ryrq = #{ryrq}</if>
         <if test="(xjrq != null )">and t.xjrq = #{xjrq}</if>
         <if test="(zs != null and zs != '')">and t.zs = #{zs}</if>
@@ -136,8 +136,8 @@
             <if test="(xbdm != null and xbdm != '')">xbdm ,</if>
             <if test="(xbmc != null and xbmc != '')">xbmc ,</if>
             <if test="(csrq != null )">csrq ,</if>
-            <if test="(nls != null and nls != '')">nls ,</if>
-            <if test="(nly != null and nly != '')">nly ,</if>
+            <if test="(nls != null )">nls ,</if>
+            <if test="(nly != null )">nly ,</if>
             <if test="(ryrq != null )">ryrq ,</if>
             <if test="(xjrq != null )">xjrq ,</if>
             <if test="(zs != null and zs != '')">zs ,</if>
@@ -189,8 +189,8 @@
             <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
             <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
             <if test="(csrq != null )">#{csrq , jdbcType= DATE },</if>
-            <if test="(nls != null and nls != '')">#{nls , jdbcType= NUMERIC },</if>
-            <if test="(nly != null and nly != '')">#{nly , jdbcType= VARCHAR },</if>
+            <if test="(nls != null )">#{nls , jdbcType= NUMERIC },</if>
+            <if test="(nly != null )">#{nly , jdbcType= VARCHAR },</if>
             <if test="(ryrq != null )">#{ryrq , jdbcType= TIMESTAMP },</if>
             <if test="(xjrq != null )">#{xjrq , jdbcType= TIMESTAMP },</if>
             <if test="(zs != null and zs != '')">#{zs , jdbcType= VARCHAR },</if>
@@ -246,8 +246,8 @@
                 <if test="(xbdm != null and xbdm != '')">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
                 <if test="(xbmc != null and xbmc != '')">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
                 <if test="(csrq != null )">csrq = #{csrq , jdbcType= DATE },</if>
-                <if test="(nls != null and nls != '')">nls = #{nls , jdbcType= NUMERIC },</if>
-                <if test="(nly != null and nly != '')">nly = #{nly , jdbcType= VARCHAR },</if>
+                <if test="(nls != null )">nls = #{nls , jdbcType= NUMERIC },</if>
+                <if test="(nly != null )">nly = #{nly , jdbcType= VARCHAR },</if>
                 <if test="(ryrq != null )">ryrq = #{ryrq , jdbcType= TIMESTAMP },</if>
                 <if test="(xjrq != null )">xjrq = #{xjrq , jdbcType= TIMESTAMP },</if>
                 <if test="(zs != null and zs != '')">zs = #{zs , jdbcType= VARCHAR },</if>

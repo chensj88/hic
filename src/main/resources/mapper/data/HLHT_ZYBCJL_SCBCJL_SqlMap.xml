@@ -77,8 +77,8 @@
         <if test="(jlrq != null)">and t.jlrq = #{jlrq}</if>
         <if test="(xbdm != null and xbdm != '')">and t.xbdm = #{xbdm}</if>
         <if test="(xbmc != null and xbmc != '')">and t.xbmc = #{xbmc}</if>
-        <if test="(nls != null and nls != '')">and t.nls = #{nls}</if>
-        <if test="(nly != null and nly != '')">and t.nly = #{nly}</if>
+        <if test="(nls != null )">and t.nls = #{nls}</if>
+        <if test="(nly != null )">and t.nly = #{nly}</if>
         <if test="(zs != null and zs != '')">and t.zs = #{zs}</if>
         <if test="(bltd != null and bltd != '')">and t.bltd = #{bltd}</if>
         <if test="(zyszgcjg != null and zyszgcjg != '')">and t.zyszgcjg = #{zyszgcjg}</if>
@@ -129,7 +129,7 @@
             <if test="(xbdm != null and xbdm != '')">xbdm ,</if>
             <if test="(xbmc != null and xbmc != '')">xbmc ,</if>
             <if test="(nls != null)">nls ,</if>
-            <if test="(nly != null and nly != '')">nly ,</if>
+            <if test="(nly != null )">nly ,</if>
             <if test="(zs != null and zs != '')">zs ,</if>
             <if test="(bltd != null and bltd != '')">bltd ,</if>
             <if test="(zyszgcjg != null and zyszgcjg != '')">zyszgcjg ,</if>
@@ -178,7 +178,7 @@
             <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
             <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
             <if test="(nls != null)">#{nls , jdbcType= NUMERIC },</if>
-            <if test="(nly != null and nly != '')">#{nly , jdbcType= VARCHAR },</if>
+            <if test="(nly != null )">#{nly , jdbcType= VARCHAR },</if>
             <if test="(zs != null and zs != '')">#{zs , jdbcType= VARCHAR },</if>
             <if test="(bltd != null and bltd != '')">#{bltd , jdbcType= VARCHAR },</if>
             <if test="(zyszgcjg != null and zyszgcjg != '')">#{zyszgcjg , jdbcType= VARCHAR },</if>
@@ -279,8 +279,8 @@
                 <if test="(jlrq != null and jlrq != '')">jlrq = #{jlrq , jdbcType= TIMESTAMP },</if>
                 <if test="(xbdm != null and xbdm != '')">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
                 <if test="(xbmc != null and xbmc != '')">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
-                <if test="(nls != null and nls != '')">nls = #{nls , jdbcType= NUMERIC },</if>
-                <if test="(nly != null and nly != '')">nly = #{nly , jdbcType= VARCHAR },</if>
+                <if test="(nls != null )">nls = #{nls , jdbcType= NUMERIC },</if>
+                <if test="(nly != null )">nly = #{nly , jdbcType= VARCHAR },</if>
                 <if test="(zs != null and zs != '')">zs = #{zs , jdbcType= VARCHAR },</if>
                 <if test="(bltd != null and bltd != '')">bltd = #{bltd , jdbcType= VARCHAR },</if>
                 <if test="(zyszgcjg != null and zyszgcjg != '')">zyszgcjg = #{zyszgcjg , jdbcType= VARCHAR },</if>

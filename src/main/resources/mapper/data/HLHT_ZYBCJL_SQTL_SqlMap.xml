@@ -83,8 +83,8 @@
         <if test="(sfzhm != null and sfzhm != '')">and t.sfzhm = #{sfzhm}</if>
         <if test="(xbdm != null and xbdm != '')">and t.xbdm = #{xbdm}</if>
         <if test="(xbmc != null and xbmc != '')">and t.xbmc = #{xbmc}</if>
-        <if test="(nls != null and nls != '')">and t.nls = #{nls}</if>
-        <if test="(nly != null and nly != '')">and t.nly = #{nly}</if>
+        <if test="(nls != null )">and t.nls = #{nls}</if>
+        <if test="(nly != null )">and t.nly = #{nly}</if>
         <if test="(tlrq != null )">and t.tlrq = #{tlrq}</if>
         <if test="(tldd != null and tldd != '')">and t.tldd = #{tldd}</if>
         <if test="(zcrbm != null and zcrbm != '')">and t.zcrbm = #{zcrbm}</if>
@@ -142,8 +142,8 @@
             <if test="(sfzhm != null and sfzhm != '')">sfzhm ,</if>
             <if test="(xbdm != null and xbdm != '')">xbdm ,</if>
             <if test="(xbmc != null and xbmc != '')">xbmc ,</if>
-            <if test="(nls != null and nls != '')">nls ,</if>
-            <if test="(nly != null and nly != '')">nly ,</if>
+            <if test="(nls != null )">nls ,</if>
+            <if test="(nly != null )">nly ,</if>
             <if test="(tlrq != null )">tlrq ,</if>
             <if test="(tldd != null and tldd != '')">tldd ,</if>
             <if test="(zcrbm != null and zcrbm != '')">zcrbm ,</if>
@@ -198,8 +198,8 @@
             <if test="(sfzhm != null and sfzhm != '')">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
             <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
-            <if test="(nls != null and nls != '')">#{nls , jdbcType= NUMERIC },</if>
-            <if test="(nly != null and nly != '')">#{nly , jdbcType= VARCHAR },</if>
+            <if test="(nls != null )">#{nls , jdbcType= NUMERIC },</if>
+            <if test="(nly != null )">#{nly , jdbcType= VARCHAR },</if>
             <if test="(tlrq != null )">#{tlrq , jdbcType= TIMESTAMP },</if>
             <if test="(tldd != null and tldd != '')">#{tldd , jdbcType= VARCHAR },</if>
             <if test="(zcrbm != null and zcrbm != '')">#{zcrbm , jdbcType= VARCHAR },</if>
@@ -258,8 +258,8 @@
                 <if test="(sfzhm != null and sfzhm != '')">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(xbdm != null and xbdm != '')">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
                 <if test="(xbmc != null and xbmc != '')">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
-                <if test="(nls != null and nls != '')">nls = #{nls , jdbcType= NUMERIC },</if>
-                <if test="(nly != null and nly != '')">nly = #{nly , jdbcType= VARCHAR },</if>
+                <if test="(nls != null )">nls = #{nls , jdbcType= NUMERIC },</if>
+                <if test="(nly != null )">nly = #{nly , jdbcType= VARCHAR },</if>
                 <if test="(tlrq != null )">tlrq = #{tlrq , jdbcType= TIMESTAMP },</if>
                 <if test="(tldd != null and tldd != '')">tldd = #{tldd , jdbcType= VARCHAR },</if>
                 <if test="(zcrbm != null and zcrbm != '')">zcrbm = #{zcrbm , jdbcType= VARCHAR },</if>
