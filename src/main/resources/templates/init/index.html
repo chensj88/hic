@@ -589,26 +589,45 @@
 
     //模板解析
     $("#initTemplate").click(function () {
+        var dataSet = $('#dataSet').val();
         //loading层
         var index = layer.load(1, {
             shade: [0.5, '#E0E0E0'] //0.1透明度的白色背景
         });
+        if(dataSet === '0'){
+            $.ajax({
+                type: "POST",
+                url:ctx + 'detail/convert',
+                // data:{sourceType:1},
+                cache : false,
+                dataType:"json",
+                async: true,
+                error: function(request) {
+                    layer.close(index);
+                },
+                success: function(data) {
+                    toastr.info("配置模板已经解析完成。");
+                    layer.close(index);
+                }
+            });
+        }else{
+            $.ajax({
+                type: "POST",
+                url:ctx + 'detail/convertTemplate',
+                data:{sourceType:dataSet},
+                cache : false,
+                dataType:"json",
+                async: true,
+                error: function(request) {
+                    layer.close(index);
+                },
+                success: function(data) {
+                    toastr.info("配置模板已经解析完成。");
+                    layer.close(index);
+                }
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url:ctx + 'detail/convertTemplate',
-            data:{sourceType:1},
-            cache : false,
-            dataType:"json",
-            async: true,
-            error: function(request) {
-                layer.close(index);
-            },
-            success: function(data) {
-                toastr.info("配置模板已经解析完成。");
-                layer.close(index);
-            }
-        });
 
     });
     function initTemplate(){

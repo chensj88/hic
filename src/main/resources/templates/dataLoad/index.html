@@ -701,7 +701,6 @@
         var content = "";
         $('#viewForm').empty();
         $.each(data.columns,function(index,value){
-
             if(obj[value.field].length >= 30){
                 var rows = obj[value.field].length / 30 +1;
                 content += '<div class="form-group" id="'+value.field+'Label"> '+
