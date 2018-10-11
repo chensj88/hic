@@ -23,6 +23,10 @@ public class MbzTemplateNodeDetailInfo extends BaseDomain implements Serializabl
      */
     private String mbdm;
     /**
+     * 字段名：模板代码
+     */
+    private String mbmc;
+    /**
      * 字段名：节点名称
      */
     private String jdmc;
@@ -54,6 +58,14 @@ public class MbzTemplateNodeDetailInfo extends BaseDomain implements Serializabl
      * 默认值：无
      */
     private String yzjddm;
+
+    /**
+     * 字段名：SOURCE_TYPE
+     * 备注: 来源于字段表,源数据类型
+     * 默认值：无
+     */
+    private String sourceType;
+
 
     private Element element;
 
@@ -119,6 +131,30 @@ public class MbzTemplateNodeDetailInfo extends BaseDomain implements Serializabl
 
     public void setJdlx(String jdlx) {
         this.jdlx = jdlx;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(String sourceType) {
+        this.sourceType = sourceType;
+    }
+
+    public String getMbmc() {
+        return mbmc;
+    }
+
+    public void setMbmc(String mbmc) {
+        this.mbmc = mbmc;
     }
 
     @Override

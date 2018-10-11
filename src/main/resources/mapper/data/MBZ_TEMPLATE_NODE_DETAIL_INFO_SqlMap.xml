@@ -12,6 +12,8 @@
          <result column="QRMBDM" property="qrmbdm" jdbcType="VARCHAR" />
          <result column="QRDXDM" property="qrdxdm" jdbcType="VARCHAR" />
          <result column="YZJDDM" property="yzjddm" jdbcType="VARCHAR" />
+         <result column="SOURCE_TYPE" property="sourceType" jdbcType="VARCHAR" />
+        <result column="MBMC" property="mbmc" jdbcType="VARCHAR" />
     </resultMap>
 
     <resultMap id="mbzTemplateNodeDetailInfoResult" type="com.winning.hic.model.MbzTemplateNodeDetailInfo" extends="mbzTemplateNodeDetailInfoResultForList">
@@ -27,6 +29,8 @@
         <if test="(qrmbdm != null and qrmbdm != '')"> and t.QRMBDM = #{qrmbdm} </if>
         <if test="(qrdxdm != null and qrdxdm != '')"> and t.QRDXDM = #{qrdxdm} </if>
         <if test="(yzjddm != null and yzjddm != '')"> and t.YZJDDM = #{yzjddm} </if>
+        <if test="(sourceType != null and sourceType != '')"> and t.SOURCE_TYPE = #{sourceType} </if>
+        <if test="(mbmc != null and mbmc != '')"> and t.MBMC = #{mbmc} </if>
     </sql>
 
     <insert id="insertMbzTemplateNodeDetailInfo" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
@@ -41,6 +45,8 @@
             <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM , </if>
             <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM , </if>
             <if test="(yzjddm != null and yzjddm != '')"> YZJDDM , </if>
+            <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE , </if>
+            <if test="(mbmc != null and mbmc != '')"> MBMC , </if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -52,6 +58,8 @@
             <if test="(qrmbdm != null and qrmbdm != '')"> #{qrmbdm , jdbcType= VARCHAR },  </if>
             <if test="(qrdxdm != null and qrdxdm != '')"> #{qrdxdm , jdbcType= VARCHAR },  </if>
             <if test="(yzjddm != null and yzjddm != '')"> #{yzjddm , jdbcType= VARCHAR },  </if>
+            <if test="(sourceType != null and sourceType != '')"> #{sourceType , jdbcType= VARCHAR },  </if>
+            <if test="(mbmc != null and mbmc != '')"> #{mbmc , jdbcType= VARCHAR },  </if>
         </trim>
     </insert>
 
@@ -67,6 +75,8 @@
                 <if test="(qrmbdm != null and qrmbdm != '')"> QRMBDM = #{qrmbdm , jdbcType= VARCHAR }, </if>
                 <if test="(qrdxdm != null and qrdxdm != '')"> QRDXDM = #{qrdxdm , jdbcType= VARCHAR }, </if>
                 <if test="(yzjddm != null and yzjddm != '')"> YZJDDM = #{yzjddm , jdbcType= VARCHAR }, </if>
+                <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE = #{sourceType , jdbcType= VARCHAR }, </if>
+                <if test="(mbmc != null and mbmc != '')"> MBMC = #{mbmc , jdbcType= VARCHAR }, </if>
             </trim>
         </set>
         <where>

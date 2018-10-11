@@ -392,7 +392,7 @@ public class DomUtils {
 
 
 
-    public static List<MbzTemplateNodeDetailInfo> convertXMLToObject(String xml, String mbdm) throws InvocationTargetException, IllegalAccessException {
+    public static List<MbzTemplateNodeDetailInfo> convertXMLToObject(String sourceType,String mbmc,String xml, String mbdm) throws InvocationTargetException, IllegalAccessException {
         Document document = getDocument(xml);
         Element rootElement = document.getRootElement();
         List<Element> nodeChildList = rootElement.elements(nodeTagName);
@@ -407,6 +407,8 @@ public class DomUtils {
                 MbzTemplateNodeDetailInfo objectInfo = new MbzTemplateNodeDetailInfo();
                 objectInfo.setMbdm(mbdm);
                 objectInfo.setJdlx("1");
+                objectInfo.setSourceType(sourceType);
+                objectInfo.setMbmc(mbmc);
                 objectInfo.setJdmc(XmlUtil.getValueByAttrName(childEle, nameAttrName));
                 objectInfo.setDtjddm(XmlUtil.getValueByAttrName(childEle, idAttrName));
                 objectInfo.setElement(childEle);

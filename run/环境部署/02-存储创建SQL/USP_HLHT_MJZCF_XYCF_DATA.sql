@@ -21,7 +21,7 @@ as
       exec USP_HLHT_MJZCF_XYCF_YEAR_DATA '1','2018010100:00:00','2018010323:59:59',NULL  --提取当天的数据
 [注意事项]
  1、在CIS_HLHT中创建
- 2、[HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK].yplh 需要根据医院实际情况对该口径进行修改
+ 2、[HLHT_MZ_HIS].[This40].[dbo].[YK_YPCDMLK].yplh 需要根据医院实际情况对该口径进行修改
 */
 begin
 --判断@syxh是否存在
@@ -29,7 +29,7 @@ if @syxh  is null or @syxh = ''
   --不存在首页序号
 	begin
     --创建临时表
-	SELECT * INTO #YF_MZFYZD FROM [HLHT_MZ_HIS].[THIS4].[dbo].[YF_MZFYZD] T(nolock)
+	SELECT * INTO #YF_MZFYZD FROM [HLHT_MZ_HIS].[This40].[dbo].[YF_MZFYZD] T(nolock)
 	WHERE T.fyrq BETWEEN  @startDate  AND  @endDate
 	--在临时表上增加索引
 	CREATE INDEX IDX_YF_MZFYZD_CFXH ON #YF_MZFYZD (cfxh);
@@ -100,16 +100,17 @@ if @syxh  is null or @syxh = ''
        CONVERT(DECIMAL(18,2),(T4.YPSL*T4.YLSJ)/T4.YKXS)                                                               AS cfypje,
        GETDATE()                                                                                                      AS gxsj
        FROM #YF_MZFYZD T1
-       LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
-	     LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
-		   LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[SF_MZCFK] c(nolock) on T1.cfxh=c.xh
-		   LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[GH_GHZDK] b(nolock) on b.xh=c.ghxh
+       LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
+	     LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
+		   LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[SF_MZCFK] c(nolock) on T1.cfxh=c.xh
+		   LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[GH_GHZDK] b(nolock) on b.xh=c.ghxh
        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDER] T2(nolock) ON b.xh = T2.GHXH
-       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
-       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
-       INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
+       LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
+       LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
+       LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
        WHERE
-        T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
+        -- T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
+        T6.yplh='01'
         AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
         AND c.fybz=1
 		--删除临时表
@@ -119,7 +120,7 @@ else
   --存在@syxh
 	begin
 	 --创建临时表
-	SELECT * INTO #YF_MZFYZD_TEMP FROM [HLHT_MZ_HIS].[THIS4].[dbo].[YF_MZFYZD] T(nolock)
+	SELECT * INTO #YF_MZFYZD_TEMP FROM [HLHT_MZ_HIS].[This40].[dbo].[YF_MZFYZD] T(nolock)
 	WHERE T.fyrq BETWEEN  @startDate  AND  @endDate
 	--在临时表上增加索引
 	CREATE INDEX IDX_YF_MZFYZD_CFXH ON #YF_MZFYZD_TEMP (cfxh);
@@ -190,16 +191,17 @@ else
        CONVERT(DECIMAL(18,2),(T4.YPSL*T4.YLSJ)/T4.YKXS)                                                               AS cfypje,
        GETDATE()                                                                                                      AS gxsj
        FROM #YF_MZFYZD_TEMP T1
-       LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
-	     LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
-	     LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[SF_MZCFK] c(nolock) on T1.cfxh=c.xh
-	     LEFT JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[GH_GHZDK] b(nolock) on b.xh=c.ghxh
+       LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[czryk] e(nolock) on T1.pyczry=e.id
+	     LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[czryk] f(nolock) on T1.fyczyh=f.id
+	     LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[SF_MZCFK] c(nolock) on T1.cfxh=c.xh
+	     LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[GH_GHZDK] b(nolock) on b.xh=c.ghxh
        INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDER] T2(nolock) ON b.xh = T2.GHXH
-       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
-       INNER JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
-       INNER JOIN [HLHT_MZ_HIS].[THIS4].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
+       LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] T3(nolock) ON T2.GHXH = T3.GHXH
+       LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_ORDERITEM] T4(nolock) ON T2.XH = T4.CFXH
+       LEFT JOIN [HLHT_MZ_HIS].[This40].[dbo].[YK_YPCDMLK] T6(nolock)  on T4.CD_IDM = T6.idm
        WHERE
-       T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
+       --T6.yplh='003'  --需要根据医院实际情况对该口径进行修改
+       T6.yplh='01'
        AND T3.ZDDM IS NOT NULL AND T3.ZDDM != '' AND T4.CD_IDM <> 0
        AND c.fybz=1 and T2.GHXH=@syxh
 		--删除临时表
