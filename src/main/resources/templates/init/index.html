@@ -30,6 +30,8 @@
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
     <script th:src="@{/assets/js/ace-extra.min.js}"></script>
     <link rel="stylesheet" th:href="@{/assets/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <link rel="stylesheet" th:href="@{/assets/layer/mobile/need/layer.css}"/>
+
     <style>
         .tree-container{
             height: 500px;
@@ -304,6 +306,8 @@
 <script th:src="@{/assets/ztree/js/jquery.ztree.excheck.min.js}"></script>
 <script th:src="@{/assets/ztree/js/jquery.ztree.exhide.min.js}"></script>
 <script th:src="@{/assets/common.js}"></script>
+<script th:src="@{/assets/layer/layer.js}"></script>
+
 <script type="text/javascript" th:inline="javascript">
     var ctx = /*[[@{/}]]*/'';
     var resultData = [];
@@ -581,6 +585,34 @@
             }
 
         });
+    }
+
+    //模板解析
+    $("#initTemplate").click(function () {
+        //loading层
+        var index = layer.load(1, {
+            shade: [0.5, '#E0E0E0'] //0.1透明度的白色背景
+        });
+
+        // $.ajax({
+        //     type: "POST",
+        //     url:ctx + 'dataList/refreshPercent',
+        //     data:{sourceType:dataSet_val},
+        //     cache : false,
+        //     dataType:"json",
+        //     async: true,
+        //     error: function(request) {
+        //         layer.close(index);
+        //     },
+        //     success: function(data) {
+        //         $table.bootstrapTable('refresh');
+        //         layer.close(index);
+        //     }
+        // });
+
+    });
+    function initTemplate(){
+
     }
 
     function showOrHideDivByDatatype(dataType){

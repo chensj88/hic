@@ -77,7 +77,15 @@ public class EmrMxmcmlkServiceImpl implements  EmrMxmcmlkService {
     @Override
     public List<MBNoteTree> getEmrMxmcmlkListTree(EmrMxmcmlk mxmcmlk) {
         List<MBNoteTree> mbNoteTrees = new ArrayList<>();
-        List<EmrMxmcmlk> mxmcmlkList = emrMxmcmlkDao.selectEmrMxmcmlkFirstChildList(mxmcmlk);
+        List<EmrMxmcmlk> mxmcmlkList = new ArrayList<>();
+        if(mxmcmlk.getMldm().equals("B+20")){
+             mxmcmlkList = emrMxmcmlkDao.selectEmrMxmcmlkFirstChildList(mxmcmlk);
+            mxmcmlk.setMldm("B+98");
+            List<EmrMxmcmlk> mxmcmlkList2 = emrMxmcmlkDao.selectEmrMxmcmlkFirstChildList(mxmcmlk);
+            mxmcmlkList.addAll(mxmcmlkList2);
+        }else{
+            mxmcmlkList = emrMxmcmlkDao.selectEmrMxmcmlkFirstChildList(mxmcmlk);
+        }
         for (EmrMxmcmlk emrMxmcmlk : mxmcmlkList) {
             MBNoteTree tree = emrMxmcmlk.getMBNoteTree();
             mbNoteTrees.add(tree);
