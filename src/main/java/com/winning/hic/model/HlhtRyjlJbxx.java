@@ -193,7 +193,7 @@ public class HlhtRyjlJbxx extends BaseDomain implements Serializable {
      * 备注: 
      * 默认值：无
      */
-    private Date ryrq;
+    private Timestamp ryrq;
     /**
      * 字段名：bscszxm
      * 备注: 
@@ -1189,7 +1189,7 @@ public class HlhtRyjlJbxx extends BaseDomain implements Serializable {
    * get方法
    * 备注: 
    */
-   public Date getRyrq(){
+   public Timestamp getRyrq(){
 
         return ryrq;
    }
@@ -1199,7 +1199,7 @@ public class HlhtRyjlJbxx extends BaseDomain implements Serializable {
    * set方法
    * 备注: 
    */
-   public void setRyrq(Date ryrq){
+   public void setRyrq(Timestamp ryrq){
         this.ryrq = ryrq;
    }
    /**
