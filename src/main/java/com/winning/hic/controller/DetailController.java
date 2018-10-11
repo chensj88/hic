@@ -50,4 +50,33 @@ public class DetailController extends BaseController {
         result.put("msg", "测试转换模板信息");
         return result;
     }
+
+    /**
+     * 解析特定已配置模板节点信息
+     * @return
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
+    @RequestMapping(value = "/convertTemplate")
+    public Map<String, Object> convertToTemplateDetail(String sourceType) throws InvocationTargetException, IllegalAccessException {
+
+        MbzDataListSet listSet = new MbzDataListSet();
+        listSet.setSourceType(sourceType);
+        List<MbzDataListSet> dataListSets = super.getFacade().getMbzDataListSetService().getMbzDataListSetList(listSet);
+        for (MbzDataListSet set : dataListSets) {
+            EmrMbk mbk = new EmrMbk();
+            mbk.setMbdm(set.getModelCode());
+            mbk = getFacade().getEmrMbkService().getEmrMbk(mbk);
+            if(mbk == null){
+                continue;
+            }else{
+                List<MbzTemplateNodeDetailInfo> templateNodeDetailInfos = DomUtils.convertXMLToObject(sourceType, mbk.getMbmc(),mbk.getMbnr(),mbk.getMbdm());
+                getFacade().getMbzTemplateNodeDetailInfoService().createMbzTemplateNodeDetailInfoList(templateNodeDetailInfos);
+            }
+        }
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("msg", "测试转换模板信息");
+        return result;
+    }
 }

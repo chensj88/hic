@@ -158,6 +158,26 @@ public class MbzTemplateNodeDetailInfo extends BaseDomain implements Serializabl
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj==null){
+            return false;
+        }
+        if(this==obj){
+            return true;
+        }
+        if(obj instanceof MbzTemplateNodeDetailInfo){
+            MbzTemplateNodeDetailInfo info=(MbzTemplateNodeDetailInfo)obj;
+            if(info.jdmc.equals(this.jdmc) &&
+               info.jdlx.equals(this.jdlx) ){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "XmlObjectInfo{" +
                 "mbdm='" + mbdm + '\'' +

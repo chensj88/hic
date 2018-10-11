@@ -594,21 +594,21 @@
             shade: [0.5, '#E0E0E0'] //0.1透明度的白色背景
         });
 
-        // $.ajax({
-        //     type: "POST",
-        //     url:ctx + 'dataList/refreshPercent',
-        //     data:{sourceType:dataSet_val},
-        //     cache : false,
-        //     dataType:"json",
-        //     async: true,
-        //     error: function(request) {
-        //         layer.close(index);
-        //     },
-        //     success: function(data) {
-        //         $table.bootstrapTable('refresh');
-        //         layer.close(index);
-        //     }
-        // });
+        $.ajax({
+            type: "POST",
+            url:ctx + 'detail/convertTemplate',
+            data:{sourceType:1},
+            cache : false,
+            dataType:"json",
+            async: true,
+            error: function(request) {
+                layer.close(index);
+            },
+            success: function(data) {
+                toastr.info("配置模板已经解析完成。");
+                layer.close(index);
+            }
+        });
 
     });
     function initTemplate(){

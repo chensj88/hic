@@ -416,12 +416,29 @@ public class DomUtils {
                 resolveRefQrmbjd(mbdm,objectInfo,MbzTemplateNodeDetailInfoList);
             }
         }
-        Set<MbzTemplateNodeDetailInfo> allXml = new HashSet<>(MbzTemplateNodeDetailInfoList);
-        MbzTemplateNodeDetailInfoList.clear();
-        MbzTemplateNodeDetailInfoList.addAll(allXml);
-        return MbzTemplateNodeDetailInfoList;
+
+
+//        Set<MbzTemplateNodeDetailInfo> allXml = new HashSet<>(MbzTemplateNodeDetailInfoList);
+//        MbzTemplateNodeDetailInfoList.clear();
+//        MbzTemplateNodeDetailInfoList.addAll(allXml);
+        return removeDuplicate(MbzTemplateNodeDetailInfoList);
     }
 
+    /**
+     * 去除重复数据
+     * @param list
+     * @return
+     */
+    public   static   List  removeDuplicate(List list)  {
+        for  ( int  i  =   0 ; i  <  list.size()  -   1 ; i ++ )  {
+            for  ( int  j  =  list.size()  -   1 ; j  >  i; j -- )  {
+                if  (list.get(j).equals(list.get(i)))  {
+                    list.remove(j);
+                }
+            }
+        }
+        return list;
+    }
     public static void resolveRefQrmbjd(String mbdm,MbzTemplateNodeDetailInfo objectInfo, List<MbzTemplateNodeDetailInfo> MbzTemplateNodeDetailInfoList) throws InvocationTargetException, IllegalAccessException {
         List<Element> nodeRefList = objectInfo.getElement().elements(nodeTagName);
         for (Element element : nodeRefList) {
