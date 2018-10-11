@@ -41,7 +41,7 @@ t.xzxyzdbm = (CASE WHEN t.xzxyzdbm = 'NA' AND c.czxyzdbm IS NOT NULL THEN c.czxy
 	ELSE t.xzzyzhmc
 	END
 ),
- t.xzzdrq = (CASE WHEN t.xzzdrq = '1990-01-01' THEN GETDATE()
+ t.xzzdrq = (CASE WHEN t.xzzdrq = '1990-01-01' THEN CONVERT(DATE,GETDATE())
 	ELSE t.xzzdrq
 	END
 ),
@@ -100,7 +100,7 @@ t.qzxyzdbm = (CASE WHEN t.qzxyzdbm = 'NA' AND c.czxyzdbm IS NOT NULL AND c.czxyz
 		)
 	END
 ),
-t.qzrq = (CASE WHEN t.qzrq = '1990-01-01' THEN t.gxsj
+t.qzrq = (CASE WHEN t.qzrq = '1990-01-01' THEN CONVERT(DATE,GETDATE())
 	ELSE t.qzrq
 	END
 )
