@@ -11,13 +11,13 @@ begin
 if @syxh  is null or @syxh = ''
 	begin
 
-  SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+  SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
 		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
 		 AND T.YXJL=1
          --在临时表上增加索引
 		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_LS (BLDM);
 
-		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
+		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
 		WHERE A.SOURCE_TYPE=@sourceType
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (SYXH);
@@ -32,11 +32,11 @@ SELECT t.QTBLJLXH as yjlxh,
         c.KSMC as ksmc,
         c.BQDM as bqdm,
         c.BQMC as bqmc ,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM as bch,
         b.HZXM as hzxm,
-        ISNULL(b.SFZH, 'NA') as sfzhm,b.BRXB as xbdm,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,b.BRXB as xbdm,
         (
         SELECT CASE b.BRXB
         WHEN '2'
@@ -69,13 +69,13 @@ SELECT t.QTBLJLXH as yjlxh,
 	end
 else
 	begin
-	  SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK_TEMP_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+	  SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
 		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
 		 AND T.YXJL=1 AND T.SYXH=@syxh;
          --在临时表上增加索引
 		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_TEMP_LS (BLDM);
 
-		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
+		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
 		WHERE A.SOURCE_TYPE=@sourceType
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (SYXH);
@@ -88,11 +88,11 @@ else
           c.KSMC as ksmc,
           c.BQDM as bqdm,
           c.BQMC as bqmc ,
-          ISNULL(a.fjh, 'NA') AS bfh,
-          ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
           c.CWDM as bch,
           b.HZXM as hzxm,
-          ISNULL(b.SFZH, 'NA') as sfzhm,b.BRXB as xbdm,
+          (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,b.BRXB as xbdm,
           (
           SELECT CASE b.BRXB
           WHEN '2'

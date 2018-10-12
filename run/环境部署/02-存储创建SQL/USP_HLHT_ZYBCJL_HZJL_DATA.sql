@@ -53,7 +53,7 @@ if @syxh  is null or @syxh = ''
             ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
             c.CWDM AS bch ,
             b.HZXM AS hzxm,
-            b.SFZH AS sfzhm,
+            (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
             b.BRXB AS xbdm,
             (
             SELECT CASE b.BRXB
@@ -119,7 +119,7 @@ SELECT t.QTBLJLXH AS yjlxh,
             ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
             c.CWDM AS bch ,
             b.HZXM AS hzxm,
-            b.SFZH AS sfzhm,
+            (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
             b.BRXB AS xbdm,
             (
             SELECT CASE b.BRXB
