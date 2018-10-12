@@ -36,7 +36,7 @@ SELECT t.QTBLJLXH as yjlxh,
         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM as bch,
         b.HZXM as hzxm,
-        b.SFZH as sfzhm,b.BRXB as xbdm,
+        ISNULL(b.SFZH, 'NA') as sfzhm,b.BRXB as xbdm,
         (
         SELECT CASE b.BRXB
         WHEN '2'
@@ -92,7 +92,7 @@ else
           ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
           c.CWDM as bch,
           b.HZXM as hzxm,
-          b.SFZH as sfzhm,b.BRXB as xbdm,
+          ISNULL(b.SFZH, 'NA') as sfzhm,b.BRXB as xbdm,
           (
           SELECT CASE b.BRXB
           WHEN '2'

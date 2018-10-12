@@ -328,6 +328,7 @@ alter table	HLHT_RYJL_JBXX_FB	alter column	qzzyzhmc	varchar(1000)		;
 alter table	HLHT_RYJL_JBXX_FB	alter column	qzzyzhdm	varchar(500)		;
 alter table	HLHT_RYJL_JBXX_FB	alter column	bzmc	varchar(1000)		;
 alter table	HLHT_RYJL_JBXX_FB	alter column	bzbm	varchar(500)		;
+alter table HLHT_RYJL_JBXX_FB alter column tjtz numeric(8, 2) not null;
 alter table	HLHT_ZCJL_YDFM_FB	alter column	zdmc	varchar(500)	not null	;
 alter table	HLHT_ZCJL_YDFM_FB	alter column	qysxz	varchar(500)	not null	;
 alter table	HLHT_ZCJL_YDFM_FB	alter column	temczcbz	varchar(10)	not null	;
