@@ -32,11 +32,11 @@ SELECT t.QTBLJLXH as yjlxh,
         c.KSMC as ksmc,
         c.BQDM as bqdm,
         c.BQMC as bqmc ,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM as bch,
         b.HZXM as hzxm,
-        ISNULL(b.SFZH, 'NA') as sfzhm,b.BRXB as xbdm,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,b.BRXB as xbdm,
         (
         SELECT CASE b.BRXB
         WHEN '2'
@@ -88,11 +88,11 @@ else
           c.KSMC as ksmc,
           c.BQDM as bqdm,
           c.BQMC as bqmc ,
-          ISNULL(a.fjh, 'NA') AS bfh,
-          ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
           c.CWDM as bch,
           b.HZXM as hzxm,
-          ISNULL(b.SFZH, 'NA') as sfzhm,b.BRXB as xbdm,
+          (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,b.BRXB as xbdm,
           (
           SELECT CASE b.BRXB
           WHEN '2'
