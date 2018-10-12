@@ -62,8 +62,8 @@ if @syxh  is null or @syxh = ''
         GETDATE()                                                             as gxsj,
         a.SYXH as syxh,
         a.BLMC as blmc,
-		a.FSSJ as fssj,
-		a.BLNR as blnr
+		    a.FSSJ as fssj,
+		    a.BLNR as blnr
         from #EMR_QTBLJLK a
         left join [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] b(nolock) on a.SYXH = b.EMRXH
 		--删除临时表
