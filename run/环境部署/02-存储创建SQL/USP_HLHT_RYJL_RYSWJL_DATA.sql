@@ -61,7 +61,7 @@ if @syxh  is null or @syxh = ''
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
-        d.NAME as mzmc,
+        ISNULL(d.NAME,'NA') as mzmc,
         b.HYZK as hyzkdm,
         (
         SELECT
@@ -85,7 +85,7 @@ if @syxh  is null or @syxh = ''
         'NA' as dzc,
         'NA' as dzmphm,
         b.ZYDM as zylbdm,
-        i.NAME as zylbmc,
+        ISNULL(i.NAME,'NA') as zylbmc,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         t.TJZT as tjzt,
         GETDATE() as gxsj,
@@ -139,7 +139,7 @@ else
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
-        d.NAME as mzmc,
+        ISNULL(d.NAME,'NA') as mzmc,
         b.HYZK as hyzkdm,
         (
         SELECT
@@ -163,7 +163,7 @@ else
         'NA' as dzc,
         'NA' as dzmphm,
         b.ZYDM as zylbdm,
-        i.NAME as zylbmc,
+        ISNULL(i.NAME,'NA') as zylbmc,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         t.TJZT as tjzt,
         GETDATE() as gxsj,
