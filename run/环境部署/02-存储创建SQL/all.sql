@@ -458,8 +458,8 @@ if @syxh  is null or @syxh = ''
               )  AS xbdm,
               c.SEX AS xbmc,
               CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,
-              ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'''') AS nls,
-              DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
+               ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'0') AS nls,
+               DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
               i.DICT_LABEL AS zzjgmc,
               ii.DICT_LABEL AS zzjgdm,
               c.KSDM AS ksdm,
@@ -530,8 +530,8 @@ else
               )  AS xbdm,
               c.SEX AS xbmc,
               CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,
-              ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'''') AS nls,
-              DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
+               ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'0') AS nls,
+               DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
               i.DICT_LABEL AS zzjgmc,
               ii.DICT_LABEL AS zzjgdm,
               c.KSDM AS ksdm,
@@ -7059,7 +7059,7 @@ if @syxh  is null or @syxh = ''
          --在临时表上增加索引
 		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_LS (BLDM);
 
-		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
+		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ,MXFLDM INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
 		WHERE A.SOURCE_TYPE=@sourceType
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (SYXH);
@@ -7077,8 +7077,7 @@ if @syxh  is null or @syxh = ''
         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch ,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
-        CONVERT(datetime,substring( c.BIRTH,1,4)+'-'+substring(c.BIRTH,5,2)+'-'+substring(c.BIRTH,7,2)) AS hzcsrq,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,        CONVERT(datetime,substring( c.BIRTH,1,4)+'-'+substring(c.BIRTH,5,2)+'-'+substring(c.BIRTH,7,2)) AS hzcsrq,
         b.BRXB AS xbdm,
         (
         SELECT CASE b.BRXB
@@ -7122,7 +7121,7 @@ else
          --在临时表上增加索引
 		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_TEMP_LS (BLDM);
 
-		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
+		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ,MXFLDM INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
 		WHERE A.SOURCE_TYPE=@sourceType
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (SYXH);
@@ -7141,8 +7140,7 @@ else
         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch ,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
-        CONVERT(datetime,substring( c.BIRTH,1,4)+'-'+substring(c.BIRTH,5,2)+'-'+substring(c.BIRTH,7,2)) AS hzcsrq,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,        CONVERT(datetime,substring( c.BIRTH,1,4)+'-'+substring(c.BIRTH,5,2)+'-'+substring(c.BIRTH,7,2)) AS hzcsrq,
         b.BRXB AS xbdm,
         (
         SELECT CASE b.BRXB
