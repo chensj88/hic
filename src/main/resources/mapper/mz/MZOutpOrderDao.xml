@@ -112,14 +112,14 @@
     <sql id="sql-outpOrder">
         <if test="(xh != null and xh != '')"> and t.XH = #{xh} </if>
         <if test="(ghxh != null and ghxh != '')"> and t.GHXH = #{ghxh} </if>
-        <if test="(patid != null and patid != '')"> and t.PATID = #{patid} </if>
-        <if test="(hzxm != null and hzxm != '')"> and t.HZXM = #{hzxm} </if>
+        <if test="(patid != null )"> and t.PATID = #{patid} </if>
+        <if test="(hzxm != null )"> and t.HZXM = #{hzxm} </if>
         <if test="(py != null and py != '')"> and t.PY = #{py} </if>
         <if test="(wb != null and wb != '')"> and t.WB = #{wb} </if>
         <if test="(ysdm != null and ysdm != '')"> and t.YSDM = #{ysdm} </if>
         <if test="(ysmc != null and ysmc != '')"> and t.YSMC = #{ysmc} </if>
-        <if test="(ksdm != null and ksdm != '')"> and t.KSDM = #{ksdm} </if>
-        <if test="(ksmc != null and ksmc != '')"> and t.KSMC = #{ksmc} </if>
+        <if test="(ksdm != null )"> and t.KSDM = #{ksdm} </if>
+        <if test="(ksmc != null )"> and t.KSMC = #{ksmc} </if>
         <if test="(yfdm != null and yfdm != '')"> and t.YFDM = #{yfdm} </if>
         <if test="(yfmc != null and yfmc != '')"> and t.YFMC = #{yfmc} </if>
         <if test="(cfts != null and cfts != '')"> and t.CFTS = #{cfts} </if>
@@ -216,14 +216,14 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(xh != null and xh != '')"> XH , </if>
             <if test="(ghxh != null and ghxh != '')"> GHXH , </if>
-            <if test="(patid != null and patid != '')"> PATID , </if>
-            <if test="(hzxm != null and hzxm != '')"> HZXM , </if>
+            <if test="(patid != null )"> PATID , </if>
+            <if test="(hzxm != null )"> HZXM , </if>
             <if test="(py != null and py != '')"> PY , </if>
             <if test="(wb != null and wb != '')"> WB , </if>
             <if test="(ysdm != null and ysdm != '')"> YSDM , </if>
             <if test="(ysmc != null and ysmc != '')"> YSMC , </if>
-            <if test="(ksdm != null and ksdm != '')"> KSDM , </if>
-            <if test="(ksmc != null and ksmc != '')"> KSMC , </if>
+            <if test="(ksdm != null )"> KSDM , </if>
+            <if test="(ksmc != null )"> KSMC , </if>
             <if test="(yfdm != null and yfdm != '')"> YFDM , </if>
             <if test="(yfmc != null and yfmc != '')"> YFMC , </if>
             <if test="(cfts != null and cfts != '')"> CFTS , </if>
@@ -318,14 +318,14 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(xh != null and xh != '')"> #{xh , jdbcType= DECIMAL },  </if>
             <if test="(ghxh != null and ghxh != '')"> #{ghxh , jdbcType= DECIMAL },  </if>
-            <if test="(patid != null and patid != '')"> #{patid , jdbcType= DECIMAL },  </if>
-            <if test="(hzxm != null and hzxm != '')"> #{hzxm , jdbcType= VARCHAR },  </if>
+            <if test="(patid != null )"> #{patid , jdbcType= DECIMAL },  </if>
+            <if test="(hzxm != null )"> #{hzxm , jdbcType= VARCHAR },  </if>
             <if test="(py != null and py != '')"> #{py , jdbcType= VARCHAR },  </if>
             <if test="(wb != null and wb != '')"> #{wb , jdbcType= VARCHAR },  </if>
             <if test="(ysdm != null and ysdm != '')"> #{ysdm , jdbcType= CHAR },  </if>
             <if test="(ysmc != null and ysmc != '')"> #{ysmc , jdbcType= VARCHAR },  </if>
-            <if test="(ksdm != null and ksdm != '')"> #{ksdm , jdbcType= VARCHAR },  </if>
-            <if test="(ksmc != null and ksmc != '')"> #{ksmc , jdbcType= VARCHAR },  </if>
+            <if test="(ksdm != null )"> #{ksdm , jdbcType= VARCHAR },  </if>
+            <if test="(ksmc != null )"> #{ksmc , jdbcType= VARCHAR },  </if>
             <if test="(yfdm != null and yfdm != '')"> #{yfdm , jdbcType= VARCHAR },  </if>
             <if test="(yfmc != null and yfmc != '')"> #{yfmc , jdbcType= VARCHAR },  </if>
             <if test="(cfts != null and cfts != '')"> #{cfts , jdbcType= INTEGER },  </if>
@@ -424,14 +424,14 @@
             <trim suffixOverrides=",">
                 <if test="(xh != null and xh != '')"> XH = #{xh , jdbcType= DECIMAL }, </if>
                 <if test="(ghxh != null and ghxh != '')"> GHXH = #{ghxh , jdbcType= DECIMAL }, </if>
-                <if test="(patid != null and patid != '')"> PATID = #{patid , jdbcType= DECIMAL }, </if>
-                <if test="(hzxm != null and hzxm != '')"> HZXM = #{hzxm , jdbcType= VARCHAR }, </if>
+                <if test="(patid != null )"> PATID = #{patid , jdbcType= DECIMAL }, </if>
+                <if test="(hzxm != null )"> HZXM = #{hzxm , jdbcType= VARCHAR }, </if>
                 <if test="(py != null and py != '')"> PY = #{py , jdbcType= VARCHAR }, </if>
                 <if test="(wb != null and wb != '')"> WB = #{wb , jdbcType= VARCHAR }, </if>
                 <if test="(ysdm != null and ysdm != '')"> YSDM = #{ysdm , jdbcType= CHAR }, </if>
                 <if test="(ysmc != null and ysmc != '')"> YSMC = #{ysmc , jdbcType= VARCHAR }, </if>
-                <if test="(ksdm != null and ksdm != '')"> KSDM = #{ksdm , jdbcType= VARCHAR }, </if>
-                <if test="(ksmc != null and ksmc != '')"> KSMC = #{ksmc , jdbcType= VARCHAR }, </if>
+                <if test="(ksdm != null )"> KSDM = #{ksdm , jdbcType= VARCHAR }, </if>
+                <if test="(ksmc != null )"> KSMC = #{ksmc , jdbcType= VARCHAR }, </if>
                 <if test="(yfdm != null and yfdm != '')"> YFDM = #{yfdm , jdbcType= VARCHAR }, </if>
                 <if test="(yfmc != null and yfmc != '')"> YFMC = #{yfmc , jdbcType= VARCHAR }, </if>
                 <if test="(cfts != null and cfts != '')"> CFTS = #{cfts , jdbcType= INTEGER }, </if>

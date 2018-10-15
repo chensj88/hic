@@ -35,16 +35,16 @@
         <if test="(sourceType != null and sourceType != '')">and t.SOURCE_TYPE = #{sourceType}</if>
         <if test="(sourceId != null and sourceId != '')">and t.SOURCE_ID = #{sourceId}</if>
         <if test="(recordName != null and recordName != '')">and t.RECORD_NAME = #{recordName}</if>
-        <if test="(syxh != null and syxh != '')">and t.SYXH = #{syxh}</if>
-        <if test="(patid != null and patid != '')">and t.PATID = #{patid}</if>
-        <if test="(zyh != null and zyh != '')">and t.ZYH = #{zyh}</if>
-        <if test="(hzxm != null and hzxm != '')">and t.HZXM = #{hzxm}</if>
-        <if test="(xbmc != null and xbmc != '')">and t.XBMC = #{xbmc}</if>
-        <if test="(xbdm != null and xbdm != '')">and t.XBDM = #{xbdm}</if>
-        <if test="(ksmc != null and ksmc != '')">and t.KSMC = #{ksmc}</if>
-        <if test="(ksdm != null and ksdm != '')">and t.KSDM = #{ksdm}</if>
-        <if test="(bqmc != null and bqmc != '')">and t.BQMC = #{bqmc}</if>
-        <if test="(bqdm != null and bqdm != '')">and t.BQDM = #{bqdm}</if>
+        <if test="(syxh != null )">and t.SYXH = #{syxh}</if>
+        <if test="(patid != null )">and t.PATID = #{patid}</if>
+        <if test="(zyh != null )">and t.ZYH = #{zyh}</if>
+        <if test="(hzxm != null )">and t.HZXM = #{hzxm}</if>
+        <if test="(xbmc != null )">and t.XBMC = #{xbmc}</if>
+        <if test="(xbdm != null )">and t.XBDM = #{xbdm}</if>
+        <if test="(ksmc != null )">and t.KSMC = #{ksmc}</if>
+        <if test="(ksdm != null )">and t.KSDM = #{ksdm}</if>
+        <if test="(bqmc != null )">and t.BQMC = #{bqmc}</if>
+        <if test="(bqdm != null )">and t.BQDM = #{bqdm}</if>
         <if test="(sfzhm != null and sfzhm != '')">and t.SFZHM = #{sfzhm}</if>
         <if test="(fssj != null )">and t.FSSJ = #{fssj}</if>
         <if test="(cqrq != null )">and t.CQRQ = #{cqrq}</if>
@@ -61,16 +61,16 @@
             <if test="(sourceType != null and sourceType != '')">SOURCE_TYPE ,</if>
             <if test="(sourceId != null and sourceId != '')">SOURCE_ID ,</if>
             <if test="(recordName != null and recordName != '')">RECORD_NAME ,</if>
-            <if test="(syxh != null and syxh != '')">SYXH ,</if>
-            <if test="(patid != null and patid != '')">PATID ,</if>
-            <if test="(zyh != null and zyh != '')">ZYH ,</if>
-            <if test="(hzxm != null and hzxm != '')">HZXM ,</if>
-            <if test="(xbmc != null and xbmc != '')">XBMC ,</if>
-            <if test="(xbdm != null and xbdm != '')">XBDM ,</if>
-            <if test="(ksmc != null and ksmc != '')">KSMC ,</if>
-            <if test="(ksdm != null and ksdm != '')">KSDM ,</if>
-            <if test="(bqmc != null and bqmc != '')">BQMC ,</if>
-            <if test="(bqdm != null and bqdm != '')">BQDM ,</if>
+            <if test="(syxh != null )">SYXH ,</if>
+            <if test="(patid != null )">PATID ,</if>
+            <if test="(zyh != null )">ZYH ,</if>
+            <if test="(hzxm != null )">HZXM ,</if>
+            <if test="(xbmc != null )">XBMC ,</if>
+            <if test="(xbdm != null )">XBDM ,</if>
+            <if test="(ksmc != null )">KSMC ,</if>
+            <if test="(ksdm != null )">KSDM ,</if>
+            <if test="(bqmc != null )">BQMC ,</if>
+            <if test="(bqdm != null )">BQDM ,</if>
             <if test="(sfzhm != null and sfzhm != '')">SFZHM ,</if>
             <if test="(fssj != null )">FSSJ ,</if>
             <if test="(cqrq != null )">CQRQ ,</if>
@@ -83,16 +83,16 @@
             <if test="(sourceType != null and sourceType != '')">#{sourceType , jdbcType= BIGINT },</if>
             <if test="(sourceId != null and sourceId != '')">#{sourceId , jdbcType= BIGINT },</if>
             <if test="(recordName != null and recordName != '')">#{recordName , jdbcType= VARCHAR },</if>
-            <if test="(syxh != null and syxh != '')">#{syxh , jdbcType= VARCHAR },</if>
-            <if test="(patid != null and patid != '')">#{patid , jdbcType= VARCHAR },</if>
-            <if test="(zyh != null and zyh != '')">#{zyh , jdbcType= VARCHAR },</if>
-            <if test="(hzxm != null and hzxm != '')">#{hzxm , jdbcType= VARCHAR },</if>
-            <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
-            <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
-            <if test="(ksmc != null and ksmc != '')">#{ksmc , jdbcType= VARCHAR },</if>
-            <if test="(ksdm != null and ksdm != '')">#{ksdm , jdbcType= VARCHAR },</if>
-            <if test="(bqmc != null and bqmc != '')">#{bqmc , jdbcType= VARCHAR },</if>
-            <if test="(bqdm != null and bqdm != '')">#{bqdm , jdbcType= VARCHAR },</if>
+            <if test="(syxh != null )">#{syxh , jdbcType= VARCHAR },</if>
+            <if test="(patid != null )">#{patid , jdbcType= VARCHAR },</if>
+            <if test="(zyh != null )">#{zyh , jdbcType= VARCHAR },</if>
+            <if test="(hzxm != null )">#{hzxm , jdbcType= VARCHAR },</if>
+            <if test="(xbmc != null )">#{xbmc , jdbcType= VARCHAR },</if>
+            <if test="(xbdm != null )">#{xbdm , jdbcType= VARCHAR },</if>
+            <if test="(ksmc != null )">#{ksmc , jdbcType= VARCHAR },</if>
+            <if test="(ksdm != null )">#{ksdm , jdbcType= VARCHAR },</if>
+            <if test="(bqmc != null )">#{bqmc , jdbcType= VARCHAR },</if>
+            <if test="(bqdm != null )">#{bqdm , jdbcType= VARCHAR },</if>
             <if test="(sfzhm != null and sfzhm != '')">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(fssj != null )">#{fssj , jdbcType= TIMESTAMP },</if>
             <if test="(cqrq != null )">#{cqrq , jdbcType= TIMESTAMP },</if>
@@ -109,16 +109,16 @@
                 <if test="(sourceId != null)">SOURCE_ID = #{sourceId , jdbcType= BIGINT },</if>
                 <if test="(recordName != null and recordName != '')">RECORD_NAME = #{recordName , jdbcType= VARCHAR },
                 </if>
-                <if test="(syxh != null and syxh != '')">SYXH = #{syxh , jdbcType= VARCHAR },</if>
-                <if test="(patid != null and patid != '')">PATID = #{patid , jdbcType= VARCHAR },</if>
-                <if test="(zyh != null and zyh != '')">ZYH = #{zyh , jdbcType= VARCHAR },</if>
-                <if test="(hzxm != null and hzxm != '')">HZXM = #{hzxm , jdbcType= VARCHAR },</if>
-                <if test="(xbmc != null and xbmc != '')">XBMC = #{xbmc , jdbcType= VARCHAR },</if>
-                <if test="(xbdm != null and xbdm != '')">XBDM = #{xbdm , jdbcType= VARCHAR },</if>
-                <if test="(ksmc != null and ksmc != '')">KSMC = #{ksmc , jdbcType= VARCHAR },</if>
-                <if test="(ksdm != null and ksdm != '')">KSDM = #{ksdm , jdbcType= VARCHAR },</if>
-                <if test="(bqmc != null and bqmc != '')">BQMC = #{bqmc , jdbcType= VARCHAR },</if>
-                <if test="(bqdm != null and bqdm != '')">BQDM = #{bqdm , jdbcType= VARCHAR },</if>
+                <if test="(syxh != null )">SYXH = #{syxh , jdbcType= VARCHAR },</if>
+                <if test="(patid != null )">PATID = #{patid , jdbcType= VARCHAR },</if>
+                <if test="(zyh != null )">ZYH = #{zyh , jdbcType= VARCHAR },</if>
+                <if test="(hzxm != null )">HZXM = #{hzxm , jdbcType= VARCHAR },</if>
+                <if test="(xbmc != null )">XBMC = #{xbmc , jdbcType= VARCHAR },</if>
+                <if test="(xbdm != null )">XBDM = #{xbdm , jdbcType= VARCHAR },</if>
+                <if test="(ksmc != null )">KSMC = #{ksmc , jdbcType= VARCHAR },</if>
+                <if test="(ksdm != null )">KSDM = #{ksdm , jdbcType= VARCHAR },</if>
+                <if test="(bqmc != null )">BQMC = #{bqmc , jdbcType= VARCHAR },</if>
+                <if test="(bqdm != null )">BQDM = #{bqdm , jdbcType= VARCHAR },</if>
                 <if test="(sfzhm != null and sfzhm != '')">SFZHM = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(fssj != null )">FSSJ = #{fssj , jdbcType= TIMESTAMP },</if>
                 <if test="(cqrq != null )">CQRQ = #{cqrq , jdbcType= TIMESTAMP },</if>

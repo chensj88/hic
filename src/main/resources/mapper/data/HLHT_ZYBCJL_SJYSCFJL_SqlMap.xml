@@ -52,23 +52,23 @@
     </resultMap>
 
     <sql id="sql-hlhtZybcjlSjyscfjl">
-        <if test="(yjlxh != null and yjlxh != '')">and t.yjlxh = #{yjlxh}</if>
-        <if test="(jzlsh != null and jzlsh != '')">and t.jzlsh = #{jzlsh}</if>
-        <if test="(patid != null and patid != '')">and t.patid = #{patid}</if>
-        <if test="(zyh != null and zyh != '')">and t.zyh = #{zyh}</if>
-        <if test="(ksdm != null and ksdm != '')">and t.ksdm = #{ksdm}</if>
-        <if test="(ksmc != null and ksmc != '')">and t.ksmc = #{ksmc}</if>
-        <if test="(bqdm != null and bqdm != '')">and t.bqdm = #{bqdm}</if>
-        <if test="(bqmc != null and bqmc != '')">and t.bqmc = #{bqmc}</if>
-        <if test="(bfh != null and bfh != '')">and t.bfh = #{bfh}</if>
-        <if test="(bfmc != null and bfmc != '')">and t.bfmc = #{bfmc}</if>
-        <if test="(bch != null and bch != '')">and t.bch = #{bch}</if>
+        <if test="(yjlxh != null )">and t.yjlxh = #{yjlxh}</if>
+        <if test="(jzlsh != null )">and t.jzlsh = #{jzlsh}</if>
+        <if test="(patid != null )">and t.patid = #{patid}</if>
+        <if test="(zyh != null )">and t.zyh = #{zyh}</if>
+        <if test="(ksdm != null )">and t.ksdm = #{ksdm}</if>
+        <if test="(ksmc != null )">and t.ksmc = #{ksmc}</if>
+        <if test="(bqdm != null )">and t.bqdm = #{bqdm}</if>
+        <if test="(bqmc != null )">and t.bqmc = #{bqmc}</if>
+        <if test="(bfh != null )">and t.bfh = #{bfh}</if>
+        <if test="(bfmc != null )">and t.bfmc = #{bfmc}</if>
+        <if test="(bch != null )">and t.bch = #{bch}</if>
         <if test="(cfrq != null)">and t.cfrq = #{cfrq}</if>
-        <if test="(hzxm != null and hzxm != '')">and t.hzxm = #{hzxm}</if>
+        <if test="(hzxm != null )">and t.hzxm = #{hzxm}</if>
         <if test="(sfzhm != null )">and t.sfzhm = #{sfzhm}</if>
         <if test="(csrq != null)">and t.csrq = #{csrq}</if>
-        <if test="(xbdm != null and xbdm != '')">and t.xbdm = #{xbdm}</if>
-        <if test="(xbmc != null and xbmc != '')">and t.xbmc = #{xbmc}</if>
+        <if test="(xbdm != null )">and t.xbdm = #{xbdm}</if>
+        <if test="(xbmc != null )">and t.xbmc = #{xbmc}</if>
         <if test="(nls != null )">and t.nls = #{nls}</if>
         <if test="(nly != null )">and t.nly = #{nly}</if>
         <if test="(cfjl != null and cfjl != '')">and t.cfjl = #{cfjl}</if>
@@ -86,32 +86,32 @@
         <if test="(zrysqm != null and zrysqm != '')">and t.zrysqm = #{zrysqm}</if>
         <if test="(qmrq != null )">and t.qmrq = #{qmrq}</if>
         <if test="(gxsj != null )">and t.gxsj = #{gxsj}</if>
-        <if test="(syxh != null and syxh != '')">and t.syxh = #{syxh}</if>
-        <if test="(tjzt != null and tjzt != '')">and t.tjzt = #{tjzt}</if>
-        <if test="(yxjl != null and yxjl != '')">and t.yxjl = #{yxjl}</if>
+        <if test="(syxh != null )">and t.syxh = #{syxh}</if>
+        <if test="(tjzt != null )">and t.tjzt = #{tjzt}</if>
+        <if test="(yxjl != null )">and t.yxjl = #{yxjl}</if>
     </sql>
 
     <insert id="insertHlhtZybcjlSjyscfjl" parameterType="com.winning.hic.model.HlhtZybcjlSjyscfjl">
 
         INSERT INTO HLHT_ZYBCJL_SJYSCFJL
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="(yjlxh != null and yjlxh != '')">yjlxh ,</if>
-            <if test="(jzlsh != null and jzlsh != '')">jzlsh ,</if>
-            <if test="(patid != null and patid != '')">patid ,</if>
-            <if test="(zyh != null and zyh != '')">zyh ,</if>
-            <if test="(ksdm != null and ksdm != '')">ksdm ,</if>
-            <if test="(ksmc != null and ksmc != '')">ksmc ,</if>
-            <if test="(bqdm != null and bqdm != '')">bqdm ,</if>
-            <if test="(bqmc != null and bqmc != '')">bqmc ,</if>
-            <if test="(bfh != null and bfh != '')">bfh ,</if>
-            <if test="(bfmc != null and bfmc != '')">bfmc ,</if>
-            <if test="(bch != null and bch != '')">bch ,</if>
+            <if test="(yjlxh != null )">yjlxh ,</if>
+            <if test="(jzlsh != null )">jzlsh ,</if>
+            <if test="(patid != null )">patid ,</if>
+            <if test="(zyh != null )">zyh ,</if>
+            <if test="(ksdm != null )">ksdm ,</if>
+            <if test="(ksmc != null )">ksmc ,</if>
+            <if test="(bqdm != null )">bqdm ,</if>
+            <if test="(bqmc != null )">bqmc ,</if>
+            <if test="(bfh != null )">bfh ,</if>
+            <if test="(bfmc != null )">bfmc ,</if>
+            <if test="(bch != null )">bch ,</if>
             <if test="(cfrq != null)">cfrq ,</if>
-            <if test="(hzxm != null and hzxm != '')">hzxm ,</if>
+            <if test="(hzxm != null )">hzxm ,</if>
             <if test="(sfzhm != null )">sfzhm ,</if>
             <if test="(csrq != null)">csrq ,</if>
-            <if test="(xbdm != null and xbdm != '')">xbdm ,</if>
-            <if test="(xbmc != null and xbmc != '')">xbmc ,</if>
+            <if test="(xbdm != null )">xbdm ,</if>
+            <if test="(xbmc != null )">xbmc ,</if>
             <if test="(nls != null )">nls ,</if>
             <if test="(nly != null )">nly ,</if>
             <if test="(cfjl != null and cfjl != '')">cfjl ,</if>
@@ -129,29 +129,29 @@
             <if test="(zrysqm != null and zrysqm != '')">zrysqm ,</if>
             <if test="(qmrq != null )">qmrq ,</if>
             <if test="(gxsj != null )">gxsj ,</if>
-            <if test="(syxh != null and syxh != '')">syxh ,</if>
-            <if test="(tjzt != null and tjzt != '')">tjzt ,</if>
-            <if test="(yxjl != null and yxjl != '')">yxjl ,</if>
+            <if test="(syxh != null )">syxh ,</if>
+            <if test="(tjzt != null )">tjzt ,</if>
+            <if test="(yxjl != null )">yxjl ,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="(yjlxh != null and yjlxh != '')">#{yjlxh , jdbcType= VARCHAR },</if>
-            <if test="(jzlsh != null and jzlsh != '')">#{jzlsh , jdbcType= VARCHAR },</if>
-            <if test="(patid != null and patid != '')">#{patid , jdbcType= VARCHAR },</if>
-            <if test="(zyh != null and zyh != '')">#{zyh , jdbcType= VARCHAR },</if>
-            <if test="(ksdm != null and ksdm != '')">#{ksdm , jdbcType= VARCHAR },</if>
-            <if test="(ksmc != null and ksmc != '')">#{ksmc , jdbcType= VARCHAR },</if>
-            <if test="(bqdm != null and bqdm != '')">#{bqdm , jdbcType= VARCHAR },</if>
-            <if test="(bqmc != null and bqmc != '')">#{bqmc , jdbcType= VARCHAR },</if>
-            <if test="(bfh != null and bfh != '')">#{bfh , jdbcType= VARCHAR },</if>
-            <if test="(bfmc != null and bfmc != '')">#{bfmc , jdbcType= VARCHAR },</if>
-            <if test="(bch != null and bch != '')">#{bch , jdbcType= VARCHAR },</if>
+            <if test="(yjlxh != null )">#{yjlxh , jdbcType= VARCHAR },</if>
+            <if test="(jzlsh != null )">#{jzlsh , jdbcType= VARCHAR },</if>
+            <if test="(patid != null )">#{patid , jdbcType= VARCHAR },</if>
+            <if test="(zyh != null )">#{zyh , jdbcType= VARCHAR },</if>
+            <if test="(ksdm != null )">#{ksdm , jdbcType= VARCHAR },</if>
+            <if test="(ksmc != null )">#{ksmc , jdbcType= VARCHAR },</if>
+            <if test="(bqdm != null )">#{bqdm , jdbcType= VARCHAR },</if>
+            <if test="(bqmc != null )">#{bqmc , jdbcType= VARCHAR },</if>
+            <if test="(bfh != null )">#{bfh , jdbcType= VARCHAR },</if>
+            <if test="(bfmc != null )">#{bfmc , jdbcType= VARCHAR },</if>
+            <if test="(bch != null )">#{bch , jdbcType= VARCHAR },</if>
             <if test="(cfrq != null)">#{cfrq , jdbcType= TIMESTAMP },</if>
-            <if test="(hzxm != null and hzxm != '')">#{hzxm , jdbcType= VARCHAR },</if>
+            <if test="(hzxm != null )">#{hzxm , jdbcType= VARCHAR },</if>
             <if test="(sfzhm != null )">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(csrq != null )">#{csrq , jdbcType= TIMESTAMP },</if>
-            <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
-            <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
+            <if test="(xbdm != null )">#{xbdm , jdbcType= VARCHAR },</if>
+            <if test="(xbmc != null )">#{xbmc , jdbcType= VARCHAR },</if>
             <if test="(nls != null )">#{nls , jdbcType= NUMERIC },</if>
             <if test="(nly != null )">#{nly , jdbcType= VARCHAR },</if>
             <if test="(cfjl != null and cfjl != '')">#{cfjl , jdbcType= VARCHAR },</if>
@@ -169,9 +169,9 @@
             <if test="(zrysqm != null and zrysqm != '')">#{zrysqm , jdbcType= VARCHAR },</if>
             <if test="(qmrq != null )">#{qmrq , jdbcType= TIMESTAMP },</if>
             <if test="(gxsj != null )">#{gxsj , jdbcType= TIMESTAMP },</if>
-            <if test="(syxh != null and syxh != '')">#{syxh , jdbcType= VARCHAR },</if>
-            <if test="(tjzt != null and tjzt != '')">#{tjzt , jdbcType= VARCHAR },</if>
-            <if test="(yxjl != null and yxjl != '')">#{yxjl , jdbcType= INTEGER },</if>
+            <if test="(syxh != null )">#{syxh , jdbcType= VARCHAR },</if>
+            <if test="(tjzt != null )">#{tjzt , jdbcType= VARCHAR },</if>
+            <if test="(yxjl != null )">#{yxjl , jdbcType= INTEGER },</if>
         </trim>
     </insert>
 
@@ -179,23 +179,23 @@
         UPDATE HLHT_ZYBCJL_SJYSCFJL
         <set>
             <trim suffixOverrides=",">
-                <if test="(yjlxh != null and yjlxh != '')">yjlxh = #{yjlxh , jdbcType= VARCHAR },</if>
-                <if test="(jzlsh != null and jzlsh != '')">jzlsh = #{jzlsh , jdbcType= VARCHAR },</if>
-                <if test="(patid != null and patid != '')">patid = #{patid , jdbcType= VARCHAR },</if>
-                <if test="(zyh != null and zyh != '')">zyh = #{zyh , jdbcType= VARCHAR },</if>
-                <if test="(ksdm != null and ksdm != '')">ksdm = #{ksdm , jdbcType= VARCHAR },</if>
-                <if test="(ksmc != null and ksmc != '')">ksmc = #{ksmc , jdbcType= VARCHAR },</if>
-                <if test="(bqdm != null and bqdm != '')">bqdm = #{bqdm , jdbcType= VARCHAR },</if>
-                <if test="(bqmc != null and bqmc != '')">bqmc = #{bqmc , jdbcType= VARCHAR },</if>
-                <if test="(bfh != null and bfh != '')">bfh = #{bfh , jdbcType= VARCHAR },</if>
-                <if test="(bfmc != null and bfmc != '')">bfmc = #{bfmc , jdbcType= VARCHAR },</if>
-                <if test="(bch != null and bch != '')">bch = #{bch , jdbcType= VARCHAR },</if>
+                <if test="(yjlxh != null )">yjlxh = #{yjlxh , jdbcType= VARCHAR },</if>
+                <if test="(jzlsh != null )">jzlsh = #{jzlsh , jdbcType= VARCHAR },</if>
+                <if test="(patid != null )">patid = #{patid , jdbcType= VARCHAR },</if>
+                <if test="(zyh != null )">zyh = #{zyh , jdbcType= VARCHAR },</if>
+                <if test="(ksdm != null )">ksdm = #{ksdm , jdbcType= VARCHAR },</if>
+                <if test="(ksmc != null )">ksmc = #{ksmc , jdbcType= VARCHAR },</if>
+                <if test="(bqdm != null )">bqdm = #{bqdm , jdbcType= VARCHAR },</if>
+                <if test="(bqmc != null )">bqmc = #{bqmc , jdbcType= VARCHAR },</if>
+                <if test="(bfh != null )">bfh = #{bfh , jdbcType= VARCHAR },</if>
+                <if test="(bfmc != null )">bfmc = #{bfmc , jdbcType= VARCHAR },</if>
+                <if test="(bch != null )">bch = #{bch , jdbcType= VARCHAR },</if>
                 <if test="(cfrq != null)">cfrq = #{cfrq , jdbcType= TIMESTAMP },</if>
-                <if test="(hzxm != null and hzxm != '')">hzxm = #{hzxm , jdbcType= VARCHAR },</if>
+                <if test="(hzxm != null )">hzxm = #{hzxm , jdbcType= VARCHAR },</if>
                 <if test="(sfzhm != null )">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(csrq != null )">csrq = #{csrq , jdbcType= TIMESTAMP },</if>
-                <if test="(xbdm != null and xbdm != '')">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
-                <if test="(xbmc != null and xbmc != '')">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
+                <if test="(xbdm != null )">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
+                <if test="(xbmc != null )">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
                 <if test="(nls != null )">nls = #{nls , jdbcType= NUMERIC },</if>
                 <if test="(nly != null )">nly = #{nly , jdbcType= VARCHAR },</if>
                 <if test="(cfjl != null and cfjl != '')">cfjl = #{cfjl , jdbcType= VARCHAR },</if>
@@ -213,13 +213,13 @@
                 <if test="(zrysqm != null and zrysqm != '')">zrysqm = #{zrysqm , jdbcType= VARCHAR },</if>
                 <if test="(qmrq != null )">qmrq = #{qmrq , jdbcType= TIMESTAMP },</if>
                 <if test="(gxsj != null )">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
-                <if test="(syxh != null and syxh != '')">syxh = #{syxh , jdbcType= VARCHAR },</if>
-                <if test="(tjzt != null and tjzt != '')">tjzt = #{tjzt , jdbcType= VARCHAR },</if>
-                <if test="(yxjl != null and yxjl != '')">yxjl = #{yxjl , jdbcType= INTEGER },</if>
+                <if test="(syxh != null )">syxh = #{syxh , jdbcType= VARCHAR },</if>
+                <if test="(tjzt != null )">tjzt = #{tjzt , jdbcType= VARCHAR },</if>
+                <if test="(yxjl != null )">yxjl = #{yxjl , jdbcType= INTEGER },</if>
             </trim>
         </set>
         <where>
-            <if test="(yjlxh != null and yjlxh != '')">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
+            <if test="(yjlxh != null )">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">
                 and (yjlxh) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>
@@ -230,7 +230,7 @@
     <delete id="deleteHlhtZybcjlSjyscfjl" parameterType="com.winning.hic.model.HlhtZybcjlSjyscfjl">
         delete from HLHT_ZYBCJL_SJYSCFJL
         <where>
-            <if test="(yjlxh != null and yjlxh != '')">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
+            <if test="(yjlxh != null )">and yjlxh = #{yjlxh , jdbcType= VARCHAR }</if>
             <if test="(yjlxh == null or yjlxh == '') and (map.pks != null and map.pks.size > 0)">
                 and (yjlxh) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")">#{item}</foreach>

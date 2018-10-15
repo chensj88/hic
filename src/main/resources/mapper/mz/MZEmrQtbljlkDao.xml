@@ -38,7 +38,7 @@
 
 	<sql id="sf-emrQtbljlk">
 	   <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> and t.QTBLJLXH = #{qtbljlxh} </if>
-	   <if test="(syxh != null and syxh != '') or syxh == 0"> and t.SYXH = #{syxh} </if>
+	   <if test="(syxh != null ) or syxh == 0"> and t.SYXH = #{syxh} </if>
 	   <if test="bldm != null and bldm != ''"> and t.BLDM = #{bldm} </if>
 	   <if test="blmc != null and blmc != ''"> and t.BLMC = #{blmc} </if>
 	   <if test="blxsmc != null and blxsmc != ''"> and t.BLXSMC = #{blxsmc} </if>
@@ -51,8 +51,8 @@
 	   <if test="cjsj != null and cjsj != ''"> and t.CJSJ = #{cjsj} </if>
 	   <if test="tjsj != null and tjsj != ''"> and t.TJSJ = #{tjsj} </if>
 	   <if test="shsj != null and shsj != ''"> and t.SHSJ = #{shsj} </if>
-	   <if test="yxjl != null and yxjl != ''"> and t.YXJL = #{yxjl} </if>
-	   <if test="tjzt != null and tjzt != ''"> and t.TJZT = #{tjzt} </if>
+	   <if test="yxjl != null "> and t.YXJL = #{yxjl} </if>
+	   <if test="tjzt != null "> and t.TJZT = #{tjzt} </if>
 	   <if test="dyzt != null and dyzt != ''"> and t.DYZT = #{dyzt} </if>
 	   <if test="dzqmbz != null and dzqmbz != ''"> and t.DZQMBZ = #{dzqmbz} </if>
 	   <if test="containerid != null and containerid != ''"> and t.CONTAINERID = #{containerid} </if>
@@ -106,7 +106,7 @@
 		insert into EMR_QTBLJLK 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 	       <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> QTBLJLXH, </if>
-	       <if test="(syxh != null and syxh != '') or syxh == 0"> SYXH, </if>
+	       <if test="(syxh != null ) or syxh == 0"> SYXH, </if>
 		   <if test="bldm != null and bldm != ''"> BLDM, </if>
 		   <if test="blmc != null and blmc != ''"> BLMC, </if>
 		   <if test="blxsmc != null and blxsmc != ''"> BLXSMC, </if>
@@ -119,8 +119,8 @@
 		   <if test="cjsj != null and cjsj != ''"> CJSJ, </if>
 		   <if test="tjsj != null and tjsj != ''"> TJSJ, </if>
 		   <if test="shsj != null and shsj != ''"> SHSJ, </if>
-		   <if test="yxjl != null and yxjl != ''"> YXJL, </if>
-		   <if test="tjzt != null and tjzt != ''"> TJZT, </if>
+		   <if test="yxjl != null "> YXJL, </if>
+		   <if test="tjzt != null "> TJZT, </if>
 		   <if test="dyzt != null and dyzt != ''"> DYZT, </if>
 		   <if test="dzqmbz != null and dzqmbz != ''"> DZQMBZ, </if>
 		   <if test="containerid != null and containerid != ''"> CONTAINERID, </if>
@@ -137,7 +137,7 @@
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 	       <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> #{qtbljlxh, jdbcType=DECIMAL}, </if>
-	       <if test="(syxh != null and syxh != '') or syxh == 0"> #{syxh, jdbcType=INTEGER}, </if>
+	       <if test="(syxh != null ) or syxh == 0"> #{syxh, jdbcType=INTEGER}, </if>
 		   <if test="bldm != null and bldm != ''"> #{bldm, jdbcType=VARCHAR}, </if>
 		   <if test="blmc != null and blmc != ''"> #{blmc, jdbcType=VARCHAR}, </if>
 		   <if test="blxsmc != null and blxsmc != ''"> #{blxsmc, jdbcType=VARCHAR}, </if>
@@ -150,8 +150,8 @@
 		   <if test="cjsj != null and cjsj != ''"> #{cjsj, jdbcType=CHAR}, </if>
 		   <if test="tjsj != null and tjsj != ''"> #{tjsj, jdbcType=CHAR}, </if>
 		   <if test="shsj != null and shsj != ''"> #{shsj, jdbcType=CHAR}, </if>
-		   <if test="yxjl != null and yxjl != ''"> #{yxjl, jdbcType=SMALLINT}, </if>
-		   <if test="tjzt != null and tjzt != ''"> #{tjzt, jdbcType=SMALLINT}, </if>
+		   <if test="yxjl != null "> #{yxjl, jdbcType=SMALLINT}, </if>
+		   <if test="tjzt != null "> #{tjzt, jdbcType=SMALLINT}, </if>
 		   <if test="dyzt != null and dyzt != ''"> #{dyzt, jdbcType=SMALLINT}, </if>
 		   <if test="dzqmbz != null and dzqmbz != ''"> #{dzqmbz, jdbcType=SMALLINT}, </if>
 		   <if test="containerid != null and containerid != ''"> #{containerid, jdbcType=VARCHAR}, </if>
@@ -172,7 +172,7 @@
 		<set>
 			<trim suffixOverrides=",">
 			   <if test="(qtbljlxh != null and qtbljlxh != '') or qtbljlxh == 0"> QTBLJLXH = #{qtbljlxh, jdbcType=DECIMAL}, </if>
-			   <if test="(syxh != null and syxh != '') or syxh == 0"> SYXH = #{syxh, jdbcType=INTEGER}, </if>
+			   <if test="(syxh != null ) or syxh == 0"> SYXH = #{syxh, jdbcType=INTEGER}, </if>
 			   <if test="bldm != null and bldm != ''"> BLDM = #{bldm, jdbcType=VARCHAR}, </if>
 			   <if test="blmc != null and blmc != ''"> BLMC = #{blmc, jdbcType=VARCHAR}, </if>
 			   <if test="blxsmc != null and blxsmc != ''"> BLXSMC = #{blxsmc, jdbcType=VARCHAR}, </if>
@@ -185,8 +185,8 @@
 			   <if test="cjsj != null and cjsj != ''"> CJSJ = #{cjsj, jdbcType=CHAR}, </if>
 			   <if test="tjsj != null and tjsj != ''"> TJSJ = #{tjsj, jdbcType=CHAR}, </if>
 			   <if test="shsj != null and shsj != ''"> SHSJ = #{shsj, jdbcType=CHAR}, </if>
-			   <if test="yxjl != null and yxjl != ''"> YXJL = #{yxjl, jdbcType=SMALLINT}, </if>
-			   <if test="tjzt != null and tjzt != ''"> TJZT = #{tjzt, jdbcType=SMALLINT}, </if>
+			   <if test="yxjl != null "> YXJL = #{yxjl, jdbcType=SMALLINT}, </if>
+			   <if test="tjzt != null "> TJZT = #{tjzt, jdbcType=SMALLINT}, </if>
 			   <if test="dyzt != null and dyzt != ''"> DYZT = #{dyzt, jdbcType=SMALLINT}, </if>
 			   <if test="dzqmbz != null and dzqmbz != ''"> DZQMBZ = #{dzqmbz, jdbcType=SMALLINT}, </if>
 			   <if test="containerid != null and containerid != ''"> CONTAINERID = #{containerid, jdbcType=VARCHAR}, </if>

@@ -32,7 +32,7 @@
         <if test="(mxfldm != null and mxfldm != '')"> and t.MXFLDM = #{mxfldm} </if>
         <if test="(bzdm != null and bzdm != '')"> and t.BZDM = #{bzdm} </if>
         <if test="(dymb != null and dymb != '')"> and t.DYMB = #{dymb} </if>
-        <if test="(yxjl != null and yxjl != '')"> and t.YXJL = #{yxjl} </if>
+        <if test="(yxjl != null )"> and t.YXJL = #{yxjl} </if>
         <if test="(xgsj != null and xgsj != '')"> and t.XGSJ = #{xgsj} </if>
         <if test="(grmbbz != null and grmbbz != '')"> and t.GRMBBZ = #{grmbbz} </if>
         <if test="(xsysz != null and xsysz != '')"> and t.XSYSZ = #{xsysz} </if>
@@ -50,7 +50,7 @@
             <if test="(mxfldm != null and mxfldm != '')"> MXFLDM , </if>
             <if test="(bzdm != null and bzdm != '')"> BZDM , </if>
             <if test="(dymb != null and dymb != '')"> DYMB , </if>
-            <if test="(yxjl != null and yxjl != '')"> YXJL , </if>
+            <if test="(yxjl != null )"> YXJL , </if>
             <if test="(xgsj != null and xgsj != '')"> XGSJ , </if>
             <if test="(grmbbz != null and grmbbz != '')"> GRMBBZ , </if>
             <if test="(xsysz != null and xsysz != '')"> XSYSZ , </if>
@@ -66,7 +66,7 @@
             <if test="(mxfldm != null and mxfldm != '')"> #{mxfldm , jdbcType= VARCHAR },  </if>
             <if test="(bzdm != null and bzdm != '')"> #{bzdm , jdbcType= VARCHAR },  </if>
             <if test="(dymb != null and dymb != '')"> #{dymb , jdbcType= VARCHAR },  </if>
-            <if test="(yxjl != null and yxjl != '')"> #{yxjl , jdbcType= SMALLINT },  </if>
+            <if test="(yxjl != null )"> #{yxjl , jdbcType= SMALLINT },  </if>
             <if test="(xgsj != null and xgsj != '')"> #{xgsj , jdbcType= CHAR },  </if>
             <if test="(grmbbz != null and grmbbz != '')"> #{grmbbz , jdbcType= SMALLINT },  </if>
             <if test="(xsysz != null and xsysz != '')"> #{xsysz , jdbcType= VARCHAR },  </if>
@@ -86,7 +86,7 @@
                 <if test="(mxfldm != null and mxfldm != '')"> MXFLDM , </if>
                 <if test="(bzdm != null and bzdm != '')"> BZDM , </if>
                 <if test="(dymb != null and dymb != '')"> DYMB , </if>
-                <if test="(yxjl != null and yxjl != '')"> YXJL , </if>
+                <if test="(yxjl != null )"> YXJL , </if>
                 <if test="(xgsj != null and xgsj != '')"> XGSJ , </if>
                 <if test="(grmbbz != null and grmbbz != '')"> GRMBBZ , </if>
                 <if test="(xsysz != null and xsysz != '')"> XSYSZ , </if>

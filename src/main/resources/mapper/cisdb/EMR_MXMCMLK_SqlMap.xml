@@ -25,7 +25,7 @@
         <if test="(wb != null and wb != '')"> and t.WB = #{wb} </if>
         <if test="(sjdm != null and sjdm != '')"> and t.SJDM = #{sjdm} </if>
         <if test="(mlcc != null and mlcc != '')"> and t.MLCC = #{mlcc} </if>
-        <if test="(yxjl != null and yxjl != '')"> and t.YXJL = #{yxjl} </if>
+        <if test="(yxjl != null )"> and t.YXJL = #{yxjl} </if>
         <if test="(memo != null and memo != '')"> and t.MEMO = #{memo} </if>
     </sql>
 
@@ -38,7 +38,7 @@
             <if test="(wb != null and wb != '')"> WB , </if>
             <if test="(sjdm != null and sjdm != '')"> SJDM , </if>
             <if test="(mlcc != null and mlcc != '')"> MLCC , </if>
-            <if test="(yxjl != null and yxjl != '')"> YXJL , </if>
+            <if test="(yxjl != null )"> YXJL , </if>
             <if test="(memo != null and memo != '')"> MEMO , </if>
         </trim>
         VALUES
@@ -49,7 +49,7 @@
             <if test="(wb != null and wb != '')"> #{wb , jdbcType= VARCHAR },  </if>
             <if test="(sjdm != null and sjdm != '')"> #{sjdm , jdbcType= VARCHAR },  </if>
             <if test="(mlcc != null and mlcc != '')"> #{mlcc , jdbcType= INTEGER },  </if>
-            <if test="(yxjl != null and yxjl != '')"> #{yxjl , jdbcType= SMALLINT },  </if>
+            <if test="(yxjl != null )"> #{yxjl , jdbcType= SMALLINT },  </if>
             <if test="(memo != null and memo != '')"> #{memo , jdbcType= VARCHAR },  </if>
         </trim>
     </insert>
@@ -64,7 +64,7 @@
                 <if test="(wb != null and wb != '')"> WB , </if>
                 <if test="(sjdm != null and sjdm != '')"> SJDM , </if>
                 <if test="(mlcc != null and mlcc != '')"> MLCC , </if>
-                <if test="(yxjl != null and yxjl != '')"> YXJL , </if>
+                <if test="(yxjl != null )"> YXJL , </if>
                 <if test="(memo != null and memo != '')"> MEMO , </if>
             </trim>
         </set>
