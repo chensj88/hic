@@ -142,6 +142,29 @@
         <!-- order by t.ID asc -->
         ) TEMP_TABLE WHERE _RN BETWEEN  #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
+    <resultMap id="nodeTreeResultForList" type="com.winning.hic.model.NodeTree">
+        <result column="ID" property="id" jdbcType="BIGINT" />
+        <result column="NODE_ID" property="nodeId" jdbcType="BIGINT" />
+        <result column="NODE_PID" property="nodePid" jdbcType="BIGINT" />
+        <result column="NODE_TEXT" property="text" jdbcType="VARCHAR" />
+        <result column="PY_CODE" property="pyCode" jdbcType="VARCHAR" />
+        <result column="SOURCE_TYPE" property="sourceType" jdbcType="VARCHAR" />
+    </resultMap>
 
+    <resultMap id="nodeTreeResult" type="com.winning.hic.model.NodeTree" extends="nodeTreeResultForList">
+    </resultMap>
+
+    <select id="selectNodeTreeFromMbzTemplateNodeDetailInfo" resultMap="nodeTreeResult" parameterType="com.winning.hic.model.MbzTemplateNodeDetailInfo">
+        SELECT
+        t.ID as ID,
+        t.ID as NODE_ID,
+        t.JDMC + '[' + t.MBMC + ']' as NODE_TEXT,
+        t.SOURCE_TYPE as  SOURCE_TYPE
+        FROM MBZ_TEMPLATE_NODE_DETAIL_INFO t
+        <where>
+            <include refid="sql-mbzTemplateNodeDetailInfo" />
+        </where>
+        ORDER BY t.PY_CODE ASC,t.RECORD_NAME DESC
+    </select>
 
 </mapper>

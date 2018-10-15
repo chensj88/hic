@@ -48,7 +48,7 @@
         <if test="(jzlb != null and jzlb != '')">and t.jzlb = #{jzlb}</if>
         <if test="(xbdm != null and xbdm != '')">and t.xbdm = #{xbdm}</if>
         <if test="(xbmc != null and xbmc != '')">and t.xbmc = #{xbmc}</if>
-        <if test="(sfzhm != null and sfzhm != '')">and t.sfzhm = #{sfzhm}</if>
+        <if test="(sfzhm != null )">and t.sfzhm = #{sfzhm}</if>
         <if test="(jkkh != null and jkkh != '')">and t.jkkh = #{jkkh}</if>
         <if test="(aboxxdm != null and aboxxdm != '')">and t.aboxxdm = #{aboxxdm}</if>
         <if test="(aboxxmc != null and aboxxmc != '')">and t.aboxxmc = #{aboxxmc}</if>
@@ -80,7 +80,7 @@
             <if test="(jzlb != null and jzlb != '')">jzlb ,</if>
             <if test="(xbdm != null and xbdm != '')">xbdm ,</if>
             <if test="(xbmc != null and xbmc != '')">xbmc ,</if>
-            <if test="(sfzhm != null and sfzhm != '')">sfzhm ,</if>
+            <if test="(sfzhm != null )">sfzhm ,</if>
             <if test="(jkkh != null and jkkh != '')">jkkh ,</if>
             <if test="(aboxxdm != null and aboxxdm != '')">aboxxdm ,</if>
             <if test="(aboxxmc != null and aboxxmc != '')">aboxxmc ,</if>
@@ -110,7 +110,7 @@
             <if test="(jzlb != null and jzlb != '')">#{jzlb , jdbcType= VARCHAR },</if>
             <if test="(xbdm != null and xbdm != '')">#{xbdm , jdbcType= VARCHAR },</if>
             <if test="(xbmc != null and xbmc != '')">#{xbmc , jdbcType= VARCHAR },</if>
-            <if test="(sfzhm != null and sfzhm != '')">#{sfzhm , jdbcType= VARCHAR },</if>
+            <if test="(sfzhm != null )">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(jkkh != null and jkkh != '')">#{jkkh , jdbcType= VARCHAR },</if>
             <if test="(aboxxdm != null and aboxxdm != '')">#{aboxxdm , jdbcType= VARCHAR },</if>
             <if test="(aboxxmc != null and aboxxmc != '')">#{aboxxmc , jdbcType= VARCHAR },</if>
@@ -144,7 +144,7 @@
                 <if test="(jzlb != null and jzlb != '')">jzlb = #{jzlb , jdbcType= VARCHAR },</if>
                 <if test="(xbdm != null and xbdm != '')">xbdm = #{xbdm , jdbcType= VARCHAR },</if>
                 <if test="(xbmc != null and xbmc != '')">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
-                <if test="(sfzhm != null and sfzhm != '')">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
+                <if test="(sfzhm != null )">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(jkkh != null and jkkh != '')">jkkh = #{jkkh , jdbcType= VARCHAR },</if>
                 <if test="(aboxxdm != null and aboxxdm != '')">aboxxdm = #{aboxxdm , jdbcType= VARCHAR },</if>
                 <if test="(aboxxmc != null and aboxxmc != '')">aboxxmc = #{aboxxmc , jdbcType= VARCHAR },</if>
@@ -224,5 +224,9 @@
         ) TEMP_TABLE WHERE _RN BETWEEN #{row.first} + 1 AND #{row.first} + #{row.count}
     </select>
 
+    <!--存储过程-->
+    <select id="selectHlhtBlgyJbjkxxListByProc" resultMap="hlhtBlgyJbjkxxResult" statementType="CALLABLE">
+       exec USP_HLHT_BLGY_JBJKXX_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+    </select>
 
 </mapper>

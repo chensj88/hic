@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.winning.hic.base.Constants;
 import com.winning.hic.model.MbzDataSet;
 import com.winning.hic.model.MbzLog;
+import com.winning.hic.model.MbzTemplateNodeDetailInfo;
 import com.winning.hic.model.support.Row;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -174,6 +175,20 @@ public class MbzDataSetController extends BaseController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
         result.put("data", getFacade().getMbzDataSetService().getNodeTreeFromMbzDataSet(dataSet));
+        return result;
+    }
+
+    @ApiOperation(value = "/basic/templateTree",notes = "加载当前接口表字段信息，并生成树")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "dataSet",value = "接口表",required = true,dataType = "MbzDataSet")
+            }
+    )
+    @PostMapping("/basic/templateTree")
+    public Map<String, Object> loadColumnsForTemplateTable(MbzTemplateNodeDetailInfo info){
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", Constants.SUCCESS);
+        result.put("data", getFacade().getMbzTemplateNodeDetailInfoService().getNodeTreeFromMbzTemplateNodeDetailInfo(info));
         return result;
     }
 
