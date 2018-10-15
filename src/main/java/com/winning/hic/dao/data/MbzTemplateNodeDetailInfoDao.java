@@ -2,9 +2,10 @@ package com.winning.hic.dao.data;
 
 
 
-import java.util.List;  
+import java.util.List;
 
-import org.springframework.dao.DataAccessException;  
+import com.winning.hic.model.NodeTree;
+import org.springframework.dao.DataAccessException;
 
 import com.winning.hic.model.MbzTemplateNodeDetailInfo;  
 
@@ -36,4 +37,6 @@ public interface MbzTemplateNodeDetailInfoDao {
     public List<MbzTemplateNodeDetailInfo> selectMbzTemplateNodeDetailInfoPageList(MbzTemplateNodeDetailInfo mbzTemplateNodeDetailInfo) throws DataAccessException;
 
     public int deleteMbzTemplateNodeDetailInfoByMbdm(MbzTemplateNodeDetailInfo mbzTemplateNodeDetailInfo) throws DataAccessException;
+
+    List<NodeTree> selectNodeTreeFromMbzTemplateNodeDetailInfo(MbzTemplateNodeDetailInfo mbzTemplateNodeDetailInfo);
 }

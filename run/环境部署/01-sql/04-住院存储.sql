@@ -486,10 +486,10 @@ UPDATE [HLHT_ZYBCJL_SCBCJL] SET jzxyzdbm =czxyzdbm, jzxyzdmc=czxyzd
 WHERE CONVERT(varchar,jzxyzdbm) ='NA' AND CONVERT(varchar,jzxyzdmc)='NA';
 
 -- 其他知情告知同意书
-UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
-  FROM [HLHT_ZQGZXX_QTZQTYS] A(nolock) LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B(nolock) ON A.jzlsh =B.HISSYXH
-    LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C ON B.SYXH = C.SYXH AND C.ZDLB = 1
-  WHERE  ( CONVERT(varchar,A.jbzd) ='NA' OR CONVERT(varchar,A.jbzdbm) ='NA' );
+-- UPDATE A SET A.jbzd = C.ZDMC,A.jbzdbm = C.ZDDM
+--   FROM [HLHT_ZQGZXX_QTZQTYS] A(nolock) LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B(nolock) ON A.jzlsh =B.HISSYXH
+--     LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C ON B.SYXH = C.SYXH AND C.ZDLB = 1
+--   WHERE  ( CONVERT(varchar,A.jbzd) ='NA' OR CONVERT(varchar,A.jbzdbm) ='NA' );
 
   UPDATE [HLHT_ZQGZXX_QTZQTYS] SET hzqm=dlrqm WHERE CONVERT(varchar,hzqm)='NA' ;
 

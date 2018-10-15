@@ -51,11 +51,11 @@ SELECT
         c.KSMC AS ksmc,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM AS bch,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,
         b.BRXB AS xbdm,
         (
         SELECT CASE b.BRXB
@@ -79,7 +79,7 @@ SELECT
         ''''
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
-        b.HYZK AS hyzkdm,
+        ISNULL(b.HYZK,'NA') AS hyzkdm,
         CASE b.HYZK
         WHEN '0' THEN
         '未婚'
@@ -136,12 +136,12 @@ SELECT
         FROM #EMR_QTBLJLK t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] m(nolock) on b.ZYDM=m.MXDM and LBDM = 41
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] m(nolock) on b.ZYDM=m.MXDM and m.LBDM = 41
         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW
         AND a.bqdm = b.RYBQ
         LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] i(nolock) ON i.DICT_CODE = 'hospitalInfoName'
         LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] ii(nolock) ON ii.DICT_CODE = 'hospitalInfoNo'
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] k(nolock) ON b.ZYDM = k.ID
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] k(nolock) ON b.ZYDM = k.MXDM and k.LBDM = 42
 
 
 
@@ -174,11 +174,11 @@ SELECT
         c.KSMC AS ksmc,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM AS bch,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,
         b.BRXB AS xbdm,
         (
         SELECT CASE b.BRXB
@@ -202,7 +202,7 @@ SELECT
         ''''
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
-        b.HYZK AS hyzkdm,
+        ISNULL(b.HYZK,'NA') AS hyzkdm,
         CASE b.HYZK
         WHEN '0' THEN
         '未婚'
@@ -264,7 +264,7 @@ SELECT
         AND a.bqdm = b.RYBQ
         LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] i(nolock) ON i.DICT_CODE = 'hospitalInfoName'
         LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] ii(nolock) ON ii.DICT_CODE = 'hospitalInfoNo'
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] k(nolock) ON b.ZYDM = k.ID
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] k(nolock) ON b.ZYDM = k.MXDM and k.LBDM = 42
 
  --删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP

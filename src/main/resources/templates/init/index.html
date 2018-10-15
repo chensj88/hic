@@ -96,9 +96,10 @@
                                         </label>
                                     </div>
                                 </div>-->
-                                <div class="form-group">
+                               <!-- 功能关闭
+                               <div class="form-group">
                                     <button id="initTemplate" type="button" class="btn btn-primary btn-sm">模板解析</button>
-                                </div>
+                                </div>-->
                             </div>
                         <table id="table" class="table-align"></table>
                     </div>
@@ -194,7 +195,7 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="dataType">类型</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <select class="form-control" name="dataType" id="dataType">
                                             <option value="1">文件结构</option>
                                             <option value="2">基础模板</option>
@@ -205,35 +206,35 @@
                                 </div>
                                 <div class="form-group" id="dtjddmDiv">
                                     <label class="col-sm-3 control-label" for="dtjddm">文件结构ID</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="dtjddm" name="dtjddm"
                                                placeholder="请输入文件结构ID">
                                     </div>
                                 </div>
                                 <div class="form-group" id="qrmbdmDiv">
                                     <label class="col-sm-3 control-label" for="qrmbdm">基础模板ID</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="qrmbdm" name="qrmbdm"
                                                placeholder="请输入基础模板ID">
                                     </div>
                                 </div>
                                 <div class="form-group" id="qrdxdmDiv">
                                     <label class="col-sm-3 control-label" for="qrdxdm">元数据ID</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="qrdxdm" name="qrdxdm"
                                                placeholder="请输入元数据ID">
                                     </div>
                                 </div>
                                 <div class="form-group" id="yzjddmDiv">
                                     <label class="col-sm-3 control-label" for="yzjddm">原子节点ID</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="yzjddm" name="yzjddm"
                                                placeholder="请输入原子节点ID">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="dictCode">字典字段</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <select class="form-control" name="dictCode" id="dictCode">
                                             <option value="0">否</option>
                                             <option value="1">是</option>
@@ -242,7 +243,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="bt">是否必填</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <select class="form-control" name="bt" id="bt">
                                             <option value="0">非必填</option>
                                             <option value="1">必填</option>
@@ -251,7 +252,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="mustMatch">是否校验</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <select class="form-control" name="mustMatch" id="mustMatch">
                                             <option value="0">否</option>
                                             <option value="1">是</option>
@@ -270,6 +271,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-5 text-center">
+                            <!--<button class="btn btn-info" id="configT" type="button">配置</button>-->
                             <button class="btn btn-primary" id="saveForm" type="button">保存</button>
                             <button class="btn btn-danger" data-dismiss="modal">取消</button>
                         </div>
@@ -279,7 +281,35 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="nodeInfoModal" tabindex="-1" role="dialog" aria-labelledby="nodeInfoFormModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:600px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="nodeInfoModalLabel">病历模板字段信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="col-sm-10">
+                                <div id="nodeInfoTree" style="height: 300px;overflow:auto; width: 550px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 text-center">
+                            <button class="btn btn-primary" id="saveNodeMapping" type="button">保存</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--[if !IE]> -->
 <script type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
@@ -589,26 +619,45 @@
 
     //模板解析
     $("#initTemplate").click(function () {
+        var dataSet = $('#dataSet').val();
         //loading层
         var index = layer.load(1, {
             shade: [0.5, '#E0E0E0'] //0.1透明度的白色背景
         });
+        if(dataSet === '0'){
+            $.ajax({
+                type: "POST",
+                url:ctx + 'detail/convert',
+                // data:{sourceType:1},
+                cache : false,
+                dataType:"json",
+                async: true,
+                error: function(request) {
+                    layer.close(index);
+                },
+                success: function(data) {
+                    toastr.info("配置模板已经解析完成。");
+                    layer.close(index);
+                }
+            });
+        }else{
+            $.ajax({
+                type: "POST",
+                url:ctx + 'detail/convertTemplate',
+                data:{sourceType:dataSet},
+                cache : false,
+                dataType:"json",
+                async: true,
+                error: function(request) {
+                    layer.close(index);
+                },
+                success: function(data) {
+                    toastr.info("配置模板已经解析完成。");
+                    layer.close(index);
+                }
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url:ctx + 'detail/convertTemplate',
-            data:{sourceType:1},
-            cache : false,
-            dataType:"json",
-            async: true,
-            error: function(request) {
-                layer.close(index);
-            },
-            success: function(data) {
-                toastr.info("配置模板已经解析完成。");
-                layer.close(index);
-            }
-        });
 
     });
     function initTemplate(){
@@ -1102,21 +1151,51 @@
 
 
         });
-    });
 
+        $('#configT').on('click',function(){
+            var sourceType = $('#sourceType').val();
+            $.ajax({
+                type: "post",
+                url: ctx + "basic/templateTree",
+                dataType: "json",
+                data:{sourceType:sourceType},
+                cache : false,
+                async: false,
+                success: function (result) {
+                    $('#nodeInfoTree').treeview({
+                        data: result.data,         // 数据源
+                        showCheckbox: true,   //是否显示复选框
+                        highlightSelected: true,    //是否高亮选中
+                        icon:'',                                  //列表树节点上的图标，通常是节点左边的图标。
+                        uncheckedIcon:"",                         //设置图标为未选择状态的checkbox图标。
+                        nodeIcon:'glyphicon glyphicon-unchecked', //设置所有列表树节点上的默认图标。
+                        selectedIcon:"glyphicon glyphicon-check", //设置所有被选择的节点上的默认图标。
+                        color:"#000000",
+                        backColor:"#FFFFFF",
+                        emptyIcon: '',    //设置列表树中没有子节点的节点的图标。
+                        multiSelect: false  //多选
+                    });
+                },
+                error: function (response) {
+                    toastr.error(response.responseText);
+                },
+            });
+            $('#editModal').modal('hide');
+            $('#nodeInfoModal').modal('show');
+        });
+    });
 
     $('#addOrModify').on('click',function () {
         let dictArr = dictTree.getCheckedNodes(true);
-        if(dictArr == undefined || dictArr.length < 0){
+        if(dictArr == undefined || dictArr.length <= 0){
             toastr.error('请选择互利互通数据集数据');
             return ;
         }
         let templateArr = templateTree.getCheckedNodes(true)
-        if(templateArr == undefined || templateArr.length < 0){
+        if(templateArr == undefined || templateArr.length <= 0){
             toastr.error('请选择病历导航树数据');
             return ;
         }
-
         let mbzDataListSet =[];
         let index = 0;
         for(let i =0 ;i < dictArr.length ;i++){

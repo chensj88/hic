@@ -52,11 +52,11 @@ SELECT
         c.KSMC AS ksmc,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM AS bch,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,
         b.BRXB AS xbdm,
         (
         SELECT CASE b.BRXB
@@ -80,7 +80,7 @@ SELECT
         ''''
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
-        b.HYZK AS hyzkdm,
+        ISNULL(b.HYZK,'NA') AS hyzkdm,
         CASE b.HYZK
         WHEN '0' THEN
         '未婚'
@@ -175,11 +175,11 @@ SELECT
         c.KSMC AS ksmc,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM AS bch,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,
         b.BRXB AS xbdm,
         (
         SELECT CASE b.BRXB
@@ -203,7 +203,7 @@ SELECT
         ''''
         ) AS nls,
         DATEDIFF(MONTH,b.CSRQ,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
-        b.HYZK AS hyzkdm,
+        ISNULL(b.HYZK,'NA') AS hyzkdm,
         CASE b.HYZK
         WHEN '0' THEN
         '未婚'
@@ -4233,7 +4233,7 @@ if @syxh  is null or @syxh = ''
             c.PATID AS patid,
             ISNULL(CONVERT (VARCHAR,(o.GHXH)),'NA') AS mjzh,
             b.ZYHM AS zyh,
-            ISNULL(CONVERT (VARCHAR,(o.GHLB)),'NA') AS jzlb,
+            ISNULL(CONVERT (VARCHAR,(o.GHLB)),'2') AS jzlb,
             t.QTBLJLXH AS tysbh,
             t.BLMC AS tysmc,
             c.KSDM AS ksdm,
@@ -4301,7 +4301,7 @@ SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP_L
         c.PATID AS patid,
         ISNULL(CONVERT (VARCHAR,(o.GHXH)),'NA') AS mjzh,
         b.ZYHM AS zyh,
-        ISNULL(CONVERT (VARCHAR,(o.GHLB)),'NA') AS jzlb,
+        ISNULL(CONVERT (VARCHAR,(o.GHLB)),'2') AS jzlb,
         t.QTBLJLXH AS tysbh,
         t.BLMC AS tysmc,
         c.KSDM AS ksdm,
@@ -5032,7 +5032,7 @@ if @syxh  is null or @syxh = ''
             ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
             c.CWDM AS bch ,
             b.HZXM AS hzxm,
-            b.SFZH AS sfzhm,
+            (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
             b.BRXB AS xbdm,
             (
             SELECT CASE b.BRXB
@@ -5098,7 +5098,7 @@ SELECT t.QTBLJLXH AS yjlxh,
             ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
             c.CWDM AS bch ,
             b.HZXM AS hzxm,
-            b.SFZH AS sfzhm,
+            (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
             b.BRXB AS xbdm,
             (
             SELECT CASE b.BRXB
@@ -5399,8 +5399,8 @@ else
         c.KSMC AS ksmc ,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc ,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM AS bch ,
         t.CJSJ AS jlrq,
         b.BRXB AS xbdm,
@@ -5479,7 +5479,8 @@ SELECT t.QTBLJLXH as yjlxh,
         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM as bch,
         b.HZXM as hzxm,
-        b.SFZH as sfzhm,b.BRXB as xbdm,
+         (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm
+        ,b.BRXB as xbdm,
         (
         SELECT CASE b.BRXB
         WHEN '2'
@@ -5535,7 +5536,8 @@ else
           ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
           c.CWDM as bch,
           b.HZXM as hzxm,
-          b.SFZH as sfzhm,b.BRXB as xbdm,
+          (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm
+          ,b.BRXB as xbdm,
           (
           SELECT CASE b.BRXB
           WHEN '2'

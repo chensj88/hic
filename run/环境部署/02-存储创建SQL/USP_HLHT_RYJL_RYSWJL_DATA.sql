@@ -61,7 +61,7 @@ if @syxh  is null or @syxh = ''
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
-        d.NAME as mzmc,
+        ISNULL(d.NAME,'NA') as mzmc,
         b.HYZK as hyzkdm,
         (
         SELECT
@@ -85,7 +85,7 @@ if @syxh  is null or @syxh = ''
         'NA' as dzc,
         'NA' as dzmphm,
         b.ZYDM as zylbdm,
-        i.NAME as zylbmc,
+        ISNULL(i.NAME,'NA') as zylbmc,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         t.TJZT as tjzt,
         GETDATE() as gxsj,
@@ -97,8 +97,8 @@ if @syxh  is null or @syxh = ''
         FROM #EMR_QTBLJLK t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and LBDM = 41
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and i.LBDM = 41
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
 		DROP TABLE #EMR_QTBLJLK_LS
@@ -139,7 +139,7 @@ else
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
-        d.NAME as mzmc,
+        ISNULL(d.NAME,'NA') as mzmc,
         b.HYZK as hyzkdm,
         (
         SELECT
@@ -163,7 +163,7 @@ else
         'NA' as dzc,
         'NA' as dzmphm,
         b.ZYDM as zylbdm,
-        i.NAME as zylbmc,
+        ISNULL(i.NAME,'NA') as zylbmc,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         t.TJZT as tjzt,
         GETDATE() as gxsj,
@@ -175,8 +175,8 @@ else
         FROM #EMR_QTBLJLK_TEMP t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and LBDM = 41
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and i.LBDM = 41
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
 		DROP TABLE #EMR_QTBLJLK_TEMP_LS
