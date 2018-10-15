@@ -136,12 +136,12 @@ SELECT
         FROM #EMR_QTBLJLK t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] m(nolock) on b.ZYDM=m.MXDM and LBDM = 41
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] m(nolock) on b.ZYDM=m.MXDM and m.LBDM = 41
         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW
         AND a.bqdm = b.RYBQ
         LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] i(nolock) ON i.DICT_CODE = 'hospitalInfoName'
         LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] ii(nolock) ON ii.DICT_CODE = 'hospitalInfoNo'
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] k(nolock) ON b.ZYDM = k.ID
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] k(nolock) ON b.ZYDM = k.MXDM and k.LBDM = 42
 
 
 
@@ -264,7 +264,7 @@ SELECT
         AND a.bqdm = b.RYBQ
         LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] i(nolock) ON i.DICT_CODE = 'hospitalInfoName'
         LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] ii(nolock) ON ii.DICT_CODE = 'hospitalInfoNo'
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] k(nolock) ON b.ZYDM = k.ID
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] k(nolock) ON b.ZYDM = k.MXDM and k.LBDM = 42
 
  --删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
@@ -337,8 +337,8 @@ if @syxh  is null or @syxh = ''
         GETDATE()                                                             as gxsj,
         a.SYXH as syxh,
         a.BLMC as blmc,
-		a.FSSJ as fssj,
-		a.BLNR as blnr
+		    a.FSSJ as fssj,
+		    a.BLNR as blnr
         from #EMR_QTBLJLK a
         left join [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] b(nolock) on a.SYXH = b.EMRXH
 		--删除临时表
@@ -1927,11 +1927,11 @@ if @syxh  is null or @syxh = ''
         q.BLNR as blnr
 				FROM #EMR_QTBLJLK q
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON q.SYXH = b.SYXH
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i on b.ZYDM=i.MXDM and LBDM = 41
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i on b.ZYDM=i.MXDM and i.LBDM = 41
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON b.SYXH = c.EMRXH
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] d(nolock) ON b.SSDM = d.DQDM
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] p(nolock) ON b.ZYDM = p.ID
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] z(nolock) ON z.ID = b.MZDM
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] z(nolock) ON z.MXDM = b.MZDM AND z.LBDM = 42
 				LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] m(nolock) ON (m.id = b.RYCW AND m.bqdm = b.RYBQ);
       		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
@@ -2064,11 +2064,11 @@ else
         q.BLNR as blnr
 				FROM #EMR_QTBLJLK_TEMP q
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON q.SYXH = b.SYXH
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i on b.ZYDM=i.MXDM and LBDM = 41
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i on b.ZYDM=i.MXDM and i.LBDM = 41
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON b.SYXH = c.EMRXH
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] d(nolock) ON b.SSDM = d.DQDM
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] p(nolock) ON b.ZYDM = p.ID
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] z(nolock) ON z.ID = b.MZDM
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] z(nolock) ON z.MXDM = b.MZDM AND z.LBDM = 42
 				LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] m(nolock) ON (m.id = b.RYCW AND m.bqdm = b.RYBQ);
 				--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
@@ -2141,7 +2141,7 @@ if @syxh  is null or @syxh = ''
 				ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'') as nls,
 				datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
 				b.MZDM as mz,
-				d.NAME as mzmc,
+				ISNULL(d.NAME,'NA') as mzmc,
 				b.HYZK as hyzkdm,
 				(
 				SELECT
@@ -2176,8 +2176,8 @@ if @syxh  is null or @syxh = ''
 				FROM #EMR_QTBLJLK t
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and LBDM = 41
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and i.LBDM = 41
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
 		DROP TABLE #EMR_QTBLJLK_LS
@@ -2218,7 +2218,7 @@ else
 				ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'') as nls,
 				datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
 				b.MZDM as mz,
-				d.NAME as mzmc,
+				ISNULL(d.NAME,'NA') as mzmc,
 				b.HYZK as hyzkdm,
 				(
 				SELECT
@@ -2253,8 +2253,8 @@ else
 				FROM #EMR_QTBLJLK_TEMP t
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and LBDM = 41
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and i.LBDM = 41
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
 		DROP TABLE #EMR_QTBLJLK_TEMP_LS
@@ -2323,7 +2323,7 @@ if @syxh  is null or @syxh = ''
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
-        d.NAME as mzmc,
+        ISNULL(d.NAME,'NA') as mzmc,
         b.HYZK as hyzkdm,
         (
         SELECT
@@ -2347,7 +2347,7 @@ if @syxh  is null or @syxh = ''
         'NA' as dzc,
         'NA' as dzmphm,
         b.ZYDM as zylbdm,
-        i.NAME as zylbmc,
+        ISNULL(i.NAME,'NA') as zylbmc,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         t.TJZT as tjzt,
         GETDATE() as gxsj,
@@ -2359,8 +2359,8 @@ if @syxh  is null or @syxh = ''
         FROM #EMR_QTBLJLK t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and LBDM = 41
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and i.LBDM = 41
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
 		DROP TABLE #EMR_QTBLJLK_LS
@@ -2401,7 +2401,7 @@ else
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
-        d.NAME as mzmc,
+        ISNULL(d.NAME,'NA') as mzmc,
         b.HYZK as hyzkdm,
         (
         SELECT
@@ -2425,7 +2425,7 @@ else
         'NA' as dzc,
         'NA' as dzmphm,
         b.ZYDM as zylbdm,
-        i.NAME as zylbmc,
+        ISNULL(i.NAME,'NA') as zylbmc,
         CASE WHEN b.CYRQ IS NULL THEN GETDATE() ELSE b.CYRQ END as cyrq,
         t.TJZT as tjzt,
         GETDATE() as gxsj,
@@ -2437,8 +2437,8 @@ else
         FROM #EMR_QTBLJLK_TEMP t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and LBDM = 41
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] i(nolock) on b.ZYDM=i.MXDM and i.LBDM = 41
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
 		DROP TABLE #EMR_QTBLJLK_TEMP_LS
@@ -5268,13 +5268,13 @@ begin
 if @syxh  is null or @syxh = ''
 	begin
 
-  SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+  SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
 		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
 		 AND T.YXJL=1
          --在临时表上增加索引
 		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_LS (BLDM);
 
-		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
+		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
 		WHERE A.SOURCE_TYPE=@sourceType
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (SYXH);
@@ -5293,7 +5293,7 @@ SELECT t.QTBLJLXH as yjlxh,
         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM as bch,
         b.HZXM as hzxm,
-        b.SFZH as sfzhm,b.BRXB as xbdm,
+        ISNULL(b.SFZH, 'NA') as sfzhm,b.BRXB as xbdm,
         (
         SELECT CASE b.BRXB
         WHEN '2'
@@ -5326,13 +5326,13 @@ SELECT t.QTBLJLXH as yjlxh,
 	end
 else
 	begin
-	  SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK_TEMP_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+	  SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
 		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
 		 AND T.YXJL=1 AND T.SYXH=@syxh;
          --在临时表上增加索引
 		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_TEMP_LS (BLDM);
 
-		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
+		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
 		WHERE A.SOURCE_TYPE=@sourceType
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (SYXH);
@@ -5349,7 +5349,7 @@ else
           ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
           c.CWDM as bch,
           b.HZXM as hzxm,
-          b.SFZH as sfzhm,b.BRXB as xbdm,
+          ISNULL(b.SFZH, 'NA') as sfzhm,b.BRXB as xbdm,
           (
           SELECT CASE b.BRXB
           WHEN '2'
@@ -5818,7 +5818,7 @@ if @syxh  is null or @syxh = ''
         FROM #EMR_QTBLJLK t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm = b.RYBQ
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
@@ -5905,7 +5905,7 @@ else
         FROM #EMR_QTBLJLK_TEMP t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm = b.RYBQ
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
@@ -5985,7 +5985,7 @@ if @syxh  is null or @syxh = ''
         FROM #EMR_QTBLJLK t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
         LEFT JOIN [HLHT_ZYBCJL_SCBCJL] f(nolock) ON f.jzlsh = b.HISSYXH
         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm = b.RYBQ
 		--删除临时表
@@ -6038,7 +6038,7 @@ SELECT
         FROM #EMR_QTBLJLK_TEMP t
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_MZDMK] d(nolock) on b.MZDM = d.ID
+        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] d(nolock) on b.MZDM = d.MXDM AND d.LBDM = 42
         LEFT JOIN [HLHT_ZYBCJL_SCBCJL] f(nolock) ON f.jzlsh = b.HISSYXH
         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm = b.RYBQ
 		--删除临时表
@@ -6541,7 +6541,8 @@ if @syxh  is null or @syxh = ''
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON q.SYXH = b.SYXH
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON b.SYXH = c.EMRXH
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] d(nolock) ON b.SSDM = d.DQDM
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] p(nolock) ON b.ZYDM = p.ID
+					--LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] p(nolock) ON b.ZYDM = p.ID
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] p(nolock) ON b.ZYDM = p.MXDM and p.LBDM = 42
 				LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] m(nolock) ON (m.id = b.RYCW AND m.bqdm = b.RYBQ);
 				--删除临时表
 		DROP TABLE #EMR_QTBLJLK
@@ -6629,7 +6630,8 @@ else
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON q.SYXH = b.SYXH
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON b.SYXH = c.EMRXH
 				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_DQDMK] d(nolock) ON b.SSDM = d.DQDM
-				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] p(nolock) ON b.ZYDM = p.ID
+				--LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[PUB_ZYDMK] p(nolock) ON b.ZYDM = p.ID
+				LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_SYS_ZDFLMXK] p(nolock) ON b.ZYDM = p.MXDM and p.LBDM = 42
 				LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] m(nolock) ON (m.id = b.RYCW AND m.bqdm = b.RYBQ);
 				--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP

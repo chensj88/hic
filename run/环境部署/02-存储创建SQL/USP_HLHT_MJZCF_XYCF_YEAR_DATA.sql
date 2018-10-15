@@ -83,7 +83,7 @@ if @syxh  is null or @syxh = ''
        T1.pyczry                                                                                                      AS tpyjsbm,
        e.name                                                                                                        AS tpyjsqm,
        CONVERT(datetime,
-       substring(T1.pyrq,1,4)+'-'+substring(T1.pyrq,5,2)+'-'+substring(T1.pyrq,7,2)+' '+substring(T1.pyrq,9,8))       AS cftpsj,
+       substring(T1.fyrq,1,4)+'-'+substring(T1.fyrq,5,2)+'-'+substring(T1.fyrq,7,2)+' '+substring(T1.fyrq,9,8))       AS cftpsj,
        T1.fyczyh                                                                                                        AS hdyjsbm,
        f.name                                                                                                         AS hdyjsqm,
        CONVERT(datetime,

@@ -1,5 +1,6 @@
 package com.winning.hic.service.impl;
 
+import com.winning.hic.model.NodeTree;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -68,5 +69,10 @@ public class MbzTemplateNodeDetailInfoServiceImpl implements  MbzTemplateNodeDet
             createMbzTemplateNodeDetailInfo(detailInfo);
         }
         return templateNodeDetailInfos.size();
+    }
+
+    @Override
+    public List<NodeTree> getNodeTreeFromMbzTemplateNodeDetailInfo(MbzTemplateNodeDetailInfo mbzTemplateNodeDetailInfo) {
+        return this.mbzTemplateNodeDetailInfoDao.selectNodeTreeFromMbzTemplateNodeDetailInfo(mbzTemplateNodeDetailInfo);
     }
 }

@@ -527,7 +527,7 @@
 
     <!--存储过程-->
     <select id="selectHlhtMjzblJzlgblListByProc" resultMap="hlhtMjzblJzlgblResult" statementType="CALLABLE">
-       exec USP_HLHT_ZYBCJL_SQXJ_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
+       exec USP_HLHT_MJZBL_JZLGBL_DATA #{map.sourceType},#{map.startDate},#{map.endDate},#{map.syxh}
     </select>
 
 </mapper>

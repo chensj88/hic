@@ -2,7 +2,8 @@ package com.winning.hic.service;
 
 import java.util.List;  
 
-import com.winning.hic.model.MbzTemplateNodeDetailInfo;  
+import com.winning.hic.model.MbzTemplateNodeDetailInfo;
+import com.winning.hic.model.NodeTree;
 
 
 /**
@@ -29,4 +30,6 @@ public interface MbzTemplateNodeDetailInfoService {
     public List<MbzTemplateNodeDetailInfo> getMbzTemplateNodeDetailInfoPageList(MbzTemplateNodeDetailInfo mbzTemplateNodeDetailInfo);
 
     Object createMbzTemplateNodeDetailInfoList(List<MbzTemplateNodeDetailInfo> templateNodeDetailInfos);
+
+    List<NodeTree> getNodeTreeFromMbzTemplateNodeDetailInfo(MbzTemplateNodeDetailInfo mbzTemplateNodeDetailInfo);
 }
