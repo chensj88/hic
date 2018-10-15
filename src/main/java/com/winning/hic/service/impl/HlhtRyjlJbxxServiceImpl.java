@@ -155,8 +155,8 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
 
                 //清除日志
                 Map<String, Object> logMap = new HashMap<>();
-                param.put("SOURCE_ID", obj.getYjlxh());
-                param.put("SOURCE_TYPE", Constants.WN_RYJL_JBXX_SOURCE_TYPE);
+                logMap.put("SOURCE_ID", obj.getYjlxh());
+                logMap.put("SOURCE_TYPE", Constants.WN_RYJL_JBXX_SOURCE_TYPE);
                 mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(logMap);
 
 

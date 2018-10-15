@@ -86,10 +86,10 @@ public class PercentUtil {
                 }
             }
         }
-        System.out.println("isBtNum:"+isBtNum);
-        System.out.println("btNum:"+btNum);
-        System.out.println("notNullNum:"+notNullNum);
-        System.out.println("allNum:"+allNum);
+//        System.out.println("isBtNum:"+isBtNum);
+//        System.out.println("btNum:"+btNum);
+//        System.out.println("notNullNum:"+notNullNum);
+//        System.out.println("allNum:"+allNum);
         int percentNum = 0;
         if (type == 1) {
             percentNum = isBtNum * 100 / btNum;
