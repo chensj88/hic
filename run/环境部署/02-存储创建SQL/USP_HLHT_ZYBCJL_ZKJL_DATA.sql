@@ -52,7 +52,7 @@ if @syxh  is null or @syxh = ''
         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch ,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,
         CONVERT(datetime,substring( c.BIRTH,1,4)+'-'+substring(c.BIRTH,5,2)+'-'+substring(c.BIRTH,7,2)) AS hzcsrq,
         b.BRXB AS xbdm,
         (
@@ -116,7 +116,7 @@ else
         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
         c.CWDM AS bch ,
         b.HZXM AS hzxm,
-        b.SFZH AS sfzhm,
+        (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,
         CONVERT(datetime,substring( c.BIRTH,1,4)+'-'+substring(c.BIRTH,5,2)+'-'+substring(c.BIRTH,7,2)) AS hzcsrq,
         b.BRXB AS xbdm,
         (
