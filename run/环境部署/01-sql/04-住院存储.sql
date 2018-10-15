@@ -824,7 +824,7 @@ WHERE  A.zljgdm ='1';
   --从入院信息获取过敏史数据处理
   UPDATE A SET A.gmsbz ='F' FROM [HLHT_ZYBCJL_SQXJ] A(nolock) left join [HLHT_RYJL_JBXX] B(nolock)  on  A.jzlsh =B.jzlsh where A.gmsbz='NA' and (B.gms is null OR CHARINDEX('否认',convert(varchar,B.gms)) > 0)
   UPDATE A SET A.gmsbz ='T' FROM [HLHT_ZYBCJL_SQXJ] A(nolock) left join [HLHT_RYJL_JBXX] B(nolock)  ON  A.jzlsh =B.jzlsh where A.gmsbz='NA' and B.gms is not null and CHARINDEX('否认',convert(varchar,B.gms)) = 0
-  UPDATE A SET A.gms =B.gms FROM [HLHT_ZYBCJL_SQXJ] A(nolock) left join [HLHT_RYJL_JBXX] B(nolock)  ON A.jzlsh =B.jzlsh where CONVERT(VARCHAR,A.gms) ='NA'
+  UPDATE A SET A.gms =B.gms FROM [HLHT_ZYBCJL_SQXJ] A(nolock) left join [HLHT_RYJL_JBXX] B(nolock)  ON A.jzlsh =B.jzlsh where CONVERT(VARCHAR,A.gms) ='NA' and and B.gms is not null
   --取手术小结手术指征赋值给手术适应症
   UPDATE A SET A.sssyz = CASE WHEN sszz = 'NA' THEN 'NA' else sszz END  FROM [HLHT_ZYBCJL_SQXJ] A(nolock)  WHERE A.sssyz = 'NA'
   --会诊意见 存在则取会诊意见，反之为无
