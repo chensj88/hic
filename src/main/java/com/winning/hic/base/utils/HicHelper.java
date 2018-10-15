@@ -180,6 +180,9 @@ public class HicHelper {
                     } else if (dateStr.contains("yyyy-MM-dd")) {
                         dateStr = dateStr.substring(0, 10);
                         pattern = "yyyy-MM-dd";
+                    } else if (!dateStr.contains(":")) {
+                        pattern = "yyyy-MM-dd";
+                        dateStr = dateStr.replace(" ", "").replace(" ", "");
                     } else {
                         dateStr = dateStr.concat(":00").substring(0, 18);
                     }
