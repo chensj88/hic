@@ -550,5 +550,21 @@ alter table HLHT_ZYBCJL_SQTL alter column zcrxm varchar(max) not null;
 alter table HLHT_ZYBCJL_SQTL alter column tlrybm varchar(max) not null;
 alter table HLHT_ZYBCJL_SQTL alter column cjtlmd varchar(max) not null;
 
+alter table HLHT_ZYBCJL_SHSCBCJL alter column shzdmc varchar(1000) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column shzdbm varchar(500) not null;
 
+alter table HLHT_ZYBCJL_SQTL alter column sqzdbm varchar(500) not null;
+alter table HLHT_ZYBCJL_SQTL alter column sqzdmc varchar(1000) not null;
+alter table HLHT_ZYBCJL_SQTL alter column sszz varchar(max) not null;
 
+alter table HLHT_ZYBCJL_HZJL alter column blgy varchar(max) not null;
+
+alter table HLHT_ZYBCJL_YNBLTLJL alter column tldddm 	varchar(50) not null;
+alter table  HLHT_RYJL_RCYJL alter column 	rzzyzhdm varchar(500);
+alter table  HLHT_RYJL_RCYJL alter column 	rzzyzhmc varchar(1000);
+ALTER TABLE HLHT_ZQGZXX_TSJCZLTYS ALTER COLUMN  jbzd varchar(1000) not null;
+ALTER TABLE HLHT_ZQGZXX_TSJCZLTYS ALTER COLUMN  jbzdbm varchar(500) not null;
+
+ALTER TABLE  HLHT_ZQGZXX_SSTYS ALTER COLUMN  nssbm varchar(500) not null;
+ALTER TABLE  HLHT_ZQGZXX_SSTYS ALTER COLUMN  ssfs varchar(128)  not null;
+ALTER TABLE HLHT_MJZBL_JZLGBL ALTER COLUMN  tgjc varchar(max) not null;

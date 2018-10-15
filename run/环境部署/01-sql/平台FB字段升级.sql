@@ -545,6 +545,27 @@ alter table HLHT_ZLCZJL_YBSSJL_FB alter column mzff varchar(30) not null;
 alter table HLHT_ZLCZJL_YBSSJL_FB alter column sstw varchar(30) not null;
 alter table HLHT_ZLCZJL_YBSSJL_FB alter column mzysbm varchar(50) not null;
 
+alter table HLHT_ZYBCJL_SQTL_FB alter column zcrbm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL_FB alter column zcrxm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL_FB alter column tlrybm varchar(max) not null;
+alter table HLHT_ZYBCJL_SQTL_FB alter column cjtlmd varchar(max) not null;
 
+alter table HLHT_ZYBCJL_SHSCBCJL_FB alter column shzdmc varchar(1000) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL_FB alter column shzdbm varchar(500) not null;
 
+alter table HLHT_ZYBCJL_SQTL_FB alter column sqzdbm varchar(500) not null;
+alter table HLHT_ZYBCJL_SQTL_FB alter column sqzdmc varchar(1000) not null;
+alter table HLHT_ZYBCJL_SQTL_FB alter column sszz varchar(max) not null;
 
+alter table HLHT_ZYBCJL_HZJL_FB alter column blgy varchar(max) not null;
+alter table HLHT_ZYBCJL_YNBLTLJL_FB alter column tldddm 	varchar(50) not null;
+
+alter table  HLHT_RYJL_RCYJL_FB alter column 	rzzyzhdm varchar(500);
+alter table  HLHT_RYJL_RCYJL_FB alter column 	rzzyzhmc varchar(1000);
+ALTER TABLE HLHT_ZQGZXX_TSJCZLTYS_FB ALTER COLUMN  jbzd varchar(1000) not null;
+ALTER TABLE HLHT_ZQGZXX_TSJCZLTYS_FB ALTER COLUMN  jbzdbm varchar(500) not null;
+
+ALTER TABLE  HLHT_ZQGZXX_SSTYS_FB ALTER COLUMN  nssbm varchar(500) not null;
+ALTER TABLE  HLHT_ZQGZXX_SSTYS_FB ALTER COLUMN  ssfs varchar(128)  not null;
+
+ALTER TABLE HLHT_MJZBL_JZLGBL_FB ALTER COLUMN  tgjc varchar(max) not null;

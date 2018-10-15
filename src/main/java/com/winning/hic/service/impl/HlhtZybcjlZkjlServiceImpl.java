@@ -179,8 +179,10 @@ public class HlhtZybcjlZkjlServiceImpl implements  HlhtZybcjlZkjlService {
                             String yjlxh = emrQtbljlkDao.selectEmrQtbljlkId(qt);
                             HlhtZybcjlZkjl zkjl = new HlhtZybcjlZkjl();
                             zkjl.setYjlxh(yjlxh);
-                            zkjl =this.getHlhtZybcjlZkjl(zkjl);
-                            if(zkjl !=null){
+                            List<HlhtZybcjlZkjl> zkjls =this.getHlhtZybcjlZkjlList(zkjl);
+                            System.out.println("奇葩=="+zkjls.size());
+                            if(zkjls.size()>0){
+                                zkjl = zkjls.get(0);
                                 zkjl.setZrrq(null);
                                 zkjl.setZrysbm(null);
                                 zkjl.setZrysqm(null);
