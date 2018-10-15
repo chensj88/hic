@@ -550,8 +550,14 @@ alter table HLHT_ZYBCJL_SQTL alter column zcrxm varchar(max) not null;
 alter table HLHT_ZYBCJL_SQTL alter column tlrybm varchar(max) not null;
 alter table HLHT_ZYBCJL_SQTL alter column cjtlmd varchar(max) not null;
 
-alter table HLHT_ZYBCJL_SHSCBCJL alter column shzdmc varchar(1000) not null;
-alter table HLHT_ZYBCJL_SHSCBCJL alter column shzdbm varchar(500) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column mzffdm  varchar(500) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column mzffmc  varchar(500) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column shzdmc  varchar(500) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column shzdbm  varchar(500) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column ssczbm  varchar(500) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column ssmc  varchar(500) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column ssmbbwdm  varchar(500) not null;
+alter table HLHT_ZYBCJL_SHSCBCJL alter column ssbwmc  varchar(500) not null;
 
 alter table HLHT_ZYBCJL_SQTL alter column sqzdbm varchar(500) not null;
 alter table HLHT_ZYBCJL_SQTL alter column sqzdmc varchar(1000) not null;
