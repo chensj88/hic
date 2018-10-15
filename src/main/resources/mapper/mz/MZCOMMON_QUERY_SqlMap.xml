@@ -341,7 +341,7 @@
         left join OUTP_JZJLK b on a.SYXH = b.EMRXH
         left join CPOE_BRSYK c on a.SYXH = c.EMRXH
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND a.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>

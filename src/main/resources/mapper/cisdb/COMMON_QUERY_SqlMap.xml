@@ -1489,7 +1489,7 @@
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
         LEFT JOIN EMR_SYS_ZDFLMXK i on b.ZYDM=i.MXDM and LBDM = 41
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1558,7 +1558,7 @@
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
         LEFT JOIN EMR_SYS_ZDFLMXK i on b.ZYDM=i.MXDM and LBDM = 41
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1632,7 +1632,7 @@
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
         LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1670,7 +1670,7 @@
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
         LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1708,7 +1708,7 @@
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
         LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1746,7 +1746,7 @@
         LEFT JOIN PUB_MZDMK d on b.MZDM = d.ID
         LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1787,7 +1787,7 @@
         LEFT JOIN  CIS_HLHT.dbo.HLHT_ZYBCJL_SCBCJL f ON f.jzlsh = b.HISSYXH
         LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1829,7 +1829,7 @@
         LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1864,7 +1864,7 @@
         LEFT JOIN ${map.hisName}.dbo.ZY_BCDMK a ON a.id = b.RYCW and a.bqdm = b.RYBQ
         LEFT JOIN OUTP_JZJLK e on t.SYXH = e.EMRXH
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND t.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>
@@ -1898,7 +1898,7 @@
         left join OUTP_JZJLK b on a.SYXH = b.EMRXH
         left join CPOE_BRSYK c on a.SYXH = c.EMRXH
         <where>
-            <if test="yjlxh != null and yjlxh != '' ">
+            <if test="yjlxh != null  ">
                 AND a.QTBLJLXH = #{yjlxh , jdbcType= VARCHAR}
             </if>
         </where>

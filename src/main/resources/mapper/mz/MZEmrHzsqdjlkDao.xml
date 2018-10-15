@@ -53,7 +53,7 @@
 
     <sql id="sql-emrHzsqdjlk">
         <if test="(sqdxh != null and sqdxh != '')"> and t.SQDXH = #{sqdxh} </if>
-        <if test="(syxh != null and syxh != '')"> and t.SYXH = #{syxh} </if>
+        <if test="(syxh != null )"> and t.SYXH = #{syxh} </if>
         <if test="(qtbljlxh != null and qtbljlxh != '')"> and t.QTBLJLXH = #{qtbljlxh} </if>
         <if test="(hzlb != null and hzlb != '')"> and t.HZLB = #{hzlb} </if>
         <if test="(hzjb != null and hzjb != '')"> and t.HZJB = #{hzjb} </if>
@@ -100,7 +100,7 @@
         INSERT INTO EMR_HZSQDJLK
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(sqdxh != null and sqdxh != '')"> SQDXH , </if>
-            <if test="(syxh != null and syxh != '')"> SYXH , </if>
+            <if test="(syxh != null )"> SYXH , </if>
             <if test="(qtbljlxh != null and qtbljlxh != '')"> QTBLJLXH , </if>
             <if test="(hzlb != null and hzlb != '')"> HZLB , </if>
             <if test="(hzjb != null and hzjb != '')"> HZJB , </if>
@@ -144,7 +144,7 @@
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="(sqdxh != null and sqdxh != '')"> #{sqdxh , jdbcType= DECIMAL },  </if>
-            <if test="(syxh != null and syxh != '')"> #{syxh , jdbcType= DECIMAL },  </if>
+            <if test="(syxh != null )"> #{syxh , jdbcType= DECIMAL },  </if>
             <if test="(qtbljlxh != null and qtbljlxh != '')"> #{qtbljlxh , jdbcType= DECIMAL },  </if>
             <if test="(hzlb != null and hzlb != '')"> #{hzlb , jdbcType= VARCHAR },  </if>
             <if test="(hzjb != null and hzjb != '')"> #{hzjb , jdbcType= VARCHAR },  </if>
@@ -192,7 +192,7 @@
         <set>
             <trim suffixOverrides=",">
                 <if test="(sqdxh != null and sqdxh != '')"> SQDXH = #{sqdxh , jdbcType= DECIMAL }, </if>
-                <if test="(syxh != null and syxh != '')"> SYXH = #{syxh , jdbcType= DECIMAL }, </if>
+                <if test="(syxh != null )"> SYXH = #{syxh , jdbcType= DECIMAL }, </if>
                 <if test="(qtbljlxh != null and qtbljlxh != '')"> QTBLJLXH = #{qtbljlxh , jdbcType= DECIMAL }, </if>
                 <if test="(hzlb != null and hzlb != '')"> HZLB = #{hzlb , jdbcType= VARCHAR }, </if>
                 <if test="(hzjb != null and hzjb != '')"> HZJB = #{hzjb , jdbcType= VARCHAR }, </if>
