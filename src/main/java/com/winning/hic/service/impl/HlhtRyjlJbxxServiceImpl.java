@@ -313,11 +313,15 @@ public class HlhtRyjlJbxxServiceImpl implements HlhtRyjlJbxxService {
                     String qzxyzdmc = obj.getQzxyzdmc() == null ? "NA" : obj.getQzxyzdmc();
                     if (!"NA".equals(qzxyzdbm)) {
                         int index = qzxyzdbm.indexOf("西医诊断");
-                        qzxyzdbm = qzxyzdbm.substring(index + 4).trim();
+                        if(index>=0) {
+                            qzxyzdbm = qzxyzdbm.substring(index + 4).trim();
+                        }
                     }
                     if (!"NA".equals(qzxyzdmc)) {
                         int index = qzxyzdmc.indexOf("西医诊断");
-                        qzxyzdmc = qzxyzdmc.substring(index + 4).trim();
+                        if(index>=0){
+                            qzxyzdmc = qzxyzdmc.substring(index + 4).trim();
+                        }
                     }
                     obj.setQzxyzdbm(qzxyzdbm);
                     obj.setQzxyzdmc(qzxyzdmc);
