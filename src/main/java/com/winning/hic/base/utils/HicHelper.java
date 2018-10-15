@@ -300,7 +300,7 @@ public class HicHelper {
                 e.printStackTrace();
             }
 
-            logger.info("Model:{}", obj);
+            //logger.info("Model:{}", obj);
         }
         return obj;
     }
