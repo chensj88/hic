@@ -4,14 +4,9 @@ as
 --EMR_BRZDQK ZDLB(0:门诊诊断 1:入院诊断 2:出院诊断 3:中医入院诊断 4:中医出院诊断 5:修正诊断 6:最终诊断 7:初步诊断)
 
 ------病危重通知书--------------------------------------------------------------------------------------------------
-Update A 
-Set A.mjzh='NA'
-from CIS_HLHT.dbo.HLHT_ZQGZXX_BWZTZS A
-where A.mjzh=''
-Update A 
-Set A.dlrqm=''
-from CIS_HLHT.dbo.HLHT_ZQGZXX_BWZTZS A
-where A.dlrqm='N'
+--Update A Set A.mjzh='NA' from CIS_HLHT.dbo.HLHT_ZQGZXX_BWZTZS A where A.mjzh=''
+--Update A Set A.dlrqm='' from CIS_HLHT.dbo.HLHT_ZQGZXX_BWZTZS A where A.dlrqm='N'
+Update A Set A.tzrq=A.ysqmrq from CIS_HLHT.dbo.HLHT_ZQGZXX_BWZTZS A where A.tzrq='1990-01-01 00:00:00'
 --------------------------------------------------------------------------------------------------------------------
 
 ------入院记录------------------------------------------------------------------------------------------------------
