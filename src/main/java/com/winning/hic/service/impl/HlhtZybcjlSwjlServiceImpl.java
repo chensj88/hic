@@ -141,6 +141,14 @@ public class HlhtZybcjlSwjlServiceImpl implements HlhtZybcjlSwjlService {
                 try {
                     obj = (HlhtZybcjlSwjl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
                     logger.info("Model:{}", obj);
+                    obj.setRyzdbm(obj.getRyzdbm() == null ? "NA" :obj.getRyzdbm().replace("西医诊断：", "").trim());
+                    obj.setRyzdbm(obj.getRyzdbm() == null ? "NA" :obj.getRyzdbm().replace("中医诊断：", "").trim());
+                    obj.setRyzdmc(obj.getRyzdmc() == null ? "NA" :obj.getRyzdmc().replace("西医诊断：", "").trim());
+                    obj.setRyzdmc(obj.getRyzdmc() == null ? "NA" :obj.getRyzdmc().replace("中医诊断：", "").trim());
+                    obj.setSwzdbm(obj.getSwzdbm() == null ? "NA" :obj.getSwzdbm().replace("西医诊断：", "").trim());
+                    obj.setSwzdbm(obj.getSwzdbm() == null ? "NA" :obj.getSwzdbm().replace("中医诊断：", "").trim());
+                    obj.setSwzdmc(obj.getSwzdmc() == null ? "NA" :obj.getSwzdmc().replace("西医诊断：", "").trim());
+                    obj.setSwzdmc(obj.getSwzdmc() == null ? "NA" :obj.getSwzdmc().replace("中医诊断：", "").trim());
                     this.hlhtZybcjlSwjlDao.insertHlhtZybcjlSwjl(obj);
                     //插入日志
                     mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
