@@ -138,10 +138,10 @@
         <if test="(jzysqm != null and jzysqm != '')">and t.jzysqm = #{jzysqm}</if>
         <if test="(zyysbm != null and zyysbm != '')">and t.zyysbm = #{zyysbm}</if>
         <if test="(zyysqm != null and zyysqm != '')">and t.zyysqm = #{zyysqm}</if>
-        <if test="(zzysbm != null and zzysbm != '')">and t.zzysbm = #{zzysbm}</if>
-        <if test="(zzysqm != null and zzysqm != '')">and t.zzysqm = #{zzysqm}</if>
-        <if test="(zrysbm != null and zrysbm != '')">and t.zrysbm = #{zrysbm}</if>
-        <if test="(zrysqm != null and zrysqm != '')">and t.zrysqm = #{zrysqm}</if>
+        <if test="(zzysbm != null )">and t.zzysbm = #{zzysbm}</if>
+        <if test="(zzysqm != null )">and t.zzysqm = #{zzysqm}</if>
+        <if test="(zrysbm != null )">and t.zrysbm = #{zrysbm}</if>
+        <if test="(zrysqm != null )">and t.zrysqm = #{zrysqm}</if>
         <if test="(gxsj != null )">and t.gxsj = #{gxsj}</if>
         <if test="(syxh != null )">and t.syxh = #{syxh}</if>
         <if test="(tjzt != null )">and t.tjzt = #{tjzt}</if>
@@ -209,10 +209,10 @@
             <if test="(jzysqm != null and jzysqm != '')">jzysqm ,</if>
             <if test="(zyysbm != null and zyysbm != '')">zyysbm ,</if>
             <if test="(zyysqm != null and zyysqm != '')">zyysqm ,</if>
-            <if test="(zzysbm != null and zzysbm != '')">zzysbm ,</if>
-            <if test="(zzysqm != null and zzysqm != '')">zzysqm ,</if>
-            <if test="(zrysbm != null and zrysbm != '')">zrysbm ,</if>
-            <if test="(zrysqm != null and zrysqm != '')">zrysqm ,</if>
+            <if test="(zzysbm != null )">zzysbm ,</if>
+            <if test="(zzysqm != null )">zzysqm ,</if>
+            <if test="(zrysbm != null )">zrysbm ,</if>
+            <if test="(zrysqm != null )">zrysqm ,</if>
             <if test="(gxsj != null )">gxsj ,</if>
             <if test="(syxh != null )">syxh ,</if>
             <if test="(tjzt != null )">tjzt ,</if>
@@ -278,10 +278,10 @@
             <if test="(jzysqm != null and jzysqm != '')">#{jzysqm , jdbcType= VARCHAR },</if>
             <if test="(zyysbm != null and zyysbm != '')">#{zyysbm , jdbcType= VARCHAR },</if>
             <if test="(zyysqm != null and zyysqm != '')">#{zyysqm , jdbcType= VARCHAR },</if>
-            <if test="(zzysbm != null and zzysbm != '')">#{zzysbm , jdbcType= VARCHAR },</if>
-            <if test="(zzysqm != null and zzysqm != '')">#{zzysqm , jdbcType= VARCHAR },</if>
-            <if test="(zrysbm != null and zrysbm != '')">#{zrysbm , jdbcType= VARCHAR },</if>
-            <if test="(zrysqm != null and zrysqm != '')">#{zrysqm , jdbcType= VARCHAR },</if>
+            <if test="(zzysbm != null )">#{zzysbm , jdbcType= VARCHAR },</if>
+            <if test="(zzysqm != null )">#{zzysqm , jdbcType= VARCHAR },</if>
+            <if test="(zrysbm != null )">#{zrysbm , jdbcType= VARCHAR },</if>
+            <if test="(zrysqm != null )">#{zrysqm , jdbcType= VARCHAR },</if>
             <if test="(gxsj != null )">#{gxsj , jdbcType= TIMESTAMP },</if>
             <if test="(syxh != null )">#{syxh , jdbcType= VARCHAR },</if>
             <if test="(tjzt != null )">#{tjzt , jdbcType= VARCHAR },</if>
@@ -351,10 +351,10 @@
                 <if test="(jzysqm != null and jzysqm != '')">jzysqm = #{jzysqm , jdbcType= VARCHAR },</if>
                 <if test="(zyysbm != null and zyysbm != '')">zyysbm = #{zyysbm , jdbcType= VARCHAR },</if>
                 <if test="(zyysqm != null and zyysqm != '')">zyysqm = #{zyysqm , jdbcType= VARCHAR },</if>
-                <if test="(zzysbm != null and zzysbm != '')">zzysbm = #{zzysbm , jdbcType= VARCHAR },</if>
-                <if test="(zzysqm != null and zzysqm != '')">zzysqm = #{zzysqm , jdbcType= VARCHAR },</if>
-                <if test="(zrysbm != null and zrysbm != '')">zrysbm = #{zrysbm , jdbcType= VARCHAR },</if>
-                <if test="(zrysqm != null and zrysqm != '')">zrysqm = #{zrysqm , jdbcType= VARCHAR },</if>
+                <if test="(zzysbm != null )">zzysbm = #{zzysbm , jdbcType= VARCHAR },</if>
+                <if test="(zzysqm != null )">zzysqm = #{zzysqm , jdbcType= VARCHAR },</if>
+                <if test="(zrysbm != null )">zrysbm = #{zrysbm , jdbcType= VARCHAR },</if>
+                <if test="(zrysqm != null )">zrysqm = #{zrysqm , jdbcType= VARCHAR },</if>
                 <if test="(gxsj != null )">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
                 <if test="(syxh != null )">syxh = #{syxh , jdbcType= VARCHAR },</if>
                 <if test="(tjzt != null )">tjzt = #{tjzt , jdbcType= VARCHAR },</if>
