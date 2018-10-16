@@ -577,7 +577,7 @@
      * 数据删除
      */
     function openDeleteWindow(id,pId,recordName,index,sourceType,dataType,dtjddm,qrmbdm,qrdxdm,yzjddm,dictCode,pyCode,bt,status,mustMatch){
-        let queryJson = {
+        var queryJson = {
             sourceType :sourceType,
             pId:pId
         };
@@ -831,7 +831,7 @@
             var sourceType = row.sourceType;
             var cur_table = $detail.html('<table></table>').find('table');
             function initParam(params) {
-                let queryJson = {
+                var queryJson = {
                     sourceType :sourceType,
                     pId:parentid
                 };
@@ -872,8 +872,8 @@
                         align: 'center',
                         width: '210px',
                         formatter:function(value,row,index){
-                            let content = '';
-                            let status = row.status;
+                            var content = '';
+                            var status = row.status;
                             if(row.mustMatch == 0){
                                 content = `<span style="color:#787886;">${value}</span>`;
                             }else{
@@ -1029,7 +1029,7 @@
         });
 
         function queryListInfo(params){
-            let queryJson = {
+            var queryJson = {
                 sourceType : $('#dataSet').val()
             };
             if($('#chosen').is(':checked')){
@@ -1130,7 +1130,7 @@
                     if(status === 'success'){
                         if(result.status === 'SUCCESS'){
                             toastr.info('数据提交成功');
-                            let queryJson = {
+                            var queryJson = {
                                 sourceType :$('#sourceType').val(),
                                 pId:$('#pId').val()
                             };
@@ -1186,20 +1186,20 @@
     });
 
     $('#addOrModify').on('click',function () {
-        let dictArr = dictTree.getCheckedNodes(true);
+        var dictArr = dictTree.getCheckedNodes(true);
         if(dictArr == undefined || dictArr.length <= 0){
             toastr.error('请选择互利互通数据集数据');
             return ;
         }
-        let templateArr = templateTree.getCheckedNodes(true)
+        var templateArr = templateTree.getCheckedNodes(true)
         if(templateArr == undefined || templateArr.length <= 0){
             toastr.error('请选择病历导航树数据');
             return ;
         }
-        let mbzDataListSet =[];
-        let index = 0;
-        for(let i =0 ;i < dictArr.length ;i++){
-            for(let j =0 ;j < templateArr.length ;j++){
+        var mbzDataListSet =[];
+        var index = 0;
+        for(var i =0 ;i < dictArr.length ;i++){
+            for(var j =0 ;j < templateArr.length ;j++){
                 if(templateArr[j].nodeId.startsWith('B')){
                     continue ;
                 }else{
@@ -1240,13 +1240,13 @@
      * @param treeNode
      */
     function zTreeOnOnClick(event, treeId, treeNode) {
-        let treeObj = $.fn.zTree.getZTreeObj(treeId);
+        var treeObj = $.fn.zTree.getZTreeObj(treeId);
         //treeObj.expandAll(false);
-        let node = treeObj.getNodeByTId(treeNode.tId);
+        var node = treeObj.getNodeByTId(treeNode.tId);
         treeObj.expandNode(node, true, true, true);
         //没有子节点才去查询
         if (node.children.length < 1 || node.children == null || node.children == "undefined") {
-            let queryJson = {
+            var queryJson = {
                 'mldm':treeNode.nodeId
             };
             $.ajax({
@@ -1275,18 +1275,18 @@
     }
 
     function dictTreeOnOnClick(event, treeId, treeNode) {
-        let treeObj = $.fn.zTree.getZTreeObj(treeId);
-        let node = treeObj.getNodeByTId(treeNode.tId);
-        let pyCode = node.pyCode;
+        var treeObj = $.fn.zTree.getZTreeObj(treeId);
+        var node = treeObj.getNodeByTId(treeNode.tId);
+        var pyCode = node.pyCode;
         templateTree.expandAll(false);
-        let tnode1 = templateTree.getNodeByParam("nodeId",pyCode,null);
+        var tnode1 = templateTree.getNodeByParam("nodeId",pyCode,null);
         $("#"+tnode1.tId+"_a").click();
         if(pyCode.length > 2){
-            let parentPyCode = pyCode.substring(0,pyCode.length -2 );
-            let pnode1 = templateTree.getNodeByParam("nodeId",parentPyCode,null);
+            var parentPyCode = pyCode.substring(0,pyCode.length -2 );
+            var pnode1 = templateTree.getNodeByParam("nodeId",parentPyCode,null);
             templateTree.expandNode(pnode1);
         }
-        let queryJson = {
+        var queryJson = {
             'sourceType':node.dictValue
         };
         dictTree.checkAllNodes(false);
@@ -1301,7 +1301,7 @@
             dataType: "json",
             success: function (data) {
                 if(data.status == 'SUCCESS'){
-                    let result = data.data;
+                    var result = data.data;
                     //  console.log(result);
                     if(result.length > 0){
                         $.each(result,function(index,value){

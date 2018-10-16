@@ -270,8 +270,8 @@
 
         //机构代码和机构名称
         $("#orgCode").blur(function () {
-            let orgCode = $("#orgCode").val();
-            let orgName = $("#orgName").val();
+            var orgCode = $("#orgCode").val();
+            var orgName = $("#orgName").val();
             $.ajax({
                 url: ctx + "/dataLoad/orgInfo",
                 method: "post",
@@ -282,8 +282,8 @@
             });
         });
         $("#orgName").blur(function () {
-            let orgCode = $("#orgCode").val();
-            let orgName = $("#orgName").val();
+            var orgCode = $("#orgCode").val();
+            var orgName = $("#orgName").val();
             $.ajax({
                 url: ctx + "/dataLoad/orgInfo",
                 method: "post",

@@ -177,11 +177,11 @@
 <script th:src="@{/assets/layer/layer.js}"></script>
 
 <script th:inline="javascript" type="text/javascript">
-    let ctx = /*[[@{/}]]*/'';
+    var ctx = /*[[@{/}]]*/'';
     // alert(ctx+'modelCheck/modelCheck');
-    let $table = $('#treegrid_table');
-    let $simple_table = $('#simple_table');
-    // let $simple_table_id = $('#simple_table_id');
+    var $table = $('#treegrid_table');
+    var $simple_table = $('#simple_table');
+    // var $simple_table_id = $('#simple_table_id');
     $(function () {
         $table.bootstrapTable({
             url: ctx + 'modelCheck/list',
@@ -252,8 +252,8 @@
          * 父子表
          */
         function InitSubTable(index, row, $detail) {
-            let sourceType = row.sourceType;
-            let cur_table = $detail.html('<table></table>').find('table');
+            var sourceType = row.sourceType;
+            var cur_table = $detail.html('<table></table>').find('table');
             $subTable = $(cur_table);
             $subTable.bootstrapTable({
                 url: ctx + 'modelCheck/modelList',
@@ -292,9 +292,9 @@
          * 父子表
          */
         function childTable(index, row, $detail) {
-            let sourceType = row.sourceType;
-            let modelCode = row.modelCode;
-            let cur_table = $detail.html('<table></table>').find('table');
+            var sourceType = row.sourceType;
+            var modelCode = row.modelCode;
+            var cur_table = $detail.html('<table></table>').find('table');
             $subTable = $(cur_table);
             $subTable.bootstrapTable({
                 url: ctx + 'modelCheck/modelCheckList',
@@ -402,7 +402,7 @@
 
 
         function queryParams(params) {
-            let sourceType = $("#data_set").children("option:selected").val();
+            var sourceType = $("#data_set").children("option:selected").val();
             var param = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 sourceType: sourceType,
             };
@@ -410,8 +410,8 @@
         };
 
         function queryModelParams(params) {
-            let sourceType = $("#modelList").children("option:selected").attr("sourceType");
-            let modelCode = $("#modelList").children("option:selected").val();
+            var sourceType = $("#modelList").children("option:selected").attr("sourceType");
+            var modelCode = $("#modelList").children("option:selected").val();
             var param = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 sourceType: sourceType,
                 modelCode: modelCode,
@@ -420,8 +420,8 @@
         };
 
         function queryModelParams_Id(params) {
-            let sourceType = $("#modelList_id").children("option:selected").attr("sourceType");
-            let modelCode = $("#modelList_id").children("option:selected").val();
+            var sourceType = $("#modelList_id").children("option:selected").attr("sourceType");
+            var modelCode = $("#modelList_id").children("option:selected").val();
             var param = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 sourceType: sourceType,
                 modelCode: modelCode,
@@ -434,13 +434,13 @@
         $("#data_set").change(function () {
             $table.bootstrapTable('refresh');
             //获取模板类别
-            let sourceType = $("#data_set").children("option:selected").val();
+            var sourceType = $("#data_set").children("option:selected").val();
             $.ajax({
                 url: ctx + 'modelCheck/modelNum',
                 type: 'POST', // 请求方法
                 data: {sourceType: sourceType},
                 success: function (data) {
-                    let num = data.num;
+                    var num = data.num;
                     $("#modelNum").text(num);
 
                 }
@@ -454,19 +454,19 @@
         });
         // 二级联动
         $("#modelListType").change(function () {
-            let sourceType = $("#modelListType").children("option:selected").val();
+            var sourceType = $("#modelListType").children("option:selected").val();
             console.info("sourceType:" + sourceType);
             $.ajax({
                 url: ctx + 'modelCheck/checkList',
                 type: 'POST', // 请求方法
                 data: {sourceType: sourceType},
                 success: function (data) {
-                    let checkList = data.currentModelList;
+                    var checkList = data.currentModelList;
                     console.info(checkList);
                     $("#modelList").empty();
-                    let contain = '<option>请选择</option>';
+                    var contain = '<option>请选择</option>';
                     if (checkList != null) {
-                        for (let i = 0; i < checkList.length; i++) {
+                        for (var i = 0; i < checkList.length; i++) {
                             contain += '<option  value="' + checkList[i].modelCode + '" sourceType="' + checkList[i].sourceType + '">' + checkList[i].modelName + '</option>';
                         }
                     }
@@ -482,7 +482,7 @@
         });
         // 陈蒯 二级联动
         $("#modelListType_id").change(function () {
-            let sourceType = $("#modelListType_id").children("option:selected").val();
+            var sourceType = $("#modelListType_id").children("option:selected").val();
             alert("123");
             console.info("sourceType:" + sourceType);
             $.ajax({
@@ -490,12 +490,12 @@
                 type: 'POST', // 请求方法
                 data: {sourceType: sourceType},
                 success: function (data) {
-                    let checkList = data.currentModelList;
+                    var checkList = data.currentModelList;
                     console.info(checkList);
                     $("#modelList_id").empty();
-                    let contain = '<option>请选择</option>';
+                    var contain = '<option>请选择</option>';
                     if (checkList != null) {
-                        for (let i = 0; i < checkList.length; i++) {
+                        for (var i = 0; i < checkList.length; i++) {
                             contain += '<option  value="' + checkList[i].modelCode + '" sourceType="' + checkList[i].sourceType + '">' + checkList[i].modelName + '</option>';
                         }
                     }
@@ -542,8 +542,8 @@
 
     function doCheck(type) {
         //type:0/1;0:批量校验  1：单个校验
-        let sourceType = '';
-        let modelCode = '';
+        var sourceType = '';
+        var modelCode = '';
         if (type == 1) {
             //获取当前选中的模板类型
             sourceType = $("#modelList").children("option:selected").attr("sourceType");
@@ -586,8 +586,8 @@
 
     //导出Excel
     function doExport(type) {
-        let sourceType = "";
-        let modelCode = "";
+        var sourceType = "";
+        var modelCode = "";
         if (type == 0) {
             sourceType = $("#data_set").children("option:selected").val();
             if (sourceType == null || sourceType == "") {
@@ -625,8 +625,8 @@
 
     function doCheck_id(type) {
         //type:0/1;0:批量校验  1：单个校验
-        let sourceType = '';
-        let modelCode = '';
+        var sourceType = '';
+        var modelCode = '';
         if (type == 1) {
             //获取当前选中的模板类型
             sourceType = $("#modelList_id").children("option:selected").attr("sourceType");

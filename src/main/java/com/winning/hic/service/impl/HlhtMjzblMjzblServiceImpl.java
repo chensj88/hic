@@ -137,7 +137,7 @@ public class HlhtMjzblMjzblServiceImpl implements  HlhtMjzblMjzblService {
                         e.printStackTrace();
                     }
                     logger.info("Model:{}", obj);
-
+                    obj.setGmsbz(StringUtil.isEmptyOrNull(obj.getGms())? "F" : "T" );
                     this.createHlhtMjzblMjzbl(obj);                    //插入日志
                     mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
                             Long.parseLong(Constants.WN_MJZBL_MJZBL_SOURCE_TYPE),
