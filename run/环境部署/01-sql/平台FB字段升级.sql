@@ -581,3 +581,5 @@ ALTER TABLE HLHT_MJZBL_JZLGBL_FB ALTER COLUMN  tgjc varchar(max) not null;
 alter table HLHT_ZYBCJL_SQTL_FB alter column ssczbm varchar(128) not null;
 alter table  HLHT_ZLCZJL_YBSSJL_FB  alter column ssjczbm varchar(500) not null;
 alter table  HLHT_ZLCZJL_YBSSJL_FB  alter column ssmc varchar(1000) not null;
+ALTER TABLE HLHT_MJZBL_JZLGBL_FB ALTER COLUMN  xyzdbm varchar(500) not null;
+ALTER TABLE HLHT_MJZBL_JZLGBL_FB ALTER COLUMN  xyzdmc varchar(500) not null;
