@@ -45,7 +45,7 @@
         <if test="(ksdm != null )">and t.KSDM = #{ksdm}</if>
         <if test="(bqmc != null )">and t.BQMC = #{bqmc}</if>
         <if test="(bqdm != null )">and t.BQDM = #{bqdm}</if>
-        <if test="(sfzhm != null and sfzhm != '')">and t.SFZHM = #{sfzhm}</if>
+        <if test="(sfzhm != null )">and t.SFZHM = #{sfzhm}</if>
         <if test="(fssj != null )">and t.FSSJ = #{fssj}</if>
         <if test="(cqrq != null )">and t.CQRQ = #{cqrq}</if>
         <if test="(percentsBt != null )">and t.PERCENTS_BT = #{percentsBt}</if>
@@ -71,7 +71,7 @@
             <if test="(ksdm != null )">KSDM ,</if>
             <if test="(bqmc != null )">BQMC ,</if>
             <if test="(bqdm != null )">BQDM ,</if>
-            <if test="(sfzhm != null and sfzhm != '')">SFZHM ,</if>
+            <if test="(sfzhm != null )">SFZHM ,</if>
             <if test="(fssj != null )">FSSJ ,</if>
             <if test="(cqrq != null )">CQRQ ,</if>
             <if test="(percentsBt != null )">PERCENTS_BT,</if>
@@ -93,7 +93,7 @@
             <if test="(ksdm != null )">#{ksdm , jdbcType= VARCHAR },</if>
             <if test="(bqmc != null )">#{bqmc , jdbcType= VARCHAR },</if>
             <if test="(bqdm != null )">#{bqdm , jdbcType= VARCHAR },</if>
-            <if test="(sfzhm != null and sfzhm != '')">#{sfzhm , jdbcType= VARCHAR },</if>
+            <if test="(sfzhm != null )">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(fssj != null )">#{fssj , jdbcType= TIMESTAMP },</if>
             <if test="(cqrq != null )">#{cqrq , jdbcType= TIMESTAMP },</if>
             <if test="(percentsBt != null )">#{percentsBt , jdbcType= NUMERIC },</if>
@@ -119,7 +119,7 @@
                 <if test="(ksdm != null )">KSDM = #{ksdm , jdbcType= VARCHAR },</if>
                 <if test="(bqmc != null )">BQMC = #{bqmc , jdbcType= VARCHAR },</if>
                 <if test="(bqdm != null )">BQDM = #{bqdm , jdbcType= VARCHAR },</if>
-                <if test="(sfzhm != null and sfzhm != '')">SFZHM = #{sfzhm , jdbcType= VARCHAR },</if>
+                <if test="(sfzhm != null )">SFZHM = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(fssj != null )">FSSJ = #{fssj , jdbcType= TIMESTAMP },</if>
                 <if test="(cqrq != null )">CQRQ = #{cqrq , jdbcType= TIMESTAMP },</if>
                 <if test="(percentsBt != null )">PERCENTS_BT = #{percentsBt ,jdbcType= NUMERIC },</if>

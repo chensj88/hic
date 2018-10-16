@@ -66,7 +66,7 @@
         <if test="(patid != null )">and t.patid = #{patid}</if>
         <if test="(hzxm != null )">and t.hzxm = #{hzxm}</if>
         <if test="(zyh != null )">and t.zyh = #{zyh}</if>
-        <if test="(sfzhm != null and sfzhm != '')">and t.sfzhm = #{sfzhm}</if>
+        <if test="(sfzhm != null )">and t.sfzhm = #{sfzhm}</if>
         <if test="(ksdm != null )">and t.ksdm = #{ksdm}</if>
         <if test="(ksmc != null )">and t.ksmc = #{ksmc}</if>
         <if test="(bqdm != null )">and t.bqdm = #{bqdm}</if>
@@ -117,7 +117,7 @@
             <if test="(patid != null )">patid ,</if>
             <if test="(hzxm != null )">hzxm ,</if>
             <if test="(zyh != null )">zyh ,</if>
-            <if test="(sfzhm != null and sfzhm != '')">sfzhm ,</if>
+            <if test="(sfzhm != null )">sfzhm ,</if>
             <if test="(ksdm != null )">ksdm ,</if>
             <if test="(ksmc != null )">ksmc ,</if>
             <if test="(bqdm != null )">bqdm ,</if>
@@ -166,7 +166,7 @@
             <if test="(patid != null )">#{patid , jdbcType= VARCHAR },</if>
             <if test="(hzxm != null )">#{hzxm , jdbcType= VARCHAR },</if>
             <if test="(zyh != null )">#{zyh , jdbcType= VARCHAR },</if>
-            <if test="(sfzhm != null and sfzhm != '')">#{sfzhm , jdbcType= VARCHAR },</if>
+            <if test="(sfzhm != null )">#{sfzhm , jdbcType= VARCHAR },</if>
             <if test="(ksdm != null )">#{ksdm , jdbcType= VARCHAR },</if>
             <if test="(ksmc != null )">#{ksmc , jdbcType= VARCHAR },</if>
             <if test="(bqdm != null )">#{bqdm , jdbcType= VARCHAR },</if>
@@ -268,7 +268,7 @@
                 <if test="(patid != null )">patid = #{patid , jdbcType= VARCHAR },</if>
                 <if test="(hzxm != null )">hzxm = #{hzxm , jdbcType= VARCHAR },</if>
                 <if test="(zyh != null )">zyh = #{zyh , jdbcType= VARCHAR },</if>
-                <if test="(sfzhm != null and sfzhm != '')">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
+                <if test="(sfzhm != null )">sfzhm = #{sfzhm , jdbcType= VARCHAR },</if>
                 <if test="(ksdm != null )">ksdm = #{ksdm , jdbcType= VARCHAR },</if>
                 <if test="(ksmc != null )">ksmc = #{ksmc , jdbcType= VARCHAR },</if>
                 <if test="(bqdm != null )">bqdm = #{bqdm , jdbcType= VARCHAR },</if>
