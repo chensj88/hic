@@ -276,6 +276,7 @@ alter table	HLHT_BLGY_WSSJZY	alter column	qtxyzdmc		varchar(2000)		;
 alter table	HLHT_BLGY_WSSJZY	alter column	ssjcz		varchar(2000)		;
 alter table	HLHT_BLGY_WSSJZY	alter column	ssjczmc		varchar(2000)		;
 alter table	HLHT_BLGY_WSSJZY	alter column	qtyxcz		text	 not null 	;
+alter table HLHT_BLGY_WSSJZY alter column zzjgdm  varchar(20) not null;
 
 
 alter table	HLHT_MJZCF_ZYCF	alter column	jbzdbm	varchar(500)	not null	;
@@ -574,3 +575,7 @@ ALTER TABLE HLHT_ZQGZXX_TSJCZLTYS ALTER COLUMN  jbzdbm varchar(500) not null;
 ALTER TABLE  HLHT_ZQGZXX_SSTYS ALTER COLUMN  nssbm varchar(500) not null;
 ALTER TABLE  HLHT_ZQGZXX_SSTYS ALTER COLUMN  ssfs varchar(128)  not null;
 ALTER TABLE HLHT_MJZBL_JZLGBL ALTER COLUMN  tgjc varchar(max) not null;
+
+alter table HLHT_ZYBCJL_SQTL alter column ssczbm varchar(128) not null;
+alter table  HLHT_ZLCZJL_YBSSJL  alter column ssjczbm varchar(500) not null;
+alter table  HLHT_ZLCZJL_YBSSJL  alter column ssmc varchar(1000) not null;
