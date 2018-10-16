@@ -81,7 +81,7 @@ if @syxh  is null or @syxh = ''
             ISNULL(T.YSDM, 'NA') as zrysbm,
             (SELECT CASE T.YSMC WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE T.YSMC END) as zrys,
             GETDATE() AS gxsj,T.GHXH as syxh
-            FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[OUTP_JZJLK] T(nolock)
+            FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T(nolock)
             LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] i(nolock) ON i.DICT_CODE = 'hospitalInfoName'
             LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] ii(nolock) ON ii.DICT_CODE = 'hospitalInfoNo'
             LEFT JOIN [CIS_HLHT].[dbo].[HLHT_MJZCF_ZYCF] zycf(nolock) ON zycf.jzlsh = T.GHXH
@@ -198,7 +198,7 @@ if @syxh  is null or @syxh = ''
             ISNULL(T.YSDM, 'NA') as zrysbm,
             (SELECT CASE T.YSMC WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE T.YSMC END) as zrys,
             GETDATE() AS gxsj,T.GHXH as syxh
-            FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[OUTP_JZJLK] T(nolock)
+            FROM  [HLHT_ZY_CIS].[CISDB].[dbo].[OUTP_NJZJLK] T(nolock)
             LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] i(nolock) ON i.DICT_CODE = 'hospitalInfoName'
             LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] ii(nolock) ON ii.DICT_CODE = 'hospitalInfoNo'
             LEFT JOIN [CIS_HLHT].[dbo].[HLHT_MJZCF_ZYCF] zycf(nolock) ON zycf.jzlsh = T.GHXH
