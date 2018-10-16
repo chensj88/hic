@@ -578,5 +578,7 @@ ALTER TABLE HLHT_ZQGZXX_TSJCZLTYS_FB ALTER COLUMN  jbzdbm varchar(500) not null;
 
 ALTER TABLE  HLHT_ZQGZXX_SSTYS_FB ALTER COLUMN  nssbm varchar(500) not null;
 ALTER TABLE  HLHT_ZQGZXX_SSTYS_FB ALTER COLUMN  ssfs varchar(128)  not null;
+ALTER TABLE HLHT_ZQGZXX_SSTYS_FB alter column  sqzd varchar(500) not null  ;
+ALTER TABLE HLHT_ZQGZXX_SSTYS_FB alter column  sqzdmc varchar(500) not null  ;
 
 ALTER TABLE HLHT_MJZBL_JZLGBL_FB ALTER COLUMN  tgjc varchar(max) not null;
