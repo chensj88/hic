@@ -87,10 +87,10 @@ public class HlhtBlgyWssjzyServiceImpl implements  HlhtBlgyWssjzyService {
         wssjzy.getMap().put("startDate",entity.getMap().get("startDate"));
         wssjzy.getMap().put("endDate",entity.getMap().get("endDate"));
         wssjzy.getMap().put("syxh",entity.getMap().get("syxh"));
-        List<HlhtBlgyWssjzy> hlhtBlgyWssjzyZyList= this.commonQueryDao.selectBlgyWssjzyZyList(wssjzy);
-        List<HlhtBlgyWssjzy> hlhtBlgyWssjzyMzList= this.mzCommonQueryDao.selectBlgyWssjzyMzList(wssjzy);
-        hlhtBlgyWssjzyZyList.addAll(hlhtBlgyWssjzyMzList);
-        //List<HlhtBlgyWssjzy> hlhtBlgyWssjzyZyList =hlhtBlgyWssjzyDao.selectInitHlhtBlgyWssjzyListByProc(wssjzy);
+//        List<HlhtBlgyWssjzy> hlhtBlgyWssjzyZyList= this.commonQueryDao.selectBlgyWssjzyZyList(wssjzy);
+//        List<HlhtBlgyWssjzy> hlhtBlgyWssjzyMzList= this.mzCommonQueryDao.selectBlgyWssjzyMzList(wssjzy);
+//        hlhtBlgyWssjzyZyList.addAll(hlhtBlgyWssjzyMzList);
+        List<HlhtBlgyWssjzy> hlhtBlgyWssjzyZyList =hlhtBlgyWssjzyDao.selectInitHlhtBlgyWssjzyListByProc(wssjzy);
         for (HlhtBlgyWssjzy obj : hlhtBlgyWssjzyZyList) {
             //清除历史数据
             HlhtBlgyWssjzy wssjzy1_one = new HlhtBlgyWssjzy();

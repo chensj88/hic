@@ -276,6 +276,7 @@ alter table	HLHT_BLGY_WSSJZY	alter column	qtxyzdmc		varchar(2000)		;
 alter table	HLHT_BLGY_WSSJZY	alter column	ssjcz		varchar(2000)		;
 alter table	HLHT_BLGY_WSSJZY	alter column	ssjczmc		varchar(2000)		;
 alter table	HLHT_BLGY_WSSJZY	alter column	qtyxcz		text	 not null 	;
+alter table HLHT_BLGY_WSSJZY alter column zzjgdm  varchar(20) not null;
 
 
 alter table	HLHT_MJZCF_ZYCF	alter column	jbzdbm	varchar(500)	not null	;

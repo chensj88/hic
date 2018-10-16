@@ -257,6 +257,7 @@ alter table	HLHT_BLGY_WSSJZY_FB	alter column	qtxyzdmc		varchar(512)		;
 alter table	HLHT_BLGY_WSSJZY_FB	alter column	ssjcz		varchar(512)		;
 alter table	HLHT_BLGY_WSSJZY_FB	alter column	ssjczmc		varchar(512)		;
 alter table	HLHT_BLGY_WSSJZY_FB	alter column	qtyxcz		text	 not null 	;
+alter table HLHT_BLGY_WSSJZY_FB alter column zzjgdm  varchar(20) not null;
 
 alter table	HLHT_ZYBCJL_SCBCJL_FB alter column	zs text	 not null 	;
 alter table	HLHT_ZYBCJL_SCBCJL_FB alter column	bltd text	 not null 	;
