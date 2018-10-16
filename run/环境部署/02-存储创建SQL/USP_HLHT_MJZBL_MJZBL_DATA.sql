@@ -41,14 +41,14 @@ if @syxh  is null or @syxh = ''
 
 
       SELECT t.QTBLJLXH AS yjlxh,
-              c.GHXH AS jzlsh,
-              c.PATID AS patid,
-              c.HZXM AS hzxm,
-              c.GHXH AS mjzh,
-              c.BLH AS zyh,
-              c.SFZH AS sfzhm,
+              ISNULL(c.GHXH ,d.GHXH ) AS jzlsh,
+              ISNULL(c.PATID,d.PATID) AS patid,
+              ISNULL(c.HZXM ,d.HZXM ) AS hzxm,
+              ISNULL(c.GHXH ,d.GHXH ) AS mjzh,
+              ISNULL(c.BLH  ,d.BLH  ) AS zyh,
+              ISNULL(c.SFZH ,d.SFZH ) AS sfzhm,
               (
-              SELECT CASE c.SEX
+              SELECT CASE ISNULL(c.SEX,d.SEX)
               WHEN '女'
               THEN
               '2'
@@ -59,19 +59,19 @@ if @syxh  is null or @syxh = ''
               '3'
               END
               )  AS xbdm,
-              c.SEX AS xbmc,
-              CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,
-               ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'0') AS nls,
-               DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
+              ISNULL(c.SEX,d.SEX) AS xbmc,
+              CONVERT(DATE, ISNULL(ISNULL(c.BIRTH,d.BIRTH), '19900101'), 108) AS csrq,
+               ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, ISNULL(c.BIRTH,d.BIRTH))))) ,'0') AS nls,
+               DATEDIFF(MONTH,ISNULL(c.BIRTH,d.BIRTH),SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
               i.DICT_LABEL AS zzjgmc,
               ii.DICT_LABEL AS zzjgdm,
-              c.KSDM AS ksdm,
-              c.KSMC AS ksmc ,
-              CONVERT(datetime,substring(c.GHRQ,1,4)+'-'+substring(c.GHRQ,5,2)+'-'+substring(c.GHRQ,7,2)+' '+substring(c.GHRQ,9,8))
+              ISNULL(c.KSDM,d.KSDM) AS ksdm,
+              ISNULL(c.KSMC,d.KSMC) AS ksmc ,
+              CONVERT(datetime,substring(ISNULL(c.GHRQ,d.GHRQ),1,4)+'-'+substring(ISNULL(c.GHRQ,d.GHRQ)5,2)+'-'+substring(ISNULL(c.GHRQ,d.GHRQ),7,2)+' '+substring(ISNULL(c.GHRQ,d.GHRQ),9,8))
               AS jzrqsj,
-              c.CFZBZ AS czbzdm,
+              ISNULL(c.CFZBZ,d.CFZBZ) AS czbzdm,
               (
-              SELECT CASE c.CFZBZ
+              SELECT CASE ISNULL(c.CFZBZ,d.CFZBZ)
               WHEN '0'
               THEN
               '初诊'
@@ -91,6 +91,7 @@ if @syxh  is null or @syxh = ''
               t.BLNR as blnr
               FROM #EMR_QTBLJLK t
               LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] c ON t.SYXH = c.EMRXH
+              LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] d ON t.SYXH = d.EMRXH
               LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] i ON i.DICT_CODE = 'hospitalInfoName'
               LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] ii ON ii.DICT_CODE = 'hospitalInfoNo'
 	--删除临时表
@@ -113,14 +114,14 @@ else
 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (SYXH);
 		--查询业务数据
     SELECT t.QTBLJLXH AS yjlxh,
-              c.GHXH AS jzlsh,
-              c.PATID AS patid,
-              c.HZXM AS hzxm,
-              c.GHXH AS mjzh,
-              c.BLH AS zyh,
-              c.SFZH AS sfzhm,
+              ISNULL(c.GHXH ,d.GHXH ) AS jzlsh,
+              ISNULL(c.PATID,d.PATID) AS patid,
+              ISNULL(c.HZXM ,d.HZXM ) AS hzxm,
+              ISNULL(c.GHXH ,d.GHXH ) AS mjzh,
+              ISNULL(c.BLH  ,d.BLH  ) AS zyh,
+              ISNULL(c.SFZH ,d.SFZH ) AS sfzhm,
               (
-              SELECT CASE c.SEX
+              SELECT CASE ISNULL(c.SEX,d.SEX)
               WHEN '女'
               THEN
               '2'
@@ -131,19 +132,19 @@ else
               '3'
               END
               )  AS xbdm,
-              c.SEX AS xbmc,
-              CONVERT(DATE, ISNULL(c.BIRTH, '19900101'), 108) AS csrq,
-              ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'0') AS nls,
-               DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
+              ISNULL(c.SEX,d.SEX) AS xbmc,
+              CONVERT(DATE, ISNULL(ISNULL(c.BIRTH,d.BIRTH), '19900101'), 108) AS csrq,
+               ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, ISNULL(c.BIRTH,d.BIRTH))))) ,'0') AS nls,
+               DATEDIFF(MONTH,ISNULL(c.BIRTH,d.BIRTH),SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12       AS nly,
               i.DICT_LABEL AS zzjgmc,
               ii.DICT_LABEL AS zzjgdm,
-              c.KSDM AS ksdm,
-              c.KSMC AS ksmc ,
-              CONVERT(datetime,substring(c.GHRQ,1,4)+'-'+substring(c.GHRQ,5,2)+'-'+substring(c.GHRQ,7,2)+' '+substring(c.GHRQ,9,8))
+              ISNULL(c.KSDM,d.KSDM) AS ksdm,
+              ISNULL(c.KSMC,d.KSMC) AS ksmc ,
+              CONVERT(datetime,substring(ISNULL(c.GHRQ,d.GHRQ),1,4)+'-'+substring(ISNULL(c.GHRQ,d.GHRQ)5,2)+'-'+substring(ISNULL(c.GHRQ,d.GHRQ),7,2)+' '+substring(ISNULL(c.GHRQ,d.GHRQ),9,8))
               AS jzrqsj,
-              c.CFZBZ AS czbzdm,
+              ISNULL(c.CFZBZ,d.CFZBZ) AS czbzdm,
               (
-              SELECT CASE c.CFZBZ
+              SELECT CASE ISNULL(c.CFZBZ,d.CFZBZ)
               WHEN '0'
               THEN
               '初诊'
@@ -155,16 +156,18 @@ else
               END
               )  AS czbzmc,
               GETDATE() AS gxsj,
-              t.YXJL AS yxjl,
+               t.YXJL AS yxjl,
               t.SYXH AS syxh,
               t.TJZT as tjzt,
               t.BLMC as blmc,
               t.FSSJ as fssj,
               t.BLNR as blnr
-              FROM #EMR_QTBLJLK_TEMP t
+              FROM #EMR_QTBLJLK t
               LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] c ON t.SYXH = c.EMRXH
+              LEFT JOIN [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] d ON t.SYXH = d.EMRXH
               LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] i ON i.DICT_CODE = 'hospitalInfoName'
               LEFT JOIN [CIS_HLHT].[dbo].[MBZ_DICT_INFO] ii ON ii.DICT_CODE = 'hospitalInfoNo'
+              where isnull(bc.EMRXH,d.EMRXH)=@syxh
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
 		DROP TABLE #EMR_QTBLJLK_TEMP_LS

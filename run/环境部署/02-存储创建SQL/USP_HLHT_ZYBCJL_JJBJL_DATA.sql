@@ -29,126 +29,253 @@ begin
 --创建临时表
 if @syxh  is null or @syxh = ''
 	begin
-
-	    SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
-		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
-		 AND T.YXJL=1
-         --在临时表上增加索引
-		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_LS (BLDM);
-
-		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
-		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
-		WHERE A.SOURCE_TYPE=@sourceType
-
-		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (SYXH);
-
-     --查询表数据
-		 SELECT t.QTBLJLXH AS yjlxh,
-        b.HISSYXH AS jzlsh,
-        c.PATID AS patid,
-        b.HZXM AS hzxm,
-        b.ZYHM AS zyh,
-        (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
-        c.KSDM AS ksdm,
-        c.KSMC AS ksmc ,
-        c.BQDM AS bqdm,
-        c.BQMC AS bqmc ,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
-        c.CWDM AS bch ,
-        t.CJSJ AS jlrq,
-        b.BRXB AS xbdm,
-        (
-        SELECT CASE b.BRXB
-        WHEN '2'
-        THEN
-        '女'
-        WHEN '1'
-        THEN
-        '男'
-        ELSE
-        '其它'
-        END
-        )                                               AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'0') AS nls,
-        b.RYRQ as   ryrq,
-        GETDATE() AS gxsj,
-        t.YXJL AS yxjl,
-        t.SYXH AS syxh,
-        t.TJZT as tjzt,
-        t.BLMC as blmc,
-        t.FSSJ as fssj,
-        t.BLNR as blnr
-
-        FROM #EMR_QTBLJLK t
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm=b.RYBQ
-      		--删除临时表
-		DROP TABLE #EMR_QTBLJLK
-		DROP TABLE #EMR_QTBLJLK_LS
+--
+-- 	    SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+-- 		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
+-- 		 AND T.YXJL=1
+--          --在临时表上增加索引
+-- 		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_LS (BLDM);
+--
+-- 		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK FROM #EMR_QTBLJLK_LS T(nolock)
+-- 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
+-- 		WHERE A.SOURCE_TYPE=@sourceType
+--
+-- 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK (SYXH);
+--
+--      --查询表数据
+-- 		 SELECT t.QTBLJLXH AS yjlxh,
+--         b.HISSYXH AS jzlsh,
+--         c.PATID AS patid,
+--         b.HZXM AS hzxm,
+--         b.ZYHM AS zyh,
+--         (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
+--         c.KSDM AS ksdm,
+--         c.KSMC AS ksmc ,
+--         c.BQDM AS bqdm,
+--         c.BQMC AS bqmc ,
+--         ISNULL(a.fjh, 'NA') AS bfh,
+--         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+--         c.CWDM AS bch ,
+--         t.CJSJ AS jlrq,
+--         b.BRXB AS xbdm,
+--         (
+--         SELECT CASE b.BRXB
+--         WHEN '2'
+--         THEN
+--         '女'
+--         WHEN '1'
+--         THEN
+--         '男'
+--         ELSE
+--         '其它'
+--         END
+--         )                                               AS xbmc,
+--         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'0') AS nls,
+--         b.RYRQ as   ryrq,
+--         GETDATE() AS gxsj,
+--         t.YXJL AS yxjl,
+--         t.SYXH AS syxh,
+--         t.TJZT as tjzt,
+--         t.BLMC as blmc,
+--         t.FSSJ as fssj,
+--         t.BLNR as blnr
+--
+--         FROM #EMR_QTBLJLK t
+--         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
+--         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
+--         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm=b.RYBQ
+--       		--删除临时表
+-- 		DROP TABLE #EMR_QTBLJLK
+-- 		DROP TABLE #EMR_QTBLJLK_LS
+    SELECT
+      c.SYXH AS jzlsh,
+      c.PATID AS patid,
+      c.BLH AS zyh,
+      c.KSDM AS ksdm,
+      c.KSMC AS ksmc,
+      c.BQDM AS bqdm,
+      c.BQMC AS bqmc,
+      isnull((CASE f.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE f.fjh END),'NA') AS bfh,
+      isnull((CASE f.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE f.fjh END),'NA')+'病房' AS bfmc,
+      c.CWDM AS bch,
+      c.HZXM AS hzxm,
+      c.SFZH AS sfzhm,
+      (SELECT CASE c.SEX WHEN '女' THEN '2' WHEN '男' THEN '1' ELSE '0' END ) AS xbdm,
+      c.SEX AS xbmc,
+      ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'''') as nls,
+      DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
+      CONVERT(datetime,substring(c.RYRQ,1,4)+'-'+substring(c.RYRQ,5,2)+'-'+substring(c.RYRQ,7,2)+' '+substring(c.RYRQ,9,8)) AS ryrq,
+      '' AS zs,
+      '' AS ryqk,
+      '' AS zyszgcjg,
+      '' AS rzxyzddm,
+      b.RYZD AS rzxyzd,
+      '' AS rzzybmdm,
+      '' AS rzzybm,
+      '' AS rzzyzhdm,
+      '' AS rzzyzh,
+      '' AS zfbm,
+      '' AS zzzf,
+      b.CZCS AS zlgcms,
+      b.MQBK AS mqqk,
+      '' AS mqzdxyzdbm,
+      '' AS mqzdxyzd,
+      '' AS mqzdzybmdm,
+      '' AS mqzdzybm,
+      '' AS mqzdzyzhdm,
+      '' AS mqzdzyzh,
+      '' AS zysx,
+      '' AS jbzljh,
+      a.JBSJ AS jbrq,
+      a.JBRY AS jbysbm,
+      e.NAME AS jbzqm,
+      b.JSSJ AS jbsj,
+      b.JSRY AS ysbm,
+      g.NAME AS ysxm,
+      b.JSRY AS jbrdm,
+      g.NAME AS jbrqm,
+       GETDATE() AS gxsj,
+       '1' AS yxjl,
+        b.SYXH AS syxh,
+        '4602'  as tjzt,
+        '交接班记录'  as blmc,
+        a.CJSJ as fssj,
+        '' as blnr
+     FROM
+      [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_JJBJLK] a(nolock)
+      INNER JOIN	[HLHT_ZY_CIS].[CISDB].[dbo].[EMR_JJBMXK] b(nolock) on a.JBXH = b.JBXH
+      INNER JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) on b.SYXH = c.EMRXH
+      INNER JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] d(nolock) on b.SYXH = d.SYXH
+      INNER JOIN [HLHT_ZY_HIS].[This40].[dbo].[ZY_BCDMK] f(nolock) ON f.id = d.RYCW and f.bqdm=d.RYBQ
+      INNER JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] e(nolock) ON a.JBRY =e.ID
+      INNER JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] g(nolock) ON b.JSRY =g.ID
+    where jbsj is not null and jbrq BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
 	end
 else
 	begin
 
 
-       SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
-		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
-		 AND T.YXJL=1 AND T.SYXH=@syxh;
-         --在临时表上增加索引
-		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_TEMP_LS (BLDM);
-
-		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
-		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
-		WHERE A.SOURCE_TYPE=@sourceType
-		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (SYXH);
-
-		 --查询表数据
-   		 SELECT t.QTBLJLXH AS yjlxh,
-        b.HISSYXH AS jzlsh,
-        c.PATID AS patid,
-        b.HZXM AS hzxm,
-        b.ZYHM AS zyh,
-        (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
-        c.KSDM AS ksdm,
-        c.KSMC AS ksmc ,
-        c.BQDM AS bqdm,
-        c.BQMC AS bqmc ,
-        ISNULL(a.fjh, 'NA') AS bfh,
-        ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
-        c.CWDM AS bch ,
-        t.CJSJ AS jlrq,
-        b.BRXB AS xbdm,
-        (
-        SELECT CASE b.BRXB
-        WHEN '2'
-        THEN
-        '女'
-        WHEN '1'
-        THEN
-        '男'
-        ELSE
-        '其它'
-        END
-        )                                               AS xbmc,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'0') AS nls,
-        b.RYRQ as ryrq,
-        GETDATE() AS gxsj,
-        t.YXJL AS yxjl,
-        t.SYXH AS syxh,
-        t.TJZT as tjzt,
-        t.BLMC as blmc,
-        t.FSSJ as fssj,
-        t.BLNR as blnr
-
-        FROM #EMR_QTBLJLK_TEMP t
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
-        LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
-        LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm=b.RYBQ
-
-      --删除临时表
-      DROP TABLE #EMR_QTBLJLK_TEMP
-      DROP TABLE #EMR_QTBLJLK_TEMP_LS
+--        SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP_LS FROM [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] T(nolock)
+-- 		WHERE T.TJSJ BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
+-- 		 AND T.YXJL=1 AND T.SYXH=@syxh;
+--          --在临时表上增加索引
+-- 		CREATE INDEX QUERY_INDEX_LS ON #EMR_QTBLJLK_TEMP_LS (BLDM);
+--
+-- 		SELECT QTBLJLXH,SYXH,TJZT,YXJL,BLMC,FSSJ,BLNR,BLDM,CJSJ INTO #EMR_QTBLJLK_TEMP FROM #EMR_QTBLJLK_TEMP_LS T(nolock)
+-- 		LEFT JOIN MBZ_DATA_LIST_SET A(nolock) on T.BLDM=A.MODEL_CODE
+-- 		WHERE A.SOURCE_TYPE=@sourceType
+-- 		CREATE INDEX QUERY_INDEX ON #EMR_QTBLJLK_TEMP (SYXH);
+--
+-- 		 --查询表数据
+--    		 SELECT t.QTBLJLXH AS yjlxh,
+--         b.HISSYXH AS jzlsh,
+--         c.PATID AS patid,
+--         b.HZXM AS hzxm,
+--         b.ZYHM AS zyh,
+--         (SELECT CASE b.SFZH WHEN NULL THEN 'NA' WHEN '' THEN 'NA' ELSE b.SFZH END) AS sfzhm,
+--         c.KSDM AS ksdm,
+--         c.KSMC AS ksmc ,
+--         c.BQDM AS bqdm,
+--         c.BQMC AS bqmc ,
+--         ISNULL(a.fjh, 'NA') AS bfh,
+--         ISNULL(a.fjh, 'NA')+'病房' AS bfmc,
+--         c.CWDM AS bch ,
+--         t.CJSJ AS jlrq,
+--         b.BRXB AS xbdm,
+--         (
+--         SELECT CASE b.BRXB
+--         WHEN '2'
+--         THEN
+--         '女'
+--         WHEN '1'
+--         THEN
+--         '男'
+--         ELSE
+--         '其它'
+--         END
+--         )                                               AS xbmc,
+--         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'0') AS nls,
+--         b.RYRQ as ryrq,
+--         GETDATE() AS gxsj,
+--         t.YXJL AS yxjl,
+--         t.SYXH AS syxh,
+--         t.TJZT as tjzt,
+--         t.BLMC as blmc,
+--         t.FSSJ as fssj,
+--         t.BLNR as blnr
+--
+--         FROM #EMR_QTBLJLK_TEMP t
+--         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) ON t.SYXH = c.EMRXH
+--         LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] b(nolock) ON b.SYXH = t.SYXH
+--         LEFT JOIN [HLHT_ZY_HIS].[THIS4].[dbo].[ZY_BCDMK] a(nolock) ON a.id = b.RYCW and a.bqdm=b.RYBQ
+--
+--       --删除临时表
+--       DROP TABLE #EMR_QTBLJLK_TEMP
+--       DROP TABLE #EMR_QTBLJLK_TEMP_LS
+SELECT
+      c.SYXH AS jzlsh,
+      c.PATID AS patid,
+      c.BLH AS zyh,
+      c.KSDM AS ksdm,
+      c.KSMC AS ksmc,
+      c.BQDM AS bqdm,
+      c.BQMC AS bqmc,
+      isnull((CASE f.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE f.fjh END),'NA') AS bfh,
+      isnull((CASE f.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE f.fjh END),'NA')+'病房' AS bfmc,
+      c.CWDM AS bch,
+      c.HZXM AS hzxm,
+      c.SFZH AS sfzhm,
+      (SELECT CASE c.SEX WHEN '女' THEN '2' WHEN '男' THEN '1' ELSE '0' END ) AS xbdm,
+      c.SEX AS xbmc,
+      ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, c.BIRTH)))) ,'''') as nls,
+      DATEDIFF(MONTH,c.BIRTH,SUBSTRING(CONVERT(CHAR(8),GETDATE(),112),1,8)) %12 AS nly,
+      CONVERT(datetime,substring(c.RYRQ,1,4)+'-'+substring(c.RYRQ,5,2)+'-'+substring(c.RYRQ,7,2)+' '+substring(c.RYRQ,9,8)) AS ryrq,
+      '' AS zs,
+      '' AS ryqk,
+      '' AS zyszgcjg,
+      '' AS rzxyzddm,
+      b.RYZD AS rzxyzd,
+      '' AS rzzybmdm,
+      '' AS rzzybm,
+      '' AS rzzyzhdm,
+      '' AS rzzyzh,
+      '' AS zfbm,
+      '' AS zzzf,
+      b.CZCS AS zlgcms,
+      b.MQBK AS mqqk,
+      '' AS mqzdxyzdbm,
+      '' AS mqzdxyzd,
+      '' AS mqzdzybmdm,
+      '' AS mqzdzybm,
+      '' AS mqzdzyzhdm,
+      '' AS mqzdzyzh,
+      '' AS zysx,
+      '' AS jbzljh,
+      a.JBSJ AS jbrq,
+      a.JBRY AS jbysbm,
+      e.NAME AS jbzqm,
+      b.JSSJ AS jbsj,
+      b.JSRY AS ysbm,
+      g.NAME AS ysxm,
+      b.JSRY AS jbrdm,
+      g.NAME AS jbrqm,
+       GETDATE() AS gxsj,
+       '1' AS yxjl,
+        b.SYXH AS syxh,
+        '4602'  as tjzt,
+        '交接班记录'  as blmc,
+        a.CJSJ as fssj,
+        '' as blnr
+     FROM
+      [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_JJBJLK] a(nolock)
+      INNER JOIN	[HLHT_ZY_CIS].[CISDB].[dbo].[EMR_JJBMXK] b(nolock) on a.JBXH = b.JBXH
+      INNER JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_BRSYK] c(nolock) on b.SYXH = c.EMRXH
+      INNER JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] d(nolock) on b.SYXH = d.SYXH
+      INNER JOIN [HLHT_ZY_HIS].[This40].[dbo].[ZY_BCDMK] f(nolock) ON f.id = d.RYCW and f.bqdm=d.RYBQ
+      INNER JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] e(nolock) ON a.JBRY =e.ID
+      INNER JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] g(nolock) ON b.JSRY =g.ID
+    where jbsj is not null and jbrq BETWEEN CONVERT(DATE, ltrim(@startDate)) AND CONVERT(DATE, ltrim(@endDate))
+    and b.SYXH = @syxh
     end
 
 	END

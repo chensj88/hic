@@ -1,5 +1,5 @@
 GO
-CREATE PROCEDURE [dbo].[USP_HLHT_MJZBL_JZLGBL_DATA]
+create PROCEDURE [dbo].[USP_HLHT_MJZBL_JZLGBL_DATA]
 @sourceType varchar(64),   --原纪录类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
@@ -41,23 +41,23 @@ if @syxh  is null or @syxh = ''
 		--查询业务数据
       select
         a.QTBLJLXH                                                                        as yjlxh,
-        b.GHXH                                                                            as jzlsh,
-        b.PATID                                                                           as patid,
-        b.HZXM                                                                            as hzxm,
-        b.GHXH                                                                            as mjzh,
-        ISNULL(b.BLH,'NA')                                                                 as zyh,
-        isnull(b.SFZH,'NA')                                                                as sfzhm,
-        b.KSDM                                                                            as ksdm,
-        b.KSMC                                                                            as ksmc,
-        b.SEX                                                                             as xbmc,
-        CASE b.SEX WHEN '女' THEN '2' WHEN '男' THEN '1'ELSE '3' END                      as xbdm,
-        CONVERT(DATE, ISNULL(b.BIRTH, '1990-01-01 00:00:00'), 120)                        AS csrq,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.BIRTH)))) ,'NA') as nls,
-        datediff(month,b.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12         as nly,
-        CONVERT(datetime,substring( b.JZRQ,1,4)+'-'+substring(b.JZRQ,5,2)+'-'+
-                 substring(b.JZRQ,7,2)+' ' +substring(b.JZRQ,9,8) )                       as jzrqsj,
-        case when b.CFZBZ = '0' then 1 else 2 end                                         as czbzdm,
-        case when b.CFZBZ = '0' then '初诊' else '复诊' end                                as czbzmc,
+        ISNULL(b.GHXH, c.GHXH)                                                                         as jzlsh,
+        ISNULL(b.PATID,c.PATID )                                                                          as patid,
+        ISNULL(b.HZXM ,c.HZXM  )                                                                          as hzxm,
+        ISNULL(b.GHXH, c.GHXH  )                                                                         as mjzh,
+        ISNULL(ISNULL(b.BLH,c.BLH),'NA')                                                                 as zyh,
+        ISNULL(isnull(b.SFZH,c.SFZH),'NA')                                                                as sfzhm,
+        ISNULL(b.KSDM,c.KSDM)                                                                            as ksdm,
+        ISNULL(b.KSMC,c.KSMC)                                                                            as ksmc,
+        ISNULL(b.SEX ,c.SEX )                                                                            as xbmc,
+        CASE ISNULL(b.SEX,c.SEX) WHEN '女' THEN '2' WHEN '男' THEN '1'ELSE '3' END                      as xbdm,
+        CONVERT(DATE, ISNULL(ISNULL(b.BIRTH,c.BIRTH), '1990-01-01 00:00:00'), 120)                        AS csrq,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, ISNULL(b.BIRTH,c.BIRTH))))) ,'NA') as nls,
+        datediff(month,ISNULL(b.BIRTH,c.BIRTH),substring(convert(char(8),getdate(),112),1,8)) %12         as nly,
+        CONVERT(datetime,substring( ISNULL(b.JZRQ,c.JZRQ),1,4)+'-'+substring(ISNULL(b.JZRQ,c.JZRQ),5,2)+'-'+
+                 substring(ISNULL(b.JZRQ,c.JZRQ),7,2)+' ' +substring(ISNULL(b.JZRQ,c.JZRQ),9,8) )                       as jzrqsj,
+        case when ISNULL(b.CFZBZ,c.CFZBZ) = '0' then 1 else 2 end                                         as czbzdm,
+        case when ISNULL(b.CFZBZ,c.CFZBZ) = '0' then '初诊' else '复诊' end                                as czbzmc,
         a.FSSJ                                                                            as jlrqsj,
         GETDATE()                                                             as gxsj,
         a.SYXH as syxh,
@@ -66,6 +66,7 @@ if @syxh  is null or @syxh = ''
 		    a.BLNR as blnr
         from #EMR_QTBLJLK a
         left join [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] b(nolock) on a.SYXH = b.EMRXH
+        left join [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] c(nolock) on a.SYXH = c.EMRXH
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK
 		DROP TABLE #EMR_QTBLJLK_LS
@@ -86,31 +87,33 @@ else
 		--查询业务数据
     select
         a.QTBLJLXH                                                                        as yjlxh,
-        b.GHXH                                                                            as jzlsh,
-        b.PATID                                                                           as patid,
-        b.HZXM                                                                            as hzxm,
-        b.GHXH                                                                            as mjzh,
-        ISNULL(b.BLH,'NA')                                                                 as zyh,
-        isnull(b.SFZH,'NA')                                                                as sfzhm,
-        b.KSDM                                                                            as ksdm,
-        b.KSMC                                                                            as ksmc,
-        b.SEX                                                                             as xbmc,
-        CASE b.SEX WHEN '女' THEN '2' WHEN '男' THEN '1'ELSE '3' END                      as xbdm,
-        CONVERT(DATE, ISNULL(b.BIRTH, '1990-01-01 00:00:00'), 120)                        AS csrq,
-        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.BIRTH)))) ,'NA') as nls,
-        datediff(month,b.BIRTH,substring(convert(char(8),getdate(),112),1,8)) %12         as nly,
-        CONVERT(datetime,substring( b.JZRQ,1,4)+'-'+substring(b.JZRQ,5,2)+'-'+
-                 substring(b.JZRQ,7,2)+' ' +substring(b.JZRQ,9,8) )                       as jzrqsj,
-        case when b.CFZBZ = '0' then 1 else 2 end                                         as czbzdm,
-        case when b.CFZBZ = '0' then '初诊' else '复诊' end                                as czbzmc,
+        ISNULL(b.GHXH, c.GHXH)                                                                         as jzlsh,
+        ISNULL(b.PATID,c.PATID )                                                                          as patid,
+        ISNULL(b.HZXM ,c.HZXM  )                                                                          as hzxm,
+        ISNULL(b.GHXH, c.GHXH  )                                                                         as mjzh,
+        ISNULL(ISNULL(b.BLH,c.BLH),'NA')                                                                 as zyh,
+        ISNULL(isnull(b.SFZH,c.SFZH),'NA')                                                                as sfzhm,
+        ISNULL(b.KSDM,c.KSDM)                                                                            as ksdm,
+        ISNULL(b.KSMC,c.KSMC)                                                                            as ksmc,
+        ISNULL(b.SEX ,c.SEX )                                                                            as xbmc,
+        CASE ISNULL(b.SEX,c.SEX) WHEN '女' THEN '2' WHEN '男' THEN '1'ELSE '3' END                      as xbdm,
+        CONVERT(DATE, ISNULL(ISNULL(b.BIRTH,c.BIRTH), '1990-01-01 00:00:00'), 120)                        AS csrq,
+        ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, ISNULL(b.BIRTH,c.BIRTH))))) ,'NA') as nls,
+        datediff(month,ISNULL(b.BIRTH,c.BIRTH),substring(convert(char(8),getdate(),112),1,8)) %12         as nly,
+        CONVERT(datetime,substring( ISNULL(b.JZRQ,c.JZRQ),1,4)+'-'+substring(ISNULL(b.JZRQ,c.JZRQ),5,2)+'-'+
+                 substring(ISNULL(b.JZRQ,c.JZRQ),7,2)+' ' +substring(ISNULL(b.JZRQ,c.JZRQ),9,8) )                       as jzrqsj,
+        case when ISNULL(b.CFZBZ,c.CFZBZ) = '0' then 1 else 2 end                                         as czbzdm,
+        case when ISNULL(b.CFZBZ,c.CFZBZ) = '0' then '初诊' else '复诊' end                                as czbzmc,
         a.FSSJ                                                                            as jlrqsj,
         GETDATE()                                                             as gxsj,
         a.SYXH as syxh,
         a.BLMC as blmc,
-		a.FSSJ as fssj,
-		a.BLNR as blnr
-        from #EMR_QTBLJLK_TEMP a
+		    a.FSSJ as fssj,
+		    a.BLNR as blnr
+        from #EMR_QTBLJLK a
         left join [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_JZJLK] b(nolock) on a.SYXH = b.EMRXH
+        left join [HLHT_MZ_CIS].[CISDB].[dbo].[OUTP_NJZJLK] c(nolock) on a.SYXH = c.EMRXH
+        where isnull(b.EMRXH,c.EMRXH)=@syxh
 		--删除临时表
 		DROP TABLE #EMR_QTBLJLK_TEMP
 		DROP TABLE #EMR_QTBLJLK_TEMP_LS

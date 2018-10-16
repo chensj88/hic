@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -92,8 +94,17 @@ public class HicHelper {
                     if (StringUtil.isEmptyOrNull(shortStr)) {
                         value = (short) 0;
                     } else {
-                        BigDecimal dec = new BigDecimal(shortStr);
-                        value = dec.setScale(0, BigDecimal.ROUND_HALF_UP).shortValue();
+                        Pattern pattern = Pattern.compile("[^0-9]");
+                        Matcher m = pattern.matcher(shortStr);
+                        shortStr = m.replaceAll("").trim();
+                        logger.info("shortStr:"+shortStr);
+                        if(!StringUtil.isEmptyOrNull(shortStr)){
+                            BigDecimal dec = new BigDecimal(shortStr);
+                            value = dec.setScale(0, BigDecimal.ROUND_HALF_UP).shortValue();
+                        }else{
+                            value = (short) 0;
+                        }
+
                     }
                 } else if (paramType.contains("Timestamp")) {
                     String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "1990-01-01 00:00:00" : strValue.trim();
