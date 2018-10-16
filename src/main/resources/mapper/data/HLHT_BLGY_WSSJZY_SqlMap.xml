@@ -102,7 +102,7 @@
         <if test="(gbsymc != null and gbsymc != '')">and t.gbsymc = #{gbsymc}</if>
         <if test="(zljg != null and zljg != '')">and t.zljg = #{zljg}</if>
         <if test="(zljgmc != null and zljgmc != '')">and t.zljgmc = #{zljgmc}</if>
-        <if test="(zrysbm != null and zrysbm != '')">and t.zrysbm = #{zrysbm}</if>
+        <if test="(zrysbm != null )">and t.zrysbm = #{zrysbm}</if>
         <if test="(zrys != null and zrys != '')">and t.zrys = #{zrys}</if>
         <if test="(gxsj != null and gxsj != '')">and t.gxsj = #{gxsj}</if>
         <if test="(syxh != null )">and t.syxh = #{syxh}</if>
@@ -320,7 +320,7 @@
             <if test="(gbsymc != null and gbsymc != '')">gbsymc ,</if>
             <if test="(zljg != null and zljg != '')">zljg ,</if>
             <if test="(zljgmc != null and zljgmc != '')">zljgmc ,</if>
-            <if test="(zrysbm != null and zrysbm != '')">zrysbm ,</if>
+            <if test="(zrysbm != null )">zrysbm ,</if>
             <if test="(zrys != null and zrys != '')">zrys ,</if>
             <if test="(gxsj != null )">gxsj ,</if>
             <if test="(syxh != null )">syxh ,</if>
@@ -370,7 +370,7 @@
             <if test="(gbsymc != null and gbsymc != '')">#{gbsymc , jdbcType= VARCHAR },</if>
             <if test="(zljg != null and zljg != '')">#{zljg , jdbcType= VARCHAR },</if>
             <if test="(zljgmc != null and zljgmc != '')">#{zljgmc , jdbcType= VARCHAR },</if>
-            <if test="(zrysbm != null and zrysbm != '')">#{zrysbm , jdbcType= VARCHAR },</if>
+            <if test="(zrysbm != null )">#{zrysbm , jdbcType= VARCHAR },</if>
             <if test="(zrys != null and zrys != '')">#{zrys , jdbcType= VARCHAR },</if>
             <if test="(gxsj != null )">#{gxsj , jdbcType= TIMESTAMP },</if>
             <if test="(syxh != null )">#{syxh , jdbcType= VARCHAR },</if>
@@ -424,7 +424,7 @@
                 <if test="(gbsymc != null and gbsymc != '')">gbsymc = #{gbsymc , jdbcType= VARCHAR },</if>
                 <if test="(zljg != null and zljg != '')">zljg = #{zljg , jdbcType= VARCHAR },</if>
                 <if test="(zljgmc != null and zljgmc != '')">zljgmc = #{zljgmc , jdbcType= VARCHAR },</if>
-                <if test="(zrysbm != null and zrysbm != '')">zrysbm = #{zrysbm , jdbcType= VARCHAR },</if>
+                <if test="(zrysbm != null )">zrysbm = #{zrysbm , jdbcType= VARCHAR },</if>
                 <if test="(zrys != null and zrys != '')">zrys = #{zrys , jdbcType= VARCHAR },</if>
                 <if test="(gxsj != null and gxsj != '')">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
                 <if test="(syxh != null )">syxh = #{syxh , jdbcType= VARCHAR },</if>

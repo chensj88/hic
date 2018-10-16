@@ -132,8 +132,8 @@
         <if test="(zrrq != null )">and t.zrrq = #{zrrq}</if>
         <if test="(zrksdm != null and zrksdm != '')">and t.zrksdm = #{zrksdm}</if>
         <if test="(zrks != null and zrks != '')">and t.zrks = #{zrks}</if>
-        <if test="(zrysbm != null and zrysbm != '')">and t.zrysbm = #{zrysbm}</if>
-        <if test="(zrysqm != null and zrysqm != '')">and t.zrysqm = #{zrysqm}</if>
+        <if test="(zrysbm != null )">and t.zrysbm = #{zrysbm}</if>
+        <if test="(zrysqm != null )">and t.zrysqm = #{zrysqm}</if>
         <if test="(gxsj != null )">and t.gxsj = #{gxsj}</if>
     </sql>
 
@@ -195,8 +195,8 @@
             <if test="(zrrq != null )">zrrq ,</if>
             <if test="(zrksdm != null and zrksdm != '')">zrksdm ,</if>
             <if test="(zrks != null and zrks != '')">zrks ,</if>
-            <if test="(zrysbm != null and zrysbm != '')">zrysbm ,</if>
-            <if test="(zrysqm != null and zrysqm != '')">zrysqm ,</if>
+            <if test="(zrysbm != null )">zrysbm ,</if>
+            <if test="(zrysqm != null )">zrysqm ,</if>
             <if test="(gxsj != null )">gxsj ,</if>
         </trim>
         VALUES
@@ -255,8 +255,8 @@
             <if test="(zrrq != null )">#{zrrq , jdbcType= TIMESTAMP },</if>
             <if test="(zrksdm != null and zrksdm != '')">#{zrksdm , jdbcType= VARCHAR },</if>
             <if test="(zrks != null and zrks != '')">#{zrks , jdbcType= VARCHAR },</if>
-            <if test="(zrysbm != null and zrysbm != '')">#{zrysbm , jdbcType= VARCHAR },</if>
-            <if test="(zrysqm != null and zrysqm != '')">#{zrysqm , jdbcType= VARCHAR },</if>
+            <if test="(zrysbm != null )">#{zrysbm , jdbcType= VARCHAR },</if>
+            <if test="(zrysqm != null )">#{zrysqm , jdbcType= VARCHAR },</if>
             <if test="(gxsj != null )">#{gxsj , jdbcType= TIMESTAMP },</if>
         </trim>
     </insert>
@@ -322,8 +322,8 @@
                 <if test="(zrrq != null )">zrrq = #{zrrq , jdbcType= TIMESTAMP },</if>
                 <if test="(zrksdm != null and zrksdm != '')">zrksdm = #{zrksdm , jdbcType= VARCHAR },</if>
                 <if test="(zrks != null and zrks != '')">zrks = #{zrks , jdbcType= VARCHAR },</if>
-                <if test="(zrysbm != null and zrysbm != '')">zrysbm = #{zrysbm , jdbcType= VARCHAR },</if>
-                <if test="(zrysqm != null and zrysqm != '')">zrysqm = #{zrysqm , jdbcType= VARCHAR },</if>
+                <if test="(zrysbm != null )">zrysbm = #{zrysbm , jdbcType= VARCHAR },</if>
+                <if test="(zrysqm != null )">zrysqm = #{zrysqm , jdbcType= VARCHAR },</if>
                 <if test="(gxsj != null )">gxsj = #{gxsj , jdbcType= TIMESTAMP },</if>
             </trim>
         </set>
