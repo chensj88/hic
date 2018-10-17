@@ -1,11 +1,11 @@
 USE [CIS_HLHT]
 GO
-/****** Object:  StoredProcedure [dbo].[USP_HLHT_BLGY_WSSJZY_DATA]    Script Date: 2018/10/16 19:03:19 ******/
+/****** Object:  StoredProcedure [dbo].[USP_HLHT_BLGY_JBJKXX_DATA]    Script Date: 2018/10/15 14:00:49 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[USP_HLHT_BLGY_WSSJZY_DATA]
+CREATE PROCEDURE [dbo].[USP_HLHT_BLGY_WSSJZY_DATA]
 @sourceType varchar(64),   --抽取数据类型
 @startDate  varchar(20),   --开始日期
 @endDate    varchar(20),   --结束日期
@@ -95,7 +95,7 @@ if @syxh  is null or @syxh = ''
             B.SYXH as jzlsh,
             B.PATID as patid,
             B.HZXM as hzxm,
-            CONVERT(varchar,(SELECT CASE B.MZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE B.MZH END)) as mjzh,
+            (SELECT CASE CONVERT(varchar,B.MZH) WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE CONVERT(varchar,B.MZH) END) as mjzh,
             B.BLH as zyh,
             2 as jzlb,
             (SELECT CASE B.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE B.SFZH END) as sfzhm,
@@ -212,7 +212,7 @@ if @syxh  is null or @syxh = ''
             B.SYXH as jzlsh,
             B.PATID as patid,
             B.HZXM as hzxm,
-            CONVERT(varchar,(SELECT CASE B.MZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE B.MZH END)) as mjzh,
+            (SELECT CASE CONVERT(varchar,B.MZH) WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE CONVERT(varchar,B.MZH) END) as mjzh,
             B.BLH as zyh,
             2 as jzlb,
             (SELECT CASE B.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE B.SFZH END) as sfzhm,
