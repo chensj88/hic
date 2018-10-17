@@ -120,8 +120,8 @@
         <if test="(ssjbmc != null and ssjbmc != '')">and t.ssjbmc = #{ssjbmc}</if>
         <if test="(ssmbbwdm != null )">and t.ssmbbwdm = #{ssmbbwdm}</if>
         <if test="(ssmbbw != null and ssmbbw != '')">and t.ssmbbw = #{ssmbbw}</if>
-        <if test="(jrwdm != null and jrwdm != '')">and t.jrwdm = #{jrwdm}</if>
-        <if test="(jrwmc != null and jrwmc != '')">and t.jrwmc = #{jrwmc}</if>
+        <if test="(jrwdm != null )">and t.jrwdm = #{jrwdm}</if>
+        <if test="(jrwmc != null )">and t.jrwmc = #{jrwmc}</if>
         <if test="(sstw != null and sstw != '')">and t.sstw = #{sstw}</if>
         <if test="(sstwmc != null and sstwmc != '')">and t.sstwmc = #{sstwmc}</if>
         <if test="(ssgc != null )">and t.ssgc = #{ssgc}</if>
@@ -201,8 +201,8 @@
             <if test="(ssjbmc != null and ssjbmc != '')">ssjbmc ,</if>
             <if test="(ssmbbwdm != null )">ssmbbwdm ,</if>
             <if test="(ssmbbw != null and ssmbbw != '')">ssmbbw ,</if>
-            <if test="(jrwdm != null and jrwdm != '')">jrwdm ,</if>
-            <if test="(jrwmc != null and jrwmc != '')">jrwmc ,</if>
+            <if test="(jrwdm != null )">jrwdm ,</if>
+            <if test="(jrwmc != null )">jrwmc ,</if>
             <if test="(sstw != null and sstw != '')">sstw ,</if>
             <if test="(sstwmc != null and sstwmc != '')">sstwmc ,</if>
             <if test="(ssgc != null )">ssgc ,</if>
@@ -279,8 +279,8 @@
             <if test="(ssjbmc != null and ssjbmc != '')">#{ssjbmc , jdbcType= VARCHAR },</if>
             <if test="(ssmbbwdm != null )">#{ssmbbwdm , jdbcType= VARCHAR },</if>
             <if test="(ssmbbw != null and ssmbbw != '')">#{ssmbbw , jdbcType= VARCHAR },</if>
-            <if test="(jrwdm != null and jrwdm != '')">#{jrwdm , jdbcType= VARCHAR },</if>
-            <if test="(jrwmc != null and jrwmc != '')">#{jrwmc , jdbcType= VARCHAR },</if>
+            <if test="(jrwdm != null )">#{jrwdm , jdbcType= VARCHAR },</if>
+            <if test="(jrwmc != null )">#{jrwmc , jdbcType= VARCHAR },</if>
             <if test="(sstw != null and sstw != '')">#{sstw , jdbcType= VARCHAR },</if>
             <if test="(sstwmc != null and sstwmc != '')">#{sstwmc , jdbcType= VARCHAR },</if>
             <if test="(ssgc != null )">#{ssgc , jdbcType= VARCHAR },</if>
@@ -361,8 +361,8 @@
                 <if test="(ssjbmc != null and ssjbmc != '')">ssjbmc = #{ssjbmc , jdbcType= VARCHAR },</if>
                 <if test="(ssmbbwdm != null )">ssmbbwdm = #{ssmbbwdm , jdbcType= VARCHAR },</if>
                 <if test="(ssmbbw != null and ssmbbw != '')">ssmbbw = #{ssmbbw , jdbcType= VARCHAR },</if>
-                <if test="(jrwdm != null and jrwdm != '')">jrwdm = #{jrwdm , jdbcType= VARCHAR },</if>
-                <if test="(jrwmc != null and jrwmc != '')">jrwmc = #{jrwmc , jdbcType= VARCHAR },</if>
+                <if test="(jrwdm != null )">jrwdm = #{jrwdm , jdbcType= VARCHAR },</if>
+                <if test="(jrwmc != null )">jrwmc = #{jrwmc , jdbcType= VARCHAR },</if>
                 <if test="(sstw != null and sstw != '')">sstw = #{sstw , jdbcType= VARCHAR },</if>
                 <if test="(sstwmc != null and sstwmc != '')">sstwmc = #{sstwmc , jdbcType= VARCHAR },</if>
                 <if test="(ssgc != null )">ssgc = #{ssgc , jdbcType= VARCHAR },</if>

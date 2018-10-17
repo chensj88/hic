@@ -95,7 +95,7 @@
         <if test="(sszz != null and sszz != '')">and t.sszz = #{sszz}</if>
         <if test="(hzyj != null and hzyj != '')">and t.hzyj = #{hzyj}</if>
         <if test="(ssczbm != null )">and t.ssczbm = #{ssczbm}</if>
-        <if test="(ssczmc != null and ssczmc != '')">and t.ssczmc = #{ssczmc}</if>
+        <if test="(ssczmc != null )">and t.ssczmc = #{ssczmc}</if>
         <if test="(ssmbbwdm != null )">and t.ssmbbwdm = #{ssmbbwdm}</if>
         <if test="(ssbwmc != null )">and t.ssbwmc = #{ssbwmc}</if>
         <if test="(ssczrq != null )">and t.ssczrq = #{ssczrq}</if>
@@ -150,7 +150,7 @@
             <if test="(sszz != null and sszz != '')">sszz ,</if>
             <if test="(hzyj != null and hzyj != '')">hzyj ,</if>
             <if test="(ssczbm != null )">ssczbm ,</if>
-            <if test="(ssczmc != null and ssczmc != '')">ssczmc ,</if>
+            <if test="(ssczmc != null )">ssczmc ,</if>
             <if test="(ssmbbwdm != null )">ssmbbwdm ,</if>
             <if test="(ssbwmc != null )">ssbwmc ,</if>
             <if test="(ssczrq != null )">ssczrq ,</if>
@@ -202,7 +202,7 @@
             <if test="(sszz != null and sszz != '')">#{sszz , jdbcType= VARCHAR },</if>
             <if test="(hzyj != null and hzyj != '')">#{hzyj , jdbcType= VARCHAR },</if>
             <if test="(ssczbm != null )">#{ssczbm , jdbcType= VARCHAR },</if>
-            <if test="(ssczmc != null and ssczmc != '')">#{ssczmc , jdbcType= VARCHAR },</if>
+            <if test="(ssczmc != null )">#{ssczmc , jdbcType= VARCHAR },</if>
             <if test="(ssmbbwdm != null )">#{ssmbbwdm , jdbcType= VARCHAR },</if>
             <if test="(ssbwmc != null )">#{ssbwmc , jdbcType= VARCHAR },</if>
             <if test="(ssczrq != null )">#{ssczrq , jdbcType= TIMESTAMP },</if>
@@ -258,7 +258,7 @@
                 <if test="(sszz != null and sszz != '')">sszz = #{sszz , jdbcType= VARCHAR },</if>
                 <if test="(hzyj != null and hzyj != '')">hzyj = #{hzyj , jdbcType= VARCHAR },</if>
                 <if test="(ssczbm != null )">ssczbm = #{ssczbm , jdbcType= VARCHAR },</if>
-                <if test="(ssczmc != null and ssczmc != '')">ssczmc = #{ssczmc , jdbcType= VARCHAR },</if>
+                <if test="(ssczmc != null )">ssczmc = #{ssczmc , jdbcType= VARCHAR },</if>
                 <if test="(ssmbbwdm != null )">ssmbbwdm = #{ssmbbwdm , jdbcType= VARCHAR },</if>
                 <if test="(ssbwmc != null )">ssbwmc = #{ssbwmc , jdbcType= VARCHAR },</if>
                 <if test="(ssczrq != null )">ssczrq = #{ssczrq , jdbcType= TIMESTAMP },</if>

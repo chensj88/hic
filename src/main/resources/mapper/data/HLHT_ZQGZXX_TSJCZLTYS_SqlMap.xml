@@ -68,7 +68,7 @@
         <if test="(xbmc != null )">and t.xbmc = #{xbmc}</if>
         <if test="(nls != null )">and t.nls = #{nls}</if>
         <if test="(nly != null )">and t.nly = #{nly}</if>
-        <if test="(jbzdbm != null and jbzdbm != '')">and t.jbzdbm = #{jbzdbm}</if>
+        <if test="(jbzdbm != null )">and t.jbzdbm = #{jbzdbm}</if>
         <if test="(jbzd != null and jbzd != '')">and t.jbzd = #{jbzd}</if>
         <if test="(jczlxmmc != null and jczlxmmc != '')">and t.jczlxmmc = #{jczlxmmc}</if>
         <if test="(jczlmd != null and jczlmd != '')">and t.jczlmd = #{jczlmd}</if>
@@ -107,7 +107,7 @@
             <if test="(xbmc != null )">xbmc ,</if>
             <if test="(nls != null )">nls ,</if>
             <if test="(nly != null )">nly ,</if>
-            <if test="(jbzdbm != null and jbzdbm != '')">jbzdbm ,</if>
+            <if test="(jbzdbm != null )">jbzdbm ,</if>
             <if test="(jbzd != null and jbzd != '')">jbzd ,</if>
             <if test="(jczlxmmc != null and jczlxmmc != '')">jczlxmmc ,</if>
             <if test="(jczlmd != null and jczlmd != '')">jczlmd ,</if>
@@ -143,7 +143,7 @@
             <if test="(xbmc != null )">#{xbmc , jdbcType= VARCHAR },</if>
             <if test="(nls != null )">#{nls , jdbcType= NUMERIC },</if>
             <if test="(nly != null )">#{nly , jdbcType= VARCHAR },</if>
-            <if test="(jbzdbm != null and jbzdbm != '')">#{jbzdbm , jdbcType= VARCHAR },</if>
+            <if test="(jbzdbm != null )">#{jbzdbm , jdbcType= VARCHAR },</if>
             <if test="(jbzd != null and jbzd != '')">#{jbzd , jdbcType= VARCHAR },</if>
             <if test="(jczlxmmc != null and jczlxmmc != '')">#{jczlxmmc , jdbcType= VARCHAR },</if>
             <if test="(jczlmd != null and jczlmd != '')">#{jczlmd , jdbcType= VARCHAR },</if>
@@ -183,7 +183,7 @@
                 <if test="(xbmc != null )">xbmc = #{xbmc , jdbcType= VARCHAR },</if>
                 <if test="(nls != null )">nls = #{nls , jdbcType= NUMERIC },</if>
                 <if test="(nly != null )">nly = #{nly , jdbcType= VARCHAR },</if>
-                <if test="(jbzdbm != null and jbzdbm != '')">jbzdbm = #{jbzdbm , jdbcType= VARCHAR },</if>
+                <if test="(jbzdbm != null )">jbzdbm = #{jbzdbm , jdbcType= VARCHAR },</if>
                 <if test="(jbzd != null and jbzd != '')">jbzd = #{jbzd , jdbcType= VARCHAR },</if>
                 <if test="(jczlxmmc != null and jczlxmmc != '')">jczlxmmc = #{jczlxmmc , jdbcType= VARCHAR },</if>
                 <if test="(jczlmd != null and jczlmd != '')">jczlmd = #{jczlmd , jdbcType= VARCHAR },</if>
