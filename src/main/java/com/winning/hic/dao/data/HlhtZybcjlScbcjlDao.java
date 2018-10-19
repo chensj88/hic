@@ -35,8 +35,6 @@ public interface HlhtZybcjlScbcjlDao {
 
     public List<HlhtZybcjlScbcjl> selectHlhtZybcjlScbcjlPageList(HlhtZybcjlScbcjl hlhtZybcjlScbcjl) throws DataAccessException;
 
-    public HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl t) throws DataAccessException;
-
     public List<HlhtZybcjlScbcjl> selectHlhtZybcjlScbcjlListByProc(HlhtZybcjlScbcjl t) throws DataAccessException;
 
     public void selectAllHandleQueryMZ() throws DataAccessException;
