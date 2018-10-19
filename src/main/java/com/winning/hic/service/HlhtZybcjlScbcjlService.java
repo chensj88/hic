@@ -29,8 +29,6 @@ public interface HlhtZybcjlScbcjlService {
 
     public List<HlhtZybcjlScbcjl> getHlhtZybcjlScbcjlPageList(HlhtZybcjlScbcjl hlhtZybcjlScbcjl);
 
-    HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl entity);
-
     MbzDataCheck interfaceHlhtZybcjlScbcjl(MbzDataCheck t);
 
     void selectAllHandleQuery();
