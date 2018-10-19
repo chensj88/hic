@@ -147,7 +147,8 @@ alter table	HLHT_ZYBCJL_QJJL	alter column	qjcs		text	 not null 	;
 alter table	HLHT_ZYBCJL_QJJL	alter column	czff		text	 not null 	;
 alter table	HLHT_ZYBCJL_QJJL	alter column	jcjyjg		text		;
 alter table	HLHT_ZYBCJL_QJJL	alter column	zysx		text		;
-alter table	HLHT_ZYBCJL_QJJL	alter column	zyzwlbdm		varchar(36)		;
+alter table	HLHT_ZYBCJL_QJJL	alter column	zyzwlbdm		varchar(256)		;
+alter table	HLHT_ZYBCJL_QJJL	alter column	zyzwlbmc		varchar(500)		;
 alter table	HLHT_ZYBCJL_QJJL	alter column	cjtlrymd		varchar(500)		;
 
 alter table	HLHT_ZQGZXX_QTZQTYS	alter column	jbzdbm		varchar(2000)	 not null 	;
@@ -550,7 +551,6 @@ alter table HLHT_RYJL_JBXX alter column qzzyzhmc varchar(1000) not null;
 alter table HLHT_RYJL_JBXX alter column qzzyzhdm varchar(500) not null;
 alter table HLHT_RYJL_JBXX alter column bzmc varchar(1000) not null;
 alter table HLHT_RYJL_JBXX alter column bzbm varchar(500) not null;
-alter table HLHT_ZQGZXX_TSJCZLTYS alter column mjzh varchar(24) not null;
 alter table HLHT_ZYBCJL_YNBLTLJL alter column tlrybm varchar(500);
 alter table HLHT_ZLCZJL_YBSSJL alter column mzff varchar(30) not null;
 alter table HLHT_ZLCZJL_YBSSJL alter column sstw varchar(30) not null;
@@ -581,6 +581,7 @@ alter table  HLHT_RYJL_RCYJL alter column 	rzzyzhdm varchar(500);
 alter table  HLHT_RYJL_RCYJL alter column 	rzzyzhmc varchar(1000);
 ALTER TABLE HLHT_ZQGZXX_TSJCZLTYS ALTER COLUMN  jbzd varchar(1000) not null;
 ALTER TABLE HLHT_ZQGZXX_TSJCZLTYS ALTER COLUMN  jbzdbm varchar(500) not null;
+alter table HLHT_ZQGZXX_TSJCZLTYS alter column mjzh varchar(24) not null;
 
 ALTER TABLE  HLHT_ZQGZXX_SSTYS ALTER COLUMN  nssbm varchar(500) not null;
 ALTER TABLE  HLHT_ZQGZXX_SSTYS ALTER COLUMN  ssfs varchar(128)  not null;

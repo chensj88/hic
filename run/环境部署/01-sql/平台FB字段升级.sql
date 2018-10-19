@@ -130,6 +130,9 @@ alter table	HLHT_ZYBCJL_QJJL_FB	alter column	jcjyjg		text		;
 alter table	HLHT_ZYBCJL_QJJL_FB	alter column	zysx		text		;
 alter table	HLHT_ZYBCJL_QJJL_FB	alter column	zyzwlbdm		varchar(36)		;
 alter table	HLHT_ZYBCJL_QJJL_FB	alter column	cjtlrymd		varchar(500)		;
+alter table	HLHT_ZYBCJL_QJJL_FB	alter column	zyzwlbdm		varchar(256)		;
+alter table	HLHT_ZYBCJL_QJJL_FB	alter column	zyzwlbmc		varchar(500)		;
+
 alter table	HLHT_ZQGZXX_QTZQTYS_FB	alter column	jbzdbm		varchar(2000)	 not null 	;
 alter table	HLHT_ZQGZXX_QTZQTYS_FB	alter column	jbzd		varchar(2000)	 not null 	;
 alter table	HLHT_ZQGZXX_QTZQTYS_FB	alter column	zqtynr		text	 not null 	;
