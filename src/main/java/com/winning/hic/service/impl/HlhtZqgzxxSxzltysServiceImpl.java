@@ -132,6 +132,8 @@ public class HlhtZqgzxxSxzltysServiceImpl implements HlhtZqgzxxSxzltysService {
                 Map<String, String> paramTypeMap = ReflectUtil.getParamTypeMap(HlhtZqgzxxSxzltys.class);
                 try {
                     obj = (HlhtZqgzxxSxzltys) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                    String sxblhg = obj.getSxblhg().replaceAll("\\d+","0");
+                    obj.setSxblhg(sxblhg);
                     logger.info("Model:{}", obj);
                     this.hlhtZqgzxxSxzltysDao.insertHlhtZqgzxxSxzltys(obj);
                     mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
