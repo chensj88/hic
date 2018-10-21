@@ -91,9 +91,6 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
         return this.hlhtZybcjlScbcjlDao.selectHlhtZybcjlScbcjlPageList(hlhtZybcjlScbcjl);
     }
 
-    public HlhtZybcjlScbcjl selectInitialHlhtZybcjlScbcjl(HlhtZybcjlScbcjl t) {
-        return this.hlhtZybcjlScbcjlDao.selectInitialHlhtZybcjlScbcjl(t);
-    }
 
     @Override
     public MbzDataCheck interfaceHlhtZybcjlScbcjl(MbzDataCheck t){

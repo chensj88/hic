@@ -52,8 +52,8 @@ SELECT
         c.KSMC AS ksmc,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
-        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
-          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
+        (SELECT CASE WHEN a.fjh = '' THEN 'NA' WHEN a.fjh IS NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE WHEN a.fjh = '' THEN 'NA' WHEN a.fjh IS NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM AS bch,
         b.HZXM AS hzxm,
         (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,
@@ -175,8 +175,8 @@ SELECT
         c.KSMC AS ksmc,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc,
-        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
-          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
+        (SELECT CASE WHEN a.fjh = '' THEN 'NA' WHEN a.fjh IS NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE WHEN a.fjh = '' THEN 'NA' WHEN a.fjh IS NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM AS bch,
         b.HZXM AS hzxm,
         (SELECT CASE b.SFZH WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE b.SFZH END) as sfzhm,
@@ -2287,7 +2287,7 @@ if @syxh  is null or @syxh = ''
 				ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'') as nls,
 				datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
 				b.MZDM as mz,
-				d.NAME as mzmc,
+				ISNULL(d.NAME,'NA') as mzmc,
 				b.HYZK as hyzkdm,
 				(
 				SELECT
@@ -2364,7 +2364,7 @@ else
 				ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'') as nls,
 				datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
 				b.MZDM as mz,
-				d.NAME as mzmc,
+				ISNULL(d.NAME,'NA') as mzmc,
 				b.HYZK as hyzkdm,
 				(
 				SELECT
@@ -2471,7 +2471,7 @@ if @syxh  is null or @syxh = ''
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
-        d.NAME as mzmc,
+        ISNULL(d.NAME,'NA') as mzmc,
         b.HYZK as hyzkdm,
         (
         SELECT
@@ -2549,7 +2549,7 @@ else
         ISNULL(convert (varchar,(YEAR(GETDATE())-YEAR(convert(datetime, b.CSRQ)))) ,'NA') as nls,
         datediff(month,b.CSRQ,substring(convert(char(8),getdate(),112),1,8)) %12 as nly,
         b.MZDM as mz,
-        d.NAME as mzmc,
+        ISNULL(d.NAME,'NA') as mzmc,
         b.HYZK as hyzkdm,
         (
         SELECT
@@ -5399,8 +5399,8 @@ else
         c.KSMC AS ksmc ,
         c.BQDM AS bqdm,
         c.BQMC AS bqmc ,
-        (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END) AS bfh,
-          (SELECT CASE a.fjh WHEN '' THEN 'NA' WHEN NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
+        (SELECT CASE WHEN a.fjh = '' THEN 'NA' WHEN a.fjh IS NULL THEN 'NA' ELSE a.fjh END) AS bfh,
+          (SELECT CASE WHEN a.fjh = '' THEN 'NA' WHEN a.fjh IS NULL THEN 'NA' ELSE a.fjh END)+'病房' AS bfmc,
         c.CWDM AS bch ,
         t.CJSJ AS jlrq,
         b.BRXB AS xbdm,

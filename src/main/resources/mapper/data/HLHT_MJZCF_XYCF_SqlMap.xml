@@ -77,7 +77,7 @@
         <if test="(cfyxts != null and cfyxts != '')">and t.cfyxts = #{cfyxts}</if>
         <if test="(cfklskdm != null and cfklskdm != '')">and t.cfklskdm = #{cfklskdm}</if>
         <if test="(cfklks != null and cfklks != '')">and t.cfklks = #{cfklks}</if>
-        <if test="(jbzdbm != null and jbzdbm != '')">and t.jbzdbm = #{jbzdbm}</if>
+        <if test="(jbzdbm != null )">and t.jbzdbm = #{jbzdbm}</if>
         <if test="(jbzd != null and jbzd != '')">and t.jbzd = #{jbzd}</if>
         <if test="(ywdm != null and ywdm != '')">and t.ywdm = #{ywdm}</if>
         <if test="(ywmc != null and ywmc != '')">and t.ywmc = #{ywmc}</if>
@@ -132,7 +132,7 @@
             <if test="(cfyxts != null and cfyxts != '')">cfyxts ,</if>
             <if test="(cfklskdm != null and cfklskdm != '')">cfklskdm ,</if>
             <if test="(cfklks != null and cfklks != '')">cfklks ,</if>
-            <if test="(jbzdbm != null and jbzdbm != '')">jbzdbm ,</if>
+            <if test="(jbzdbm != null )">jbzdbm ,</if>
             <if test="(jbzd != null and jbzd != '')">jbzd ,</if>
             <if test="(ywdm != null and ywdm != '')">ywdm ,</if>
             <if test="(ywmc != null and ywmc != '')">ywmc ,</if>
@@ -184,7 +184,7 @@
             <if test="(cfyxts != null and cfyxts != '')">#{cfyxts , jdbcType= NUMERIC },</if>
             <if test="(cfklskdm != null and cfklskdm != '')">#{cfklskdm , jdbcType= VARCHAR },</if>
             <if test="(cfklks != null and cfklks != '')">#{cfklks , jdbcType= VARCHAR },</if>
-            <if test="(jbzdbm != null and jbzdbm != '')">#{jbzdbm , jdbcType= VARCHAR },</if>
+            <if test="(jbzdbm != null )">#{jbzdbm , jdbcType= VARCHAR },</if>
             <if test="(jbzd != null and jbzd != '')">#{jbzd , jdbcType= VARCHAR },</if>
             <if test="(ywdm != null and ywdm != '')">#{ywdm , jdbcType= VARCHAR },</if>
             <if test="(ywmc != null and ywmc != '')">#{ywmc , jdbcType= VARCHAR },</if>
@@ -240,7 +240,7 @@
                 <if test="(cfyxts != null and cfyxts != '')">cfyxts = #{cfyxts , jdbcType= NUMERIC },</if>
                 <if test="(cfklskdm != null and cfklskdm != '')">cfklskdm = #{cfklskdm , jdbcType= VARCHAR },</if>
                 <if test="(cfklks != null and cfklks != '')">cfklks = #{cfklks , jdbcType= VARCHAR },</if>
-                <if test="(jbzdbm != null and jbzdbm != '')">jbzdbm = #{jbzdbm , jdbcType= VARCHAR },</if>
+                <if test="(jbzdbm != null )">jbzdbm = #{jbzdbm , jdbcType= VARCHAR },</if>
                 <if test="(jbzd != null and jbzd != '')">jbzd = #{jbzd , jdbcType= VARCHAR },</if>
                 <if test="(ywdm != null and ywdm != '')">ywdm = #{ywdm , jdbcType= VARCHAR },</if>
                 <if test="(ywmc != null and ywmc != '')">ywmc = #{ywmc , jdbcType= VARCHAR },</if>

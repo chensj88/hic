@@ -552,10 +552,10 @@ WHERE  ( CONVERT(varchar,A.mqzdzyzhdm) ='NA' OR CONVERT(varchar,A.mqzdzyzh) ='NA
 
 ------抢救记录------------------------------------------------------------------------------------------------------
 UPDATE A SET A.jbzdmc = C.ZDMC,A.jbzdbm = C.ZDDM
-FROM [HLHT_ZYBCJL_QJJL] A(nolock) LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B(nolock) ON A.jzlsh =B.HISSYXH
-  LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C(nolock) ON B.SYXH = C.SYXH AND C.ZDLB = 1
-WHERE  ( CONVERT(varchar,A.jbzdmc) ='NA' OR CONVERT(varchar,A.jbzdbm) ='NA' )
-
+FROM [HLHT_ZYBCJL_QJJL] A(nolock)
+LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRSYK] B(nolock) ON A.jzlsh =B.HISSYXH
+LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_BRZDQK] C(nolock) ON B.SYXH = C.SYXH AND C.ZDLB = 1
+WHERE  ( CONVERT(varchar,A.jbzdmc) ='NA' OR CONVERT(varchar,A.jbzdbm) ='NA' ) and  C.ZDMC is not NULL and C.ZDDM is not NULL
 
 UPDATE 	A SET A.qmrq=B.FSSJ from  [HLHT_ZYBCJL_QJJL] A(nolock)
 LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[EMR_QTBLJLK] B(nolock) ON A.yjlxh =B.QTBLJLXH
