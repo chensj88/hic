@@ -3,6 +3,7 @@ package com.winning.hic.controller;
 import com.winning.hic.base.Constants;
 import com.winning.hic.base.utils.Base64Utils;
 import com.winning.hic.base.utils.DomUtils;
+import com.winning.hic.base.utils.XmlUtil;
 import com.winning.hic.model.MbzDataCheck;
 import com.winning.hic.model.MbzTemplateNodeDetailInfo;
 import io.swagger.annotations.ApiOperation;
@@ -188,11 +189,11 @@ public class TestController extends BaseController {
     }
 
     @PostMapping(value = "/blnr/parse")
-    public Map<String, Object> parseBlnr(String blnr) throws IOException {
+    public Map<String, Object> parseBlnr(String blnr) throws Exception {
         blnr = blnr.substring(3);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", Constants.SUCCESS);
-        result.put("data", Base64Utils.unzipEmrXml(blnr));
+        result.put("data", XmlUtil.format(Base64Utils.unzipEmrXml(blnr)));
         return result;
     }
 }

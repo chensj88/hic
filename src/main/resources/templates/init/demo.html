@@ -152,7 +152,7 @@
                 success: function (data, status) {
                     toastr.info('转换成功');
                  //   console.log(formatXml(data.data));
-                    $('#summernote1').summernote('insertText',format(data.data));
+                    $('#summernote1').summernote('insertText',data.data);
                 },error:function (response) {
                     toastr.error(response.responseText);
                 }
