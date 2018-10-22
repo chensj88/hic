@@ -335,7 +335,7 @@ public class HlhtZybcjlScbcjlServiceImpl implements  HlhtZybcjlScbcjlService {
 
             }
             //1.病历总数 2.抽取的病历数量 3.子集类型
-            this.mbzDataCheckService.createMbzDataCheckNum(hlhtZybcjlScbcjls.size(),real_count,Integer.parseInt(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE),t.getMap().get("startDate")+" 至 "+t.getMap().get("endDate"),(String)t.getMap().get("isFlag"));
+            this.mbzDataCheckService.createMbzDataCheckNum(hlhtZybcjlScbcjls.size(),real_count,Integer.parseInt(Constants.WN_ZYBCJL_SCBCJL_SOURCE_TYPE),t);
         }catch (Exception e){
             e.printStackTrace();
         }

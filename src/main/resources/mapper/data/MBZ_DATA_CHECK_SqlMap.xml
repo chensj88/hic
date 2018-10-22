@@ -9,6 +9,9 @@
          <result column="DATA_COUNT" property="dataCount" jdbcType="INTEGER" />
          <result column="REAL_COUNT" property="realCount" jdbcType="INTEGER" />
          <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR" />
+        <result column="ERROR_DESC" property="errorDesc" jdbcType="INTEGER" />
+        <result column="IS_AUTOMATE" property="isAutomate" jdbcType="INTEGER" />
+
 
     </resultMap>
 
@@ -23,6 +26,8 @@
         <if test="(dataCount != null and dataCount != '')"> and t.DATA_COUNT = #{dataCount} </if>
         <if test="(realCount != null and realCount != '')"> and t.REAL_COUNT = #{realCount} </if>
         <if test="(errorDesc != null and errorDesc != '')"> and t.ERROR_DESC = #{errorDesc} </if>
+        <if test="(isAutomate != null )">and t.IS_AUTOMATE = #{isAutomate}</if>
+
     </sql>
 
     <insert id="insertMbzDataCheck" parameterType="com.winning.hic.model.MbzDataCheck">
@@ -34,6 +39,8 @@
             <if test="(dataCount != null )"> DATA_COUNT , </if>
             <if test="(realCount != null )"> REAL_COUNT , </if>
             <if test="(errorDesc != null and errorDesc != '')"> ERROR_DESC , </if>
+            <if test="(isAutomate != null )"> IS_AUTOMATE , </if>
+
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -42,6 +49,8 @@
             <if test="(dataCount != null )"> #{dataCount , jdbcType= INTEGER },  </if>
             <if test="(realCount != null )"> #{realCount , jdbcType= INTEGER },  </if>
             <if test="(errorDesc != null and errorDesc != '')"> #{errorDesc , jdbcType= VARCHAR },  </if>
+            <if test="(isAutomate != null )"> #{isAutomate , jdbcType= INTEGER },  </if>
+
         </trim>
     </insert>
 
@@ -54,6 +63,8 @@
                 <if test="(dataCount != null and dataCount != '')"> DATA_COUNT = #{dataCount , jdbcType= INTEGER }, </if>
                 <if test="(realCount != null and realCount != '')"> REAL_COUNT = #{realCount , jdbcType= INTEGER }, </if>
                 <if test="(errorDesc != null and errorDesc != '')"> ERROR_DESC = #{errorDesc , jdbcType= VARCHAR }, </if>
+                <if test="(isAutomate != null )"> IS_AUTOMATE = #{isAutomate , jdbcType= INTEGER }, </if>
+
             </trim>
         </set>
         <where>
@@ -67,9 +78,10 @@
 
     <delete id="deleteMbzDataCheck" parameterType="com.winning.hic.model.MbzDataCheck">
         delete from  MBZ_DATA_CHECK
-        <where>
+        <where> 1=1
             <if test="(id != null and id != '')"> and ID = #{ id }   </if>
-            <if test="(sourceType != null and sourceType != '')"> SOURCE_TYPE = #{sourceType , jdbcType= INTEGER } </if>
+            <if test="(isAutomate != null )"> and IS_AUTOMATE = #{isAutomate} </if>
+            <if test="(sourceType != null and sourceType != '')"> and SOURCE_TYPE = #{sourceType}  </if>
             <if test="(id !=null or id!='') and (map.pks != null and map.pks != '')">
                 and (ID) in
                 <foreach item="item" collection="map.pks" open="(" separator="," close=")"> #{item}</foreach>
@@ -79,9 +91,9 @@
 
     <delete id="deleteMbzDataCheckList" parameterType="com.winning.hic.model.MbzDataCheck">
         delete from  MBZ_DATA_CHECK
+        WHERE 1=1
+        <if test="(isAutomate != null )"> AND IS_AUTOMATE = #{isAutomate} </if>
     </delete>
-
-
 
     <select id="selectMbzDataCheck" resultMap="mbzDataCheckResult" parameterType="com.winning.hic.model.MbzDataCheck">
         SELECT * FROM MBZ_DATA_CHECK t
@@ -129,8 +141,9 @@
         FROM
         MBZ_DATA_CHECK t
         LEFT JOIN MBZ_DICT_INFO i ON t.SOURCE_TYPE = i.DICT_VALUE
-        WHERE
-        i.DICT_CODE = 'platformTableName'
+        WHERE i.DICT_CODE = 'platformTableName'
+        <if test="(isAutomate != null)">and t.IS_AUTOMATE = #{isAutomate}</if>
+
         ORDER BY
         t.SOURCE_TYPE ASC;
     </select>

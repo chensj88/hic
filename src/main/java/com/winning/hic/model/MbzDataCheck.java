@@ -51,6 +51,13 @@ public class MbzDataCheck extends BaseDomain implements Serializable {
      */
     private String errorDesc;
 
+    /**
+     * 字段名：IS_AUTOMATE
+     * 备注:
+     * 默认值：1
+     */
+    private Integer isAutomate;
+
     public MbzDataCheck (){
 
     }
@@ -145,5 +152,13 @@ public class MbzDataCheck extends BaseDomain implements Serializable {
    public void setErrorDesc(String errorDesc){
         this.errorDesc = errorDesc;
    }
+
+    public Integer getIsAutomate() {
+        return isAutomate;
+    }
+
+    public void setIsAutomate(Integer isAutomate) {
+        this.isAutomate = isAutomate;
+    }
 
 }

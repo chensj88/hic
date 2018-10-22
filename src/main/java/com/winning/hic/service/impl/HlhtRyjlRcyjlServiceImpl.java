@@ -471,7 +471,7 @@ public class HlhtRyjlRcyjlServiceImpl implements  HlhtRyjlRcyjlService {
             logger.info("接口数据集:{}未配置关联病历模板，请配置接口数据集关联病历模板",mbzDataSet.getRecordName());
         }*/
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_RYJL_RCYJL_SOURCE_TYPE),entity.getMap().get("startDate")+" 至 "+entity.getMap().get("endDate"),(String)entity.getMap().get("isFlag"));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_RYJL_RCYJL_SOURCE_TYPE),entity);
 
         return null;
     }

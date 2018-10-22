@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
+<!--suppress ALL-->
 <html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
-    <title>数据校验</title>
+    <title>模板校验</title>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-table.min.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/css/jquery.treegrid.css}">
@@ -18,7 +18,38 @@
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>-->
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}"/>-->
     <!--<link rel="stylesheet" th:href="@{/assets/css/ace-skins.min.css}"/>-->
+    <link rel="stylesheet" th:href="@{/assets/css/chosen.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/datepicker.css}"/>
     <link rel="shortcut icon" th:href="@{/img/logo.ico}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/toastr/css/toastr.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/layer/mobile/need/layer.css}"/>
+
+
+    <style>
+        .input-length{
+            width: 150px;
+        }
+        .table-align{
+            white-space:nowrap;
+            overflow:hidden;
+        }
+        .table.table-hover > tr > td{
+            height: 16px;
+            max-height: 20px;
+        }
+
+        .table-layout-fixed{
+            table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+            font-size:12px;
+        }
+        div.card-views > div.card-view >span.title {
+            width: 200px;
+        }
+        div.card-views div.card-view span.value {
+            width: 400px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -26,25 +57,142 @@
 
     <div class="row" style="margin:0px;">
         <div class="col-sm-12">
-            数据校验
-        </div>
+            <div class="tabbable">
+                    数据自动抽取信息
+                <div class="tab-content">
+                        <table id="simple_table"></table>
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- /span -->
     </div>
 </div>
+
+
+
 </body>
 <!--[if !IE]> -->
 <script th:src="@{/bootstrap/js/jquery-2.2.4.min.js}"></script>
 <!-- <![endif]-->
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap-table-zh-CN.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap-table-treegrid.min.js}"></script>
 <script th:src="@{/bootstrap/js/jquery.treegrid.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap-datepicker.zh-CN.min.js}"></script>
+<script th:src="@{/bootstrap/toastr/js/toastr.min.js}"></script>
 <!--ace-->
 <script th:src="@{/assets/js/ace-elements.min.js}"></script>
 <script th:src="@{/assets/js/ace.min.js}"></script>
 <script th:src="@{/assets/js/ace-extra.min.js}"></script>
+<script th:src="@{/assets/js/chosen.jquery.min.js}"></script>
+<!--layer-->
+<script th:src="@{/assets/layer/layer.js}"></script>
 
 <script th:inline="javascript" type="text/javascript">
+
+
     var ctx = /*[[@{/}]]*/'';
+    // alert(ctx+'modelCheck/modelCheck');
+    var $table = $('#treegrid_table');
+    var $simple_table = $('#simple_table');
+    var $dataTable = $('#dataTable'); //详情数据表格
+    $(function () {
+        toastr.options= {
+            "closeButton":false,//显示关闭按钮
+            "debug":false,//启用debug
+            "positionClass":"toast-top-center",//弹出的位置
+            "showDuration":"300",//显示的时间
+            "hideDuration":"1000",//消失的时间
+            "timeOut":"5000",//停留的时间
+            "extendedTimeOut":"1000",//控制时间
+            "showEasing":"swing",//显示时的动画缓冲方式
+            "hideEasing":"linear",//消失时的动画缓冲方式
+            "showMethod":"fadeIn",//显示时的动画方式
+            "hideMethod":"fadeOut"//消失时的动画方式
+        };
+
+
+
+        //机构代码和机构名称
+        $("#orgCode").blur(function () {
+            var orgCode = $("#orgCode").val();
+            var orgName = $("#orgName").val();
+            $.ajax({
+                url: ctx + "/dataLoad/orgInfo",
+                method: "post",
+                data: {orgCode: orgCode, orgName: orgName},
+                success: function (data) {
+
+                }
+            });
+        });
+        $("#orgName").blur(function () {
+            var orgCode = $("#orgCode").val();
+            var orgName = $("#orgName").val();
+            $.ajax({
+                url: ctx + "/dataLoad/orgInfo",
+                method: "post",
+                data: {orgCode: orgCode, orgName: orgName},
+                success: function (data) {
+
+                }
+            });
+        });
+        $('.hasDatepicker').datepicker({
+            autoclose:true,
+            language:"zh-CN",
+            todayHighlight: true
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+
+        $simple_table.bootstrapTable({
+            url: ctx + 'handDataCheckTable/list?isAutomate=1',
+            height: $(window).height(),
+            striped: true,
+            toolbar: '#simple_toolbar',
+            sidePagination: 'client',
+            idField: 'id',
+            columns: [
+                {
+                    title: '序号',
+                    field:'sourceType'},
+                {
+                    field: 'map.sourceName',
+                    width: '40%',
+                    title: '数据子集'
+                },
+                {
+                    field: 'realCount',
+                    title: '抽取数量',
+                    width: '10%',
+                    formatter : function (value, row, index) {
+                        if (row['dataCount'] != row['realCount'] ) {
+                            return '<i style="color: red;font-weight: bold;">'+row['realCount']+'</i>';
+                        }
+                        return value;
+                    },
+                    align: 'center',
+                },
+                {
+                    field: 'dataCount',
+                    width: '10%',
+                    title: '病历总数'
+                },
+                {
+                    field: 'errorDesc',
+                    width: '40%',
+                    title: '抽取时间范围'
+                }
+            ],
+        });
+
+
+    });
+
 </script>
 
 </html>
