@@ -212,7 +212,12 @@ public class HicHelper {
                     value = StringUtil.isEmptyOrNull(dateStr) ? new BigDecimal(0) : new BigDecimal(dateStr);
                 } else if (paramType.contains("Integer")) {
                     String dateStr = StringUtil.isEmptyOrNull(strValue.trim()) ? "0" : strValue.trim();
-                    value = StringUtil.isEmptyOrNull(dateStr) ? new Integer(0) : Integer.parseInt(dateStr);
+                    try {
+                        value = StringUtil.isEmptyOrNull(dateStr) ? new Integer(0) : Integer.parseInt(dateStr);
+                    }catch (NumberFormatException e){
+                        value = 0 ;
+                    }
+
                 }
             }
             //类型

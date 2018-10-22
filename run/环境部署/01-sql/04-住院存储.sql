@@ -957,3 +957,34 @@ FROM [HLHT_ZYBCJL_HZJL] A(nolock),[HLHT_RYJL_JBXX] C(nolock)
 WHERE A.jzlsh=C.jzlsh AND CONVERT(varchar,A.zyzhmc) ='NA' OR CONVERT(varchar,A.zyzhdm) ='NA';
 
 UPDATE [HLHT_ZYBCJL_HZJL] SET hzyy =ISNULL(hzmd, 'NA') WHERE hzyy='NA';
+
+--术前讨论
+--拟实施麻醉方法代码  拟实施麻醉方法名称
+    UPDATE A SET A.mzffdm = ISNULL(B.MZDM,'NA') ,
+	A.mzffmc = ISNULL(B.MZMC,'NA') FROM
+	[HLHT_ZYBCJL_SQTL] A(nolock)
+	LEFT JOIN [HLHT_ZY_CIS].[CISDB].[dbo].[CPOE_SSYZK] B(nolock) ON A.jzlsh = B.SYXH
+	WHERE (A.mzffdm = 'NA' OR A.mzffmc='NA');
+--拟实施手术及操作名称
+	UPDATE A SET A.ssczmc = CASE WHEN C.id IS NULL THEN 'NA' ELSE C.id END,A.ssczbm = CASE WHEN C.name IS NULL THEN 'NA' ELSE C.name END
+    FROM [HLHT_ZYBCJL_SQTL] A(nolock) left join [HLHT_ZY_HIS].[This40].[dbo].[SS_SSDJK] B(nolock) ON A.jzlsh = B.syxh
+    LEFT JOIN [HLHT_ZY_HIS].[This40].[dbo].[czryk] C(nolock) ON B.ysdm =C.id WHERE (A.ssczmc = 'NA' OR A.ssczbm ='NA');
+ -- 拟实施手术及操作日期时间
+   UPDATE A SET A.ssczrq=
+    ISNULL(CONVERT(datetime,substring(B.aprq,1,4)+'-'+substring(B.aprq,5,2)+'-'+substring(B.aprq,7,2)+' '+substring(B.aprq,9,8)),'1990-01-01 00:00:00')
+     FROM [HLHT_ZYBCJL_SQTL] A(nolock) left join [HLHT_ZY_HIS].[This40].[dbo].[SS_SSDJK] B(nolock) ON A.jzlsh = B.syxh
+     WHERE (A.ssczrq = '1990-01-01 00:00:00');
+--手术者
+	UPDATE A SET A.sszbm = CASE WHEN C.id IS NULL THEN 'NA' ELSE C.id END,A.sszqm = CASE WHEN C.name IS NULL THEN 'NA' ELSE C.name END
+	FROM [HLHT_ZYBCJL_SQTL] A(nolock) left join [HLHT_ZY_HIS].[This40].[dbo].[SS_SSDJK] B(nolock) ON A.jzlsh = B.syxh
+	LEFT JOIN [HLHT_ZY_HIS].[This40].[dbo].[czryk] C(nolock) ON B.ysdm =C.id WHERE (A.sszbm = 'NA' OR A.sszqm ='NA')
+
+--参加讨论人员工号
+ UPDATE A SET A.tlrybm=isnull(T.dm,'NA') FROM [HLHT_ZYBCJL_SQTL] A LEFT JOIN (
+ SELECT  stuff((select ',' + rtrim(A.ID) from [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] A where A.NAME in (select * from f_splitSTR(C.cjtlmd,'，')) for xml path('')),1,1,'') as dm,
+    C.yjlxh    from [HLHT_ZYBCJL_SQTL] C) T ON A.yjlxh = T.yjlxh WHERE A.tlrybm != 'NA'
+--专业技术职务类别代码/名称
+  UPDATE D SET D.zyzwlbdm = CASE WHEN F.dm = '' THEN 'NA' ELSE ISNULL(F.dm,'NA') END ,D.zyzwlbmc = CASE WHEN F.mc = '' THEN 'NA' ELSE  ISNULL(F.mc,'NA') END  FROM [HLHT_ZYBCJL_SQTL] D LEFT JOIN (
+    select (SELECT top 1 A.ZCDM from [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] A where A.NAME = C.zcrxm  ) as dm,
+     (select top 1 B.ZCMC from [HLHT_ZY_CIS].[CISDB].[dbo].[SYS_ZGDMK] B where B.NAME = C.zcrxm )  as mc,
+    C.yjlxh    from [HLHT_ZYBCJL_SQTL] C ) F ON D.yjlxh = F.yjlxh where (D.zyzwlbdm = 'NA' OR D.zyzwlbmc='NA');

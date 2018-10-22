@@ -128,16 +128,24 @@ public class HlhtZybcjlJjbjlServiceImpl implements  HlhtZybcjlJjbjlService {
                         mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                         //3.xml文件解析 获取病历信息
                         Document document = null;
-                        try {
-                            document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
-                            obj = (HlhtZybcjlJjbjl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
-                            logger.info("Model:{}", obj);
+                        if(!StringUtil.isEmptyOrNull(obj.getBlnr())){
+                            try {
+                                document = XmlUtil.getDocument(Base64Utils.unzipEmrXml(obj.getBlnr()));
+                                obj = (HlhtZybcjlJjbjl) HicHelper.initModelValue(mbzDataSetList, document, obj, paramTypeMap);
+                                logger.info("Model:{}", obj);
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
-
                         this.createHlhtZybcjlJjbjl(obj);
+                        mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
+                                Long.parseLong(Constants.WN_ZYBCJL_JJBJL_SOURCE_TYPE),
+                                Long.parseLong(obj.getYjlxh()),obj.getBlmc(),obj.getSyxh(),obj.getJbsj(),
+                                obj.getPatid(),obj.getZyh(),obj.getHzxm(),obj.getXbmc(),obj.getXbdm(),
+                                "NA","NA", "NA","NA", obj.getSfzhm(),
+                                PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_JJBJL_SOURCE_TYPE), obj, 1),
+                                PercentUtil.getPercent(Long.parseLong(Constants.WN_ZYBCJL_JJBJL_SOURCE_TYPE), obj, 0)));
                         real_count++;
 
                     }
