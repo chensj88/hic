@@ -329,6 +329,15 @@ public class HlhtZybcjlJjbjl extends BaseDomain implements Serializable {
      */
     private Integer yxjl;
 
+    /**
+     * 字段名：yxjl
+     * 备注:
+     * 默认值：无
+     */
+    private String mxfldm;
+
+    private String cjys;
+
     public HlhtZybcjlJjbjl (){
 
     }
@@ -1252,4 +1261,21 @@ public class HlhtZybcjlJjbjl extends BaseDomain implements Serializable {
         this.yxjl = yxjl;
    }
 
+    @Override
+    public String getMxfldm() {
+        return mxfldm;
+    }
+
+    @Override
+    public void setMxfldm(String mxfldm) {
+        this.mxfldm = mxfldm;
+    }
+
+    public String getCjys() {
+        return cjys;
+    }
+
+    public void setCjys(String cjys) {
+        this.cjys = cjys;
+    }
 }

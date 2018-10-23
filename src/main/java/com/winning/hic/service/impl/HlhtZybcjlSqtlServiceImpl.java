@@ -127,7 +127,52 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
                     mbzLoadDataInfoDao.deleteMbzLoadDataInfoBySourceIdAndSourceType(param);
                 }
                 obj = (HlhtZybcjlSqtl) HicHelper.initModelValue(mbzDataSetList,document,obj,paramTypeMap);
+                String zcrxm = obj.getZcrxm();
+                zcrxm = zcrxm.replace(" ","");
+                zcrxm = zcrxm.replace("副主任医师","");
+                zcrxm = zcrxm.replace("副主治医师","");
+                zcrxm = zcrxm.replace("主任医师","");
+                zcrxm = zcrxm.replace("主治医师","");
+                zcrxm = zcrxm.replace("住院医师","");
+                obj.setZcrxm(zcrxm);
+                obj.setZcrbm(zcrxm);
+                String cjtlmd = obj.getCjtlmd();
+                cjtlmd = cjtlmd.replace(" ","");
+                cjtlmd = cjtlmd.replace("副主任医师","");
+                cjtlmd = cjtlmd.replace("副主治医师","");
+                cjtlmd = cjtlmd.replace("副住院医师","");
+                cjtlmd = cjtlmd.replace("住院医师","");
+                cjtlmd = cjtlmd.replace("主任医师","");
+                cjtlmd = cjtlmd.replace("主治医师","");
+                cjtlmd = cjtlmd.replace("规培医师","");
 
+                cjtlmd = cjtlmd.replace("住院医生","");
+                cjtlmd = cjtlmd.replace("主任医生","");
+                cjtlmd = cjtlmd.replace("主治医生","");
+                cjtlmd = cjtlmd.replace("规培医生","");
+
+                cjtlmd = cjtlmd.replace("责任护士","");
+                cjtlmd = cjtlmd.replace("护士长","");
+                cjtlmd = cjtlmd.replace("实习医师","");
+
+                cjtlmd = cjtlmd.replace("及基地住院医师，","");
+                cjtlmd = cjtlmd.replace("及基地住院医师","");
+                cjtlmd = cjtlmd.replace("规培基地住院医师及研究生，","");
+                cjtlmd = cjtlmd.replace("规培基地住院医师及研究生","");
+                cjtlmd = cjtlmd.replace("规培基地及研究生，","");
+                cjtlmd = cjtlmd.replace("全体基地医师","");
+                cjtlmd = cjtlmd.replace("全体基地，","");
+                cjtlmd = cjtlmd.replace("基地医师","");
+                cjtlmd = cjtlmd.replace("等","");
+                cjtlmd = cjtlmd.replace("本科实习生","");
+                cjtlmd = cjtlmd.replace("护士长","");
+                cjtlmd = cjtlmd.replace("护士","");
+                cjtlmd = cjtlmd.replace("等","");
+                cjtlmd = cjtlmd.replace("规培基地","");
+                cjtlmd = cjtlmd.replace("主任","");
+                cjtlmd = cjtlmd.replace("，，","");
+                cjtlmd = cjtlmd.replace("、","，");
+                obj.setCjtlmd(cjtlmd);
                 this.createHlhtZybcjlSqtl(obj);
                 //插入日志
                 mbzLoadDataInfoDao.insertMbzLoadDataInfo(new MbzLoadDataInfo(
@@ -208,7 +253,7 @@ public class HlhtZybcjlSqtlServiceImpl implements  HlhtZybcjlSqtlService {
             e.printStackTrace();
         }*/
         //1.病历总数 2.抽取的病历数量 3.子集类型
-        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SQTL_SOURCE_TYPE),entity.getMap().get("startDate")+" 至 "+entity.getMap().get("endDate"),(String)entity.getMap().get("isFlag"));
+        this.mbzDataCheckService.createMbzDataCheckNum(emr_count,real_count,Integer.parseInt(Constants.WN_ZYBCJL_SQTL_SOURCE_TYPE),entity);
 
         return dataChecks;
     }

@@ -61,7 +61,7 @@ public class DataLoadController extends BaseController {
         entity.getMap().put("startDate", startDate);
         entity.getMap().put("endDate", endDate);
         entity.getMap().put("syxh", syxh);
-        entity.getMap().put("isFlag", "0");
+        entity.setIsAutomate(0);
         entity.setSourceType(data_set);
         try {
             if (data_set == 1) {
@@ -255,7 +255,7 @@ public class DataLoadController extends BaseController {
 
             } else {
                 //删除原来的检验结果
-                super.getFacade().getMbzDataCheckService().removeMbzDataCheckList();
+                super.getFacade().getMbzDataCheckService().removeMbzDataCheckList(entity);
 
                 //1. 24h内入出院记录  --陈世杰
                 List<MbzDataCheck> mbzDataCheck1 = super.getFacade().getHlhtRyjlRcyjlService().interfaceHlhtRyjlRcyjl(entity);
@@ -350,9 +350,10 @@ public class DataLoadController extends BaseController {
 
     @RequestMapping("/handDataCheckTable/list")
     @ResponseBody
-    public List<MbzDataCheck> handDataLoad() {
+    public List<MbzDataCheck> handDataLoad(int isAutomate) {
         //Map<String, Object> result = new HashMap<String, Object>();
         MbzDataCheck entity = new MbzDataCheck();
+        entity.setIsAutomate(isAutomate);
         List<MbzDataCheck> mbzDataCheckList = super.getFacade().getMbzDataCheckService().getMbzDataCheckHandList(entity);
         //result.put("mbzDataCheckList",mbzDataCheckList);
         return mbzDataCheckList;

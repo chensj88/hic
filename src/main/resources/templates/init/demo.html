@@ -55,7 +55,7 @@
 
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" >
-                <div id="summernote1"></div>
+                <textarea id="summernote1"  style="width: 750px;height: 840px;overflow-scrolling: auto;" ></textarea>
             </div>
         </div>
     </div>
@@ -114,7 +114,7 @@
                 ['height', ['height']], //设置行高
             ]
         });
-        $('#summernote1').summernote({
+   /*     $('#summernote1').summernote({
             placeholder: '', //提示名称
             tabsize: 2,
             height: 800,
@@ -132,11 +132,13 @@
                 ['para', ['ul', 'ol', 'paragraph']], //列表
                 ['height', ['height']], //设置行高
             ]
-        });
+        });*/
 
         $('#parseBlnr').on('click',function(){
             var markupStr = $('#summernote').summernote('code');
-            $('#summernote1').summernote('insertText','');
+            //$('#summernote1').summernote('insertText','');
+            //initSummernote2();
+            $('#summernote1').val('');
             markupStr = markupStr.replace("<p><br></p>","");
             if(markupStr === '' || markupStr.length < 0 ){
                 toastr.info('请输入病历内容');
@@ -152,7 +154,8 @@
                 success: function (data, status) {
                     toastr.info('转换成功');
                  //   console.log(formatXml(data.data));
-                    $('#summernote1').summernote('insertText',format(data.data));
+                    //$('#summernote1').summernote('insertText',data.data);
+                    $('#summernote1').val(data.data);
                 },error:function (response) {
                     toastr.error(response.responseText);
                 }
@@ -225,7 +228,28 @@
             return str;
         }
 
-
+    function initSummernote2(){
+        $('#summernote1').summernote('destroy');
+        $('#summernote1').summernote({
+            placeholder: '', //提示名称
+            tabsize: 2,
+            height: 800,
+            minHeight: 50,             // 编辑器最小的高度
+            maxHeight: 800,             // 编辑器最大的高度
+            focus: true,               // 初始化完成后立即获取焦点
+            lang: 'zh-CN',             //中文支持
+            //自定义参数
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']], //样式
+                ['font', ['strikethrough', 'superscript', 'subscript']], //标记 上标、下标、删除线
+                ['fontsize', ['fontsize']], //字体大小
+                ['color', ['color']], //字体颜色
+                ['para', ['ul', 'ol', 'paragraph']], //列表
+                ['height', ['height']], //设置行高
+            ]
+        });
+    }
 
 
 //格式化xml
